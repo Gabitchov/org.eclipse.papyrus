@@ -63,7 +63,8 @@ public interface IModel {
 	/**
 	 * Create the model resource(s).
 	 * 
-	 * @param uri the URI, without file extension, where the model should be saved.
+	 * @param uri
+	 *        the URI, without file extension, where the model should be saved.
 	 */
 	public void createModel(URI uri);
 
@@ -81,7 +82,8 @@ public interface IModel {
 	/**
 	 * Load the model from the specified path..
 	 * 
-	 * @param uri the URI, without file extension, where the model should be saved.
+	 * @param uri
+	 *        the URI, without file extension, where the model should be saved.
 	 *        Should be used as a basis to guess the model URI.
 	 */
 	public void loadModel(URI uri);
@@ -99,7 +101,8 @@ public interface IModel {
 	/**
 	 * Import the model from the specified URI.
 	 * 
-	 * @param uri the URI, without file extension, where the model is.
+	 * @param uri
+	 *        the URI, without file extension, where the model is.
 	 */
 	public void importModel(URI uri);
 
@@ -123,7 +126,8 @@ public interface IModel {
 	/**
 	 * Sets the path under which the model should be saved. Does not save it.
 	 * 
-	 * @param uri the new base model URI, without file extension
+	 * @param uri
+	 *        the new base model URI, without file extension
 	 */
 	public void setModelURI(URI uri);
 
@@ -151,25 +155,43 @@ public interface IModel {
 
 	/**
 	 * Sets the list of Model (referenced by identifiers) that should be loaded before this one is loaded.
-	 * @param afterLoadModelIdentifiers the list of Model (referenced by identifiers) that should be loaded before this one can be loaded, or <code>null</code> if there are no dependencies
+	 * 
+	 * @param afterLoadModelIdentifiers
+	 *        the list of Model (referenced by identifiers) that should be loaded before this one can be loaded, or <code>null</code> if there are no
+	 *        dependencies
 	 */
 	public void setAfterLoadModelDependencies(List<String> afterLoadModelIdentifiers);
 
 	/**
 	 * Returns the Models (referenced by identifiers) that should be loaded before this one is loaded.
-	 * @return the Models (referenced by identifiers) that should be loaded before this one can be loaded, or <code>null</code> if there are no dependencies
+	 * 
+	 * @return the Models (referenced by identifiers) that should be loaded before this one can be loaded, or <code>null</code> if there are no
+	 *         dependencies
 	 */
 	public List<String> getAfterLoadModelIdentifiers();
-	
+
 	/**
 	 * Sets the list of Model (referenced by identifiers) that should not be unloaded before this one is unloaded.
-	 * @param unloadBeforeModelIdentifiers the Models (referenced by identifiers) that should not be unloaded before this one is unloaded, or <code>null</code> if there are no dependencies
+	 * 
+	 * @param unloadBeforeModelIdentifiers
+	 *        the Models (referenced by identifiers) that should not be unloaded before this one is unloaded, or <code>null</code> if there are no
+	 *        dependencies
 	 */
 	public void setBeforeUnloadDependencies(List<String> unloadBeforeModelIdentifiers);
-	
+
 	/**
 	 * Returns the Models (referenced by identifiers) that should not be unloaded before this one is unloaded.
-	 * @return the Models (referenced by identifiers) that should not be unloaded before this one is loaded, or <code>null</code> if there are no dependencies
+	 * 
+	 * @return the Models (referenced by identifiers) that should not be unloaded before this one is loaded, or <code>null</code> if there are no
+	 *         dependencies
 	 */
 	public List<String> getUnloadBeforeModelIdentifiers();
+
+	/**
+	 * Tests whether this model provides the specified element
+	 * 
+	 * @param element
+	 * @return
+	 */
+	public boolean isModelFor(Object element);
 }

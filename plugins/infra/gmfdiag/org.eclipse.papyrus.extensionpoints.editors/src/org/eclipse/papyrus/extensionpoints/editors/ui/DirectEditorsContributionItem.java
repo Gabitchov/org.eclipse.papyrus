@@ -131,7 +131,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 			buffer.append(configuration.getLanguage());
 			buffer.append(" Editor");
 			if(configuration.equals(defaultConfig)) {
-				buffer.append(" (Default)");
+				buffer.append(" (Default via F2)");
 			}
 			item.setText(buffer.toString());
 			item.addSelectionListener(new SelectionListener() {

@@ -289,6 +289,16 @@ public interface ActivitiesPackage extends EPackage {
 	int OPTIONAL_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>Optional</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.RateImpl <em>Rate</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -333,6 +343,16 @@ public interface ActivitiesPackage extends EPackage {
 	 * @ordered
 	 */
 	int RATE_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Rate</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int RATE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.activities.internal.impl.ProbabilityImpl
@@ -382,6 +402,16 @@ public interface ActivitiesPackage extends EPackage {
 	int PROBABILITY_FEATURE_COUNT = 3;
 
 	/**
+	 * The number of operations of the '<em>Probability</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROBABILITY_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.activities.internal.impl.ContinuousImpl
 	 * <em>Continuous</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
@@ -427,6 +457,16 @@ public interface ActivitiesPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTINUOUS_FEATURE_COUNT = RATE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Continuous</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_OPERATION_COUNT = RATE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.DiscreteImpl <em>Discrete</em>}' class.
@@ -475,6 +515,16 @@ public interface ActivitiesPackage extends EPackage {
 	int DISCRETE_FEATURE_COUNT = RATE_FEATURE_COUNT + 0;
 
 	/**
+	 * The number of operations of the '<em>Discrete</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_OPERATION_COUNT = RATE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.ControlOperatorImpl <em>Control Operator</em>}' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -513,6 +563,16 @@ public interface ActivitiesPackage extends EPackage {
 	int CONTROL_OPERATOR_FEATURE_COUNT = 2;
 
 	/**
+	 * The number of operations of the '<em>Control Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_OPERATOR_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.NoBufferImpl <em>No Buffer</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -541,6 +601,16 @@ public interface ActivitiesPackage extends EPackage {
 	int NO_BUFFER_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>No Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int NO_BUFFER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.OverwriteImpl <em>Overwrite</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -567,6 +637,16 @@ public interface ActivitiesPackage extends EPackage {
 	 * @ordered
 	 */
 	int OVERWRITE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Overwrite</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int OVERWRITE_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!--

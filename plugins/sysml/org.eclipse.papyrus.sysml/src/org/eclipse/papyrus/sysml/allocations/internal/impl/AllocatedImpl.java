@@ -14,14 +14,13 @@
 package org.eclipse.papyrus.sysml.allocations.internal.impl;
 
 import java.util.Iterator;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.Allocated;
@@ -45,7 +44,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * 
  * @generated
  */
-public class AllocatedImpl extends EObjectImpl implements Allocated {
+public class AllocatedImpl extends MinimalEObjectImpl.Container implements Allocated {
 
 	/**
 	 * The cached value of the '{@link #getBase_NamedElement() <em>Base Named Element</em>}' reference.

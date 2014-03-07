@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -53,7 +53,7 @@ public class ProfileConstraintUtils {
 			Type type = property.getType();
 
 			if((type instanceof PrimitiveType) || (type instanceof Enumeration)) {
-				if((property.getLower() != 0) && !(property.isSetDefault())) {
+				if((property.getLower() != 0) && !(property.getDefaultValue() != null)) {
 					hasDefaultValueRequired = false;
 				}
 			}
@@ -88,7 +88,7 @@ public class ProfileConstraintUtils {
 			Stereotype owner = (Stereotype)property.getOwner();
 			Iterator<Property> it = owner.getAllAttributes().iterator();
 			while(it.hasNext()) {
-				Property current = (Property)it.next();
+				Property current = it.next();
 				if(current.isSetName() && (current != property) && (current.getName().equals(property.getName()))) {
 					hasUniqueName = false;
 				}

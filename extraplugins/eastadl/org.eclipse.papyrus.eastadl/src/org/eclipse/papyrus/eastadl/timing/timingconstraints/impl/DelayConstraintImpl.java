@@ -33,19 +33,21 @@ import org.eclipse.papyrus.eastadl.timing.timingconstraints.TimingconstraintsPac
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.DelayConstraintImpl#getJitter <em>Jitter</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.DelayConstraintImpl#getNominal <em>Nominal</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.DelayConstraintImpl#getScope <em>Scope</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.DelayConstraintImpl#getJitter <em>Jitter</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.DelayConstraintImpl#getNominal <em>Nominal</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.DelayConstraintImpl#getScope <em>Scope</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class DelayConstraintImpl extends TimingConstraintImpl implements DelayConstraint {
+
 	/**
 	 * The cached value of the '{@link #getJitter() <em>Jitter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getJitter()
 	 * @generated
 	 * @ordered
@@ -56,6 +58,7 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	 * The cached value of the '{@link #getNominal() <em>Nominal</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getNominal()
 	 * @generated
 	 * @ordered
@@ -66,6 +69,7 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	 * The cached value of the '{@link #getScope() <em>Scope</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getScope()
 	 * @generated
 	 * @ordered
@@ -75,6 +79,7 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DelayConstraintImpl() {
@@ -84,6 +89,7 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration basicGetJitter() {
@@ -93,6 +99,7 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration basicGetNominal() {
@@ -102,6 +109,7 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EventChain basicGetScope() {
@@ -111,20 +119,24 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TimingconstraintsPackage.DELAY_CONSTRAINT__JITTER:
-				if (resolve) return getJitter();
-				return basicGetJitter();
-			case TimingconstraintsPackage.DELAY_CONSTRAINT__NOMINAL:
-				if (resolve) return getNominal();
-				return basicGetNominal();
-			case TimingconstraintsPackage.DELAY_CONSTRAINT__SCOPE:
-				if (resolve) return getScope();
-				return basicGetScope();
+		switch(featureID) {
+		case TimingconstraintsPackage.DELAY_CONSTRAINT__JITTER:
+			if(resolve)
+				return getJitter();
+			return basicGetJitter();
+		case TimingconstraintsPackage.DELAY_CONSTRAINT__NOMINAL:
+			if(resolve)
+				return getNominal();
+			return basicGetNominal();
+		case TimingconstraintsPackage.DELAY_CONSTRAINT__SCOPE:
+			if(resolve)
+				return getScope();
+			return basicGetScope();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -132,17 +144,18 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TimingconstraintsPackage.DELAY_CONSTRAINT__JITTER:
-				return jitter != null;
-			case TimingconstraintsPackage.DELAY_CONSTRAINT__NOMINAL:
-				return nominal != null;
-			case TimingconstraintsPackage.DELAY_CONSTRAINT__SCOPE:
-				return scope != null;
+		switch(featureID) {
+		case TimingconstraintsPackage.DELAY_CONSTRAINT__JITTER:
+			return jitter != null;
+		case TimingconstraintsPackage.DELAY_CONSTRAINT__NOMINAL:
+			return nominal != null;
+		case TimingconstraintsPackage.DELAY_CONSTRAINT__SCOPE:
+			return scope != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -150,20 +163,21 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TimingconstraintsPackage.DELAY_CONSTRAINT__JITTER:
-				setJitter((TimeDuration)newValue);
-				return;
-			case TimingconstraintsPackage.DELAY_CONSTRAINT__NOMINAL:
-				setNominal((TimeDuration)newValue);
-				return;
-			case TimingconstraintsPackage.DELAY_CONSTRAINT__SCOPE:
-				setScope((EventChain)newValue);
-				return;
+		switch(featureID) {
+		case TimingconstraintsPackage.DELAY_CONSTRAINT__JITTER:
+			setJitter((TimeDuration)newValue);
+			return;
+		case TimingconstraintsPackage.DELAY_CONSTRAINT__NOMINAL:
+			setNominal((TimeDuration)newValue);
+			return;
+		case TimingconstraintsPackage.DELAY_CONSTRAINT__SCOPE:
+			setScope((EventChain)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -171,6 +185,7 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -181,20 +196,21 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TimingconstraintsPackage.DELAY_CONSTRAINT__JITTER:
-				setJitter((TimeDuration)null);
-				return;
-			case TimingconstraintsPackage.DELAY_CONSTRAINT__NOMINAL:
-				setNominal((TimeDuration)null);
-				return;
-			case TimingconstraintsPackage.DELAY_CONSTRAINT__SCOPE:
-				setScope((EventChain)null);
-				return;
+		switch(featureID) {
+		case TimingconstraintsPackage.DELAY_CONSTRAINT__JITTER:
+			setJitter((TimeDuration)null);
+			return;
+		case TimingconstraintsPackage.DELAY_CONSTRAINT__NOMINAL:
+			setNominal((TimeDuration)null);
+			return;
+		case TimingconstraintsPackage.DELAY_CONSTRAINT__SCOPE:
+			setScope((EventChain)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -202,14 +218,15 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration getJitter() {
-		if (jitter != null && jitter.eIsProxy()) {
+		if(jitter != null && jitter.eIsProxy()) {
 			InternalEObject oldJitter = (InternalEObject)jitter;
 			jitter = (TimeDuration)eResolveProxy(oldJitter);
-			if (jitter != oldJitter) {
-				if (eNotificationRequired())
+			if(jitter != oldJitter) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingconstraintsPackage.DELAY_CONSTRAINT__JITTER, oldJitter, jitter));
 			}
 		}
@@ -219,14 +236,15 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration getNominal() {
-		if (nominal != null && nominal.eIsProxy()) {
+		if(nominal != null && nominal.eIsProxy()) {
 			InternalEObject oldNominal = (InternalEObject)nominal;
 			nominal = (TimeDuration)eResolveProxy(oldNominal);
-			if (nominal != oldNominal) {
-				if (eNotificationRequired())
+			if(nominal != oldNominal) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingconstraintsPackage.DELAY_CONSTRAINT__NOMINAL, oldNominal, nominal));
 			}
 		}
@@ -236,14 +254,15 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EventChain getScope() {
-		if (scope != null && scope.eIsProxy()) {
+		if(scope != null && scope.eIsProxy()) {
 			InternalEObject oldScope = (InternalEObject)scope;
 			scope = (EventChain)eResolveProxy(oldScope);
-			if (scope != oldScope) {
-				if (eNotificationRequired())
+			if(scope != oldScope) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingconstraintsPackage.DELAY_CONSTRAINT__SCOPE, oldScope, scope));
 			}
 		}
@@ -253,36 +272,39 @@ public abstract class DelayConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setJitter(TimeDuration newJitter) {
 		TimeDuration oldJitter = jitter;
 		jitter = newJitter;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingconstraintsPackage.DELAY_CONSTRAINT__JITTER, oldJitter, jitter));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setNominal(TimeDuration newNominal) {
 		TimeDuration oldNominal = nominal;
 		nominal = newNominal;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingconstraintsPackage.DELAY_CONSTRAINT__NOMINAL, oldNominal, nominal));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setScope(EventChain newScope) {
 		EventChain oldScope = scope;
 		scope = newScope;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingconstraintsPackage.DELAY_CONSTRAINT__SCOPE, oldScope, scope));
 	}
 

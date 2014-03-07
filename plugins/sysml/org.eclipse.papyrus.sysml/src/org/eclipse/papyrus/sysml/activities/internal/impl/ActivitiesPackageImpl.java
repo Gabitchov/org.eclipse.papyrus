@@ -48,7 +48,7 @@ import org.eclipse.papyrus.sysml.statemachines.internal.impl.StatemachinesPackag
 import org.eclipse.papyrus.sysml.usecases.UsecasesPackage;
 import org.eclipse.papyrus.sysml.usecases.internal.impl.UsecasesPackageImpl;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
@@ -94,7 +94,7 @@ public class ActivitiesPackageImpl extends EPackageImpl implements ActivitiesPac
 		isInited = true;
 
 		// Initialize simple dependencies
-		L2Package.eINSTANCE.eClass();
+		StandardPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		SysmlPackageImpl theSysmlPackage = (SysmlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SysmlPackage.eNS_URI) instanceof SysmlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SysmlPackage.eNS_URI) : SysmlPackage.eINSTANCE);
@@ -473,7 +473,7 @@ public class ActivitiesPackageImpl extends EPackageImpl implements ActivitiesPac
 		continuousEClass.getESuperTypes().add(this.getRate());
 		discreteEClass.getESuperTypes().add(this.getRate());
 
-		// Initialize classes and features; add operations and parameters
+		// Initialize classes, features, and operations; add parameters
 		initEClass(optionalEClass, Optional.class, "Optional", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOptional_Base_Parameter(), theUMLPackage.getParameter(), null, "base_Parameter", null, 1, 1, Optional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 

@@ -20,12 +20,14 @@ package org.eclipse.papyrus.eastadl.infrastructure.elements;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Relationship</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * The Relationship is an abstract metaclass which represents a relationship between arbitrary elements.
  * 
  * Semantics:
- * In many cases, Contexts such as functions and sensors need to have requirements and other specification elements allocated them. In other cases, the relation between an element and the related specification element is specific for a certain Context: for example a Requirement on a sensor is only applicable in certain hardware architecture. These relationships are modeled by concrete specializations of Relationship.
+ * In many cases, Contexts such as functions and sensors need to have requirements and other specification elements allocated them. In other cases,
+ * the relation between an element and the related specification element is specific for a certain Context: for example a Requirement on a sensor is
+ * only applicable in certain hardware architecture. These relationships are modeled by concrete specializations of Relationship.
  * 
  * See Context and TraceableSpecification.
  * 
@@ -33,11 +35,11 @@ package org.eclipse.papyrus.eastadl.infrastructure.elements;
  * Changes:
  * New class in EAST-ADL2
  * 
- * Extension: 
+ * Extension:
  * The Relationship stereotype is abstract
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.infrastructure.elements.ElementsPackage#getRelationship()
  * @model abstract="true"
  * @generated

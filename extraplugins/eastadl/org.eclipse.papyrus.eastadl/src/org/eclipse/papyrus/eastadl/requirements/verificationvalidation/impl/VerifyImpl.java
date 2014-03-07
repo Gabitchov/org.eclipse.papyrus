@@ -34,8 +34,7 @@ import org.eclipse.papyrus.eastadl.requirements.verificationvalidation.Verificat
 import org.eclipse.papyrus.eastadl.requirements.verificationvalidation.Verify;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.profile.l2.L2Package;
-import org.eclipse.uml2.uml.profile.l2.Trace;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
@@ -45,13 +44,13 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VerifyImpl#getBase_Abstraction <em>Base Abstraction</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VerifyImpl#getVerifiedByProcedure <em>Verified By Procedure</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VerifyImpl#getVerifiedByCase <em>Verified By Case</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VerifyImpl#getVerifiedRequirement <em>Verified Requirement</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VerifyImpl#getBase_Abstraction <em>Base Abstraction</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VerifyImpl#getVerifiedByProcedure <em>Verified By Procedure</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VerifyImpl#getVerifiedByCase <em>Verified By Case</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VerifyImpl#getVerifiedRequirement <em>Verified Requirement</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class VerifyImpl extends RequirementsRelationshipImpl implements Verify {
@@ -59,6 +58,7 @@ public class VerifyImpl extends RequirementsRelationshipImpl implements Verify {
 	/**
 	 * The cached value of the '{@link #getBase_Abstraction() <em>Base Abstraction</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Abstraction()
 	 * @generated
 	 * @ordered
@@ -68,6 +68,7 @@ public class VerifyImpl extends RequirementsRelationshipImpl implements Verify {
 	/**
 	 * The cached value of the '{@link #getVerifiedByProcedure() <em>Verified By Procedure</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVerifiedByProcedure()
 	 * @generated
 	 * @ordered
@@ -76,6 +77,7 @@ public class VerifyImpl extends RequirementsRelationshipImpl implements Verify {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected VerifyImpl() {
@@ -84,6 +86,7 @@ public class VerifyImpl extends RequirementsRelationshipImpl implements Verify {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Abstraction basicGetBase_Abstraction() {
@@ -92,19 +95,23 @@ public class VerifyImpl extends RequirementsRelationshipImpl implements Verify {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Trace.class) {
-			switch (derivedFeatureID) {
-				case VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION: return L2Package.TRACE__BASE_ABSTRACTION;
-				default: return -1;
+		if(baseClass == org.eclipse.uml2.uml.profile.standard.Trace.class) {
+			switch(derivedFeatureID) {
+			case VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION:
+				return StandardPackage.TRACE__BASE_ABSTRACTION;
+			default:
+				return -1;
 			}
 		}
-		if (baseClass == org.eclipse.papyrus.sysml.requirements.Verify.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
+		if(baseClass == org.eclipse.papyrus.sysml.requirements.Verify.class) {
+			switch(derivedFeatureID) {
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -112,19 +119,23 @@ public class VerifyImpl extends RequirementsRelationshipImpl implements Verify {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Trace.class) {
-			switch (baseFeatureID) {
-				case L2Package.TRACE__BASE_ABSTRACTION: return VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION;
-				default: return -1;
+		if(baseClass == org.eclipse.uml2.uml.profile.standard.Trace.class) {
+			switch(baseFeatureID) {
+			case StandardPackage.TRACE__BASE_ABSTRACTION:
+				return VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION;
+			default:
+				return -1;
 			}
 		}
-		if (baseClass == org.eclipse.papyrus.sysml.requirements.Verify.class) {
-			switch (baseFeatureID) {
-				default: return -1;
+		if(baseClass == org.eclipse.papyrus.sysml.requirements.Verify.class) {
+			switch(baseFeatureID) {
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -132,64 +143,69 @@ public class VerifyImpl extends RequirementsRelationshipImpl implements Verify {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION:
-				if (resolve) return getBase_Abstraction();
-				return basicGetBase_Abstraction();
-			case VerificationvalidationPackage.VERIFY__VERIFIED_BY_PROCEDURE:
-				return getVerifiedByProcedure();
-			case VerificationvalidationPackage.VERIFY__VERIFIED_BY_CASE:
-				return getVerifiedByCase();
-			case VerificationvalidationPackage.VERIFY__VERIFIED_REQUIREMENT:
-				return getVerifiedRequirement();
+		switch(featureID) {
+		case VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION:
+			if(resolve)
+				return getBase_Abstraction();
+			return basicGetBase_Abstraction();
+		case VerificationvalidationPackage.VERIFY__VERIFIED_BY_PROCEDURE:
+			return getVerifiedByProcedure();
+		case VerificationvalidationPackage.VERIFY__VERIFIED_BY_CASE:
+			return getVerifiedByCase();
+		case VerificationvalidationPackage.VERIFY__VERIFIED_REQUIREMENT:
+			return getVerifiedRequirement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION:
-				return base_Abstraction != null;
-			case VerificationvalidationPackage.VERIFY__VERIFIED_BY_PROCEDURE:
-				return verifiedByProcedure != null && !verifiedByProcedure.isEmpty();
-			case VerificationvalidationPackage.VERIFY__VERIFIED_BY_CASE:
-				return !getVerifiedByCase().isEmpty();
-			case VerificationvalidationPackage.VERIFY__VERIFIED_REQUIREMENT:
-				return !getVerifiedRequirement().isEmpty();
+		switch(featureID) {
+		case VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION:
+			return base_Abstraction != null;
+		case VerificationvalidationPackage.VERIFY__VERIFIED_BY_PROCEDURE:
+			return verifiedByProcedure != null && !verifiedByProcedure.isEmpty();
+		case VerificationvalidationPackage.VERIFY__VERIFIED_BY_CASE:
+			return !getVerifiedByCase().isEmpty();
+		case VerificationvalidationPackage.VERIFY__VERIFIED_REQUIREMENT:
+			return !getVerifiedRequirement().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION:
-				setBase_Abstraction((Abstraction)newValue);
-				return;
-			case VerificationvalidationPackage.VERIFY__VERIFIED_BY_PROCEDURE:
-				getVerifiedByProcedure().clear();
-				getVerifiedByProcedure().addAll((Collection<? extends VVProcedure>)newValue);
-				return;
+		switch(featureID) {
+		case VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION:
+			setBase_Abstraction((Abstraction)newValue);
+			return;
+		case VerificationvalidationPackage.VERIFY__VERIFIED_BY_PROCEDURE:
+			getVerifiedByProcedure().clear();
+			getVerifiedByProcedure().addAll((Collection<? extends VVProcedure>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,31 +215,33 @@ public class VerifyImpl extends RequirementsRelationshipImpl implements Verify {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION:
-				setBase_Abstraction((Abstraction)null);
-				return;
-			case VerificationvalidationPackage.VERIFY__VERIFIED_BY_PROCEDURE:
-				getVerifiedByProcedure().clear();
-				return;
+		switch(featureID) {
+		case VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION:
+			setBase_Abstraction((Abstraction)null);
+			return;
+		case VerificationvalidationPackage.VERIFY__VERIFIED_BY_PROCEDURE:
+			getVerifiedByProcedure().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Abstraction getBase_Abstraction() {
-		if (base_Abstraction != null && base_Abstraction.eIsProxy()) {
+		if(base_Abstraction != null && base_Abstraction.eIsProxy()) {
 			InternalEObject oldBase_Abstraction = (InternalEObject)base_Abstraction;
 			base_Abstraction = (Abstraction)eResolveProxy(oldBase_Abstraction);
-			if (base_Abstraction != oldBase_Abstraction) {
-				if (eNotificationRequired())
+			if(base_Abstraction != oldBase_Abstraction) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION, oldBase_Abstraction, base_Abstraction));
 			}
 		}
@@ -260,10 +278,11 @@ public class VerifyImpl extends RequirementsRelationshipImpl implements Verify {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<VVProcedure> getVerifiedByProcedure() {
-		if (verifiedByProcedure == null) {
+		if(verifiedByProcedure == null) {
 			verifiedByProcedure = new EObjectResolvingEList<VVProcedure>(VVProcedure.class, this, VerificationvalidationPackage.VERIFY__VERIFIED_BY_PROCEDURE);
 		}
 		return verifiedByProcedure;
@@ -299,12 +318,13 @@ public class VerifyImpl extends RequirementsRelationshipImpl implements Verify {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Abstraction(Abstraction newBase_Abstraction) {
 		Abstraction oldBase_Abstraction = base_Abstraction;
 		base_Abstraction = newBase_Abstraction;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VerificationvalidationPackage.VERIFY__BASE_ABSTRACTION, oldBase_Abstraction, base_Abstraction));
 	}
 

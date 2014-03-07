@@ -35,19 +35,21 @@ import org.eclipse.uml2.uml.Enumeration;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EnumerationValueTypeImpl#isIsMultiValued <em>Is Multi Valued</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EnumerationValueTypeImpl#getLiteralSemantics <em>Literal Semantics</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EnumerationValueTypeImpl#getBase_Enumeration <em>Base Enumeration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EnumerationValueTypeImpl#isIsMultiValued <em>Is Multi Valued</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EnumerationValueTypeImpl#getLiteralSemantics <em>Literal Semantics</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EnumerationValueTypeImpl#getBase_Enumeration <em>Base Enumeration</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class EnumerationValueTypeImpl extends ValueTypeImpl implements EnumerationValueType {
+
 	/**
 	 * The default value of the '{@link #isIsMultiValued() <em>Is Multi Valued</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isIsMultiValued()
 	 * @generated
 	 * @ordered
@@ -58,6 +60,7 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	 * The cached value of the '{@link #isIsMultiValued() <em>Is Multi Valued</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isIsMultiValued()
 	 * @generated
 	 * @ordered
@@ -68,6 +71,7 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	 * The cached value of the '{@link #getLiteralSemantics() <em>Literal Semantics</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getLiteralSemantics()
 	 * @generated
 	 * @ordered
@@ -78,6 +82,7 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	 * The cached value of the '{@link #getBase_Enumeration() <em>Base Enumeration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Enumeration()
 	 * @generated
 	 * @ordered
@@ -87,6 +92,7 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EnumerationValueTypeImpl() {
@@ -96,18 +102,20 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DatatypesPackage.ENUMERATION_VALUE_TYPE__IS_MULTI_VALUED:
-				return isIsMultiValued();
-			case DatatypesPackage.ENUMERATION_VALUE_TYPE__LITERAL_SEMANTICS:
-				return getLiteralSemantics();
-			case DatatypesPackage.ENUMERATION_VALUE_TYPE__BASE_ENUMERATION:
-				if (resolve) return getBase_Enumeration();
-				return basicGetBase_Enumeration();
+		switch(featureID) {
+		case DatatypesPackage.ENUMERATION_VALUE_TYPE__IS_MULTI_VALUED:
+			return isIsMultiValued();
+		case DatatypesPackage.ENUMERATION_VALUE_TYPE__LITERAL_SEMANTICS:
+			return getLiteralSemantics();
+		case DatatypesPackage.ENUMERATION_VALUE_TYPE__BASE_ENUMERATION:
+			if(resolve)
+				return getBase_Enumeration();
+			return basicGetBase_Enumeration();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -115,17 +123,18 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DatatypesPackage.ENUMERATION_VALUE_TYPE__IS_MULTI_VALUED:
-				return isMultiValued != IS_MULTI_VALUED_EDEFAULT;
-			case DatatypesPackage.ENUMERATION_VALUE_TYPE__LITERAL_SEMANTICS:
-				return literalSemantics != null && !literalSemantics.isEmpty();
-			case DatatypesPackage.ENUMERATION_VALUE_TYPE__BASE_ENUMERATION:
-				return base_Enumeration != null;
+		switch(featureID) {
+		case DatatypesPackage.ENUMERATION_VALUE_TYPE__IS_MULTI_VALUED:
+			return isMultiValued != IS_MULTI_VALUED_EDEFAULT;
+		case DatatypesPackage.ENUMERATION_VALUE_TYPE__LITERAL_SEMANTICS:
+			return literalSemantics != null && !literalSemantics.isEmpty();
+		case DatatypesPackage.ENUMERATION_VALUE_TYPE__BASE_ENUMERATION:
+			return base_Enumeration != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -133,22 +142,23 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DatatypesPackage.ENUMERATION_VALUE_TYPE__IS_MULTI_VALUED:
-				setIsMultiValued((Boolean)newValue);
-				return;
-			case DatatypesPackage.ENUMERATION_VALUE_TYPE__LITERAL_SEMANTICS:
-				getLiteralSemantics().clear();
-				getLiteralSemantics().addAll((Collection<? extends String>)newValue);
-				return;
-			case DatatypesPackage.ENUMERATION_VALUE_TYPE__BASE_ENUMERATION:
-				setBase_Enumeration((Enumeration)newValue);
-				return;
+		switch(featureID) {
+		case DatatypesPackage.ENUMERATION_VALUE_TYPE__IS_MULTI_VALUED:
+			setIsMultiValued((Boolean)newValue);
+			return;
+		case DatatypesPackage.ENUMERATION_VALUE_TYPE__LITERAL_SEMANTICS:
+			getLiteralSemantics().clear();
+			getLiteralSemantics().addAll((Collection<? extends String>)newValue);
+			return;
+		case DatatypesPackage.ENUMERATION_VALUE_TYPE__BASE_ENUMERATION:
+			setBase_Enumeration((Enumeration)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -156,6 +166,7 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -166,20 +177,21 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DatatypesPackage.ENUMERATION_VALUE_TYPE__IS_MULTI_VALUED:
-				setIsMultiValued(IS_MULTI_VALUED_EDEFAULT);
-				return;
-			case DatatypesPackage.ENUMERATION_VALUE_TYPE__LITERAL_SEMANTICS:
-				getLiteralSemantics().clear();
-				return;
-			case DatatypesPackage.ENUMERATION_VALUE_TYPE__BASE_ENUMERATION:
-				setBase_Enumeration((Enumeration)null);
-				return;
+		switch(featureID) {
+		case DatatypesPackage.ENUMERATION_VALUE_TYPE__IS_MULTI_VALUED:
+			setIsMultiValued(IS_MULTI_VALUED_EDEFAULT);
+			return;
+		case DatatypesPackage.ENUMERATION_VALUE_TYPE__LITERAL_SEMANTICS:
+			getLiteralSemantics().clear();
+			return;
+		case DatatypesPackage.ENUMERATION_VALUE_TYPE__BASE_ENUMERATION:
+			setBase_Enumeration((Enumeration)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -187,10 +199,11 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<String> getLiteralSemantics() {
-		if (literalSemantics == null) {
+		if(literalSemantics == null) {
 			literalSemantics = new EDataTypeEList<String>(String.class, this, DatatypesPackage.ENUMERATION_VALUE_TYPE__LITERAL_SEMANTICS);
 		}
 		return literalSemantics;
@@ -199,14 +212,15 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Enumeration getBase_Enumeration() {
-		if (base_Enumeration != null && base_Enumeration.eIsProxy()) {
+		if(base_Enumeration != null && base_Enumeration.eIsProxy()) {
 			InternalEObject oldBase_Enumeration = (InternalEObject)base_Enumeration;
 			base_Enumeration = (Enumeration)eResolveProxy(oldBase_Enumeration);
-			if (base_Enumeration != oldBase_Enumeration) {
-				if (eNotificationRequired())
+			if(base_Enumeration != oldBase_Enumeration) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatatypesPackage.ENUMERATION_VALUE_TYPE__BASE_ENUMERATION, oldBase_Enumeration, base_Enumeration));
 			}
 		}
@@ -216,6 +230,7 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Enumeration basicGetBase_Enumeration() {
@@ -225,18 +240,20 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Enumeration(Enumeration newBase_Enumeration) {
 		Enumeration oldBase_Enumeration = base_Enumeration;
 		base_Enumeration = newBase_Enumeration;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatatypesPackage.ENUMERATION_VALUE_TYPE__BASE_ENUMERATION, oldBase_Enumeration, base_Enumeration));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isIsMultiValued() {
@@ -246,23 +263,26 @@ public class EnumerationValueTypeImpl extends ValueTypeImpl implements Enumerati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIsMultiValued(boolean newIsMultiValued) {
 		boolean oldIsMultiValued = isMultiValued;
 		isMultiValued = newIsMultiValued;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatatypesPackage.ENUMERATION_VALUE_TYPE__IS_MULTI_VALUED, oldIsMultiValued, isMultiValued));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (isMultiValued: ");

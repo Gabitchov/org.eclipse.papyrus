@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module StateMachineUtil('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[module StateMachineUtil('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
 [query public boundPackageRef(actual : Type) : Package =
 	invoke('org.eclipse.papyrus.qompass.modellibs.core.acceleo.StateMachineUtil',

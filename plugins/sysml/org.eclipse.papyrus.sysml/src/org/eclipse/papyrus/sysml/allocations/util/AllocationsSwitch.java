@@ -20,11 +20,6 @@ import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition;
 import org.eclipse.papyrus.sysml.allocations.Allocated;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
-import org.eclipse.uml2.uml.Abstraction;
-import org.eclipse.uml2.uml.ActivityPartition;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -69,10 +64,7 @@ public class AllocationsSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected boolean isSwitchFor(EPackage ePackage) {
-		/**
-		 * ePackage == UMLPackage.eINSTANCE in order to accept UML element
-		 */
-		return ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE;
+		return ePackage == modelPackage;
 	}
 
 	/**
@@ -141,93 +133,6 @@ public class AllocationsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Tell if the Abstraction is a Allocate implementation
-	 * 
-	 * @param Abstraction
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isAllocateFromAbstraction(Abstraction abstraction_) {
-		if(UMLUtil.getStereotypeApplication(abstraction_, Allocate.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Allocate</em>' from Abstraction object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Allocate</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAbstractionStereotypedByAllocate(Abstraction abstraction_) {
-		return null;
-	}
-
-	/**
-	 * Tell if the NamedElement is a Allocated implementation
-	 * 
-	 * @param NamedElement
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isAllocatedFromNamedElement(NamedElement namedElement_) {
-		if(UMLUtil.getStereotypeApplication(namedElement_, Allocated.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Allocated</em>' from NamedElement object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Allocated</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNamedElementStereotypedByAllocated(NamedElement namedElement_) {
-		return null;
-	}
-
-	/**
-	 * Tell if the ActivityPartition is a AllocateActivityPartition implementation
-	 * 
-	 * @param ActivityPartition
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isAllocateActivityPartitionFromActivityPartition(ActivityPartition activityPartition_) {
-		if(UMLUtil.getStereotypeApplication(activityPartition_, AllocateActivityPartition.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>AllocateActivityPartition</em>' from ActivityPartition object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>AllocateActivityPartition</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseActivityPartitionStereotypedByAllocateActivityPartition(ActivityPartition activityPartition_) {
-		return null;
-	}
-
-	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -237,108 +142,33 @@ public class AllocationsSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		if(theEObject.eClass().getEPackage() == UMLPackage.eINSTANCE) {
-			switch(classifierID) {
-
-
-
-
-
-			case UMLPackage.ABSTRACTION:
-			{
-				Abstraction umlElement = (Abstraction)theEObject;
-				T result;
-
-				result = caseAbstractionStereotypedByAllocate(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-				return null;
-			}
-
-
-
-
-
-			case UMLPackage.ACTIVITY_PARTITION:
-			{
-				ActivityPartition umlElement = (ActivityPartition)theEObject;
-				T result;
-
-				result = caseActivityPartitionStereotypedByAllocateActivityPartition(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-				return null;
-			}
-
-
-
-
-
-			case UMLPackage.NAMED_ELEMENT:
-			{
-				NamedElement umlElement = (NamedElement)theEObject;
-				T result;
-
-				result = caseNamedElementStereotypedByAllocated(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-				return null;
-			}
-
-
-
-
-			default:
-				return defaultCase(theEObject);
-			}
-
-
-
-
-		} else {
-			switch(classifierID) {
-
-			case AllocationsPackage.ALLOCATE:
-			{
-				Allocate allocate = (Allocate)theEObject;
-				T result = caseAllocate(allocate);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-
-			case AllocationsPackage.ALLOCATED:
-			{
-				Allocated allocated = (Allocated)theEObject;
-				T result = caseAllocated(allocated);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-
-			case AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION:
-			{
-				AllocateActivityPartition allocateActivityPartition = (AllocateActivityPartition)theEObject;
-				T result = caseAllocateActivityPartition(allocateActivityPartition);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-			default:
-				return defaultCase(theEObject);
-			}
+		switch(classifierID) {
+		case AllocationsPackage.ALLOCATE:
+		{
+			Allocate allocate = (Allocate)theEObject;
+			T result = caseAllocate(allocate);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case AllocationsPackage.ALLOCATED:
+		{
+			Allocated allocated = (Allocated)theEObject;
+			T result = caseAllocated(allocated);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION:
+		{
+			AllocateActivityPartition allocateActivityPartition = (AllocateActivityPartition)theEObject;
+			T result = caseAllocateActivityPartition(allocateActivityPartition);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

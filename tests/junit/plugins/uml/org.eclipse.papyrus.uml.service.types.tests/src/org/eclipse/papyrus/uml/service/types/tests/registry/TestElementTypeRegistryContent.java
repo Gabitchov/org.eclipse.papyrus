@@ -16,11 +16,11 @@ import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
 import org.junit.Test;
 
 /**
- * 
+ *
  */
 public class TestElementTypeRegistryContent {
 
@@ -34,92 +34,90 @@ public class TestElementTypeRegistryContent {
 
 	@Test
 	public void testRegistryContentForUML() {
-		
+
 		IClientContext context = ClientContextManager.getInstance().getClientContext(PAPYRUS_CONTEXT_ID);
-		if (context == null) {
+		if(context == null) {
 			fail("Papyrus IClientContext could not be found.");
 		}
-		
+
 		// Iterate over UML2 contents
 		Iterator<EObject> it = UMLPackage.eINSTANCE.eAllContents();
 		while(it.hasNext()) {
 			EObject eObject = it.next();
-			if (eObject instanceof EClass) {
-				EClass eClass = (EClass) eObject;
+			if(eObject instanceof EClass) {
+				EClass eClass = (EClass)eObject;
 				IElementType elementType = ElementTypeRegistry.getInstance().getElementType(eClass, context);
-							
+
 				// An IElementType is supposed to be registered for any meta-class in the UML type service.
-				assertTrue("No IElementType registered for eClass ("+eClass.getName()+")", elementType != null);
+				assertTrue("No IElementType registered for eClass (" + eClass.getName() + ")", elementType != null);
 				// An IElementType is supposed to be registered for any meta-class in the UML type service.
-				assertTrue("Unexpected IElementType id ("+elementType.getId()+")", elementType.getId().startsWith(PAPYRUS_ELEMENT_TYPE_PREFIX));
-				assertFalse("Unexpected IElementType id ("+elementType.getId()+")", elementType.getId().startsWith(PAPYRUS_INVALID_PREFIX));
+				assertTrue("Unexpected IElementType id (" + elementType.getId() + ")", elementType.getId().startsWith(PAPYRUS_ELEMENT_TYPE_PREFIX));
+				assertFalse("Unexpected IElementType id (" + elementType.getId() + ")", elementType.getId().startsWith(PAPYRUS_INVALID_PREFIX));
 				// Ensure a correct base is used for Helper
-				assertTrue("Incorrect edit helper hierarchy for element type ("+elementType.getId()+")", elementType.getEditHelper() instanceof DefaultEditHelper);
+				assertTrue("Incorrect edit helper hierarchy for element type (" + elementType.getId() + ")", elementType.getEditHelper() instanceof DefaultEditHelper);
 			}
-		}		
+		}
 	}
-	
+
 	@Test
 	public void testRegistryContentForUMLStandard() {
-		
+
 		// Iterate over UML2 Standard profile contents
-		Iterator<EObject> it = L2Package.eINSTANCE.eAllContents();
+		Iterator<EObject> it = StandardPackage.eINSTANCE.eAllContents();
 		while(it.hasNext()) {
 			EObject eObject = it.next();
-			if (eObject instanceof EClass) {
-				EClass eClass = (EClass) eObject;
-				
-				if (!"Trace".equals(eClass.getName()) && !"Refine".equals(eClass.getName())) {
+			if(eObject instanceof EClass) {
+				EClass eClass = (EClass)eObject;
+
+				if(!"Trace".equals(eClass.getName()) && !"Refine".equals(eClass.getName())) {
 					// Not implemented
 					continue;
 				}
 
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
-					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
 
 			}
 		}
 	}
-	
+
 	@Test
 	public void testRegistryContentForUMLStandardStereotypeApplication() {
-		
+
 		// Iterate over UML2 Standard profile contents
-		Iterator<EObject> it = L2Package.eINSTANCE.eAllContents();
+		Iterator<EObject> it = StandardPackage.eINSTANCE.eAllContents();
 		while(it.hasNext()) {
 			EObject eObject = it.next();
-			if (eObject instanceof EClass) {
-				EClass eClass = (EClass) eObject;
+			if(eObject instanceof EClass) {
+				EClass eClass = (EClass)eObject;
 
-				if (!"Trace".equals(eClass.getName()) && !"Refine".equals(eClass.getName())) {
+				if(!"Trace".equals(eClass.getName()) && !"Refine".equals(eClass.getName())) {
 					// Not implemented
 					continue;
 				}
-				
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
-					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
+
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 
 			}
 		}
 	}
-	
+
 	@Test
 	public void testRegistryContentForUMLAssociations() {
 
 		IClientContext context = ClientContextManager.getInstance().getClientContext(PAPYRUS_CONTEXT_ID);
-		if (context == null) {
+		if(context == null) {
 			fail("Papyrus IClientContext could not be found.");
 		}
-		
+
 		IElementType associationBaseElementType = ElementTypeRegistry.getInstance().getElementType(UMLPackage.eINSTANCE.getAssociation(), context);
-		assertTrue("Incorrect id for base Association element type ("+associationBaseElementType.getId()+")", associationBaseElementType.getId().equals("org.eclipse.papyrus.uml.AssociationBase"));
+		assertTrue("Incorrect id for base Association element type (" + associationBaseElementType.getId() + ")", associationBaseElementType.getId().equals("org.eclipse.papyrus.uml.AssociationBase"));
 
 		IElementType associationElementType = ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.uml.Association");
 		assertTrue("No ISpecializationType found for UML Association in Papyrus context", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.uml.Association"));
-		assertTrue("Incorrect kind of ElementType (ISpecializationType expected for "+ associationElementType.getId() +")", associationElementType instanceof ISpecializationType);
-		ISpecializationType associationSpecializationType = (ISpecializationType) associationElementType;
-		assertTrue("Incorrect specialization type hierarchy for "+ associationElementType.getId(), associationSpecializationType.isSpecializationOf(associationBaseElementType));
-		
+		assertTrue("Incorrect kind of ElementType (ISpecializationType expected for " + associationElementType.getId() + ")", associationElementType instanceof ISpecializationType);
+		ISpecializationType associationSpecializationType = (ISpecializationType)associationElementType;
+		assertTrue("Incorrect specialization type hierarchy for " + associationElementType.getId(), associationSpecializationType.isSpecializationOf(associationBaseElementType));
+
 	}
-	
+
 }

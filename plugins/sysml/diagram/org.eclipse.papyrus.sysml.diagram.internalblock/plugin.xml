@@ -484,7 +484,7 @@
 <!-- Diagram specific advices -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
-	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+	<metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
 
 	<!-- Property specific advices (remove inconsistent views when a Property type is set) -->		
 	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.internalblock.PropertyHelperAdvice" class="org.eclipse.papyrus.sysml.diagram.internalblock.helper.advice.PropertyHelperAdvice" inheritance="all" typeId="org.eclipse.papyrus.uml.Property">

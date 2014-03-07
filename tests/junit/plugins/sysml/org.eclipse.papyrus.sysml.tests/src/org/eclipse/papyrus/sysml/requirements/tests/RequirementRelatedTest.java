@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
@@ -41,14 +41,14 @@ import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
  * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getVerifies() <em>Verifies</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class RequirementRelatedTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -109,7 +109,7 @@ public class RequirementRelatedTest extends TestCase {
 	 * Constructs a new Requirement Related test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public RequirementRelatedTest(String name) {
@@ -120,7 +120,7 @@ public class RequirementRelatedTest extends TestCase {
 	 * Returns the fixture for this Requirement Related test case.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected RequirementRelated getFixture() {
@@ -131,7 +131,7 @@ public class RequirementRelatedTest extends TestCase {
 	 * Sets the fixture for this Requirement Related test case.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void setFixture(RequirementRelated fixture) {
@@ -140,7 +140,7 @@ public class RequirementRelatedTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated NOT
 	 */
@@ -183,13 +183,13 @@ public class RequirementRelatedTest extends TestCase {
 		t11.getClients().add(traced);
 		t11.getSuppliers().add(trace1);
 		model.getPackagedElements().add(t11);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(t11, L2Package.eINSTANCE.getTrace());
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(t11, StandardPackage.eINSTANCE.getTrace());
 
 		Abstraction t12 = UMLFactory.eINSTANCE.createAbstraction();
 		t12.getClients().add(traced);
 		t12.getSuppliers().add(trace2);
 		model.getPackagedElements().add(t12);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(t12, L2Package.eINSTANCE.getTrace());
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(t12, StandardPackage.eINSTANCE.getTrace());
 
 		master = model.createOwnedClass("master", false);
 		master_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(master, RequirementsPackage.eINSTANCE.getRequirement());
@@ -286,13 +286,13 @@ public class RequirementRelatedTest extends TestCase {
 		r1.getClients().add(refining);
 		r1.getSuppliers().add(refined1);
 		model.getPackagedElements().add(r1);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(r1, L2Package.eINSTANCE.getRefine());
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(r1, StandardPackage.eINSTANCE.getRefine());
 
 		Abstraction r2 = UMLFactory.eINSTANCE.createAbstraction();
 		r2.getClients().add(refining);
 		r2.getSuppliers().add(refined2);
 		model.getPackagedElements().add(r2);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(r2, L2Package.eINSTANCE.getRefine());
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(r2, StandardPackage.eINSTANCE.getRefine());
 
 
 		// ////////////////////////////////////////////////////////////////////
@@ -300,7 +300,7 @@ public class RequirementRelatedTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
@@ -312,7 +312,7 @@ public class RequirementRelatedTest extends TestCase {
 	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getRefines()
 	 * <em>Refines</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated#getRefines()
 	 * @generated NOT
 	 */
@@ -335,7 +335,7 @@ public class RequirementRelatedTest extends TestCase {
 	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getSatisfies()
 	 * <em>Satisfies</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated#getSatisfies()
 	 * @generated NOT
 	 */
@@ -358,7 +358,7 @@ public class RequirementRelatedTest extends TestCase {
 	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getTracedFrom()
 	 * <em>Traced From</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated#getTracedFrom()
 	 * @generated NOT
 	 */
@@ -387,7 +387,7 @@ public class RequirementRelatedTest extends TestCase {
 	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getVerifies()
 	 * <em>Verifies</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated#getVerifies()
 	 * @generated NOT
 	 */

@@ -22,8 +22,8 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc --> A representation of the literals of the enumeration '
- * <em><b>Binding Time Kind</b></em>', and utility methods for working with them. <!-- end-user-doc
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration ' <em><b>Binding Time Kind</b></em>', and utility methods for working
+ * with them. <!-- end-user-doc
  * --> <!-- begin-model-doc --> The binding time kind gives the set of possible binding times.
  * 
  * Semantics: BindingTimeKind has no specific semantics. Further subclasses of BindingTimeKind will
@@ -38,6 +38,7 @@ public enum BindingTimeKind implements Enumerator {
 	 * The '<em><b>System Design Time</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #SYSTEM_DESIGN_TIME_VALUE
 	 * @generated
 	 * @ordered
@@ -46,6 +47,7 @@ public enum BindingTimeKind implements Enumerator {
 	 * The '<em><b>Code Generation Time</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #CODE_GENERATION_TIME_VALUE
 	 * @generated
 	 * @ordered
@@ -54,6 +56,7 @@ public enum BindingTimeKind implements Enumerator {
 	 * The '<em><b>Precompile Time</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #PRECOMPILE_TIME_VALUE
 	 * @generated
 	 * @ordered
@@ -62,6 +65,7 @@ public enum BindingTimeKind implements Enumerator {
 	 * The '<em><b>Link Time</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #LINK_TIME_VALUE
 	 * @generated
 	 * @ordered
@@ -70,6 +74,7 @@ public enum BindingTimeKind implements Enumerator {
 	 * The '<em><b>Post Build</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #POST_BUILD_VALUE
 	 * @generated
 	 * @ordered
@@ -78,6 +83,7 @@ public enum BindingTimeKind implements Enumerator {
 	 * The '<em><b>Runtime</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #RUNTIME_VALUE
 	 * @generated
 	 * @ordered
@@ -99,6 +105,7 @@ public enum BindingTimeKind implements Enumerator {
 	 * * ECUs and interconnecting Networks
 	 * * Designing the Communication Matrix and Data Mapping
 	 * <!-- end-model-doc -->
+	 * 
 	 * @see #SYSTEM_DESIGN_TIME
 	 * @model name="systemDesignTime"
 	 * @generated
@@ -119,6 +126,7 @@ public enum BindingTimeKind implements Enumerator {
 	 * * The model may contain variants.
 	 * * Only code for the selected variant(s) is actually generated.
 	 * <!-- end-model-doc -->
+	 * 
 	 * @see #CODE_GENERATION_TIME
 	 * @model name="codeGenerationTime"
 	 * @generated
@@ -134,8 +142,12 @@ public enum BindingTimeKind implements Enumerator {
 	 * Variability will be bound during or immediately prior to code compilation.
 	 * 
 	 * From AUTOSAR:
-	 * This is typically the C-Preprocessor. Exclude parts of the code from the compilation process, e.g., because they are not required for the selected variant, because they are incompatible with the selected variant, because they require resources that are not present in the selected variant. Object code is only generated for the selected variant(s). The code that is excluded at this stage code will not be available at later stages.
+	 * This is typically the C-Preprocessor. Exclude parts of the code from the compilation process, e.g., because they are not required for the
+	 * selected variant, because they are incompatible with the selected variant, because they require resources that are not present in the selected
+	 * variant. Object code is only generated for the selected variant(s). The code that is excluded at this stage code will not be available at later
+	 * stages.
 	 * <!-- end-model-doc -->
+	 * 
 	 * @see #PRECOMPILE_TIME
 	 * @model name="precompileTime"
 	 * @generated
@@ -155,6 +167,7 @@ public enum BindingTimeKind implements Enumerator {
 	 * Based on which variant(s) are selected
 	 * E.g. for modules that are delivered as object code (as opposed to those that are delivered as source code)
 	 * <!-- end-model-doc -->
+	 * 
 	 * @see #LINK_TIME
 	 * @model name="linkTime"
 	 * @generated
@@ -169,6 +182,7 @@ public enum BindingTimeKind implements Enumerator {
 	 * <!-- begin-model-doc -->
 	 * Variability will be bound at certain occasions after shipment, for example when the vehicle is in a workshop.
 	 * <!-- end-model-doc -->
+	 * 
 	 * @see #POST_BUILD
 	 * @model name="postBuild"
 	 * @generated
@@ -183,8 +197,11 @@ public enum BindingTimeKind implements Enumerator {
 	 * <!-- begin-model-doc -->
 	 * Variability will be bound by the customer after shipment by way of vehicle configuration.
 	 * 
-	 * Variability with such a late binding time can also be seen as a special functionality of the system which is not documented as variability at all. However, it is sometimes advantageous to represent such cases as variability in order to be able to seamlessly include them in the overall variability management activities.
+	 * Variability with such a late binding time can also be seen as a special functionality of the system which is not documented as variability at
+	 * all. However, it is sometimes advantageous to represent such cases as variability in order to be able to seamlessly include them in the overall
+	 * variability management activities.
 	 * <!-- end-model-doc -->
+	 * 
 	 * @see #RUNTIME
 	 * @model name="runtime"
 	 * @generated
@@ -196,16 +213,10 @@ public enum BindingTimeKind implements Enumerator {
 	 * An array of all the '<em><b>Binding Time Kind</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final BindingTimeKind[] VALUES_ARRAY = new BindingTimeKind[] {
-			SYSTEM_DESIGN_TIME,
-			CODE_GENERATION_TIME,
-			PRECOMPILE_TIME,
-			LINK_TIME,
-			POST_BUILD,
-			RUNTIME,
-		};
+	private static final BindingTimeKind[] VALUES_ARRAY = new BindingTimeKind[]{ SYSTEM_DESIGN_TIME, CODE_GENERATION_TIME, PRECOMPILE_TIME, LINK_TIME, POST_BUILD, RUNTIME, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Binding Time Kind</b></em>' enumerators. <!--
@@ -218,16 +229,23 @@ public enum BindingTimeKind implements Enumerator {
 	/**
 	 * Returns the '<em><b>Binding Time Kind</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static BindingTimeKind get(int value) {
-		switch (value) {
-			case SYSTEM_DESIGN_TIME_VALUE: return SYSTEM_DESIGN_TIME;
-			case CODE_GENERATION_TIME_VALUE: return CODE_GENERATION_TIME;
-			case PRECOMPILE_TIME_VALUE: return PRECOMPILE_TIME;
-			case LINK_TIME_VALUE: return LINK_TIME;
-			case POST_BUILD_VALUE: return POST_BUILD;
-			case RUNTIME_VALUE: return RUNTIME;
+		switch(value) {
+		case SYSTEM_DESIGN_TIME_VALUE:
+			return SYSTEM_DESIGN_TIME;
+		case CODE_GENERATION_TIME_VALUE:
+			return CODE_GENERATION_TIME;
+		case PRECOMPILE_TIME_VALUE:
+			return PRECOMPILE_TIME;
+		case LINK_TIME_VALUE:
+			return LINK_TIME;
+		case POST_BUILD_VALUE:
+			return POST_BUILD;
+		case RUNTIME_VALUE:
+			return RUNTIME;
 		}
 		return null;
 	}
@@ -235,12 +253,13 @@ public enum BindingTimeKind implements Enumerator {
 	/**
 	 * Returns the '<em><b>Binding Time Kind</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static BindingTimeKind get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			BindingTimeKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if(result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -254,9 +273,9 @@ public enum BindingTimeKind implements Enumerator {
 	 * @generated
 	 */
 	public static BindingTimeKind getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			BindingTimeKind result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if(result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -265,18 +284,21 @@ public enum BindingTimeKind implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
@@ -284,6 +306,7 @@ public enum BindingTimeKind implements Enumerator {
 	/**
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private BindingTimeKind(int value, String name, String literal) {
@@ -294,26 +317,29 @@ public enum BindingTimeKind implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**

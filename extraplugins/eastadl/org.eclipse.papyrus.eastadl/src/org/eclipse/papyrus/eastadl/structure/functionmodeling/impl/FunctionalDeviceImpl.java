@@ -21,17 +21,17 @@ import org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPa
 
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Functional Device</b></em>
- * '. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Functional Device</b></em> '. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class FunctionalDeviceImpl extends AnalysisFunctionTypeImpl implements FunctionalDevice {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FunctionalDeviceImpl() {
@@ -40,6 +40,7 @@ public class FunctionalDeviceImpl extends AnalysisFunctionTypeImpl implements Fu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

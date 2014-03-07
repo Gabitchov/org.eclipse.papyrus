@@ -466,6 +466,7 @@ public interface DiPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.impl.DiPackageImpl#getPageList()
 	 * @generated
 	 */
+	@Deprecated
 	int PAGE_LIST = 10;
 
 	/**
@@ -475,6 +476,7 @@ public interface DiPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
+	@Deprecated
 	int PAGE_LIST__AVAILABLE_PAGE = 0;
 
 	/**
@@ -878,6 +880,7 @@ public interface DiPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.PageList
 	 * @generated
 	 */
+	@Deprecated
 	EClass getPageList();
 
 	/**
@@ -889,6 +892,7 @@ public interface DiPackage extends EPackage {
 	 * @see #getPageList()
 	 * @generated
 	 */
+	@Deprecated
 	EReference getPageList_AvailablePage();
 
 	/**
@@ -910,6 +914,7 @@ public interface DiPackage extends EPackage {
 	 * @see #getSashWindowsMngr()
 	 * @generated
 	 */
+	@Deprecated
 	EReference getSashWindowsMngr_PageList();
 
 	/**
@@ -1247,6 +1252,7 @@ public interface DiPackage extends EPackage {
 		 * @see org.eclipse.papyrus.infra.core.sashwindows.di.impl.DiPackageImpl#getPageList()
 		 * @generated
 		 */
+		@Deprecated
 		EClass PAGE_LIST = eINSTANCE.getPageList();
 
 		/**
@@ -1255,6 +1261,7 @@ public interface DiPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Deprecated
 		EReference PAGE_LIST__AVAILABLE_PAGE = eINSTANCE.getPageList_AvailablePage();
 
 		/**
@@ -1273,6 +1280,7 @@ public interface DiPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Deprecated
 		EReference SASH_WINDOWS_MNGR__PAGE_LIST = eINSTANCE.getSashWindowsMngr_PageList();
 
 		/**

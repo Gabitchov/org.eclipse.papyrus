@@ -63,7 +63,7 @@ public class ValidationPluginGenerator {
 
 	private static final String EMF_VALIDATION_PLUGIN = "org.eclipse.emf.validation";
 
-	private static final String UML_URL = "http://www.eclipse.org/uml2/4.0.0/UML";
+	private static final String UML_URL = "http://www.eclipse.org/uml2/5.0.0/UML";
 
 
 	/**

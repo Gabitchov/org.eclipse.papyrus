@@ -790,7 +790,7 @@
    <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
       <metamodel
-            nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+            nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                edithelperadvice="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionEditHelperAdvice"
                id="org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_5000"

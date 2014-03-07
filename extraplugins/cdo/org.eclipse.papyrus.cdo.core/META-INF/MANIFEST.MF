@@ -24,6 +24,7 @@ Export-Package: org.eclipse.papyrus.cdo.core,
  org.eclipse.papyrus.cdo.internal.core.repositories;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
  org.eclipse.papyrus.cdo.internal.core.repositories.impl;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
  org.eclipse.papyrus.cdo.internal.core.repositories.util;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
+ org.eclipse.papyrus.cdo.internal.core.resource;x-internal:=true,
  org.eclipse.papyrus.cdo.internal.core.services.localizer;x-internal:=true
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

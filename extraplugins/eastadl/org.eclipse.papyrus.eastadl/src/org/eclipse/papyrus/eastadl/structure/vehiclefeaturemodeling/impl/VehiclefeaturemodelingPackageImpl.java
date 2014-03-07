@@ -87,12 +87,14 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements VehiclefeaturemodelingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -100,16 +102,18 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link VehiclefeaturemodelingPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link VehiclefeaturemodelingPackage#eINSTANCE} when that field is accessed. Clients should not invoke it
+	 * directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static VehiclefeaturemodelingPackage init() {
-		if (isInited) return (VehiclefeaturemodelingPackage)EPackage.Registry.INSTANCE.getEPackage(VehiclefeaturemodelingPackage.eNS_URI);
+		if(isInited)
+			return (VehiclefeaturemodelingPackage)EPackage.Registry.INSTANCE.getEPackage(VehiclefeaturemodelingPackage.eNS_URI);
 
 		// Obtain or create and register package
 		VehiclefeaturemodelingPackageImpl theVehiclefeaturemodelingPackage = (VehiclefeaturemodelingPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof VehiclefeaturemodelingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new VehiclefeaturemodelingPackageImpl());
@@ -211,7 +215,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 		// Mark meta-data to indicate it can't be changed
 		theVehiclefeaturemodelingPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(VehiclefeaturemodelingPackage.eNS_URI, theVehiclefeaturemodelingPackage);
 		return theVehiclefeaturemodelingPackage;
@@ -219,43 +223,47 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass deviationAttributeSetEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass vehicleFeatureEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum deviationPermissionKindEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehiclefeaturemodelingPackage#eNS_URI
 	 * @see #init()
@@ -266,13 +274,15 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -301,6 +311,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getDeviationAttributeSet() {
@@ -309,6 +320,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDeviationAttributeSet_AllowChangeAttribute() {
@@ -317,6 +329,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDeviationAttributeSet_AllowChangeCardinality() {
@@ -326,6 +339,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDeviationAttributeSet_AllowChangeDescription() {
@@ -334,6 +348,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDeviationAttributeSet_AllowChangeName() {
@@ -342,6 +357,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDeviationAttributeSet_AllowMove() {
@@ -350,6 +366,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDeviationAttributeSet_AllowReduction() {
@@ -358,6 +375,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDeviationAttributeSet_AllowRefinement() {
@@ -366,6 +384,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDeviationAttributeSet_AllowRegrouping() {
@@ -374,6 +393,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDeviationAttributeSet_AllowRemoval() {
@@ -383,6 +403,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDeviationAttributeSet_Base_DataType() {
@@ -391,6 +412,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDeviationAttributeSet_Feature() {
@@ -399,6 +421,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getDeviationPermissionKind() {
@@ -407,6 +430,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVehicleFeature() {
@@ -415,6 +439,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVehicleFeature_DeviationAttributeSet() {
@@ -423,6 +448,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getVehicleFeature_IsCustomerVisible() {
@@ -431,6 +457,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getVehicleFeature_IsDesignVariabilityRationale() {
@@ -439,6 +466,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getVehicleFeature_IsRemoved() {
@@ -447,6 +475,7 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VehiclefeaturemodelingFactory getVehiclefeaturemodelingFactory() {
@@ -454,13 +483,15 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -484,15 +515,15 @@ public class VehiclefeaturemodelingPackageImpl extends EPackageImpl implements V
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(deviationAttributeSetEClass, DeviationAttributeSet.class, "DeviationAttributeSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDeviationAttributeSet_AllowChangeAttribute(), this.getDeviationPermissionKind(), "allowChangeAttribute", "YES", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getDeviationAttributeSet_AllowChangeCardinality(), this.getDeviationPermissionKind(), "allowChangeCardinality", "YES", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getDeviationAttributeSet_AllowChangeDescription(), this.getDeviationPermissionKind(), "allowChangeDescription", "YES", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getDeviationAttributeSet_AllowChangeName(), this.getDeviationPermissionKind(), "allowChangeName", "YES", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getDeviationAttributeSet_AllowMove(), this.getDeviationPermissionKind(), "allowMove", "YES", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getDeviationAttributeSet_AllowReduction(), this.getDeviationPermissionKind(), "allowReduction", "YES", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getDeviationAttributeSet_AllowRefinement(), this.getDeviationPermissionKind(), "allowRefinement", "YES", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getDeviationAttributeSet_AllowRegrouping(), this.getDeviationPermissionKind(), "allowRegrouping", "YES", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getDeviationAttributeSet_AllowRemoval(), this.getDeviationPermissionKind(), "allowRemoval", "YES", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getDeviationAttributeSet_AllowChangeAttribute(), this.getDeviationPermissionKind(), "allowChangeAttribute", "yes", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getDeviationAttributeSet_AllowChangeCardinality(), this.getDeviationPermissionKind(), "allowChangeCardinality", "yes", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getDeviationAttributeSet_AllowChangeDescription(), this.getDeviationPermissionKind(), "allowChangeDescription", "yes", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getDeviationAttributeSet_AllowChangeName(), this.getDeviationPermissionKind(), "allowChangeName", "yes", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getDeviationAttributeSet_AllowMove(), this.getDeviationPermissionKind(), "allowMove", "yes", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getDeviationAttributeSet_AllowReduction(), this.getDeviationPermissionKind(), "allowReduction", "yes", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getDeviationAttributeSet_AllowRefinement(), this.getDeviationPermissionKind(), "allowRefinement", "yes", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getDeviationAttributeSet_AllowRegrouping(), this.getDeviationPermissionKind(), "allowRegrouping", "yes", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getDeviationAttributeSet_AllowRemoval(), this.getDeviationPermissionKind(), "allowRemoval", "yes", 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDeviationAttributeSet_Base_DataType(), theUMLPackage.getDataType(), null, "base_DataType", null, 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDeviationAttributeSet_Feature(), this.getVehicleFeature(), this.getVehicleFeature_DeviationAttributeSet(), "feature", null, 1, 1, DeviationAttributeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 

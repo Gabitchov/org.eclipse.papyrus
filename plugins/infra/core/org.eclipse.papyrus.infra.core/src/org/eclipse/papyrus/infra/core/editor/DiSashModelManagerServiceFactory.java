@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 Cedric Dumoulin.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.infra.core.editor;
 
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageModelFactoryRegistry;
@@ -28,9 +27,9 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 
 /**
  * Service Factory to create the {@link DiSashModelManager} service.
- * 
+ *
  * @author cedric dumoulin
- * 
+ *
  */
 public class DiSashModelManagerServiceFactory implements IServiceFactory {
 
@@ -44,10 +43,11 @@ public class DiSashModelManagerServiceFactory implements IServiceFactory {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IService#init(org.eclipse.papyrus.infra.core.services.ServicesRegistry)
-	 * 
+	 *
 	 * @param servicesRegistry
 	 * @throws ServiceException
 	 */
+	@Override
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 
 		this.servicesRegistry = servicesRegistry;
@@ -61,9 +61,10 @@ public class DiSashModelManagerServiceFactory implements IServiceFactory {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IService#startService()
-	 * 
+	 *
 	 * @throws ServiceException
 	 */
+	@Override
 	public void startService() throws ServiceException {
 
 		// Read declared editors
@@ -71,8 +72,9 @@ public class DiSashModelManagerServiceFactory implements IServiceFactory {
 		PluggableEditorFactoryReader editorReader = new PluggableEditorFactoryReader(Activator.PLUGIN_ID);
 		editorReader.populate(pageModelRegistry, servicesRegistry);
 
-		if(sashModel.getResource() == null)
+		if(sashModel.getResource() == null) {
 			throw new ServiceException("Can't start " + this.getClass().getSimpleName() + "'. Required model (SashModel) should be loaded prior starting the service.");
+		}
 
 		// create the service
 		sashModelMngr = new DiSashModelManager(pageModelRegistry, sashModel.getResource(), transactionalEditingDomain);
@@ -81,18 +83,20 @@ public class DiSashModelManagerServiceFactory implements IServiceFactory {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IService#disposeService()
-	 * 
+	 *
 	 * @throws ServiceException
 	 */
+	@Override
 	public void disposeService() throws ServiceException {
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IServiceFactory#createServiceInstance()
-	 * 
+	 *
 	 * @return
 	 * @throws ServiceException
 	 */
+	@Override
 	public Object createServiceInstance() throws ServiceException {
 
 		// Start locally the service if needed.

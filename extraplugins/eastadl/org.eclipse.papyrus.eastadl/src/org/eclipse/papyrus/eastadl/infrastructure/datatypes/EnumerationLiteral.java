@@ -22,8 +22,8 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Enumeration Literal</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.infrastructure.datatypes.DatatypesPackage#getEnumerationLiteral()
  * @model
  * @generated

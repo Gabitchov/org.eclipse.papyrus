@@ -90,12 +90,14 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -103,16 +105,18 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link TimingPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link TimingPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead,
+	 * they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static TimingPackage init() {
-		if (isInited) return (TimingPackage)EPackage.Registry.INSTANCE.getEPackage(TimingPackage.eNS_URI);
+		if(isInited)
+			return (TimingPackage)EPackage.Registry.INSTANCE.getEPackage(TimingPackage.eNS_URI);
 
 		// Obtain or create and register package
 		TimingPackageImpl theTimingPackage = (TimingPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TimingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TimingPackageImpl());
@@ -214,7 +218,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 		// Mark meta-data to indicate it can't be changed
 		theTimingPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(TimingPackage.eNS_URI, theTimingPackage);
 		return theTimingPackage;
@@ -222,24 +226,28 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass timingDescriptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass timingConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass eventChainEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass eventEClass = null;
@@ -247,6 +255,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass executionTimeConstraintEClass = null;
@@ -254,6 +263,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass precedenceConstraintEClass = null;
@@ -261,37 +271,40 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass timeDurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass timingEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.timing.TimingPackage#eNS_URI
 	 * @see #init()
@@ -302,13 +315,15 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -359,6 +374,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEvent() {
@@ -367,6 +383,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getEvent_IsStateChanged() {
@@ -375,6 +392,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEventChain() {
@@ -383,6 +401,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEventChain_Response() {
@@ -391,6 +410,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEventChain_Segment() {
@@ -399,6 +419,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEventChain_Stimulus() {
@@ -407,6 +428,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEventChain_Strand() {
@@ -416,6 +438,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getExecutionTimeConstraint() {
@@ -425,6 +448,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getExecutionTimeConstraint_TargetDesignFunctionType() {
@@ -434,6 +458,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getExecutionTimeConstraint_TargetDesignFunction() {
@@ -443,6 +468,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getExecutionTimeConstraint_TargetDesignFunctionPrototype() {
@@ -452,6 +478,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getExecutionTimeConstraint_Variation() {
@@ -461,6 +488,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPrecedenceConstraint() {
@@ -470,6 +498,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPrecedenceConstraint_Preceding() {
@@ -479,6 +508,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPrecedenceConstraint_Base_Dependency() {
@@ -488,6 +518,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPrecedenceConstraint_Successive_path() {
@@ -497,6 +528,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPrecedenceConstraint_Preceding_path() {
@@ -506,6 +538,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPrecedenceConstraint_Successive() {
@@ -515,6 +548,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getTimeDuration() {
@@ -524,6 +558,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTimeDuration_Base_DataType() {
@@ -533,6 +568,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getTimeDuration_CseCode() {
@@ -542,6 +578,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getTimeDuration_CseCodeFactor() {
@@ -551,6 +588,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getTimeDuration_Value() {
@@ -559,6 +597,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getTiming() {
@@ -567,6 +606,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTiming_TimingConstraint() {
@@ -575,6 +615,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTiming_TimingDescription() {
@@ -584,6 +625,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTiming_Base_Class() {
@@ -593,6 +635,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTiming_Base_Package() {
@@ -601,6 +644,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getTimingConstraint() {
@@ -610,6 +654,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTimingConstraint_Lower() {
@@ -619,6 +664,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTimingConstraint_Base_Class() {
@@ -628,6 +674,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTimingConstraint_Base_Constraint() {
@@ -636,6 +683,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTimingConstraint_Mode() {
@@ -645,6 +693,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTimingConstraint_Upper() {
@@ -653,6 +702,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getTimingDescription() {
@@ -662,6 +712,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTimingDescription_Base_Class() {
@@ -670,6 +721,7 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimingFactory getTimingFactory() {
@@ -677,13 +729,15 @@ public class TimingPackageImpl extends EPackageImpl implements TimingPackage {
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package

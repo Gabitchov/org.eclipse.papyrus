@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.resource;
 
@@ -18,6 +20,7 @@ import java.util.EnumSet;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.CDOState;
@@ -159,6 +162,24 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 
 		initTransaction(uri);
 		super.loadModels(uri);
+
+		// Did any of the models create a new resource? (the DiModel and/or HistoryModel may have done)
+		// If so, commit them now so that they don't dangle if we later close the editor without saving.
+		out: for(CDOResource next : Iterables.filter(getResources(), CDOResource.class)) {
+			switch(next.cdoState()) {
+			case NEW:
+			case DIRTY:
+				try {
+					((CDOTransaction)getCDOView()).commit(new NullProgressMonitor());
+				} catch (CommitException e) {
+					Activator.log.error("Commit implicitly created resources failed.", e); //$NON-NLS-1$
+				}
+				break out;
+			default:
+				// Pass
+				break;
+			}
+		}
 	}
 
 	protected void initTransaction(URI uri) {

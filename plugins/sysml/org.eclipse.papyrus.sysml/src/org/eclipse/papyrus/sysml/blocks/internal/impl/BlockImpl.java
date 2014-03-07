@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 
@@ -33,7 +33,7 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
  * 
  * @generated
  */
-public class BlockImpl extends EObjectImpl implements Block {
+public class BlockImpl extends MinimalEObjectImpl.Container implements Block {
 
 	/**
 	 * The default value of the '{@link #isEncapsulated() <em>Is Encapsulated</em>}' attribute.

@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
@@ -43,14 +43,14 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RefineImpl#getBase_Abstraction <em>Base Abstraction</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RefineImpl#getRefinedRequirement <em>Refined Requirement</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RefineImpl#getRefinedBy <em>Refined By</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RefineImpl#getBase_Dependency <em>Base Dependency</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RefineImpl#getRefinedBy_path <em>Refined By path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RefineImpl#getBase_Abstraction <em>Base Abstraction</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RefineImpl#getRefinedRequirement <em>Refined Requirement</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RefineImpl#getRefinedBy <em>Refined By</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RefineImpl#getBase_Dependency <em>Base Dependency</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RefineImpl#getRefinedBy_path <em>Refined By path</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
@@ -59,6 +59,7 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 	 * The cached value of the '{@link #getBase_Abstraction() <em>Base Abstraction</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Abstraction()
 	 * @generated
 	 * @ordered
@@ -69,6 +70,7 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 	 * The cached value of the '{@link #getBase_Dependency() <em>Base Dependency</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Dependency()
 	 * @generated
 	 * @ordered
@@ -79,6 +81,7 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 	 * The cached value of the '{@link #getRefinedBy_path() <em>Refined By path</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRefinedBy_path()
 	 * @generated
 	 * @ordered
@@ -87,6 +90,7 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RefineImpl() {
@@ -96,6 +100,7 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Abstraction basicGetBase_Abstraction() {
@@ -105,14 +110,17 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.uml2.uml.profile.l2.Refine.class) {
-			switch (derivedFeatureID) {
-				case RequirementsPackage.REFINE__BASE_ABSTRACTION: return L2Package.REFINE__BASE_ABSTRACTION;
-				default: return -1;
+		if(baseClass == org.eclipse.uml2.uml.profile.standard.Refine.class) {
+			switch(derivedFeatureID) {
+			case RequirementsPackage.REFINE__BASE_ABSTRACTION:
+				return StandardPackage.REFINE__BASE_ABSTRACTION;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -121,14 +129,17 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.uml2.uml.profile.l2.Refine.class) {
-			switch (baseFeatureID) {
-				case L2Package.REFINE__BASE_ABSTRACTION: return RequirementsPackage.REFINE__BASE_ABSTRACTION;
-				default: return -1;
+		if(baseClass == org.eclipse.uml2.uml.profile.standard.Refine.class) {
+			switch(baseFeatureID) {
+			case StandardPackage.REFINE__BASE_ABSTRACTION:
+				return RequirementsPackage.REFINE__BASE_ABSTRACTION;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -136,72 +147,78 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case RequirementsPackage.REFINE__BASE_ABSTRACTION:
-				if (resolve) return getBase_Abstraction();
-				return basicGetBase_Abstraction();
-			case RequirementsPackage.REFINE__REFINED_REQUIREMENT:
-				return getRefinedRequirement();
-			case RequirementsPackage.REFINE__REFINED_BY:
-				return getRefinedBy();
-			case RequirementsPackage.REFINE__BASE_DEPENDENCY:
-				if (resolve) return getBase_Dependency();
-				return basicGetBase_Dependency();
-			case RequirementsPackage.REFINE__REFINED_BY_PATH:
-				return getRefinedBy_path();
+		switch(featureID) {
+		case RequirementsPackage.REFINE__BASE_ABSTRACTION:
+			if(resolve)
+				return getBase_Abstraction();
+			return basicGetBase_Abstraction();
+		case RequirementsPackage.REFINE__REFINED_REQUIREMENT:
+			return getRefinedRequirement();
+		case RequirementsPackage.REFINE__REFINED_BY:
+			return getRefinedBy();
+		case RequirementsPackage.REFINE__BASE_DEPENDENCY:
+			if(resolve)
+				return getBase_Dependency();
+			return basicGetBase_Dependency();
+		case RequirementsPackage.REFINE__REFINED_BY_PATH:
+			return getRefinedBy_path();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case RequirementsPackage.REFINE__BASE_ABSTRACTION:
-				return base_Abstraction != null;
-			case RequirementsPackage.REFINE__REFINED_REQUIREMENT:
-				return !getRefinedRequirement().isEmpty();
-			case RequirementsPackage.REFINE__REFINED_BY:
-				return !getRefinedBy().isEmpty();
-			case RequirementsPackage.REFINE__BASE_DEPENDENCY:
-				return base_Dependency != null;
-			case RequirementsPackage.REFINE__REFINED_BY_PATH:
-				return refinedBy_path != null && !refinedBy_path.isEmpty();
+		switch(featureID) {
+		case RequirementsPackage.REFINE__BASE_ABSTRACTION:
+			return base_Abstraction != null;
+		case RequirementsPackage.REFINE__REFINED_REQUIREMENT:
+			return !getRefinedRequirement().isEmpty();
+		case RequirementsPackage.REFINE__REFINED_BY:
+			return !getRefinedBy().isEmpty();
+		case RequirementsPackage.REFINE__BASE_DEPENDENCY:
+			return base_Dependency != null;
+		case RequirementsPackage.REFINE__REFINED_BY_PATH:
+			return refinedBy_path != null && !refinedBy_path.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case RequirementsPackage.REFINE__BASE_ABSTRACTION:
-				setBase_Abstraction((Abstraction)newValue);
-				return;
-			case RequirementsPackage.REFINE__BASE_DEPENDENCY:
-				setBase_Dependency((Dependency)newValue);
-				return;
-			case RequirementsPackage.REFINE__REFINED_BY_PATH:
-				getRefinedBy_path().clear();
-				getRefinedBy_path().addAll((Collection<? extends NamedElement>)newValue);
-				return;
+		switch(featureID) {
+		case RequirementsPackage.REFINE__BASE_ABSTRACTION:
+			setBase_Abstraction((Abstraction)newValue);
+			return;
+		case RequirementsPackage.REFINE__BASE_DEPENDENCY:
+			setBase_Dependency((Dependency)newValue);
+			return;
+		case RequirementsPackage.REFINE__REFINED_BY_PATH:
+			getRefinedBy_path().clear();
+			getRefinedBy_path().addAll((Collection<? extends NamedElement>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -211,20 +228,21 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case RequirementsPackage.REFINE__BASE_ABSTRACTION:
-				setBase_Abstraction((Abstraction)null);
-				return;
-			case RequirementsPackage.REFINE__BASE_DEPENDENCY:
-				setBase_Dependency((Dependency)null);
-				return;
-			case RequirementsPackage.REFINE__REFINED_BY_PATH:
-				getRefinedBy_path().clear();
-				return;
+		switch(featureID) {
+		case RequirementsPackage.REFINE__BASE_ABSTRACTION:
+			setBase_Abstraction((Abstraction)null);
+			return;
+		case RequirementsPackage.REFINE__BASE_DEPENDENCY:
+			setBase_Dependency((Dependency)null);
+			return;
+		case RequirementsPackage.REFINE__REFINED_BY_PATH:
+			getRefinedBy_path().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -232,14 +250,15 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Abstraction getBase_Abstraction() {
-		if (base_Abstraction != null && base_Abstraction.eIsProxy()) {
+		if(base_Abstraction != null && base_Abstraction.eIsProxy()) {
 			InternalEObject oldBase_Abstraction = (InternalEObject)base_Abstraction;
 			base_Abstraction = (Abstraction)eResolveProxy(oldBase_Abstraction);
-			if (base_Abstraction != oldBase_Abstraction) {
-				if (eNotificationRequired())
+			if(base_Abstraction != oldBase_Abstraction) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementsPackage.REFINE__BASE_ABSTRACTION, oldBase_Abstraction, base_Abstraction));
 			}
 		}
@@ -270,14 +289,15 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Dependency getBase_Dependency() {
-		if (base_Dependency != null && base_Dependency.eIsProxy()) {
+		if(base_Dependency != null && base_Dependency.eIsProxy()) {
 			InternalEObject oldBase_Dependency = (InternalEObject)base_Dependency;
 			base_Dependency = (Dependency)eResolveProxy(oldBase_Dependency);
-			if (base_Dependency != oldBase_Dependency) {
-				if (eNotificationRequired())
+			if(base_Dependency != oldBase_Dependency) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementsPackage.REFINE__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 			}
 		}
@@ -287,6 +307,7 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Dependency basicGetBase_Dependency() {
@@ -296,22 +317,24 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Dependency(Dependency newBase_Dependency) {
 		Dependency oldBase_Dependency = base_Dependency;
 		base_Dependency = newBase_Dependency;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REFINE__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<NamedElement> getRefinedBy_path() {
-		if (refinedBy_path == null) {
+		if(refinedBy_path == null) {
 			refinedBy_path = new EObjectResolvingEList<NamedElement>(NamedElement.class, this, RequirementsPackage.REFINE__REFINED_BY_PATH);
 		}
 		return refinedBy_path;
@@ -348,12 +371,13 @@ public class RefineImpl extends RequirementsRelationshipImpl implements Refine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Abstraction(Abstraction newBase_Abstraction) {
 		Abstraction oldBase_Abstraction = base_Abstraction;
 		base_Abstraction = newBase_Abstraction;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REFINE__BASE_ABSTRACTION, oldBase_Abstraction, base_Abstraction));
 	}
 

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,9 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IPapyrusPageInput;
 import org.eclipse.papyrus.infra.core.editor.PapyrusPageInput;
@@ -164,7 +162,7 @@ public class OpenElementServiceImpl implements OpenElementService {
 			URI diFile = getDiResourceURI(semanticElement);
 			editor = openURIsInNewEditor(diFile, pageURIs);
 		} else {
-			final IPageManager pageMngr = registry.getService(IPageManager.class);
+			final IPageManager pageManager = registry.getService(IPageManager.class);
 			ModelSet modelSet = registry.getService(ModelSet.class);
 			final LinkedHashSet<EObject> pagesToOpen = new LinkedHashSet<EObject>();
 			final LinkedHashSet<EObject> pagesToSelect = new LinkedHashSet<EObject>();
@@ -172,8 +170,8 @@ public class OpenElementServiceImpl implements OpenElementService {
 			for(URI pageURI : pageURIs) {
 				final EObject page = modelSet.getEObject(pageURI, true);
 
-				if(pageMngr.allPages().contains(page)) {
-					if(pageMngr.isOpen(page)) {
+				if(pageManager.allPages().contains(page)) {
+					if(pageManager.isOpen(page)) {
 						pagesToSelect.add(page);
 					} else {
 						pagesToOpen.add(page);
@@ -182,23 +180,15 @@ public class OpenElementServiceImpl implements OpenElementService {
 			}
 
 			if(!pagesToOpen.isEmpty()) {
-				TransactionalEditingDomain editingDomain = registry.getService(TransactionalEditingDomain.class);
-				RecordingCommand command = new RecordingCommand(editingDomain, "Open pages") {
-
-					@Override
-					protected void doExecute() {
-						for(EObject page : pagesToOpen) {
-							pageMngr.openPage(page);
-						}
-					}
-				};
-				editingDomain.getCommandStack().execute(command);
+				for(EObject page : pagesToOpen) {
+					pageManager.openPage(page);
+				}
 			}
 
-			//More than one editor can be visible (SashEditor). 
+			//More than one editor can be visible (SashEditor).
 			//We need to select each page
 			for(EObject page : pagesToSelect) {
-				pageMngr.selectPage(page);
+				pageManager.selectPage(page);
 			}
 		}
 
@@ -266,7 +256,7 @@ public class OpenElementServiceImpl implements OpenElementService {
 				return EcoreUtil.getURI(currentViewElement);
 			}
 		} catch (ServiceException ex) {
-			//There is no IPageManager (The editor is not opened yet)	
+			//There is no IPageManager (The editor is not opened yet)
 			//The page is "probably" the root element of the view
 			EObject rootElement = EcoreUtil.getRootContainer(viewElement);
 			if(rootElement != null) {
@@ -300,7 +290,7 @@ public class OpenElementServiceImpl implements OpenElementService {
 			return false;
 		}
 	}
-	
+
 	protected URI getDiResourceURI(EObject element) {
 		Resource resource = element.eResource();
 		URI fileURI = resource.getURI();
@@ -332,15 +322,7 @@ public class OpenElementServiceImpl implements OpenElementService {
 				if(pageManager.isOpen(page)) {
 					pageManager.selectPage(page);
 				} else {
-					TransactionalEditingDomain editingDomain = registry.getService(TransactionalEditingDomain.class);
-					RecordingCommand command = new RecordingCommand(editingDomain, "Open page") {
-
-						@Override
-						protected void doExecute() {
-							pageManager.openPage(page);
-						}
-					};
-					editingDomain.getCommandStack().execute(command);
+					pageManager.openPage(page);
 				}
 			}
 		}
@@ -350,11 +332,11 @@ public class OpenElementServiceImpl implements OpenElementService {
 
 	protected IMultiDiagramEditor openURIsInNewEditor(URI diResourceURI, URI[] pageURIs) throws PartInitException {
 		final IEditorInput input = createPapyrusPageInput(diResourceURI, pageURIs);
-		
-		if (input == null) {
+
+		if(input == null) {
 			return null;
 		}
-		
+
 		RunnableWithResult<IMultiDiagramEditor> runnable;
 		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<IMultiDiagramEditor>() {
 
@@ -379,16 +361,16 @@ public class OpenElementServiceImpl implements OpenElementService {
 
 	protected IPapyrusPageInput createPapyrusPageInput(URI diResourceURI, URI[] pageURIs) {
 		IFile diFile = null;
-		
+
 		if((diResourceURI != null) && diResourceURI.isPlatformResource()) {
 			diFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(diResourceURI.toPlatformString(true)));
 		}
-		
+
 		return ((diFile == null) || !diFile.exists()) ? null : new PapyrusPageInput(diFile, pageURIs, false);
 	}
-	
+
 	protected IMultiDiagramEditor openEditor(IWorkbenchPage workbenchPage, IEditorInput input) throws PartInitException {
 		return (IMultiDiagramEditor)IDE.openEditor(workbenchPage, input, PAPYRUS_EDITOR_ID);
 	}
-	
+
 }

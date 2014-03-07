@@ -10,7 +10,7 @@
       <constraintProvider
             cache="false">
          <package
-               namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML">
+               namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
          </package>
          <constraints
                categories="org.eclipse.papyrus.uml.xtext.integration.validation">
@@ -28,6 +28,25 @@
                </message>
                <description>
                   If the model element has an invalid xtext string it is out of sync with the UML model.
+               </description>
+               <target
+                     class="uml.Element">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.uml.xtext.integration.validation.ValidateOCLViaXtext"
+                  id="org.eclipse.papyrus.uml.xtext.integration.validation.ValidateOCLViaXtext"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Validate OCL constraints via xtext"
+                  severity="ERROR"
+                  statusCode="0">
+               <message>
+                  A {0} OCL validation problems found
+               </message>
+               <description>
+                  If xtext finds validation errors within a UML constraint
                </description>
                <target
                      class="uml.Element">

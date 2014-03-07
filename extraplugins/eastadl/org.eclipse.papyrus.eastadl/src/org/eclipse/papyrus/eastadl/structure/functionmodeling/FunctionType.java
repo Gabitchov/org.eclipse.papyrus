@@ -25,9 +25,10 @@ import org.eclipse.uml2.uml.Image;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Function Type</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * The abstract metaclass FunctionType abstracts the function component types that are used to model the functional structure, which is distinguished from the implementation of component types using AUTOSAR. The syntax of FunctionTypes is inspired from the concept of Block from SysML.
+ * The abstract metaclass FunctionType abstracts the function component types that are used to model the functional structure, which is distinguished
+ * from the implementation of component types using AUTOSAR. The syntax of FunctionTypes is inspired from the concept of Block from SysML.
  * 
  * FunctionBehavior and FunctionTrigger in the Behavior package are associated to a FunctionType.
  * 
@@ -42,15 +43,18 @@ import org.eclipse.uml2.uml.Image;
  * Execution is defined by a behavior that acts as a transfer function.
  * Subclasses of the abstract class FunctionType add their own semantics.
  * 
- * If a behavior is attached to the FunctionType, the execution semantic for a discrete elementary FunctionType complies with the run-to-completion semantic. This has the following implications:
+ * If a behavior is attached to the FunctionType, the execution semantic for a discrete elementary FunctionType complies with the run-to-completion
+ * semantic. This has the following implications:
  * 
  * 1. Input that arrives at the input FunctionPorts after execution begins will be ignored until the next execution cycle.
  * 
- * 2. If more than one input value arrives per FunctionPort before execution begins the last value will override all previous ones in the public part of the input FunctionPort (single element buffers for input).
+ * 2. If more than one input value arrives per FunctionPort before execution begins the last value will override all previous ones in the public part
+ * of the input FunctionPort (single element buffers for input).
  * 
  * 3. The local part of a FunctionPort does not change its value during execution of the behavior.
  * 
- * 4. During an execution cycle only one output value can be sent per FunctionPort. If consecutive output values are produced on the same FunctionPort during a single execution cycle, the last value will override all previous ones on the output FunctionPort (single element buffers for output).
+ * 4. During an execution cycle only one output value can be sent per FunctionPort. If consecutive output values are produced on the same FunctionPort
+ * during a single execution cycle, the last value will override all previous ones on the output FunctionPort (single element buffers for output).
  * 
  * 5. Output will not be available at an output FunctionPort before execution ends.
  * 
@@ -61,35 +65,37 @@ import org.eclipse.uml2.uml.Image;
  * [1] Elementary FunctionTypes shall not have parts.
  * 
  * Notation:
- * The FunctionType is shown as a solid-outline rectangle containing the name, with its FunctionPorts or PortGroups on the perimeter. Contained entities may be shown with its FunctionConnectors (White-box view)
+ * The FunctionType is shown as a solid-outline rectangle containing the name, with its FunctionPorts or PortGroups on the perimeter. Contained
+ * entities may be shown with its FunctionConnectors (White-box view)
  * 
  * Extension: UML Class, specialization of SysML::Block
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionType#isIsElementary <em>Is Elementary</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionType#getPort <em>Port</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionType#getPortGroup <em>Port Group</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionType#getConnector <em>Connector</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionType#isIsElementary <em>Is Elementary</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionType#getPort <em>Port</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionType#getPortGroup <em>Port Group</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionType#getConnector <em>Connector</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPackage#getFunctionType()
  * @model abstract="true"
  * @generated
  */
 public interface FunctionType extends Context, Block {
+
 	/**
 	 * Returns the value of the '<em><b>Connector</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionConnector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Connector</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Connector</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Connector</em>' reference list.
 	 * @see org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPackage#getFunctionType_Connector()
 	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
@@ -100,6 +106,7 @@ public interface FunctionType extends Context, Block {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @model kind="operation" required="true" ordered="false"
 	 * @generated
 	 */
@@ -114,6 +121,7 @@ public interface FunctionType extends Context, Block {
 	 * Owned in- and out-flow ports.
 	 * {derived from UML::EncapsulatedClassifier::ownedPort}
 	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Port</em>' reference list.
 	 * @see org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPackage#getFunctionType_Port()
 	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
@@ -130,6 +138,7 @@ public interface FunctionType extends Context, Block {
 	 * Grouping of ports owned by this element.
 	 * {derived from UML::Class::nestedClassifier}
 	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Port Group</em>' reference list.
 	 * @see org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPackage#getFunctionType_PortGroup()
 	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
@@ -142,13 +151,14 @@ public interface FunctionType extends Context, Block {
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Elementary</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Is Elementary</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Is Elementary</em>' attribute.
 	 * @see org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPackage#getFunctionType_IsElementary()
-	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" required="true" transient="true" changeable="false" volatile="true"
+	 *        derived="true" ordered="false"
 	 * @generated
 	 */
 	boolean isIsElementary();

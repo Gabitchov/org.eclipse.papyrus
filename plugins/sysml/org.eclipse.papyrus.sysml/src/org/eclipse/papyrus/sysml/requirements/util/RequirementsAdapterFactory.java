@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.sysml.requirements.Copy;
 import org.eclipse.papyrus.sysml.requirements.DeriveReqt;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
@@ -26,13 +25,6 @@ import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.sysml.requirements.TestCase;
 import org.eclipse.papyrus.sysml.requirements.Verify;
-import org.eclipse.uml2.uml.Abstraction;
-import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.profile.l2.Trace;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
@@ -59,84 +51,6 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected RequirementsSwitch<Adapter> modelSwitch = new RequirementsSwitch<Adapter>() {
-
-
-		@Override
-		public Adapter caseAbstractionStereotypedByDeriveReqt(Abstraction abstraction_) {
-			if(isDeriveReqtFromAbstraction(abstraction_)) {
-				return createDeriveReqtAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseAbstractionStereotypedByVerify(Abstraction abstraction_) {
-			if(isVerifyFromAbstraction(abstraction_)) {
-				return createVerifyAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseAbstractionStereotypedByCopy(Abstraction abstraction_) {
-			if(isCopyFromAbstraction(abstraction_)) {
-				return createCopyAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseAbstractionStereotypedBySatisfy(Abstraction abstraction_) {
-			if(isSatisfyFromAbstraction(abstraction_)) {
-				return createSatisfyAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseBehaviorStereotypedByTestCase(Behavior behavior_) {
-			if(isTestCaseFromBehavior(behavior_)) {
-				return createTestCaseAdapter();
-			}
-			return null;
-		}
-
-		@Override
-		public Adapter caseOperationStereotypedByTestCase(Operation operation_) {
-			if(isTestCaseFromOperation(operation_)) {
-				return createTestCaseAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseClassStereotypedByRequirement(Class class_) {
-			if(isRequirementFromClass(class_)) {
-				return createRequirementAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseNamedElementStereotypedByRequirementRelated(NamedElement namedElement_) {
-			if(isRequirementRelatedFromNamedElement(namedElement_)) {
-				return createRequirementRelatedAdapter();
-			}
-			return null;
-		}
-
 
 		@Override
 		public Adapter caseDeriveReqt(DeriveReqt object) {
@@ -174,7 +88,7 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseTrace(Trace object) {
+		public Adapter caseTrace(org.eclipse.uml2.uml.profile.standard.Trace object) {
 			return createTraceAdapter();
 		}
 
@@ -351,12 +265,11 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if(object == modelPackage || object == UMLPackage.eINSTANCE) {
+		if(object == modelPackage) {
 			return true;
 		}
 		if(object instanceof EObject) {
-			EPackage ePackage = ((EObject)object).eClass().getEPackage();
-			return ePackage != null && (ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE);
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}

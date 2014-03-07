@@ -65,7 +65,7 @@ public interface ViewPoint extends EObject {
 	 * 
 	 * @return the value of the '<em>Concerns</em>' attribute list.
 	 * @see org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage#getViewPoint_Concerns()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" dataType="org.eclipse.uml2.types.String" ordered="false"
 	 * @generated
 	 */
 	EList<String> getConcerns();
@@ -82,7 +82,7 @@ public interface ViewPoint extends EObject {
 	 * 
 	 * @return the value of the '<em>Languages</em>' attribute list.
 	 * @see org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage#getViewPoint_Languages()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" dataType="org.eclipse.uml2.types.String" ordered="false"
 	 * @generated
 	 */
 	EList<String> getLanguages();
@@ -99,7 +99,7 @@ public interface ViewPoint extends EObject {
 	 * 
 	 * @return the value of the '<em>Methods</em>' attribute list.
 	 * @see org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage#getViewPoint_Methods()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" dataType="org.eclipse.uml2.types.String" ordered="false"
 	 * @generated
 	 */
 	EList<String> getMethods();

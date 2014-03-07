@@ -2,7 +2,6 @@ Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="1.0.0",
  org.eclipse.uml2.uml;bundle-version="3.2.0",
  org.eclipse.ocl.examples.xtext.essentialocl.ui;bundle-version="3.1.0",
  org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
@@ -13,7 +12,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.7.0",
  org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.services.validation;bundle-version="1.0.0"
+ org.eclipse.papyrus.infra.services.validation;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.service.validation;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier

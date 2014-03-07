@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.papyrus.sysml.requirements.Copy;
 import org.eclipse.papyrus.sysml.requirements.DeriveReqt;
@@ -32,9 +32,9 @@ import org.eclipse.papyrus.sysml.requirements.Verify;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.profile.l2.L2Package;
-import org.eclipse.uml2.uml.profile.l2.Refine;
-import org.eclipse.uml2.uml.profile.l2.Trace;
+import org.eclipse.uml2.uml.profile.standard.Refine;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
+import org.eclipse.uml2.uml.profile.standard.Trace;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -57,7 +57,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * 
  * @generated
  */
-public class RequirementImpl extends EObjectImpl implements Requirement {
+public class RequirementImpl extends MinimalEObjectImpl.Container implements Requirement {
 
 	/**
 	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
@@ -532,7 +532,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 				currentTrace = UMLUtil.getStereotypeApplication(currentDR, Trace.class);
 
 				// Must be a Trace not a subtype (see bug #352563).
-				if((currentTrace != null) && (currentTrace.eClass() == L2Package.eINSTANCE.getTrace())) {
+				if((currentTrace != null) && (currentTrace.eClass() == StandardPackage.eINSTANCE.getTrace())) {
 					EList<NamedElement> suppliers = currentTrace.getBase_Abstraction().getClients();
 					tracedTo.addAll(suppliers);
 				}

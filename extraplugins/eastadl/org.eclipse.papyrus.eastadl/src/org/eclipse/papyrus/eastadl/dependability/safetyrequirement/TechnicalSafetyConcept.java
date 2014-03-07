@@ -24,29 +24,33 @@ import org.eclipse.papyrus.eastadl.requirements.RequirementsContainer;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Technical Safety Concept</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * TechnicalSafetyConcept represents the set of technical safety requirements that together fulfils a FunctionalSafetyConcept and SafetyGoal in accordance with ISO 26262.
+ * TechnicalSafetyConcept represents the set of technical safety requirements that together fulfils a FunctionalSafetyConcept and SafetyGoal in
+ * accordance with ISO 26262.
  * 
  * These are derived from FunctionalSafetyConcepts i.e. TechnicalSafetyRequirements are derived from FunctionalSafetyRequirements.
  * 
  * 
  * Semantics:
- * The TechnicalSafetyConcept consists of the technical safety requirements and details the functional safety concept considering the functional concept and the preliminary architectural design. It corresponds to the Technical Safety Concept of ISO26262.
+ * The TechnicalSafetyConcept consists of the technical safety requirements and details the functional safety concept considering the functional
+ * concept and the preliminary architectural design. It corresponds to the Technical Safety Concept of ISO26262.
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.dependability.safetyrequirement.TechnicalSafetyConcept#getTechnicalSafetyRequirement <em>Technical Safety Requirement</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.dependability.safetyrequirement.TechnicalSafetyConcept#getTechnicalSafetyRequirement <em>Technical Safety
+ * Requirement</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.dependability.safetyrequirement.SafetyrequirementPackage#getTechnicalSafetyConcept()
  * @model
  * @generated
  */
 public interface TechnicalSafetyConcept extends RequirementsContainer {
+
 	/**
 	 * Returns the value of the '<em><b>Technical Safety Requirement</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.eastadl.requirements.Requirement}.
@@ -55,6 +59,7 @@ public interface TechnicalSafetyConcept extends RequirementsContainer {
 	 * <!-- begin-model-doc -->
 	 * technicalSafety Requirements.
 	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Technical Safety Requirement</em>' reference list.
 	 * @see org.eclipse.papyrus.eastadl.dependability.safetyrequirement.SafetyrequirementPackage#getTechnicalSafetyConcept_TechnicalSafetyRequirement()
 	 * @model

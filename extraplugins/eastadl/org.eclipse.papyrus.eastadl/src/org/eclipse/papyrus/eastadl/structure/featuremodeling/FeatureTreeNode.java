@@ -20,7 +20,7 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.Context;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Feature Tree Node</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * The abstract base class for all nodes in a feature tree.
  * 
@@ -29,11 +29,11 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.Context;
  * FeatureTreeNode has no specific semantics. Further subclasses of FeatureTreeNode will add semantics appropriate to the concept they represent.
  * 
  * 
- * Extension: 
+ * Extension:
  * abstract, no extension
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.featuremodeling.FeaturemodelingPackage#getFeatureTreeNode()
  * @model abstract="true"
  * @generated

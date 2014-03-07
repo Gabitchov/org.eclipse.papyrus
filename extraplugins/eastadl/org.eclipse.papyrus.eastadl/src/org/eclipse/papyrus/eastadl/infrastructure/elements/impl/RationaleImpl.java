@@ -25,7 +25,7 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.Rationale;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class RationaleImpl extends org.eclipse.papyrus.sysml.modelelements.internal.impl.RationaleImpl implements Rationale {
@@ -33,6 +33,7 @@ public class RationaleImpl extends org.eclipse.papyrus.sysml.modelelements.inter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RationaleImpl() {
@@ -42,6 +43,7 @@ public class RationaleImpl extends org.eclipse.papyrus.sysml.modelelements.inter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

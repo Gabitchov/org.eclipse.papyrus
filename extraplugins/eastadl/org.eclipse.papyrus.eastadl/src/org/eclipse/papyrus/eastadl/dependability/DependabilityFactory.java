@@ -22,14 +22,17 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.eastadl.dependability.DependabilityPackage
  * @generated
  */
 public interface DependabilityFactory extends EFactory {
+
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	DependabilityFactory eINSTANCE = org.eclipse.papyrus.eastadl.dependability.impl.DependabilityFactoryImpl.init();
@@ -38,6 +41,7 @@ public interface DependabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Dependability</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Dependability</em>'.
 	 * @generated
 	 */
@@ -47,6 +51,7 @@ public interface DependabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Feature Flaw</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Feature Flaw</em>'.
 	 * @generated
 	 */
@@ -56,6 +61,7 @@ public interface DependabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Hazard</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Hazard</em>'.
 	 * @generated
 	 */
@@ -65,6 +71,7 @@ public interface DependabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Hazardous Event</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Hazardous Event</em>'.
 	 * @generated
 	 */
@@ -74,6 +81,7 @@ public interface DependabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Item</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Item</em>'.
 	 * @generated
 	 */
@@ -83,6 +91,7 @@ public interface DependabilityFactory extends EFactory {
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

@@ -20,24 +20,24 @@ package org.eclipse.papyrus.eastadl.structure.hardwaremodeling;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>IO Hardware Pin</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * IOHardwarePin represents an electrical connection point for digital or analog I/O. 
+ * IOHardwarePin represents an electrical connection point for digital or analog I/O.
  * 
  * Semantics:
- * The IOHardwarePin represents an electrical pin or connection point. 
+ * The IOHardwarePin represents an electrical pin or connection point.
  * 
  * Notation:
  * IOHardwarePin is shown as a solid square with an IO inside. Its name may appear outside the square.
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.IOHardwarePin#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.IOHardwarePin#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwaremodelingPackage#getIOHardwarePin()
  * @model
  * @generated
@@ -52,6 +52,7 @@ public interface IOHardwarePin extends HardwarePin {
 	 * <!-- begin-model-doc -->
 	 * kind defines whether the IOHardwarePort is digital, analog or PWM (Pulse Width Modulated).
 	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see org.eclipse.papyrus.eastadl.structure.hardwaremodeling.IOHardwarePinKind
 	 * @see #setType(IOHardwarePinKind)
@@ -65,7 +66,9 @@ public interface IOHardwarePin extends HardwarePin {
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.IOHardwarePin#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Type</em>' attribute.
 	 * @see org.eclipse.papyrus.eastadl.structure.hardwaremodeling.IOHardwarePinKind
 	 * @see #getType()
 	 * @generated

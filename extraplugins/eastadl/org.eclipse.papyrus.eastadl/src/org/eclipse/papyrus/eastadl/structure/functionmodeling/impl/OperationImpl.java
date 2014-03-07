@@ -38,12 +38,12 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.OperationImpl#getBase_Operation <em>Base Operation</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.OperationImpl#getArgument <em>Argument</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.OperationImpl#getReturn <em>Return</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.OperationImpl#getBase_Operation <em>Base Operation</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.OperationImpl#getArgument <em>Argument</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.OperationImpl#getReturn <em>Return</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class OperationImpl extends EAElementImpl implements Operation {
@@ -52,13 +52,16 @@ public class OperationImpl extends EAElementImpl implements Operation {
 	 * The cached value of the '{@link #getBase_Operation() <em>Base Operation</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Operation()
 	 * @generated
 	 * @ordered
 	 */
 	protected org.eclipse.uml2.uml.Operation base_Operation;
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OperationImpl() {
@@ -87,56 +90,62 @@ public class OperationImpl extends EAElementImpl implements Operation {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case FunctionmodelingPackage.OPERATION__BASE_OPERATION:
-				if (resolve) return getBase_Operation();
-				return basicGetBase_Operation();
-			case FunctionmodelingPackage.OPERATION__ARGUMENT:
-				return getArgument();
-			case FunctionmodelingPackage.OPERATION__RETURN:
-				if (resolve) return getReturn();
-				return basicGetReturn();
+		switch(featureID) {
+		case FunctionmodelingPackage.OPERATION__BASE_OPERATION:
+			if(resolve)
+				return getBase_Operation();
+			return basicGetBase_Operation();
+		case FunctionmodelingPackage.OPERATION__ARGUMENT:
+			return getArgument();
+		case FunctionmodelingPackage.OPERATION__RETURN:
+			if(resolve)
+				return getReturn();
+			return basicGetReturn();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.OPERATION__BASE_OPERATION:
-				return base_Operation != null;
-			case FunctionmodelingPackage.OPERATION__ARGUMENT:
-				return !getArgument().isEmpty();
-			case FunctionmodelingPackage.OPERATION__RETURN:
-				return basicGetReturn() != null;
+		switch(featureID) {
+		case FunctionmodelingPackage.OPERATION__BASE_OPERATION:
+			return base_Operation != null;
+		case FunctionmodelingPackage.OPERATION__ARGUMENT:
+			return !getArgument().isEmpty();
+		case FunctionmodelingPackage.OPERATION__RETURN:
+			return basicGetReturn() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case FunctionmodelingPackage.OPERATION__BASE_OPERATION:
-				setBase_Operation((org.eclipse.uml2.uml.Operation)newValue);
-				return;
+		switch(featureID) {
+		case FunctionmodelingPackage.OPERATION__BASE_OPERATION:
+			setBase_Operation((org.eclipse.uml2.uml.Operation)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,14 +156,15 @@ public class OperationImpl extends EAElementImpl implements Operation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Operation getBase_Operation() {
-		if (base_Operation != null && base_Operation.eIsProxy()) {
+		if(base_Operation != null && base_Operation.eIsProxy()) {
 			InternalEObject oldBase_Operation = (InternalEObject)base_Operation;
 			base_Operation = (org.eclipse.uml2.uml.Operation)eResolveProxy(oldBase_Operation);
-			if (base_Operation != oldBase_Operation) {
-				if (eNotificationRequired())
+			if(base_Operation != oldBase_Operation) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionmodelingPackage.OPERATION__BASE_OPERATION, oldBase_Operation, base_Operation));
 			}
 		}
@@ -164,6 +174,7 @@ public class OperationImpl extends EAElementImpl implements Operation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Operation basicGetBase_Operation() {
@@ -173,25 +184,27 @@ public class OperationImpl extends EAElementImpl implements Operation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Operation(org.eclipse.uml2.uml.Operation newBase_Operation) {
 		org.eclipse.uml2.uml.Operation oldBase_Operation = base_Operation;
 		base_Operation = newBase_Operation;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FunctionmodelingPackage.OPERATION__BASE_OPERATION, oldBase_Operation, base_Operation));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.OPERATION__BASE_OPERATION:
-				setBase_Operation((org.eclipse.uml2.uml.Operation)null);
-				return;
+		switch(featureID) {
+		case FunctionmodelingPackage.OPERATION__BASE_OPERATION:
+			setBase_Operation((org.eclipse.uml2.uml.Operation)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -212,8 +225,7 @@ public class OperationImpl extends EAElementImpl implements Operation {
 				Parameter currentParameter = itDep.next();
 
 				// Test if currentProperty is stereotyped ADLFunctionPrototype
-				currentDataPrototype = (EADatatypePrototype)UMLUtil.getStereotypeApplication(currentParameter,
-					EADatatypePrototype.class);
+				currentDataPrototype = (EADatatypePrototype)UMLUtil.getStereotypeApplication(currentParameter, EADatatypePrototype.class);
 
 				if(currentDataPrototype != null) {
 					args.add(currentDataPrototype);
@@ -227,6 +239,7 @@ public class OperationImpl extends EAElementImpl implements Operation {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EADatatypePrototype getReturn() {

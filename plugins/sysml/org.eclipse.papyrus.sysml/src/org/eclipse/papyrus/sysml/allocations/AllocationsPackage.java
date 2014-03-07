@@ -187,6 +187,16 @@ public interface AllocationsPackage extends EPackage {
 	int ALLOCATE_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>Allocate</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.allocations.internal.impl.AllocatedImpl <em>Allocated</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -233,6 +243,16 @@ public interface AllocationsPackage extends EPackage {
 	int ALLOCATED_FEATURE_COUNT = 3;
 
 	/**
+	 * The number of operations of the '<em>Allocated</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATED_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.allocations.internal.impl.AllocateActivityPartitionImpl
 	 * <em>Allocate Activity Partition</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -262,6 +282,16 @@ public interface AllocationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ALLOCATE_ACTIVITY_PARTITION_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Allocate Activity Partition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATE_ACTIVITY_PARTITION_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.allocations.Allocate <em>Allocate</em>}'.

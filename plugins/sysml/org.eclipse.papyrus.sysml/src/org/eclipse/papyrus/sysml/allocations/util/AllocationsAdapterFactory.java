@@ -17,15 +17,10 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition;
 import org.eclipse.papyrus.sysml.allocations.Allocated;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
-import org.eclipse.uml2.uml.Abstraction;
-import org.eclipse.uml2.uml.ActivityPartition;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
@@ -52,36 +47,6 @@ public class AllocationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected AllocationsSwitch<Adapter> modelSwitch = new AllocationsSwitch<Adapter>() {
-
-
-		@Override
-		public Adapter caseAbstractionStereotypedByAllocate(Abstraction abstraction_) {
-			if(isAllocateFromAbstraction(abstraction_)) {
-				return createAllocateAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseNamedElementStereotypedByAllocated(NamedElement namedElement_) {
-			if(isAllocatedFromNamedElement(namedElement_)) {
-				return createAllocatedAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseActivityPartitionStereotypedByAllocateActivityPartition(ActivityPartition activityPartition_) {
-			if(isAllocateActivityPartitionFromActivityPartition(activityPartition_)) {
-				return createAllocateActivityPartitionAdapter();
-			}
-			return null;
-		}
-
 
 		@Override
 		public Adapter caseAllocate(Allocate object) {
@@ -201,12 +166,11 @@ public class AllocationsAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if(object == modelPackage || object == UMLPackage.eINSTANCE) {
+		if(object == modelPackage) {
 			return true;
 		}
 		if(object instanceof EObject) {
-			EPackage ePackage = ((EObject)object).eClass().getEPackage();
-			return ePackage != null && (ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE);
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}

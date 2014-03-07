@@ -17,18 +17,12 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.sysml.modelelements.Conform;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.Problem;
 import org.eclipse.papyrus.sysml.modelelements.Rationale;
 import org.eclipse.papyrus.sysml.modelelements.View;
 import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.Dependency;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
@@ -55,56 +49,6 @@ public class ModelelementsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected ModelelementsSwitch<Adapter> modelSwitch = new ModelelementsSwitch<Adapter>() {
-
-
-		@Override
-		public Adapter caseDependencyStereotypedByConform(Dependency dependency_) {
-			if(isConformFromDependency(dependency_)) {
-				return createConformAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter casePackageStereotypedByView(Package package_) {
-			if(isViewFromPackage(package_)) {
-				return createViewAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseClassStereotypedByViewPoint(Class class_) {
-			if(isViewPointFromClass(class_)) {
-				return createViewPointAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseCommentStereotypedByRationale(Comment comment_) {
-			if(isRationaleFromComment(comment_)) {
-				return createRationaleAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseCommentStereotypedByProblem(Comment comment_) {
-			if(isProblemFromComment(comment_)) {
-				return createProblemAdapter();
-			}
-			return null;
-		}
-
 
 		@Override
 		public Adapter caseConform(Conform object) {
@@ -262,12 +206,11 @@ public class ModelelementsAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if(object == modelPackage || object == UMLPackage.eINSTANCE) {
+		if(object == modelPackage) {
 			return true;
 		}
 		if(object instanceof EObject) {
-			EPackage ePackage = ((EObject)object).eClass().getEPackage();
-			return ePackage != null && (ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE);
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.importer;
 
@@ -36,6 +38,12 @@ public interface IModelTransferConfiguration {
 
 	IModelTransferOperation.Context getOperationContext();
 
+	boolean hasSashModelContent();
+
+	boolean isStripSashModelContent();
+
+	void setStripSashModelContent(boolean stripSashModelContent);
+
 	Diagnostic validate();
 
 	void dispose();
@@ -52,7 +60,7 @@ public interface IModelTransferConfiguration {
 
 		/**
 		 * Creates a new model transfer configuration. If a {@code ResourceSet} is provided,
-		 * then the configuration will it to load resources for dependency analysis. It will
+		 * then the configuration will use it to load resources for dependency analysis. It will
 		 * then be the caller's responsibility to clean up that resource set, if necessary,
 		 * after completion of the transfer process.
 		 * 

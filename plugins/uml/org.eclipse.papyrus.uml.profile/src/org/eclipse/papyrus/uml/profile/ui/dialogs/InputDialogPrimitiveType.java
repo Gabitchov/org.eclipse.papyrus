@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -52,7 +52,7 @@ public class InputDialogPrimitiveType {
 
 	/**
 	 * The Constructor.
-	 * 
+	 *
 	 * @param index
 	 *        the index
 	 * @param property
@@ -68,7 +68,7 @@ public class InputDialogPrimitiveType {
 			// Call dialog constructor
 			iDialog = new InputDialog(shell, TITLE, LABEL, initialValue.toString(), null);
 
-		} else if(property.isSetDefault()) {
+		} else if(property.getDefaultValue() != null) {
 			iDialog = new InputDialog(shell, TITLE, LABEL, property.getDefault(), null);
 
 		} else if(property.getType().getName().equals("Boolean")) {
@@ -81,7 +81,7 @@ public class InputDialogPrimitiveType {
 
 	/**
 	 * Open.
-	 * 
+	 *
 	 * @return the int
 	 */
 	public int open() {
@@ -97,7 +97,7 @@ public class InputDialogPrimitiveType {
 
 	/**
 	 * Gets the value.
-	 * 
+	 *
 	 * @return the value
 	 */
 	public String getValue() {

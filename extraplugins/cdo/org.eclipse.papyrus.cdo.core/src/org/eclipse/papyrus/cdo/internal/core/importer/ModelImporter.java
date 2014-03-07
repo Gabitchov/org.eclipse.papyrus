@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer;
 
@@ -36,13 +38,16 @@ import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferOperation;
 import org.eclipse.papyrus.cdo.internal.core.Activator;
+import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.controlmode.CDOControlModeParticipant;
 import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
+import org.eclipse.papyrus.cdo.internal.core.resource.CDOSashModelProvider;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
+import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 
 import com.google.common.collect.Sets;
 
@@ -63,6 +68,7 @@ public class ModelImporter implements IModelImporter {
 		super();
 	}
 
+	@Override
 	public Diagnostic importModels(final IModelImportMapping mapping) {
 		BasicDiagnostic result = new BasicDiagnostic();
 
@@ -72,6 +78,7 @@ public class ModelImporter implements IModelImporter {
 		if(result.getSeverity() < Diagnostic.ERROR) {
 			add(result, mapping.getConfiguration().getOperationContext().run(new IModelTransferOperation() {
 
+				@Override
 				public Diagnostic run(IProgressMonitor monitor) {
 					return doImport(mapping, monitor);
 				}
@@ -104,7 +111,15 @@ public class ModelImporter implements IModelImporter {
 
 			try {
 				transaction.commit(sub.newChild(1));
-			} catch (CommitException e) {
+
+				// save sash resources (if any)
+				for(Resource next : destination.getResources()) {
+					// sash resource would have been saved by commit if it were a CDO URI
+					if(DependencyAdapter.isDIResource(next) && !CDOUtils.isCDOURI(next.getURI())) {
+						next.save(null);
+					}
+				}
+			} catch (Exception e) {
 				result.add(new BasicDiagnostic(IStatus.ERROR, Activator.PLUGIN_ID, 0, Messages.ModelImporter_5, new Object[]{ e }));
 			}
 
@@ -152,8 +167,20 @@ public class ModelImporter implements IModelImporter {
 
 		for(URI next : model.getResourceURIs()) {
 			Resource destination = transaction.getOrCreateResource(basePath.addFileExtension(next.fileExtension()).toString());
+			Resource source = rset.getResource(next, true);
 
-			add(result, importResource(rset.getResource(next, true), destination));
+			if(model.getConfiguration().isStripSashModelContent() && DependencyAdapter.isDIResource(source)) {
+				// import *.di content into the *.sash
+				URI sashURI = new CDOSashModelProvider().initialize(transaction).getSashModelURI(destination.getURI());
+				ResourceSet dset = destination.getResourceSet();
+				Resource sashResource = dset.getURIConverter().exists(sashURI, null) ? dset.getResource(sashURI, true) : null;
+				if(sashResource == null) {
+					sashResource = dset.createResource(sashURI);
+				}
+				destination = sashResource;
+			}
+
+			add(result, importResource(source, destination));
 			sub.worked(1);
 		}
 
@@ -230,9 +257,9 @@ public class ModelImporter implements IModelImporter {
 
 	protected void mergeDIContent(Resource source, Resource destination) {
 		// snip out the source window manager and get its counterpart
-		SashWindowsMngr srcMngr = (SashWindowsMngr)EcoreUtil.getObjectByType(source.getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
+		SashWindowsMngr srcMngr = DiUtils.lookupSashWindowsMngr(source);
 		EcoreUtil.remove(srcMngr);
-		SashWindowsMngr dstMngr = (SashWindowsMngr)EcoreUtil.getObjectByType(destination.getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
+		SashWindowsMngr dstMngr = DiUtils.lookupSashWindowsMngr(destination);
 
 		// merge the window manager contents
 		if(dstMngr == null) {

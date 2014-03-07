@@ -19,6 +19,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.eastadl.environment.*;
 import org.eclipse.papyrus.eastadl.environment.ClampConnector;
 import org.eclipse.papyrus.eastadl.environment.Environment;
 import org.eclipse.papyrus.eastadl.environment.EnvironmentPackage;
@@ -31,14 +32,17 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.eastadl.environment.EnvironmentPackage
  * @generated
  */
 public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
+
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static EnvironmentPackage modelPackage;
@@ -47,40 +51,46 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	protected EnvironmentSwitch<Adapter> modelSwitch =
-		new EnvironmentSwitch<Adapter>() {
-			@Override
-			public Adapter caseEnvironment(Environment object) {
-				return createEnvironmentAdapter();
-			}
-			@Override
-			public Adapter caseClampConnector(ClampConnector object) {
-				return createClampConnectorAdapter();
-			}
-			@Override
-			public Adapter caseEAElement(EAElement object) {
-				return createEAElementAdapter();
-			}
-			@Override
-			public Adapter caseContext(Context object) {
-				return createContextAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+	protected EnvironmentSwitch<Adapter> modelSwitch = new EnvironmentSwitch<Adapter>() {
+
+		@Override
+		public Adapter caseEnvironment(Environment object) {
+			return createEnvironmentAdapter();
+		}
+
+		@Override
+		public Adapter caseClampConnector(ClampConnector object) {
+			return createClampConnectorAdapter();
+		}
+
+		@Override
+		public Adapter caseEAElement(EAElement object) {
+			return createEAElementAdapter();
+		}
+
+		@Override
+		public Adapter caseContext(Context object) {
+			return createContextAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EnvironmentAdapterFactory() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = EnvironmentPackage.eINSTANCE;
 		}
 	}
@@ -89,7 +99,9 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param target the object to adapt.
+	 * 
+	 * @param target
+	 *        the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
@@ -104,6 +116,7 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.eastadl.environment.ClampConnector
 	 * @generated
@@ -118,6 +131,7 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement
 	 * @generated
@@ -132,6 +146,7 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.eastadl.infrastructure.elements.Context
 	 * @generated
@@ -146,6 +161,7 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.eastadl.environment.Environment
 	 * @generated
@@ -159,6 +175,7 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */
@@ -171,15 +188,16 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if(object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject) {
+		if(object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;

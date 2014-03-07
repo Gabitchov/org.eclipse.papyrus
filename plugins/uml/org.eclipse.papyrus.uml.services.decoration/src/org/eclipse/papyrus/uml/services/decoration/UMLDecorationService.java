@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Patrick Tessier (CEA LIST)- initial implementation
+ * Patrick Tessier (CEA LIST) - initial implementation
+ * Ansgar Radermacher (CEA List) - refactored stereotype handling, support for qualified name
  *****************************************************************************/
 package org.eclipse.papyrus.uml.services.decoration;
 
@@ -17,14 +18,13 @@ import org.eclipse.uml2.uml.NamedElement;
 
 
 /**
- * overload the Generic decoration service to take in account validation on stereotyped element
+ * Providing qualified name in the tool-tip message shown in the model explorer 
  *
- * CAVEAT: this class is currently unused, since the validation mechanism already replaces a stereotype application
- *         by its base element (see org.eclipse.papyurs.uml.service.validation.StereotypeValidatorAdaptor)
+ * Originally, this class was intended for stereotypes, now the handling of stereotypes is done in
+ * @see org.eclipse.papyrus.uml.service.validation.UMLDiagnostician.
  */
-
 public class UMLDecorationService extends DecorationService {
-		
+
 	/**
 	 * Initial message for UML elements
 	 * @return the qualified name of the element, if it is a named element

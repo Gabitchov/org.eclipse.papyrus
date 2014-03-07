@@ -43,7 +43,7 @@ public interface Block extends EObject {
 	 * @return the value of the '<em>Is Encapsulated</em>' attribute.
 	 * @see #setIsEncapsulated(boolean)
 	 * @see org.eclipse.papyrus.sysml.blocks.BlocksPackage#getBlock_IsEncapsulated()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" dataType="org.eclipse.uml2.types.Boolean" ordered="false"
 	 * @generated
 	 */
 	boolean isEncapsulated();

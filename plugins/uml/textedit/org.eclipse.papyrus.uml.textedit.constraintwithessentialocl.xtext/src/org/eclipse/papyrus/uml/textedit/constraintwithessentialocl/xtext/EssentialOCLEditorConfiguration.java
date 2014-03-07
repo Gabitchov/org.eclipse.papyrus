@@ -34,8 +34,9 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLRuntimeModule;
-import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
-import org.eclipse.papyrus.infra.services.validation.commands.ValidateSubtreeCommand;
+import org.eclipse.papyrus.infra.services.validation.commands.AbstractValidateCommand;
+import org.eclipse.papyrus.infra.services.validation.commands.AsyncValidateSubtreeCommand;
+import org.eclipse.papyrus.uml.service.validation.UMLDiagnostician;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProviderWithInit;
@@ -182,7 +183,7 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 				TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(semanticObject);
 				if (semanticObject instanceof Constraint) {
 					result.add(new UpdateConstraintCommand(editingDomain, (Constraint) semanticObject, newString));
-					ValidateSubtreeCommand validationCommand = new ValidateSubtreeCommand(semanticObject, new EcoreDiagnostician());
+					final AbstractValidateCommand validationCommand = new AsyncValidateSubtreeCommand(semanticObject, new UMLDiagnostician());
 					validationCommand.disableUIFeedback();
 					result.add(validationCommand);
 				}

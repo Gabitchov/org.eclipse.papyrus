@@ -32,8 +32,10 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.ElementsPackage;
  * </ul>
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * The interchange part of an EAST-ADL2 system model is for exchanging model data with external stakeholders. E.g. it provides elements (see RIFArea) for importing resp. exporting requirements specifications into resp. out of an EAST-ADL2 system model.
+ * The interchange part of an EAST-ADL2 system model is for exchanging model data with external stakeholders. E.g. it provides elements (see RIFArea)
+ * for importing resp. exporting requirements specifications into resp. out of an EAST-ADL2 system model.
  * <!-- end-model-doc -->
+ * 
  * @see org.eclipse.papyrus.eastadl.interchange.InterchangeFactory
  * @model kind="package"
  * @generated
@@ -49,6 +51,7 @@ public interface InterchangePackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
@@ -56,6 +59,7 @@ public interface InterchangePackage extends EPackage {
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.interchange.impl.RIFAreaImpl <em>RIF Area</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.interchange.impl.RIFAreaImpl
 		 * @see org.eclipse.papyrus.eastadl.interchange.impl.InterchangePackageImpl#getRIFArea()
 		 * @generated
@@ -66,6 +70,7 @@ public interface InterchangePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Root Requirement Container</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference RIF_AREA__ROOT_REQUIREMENT_CONTAINER = eINSTANCE.getRIFArea_RootRequirementContainer();
@@ -82,6 +87,7 @@ public interface InterchangePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Interchange Req Spec Object</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference RIF_AREA__INTERCHANGE_REQ_SPEC_OBJECT = eINSTANCE.getRIFArea_InterchangeReqSpecObject();
@@ -89,6 +95,7 @@ public interface InterchangePackage extends EPackage {
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.interchange.impl.RIFExportAreaImpl <em>RIF Export Area</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.interchange.impl.RIFExportAreaImpl
 		 * @see org.eclipse.papyrus.eastadl.interchange.impl.InterchangePackageImpl#getRIFExportArea()
 		 * @generated
@@ -98,6 +105,7 @@ public interface InterchangePackage extends EPackage {
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.interchange.impl.RIFImportAreaImpl <em>RIF Import Area</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.interchange.impl.RIFImportAreaImpl
 		 * @see org.eclipse.papyrus.eastadl.interchange.impl.InterchangePackageImpl#getRIFImportArea()
 		 * @generated
@@ -109,6 +117,7 @@ public interface InterchangePackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "interchange";
@@ -116,6 +125,7 @@ public interface InterchangePackage extends EPackage {
 	/**
 	 * The package namespace URI.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.papyrusuml.org/EAST-ADL2/Interchange/1";
@@ -123,6 +133,7 @@ public interface InterchangePackage extends EPackage {
 	/**
 	 * The package namespace name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "Interchange";
@@ -130,6 +141,7 @@ public interface InterchangePackage extends EPackage {
 	/**
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	InterchangePackage eINSTANCE = org.eclipse.papyrus.eastadl.interchange.impl.InterchangePackageImpl.init();
@@ -137,6 +149,7 @@ public interface InterchangePackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.interchange.impl.RIFAreaImpl <em>RIF Area</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.interchange.impl.RIFAreaImpl
 	 * @see org.eclipse.papyrus.eastadl.interchange.impl.InterchangePackageImpl#getRIFArea()
 	 * @generated
@@ -147,6 +160,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -156,6 +170,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Base Named Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -165,6 +180,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -174,6 +190,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Traceable Specification</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -183,6 +200,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -192,6 +210,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Root Requirement Container</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -201,6 +220,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -210,6 +230,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Interchange Req Spec Object</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -219,6 +240,7 @@ public interface InterchangePackage extends EPackage {
 	 * The number of structural features of the '<em>RIF Area</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -227,6 +249,7 @@ public interface InterchangePackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.interchange.impl.RIFExportAreaImpl <em>RIF Export Area</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.interchange.impl.RIFExportAreaImpl
 	 * @see org.eclipse.papyrus.eastadl.interchange.impl.InterchangePackageImpl#getRIFExportArea()
 	 * @generated
@@ -237,6 +260,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -246,6 +270,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Base Named Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -255,6 +280,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -264,6 +290,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Traceable Specification</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -273,6 +300,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -282,6 +310,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Root Requirement Container</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -291,6 +320,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -300,6 +330,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Interchange Req Spec Object</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -317,6 +348,7 @@ public interface InterchangePackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.interchange.impl.RIFImportAreaImpl <em>RIF Import Area</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.interchange.impl.RIFImportAreaImpl
 	 * @see org.eclipse.papyrus.eastadl.interchange.impl.InterchangePackageImpl#getRIFImportArea()
 	 * @generated
@@ -327,6 +359,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -336,6 +369,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Base Named Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -345,6 +379,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -354,6 +389,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Traceable Specification</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -363,6 +399,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -372,6 +409,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Root Requirement Container</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -381,6 +419,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -390,6 +429,7 @@ public interface InterchangePackage extends EPackage {
 	 * The feature id for the '<em><b>Interchange Req Spec Object</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -408,6 +448,7 @@ public interface InterchangePackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.eastadl.interchange.RIFArea <em>RIF Area</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>RIF Area</em>'.
 	 * @see org.eclipse.papyrus.eastadl.interchange.RIFArea
 	 * @generated
@@ -415,9 +456,11 @@ public interface InterchangePackage extends EPackage {
 	EClass getRIFArea();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.eastadl.interchange.RIFArea#getRootRequirementContainer <em>Root Requirement Container</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.eastadl.interchange.RIFArea#getRootRequirementContainer
+	 * <em>Root Requirement Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Root Requirement Container</em>'.
 	 * @see org.eclipse.papyrus.eastadl.interchange.RIFArea#getRootRequirementContainer()
 	 * @see #getRIFArea()
@@ -429,6 +472,7 @@ public interface InterchangePackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.interchange.RIFArea#getBase_Class <em>Base Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
 	 * @see org.eclipse.papyrus.eastadl.interchange.RIFArea#getBase_Class()
 	 * @see #getRIFArea()
@@ -437,9 +481,11 @@ public interface InterchangePackage extends EPackage {
 	EReference getRIFArea_Base_Class();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.eastadl.interchange.RIFArea#getInterchangeReqSpecObject <em>Interchange Req Spec Object</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.eastadl.interchange.RIFArea#getInterchangeReqSpecObject
+	 * <em>Interchange Req Spec Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Interchange Req Spec Object</em>'.
 	 * @see org.eclipse.papyrus.eastadl.interchange.RIFArea#getInterchangeReqSpecObject()
 	 * @see #getRIFArea()
@@ -451,6 +497,7 @@ public interface InterchangePackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.eastadl.interchange.RIFExportArea <em>RIF Export Area</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>RIF Export Area</em>'.
 	 * @see org.eclipse.papyrus.eastadl.interchange.RIFExportArea
 	 * @generated
@@ -461,6 +508,7 @@ public interface InterchangePackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.eastadl.interchange.RIFImportArea <em>RIF Import Area</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>RIF Import Area</em>'.
 	 * @see org.eclipse.papyrus.eastadl.interchange.RIFImportArea
 	 * @generated
@@ -471,6 +519,7 @@ public interface InterchangePackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */

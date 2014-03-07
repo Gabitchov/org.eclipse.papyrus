@@ -10,7 +10,7 @@
       <constraintProvider
             mode="Batch">
          <package
-               namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML">
+               namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
          </package>
          <constraints
                categories="org.eclipse.papyrus.robotml.validation.constraints">
@@ -124,7 +124,7 @@
          </constraints>
       </constraintProvider>
       <constraintProvider mode="Live">
-		<package namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML" />
+		<package namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML" />
     
 		<constraints categories="org.eclipse.papyrus.robotml.validation.constraints">
             
