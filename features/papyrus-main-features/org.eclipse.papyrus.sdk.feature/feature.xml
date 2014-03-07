@@ -155,6 +155,10 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.uml.diagram.css.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.facet"
+         version="0.0.0"/>
+
    <plugin
          id="com.google.guava"
          download-size="0"
