@@ -96,7 +96,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 		super(domain, label, Collections.EMPTY_LIST);
 		this.domain = domain;
 		this.selectedElement = selectedElement;
-		this.diagnostician= diagnostician;
+		this.diagnostician = diagnostician;
 		this.showUIfeedback = true;	// default is true;
 	}
 

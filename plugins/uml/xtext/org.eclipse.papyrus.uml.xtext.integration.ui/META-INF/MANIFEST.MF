@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.gef;bundle-version="3.9.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0"
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.service.validation;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.uml.xtext.integration
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-Version: 1.0.0.qualifier

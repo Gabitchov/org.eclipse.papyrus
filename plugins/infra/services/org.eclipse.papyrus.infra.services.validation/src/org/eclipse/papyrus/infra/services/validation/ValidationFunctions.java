@@ -29,11 +29,11 @@ import org.eclipse.ui.PlatformUI;
 
 public class ValidationFunctions implements IDecorationSpecificFunctions {
 
-	public static final String error_co = "icons/etool16/error_co.gif";
+	public static final String error_co = "icons/etool16/error_co.gif"; //$NON-NLS-1$
 
-	public static final String warning_co = "icons/etool16/warning_co.gif";
+	public static final String warning_co = "icons/etool16/warning_co.gif"; //$NON-NLS-1$
 
-	public static final String info_co = "icons/etool16/info_co.gif";
+	public static final String info_co = "icons/etool16/info_co.gif"; //$NON-NLS-1$
 
 	/**
 	 * Return the image descriptor associated with an validation marker
@@ -104,7 +104,7 @@ public class ValidationFunctions implements IDecorationSpecificFunctions {
 
 	public String getMessage(IPapyrusMarker marker) {
 		// message is stored within marker
-		return marker.getAttribute(IPapyrusMarker.MESSAGE, "");
+		return marker.getAttribute(IPapyrusMarker.MESSAGE, ""); //$NON-NLS-1$
 	}
 
 	public int getPriority(IPapyrusMarker marker) {
