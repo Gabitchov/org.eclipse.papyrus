@@ -40,6 +40,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.css.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
@@ -58,6 +59,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbenchPropertyPage;
 import org.eclipse.ui.dialogs.PropertyPage;
 
@@ -72,6 +74,12 @@ import org.eclipse.ui.dialogs.PropertyPage;
  * @author gpascual
  */
 public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchPropertyPage {
+
+	/** Text for preference page label. */
+	private static final String PREFERENCE_PAGE_LABEL = Messages.getString("StyleSheetsPropertyPage.preference.page.label"); //$NON-NLS-1$
+
+	/** Text for preference page title. */
+	private static final String PREFERENCE_PAGE_TITLE = Messages.getString("StyleSheetsPropertyPage.preference.page.title"); //$NON-NLS-1$
 
 	/** Preference resource of project to load and save. */
 	private Resource resource = null;
@@ -103,8 +111,6 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 	}
 
 
-
-
 	/**
 	 * Get Style sheets model file to manage preference.
 	 * 
@@ -122,7 +128,7 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 		if(pageElement instanceof IProject) {
 			// Build path of preference file
 			ProjectScope pageProject = new ProjectScope((IProject)pageElement);
-			IPath preferencePath = pageProject.getLocation().append("stylesheets.xmi");
+			IPath preferencePath = pageProject.getLocation().append("stylesheets.xmi"); //$NON-NLS-1$
 
 			// Check path is valid
 			if(preferencePath != null) {
@@ -164,11 +170,12 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 		GridLayout containerLayout = new GridLayout(2, false);
 		container.setLayout(containerLayout);
 
-		// Initialize data and providers fro page
+		// Initialize data and providers for page
 		initializeDataPage();
 		initializeProviders();
 
 		// Create different components
+		createLabelPage(container);
 		createStyleSheetsPageViewer(container);
 		createStyleSheetsPageButtons(container);
 
@@ -179,6 +186,24 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 	}
 
 
+
+
+	/**
+	 * Create label for page.
+	 * 
+	 * @param parent
+	 *        Parent composite where compound will added
+	 */
+	private void createLabelPage(Composite parent) {
+		Label labelPage = new Label(parent, SWT.NONE);
+
+		GridData layoutData = new GridData(SWT.FILL);
+		layoutData.horizontalSpan = 2;
+		labelPage.setLayoutData(layoutData);
+
+		labelPage.setText(PREFERENCE_PAGE_LABEL);
+
+	}
 
 
 	/**
@@ -283,7 +308,7 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 		//Add button
 		Button addButton = new Button(buttonsComposite, SWT.PUSH);
 		addButton.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		addButton.setImage(Activator.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "/icons/Add_12x12.gif").createImage());
+		addButton.setImage(Activator.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "/icons/Add_12x12.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
 		addButton.addSelectionListener(new SelectionListener() {
 
 			/**
@@ -299,7 +324,7 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 				selector.setLabelProvider(labelProvider);
 
 				// Use common component for add dialog and parameterize it
-				MultipleValueSelectorDialog vDialog = new MultipleValueSelectorDialog(getShell(), selector, "CSS Style Sheet");
+				MultipleValueSelectorDialog vDialog = new MultipleValueSelectorDialog(getShell(), selector, PREFERENCE_PAGE_TITLE);
 				vDialog.setContextElement(modelStyleSheets);
 				vDialog.setLabelProvider(labelProvider);
 				vDialog.setFactory(new EcorePropertyEditorFactory(StylesheetsPackage.Literals.MODEL_STYLE_SHEETS__STYLESHEETS));
@@ -323,7 +348,7 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 
 		removeButton = new Button(buttonsComposite, SWT.PUSH);
 		removeButton.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		removeButton.setImage(Activator.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "/icons/Delete_12x12.gif").createImage());
+		removeButton.setImage(Activator.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "/icons/Delete_12x12.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
 		removeButton.addSelectionListener(new SelectionListener() {
 
 			/**
@@ -448,7 +473,7 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 		 */
 		@Override
 		public String getText(Object element) {
-			String text = "";
+			String text = ""; //$NON-NLS-1$
 
 			if(element instanceof StyleSheetReference) {
 				text = ((StyleSheetReference)element).getPath();
