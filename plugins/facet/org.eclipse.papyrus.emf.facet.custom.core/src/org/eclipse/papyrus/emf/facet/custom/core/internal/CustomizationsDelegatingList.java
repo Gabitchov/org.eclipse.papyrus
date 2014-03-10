@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.papyrus.emf.facet.custom.core.internal;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -41,18 +42,45 @@ public class CustomizationsDelegatingList implements List<Customization> {
 	}
 
 	public Iterator<Customization> iterator() {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
+		ArrayList<Customization> tmp= new ArrayList<Customization>();
+		for(Iterator<FacetSet> iterator = this.delegate.iterator(); iterator.hasNext();) {
+			FacetSet facetSet = (FacetSet)iterator.next();
+			if( facetSet instanceof Customization){
+				tmp.add((Customization)facetSet);
+			}
+			
+		}
+		
+		
+		return   tmp.iterator(); //$NON-NLS-1$
 	}
 
 	public Object[] toArray() {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
+		ArrayList<Customization> tmp= new ArrayList<Customization>();
+		for(Iterator<FacetSet> iterator = this.delegate.iterator(); iterator.hasNext();) {
+			FacetSet facetSet = (FacetSet)iterator.next();
+			if( facetSet instanceof Customization){
+				tmp.add((Customization)facetSet);
+			}
+			
+		}
+		
+		
+		return   tmp.toArray(); //$NON-NLS-1$
 	}
 
 	public <T> T[] toArray(final T[] a) {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
+		ArrayList<Customization> tmp= new ArrayList<Customization>();
+		for(Iterator<FacetSet> iterator = this.delegate.iterator(); iterator.hasNext();) {
+			FacetSet facetSet = (FacetSet)iterator.next();
+			if( facetSet instanceof Customization){
+				tmp.add((Customization)facetSet);
+			}
+			
+		}
+		
+		
+		return   tmp.toArray(a);
 	}
 
 	public boolean add(final Customization o) {
@@ -64,8 +92,17 @@ public class CustomizationsDelegatingList implements List<Customization> {
 	}
 
 	public boolean containsAll(final Collection<?> c) {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
+		ArrayList<Customization> tmp= new ArrayList<Customization>();
+		for(Iterator<FacetSet> iterator = this.delegate.iterator(); iterator.hasNext();) {
+			FacetSet facetSet = (FacetSet)iterator.next();
+			if( facetSet instanceof Customization){
+				tmp.add((Customization)facetSet);
+			}
+			
+		}
+		
+		
+		return   tmp.containsAll(c); 
 	}
 
 	public boolean addAll(final Collection<? extends Customization> c) {

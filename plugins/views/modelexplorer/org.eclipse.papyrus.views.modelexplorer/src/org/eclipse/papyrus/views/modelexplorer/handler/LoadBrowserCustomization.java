@@ -112,7 +112,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 				return null;
 			}
 		};
-		ILoadCustomizationsDialog dialog=ILoadCustomizationsDialogFactory.DEFAULT.createLoadCustomizationDialog(shell, registeredCustomizations, Collections.EMPTY_LIST, dialogCallBack);
+		ILoadCustomizationsDialog dialog=ILoadCustomizationsDialogFactory.DEFAULT.createLoadCustomizationDialog(shell, registeredCustomizations, customizationManager.getManagedCustomizations(), dialogCallBack);
 //
 //			try {
 //				ServicesRegistry registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
