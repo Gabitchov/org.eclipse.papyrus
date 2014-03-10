@@ -17,7 +17,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.emf.facet.efacet.core,
  org.eclipse.papyrus.emf.facet.efacet,
  org.eclipse.papyrus.emf.facet.efacet.metamodel,
- org.eclipse.papyrus.emf.facet.custom.metamodel
+ org.eclipse.papyrus.emf.facet.custom.metamodel,
+ org.eclipse.papyrus.infra.emf
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
