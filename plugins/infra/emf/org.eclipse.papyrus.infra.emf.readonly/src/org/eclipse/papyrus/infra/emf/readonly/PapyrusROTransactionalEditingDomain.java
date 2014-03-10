@@ -22,6 +22,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -92,8 +93,11 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 		InternalTransaction tx = getActiveTransaction();
 
 		// If there's no transaction, then there will be nothing to roll back.  And if it's unprotected, let the client do whatever.
-		// And, of course, don't interfere with rollback!
-		if((tx != null) && !tx.isRollingBack() && !Boolean.TRUE.equals(tx.getOptions().get(Transaction.OPTION_UNPROTECTED))) {
+		// And, of course, don't interfere with rollback!  Finally, if we're already going to roll back, don't bother
+		if((tx != null) && !tx.isRollingBack() //
+			&& !Boolean.TRUE.equals(tx.getOptions().get(Transaction.OPTION_UNPROTECTED)) //
+			&& !willRollBack(tx)) {
+			
 			boolean readOnly;
 
 			// Check for Resource first because CDO resources *are* EObjects
@@ -118,6 +122,11 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 				tx.abort(new RollbackStatus(Activator.PLUGIN_ID, IRollbackStatus.READ_ONLY_OBJECT, message, offenders));
 			}
 		}
+	}
+
+	private boolean willRollBack(Transaction tx) {
+		IStatus status = tx.getStatus();
+		return (status != null) && (status.getSeverity() >= IStatus.ERROR);
 	}
 	
 	protected boolean makeWritable(Resource resource) {

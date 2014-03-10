@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_a5Qs0BexEeOaDesjAlqXXw" name="model">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_a5Qs0BexEeOaDesjAlqXXw" name="model">
   <packagedElement xmi:type="uml:Class" xmi:id="_a5Qs0RexEeOaDesjAlqXXw" name="Garage" classifierBehavior="_a5Qs2xexEeOaDesjAlqXXw">
-    <ownedAttribute xmi:id="_a5Qs0hexEeOaDesjAlqXXw" name="personalDoor" type="_a5Qs6hexEeOaDesjAlqXXw" aggregation="composite" association="_a5Qs6xexEeOaDesjAlqXXw">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_a5Qs0hexEeOaDesjAlqXXw" name="personalDoor" type="_a5Qs6hexEeOaDesjAlqXXw" aggregation="composite" association="_a5Qs6xexEeOaDesjAlqXXw">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_a5Qs0xexEeOaDesjAlqXXw" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_a5Qs1BexEeOaDesjAlqXXw" value="2"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="_a5Qs1RexEeOaDesjAlqXXw" name="garageDoor" type="_a5Qs6RexEeOaDesjAlqXXw" aggregation="composite" association="_a5Qs7xexEeOaDesjAlqXXw">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_a5Qs1RexEeOaDesjAlqXXw" name="garageDoor" type="_a5Qs6RexEeOaDesjAlqXXw" aggregation="composite" association="_a5Qs7xexEeOaDesjAlqXXw">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_a5Qs1hexEeOaDesjAlqXXw" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_a5Qs1xexEeOaDesjAlqXXw" value="3"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="_a5Qs2BexEeOaDesjAlqXXw" name="opener" type="_a5Qs8xexEeOaDesjAlqXXw" aggregation="composite" association="_a5Qs-xexEeOaDesjAlqXXw">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_a5Qs2BexEeOaDesjAlqXXw" name="opener" type="_a5Qs8xexEeOaDesjAlqXXw" aggregation="composite" association="_a5Qs-xexEeOaDesjAlqXXw">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_a5Qs2RexEeOaDesjAlqXXw"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_a5Qs2hexEeOaDesjAlqXXw" value="*"/>
     </ownedAttribute>
     <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_a5Qs2xexEeOaDesjAlqXXw" name="OperationCycle">
-      <region xmi:id="_a5Qs3BexEeOaDesjAlqXXw" name="Region1">
-        <transition xmi:id="_a5Qs3RexEeOaDesjAlqXXw" name="Transition0" source="_a5Qs5BexEeOaDesjAlqXXw" target="_a5Qs6BexEeOaDesjAlqXXw"/>
-        <transition xmi:id="_a5Qs3hexEeOaDesjAlqXXw" name="opener_clicked" source="_a5Qs6BexEeOaDesjAlqXXw" target="_a5Qs5xexEeOaDesjAlqXXw"/>
-        <transition xmi:id="_a5Qs3xexEeOaDesjAlqXXw" name="opener_clicked" source="_a5Qs5xexEeOaDesjAlqXXw" target="_a5Qs5hexEeOaDesjAlqXXw"/>
-        <transition xmi:id="_a5Qs4BexEeOaDesjAlqXXw" name="opener_clicked" source="_a5Qs5hexEeOaDesjAlqXXw" target="_a5Qs5xexEeOaDesjAlqXXw"/>
-        <transition xmi:id="_a5Qs4RexEeOaDesjAlqXXw" name="opener_clicked" source="_a5Qs5RexEeOaDesjAlqXXw" target="_a5Qs5hexEeOaDesjAlqXXw"/>
-        <transition xmi:id="_a5Qs4hexEeOaDesjAlqXXw" name="top_reached" source="_a5Qs5xexEeOaDesjAlqXXw" target="_a5Qs5RexEeOaDesjAlqXXw"/>
-        <transition xmi:id="_a5Qs4xexEeOaDesjAlqXXw" name="bottom_reached" source="_a5Qs5hexEeOaDesjAlqXXw" target="_a5Qs6BexEeOaDesjAlqXXw"/>
+      <region xmi:type="uml:Region" xmi:id="_a5Qs3BexEeOaDesjAlqXXw" name="Region1">
+        <transition xmi:type="uml:Transition" xmi:id="_a5Qs3RexEeOaDesjAlqXXw" name="Transition0" source="_a5Qs5BexEeOaDesjAlqXXw" target="_a5Qs6BexEeOaDesjAlqXXw"/>
+        <transition xmi:type="uml:Transition" xmi:id="_a5Qs3hexEeOaDesjAlqXXw" name="opener_clicked" source="_a5Qs6BexEeOaDesjAlqXXw" target="_a5Qs5xexEeOaDesjAlqXXw"/>
+        <transition xmi:type="uml:Transition" xmi:id="_a5Qs3xexEeOaDesjAlqXXw" name="opener_clicked" source="_a5Qs5xexEeOaDesjAlqXXw" target="_a5Qs5hexEeOaDesjAlqXXw"/>
+        <transition xmi:type="uml:Transition" xmi:id="_a5Qs4BexEeOaDesjAlqXXw" name="opener_clicked" source="_a5Qs5hexEeOaDesjAlqXXw" target="_a5Qs5xexEeOaDesjAlqXXw"/>
+        <transition xmi:type="uml:Transition" xmi:id="_a5Qs4RexEeOaDesjAlqXXw" name="opener_clicked" source="_a5Qs5RexEeOaDesjAlqXXw" target="_a5Qs5hexEeOaDesjAlqXXw"/>
+        <transition xmi:type="uml:Transition" xmi:id="_a5Qs4hexEeOaDesjAlqXXw" name="top_reached" source="_a5Qs5xexEeOaDesjAlqXXw" target="_a5Qs5RexEeOaDesjAlqXXw"/>
+        <transition xmi:type="uml:Transition" xmi:id="_a5Qs4xexEeOaDesjAlqXXw" name="bottom_reached" source="_a5Qs5hexEeOaDesjAlqXXw" target="_a5Qs6BexEeOaDesjAlqXXw"/>
         <subvertex xmi:type="uml:Pseudostate" xmi:id="_a5Qs5BexEeOaDesjAlqXXw" name="Initial0"/>
         <subvertex xmi:type="uml:State" xmi:id="_a5Qs5RexEeOaDesjAlqXXw" name="Door Open"/>
         <subvertex xmi:type="uml:State" xmi:id="_a5Qs5hexEeOaDesjAlqXXw" name="Door Closing"/>
@@ -33,31 +33,31 @@
   <packagedElement xmi:type="uml:Class" xmi:id="_a5Qs6RexEeOaDesjAlqXXw" name="GarageDoor"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_a5Qs6hexEeOaDesjAlqXXw" name="PersonalDoor"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_a5Qs6xexEeOaDesjAlqXXw" name="garage_personalDoor_1" memberEnd="_a5Qs7BexEeOaDesjAlqXXw _a5Qs0hexEeOaDesjAlqXXw">
-    <ownedEnd xmi:id="_a5Qs7BexEeOaDesjAlqXXw" name="garage" type="_a5Qs0RexEeOaDesjAlqXXw" association="_a5Qs6xexEeOaDesjAlqXXw">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_a5Qs7BexEeOaDesjAlqXXw" name="garage" type="_a5Qs0RexEeOaDesjAlqXXw" association="_a5Qs6xexEeOaDesjAlqXXw">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_a5Qs7RexEeOaDesjAlqXXw" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_a5Qs7hexEeOaDesjAlqXXw" value="1"/>
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_a5Qs7xexEeOaDesjAlqXXw" name="garage_garageDoor_1" memberEnd="_a5Qs8BexEeOaDesjAlqXXw _a5Qs1RexEeOaDesjAlqXXw">
-    <ownedEnd xmi:id="_a5Qs8BexEeOaDesjAlqXXw" name="garage" type="_a5Qs0RexEeOaDesjAlqXXw" association="_a5Qs7xexEeOaDesjAlqXXw">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_a5Qs8BexEeOaDesjAlqXXw" name="garage" type="_a5Qs0RexEeOaDesjAlqXXw" association="_a5Qs7xexEeOaDesjAlqXXw">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_a5Qs8RexEeOaDesjAlqXXw" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_a5Qs8hexEeOaDesjAlqXXw" value="1"/>
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_a5Qs8xexEeOaDesjAlqXXw" name="Opener">
-    <ownedAttribute xmi:id="_a5Qs9BexEeOaDesjAlqXXw" name="opens" type="_a5Qs6RexEeOaDesjAlqXXw" association="_a5Qs9xexEeOaDesjAlqXXw">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_a5Qs9BexEeOaDesjAlqXXw" name="opens" type="_a5Qs6RexEeOaDesjAlqXXw" association="_a5Qs9xexEeOaDesjAlqXXw">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_a5Qs9RexEeOaDesjAlqXXw"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_a5Qs9hexEeOaDesjAlqXXw" value="1"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_a5Qs9xexEeOaDesjAlqXXw" name="opener_garageDoor_1" memberEnd="_a5Qs-BexEeOaDesjAlqXXw _a5Qs9BexEeOaDesjAlqXXw">
-    <ownedEnd xmi:id="_a5Qs-BexEeOaDesjAlqXXw" name="opener" type="_a5Qs8xexEeOaDesjAlqXXw" association="_a5Qs9xexEeOaDesjAlqXXw">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_a5Qs-BexEeOaDesjAlqXXw" name="opener" type="_a5Qs8xexEeOaDesjAlqXXw" association="_a5Qs9xexEeOaDesjAlqXXw">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_a5Qs-RexEeOaDesjAlqXXw" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_a5Qs-hexEeOaDesjAlqXXw" value="1"/>
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_a5Qs-xexEeOaDesjAlqXXw" name="garage_opener_1" memberEnd="_a5Qs_BexEeOaDesjAlqXXw _a5Qs2BexEeOaDesjAlqXXw">
-    <ownedEnd xmi:id="_a5Qs_BexEeOaDesjAlqXXw" name="garage" type="_a5Qs0RexEeOaDesjAlqXXw" association="_a5Qs-xexEeOaDesjAlqXXw">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_a5Qs_BexEeOaDesjAlqXXw" name="garage" type="_a5Qs0RexEeOaDesjAlqXXw" association="_a5Qs-xexEeOaDesjAlqXXw">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_a5Qs_RexEeOaDesjAlqXXw" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_a5Qs_hexEeOaDesjAlqXXw" value="1"/>
     </ownedEnd>

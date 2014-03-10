@@ -56,7 +56,9 @@ public abstract class EMFLogicalModel extends AbstractBaseModel implements IEMFM
 			if(!getModelManager().getTransactionalEditingDomain().isReadOnly(resource) && !ModelUtils.resourceFailedOnLoad(resource)) {
 				try {
 					resource.save(null);
-				} catch (Exception ex) {
+				} catch (IOException ex) {
+					//If an exception occurs, we should not prevent other resources from being saved.
+					//This would probably make things even worse. Catch and log.
 					Activator.log.error(ex);
 				}
 			}

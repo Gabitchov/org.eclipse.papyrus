@@ -451,7 +451,7 @@
     <!-- MDT OCL -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MDT OCL 5.0",0) -->
-      <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/5.0.0/S201401270935">
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/interim/5.0.0">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
