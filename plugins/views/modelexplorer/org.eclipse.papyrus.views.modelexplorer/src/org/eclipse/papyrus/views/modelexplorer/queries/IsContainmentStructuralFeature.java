@@ -35,6 +35,11 @@ public class IsContainmentStructuralFeature implements IJavaQuery2<EObject, Bool
 			throws DerivedTypedElementException {
 		ParameterValue parameterValue= (ParameterValue)parameterValues.getParameterValueByName("eStructuralFeature");
 		EStructuralFeature eStructuralFeature=(EStructuralFeature)parameterValue.getValue();
+		//if eStructural feature ==null this is root model explorer.
+		//border effect of  this kind of queries
+		if (eStructuralFeature==null){
+			return true;
+		}
 		// This is an UML element?
 		if(context instanceof EObject){
 			//the eStructure is a containmentReference or Facet Reference?
