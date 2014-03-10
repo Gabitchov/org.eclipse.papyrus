@@ -598,7 +598,10 @@
          strategy="org.eclipse.papyrus.uml.diagram.common.strategy.paste.StereotypePasteStrategy">
    </strategy>
    <strategy
-         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.paste.ImportResourcePasteStrategy">
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.paste.DefaultPasteStrategy">
+   </strategy>
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.paste.RenamePasteStrategy">
    </strategy>
 </extension>
 <extension

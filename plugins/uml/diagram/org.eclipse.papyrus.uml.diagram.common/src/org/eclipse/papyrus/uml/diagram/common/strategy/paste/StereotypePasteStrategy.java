@@ -23,8 +23,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
@@ -144,6 +142,12 @@ public class StereotypePasteStrategy implements IPasteStrategy {
 	@Override
 	public org.eclipse.emf.common.command.Command getSemanticCommand(EditingDomain domain, EObject targetOwner, PapyrusClipboard<Object> papyrusClipboard) {
 		CompoundCommand compoundCommand = new CompoundCommand("Copy all stereotypes"); //$NON-NLS-1$
+		
+		Map<Profile,List<ApplyStereotypeCommand>> missingProfiles = new HashMap<Profile,List<ApplyStereotypeCommand>>();
+		
+		Package targetPackage = ((Element)targetOwner).getNearestPackage();
+		
+		// 1. init all ApplyStereotypeCommand
 		for(Iterator<Object> iterator = papyrusClipboard.iterator(); iterator.hasNext();) {
 			Object object = (Object)iterator.next();
 			// get target Element
@@ -155,19 +159,47 @@ public class StereotypePasteStrategy implements IPasteStrategy {
 				if(additionnalData instanceof StereotypeClipboard) {
 					StereotypeClipboard stereotypeClipboard = (StereotypeClipboard)additionnalData;
 					Collection<Stereotype> stereotypes = stereotypeClipboard.getStereotypes();
-					Collection<Stereotype> stereotypeListInTargetContext = new ArrayList<Stereotype>();
+//					Collection<Stereotype> stereotypeListInTargetContext = new ArrayList<Stereotype>();
 					for(Stereotype stereotype : stereotypes) {
 						// reload the stereotype in the new Contex-ResourceSet (Required because in org.eclipse.uml2.uml.internal.operations.PackageOperations
 						// L960 in getProfileApplication the test is using == instead of equals)
 						Stereotype stereotypeInTargetContext = EMFHelper.reloadIntoContext(stereotype, targetOwner);
-						stereotypeListInTargetContext.add(stereotypeInTargetContext);
+						
+						Profile profile = stereotypeInTargetContext.getProfile();
+						ApplyStereotypeCommand applyStereotypeCommand = new ApplyStereotypeCommand((Element)target, stereotypeInTargetContext, (TransactionalEditingDomain)domain);
+						if (isProfileAppliedRecursive(targetPackage, profile)){		
+							compoundCommand.append(applyStereotypeCommand);
+						} else { // Profile is missing
+							Activator.getDefault().logWarning(profile.getName()+" is missing", null);
+							List<ApplyStereotypeCommand> list = missingProfiles.get(profile);
+							if (list!= null && !list.isEmpty()){
+								list.add(applyStereotypeCommand);
+							} else {
+								list = new ArrayList<ApplyStereotypeCommand>();
+								missingProfiles.put(profile, list);
+							}
+						}
+						
+//						stereotypeListInTargetContext.add(stereotypeInTargetContext);
 					}
 					// append command to apply stereotype
-					ApplyStereotypeCommand applyStereotypeCommand = new ApplyStereotypeCommand((Element)target, stereotypeListInTargetContext, (TransactionalEditingDomain)domain);
-					compoundCommand.append(applyStereotypeCommand);// TODO : command should be append only after verification of profiles
+//					ApplyStereotypeCommand applyStereotypeCommand = new ApplyStereotypeCommand((Element)target, stereotypeListInTargetContext, (TransactionalEditingDomain)domain);
+//					applyStereotypeCommandList.add(applyStereotypeCommand);
 				}
 			}
 		}
+		
+		// TODO:  2. user choices (Apply profiles, data...)
+		
+		// first draft remove all unapplicable commd
+		
+	
+		
+		
+		//3. construct compoundCommand	
+
+		
+		
 		// An empty can't be executed 
 		if(compoundCommand.getCommandList().isEmpty()) {
 			return null;
@@ -186,6 +218,7 @@ public class StereotypePasteStrategy implements IPasteStrategy {
 		org.eclipse.gef.commands.CompoundCommand compoundCommand = new org.eclipse.gef.commands.CompoundCommand("Stereotype Semantic And Graphical paste"); //$NON-NLS-1$
 		View view = (View)targetEditPart.getModel();
 		EObject modelTargetOwner = (EObject)view.getElement();
+		Package targetPackage = ((Element)modelTargetOwner).getNearestPackage();
 		// apply stereotypes 
 		List<ApplyStereotypeCommand> applyStereotypeCommandList = new ArrayList<ApplyStereotypeCommand>();
 		for(Iterator<Object> iterator = papyrusClipboard.iterator(); iterator.hasNext();) {
@@ -204,9 +237,15 @@ public class StereotypePasteStrategy implements IPasteStrategy {
 						// L960 in getProfileApplication the test is using == instead of equals)
 						Stereotype stereotypeInTargetContext = EMFHelper.reloadIntoContext(stereotype, modelTargetOwner);
 						ApplyStereotypeCommand applyStereotypeCommand = new ApplyStereotypeCommand((Element)target, stereotypeInTargetContext, (TransactionalEditingDomain)domain);
-						EMFtoGEFCommandWrapper emFtoGEFCommandWrapper = new EMFtoGEFCommandWrapper(applyStereotypeCommand);
-						compoundCommand.add(emFtoGEFCommandWrapper);
-//						applyStereotypeCommandList.add(applyStereotypeCommand);
+						
+						Profile profile = stereotypeInTargetContext.getProfile();
+						if (isProfileAppliedRecursive(targetPackage, profile)){
+							EMFtoGEFCommandWrapper emFtoGEFCommandWrapper = new EMFtoGEFCommandWrapper(applyStereotypeCommand);
+							compoundCommand.add(emFtoGEFCommandWrapper);
+						} else { // Profile is missing
+							Activator.getDefault().logWarning(profile.getName()+" is missing", null);		
+						}	
+						//						applyStereotypeCommandList.add(applyStereotypeCommand);
 					}
 
 				}
@@ -214,38 +253,38 @@ public class StereotypePasteStrategy implements IPasteStrategy {
 		}
 
 		// TODO : test profile application
-//		List<Profile> missingProfiles = new ArrayList<Profile>();
-//		if(modelTargetOwner != null && modelTargetOwner instanceof Element) {
-//			Package nearestPackage = ((Element)modelTargetOwner).getNearestPackage();
-//
-//			for(ApplyStereotypeCommand applyStereotypeCommand : applyStereotypeCommandList) {
-//
-//				Collection<Stereotype> stereotypes = applyStereotypeCommand.getStereotypes();
-//				for(Stereotype stereotype : stereotypes) {
-//					Profile profile = stereotype.getProfile();
-//					boolean profileApplied = isProfileAppliedRecursive(nearestPackage, profile);
-//					if(!profileApplied) {
-//						missingProfiles.add(profile);
-//						Map<EditPart, Set<EObject>> availableLinks = new HashMap<EditPart, Set<EObject>>();
-//						Collection<EObject> initialSelection = new ArrayList<EObject>();
-//						Map<EObject, LinkEndsMapper> linkMapping = new HashMap<EObject, LinkEndsMapper>();
-//						Collection<EditPart> selectedEditPart = new ArrayList<EditPart>();
-//						//						ICommand openDialogCommand = getOpenDialogCommand((TransactionalEditingDomain)domain, selectedEditPart, availableLinks, initialSelection, linkMapping);
-//						//
-//						//						try {
-//						//							openDialogCommand.execute(new NullProgressMonitor(), null);
-//						//						} catch (ExecutionException e) {
-//						//							// TODO Auto-generated catch block
-//						//							e.printStackTrace();
-//						//						}
-//						//						domain.getCommandStack().execute(openDialogCommand);
-//					} else {
-//						EMFtoGEFCommandWrapper emFtoGEFCommandWrapper = new EMFtoGEFCommandWrapper(applyStereotypeCommand);
-////						compoundCommand.add(emFtoGEFCommandWrapper);
-//					}
-//				}
-//			}
-//		}
+		//		List<Profile> missingProfiles = new ArrayList<Profile>();
+		//		if(modelTargetOwner != null && modelTargetOwner instanceof Element) {
+		//			Package nearestPackage = ((Element)modelTargetOwner).getNearestPackage();
+		//
+		//			for(ApplyStereotypeCommand applyStereotypeCommand : applyStereotypeCommandList) {
+		//
+		//				Collection<Stereotype> stereotypes = applyStereotypeCommand.getStereotypes();
+		//				for(Stereotype stereotype : stereotypes) {
+		//					Profile profile = stereotype.getProfile();
+		//					boolean profileApplied = isProfileAppliedRecursive(nearestPackage, profile);
+		//					if(!profileApplied) {
+		//						missingProfiles.add(profile);
+		//						Map<EditPart, Set<EObject>> availableLinks = new HashMap<EditPart, Set<EObject>>();
+		//						Collection<EObject> initialSelection = new ArrayList<EObject>();
+		//						Map<EObject, LinkEndsMapper> linkMapping = new HashMap<EObject, LinkEndsMapper>();
+		//						Collection<EditPart> selectedEditPart = new ArrayList<EditPart>();
+		//						//						ICommand openDialogCommand = getOpenDialogCommand((TransactionalEditingDomain)domain, selectedEditPart, availableLinks, initialSelection, linkMapping);
+		//						//
+		//						//						try {
+		//						//							openDialogCommand.execute(new NullProgressMonitor(), null);
+		//						//						} catch (ExecutionException e) {
+		//						//							// TODO Auto-generated catch block
+		//						//							e.printStackTrace();
+		//						//						}
+		//						//						domain.getCommandStack().execute(openDialogCommand);
+		//					} else {
+		//						EMFtoGEFCommandWrapper emFtoGEFCommandWrapper = new EMFtoGEFCommandWrapper(applyStereotypeCommand);
+		////						compoundCommand.add(emFtoGEFCommandWrapper);
+		//					}
+		//				}
+		//			}
+		//		}
 		if(compoundCommand.size() == 0) {// TODO : use unwrap if no use of UnexecutableCommand.INSTANCE
 			return null;
 		}
@@ -321,28 +360,28 @@ public class StereotypePasteStrategy implements IPasteStrategy {
 	}
 
 
-//	protected ICommand getOpenDialogCommand(final TransactionalEditingDomain domain, final Collection<EditPart> selectedEditPart, final Map<EditPart, Set<EObject>> availableLinks, final Collection<EObject> initialSelection, final Map<EObject, LinkEndsMapper> linkMapping) {
-//		final ICommand cmd = new AbstractTransactionalCommand(domain, "Open Show/HideDialogCommand", null) {//$NON-NLS-1$
-//
-//			@Override
-//			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-//				final ShowHideRelatedLinkSelectionDialog dialog = new ShowHideRelatedLinkSelectionDialog(Display.getDefault().getActiveShell(), new UMLLabelProvider(), new AbstractShowHideRelatedLinkEditPolicy.LinkContentProvider(availableLinks), availableLinks, linkMapping);
-//				dialog.setTitle("Show/Hide Links");//$NON-NLS-1$
-//				dialog.setMessage("Choose the links to show.");//$NON-NLS-1$
-//				dialog.setInput(selectedEditPart);
-//				dialog.setInitialSelection(initialSelection);
-//				dialog.setExpandedElements(selectedEditPart.toArray());
-//				dialog.setContainerMode(true);
-//				int status = dialog.open();
-//				if(status == Window.CANCEL) {
-//					return CommandResult.newCancelledCommandResult();
-//				}
-//				return CommandResult.newOKCommandResult(Arrays.asList(dialog.getResult()));
-//			}
-//		};
-//
-//		return cmd;
-//	}
+	//	protected ICommand getOpenDialogCommand(final TransactionalEditingDomain domain, final Collection<EditPart> selectedEditPart, final Map<EditPart, Set<EObject>> availableLinks, final Collection<EObject> initialSelection, final Map<EObject, LinkEndsMapper> linkMapping) {
+	//		final ICommand cmd = new AbstractTransactionalCommand(domain, "Open Show/HideDialogCommand", null) {//$NON-NLS-1$
+	//
+	//			@Override
+	//			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	//				final ShowHideRelatedLinkSelectionDialog dialog = new ShowHideRelatedLinkSelectionDialog(Display.getDefault().getActiveShell(), new UMLLabelProvider(), new AbstractShowHideRelatedLinkEditPolicy.LinkContentProvider(availableLinks), availableLinks, linkMapping);
+	//				dialog.setTitle("Show/Hide Links");//$NON-NLS-1$
+	//				dialog.setMessage("Choose the links to show.");//$NON-NLS-1$
+	//				dialog.setInput(selectedEditPart);
+	//				dialog.setInitialSelection(initialSelection);
+	//				dialog.setExpandedElements(selectedEditPart.toArray());
+	//				dialog.setContainerMode(true);
+	//				int status = dialog.open();
+	//				if(status == Window.CANCEL) {
+	//					return CommandResult.newCancelledCommandResult();
+	//				}
+	//				return CommandResult.newOKCommandResult(Arrays.asList(dialog.getResult()));
+	//			}
+	//		};
+	//
+	//		return cmd;
+	//	}
 
 
 

@@ -87,14 +87,16 @@ public class NamedElementUtil {
 	@SuppressWarnings("rawtypes")
 	public static String getDefaultCopyNameWithIncrement(NamedElement namedElement, Collection contents) {
 		String rootName = namedElement.getName();
-		for(Object o : contents) {
-			if(o instanceof EObject) {
-				String name = EMFCoreUtil.getName((EObject)o);
-				if (rootName.equals(name)){
-					String newName = NLS.bind(COPY_OF + "_{0}_", rootName);
-					return NamedElementUtil.getDefaultNameWithIncrementFromBase(newName, contents); 
+		if (rootName != null){
+			for(Object o : contents) {
+				if(o instanceof EObject) {
+					String name = EMFCoreUtil.getName((EObject)o);
+					if (rootName.equals(name)){
+						String newName = NLS.bind(COPY_OF + "_{0}_", rootName);
+						return NamedElementUtil.getDefaultNameWithIncrementFromBase(newName, contents); 
+					}
 				}
-			}
+			}			
 		}
 		return rootName;
 	}

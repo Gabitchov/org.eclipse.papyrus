@@ -62,13 +62,7 @@
          class="org.eclipse.papyrus.infra.gmfdiag.common.preferences.PastePreferencesPage"
          id="org.eclipse.papyrus.infra.gmfdiag.paste.preferences"
          name="Paste">
-   </page>
-   <page
-         category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
-         class="org.eclipse.papyrus.infra.gmfdiag.common.preferences.CopyPreferencesPage"
-         id="org.eclipse.papyrus.infra.gmfdiag.paste.preferences"
-         name="Copy">
-   </page>   
+   </page> 
 </extension>
 <extension
       point="org.eclipse.core.runtime.preferences">
