@@ -33,25 +33,6 @@
                      class="uml.Element">
                </target>
             </constraint>
-            <constraint
-                  class="org.eclipse.papyrus.uml.xtext.integration.validation.ValidateOCLViaXtext"
-                  id="org.eclipse.papyrus.uml.xtext.integration.validation.ValidateOCLViaXtext"
-                  isEnabledByDefault="true"
-                  lang="Java"
-                  mode="Batch"
-                  name="Validate OCL constraints via xtext"
-                  severity="ERROR"
-                  statusCode="0">
-               <message>
-                  A {0} OCL validation problems found
-               </message>
-               <description>
-                  If xtext finds validation errors within a UML constraint
-               </description>
-               <target
-                     class="uml.Element">
-               </target>
-            </constraint>
          </constraints>
       </constraintProvider>
    </extension>
