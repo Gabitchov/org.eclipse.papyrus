@@ -39,7 +39,7 @@ public class ModelCellEditorFactoryImpl extends EFactoryImpl implements ModelCel
 	public static ModelCellEditorFactory init() {
 		try {
 			ModelCellEditorFactory theModelCellEditorFactory = (ModelCellEditorFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor"); //$NON-NLS-1$
+					.getEFactory("http://www.eclipse.org/papyrus/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor"); //$NON-NLS-1$
 			if (theModelCellEditorFactory != null) {
 				return theModelCellEditorFactory;
 			}

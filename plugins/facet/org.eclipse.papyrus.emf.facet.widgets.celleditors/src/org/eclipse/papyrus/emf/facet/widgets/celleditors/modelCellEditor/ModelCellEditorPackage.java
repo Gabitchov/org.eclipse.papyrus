@@ -44,7 +44,7 @@ public interface ModelCellEditorPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/papyrus/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->

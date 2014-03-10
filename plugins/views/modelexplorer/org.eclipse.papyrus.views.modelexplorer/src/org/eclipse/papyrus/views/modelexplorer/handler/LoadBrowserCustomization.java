@@ -97,49 +97,39 @@ public class LoadBrowserCustomization extends AbstractHandler {
 			final List<Customization> registeredCustomizations = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(customizationManager.getResourceSet()).getRegisteredCustomizations();
 
 			PapyrusLoadBrowserCustomizationDialog loadCustomizationsDialog;
-			
 
-		Shell shell = HandlerUtil.getActiveShell(event);
-		IDialogCallbackWithPreCommit<List<Customization>, Boolean, Dialog> dialogCallBack= new IDialogCallbackWithPreCommit<List<Customization>, Boolean, Dialog>() {
 
-			public void committed(List<Customization> result, Boolean precommitResult) {
-				// TODO Auto-generated method stub
-				
-			}
+			Shell shell = HandlerUtil.getActiveShell(event);
+			IDialogCallbackWithPreCommit<List<Customization>, Boolean, Dialog> dialogCallBack= new IDialogCallbackWithPreCommit<List<Customization>, Boolean, Dialog>() {
 
-			public Dialog openPrecommitDialog(List<Customization> result, IDialogCallback<Boolean> precommitCallback) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-		};
-		ILoadCustomizationsDialog dialog=ILoadCustomizationsDialogFactory.DEFAULT.createLoadCustomizationDialog(shell, registeredCustomizations, customizationManager.getManagedCustomizations(), dialogCallBack);
-//
-//			try {
-//				ServicesRegistry registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
-//				loadCustomizationsDialog = new PapyrusLoadBrowserCustomizationDialog(shell, registeredCustomizations, getMetamodels(registry));
-//			} catch (ServiceException ex) {
-//				Activator.log.error(ex);
-//				loadCustomizationsDialog = new PapyrusLoadBrowserCustomizationDialog(shell, registeredCustomizations, Collections.<EPackage> emptyList());
-//			}
-//
+				public void committed(List<Customization> result, Boolean precommitResult) {
+					// TODO Auto-generated method stub
+
+				}
+
+				public Dialog openPrecommitDialog(List<Customization> result, IDialogCallback<Boolean> precommitCallback) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+			};
+			ILoadCustomizationsDialog dialog=ILoadCustomizationsDialogFactory.DEFAULT.createLoadCustomizationDialog(shell, registeredCustomizations, customizationManager.getManagedCustomizations(), dialogCallBack);
+
 			if(Window.OK == dialog.open()) {
 				customizationManager.getManagedCustomizations().clear();
 				customizationManager.getManagedCustomizations().addAll(	dialog.getSelectedCustomizations());
 
-//
-//					//Save the current state of the customizations
-//					org.eclipse.papyrus.infra.emf.Activator.getDefault().saveCustomizationManagerState();
-//				} catch (final Exception e) {
-//					Activator.log.error(e);
-//				}
-//			}
-//			// load customizations defined as default through the customization
-//			// extension
+
+				//Save the current state of the customizations
+				org.eclipse.papyrus.infra.emf.Activator.getDefault().saveCustomizationManagerState();
+			}
+
+			//			// load customizations defined as default through the customization
+			//			// extension
 			if(getCommonNavigator() != null) {
 				getCommonNavigator().getCommonViewer().refresh();
 			}
 		}
-		}
+
 		return null;
 	}
 
@@ -151,75 +141,75 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		return ModelUtils.getModelSet();
 	}
 
-//	/**
-//	 * load the facets
-//	 * 
-//	 * @param customizations
-//	 *        list of customization
-//	 * @param customizationManager
-//	 *        the Customization Manager
-//	 */
-//	protected void loadFacetsForCustomizations(final List<MetamodelView> customizations, final CustomizationManager customizationManager) {
-//		final Set<Facet> referencedFacets = new HashSet<Facet>();
-//		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton().getAllFacetSets();
-//
-//		for(MetamodelView customization : customizations) {
-//			String metamodelURI = customization.getMetamodelURI();
-//			// find customized FacetSet
-//			FacetSet customizedFacetSet = null;
-//			if(metamodelURI != null) {
-//				for(FacetSet facetSet : facetSets) {
-//					if(metamodelURI.equals(facetSet.getNsURI())) {
-//						customizedFacetSet = facetSet;
-//						break;
-//					}
-//				}
-//			}
-//			if(customizedFacetSet == null) {
-//				continue;
-//			}
-//
-//			// find customized Facets
-//			EList<TypeView> types = customization.getTypes();
-//			for(TypeView typeView : types) {
-//				String metaclassName = typeView.getMetaclassName();
-//				Facet facet = findFacetWithFullyQualifiedName(metaclassName, customizedFacetSet);
-//				if(facet != null) {
-//					referencedFacets.add(facet);
-//				} else {
-//					Activator.log.warn(NLS.bind(Messages.BrowserActionBarContributor_missingRequiredFacet, new Object[]{ metaclassName, customizedFacetSet.getName(), customization.getName() }));
-//				}
-//			}
-//
-//			for(Facet referencedFacet : referencedFacets) {
-//				customizationManager.loadFacet(referencedFacet);
-//			}
-//		}
+	//	/**
+	//	 * load the facets
+	//	 * 
+	//	 * @param customizations
+	//	 *        list of customization
+	//	 * @param customizationManager
+	//	 *        the Customization Manager
+	//	 */
+	//	protected void loadFacetsForCustomizations(final List<MetamodelView> customizations, final CustomizationManager customizationManager) {
+	//		final Set<Facet> referencedFacets = new HashSet<Facet>();
+	//		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton().getAllFacetSets();
+	//
+	//		for(MetamodelView customization : customizations) {
+	//			String metamodelURI = customization.getMetamodelURI();
+	//			// find customized FacetSet
+	//			FacetSet customizedFacetSet = null;
+	//			if(metamodelURI != null) {
+	//				for(FacetSet facetSet : facetSets) {
+	//					if(metamodelURI.equals(facetSet.getNsURI())) {
+	//						customizedFacetSet = facetSet;
+	//						break;
+	//					}
+	//				}
+	//			}
+	//			if(customizedFacetSet == null) {
+	//				continue;
+	//			}
+	//
+	//			// find customized Facets
+	//			EList<TypeView> types = customization.getTypes();
+	//			for(TypeView typeView : types) {
+	//				String metaclassName = typeView.getMetaclassName();
+	//				Facet facet = findFacetWithFullyQualifiedName(metaclassName, customizedFacetSet);
+	//				if(facet != null) {
+	//					referencedFacets.add(facet);
+	//				} else {
+	//					Activator.log.warn(NLS.bind(Messages.BrowserActionBarContributor_missingRequiredFacet, new Object[]{ metaclassName, customizedFacetSet.getName(), customization.getName() }));
+	//				}
+	//			}
+	//
+	//			for(Facet referencedFacet : referencedFacets) {
+	//				customizationManager.loadFacet(referencedFacet);
+	//			}
+	//		}
 
-		//
-		// for modified facets
-		// customizationManager.getInstancesForMetaclasses().buildDerivationTree();
-		// customizationManager.getAppearanceConfiguration().touch();
-		// customizationManager.refreshDelayed(true);
+	//
+	// for modified facets
+	// customizationManager.getInstancesForMetaclasses().buildDerivationTree();
+	// customizationManager.getAppearanceConfiguration().touch();
+	// customizationManager.refreshDelayed(true);
 	//}
 
-//	/**
-//	 * fin a facet from
-//	 * 
-//	 * @param metaclassName
-//	 * @param customizedFacetSet
-//	 * @return
-//	 */
-//	private Facet findFacetWithFullyQualifiedName(final String metaclassName, final FacetSet customizedFacetSet) {
-//		EList<Facet> facets = customizedFacetSet.getFacets();
-//		for(Facet facet : facets) {
-//			String facetName = getMetaclassQualifiedName(facet);
-//			if(metaclassName.equals(facetName)) {
-//				return facet;
-//			}
-//		}
-//		return null;
-//	}
+	//	/**
+	//	 * fin a facet from
+	//	 * 
+	//	 * @param metaclassName
+	//	 * @param customizedFacetSet
+	//	 * @return
+	//	 */
+	//	private Facet findFacetWithFullyQualifiedName(final String metaclassName, final FacetSet customizedFacetSet) {
+	//		EList<Facet> facets = customizedFacetSet.getFacets();
+	//		for(Facet facet : facets) {
+	//			String facetName = getMetaclassQualifiedName(facet);
+	//			if(metaclassName.equals(facetName)) {
+	//				return facet;
+	//			}
+	//		}
+	//		return null;
+	//	}
 
 	/** @return the qualified name of the given metaclass */
 	public static String getMetaclassQualifiedName(final EClassifier eClass) {

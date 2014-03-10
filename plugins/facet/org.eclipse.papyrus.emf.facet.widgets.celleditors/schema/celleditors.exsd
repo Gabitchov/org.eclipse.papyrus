@@ -53,7 +53,7 @@
             <annotation>
                <documentation>
                   The path of a model describing model cell editors.
-This model must be an instance of metamodel &quot;http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor&quot;.
+This model must be an instance of metamodel &quot;http://www.eclipse.org/papyrus/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor&quot;.
                </documentation>
                <appInfo>
                   <meta.attribute kind="resource"/>

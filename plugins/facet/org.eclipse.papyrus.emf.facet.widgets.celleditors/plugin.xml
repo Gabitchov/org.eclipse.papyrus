@@ -22,7 +22,7 @@ Contributors:
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor"
+            uri="http://www.eclipse.org/papyrus/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor"
             class="org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage"
             genModel="model/celleditors.genmodel"/>
    </extension>

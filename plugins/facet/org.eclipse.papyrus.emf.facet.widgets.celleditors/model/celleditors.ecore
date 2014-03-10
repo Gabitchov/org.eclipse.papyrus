@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="modelCellEditor"
-    nsURI="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor"
+    nsURI="http://www.eclipse.org/papyrus/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor"
     nsPrefix="modelCellEditor">
   <eClassifiers xsi:type="ecore:EClass" name="ModelCellEditorDeclarations">
     <eStructuralFeatures xsi:type="ecore:EReference" name="modelCellEditors" upperBound="-1"
