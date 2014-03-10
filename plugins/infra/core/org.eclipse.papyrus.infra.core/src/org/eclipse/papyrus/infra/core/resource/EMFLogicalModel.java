@@ -18,6 +18,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.core.Activator;
 
 /**
  * An IModel which is an abstraction for a set of consistent EMF Resources
@@ -53,7 +54,13 @@ public abstract class EMFLogicalModel extends AbstractBaseModel implements IEMFM
 	public void saveModel() throws IOException {
 		for(Resource resource : getResources()) {
 			if(!getModelManager().getTransactionalEditingDomain().isReadOnly(resource) && !ModelUtils.resourceFailedOnLoad(resource)) {
-				resource.save(null);
+				try {
+					resource.save(null);
+				} catch (IOException ex) {
+					//If an exception occurs, we should not prevent other resources from being saved.
+					//This would probably make things even worse. Catch and log.
+					Activator.log.error(ex);
+				}
 			}
 		}
 	}

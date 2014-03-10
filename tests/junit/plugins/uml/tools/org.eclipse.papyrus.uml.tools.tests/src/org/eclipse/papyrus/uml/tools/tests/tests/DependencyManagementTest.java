@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.emf.resource.DependencyManagementHelper;
 import org.eclipse.papyrus.junit.utils.ModelUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.junit.utils.TestMode;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.eclipse.papyrus.uml.tools.tests.Activator;
 import org.eclipse.uml2.uml.Model;
@@ -31,6 +32,7 @@ import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
@@ -106,12 +108,12 @@ public class DependencyManagementTest extends AbstractEditorTest {
 	}
 
 	//Switch from two different versions of a profile
-	//Problem: !!Stereotypes are not references!! They are instances. After the switch, the new 
+	//Problem: !!Stereotypes are not references!! They are instances. After the switch, the new
 	//profile is correctly applied, but the applied Stereotypes are the ones from the initial Profile
-	//
-	//Current state: FAILS
 	@Test
 	public void testSwitchProfilesWithStereotypes() throws Exception {
+		Assume.assumeTrue("Bug 408491 is not yet implemented", TestMode.isStrict());
+
 		IProject project = ProjectUtils.createProject("dependencyManagement.switchProfiles");
 		PapyrusProjectUtils.copyPapyrusModel(project, getBundle(), getSourcePath(), "profiles/model");
 		PapyrusProjectUtils.copyPapyrusModel(project, getBundle(), getSourcePath(), "profiles/p1/profile1.profile");
@@ -143,7 +145,7 @@ public class DependencyManagementTest extends AbstractEditorTest {
 
 		});
 
-		//After the transformation, stereotypes from the target profile must be applied 
+		//After the transformation, stereotypes from the target profile must be applied
 		checkAppliedProfileAndStereotypes(modelSet, rootModel, targetProfileURI);
 
 		//Save, reload, and check again
