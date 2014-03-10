@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
 import org.eclipse.papyrus.sysml.modelexplorer.Activator;
@@ -455,15 +455,15 @@ public abstract class AbstractModelExplorerTest {
 	 * @throws Exception
 	 *         exception thrown in case of issue
 	 */
-	protected ModelElementItem findSemanticModelElementItem(EObject objectToFind) throws Exception {
+	protected EObjectTreeElement findSemanticModelElementItem(EObject objectToFind) throws Exception {
 		selectAndReveal(objectToFind);
 		IStructuredSelection selection = (IStructuredSelection)modelExplorerPart.getSite().getSelectionProvider().getSelection();
 		Assert.assertEquals("one and only one object should be selected", 1, selection.size());
 		Object selectedElement = selection.getFirstElement();
-		Assert.assertTrue("selection should be a model item element", selectedElement instanceof ModelElementItem);
-		Assert.assertTrue("selection should be linked to a EObject", ((ModelElementItem)selectedElement).getEObject() instanceof EObject);
-		Assert.assertTrue("selection should be linked to the Object: " + objectToFind, ((ModelElementItem)selectedElement).getEObject().equals(objectToFind));
-		return (ModelElementItem)selectedElement;
+		Assert.assertTrue("selection should be a model item element", selectedElement instanceof EObjectTreeElement);
+		Assert.assertTrue("selection should be linked to a EObject", ((EObjectTreeElement)selectedElement).getEObject() instanceof EObject);
+		Assert.assertTrue("selection should be linked to the Object: " + objectToFind, ((EObjectTreeElement)selectedElement).getEObject().equals(objectToFind));
+		return (EObjectTreeElement)selectedElement;
 	}
 
 	/**
@@ -475,15 +475,15 @@ public abstract class AbstractModelExplorerTest {
 	 * @throws Exception
 	 *         exception thrown in case of issue
 	 */
-	protected ModelElementItem findSemanticModelElementItem(Diagram diagramToFind) throws Exception {
+	protected EObjectTreeElement findSemanticModelElementItem(Diagram diagramToFind) throws Exception {
 		selectAndRevealDiagram(diagramToFind);
 		IStructuredSelection selection = (IStructuredSelection)modelExplorerPart.getSite().getSelectionProvider().getSelection();
 		Assert.assertEquals("one and only one diagram should be selected", 1, selection.size());
 		Object selectedElement = selection.getFirstElement();
-		Assert.assertTrue("selection should be a model item element", selectedElement instanceof ModelElementItem);
-		Assert.assertTrue("selection should be linked to a Diagram", ((ModelElementItem)selectedElement).getEObject() instanceof Diagram);
-		Assert.assertTrue("selection should be linked to the Object: " + diagramToFind, ((ModelElementItem)selectedElement).getEObject().equals(diagramToFind));
-		return (ModelElementItem)selectedElement;
+		Assert.assertTrue("selection should be a model item element", selectedElement instanceof EObjectTreeElement);
+		Assert.assertTrue("selection should be linked to a Diagram", ((EObjectTreeElement)selectedElement).getEObject() instanceof Diagram);
+		Assert.assertTrue("selection should be linked to the Object: " + diagramToFind, ((EObjectTreeElement)selectedElement).getEObject().equals(diagramToFind));
+		return (EObjectTreeElement)selectedElement;
 	}
 
 	protected String printElement(EObject object) {
