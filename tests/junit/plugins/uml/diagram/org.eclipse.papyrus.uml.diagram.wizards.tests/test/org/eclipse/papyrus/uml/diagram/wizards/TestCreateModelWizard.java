@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013, 2014 LIFL, CEA LIST, and others.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  CEA LIST - Update tests and re-integrate into automation suite
+ *  
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards;
 
 import org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand;
@@ -32,7 +45,7 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 
 	@Test
 	public void testDiagramFileExtentionLabel() {
-		final String expectedExtension = "test.xxx";
+		final String expectedExtension = "di"; // the extension is always *.di
 		IWorkbenchWizard wizard = new InitModelWizard() {
 
 			@Override
@@ -48,8 +61,8 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 		};
 
 		initWizardDialog(wizard);
-		NewModelFilePage page = (NewModelFilePage)wizard.getPages()[0];
-		//assertEquals(expectedExtension, page.getFileExtension());
+		NewModelFilePage page = getPage(wizard, NewModelFilePage.class);
+		assertEquals(expectedExtension, page.getFileExtension());
 	}
 
 	@Test
@@ -69,9 +82,12 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 
 		};
 
+		// ensure that the dialog would create a profile
+		settings.saveDefaultDiagramCategory(new String[] {"profile"});
+		
 		initWizardDialog(wizard);
-		//		String actual = wizard.getDiagramFileExtension();
-		//		assertEquals(expectedExtension, actual);
+		NewModelFilePage page = getPage(wizard, NewModelFilePage.class);
+		assertEquals(expectedExtension, page.getFileExtension());
 	}
 
 	@Test
@@ -92,8 +108,8 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 		};
 
 		initWizardDialog(wizard);
-		//		String actual = wizard.getDiagramFileExtension();
-		//		assertEquals(expectedExtension, actual);
+		NewModelFilePage page = getPage(wizard, NewModelFilePage.class);
+		assertEquals(expectedExtension, page.getFileExtension());
 	}
 
 }
