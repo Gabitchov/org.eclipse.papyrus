@@ -73,12 +73,9 @@
                <with
                      variable="selection">
                   <iterate>
-                     <adapt
-                           type="org.eclipse.emf.ecore.EObject">
-                        <instanceof
-                              value="org.eclipse.uml2.uml.Package">
-                        </instanceof>
-                     </adapt>
+                     <instanceof
+                           value="org.eclipse.emf.ecore.EObject">
+                     </instanceof>
                   </iterate>
                </with>
                <count
@@ -95,12 +92,9 @@
                <with
                      variable="selection">
                   <iterate>
-                     <adapt
-                           type="org.eclipse.emf.ecore.EObject">
-                        <instanceof
-                              value="org.eclipse.uml2.uml.Package">
-                        </instanceof>
-                     </adapt>
+                     <instanceof
+                           value="org.eclipse.emf.ecore.EObject">
+                     </instanceof>
                   </iterate>
                </with>
                <count
@@ -117,12 +111,9 @@
             <with
                   variable="selection">
                <iterate>
-                  <adapt
-                        type="org.eclipse.emf.ecore.EObject">
-                     <instanceof
-                           value="org.eclipse.uml2.uml.Package">
-                     </instanceof>
-                  </adapt>
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
                </iterate>
             </with>
             <count
