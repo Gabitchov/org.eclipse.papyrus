@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.uml.commands.Activator;
@@ -104,14 +105,7 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 		// Treat non-null selected object (try to adapt and return EObject)
 		if(selection != null) {
 
-			if(selection instanceof IAdaptable) {
-				selection = ((IAdaptable)selection).getAdapter(EObject.class);
-			}
-
-			Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selection);
-			if(businessObject instanceof EObject) {
-				eObject = (EObject)businessObject;
-			}
+			eObject=EMFHelper.getEObject(selection);
 		}
 		return eObject;
 	}
@@ -148,24 +142,20 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
 			for(Object current : structuredSelection.toArray()) {
 				// Adapt current selection to EObject
-				if(current instanceof IAdaptable) {
-					EObject eobject = (EObject)((IAdaptable)current).getAdapter(EObject.class);
-					if(eobject != null) {
-						selectedEObjects.add(eobject);
-					}
+				EObject eobject=EMFHelper.getEObject(selection);
+				if(eobject != null) {
+					selectedEObjects.add(eobject);
 				}
 
 			}
 		} else { // Not a IStructuredSelection
 			if(selection != null) {
 				// Adapt current selection to EObject
-				if(selection instanceof IAdaptable) {
-					EObject eobject = (EObject)((IAdaptable)selection).getAdapter(EObject.class);
+				EObject eobject=EMFHelper.getEObject(selection);
 					if(eobject != null) {
 						selectedEObjects.add(eobject);
 					}
 				}
-			}
 		}
 
 		return selectedEObjects;

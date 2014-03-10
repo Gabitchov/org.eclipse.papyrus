@@ -85,21 +85,14 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 	@SuppressWarnings("unchecked")
 	private <T> T adapt(Object object, Class<T> expectedClassType) {
 
-		if(object instanceof IAdaptable) {
-			T ele = (T)((IAdaptable)object).getAdapter(expectedClassType);
-			if(ele != null) {
-				return ele;
-			}
-			// Try as EObject if the expectedClasType is sub-type of EObject.
-			if(EObject.class.isAssignableFrom(expectedClassType)) {
-				// to EObject
-				EObject eobject = EMFHelper.getEObject(object);
 
-				if(eobject != null && expectedClassType.isInstance(eobject)) {
-					return (T)eobject;
-				}
-			}
+		EObject eobject = EMFHelper.getEObject(object);
+
+		if(eobject != null && expectedClassType.isInstance(eobject)) {
+			return (T)eobject;
 		}
+
+
 
 		// Try global mechanism
 		{
@@ -110,7 +103,7 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 			// Try as EObject if the expectedClasType is sub-type of EObject.
 			if(EObject.class.isAssignableFrom(expectedClassType)) {
 				// to EObject
-				EObject eobject = (EObject)Platform.getAdapterManager().getAdapter(object, EObject.class);
+				eobject = (EObject)Platform.getAdapterManager().getAdapter(object, EObject.class);
 
 				if(eobject != null && expectedClassType.isInstance(eobject)) {
 
