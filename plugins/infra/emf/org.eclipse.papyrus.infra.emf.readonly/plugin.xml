@@ -133,6 +133,9 @@
       <adapter
             type="org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler">
       </adapter>
+      <adapter
+            type="org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2">
+      </adapter>
    </factory>
 </extension>
 <!-- commented for Papyrus M4 build -->

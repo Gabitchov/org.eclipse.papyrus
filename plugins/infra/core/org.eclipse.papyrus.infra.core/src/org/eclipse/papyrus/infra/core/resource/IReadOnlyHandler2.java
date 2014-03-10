@@ -152,4 +152,8 @@ public interface IReadOnlyHandler2 extends IReadOnlyHandler {
 	 *         kind of resources and it cannot be made writable; an {@linkplain Optional#absent() absent} value, otherwise
 	 */
 	Optional<Boolean> canMakeWritable(Set<ReadOnlyAxis> axes, EObject object);
+	
+	void addReadOnlyListener(IReadOnlyListener listener);
+	
+	void removeReadOnlyListener(IReadOnlyListener listener);
 }

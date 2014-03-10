@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.papyrus.infra.core.resource.AbstractReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
@@ -157,6 +158,7 @@ public class ReferencedModelReadOnlyHandler extends AbstractReadOnlyHandler {
 				if(enableWrite[0]) {
 					for(URI next : toMakeWritable) {
 						readableReferencedModels.add(next.trimFileExtension());
+						fireReadOnlyStateChanged(ReadOnlyAxis.DISCRETION, next, true);
 					}
 				}
 	

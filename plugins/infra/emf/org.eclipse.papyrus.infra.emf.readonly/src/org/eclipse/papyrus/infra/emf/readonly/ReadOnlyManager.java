@@ -26,15 +26,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.infra.core.resource.AbstractReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyListener;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyEvent;
 
 import com.google.common.base.Optional;
 
@@ -48,6 +53,10 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 	//This won't work for non-papyrus editing domains, which are still leaked (But we do not use non-papyrus editing domains which this ReadOnlyManager)
 	protected static Map<EditingDomain, IReadOnlyHandler2> roHandlers = new HashMap<EditingDomain, IReadOnlyHandler2>();
 
+	private final CopyOnWriteArrayList<IReadOnlyListener> listeners = new CopyOnWriteArrayList<IReadOnlyListener>();
+	
+	private IReadOnlyListener forwardingListener;
+	
 	public static IReadOnlyHandler2 getReadOnlyHandler(EditingDomain editingDomain) {
 		IReadOnlyHandler2 roHandler = roHandlers.get(editingDomain);
 		if(roHandler == null) {
@@ -144,9 +153,9 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 				}
 			} else if(IReadOnlyHandler.class.isAssignableFrom(constructor.getDeclaringClass())) {
 				if(isEditingDomainConstructor) {
-					return new NewStyleHandlerAdapter((IReadOnlyHandler)constructor.newInstance(editingDomain), editingDomain);
+					return AbstractReadOnlyHandler.adapt((IReadOnlyHandler)constructor.newInstance(editingDomain), editingDomain);
 				} else {
-					return new NewStyleHandlerAdapter((IReadOnlyHandler)constructor.newInstance(), editingDomain);
+					return AbstractReadOnlyHandler.adapt((IReadOnlyHandler)constructor.newInstance(), editingDomain);
 				}
 			} else if(org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler.class.isAssignableFrom(constructor.getDeclaringClass())) {
 				return new OldStyleHandlerAdapter((org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler)constructor.newInstance(), editingDomain);
@@ -165,6 +174,7 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 			IReadOnlyHandler2 h = create(roClass, editingDomain);
 			if(h != null) {
 				handlers.add(h);
+				h.addReadOnlyListener(getForwardingListener());
 			}
 		}
 		orderedHandlersArray = handlers.toArray(new IReadOnlyHandler2[handlers.size()]);
@@ -262,6 +272,50 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 		return Optional.of(result);
 	}
 	
+	public void addReadOnlyListener(IReadOnlyListener listener) {
+		listeners.addIfAbsent(listener);
+	}
+	
+	public void removeReadOnlyListener(IReadOnlyListener listener) {
+		listeners.remove(listener);
+	}
+	
+	private IReadOnlyListener getForwardingListener() {
+		if(forwardingListener == null) {
+			forwardingListener = new IReadOnlyListener() {
+
+				public void readOnlyStateChanged(ReadOnlyEvent event) {
+					ReadOnlyEvent myEvent;
+
+					switch(event.getEventType()) {
+					case ReadOnlyEvent.OBJECT_READ_ONLY_STATE_CHANGED:
+						myEvent = new ReadOnlyEvent(ReadOnlyManager.this, event.getAxis(), event.getObject(), event.isReadOnly());
+						break;
+					default:
+						myEvent = new ReadOnlyEvent(ReadOnlyManager.this, event.getAxis(), event.getResourceURI(), event.isReadOnly());
+						break;
+					}
+
+					notifyReadOnlyStateChanged(myEvent);
+				}
+			};
+		}
+
+		return forwardingListener;
+	}
+	
+	protected void notifyReadOnlyStateChanged(ReadOnlyEvent event) {
+		if(!listeners.isEmpty()) {
+			for(IReadOnlyListener next : listeners) {
+				try {
+					next.readOnlyStateChanged(event);
+				} catch (Exception e) {
+					Activator.log.error("Uncaught exception in read-only state change listener.", e); //$NON-NLS-1$
+				}
+			}
+		}
+	}
+	
 	//
 	// Deprecated API
 	//
@@ -319,37 +373,6 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 			// read-only-ness
 			boolean delegateResult = axes.contains(ReadOnlyAxis.PERMISSION) && delegate.enableWrite(uris, getEditingDomain());
 			return delegateResult ? Optional.<Boolean> absent() : Optional.of(Boolean.FALSE);
-		}
-	}
-
-	private static final class NewStyleHandlerAdapter extends AbstractReadOnlyHandler {
-
-		private final IReadOnlyHandler delegate;
-
-		NewStyleHandlerAdapter(IReadOnlyHandler handler, EditingDomain editingDomain) {
-			super(editingDomain);
-
-			this.delegate = handler;
-		}
-
-		public Optional<Boolean> anyReadOnly(Set<ReadOnlyAxis> axes, URI[] uris) {
-			// these handlers implicitly only deal with permission-based read-only-ness
-			return !axes.contains(ReadOnlyAxis.PERMISSION) ? Optional.<Boolean> absent() : delegate.anyReadOnly(uris);
-		}
-		
-		@Override
-		public Optional<Boolean> isReadOnly(Set<ReadOnlyAxis> axes, EObject eObject) {
-			return !axes.contains(ReadOnlyAxis.PERMISSION) ? Optional.<Boolean> absent() : delegate.isReadOnly(eObject);
-		}
-
-		public Optional<Boolean> makeWritable(Set<ReadOnlyAxis> axes, URI[] uris) {
-			// these handlers implicitly only deal with permission-based read-only-ness
-			return !axes.contains(ReadOnlyAxis.PERMISSION) ? Optional.<Boolean> absent() : delegate.makeWritable(uris);
-		}
-		
-		@Override
-		public Optional<Boolean> makeWritable(Set<ReadOnlyAxis> axes, EObject eObject) {
-			return !axes.contains(ReadOnlyAxis.PERMISSION) ? Optional.<Boolean> absent() : delegate.makeWritable(eObject);
 		}
 	}
 }

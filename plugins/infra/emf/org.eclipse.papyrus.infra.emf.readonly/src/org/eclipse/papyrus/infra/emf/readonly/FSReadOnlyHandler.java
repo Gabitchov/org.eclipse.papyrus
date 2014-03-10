@@ -15,8 +15,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -28,6 +28,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.papyrus.infra.core.resource.AbstractReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.swt.widgets.Display;
 
@@ -71,11 +72,11 @@ public class FSReadOnlyHandler extends AbstractReadOnlyHandler {
 		
 		// We can't make a file writable if it already is (there are read-only handlers that treat files that
 		// are filesystem-writable as read-only for other reasons)
-		Collection<IFile> readOnlyFiles = new ArrayList<IFile>(uris.length);
+		final Map<IFile, URI> readOnlyFiles = new LinkedHashMap<IFile, URI>();
 		for(int i = 0; i < uris.length; i++) {
 			IFile file = getFile(uris[i]);
 			if((file != null) && file.isReadOnly()) {
-				readOnlyFiles.add(file);
+				readOnlyFiles.put(file, uris[i]);
 			}
 		}
 		
@@ -84,11 +85,8 @@ public class FSReadOnlyHandler extends AbstractReadOnlyHandler {
 	
 				public void run() {
 					String message = "Do you want to remove read only flag on those files ?\n\n";
-					for(URI uri : uris) {
-						IFile file = getFile(uri);
-						if(file != null && file.isReadOnly()) {
-							message += file.getName() + "\n";
-						}
+					for(IFile file : readOnlyFiles.keySet()) {
+						message += file.getName() + "\n";
 					}
 					doEnableWrite.set(MessageDialog.openConfirm(Display.getCurrent().getActiveShell(), "Enable Write", message));
 				}
@@ -97,11 +95,14 @@ public class FSReadOnlyHandler extends AbstractReadOnlyHandler {
 		
 		if(doEnableWrite.get()) {
 			Boolean ok = true;
-			for(IFile file : readOnlyFiles) {
+			for(Map.Entry<IFile, URI> next : readOnlyFiles.entrySet()) {
 				try {
+					IFile file = next.getKey();
 					ResourceAttributes att = file.getResourceAttributes();
 					att.setReadOnly(false);
 					file.setResourceAttributes(att);
+					
+					fireReadOnlyStateChanged(ReadOnlyAxis.PERMISSION, next.getValue(), true);
 				} catch (CoreException e) {
 					ok = false;
 				}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2013 CEA LIST and others.
+ * Copyright (c) 2008, 2014 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -14,6 +14,7 @@
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
  *  Christian W. Damus (CEA) - Refactoring of Create Model Wizard (CDO)
  *  Christian W. Damus (CEA LIST) - Controlled resources in CDO repositories
+ *  Christian W. Damus (CEA) - bug 429826
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -108,7 +109,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	protected Adapter modificationTrackingAdapter;
 
-	protected IReadOnlyHandler roHandler;
+	protected IReadOnlyHandler2 roHandler;
 
 	/**
 	 * URI pointing to resource on which back end should be deleted on save
@@ -678,12 +679,13 @@ public class ModelSet extends ResourceSetImpl {
 		Collection<IModel> modelList = models.values();
 		monitor.beginTask("Saving resources", modelList.size());
 
-		if(isTrackingModification() && getReadOnlyHandler() != null) {
+		IReadOnlyHandler2 roHandler = getReadOnlyHandler();
+		if(isTrackingModification() && (roHandler != null)) {
 			Set<URI> roUris = new HashSet<URI>();
 			for(IModel model : modelList) {
 				Set<URI> uris = model.getModifiedURIs();
 				for(URI u : uris) {
-					Optional<Boolean> res = getReadOnlyHandler().anyReadOnly(new URI[]{ u });
+					Optional<Boolean> res = (roHandler.anyReadOnly(ReadOnlyAxis.permissionAxes(), new URI[]{ u }));
 					if(res.isPresent() && res.get()) {
 						roUris.add(u);
 					}
@@ -691,14 +693,14 @@ public class ModelSet extends ResourceSetImpl {
 			}
 
 			for(URI u : getResourcesToDeleteOnSave()) {
-				Optional<Boolean> res = getReadOnlyHandler().anyReadOnly(new URI[]{ u });
+				Optional<Boolean> res = roHandler.anyReadOnly(ReadOnlyAxis.permissionAxes(), new URI[]{ u });
 				if(res.isPresent() && res.get()) {
 					roUris.add(u);
 				}
 			}
 
 			if(!roUris.isEmpty()) {
-				Optional<Boolean> authorizeSave = getReadOnlyHandler().makeWritable(roUris.toArray(new URI[roUris.size()]));
+				Optional<Boolean> authorizeSave = roHandler.makeWritable(ReadOnlyAxis.permissionAxes(), roUris.toArray(new URI[roUris.size()]));
 
 				if(authorizeSave.isPresent() && !authorizeSave.get()) {
 					monitor.done();
@@ -938,12 +940,14 @@ public class ModelSet extends ResourceSetImpl {
 		}
 	}
 
-	public IReadOnlyHandler getReadOnlyHandler() {
+	public IReadOnlyHandler2 getReadOnlyHandler() {
 		if(roHandler == null) {
 			EditingDomain editingDomain = getTransactionalEditingDomain();
 			Object handler = PlatformHelper.getAdapter(editingDomain, IReadOnlyHandler.class);
-			if(handler instanceof IReadOnlyHandler) {
-				roHandler = (IReadOnlyHandler)handler;
+			if(handler instanceof IReadOnlyHandler2) {
+				roHandler = (IReadOnlyHandler2)handler;
+			} else if(handler instanceof IReadOnlyHandler) {
+				roHandler = AbstractReadOnlyHandler.adapt((IReadOnlyHandler)handler, editingDomain);
 			}
 		}
 		return roHandler;

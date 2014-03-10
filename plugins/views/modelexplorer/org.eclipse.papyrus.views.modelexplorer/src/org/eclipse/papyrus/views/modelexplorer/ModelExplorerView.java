@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - post refreshes for transaction commit asynchronously (CDO)
+ *  Christian W. Damus (CEA) - bug 429826
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
@@ -54,7 +55,10 @@ import org.eclipse.jface.window.ToolTip;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener;
 import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyListener;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyEvent;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
@@ -62,6 +66,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageLifeCycleEventsList
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.providers.SemanticFromModelExplorer;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -726,6 +731,10 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				getCommonViewer().setInput(serviceRegistry);
 			}
 			editingDomain.addResourceSetListener(resourceSetListener);
+			IReadOnlyHandler2 readOnlyHandler = AdapterUtils.adapt(editingDomain, IReadOnlyHandler2.class, null);
+			if (readOnlyHandler != null) {
+				readOnlyHandler.addReadOnlyListener(createReadOnlyListener());
+			}
 		} catch (ServiceException e) {
 			// Can't get EditingDomain, skip
 		}
@@ -1068,4 +1077,30 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		//Nothing
 	}
 
+	private IReadOnlyListener createReadOnlyListener() {
+		return new IReadOnlyListener() {
+			
+			public void readOnlyStateChanged(ReadOnlyEvent event) {
+				switch (event.getEventType()) {
+				case ReadOnlyEvent.RESOURCE_READ_ONLY_STATE_CHANGED:
+					if (!isRefreshing.get()) {
+						refresh();
+					}
+					break;
+				case ReadOnlyEvent.OBJECT_READ_ONLY_STATE_CHANGED:
+					CommonViewer viewer = getCommonViewer();
+					if ((viewer != null) && (viewer.getControl() != null) && !viewer.getControl().isDisposed()) {
+						viewer.refresh(event.getObject());
+					}
+					break;
+				default:
+					Activator.log.warn("Unsupported read-only event type: " + event.getEventType());
+					break;
+				}
+				if (!isRefreshing.get()) {
+					refresh();
+				}
+			}
+		};
+	}
 }
