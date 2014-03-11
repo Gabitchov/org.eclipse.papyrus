@@ -24,10 +24,12 @@ public class StdStereo {
 
 	/**
 	 * In the UML 2.4 plugin, the Standard profile is split into an L2 and an L3 profile
+	 * (in earlier and later plugins, this is not the case)
 	 */
 	public final static String[] namespaces = {
 		"Standard", //$NON-NLS-1$
-		"StandardProfileL2" //$NON-NLS-1$
+		"StandardProfileL2", //$NON-NLS-1$
+		"StandardProfile" //$NON-NLS-1$
 	};
 
 	/**

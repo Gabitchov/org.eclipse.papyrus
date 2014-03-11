@@ -23,6 +23,7 @@ import org.eclipse.uml2.uml.Property;
 
 public class UMLPropertyEditorPropertyUtil extends PropertyUtil {
 
+	@SuppressWarnings("nls")
 	public static String getLabel(Property property) {
 		StringBuffer buffer = new StringBuffer();
 		// visibility

@@ -106,6 +106,7 @@ public class AdvancedEditingPropertySection extends
 	@Override
 	public void dispose() {
 		super.dispose();
+		ModelListener.currentEditor = null;
 		if (toolkit != null)
 			toolkit.dispose();
 	}

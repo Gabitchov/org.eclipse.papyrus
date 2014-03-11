@@ -41,7 +41,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	 * 
 	 */
 	public DirectEditorsContributionItem() {
-		setId("org.eclipse.papyrus.editors.menuitem");
+		setId("org.eclipse.papyrus.editors.menuitem"); //$NON-NLS-1$
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 			return;
 		}
 
-		// get the uml object type of this element, using the business resolver
+		// get the UML object type of this element, using the business resolver
 		final Object businessObject = EMFHelper.getEObject(selectedElement);
 
 		// no object found: exit
@@ -111,9 +111,10 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	protected void createSubMenu(Menu menu, int index, Object businessObject, Collection<DirectEditorExtensionPoint> configurations) {
 		// create direct item, and then create sub-items
 		subMenuItem = new MenuItem(menu, SWT.CASCADE);
-		String type = ((businessObject instanceof EObject) ? ((EObject)businessObject).eClass().getName() : "");
+		String type = ((businessObject instanceof EObject) ?
+				((EObject)businessObject).eClass().getName() : ""); //$NON-NLS-1$
 
-		subMenuItem.setText("Edit " + type);
+		subMenuItem.setText("Edit " + type); //$NON-NLS-1$
 
 		// submenu
 		Menu subMenu = new Menu(menu);
@@ -127,11 +128,10 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 		for(final DirectEditorExtensionPoint configuration : configurations) {
 			MenuItem item = new MenuItem(subMenu, SWT.NONE);
 			StringBuffer buffer = new StringBuffer();
-			buffer.append("Using ");
+			buffer.append("Using "); //$NON-NLS-1$
 			buffer.append(configuration.getLanguage());
-			buffer.append(" Editor");
 			if(configuration.equals(defaultConfig)) {
-				buffer.append(" (Default via F2)");
+				buffer.append(" (Default via F2)"); //$NON-NLS-1$
 			}
 			item.setText(buffer.toString());
 			item.addSelectionListener(new SelectionListener() {

@@ -140,6 +140,12 @@ public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements IT
 			//this.add(fAppliedStereotypeLabel);
 		}
 
+		@Override
+		public void resetStyle() {
+			super.resetStyle();
+			setTargetDecoration(createTargetDecoration());
+		}
+
 		/**
 		 * @generated NOT scale changed from default 7:3 to 5:2 to make a smaller arrow
 		 */

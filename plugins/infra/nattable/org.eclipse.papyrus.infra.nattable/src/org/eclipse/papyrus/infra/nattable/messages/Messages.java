@@ -59,6 +59,8 @@ public class Messages extends NLS {
 
 	public static String AbstractPasteImportInNattableManager_TheTableCantCreateElement;
 
+	public static String AbstractPasteImportInNattableManager_TheTableDoesntHaveColumns;
+
 	public static String AbstractPasteImportInNattableManager_TheTableHasAConfigurationToPaste;
 
 	public static String AbstractPasteImportInNattableManager_TheUserChosesToPasteColumns;

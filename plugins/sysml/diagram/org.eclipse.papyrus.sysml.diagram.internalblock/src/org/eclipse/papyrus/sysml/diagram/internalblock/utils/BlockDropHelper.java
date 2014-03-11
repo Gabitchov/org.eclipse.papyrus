@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.utils;
 
+import java.util.Collections;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -32,6 +34,8 @@ import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.DeferredSnapToGridCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewDescriptorUtil;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
@@ -114,6 +118,12 @@ public class BlockDropHelper extends ElementHelper {
 		cc.add(new ICommandProxy(createElementCommand));
 		cc.add(viewCreateCommand);
 
+		final Object value = request.getExtendedData().get(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT);
+		if(value instanceof Boolean && Boolean.TRUE.equals(value)) {
+			DeferredSnapToGridCommand snapCommand = new DeferredSnapToGridCommand(getEditingDomain(), Collections.singletonList(descriptor),  host);
+			cc.add(new ICommandProxy(snapCommand));
+		}
+
 		return cc;
 	}
 
@@ -159,9 +169,16 @@ public class BlockDropHelper extends ElementHelper {
 		createViewRequest.setLocation(request.getLocation().getCopy());
 		Command viewCreateCommand = host.getCommand(createViewRequest);
 
+	
 		// 3. Create the compound command
 		cc.add(new ICommandProxy(createElementCommand));
 		cc.add(viewCreateCommand);
+
+		final Object value = request.getExtendedData().get(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT);
+		if(value instanceof Boolean && Boolean.TRUE.equals(value)) {
+			DeferredSnapToGridCommand snapCommand = new DeferredSnapToGridCommand(getEditingDomain(), Collections.singletonList(descriptor),  host);
+			cc.add(new ICommandProxy(snapCommand));
+		}
 
 		return cc;
 	}

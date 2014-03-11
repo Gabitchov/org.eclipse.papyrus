@@ -50,6 +50,16 @@ public class TemplateBindingFigure extends UMLEdgeFigure {
 		this.add(bindingSubstitutionFigure);
 	}
 
+	@Override
+	public void resetStyle() {
+		super.resetStyle();
+		PolygonDecoration dec = new PolygonDecoration();
+		dec.setScale(15, 5);
+		dec.setBackgroundColor(ColorConstants.white);
+		dec.setLineWidth(1);
+		setTargetDecoration(dec); // arrow at target endpoint
+	}
+
 	/**
 	 * 
 	 * @return the label multiline
