@@ -80,7 +80,7 @@ public class ReadOnlyTester extends PropertyTester {
 				if(domain != null) {
 					IReadOnlyHandler2 handler = ReadOnlyManager.getReadOnlyHandler(domain);
 					
-					boolean isAlreadyOrCanMakeWritable = handler.isReadOnly(ReadOnlyAxis.anyAxis(), eObject).or(false) //
+					boolean isAlreadyOrCanMakeWritable = !handler.isReadOnly(ReadOnlyAxis.anyAxis(), eObject).or(false) //
 							|| handler.canMakeWritable(ReadOnlyAxis.anyAxis(), eObject).or(false);
 					
 					return Objects.equal(isAlreadyOrCanMakeWritable, expectedValue);
