@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.constraints.ConfigProperty;
@@ -116,7 +115,7 @@ public class GenericAttributeModelElement extends AbstractModelElement {
 				Iterator<EObject> iterator = result.iterator();
 				while(iterator.hasNext()) {
 					EObject eObject = iterator.next();
-					if(!(eObject instanceof Query)) {
+					if(!(eObject instanceof org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query)) {
 						iterator.remove();
 					}
 				}
