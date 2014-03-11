@@ -11,13 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.providers;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
-import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedLabelProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.DecoratingCustomizedLabelProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.ResolvingCustomizedLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -26,7 +25,7 @@ import org.eclipse.swt.graphics.Image;
  * 
  * @author Camille Letavernier
  */
-public class ContextLabelProvider extends CustomizedLabelProvider {
+public class ContextLabelProvider extends ResolvingCustomizedLabelProvider {
 
 	private ICustomizationManager customizationManager;
 
@@ -34,7 +33,7 @@ public class ContextLabelProvider extends CustomizedLabelProvider {
 	 * Constructor.
 	 */
 	public ContextLabelProvider() {
-		super(Activator.getDefault().getCustomizationManager());
+		super(new DecoratingCustomizedLabelProvider(Activator.getDefault().getCustomizationManager()));
 	}
 
 	@Override
