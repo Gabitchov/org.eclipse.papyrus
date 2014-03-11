@@ -17,7 +17,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
-import org.eclipse.papyrus.infra.emf.readonly.tests.PapyrusROEditingDomainFixture;
+import org.eclipse.papyrus.infra.emf.readonly.tests.PapyrusModelSetFixture;
 import org.eclipse.papyrus.junit.utils.rules.JavaResource;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
 import org.junit.After;
@@ -33,7 +33,7 @@ import org.junit.Test;
 public class ReadOnlyManagerTest {
 
 	@Rule
-	public final PapyrusROEditingDomainFixture domain = new PapyrusROEditingDomainFixture();
+	public final PapyrusModelSetFixture domain = new PapyrusModelSetFixture();
 
 	private final ProjectFixture project = domain.getProject();
 
@@ -69,6 +69,12 @@ public class ReadOnlyManagerTest {
 		assertThat(fixture.canMakeWritable(ReadOnlyAxis.anyAxis(), new URI[]{ uri }).or(false), is(true));
 	}
 
+	@Test
+	public void testSashModelReadOnlyIfPermissionReadOnly() {
+		URI sashModelURI = URI.createPlatformPluginURI("org.eclipse.papyrus.foo/models/bogus.di", true);
+		assertThat(fixture.anyReadOnly(ReadOnlyAxis.anyAxis(), new URI[]{ sashModelURI }).or(false), is(true));
+	}
+	
 	//
 	// Test framework
 	//

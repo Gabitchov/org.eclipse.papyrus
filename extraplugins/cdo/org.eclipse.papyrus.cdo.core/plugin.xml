@@ -67,6 +67,9 @@
       <readOnlyHandler
             class="org.eclipse.papyrus.cdo.core.resource.CDOReadOnlyHandler"
             priority="16">
+         <affinity
+               axis="permission">
+         </affinity>
       </readOnlyHandler>
    </extension>
 

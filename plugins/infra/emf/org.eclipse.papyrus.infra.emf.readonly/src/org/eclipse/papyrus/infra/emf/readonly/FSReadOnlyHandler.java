@@ -15,6 +15,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
 
+import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -44,45 +45,59 @@ public class FSReadOnlyHandler extends AbstractReadOnlyHandler {
 	}
 
 	public Optional<Boolean> anyReadOnly(Set<ReadOnlyAxis> axes, URI[] uris) {
-		if (axes.contains(ReadOnlyAxis.PERMISSION)) {
+		if(axes.contains(ReadOnlyAxis.PERMISSION)) {
 			for(URI uri : uris) {
-				IFile file = getFile(uri);
-				if(file != null && file.isReadOnly()) {
-					return Optional.of(Boolean.TRUE);
+				IFile ifile = getIFile(uri);
+				if(ifile != null) {
+					if(ifile.isReadOnly()) {
+						return Optional.of(Boolean.TRUE);
+					}
+				} else {
+					File file = getFile(uri);
+					if((file != null) && file.exists() && !file.canWrite()) {
+						return Optional.of(Boolean.TRUE);
+					}
 				}
 			}
 		}
-		
+
 		return Optional.absent();
 	}
 
-	private static IFile getFile(URI uri) {
+	private static IFile getIFile(URI uri) {
 		if(uri.isPlatform()) {
 			return ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
 		}
 		return null;
 	}
 
+	private static File getFile(URI uri) {
+		if(uri.isFile()) {
+			return new File(uri.toFileString());
+		}
+		return null;
+	}
+
 	public Optional<Boolean> makeWritable(Set<ReadOnlyAxis> axes, final URI[] uris) {
-		if (!axes.contains(ReadOnlyAxis.PERMISSION)) {
+		if(!axes.contains(ReadOnlyAxis.PERMISSION)) {
 			return Optional.absent();
 		}
-		
+
 		final AtomicBoolean doEnableWrite = new AtomicBoolean();
-		
+
 		// We can't make a file writable if it already is (there are read-only handlers that treat files that
 		// are filesystem-writable as read-only for other reasons)
 		final Map<IFile, URI> readOnlyFiles = new LinkedHashMap<IFile, URI>();
 		for(int i = 0; i < uris.length; i++) {
-			IFile file = getFile(uris[i]);
+			IFile file = getIFile(uris[i]);
 			if((file != null) && file.isReadOnly()) {
 				readOnlyFiles.put(file, uris[i]);
 			}
 		}
-		
-		if (!readOnlyFiles.isEmpty()) {
+
+		if(!readOnlyFiles.isEmpty()) {
 			Display.getCurrent().syncExec(new Runnable() {
-	
+
 				public void run() {
 					String message = "Do you want to remove read only flag on those files ?\n\n";
 					for(IFile file : readOnlyFiles.keySet()) {
@@ -92,7 +107,7 @@ public class FSReadOnlyHandler extends AbstractReadOnlyHandler {
 				}
 			});
 		}
-		
+
 		if(doEnableWrite.get()) {
 			Boolean ok = true;
 			for(Map.Entry<IFile, URI> next : readOnlyFiles.entrySet()) {
@@ -101,7 +116,7 @@ public class FSReadOnlyHandler extends AbstractReadOnlyHandler {
 					ResourceAttributes att = file.getResourceAttributes();
 					att.setReadOnly(false);
 					file.setResourceAttributes(att);
-					
+
 					fireReadOnlyStateChanged(ReadOnlyAxis.PERMISSION, next.getValue(), true);
 				} catch (CoreException e) {
 					ok = false;
@@ -130,7 +145,7 @@ public class FSReadOnlyHandler extends AbstractReadOnlyHandler {
 				}
 			}
 		}
-		
+
 		return result;
 	}
 }

@@ -34,7 +34,7 @@ public class EMFReadOnlyHandler extends AbstractReadOnlyHandler {
 	public Optional<Boolean> anyReadOnly(Set<ReadOnlyAxis> axes, URI[] uris) {
 		if(axes.contains(ReadOnlyAxis.PERMISSION)) {
 			for(URI uri : uris) {
-				if(!uri.isPlatformResource()) {
+				if(!(uri.isPlatformResource() || uri.isFile())) {
 					return Optional.of(Boolean.TRUE);
 				}
 			}

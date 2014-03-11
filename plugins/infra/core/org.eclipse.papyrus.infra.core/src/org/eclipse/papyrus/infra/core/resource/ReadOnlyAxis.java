@@ -45,6 +45,22 @@ public enum ReadOnlyAxis {
 	private static final Set<ReadOnlyAxis> DISCRETION_AXES = Collections.singleton(DISCRETION);
 
 	/**
+	 * Efficiently obtains me as a singleton set.
+	 * 
+	 * @return a singleton set containing me only
+	 */
+	public Set<ReadOnlyAxis> singleton() {
+		switch(this) {
+		case PERMISSION:
+			return PERMISSION_AXES;
+		case DISCRETION:
+			return DISCRETION_AXES;
+		default:
+			throw new IllegalStateException("Impossible enumeration value: " + this); //$NON-NLS-1$
+		}
+	}
+
+	/**
 	 * The set of axes for queries pertaining to any axis. That is to say, the complete set of all axes.
 	 */
 	public static Set<ReadOnlyAxis> anyAxis() {

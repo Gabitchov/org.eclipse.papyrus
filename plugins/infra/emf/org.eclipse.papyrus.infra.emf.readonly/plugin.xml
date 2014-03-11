@@ -8,20 +8,33 @@
             class="org.eclipse.papyrus.infra.emf.readonly.ReferencedModelReadOnlyHandler"
             id="org.eclipse.papyrus.infra.emf.readonly.ReferencedModelReadOnlyHandler"
             priority="15">
+         <affinity
+               axis="discretion">
+         </affinity>
       </readOnlyHandler>
       <readOnlyHandler
             class="org.eclipse.papyrus.infra.emf.readonly.FSReadOnlyHandler"
             id="org.eclipse.papyrus.infra.emf.readonly.FSReadOnlyHandler"
             priority="10">
+         <affinity
+               axis="permission">
+         </affinity>
       </readOnlyHandler>
       <readOnlyHandler
             class="org.eclipse.papyrus.infra.emf.readonly.EMFReadOnlyHandler"
             id="org.eclipse.papyrus.infra.emf.readonly.EMFReadOnlyHandler"
             priority="5">
+         <affinity
+               axis="permission">
+         </affinity>
       </readOnlyHandler>
       <readOnlyHandler
             class="org.eclipse.papyrus.infra.emf.readonly.SashModelReadOnlyHandler"
-            priority="20"></readOnlyHandler>
+            priority="20">
+         <affinity
+               axis="discretion">
+         </affinity>
+      </readOnlyHandler>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
