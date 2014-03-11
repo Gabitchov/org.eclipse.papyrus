@@ -58,17 +58,15 @@ public class SashModelReadOnlyHandler extends AbstractReadOnlyHandler {
 			return Optional.absent();
 		}
 
+		// Only answer false if all of the resources in question are ones that we know must be allowed to be written
+		int knownWritableCount = 0;
 		for(URI uri : uris) {
-			if(SashModel.SASH_MODEL_FILE_EXTENSION.equals(uri.fileExtension())) {
-				return Optional.of(false);
-			}
-
-			if(DiModel.DI_FILE_EXTENSION.equals(uri.fileExtension())) {
-				return Optional.of(false);
+			if(SashModel.SASH_MODEL_FILE_EXTENSION.equals(uri.fileExtension()) || DiModel.DI_FILE_EXTENSION.equals(uri.fileExtension())) {
+				knownWritableCount++;
 			}
 		}
 
-		return Optional.absent();
+		return (knownWritableCount == uris.length) ? Optional.of(false) : Optional.<Boolean> absent();
 	}
 
 	/**
