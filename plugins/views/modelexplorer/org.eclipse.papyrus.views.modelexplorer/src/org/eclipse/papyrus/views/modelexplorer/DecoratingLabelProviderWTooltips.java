@@ -118,7 +118,7 @@ public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelPr
 		if(element != null) {
 			if(element instanceof EObject || element instanceof EReferenceTreeElement // fix for bug 391676
 				||  (EMFHelper.getEObject(element) != null)) {
-				List<IPapyrusDecoration> decorations = decorationService.getDecorations(element, true);
+				List<IPapyrusDecoration> decorations = decorationService.getDecorations(EMFHelper.getEObject(element), true);
 				if(decorations != null) {
 					adapter.setDecorations(decorations);
 				}
