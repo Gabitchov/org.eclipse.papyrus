@@ -330,9 +330,9 @@ public class NodeSnapHelper {
 
 			final Point ref = baseRectTopLeft.getTopLeft();
 			distVSPoints.put(distance(ref, topLeftCornerDelta), topLeftCornerDelta);
-			distVSPoints.put(distance(ref, topRightCornerDelta), topRightCornerDelta);
-			distVSPoints.put(distance(ref, bottomLeftCornerDelta), bottomLeftCornerDelta);
-			distVSPoints.put(distance(ref, bottomRightCornerDelta), bottomRightCornerDelta);
+			//			distVSPoints.put(distance(ref, topRightCornerDelta), topRightCornerDelta);
+			//			distVSPoints.put(distance(ref, bottomLeftCornerDelta), bottomLeftCornerDelta);
+			//			distVSPoints.put(distance(ref, bottomRightCornerDelta), bottomRightCornerDelta);
 		}
 		return distVSPoints;
 	}
