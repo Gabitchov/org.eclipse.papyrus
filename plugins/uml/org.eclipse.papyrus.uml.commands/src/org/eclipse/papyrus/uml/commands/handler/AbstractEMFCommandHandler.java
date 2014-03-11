@@ -142,7 +142,7 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
 			for(Object current : structuredSelection.toArray()) {
 				// Adapt current selection to EObject
-				EObject eobject=EMFHelper.getEObject(selection);
+				EObject eobject=EMFHelper.getEObject(current);
 				if(eobject != null) {
 					selectedEObjects.add(eobject);
 				}
