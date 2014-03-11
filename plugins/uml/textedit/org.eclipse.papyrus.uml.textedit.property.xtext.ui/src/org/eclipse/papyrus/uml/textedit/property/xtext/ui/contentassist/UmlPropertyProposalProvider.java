@@ -28,6 +28,7 @@ import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.MultiplicityR
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.PropertyRule;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.QualifiedName;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.TypeRule;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.uml.xtext.integration.CompletionProposalUtils;
 import org.eclipse.papyrus.uml.xtext.integration.CustomCompletionProposal;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementUtil;
@@ -50,7 +51,7 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
  * http://www.eclipse.org/Xtext/documentation/latest/xtext.html#contentAssist on
  * how to customize content assistant
  */
-
+@SuppressWarnings("nls")
 public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProvider {
 
 	/**
@@ -96,9 +97,9 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 		CustomCompletionProposal completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix(root, completionString, displayString, context);
 		acceptor.accept(completionProposal);
 
-		// then accepts all packages imported by Model
-		List<Package> importedPackages = root.getImportedPackages();
-		for(Package p : importedPackages) {
+		// then accept all packages imported by Model
+		List<Package> topLevelPackages = PackageUtil.getTopLevelPackages(root);
+		for(Package p : topLevelPackages) {
 			if(p.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
 				completionString = p.getName() + "::";
 				displayString = p.getName() + "::";
