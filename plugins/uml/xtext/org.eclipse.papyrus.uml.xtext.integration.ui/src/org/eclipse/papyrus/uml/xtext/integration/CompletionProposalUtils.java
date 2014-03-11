@@ -28,6 +28,7 @@ import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 /**
  * @author CEA LIST - Initial contribution and API
  */
+@SuppressWarnings("nls")
 public class CompletionProposalUtils {
 
 	protected final static ILabelProvider labelProvider = DisplayUtils.getLabelProvider() ;
