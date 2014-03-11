@@ -17,21 +17,27 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.infra.core.clipboard.IClipboardAdditionalData;
 import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.preferences.IStereotypePasteStrategyPreferenceConstant;
+import org.eclipse.papyrus.uml.tools.commands.ApplyProfileCommand;
 import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
@@ -141,71 +147,83 @@ public class StereotypePasteStrategy implements IPasteStrategy {
 	 */
 	@Override
 	public org.eclipse.emf.common.command.Command getSemanticCommand(EditingDomain domain, EObject targetOwner, PapyrusClipboard<Object> papyrusClipboard) {
-		CompoundCommand compoundCommand = new CompoundCommand("Copy all stereotypes"); //$NON-NLS-1$
 		
-		Map<Profile,List<ApplyStereotypeCommand>> missingProfiles = new HashMap<Profile,List<ApplyStereotypeCommand>>();
-		
-		Package targetPackage = ((Element)targetOwner).getNearestPackage();
-		
-		// 1. init all ApplyStereotypeCommand
-		for(Iterator<Object> iterator = papyrusClipboard.iterator(); iterator.hasNext();) {
-			Object object = (Object)iterator.next();
-			// get target Element
-			EObject target = papyrusClipboard.getTragetCopyFromInternalClipboardCopy(object);
-			if(target != null && target instanceof Element) {
-				// get affiliate StereotypeClipboard
-				Map<Object, ?> additionalDataMap = papyrusClipboard.getAdditionalDataForStrategy(getID());
-				Object additionnalData = additionalDataMap.get(object);
-				if(additionnalData instanceof StereotypeClipboard) {
-					StereotypeClipboard stereotypeClipboard = (StereotypeClipboard)additionnalData;
-					Collection<Stereotype> stereotypes = stereotypeClipboard.getStereotypes();
-//					Collection<Stereotype> stereotypeListInTargetContext = new ArrayList<Stereotype>();
-					for(Stereotype stereotype : stereotypes) {
-						// reload the stereotype in the new Contex-ResourceSet (Required because in org.eclipse.uml2.uml.internal.operations.PackageOperations
-						// L960 in getProfileApplication the test is using == instead of equals)
-						Stereotype stereotypeInTargetContext = EMFHelper.reloadIntoContext(stereotype, targetOwner);
-						
-						Profile profile = stereotypeInTargetContext.getProfile();
-						ApplyStereotypeCommand applyStereotypeCommand = new ApplyStereotypeCommand((Element)target, stereotypeInTargetContext, (TransactionalEditingDomain)domain);
-						if (isProfileAppliedRecursive(targetPackage, profile)){		
-							compoundCommand.append(applyStereotypeCommand);
-						} else { // Profile is missing
-							Activator.getDefault().logWarning(profile.getName()+" is missing", null);
-							List<ApplyStereotypeCommand> list = missingProfiles.get(profile);
-							if (list!= null && !list.isEmpty()){
-								list.add(applyStereotypeCommand);
-							} else {
-								list = new ArrayList<ApplyStereotypeCommand>();
-								missingProfiles.put(profile, list);
+		if (targetOwner instanceof Element){
+			CompoundCommand compoundCommand = new CompoundCommand("Copy all stereotypes"); //$NON-NLS-1$
+			
+			Map<Profile,List<ApplyStereotypeCommand>> missingProfiles = new HashMap<Profile,List<ApplyStereotypeCommand>>();
+			Package targetPackage = ((Element)targetOwner).getNearestPackage();
+			
+			// 1. init all ApplyStereotypeCommand
+			for(Iterator<Object> iterator = papyrusClipboard.iterator(); iterator.hasNext();) {
+				Object object = (Object)iterator.next();
+				// get target Element
+				EObject target = papyrusClipboard.getTragetCopyFromInternalClipboardCopy(object);
+				if(target != null && target instanceof Element) {
+					// get affiliate StereotypeClipboard
+					Map<Object, ?> additionalDataMap = papyrusClipboard.getAdditionalDataForStrategy(getID());
+					Object additionnalData = additionalDataMap.get(object);
+					if(additionnalData instanceof StereotypeClipboard) {
+						StereotypeClipboard stereotypeClipboard = (StereotypeClipboard)additionnalData;
+						Collection<Stereotype> stereotypes = stereotypeClipboard.getStereotypes();
+//						Collection<Stereotype> stereotypeListInTargetContext = new ArrayList<Stereotype>();
+						for(Stereotype stereotype : stereotypes) {
+							// reload the stereotype in the new Contex-ResourceSet (Required because in org.eclipse.uml2.uml.internal.operations.PackageOperations
+							// L960 in getProfileApplication the test is using == instead of equals)
+							Stereotype stereotypeInTargetContext = EMFHelper.reloadIntoContext(stereotype, targetOwner);
+							
+							Profile profile = stereotypeInTargetContext.getProfile();
+							ApplyStereotypeCommand applyStereotypeCommand = new ApplyStereotypeCommand((Element)target, stereotypeInTargetContext, (TransactionalEditingDomain)domain);
+							if (isProfileAppliedRecursive(targetPackage, profile)){		
+								compoundCommand.append(applyStereotypeCommand);
+							} else { // Profile is missing
+//								Activator.getDefault().logWarning(profile.getName()+" is missing", null);
+								List<ApplyStereotypeCommand> stereotypeListMissingProfiles = missingProfiles.get(profile);
+								if (stereotypeListMissingProfiles!= null && !stereotypeListMissingProfiles.isEmpty()){
+									stereotypeListMissingProfiles.add(applyStereotypeCommand);
+								} else {
+									stereotypeListMissingProfiles = new ArrayList<ApplyStereotypeCommand>();
+									stereotypeListMissingProfiles.add(applyStereotypeCommand);
+									missingProfiles.put(profile, stereotypeListMissingProfiles);
+								}
 							}
 						}
-						
-//						stereotypeListInTargetContext.add(stereotypeInTargetContext);
 					}
-					// append command to apply stereotype
-//					ApplyStereotypeCommand applyStereotypeCommand = new ApplyStereotypeCommand((Element)target, stereotypeListInTargetContext, (TransactionalEditingDomain)domain);
-//					applyStereotypeCommandList.add(applyStereotypeCommand);
 				}
 			}
+			
+			// 2. user preferences (Apply profiles, data...)
+			IPreferenceStore preferenceStore = Activator.getDefault().getPreferenceStore();
+			String preferenceProfileStrategy = preferenceStore.getString(IStereotypePasteStrategyPreferenceConstant.PROFILE_STRATEGY);	
+		
+			if (IStereotypePasteStrategyPreferenceConstant.ASK_POPUP.equals(preferenceProfileStrategy)){// Ask user for instruction
+				// TODO:  2. user choices (Apply profiles, data...)
+			} else if (IStereotypePasteStrategyPreferenceConstant.IMPORT_MISSING_PROFILE.equals(preferenceProfileStrategy)){ // apply profile
+				Set<Profile> keySet = missingProfiles.keySet();
+				Package rootPackage = PackageUtil.getRootPackage((Element)targetOwner);
+				ApplyProfileCommand applyProfileCommand = new ApplyProfileCommand(rootPackage, keySet, (TransactionalEditingDomain)domain);
+				compoundCommand.append(applyProfileCommand);
+				for(Profile profile : keySet) {
+					List<ApplyStereotypeCommand> list = missingProfiles.get(profile);
+					for(ApplyStereotypeCommand applyStereotypeCommand : list) {
+						compoundCommand.append(applyStereotypeCommand);
+					}
+				}
+			}
+			
+			
+			// An empty can't be executed 
+			if(compoundCommand.getCommandList().isEmpty()) {
+				return null;
+			}
+			return compoundCommand;			
 		}
-		
-		// TODO:  2. user choices (Apply profiles, data...)
-		
-		// first draft remove all unapplicable commd
-		
-	
-		
-		
-		//3. construct compoundCommand	
+		return UnexecutableCommand.INSTANCE;
 
-		
-		
-		// An empty can't be executed 
-		if(compoundCommand.getCommandList().isEmpty()) {
-			return null;
-		}
-		return compoundCommand;
 	}
+
+
+
 
 	/*
 	 * (non-Javadoc)
@@ -216,11 +234,11 @@ public class StereotypePasteStrategy implements IPasteStrategy {
 	@Override
 	public Command getGraphicalCommand(EditingDomain domain, org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart targetEditPart, PapyrusClipboard<Object> papyrusClipboard) {
 		org.eclipse.gef.commands.CompoundCommand compoundCommand = new org.eclipse.gef.commands.CompoundCommand("Stereotype Semantic And Graphical paste"); //$NON-NLS-1$
+		Map<Profile,List<ApplyStereotypeCommand>> missingProfiles = new HashMap<Profile,List<ApplyStereotypeCommand>>();
 		View view = (View)targetEditPart.getModel();
 		EObject modelTargetOwner = (EObject)view.getElement();
 		Package targetPackage = ((Element)modelTargetOwner).getNearestPackage();
 		// apply stereotypes 
-		List<ApplyStereotypeCommand> applyStereotypeCommandList = new ArrayList<ApplyStereotypeCommand>();
 		for(Iterator<Object> iterator = papyrusClipboard.iterator(); iterator.hasNext();) {
 			Object object = (Object)iterator.next();
 			// get target Element
@@ -243,48 +261,42 @@ public class StereotypePasteStrategy implements IPasteStrategy {
 							EMFtoGEFCommandWrapper emFtoGEFCommandWrapper = new EMFtoGEFCommandWrapper(applyStereotypeCommand);
 							compoundCommand.add(emFtoGEFCommandWrapper);
 						} else { // Profile is missing
-							Activator.getDefault().logWarning(profile.getName()+" is missing", null);		
+							List<ApplyStereotypeCommand> stereotypeListMissingProfiles = missingProfiles.get(profile);
+							if (stereotypeListMissingProfiles!= null && !stereotypeListMissingProfiles.isEmpty()){
+								stereotypeListMissingProfiles.add(applyStereotypeCommand);
+							} else {
+								stereotypeListMissingProfiles = new ArrayList<ApplyStereotypeCommand>();
+								stereotypeListMissingProfiles.add(applyStereotypeCommand);
+								missingProfiles.put(profile, stereotypeListMissingProfiles);
+							}	
 						}	
-						//						applyStereotypeCommandList.add(applyStereotypeCommand);
 					}
 
 				}
 			}
 		}
 
-		// TODO : test profile application
-		//		List<Profile> missingProfiles = new ArrayList<Profile>();
-		//		if(modelTargetOwner != null && modelTargetOwner instanceof Element) {
-		//			Package nearestPackage = ((Element)modelTargetOwner).getNearestPackage();
-		//
-		//			for(ApplyStereotypeCommand applyStereotypeCommand : applyStereotypeCommandList) {
-		//
-		//				Collection<Stereotype> stereotypes = applyStereotypeCommand.getStereotypes();
-		//				for(Stereotype stereotype : stereotypes) {
-		//					Profile profile = stereotype.getProfile();
-		//					boolean profileApplied = isProfileAppliedRecursive(nearestPackage, profile);
-		//					if(!profileApplied) {
-		//						missingProfiles.add(profile);
-		//						Map<EditPart, Set<EObject>> availableLinks = new HashMap<EditPart, Set<EObject>>();
-		//						Collection<EObject> initialSelection = new ArrayList<EObject>();
-		//						Map<EObject, LinkEndsMapper> linkMapping = new HashMap<EObject, LinkEndsMapper>();
-		//						Collection<EditPart> selectedEditPart = new ArrayList<EditPart>();
-		//						//						ICommand openDialogCommand = getOpenDialogCommand((TransactionalEditingDomain)domain, selectedEditPart, availableLinks, initialSelection, linkMapping);
-		//						//
-		//						//						try {
-		//						//							openDialogCommand.execute(new NullProgressMonitor(), null);
-		//						//						} catch (ExecutionException e) {
-		//						//							// TODO Auto-generated catch block
-		//						//							e.printStackTrace();
-		//						//						}
-		//						//						domain.getCommandStack().execute(openDialogCommand);
-		//					} else {
-		//						EMFtoGEFCommandWrapper emFtoGEFCommandWrapper = new EMFtoGEFCommandWrapper(applyStereotypeCommand);
-		////						compoundCommand.add(emFtoGEFCommandWrapper);
-		//					}
-		//				}
-		//			}
-		//		}
+		// 2. user preferences (Apply profiles, data...)
+		IPreferenceStore preferenceStore = Activator.getDefault().getPreferenceStore();
+		String preferenceProfileStrategy = preferenceStore.getString(IStereotypePasteStrategyPreferenceConstant.PROFILE_STRATEGY);	
+	
+		if (IStereotypePasteStrategyPreferenceConstant.ASK_POPUP.equals(preferenceProfileStrategy)){// Ask user for instruction
+			// TODO:  2. user choices (Apply profiles, data...)
+		} else if (IStereotypePasteStrategyPreferenceConstant.IMPORT_MISSING_PROFILE.equals(preferenceProfileStrategy)){ // apply profile
+			Set<Profile> keySet = missingProfiles.keySet();
+			Package rootPackage = PackageUtil.getRootPackage((Element)modelTargetOwner);
+			ApplyProfileCommand applyProfileCommand = new ApplyProfileCommand(rootPackage, keySet, (TransactionalEditingDomain)domain);
+			EMFtoGEFCommandWrapper emFtoGEFCommandWrapper = new EMFtoGEFCommandWrapper(applyProfileCommand);
+			compoundCommand.add(emFtoGEFCommandWrapper);
+			for(Profile profile : keySet) {
+				List<ApplyStereotypeCommand> list = missingProfiles.get(profile);
+				for(ApplyStereotypeCommand applyStereotypeCommand : list) {
+					compoundCommand.add(new EMFtoGEFCommandWrapper(applyStereotypeCommand));
+				}
+			}
+		}		
+		
+		
 		if(compoundCommand.size() == 0) {// TODO : use unwrap if no use of UnexecutableCommand.INSTANCE
 			return null;
 		}
