@@ -41,4 +41,14 @@ public class ExtensionFigure extends UMLEdgeFigure {
 		setForegroundColor(ColorConstants.black);
 
 	}
+
+	@Override
+	public void resetStyle() {
+		super.resetStyle();
+		PolygonDecoration dec = new PolygonDecoration();
+		dec.setScale(15, 5);
+		dec.setBackgroundColor(ColorConstants.black);
+		dec.setLineWidth(1);
+		setTargetDecoration(dec); // arrow at target endpoint
+	}
 }

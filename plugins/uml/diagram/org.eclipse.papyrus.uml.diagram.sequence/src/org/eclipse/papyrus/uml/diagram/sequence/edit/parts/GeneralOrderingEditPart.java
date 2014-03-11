@@ -10,9 +10,9 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GeneralOrderingItemSemanticEditPolicy;
 
@@ -105,7 +105,7 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 	/**
 	 * @generated
 	 */
-	public class GeneralOrderingDescriptor extends PolylineConnectionEx {
+	public class GeneralOrderingDescriptor extends PapyrusEdgeFigure {
 
 		/**
 		 * @generated
@@ -118,6 +118,12 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 		public GeneralOrderingDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
 			this.setForegroundColor(ColorConstants.black);
+			setTargetDecoration(createTargetDecoration());
+		}
+
+		@Override
+		public void resetStyle() {
+			super.resetStyle();
 			setTargetDecoration(createTargetDecoration());
 		}
 
