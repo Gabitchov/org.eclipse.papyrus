@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
@@ -82,18 +81,10 @@ public class HyperLinkEditor extends HyperLinkObject {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * This HyperLink needs an executable EMF command when the page is not yet opened
-	 * Otherwise, openLink() can be called directly
+	 * This HyperLink never needs a command, because the IPageManager already supports transactions
 	 */
 	@Override
 	public boolean needsOpenCommand() {
-		EObject context = EMFHelper.getEObject(getObject());
-		try {
-			ServicesRegistry registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(context);
-			final IPageManager pageManager = registry.getService(IPageManager.class);
-			return !pageManager.isOpen(context);
-		} catch (ServiceException ex) {
-			return false;
-		}
+		return false;
 	}
 }
