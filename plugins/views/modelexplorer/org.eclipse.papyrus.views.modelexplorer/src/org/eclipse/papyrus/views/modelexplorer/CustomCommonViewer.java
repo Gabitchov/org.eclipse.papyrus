@@ -49,7 +49,7 @@ public class CustomCommonViewer extends CommonViewer {
 
 			public int hashCode(Object element) {
 				if(element instanceof EObjectTreeElement) {
-					EObjectTreeElement eObject = (EObjectTreeElement)element;
+					EObject eObject = ((EObjectTreeElement)element).getEObject();
 					return HashCodeCalculus.getHashCode(eObject);
 				}
 				
