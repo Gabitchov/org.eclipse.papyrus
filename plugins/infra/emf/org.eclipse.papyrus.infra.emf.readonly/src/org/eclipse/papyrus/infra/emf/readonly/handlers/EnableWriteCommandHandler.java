@@ -9,6 +9,7 @@
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
+ *  Christian W. Damus (CEA) - bug 429826
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly.handlers;
@@ -27,6 +28,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -53,8 +55,7 @@ public class EnableWriteCommandHandler extends AbstractHandler {
 					associatedUris[i] = URI.createPlatformResourceURI(associatedFiles[i].getFullPath().toString(), true);
 				}
 
-				ReadOnlyManager.getReadOnlyHandler(WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(rs))
-				.makeWritable(associatedUris);
+				ReadOnlyManager.getReadOnlyHandler(WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(rs)).makeWritable(ReadOnlyAxis.anyAxis(), associatedUris);
 			}
 		}
 		return null;

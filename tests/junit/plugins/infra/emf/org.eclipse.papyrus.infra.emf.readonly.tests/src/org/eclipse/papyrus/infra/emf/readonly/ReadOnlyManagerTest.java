@@ -14,20 +14,12 @@ package org.eclipse.papyrus.infra.emf.readonly;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
 
-import java.io.InputStream;
-
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourceAttributes;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
+import org.eclipse.papyrus.infra.emf.readonly.tests.PapyrusModelSetFixture;
+import org.eclipse.papyrus.junit.utils.rules.JavaResource;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
-import org.eclipse.uml2.uml.Model;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -37,16 +29,15 @@ import org.junit.Test;
 /**
  * Test suite for the {@link ReadOnlyManager} class.
  */
+@JavaResource("Bug323802.uml")
 public class ReadOnlyManagerTest {
 
 	@Rule
-	public final ProjectFixture project = new ProjectFixture();
+	public final PapyrusModelSetFixture domain = new PapyrusModelSetFixture();
+
+	private final ProjectFixture project = domain.getProject();
 
 	private ReadOnlyManager fixture;
-
-	private TransactionalEditingDomain domain;
-
-	private Model model;
 
 	public ReadOnlyManagerTest() {
 		super();
@@ -54,78 +45,47 @@ public class ReadOnlyManagerTest {
 
 	@Test
 	public void testIsReadOnlyEObject() {
-		setReadOnly(project.getFile(model.eResource().getURI()));
-		assertThat(fixture.isReadOnly(model).or(false), is(true));
+		project.setReadOnly(domain.getModelResource());
+		assertThat(fixture.isReadOnly(ReadOnlyAxis.anyAxis(), domain.getModel()).or(false), is(true));
 	}
 
 	@Test
 	public void testCanMakeWritableEObject() {
-		setReadOnly(project.getFile(model.eResource().getURI()));
-		assertThat(fixture.canMakeWritable(model).or(false), is(true));
+		project.setReadOnly(domain.getModelResource());
+		assertThat(fixture.canMakeWritable(ReadOnlyAxis.anyAxis(), domain.getModel()).or(false), is(true));
 	}
 
 	@Test
 	public void testAnyReadOnlyURIs() {
-		URI uri = model.eResource().getURI();
-		setReadOnly(project.getFile(uri));
-		assertThat(fixture.anyReadOnly(new URI[]{ uri }).or(false), is(true));
+		URI uri = domain.getModelResourceURI();
+		project.setReadOnly(domain.getModelResource());
+		assertThat(fixture.anyReadOnly(ReadOnlyAxis.anyAxis(), new URI[]{ uri }).or(false), is(true));
 	}
 
 	@Test
 	public void testCanMakeWritableURIs() {
-		URI uri = model.eResource().getURI();
-		setReadOnly(project.getFile(uri));
-		assertThat(fixture.canMakeWritable(new URI[]{ uri }).or(false), is(true));
+		URI uri = domain.getModelResourceURI();
+		project.setReadOnly(domain.getModelResource());
+		assertThat(fixture.canMakeWritable(ReadOnlyAxis.anyAxis(), new URI[]{ uri }).or(false), is(true));
 	}
 
+	@Test
+	public void testSashModelReadOnlyIfPermissionReadOnly() {
+		URI sashModelURI = URI.createPlatformPluginURI("org.eclipse.papyrus.foo/models/bogus.di", true);
+		assertThat(fixture.anyReadOnly(ReadOnlyAxis.anyAxis(), new URI[]{ sashModelURI }).or(false), is(true));
+	}
+	
 	//
 	// Test framework
 	//
 
 	@Before
 	public void createFixture() throws Exception {
-		domain = (PapyrusROTransactionalEditingDomain)new PapyrusROTransactionalEditingDomainProvider().createTransactionalEditingDomain(new ResourceSetImpl());
-		fixture = new ReadOnlyManager(domain);
-
-		Resource res = domain.getResourceSet().createResource(project.getURI("model.uml"));
-		InputStream input = ReadOnlyManagerTest.class.getResourceAsStream("Bug323802.uml");
-		try {
-			res.load(input, null);
-		} finally {
-			input.close();
-		}
-		res.save(null); // Make sure it exists
-		model = (Model)res.getContents().get(0);
+		fixture = new ReadOnlyManager(domain.getEditingDomain());
 	}
 
 	@After
 	public void destroyFixture() {
-		ResourceSet rset = domain.getResourceSet();
-
-		model = null;
-
-		domain.dispose();
-		domain = null;
 		fixture = null;
-
-		for(Resource next : rset.getResources()) {
-			next.unload();
-			next.eAdapters().clear();
-		}
-
-		rset.getResources().clear();
-		rset.eAdapters().clear();
-	}
-
-	void setReadOnly(IFile file) {
-		ResourceAttributes attr = file.getResourceAttributes();
-		attr.setReadOnly(true);
-
-		try {
-			file.setResourceAttributes(attr);
-		} catch (CoreException e) {
-			e.getLocalizedMessage();
-			fail("Failed to make workspace file read-only: " + e.getLocalizedMessage());
-		}
 	}
 }
