@@ -21,6 +21,7 @@ import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 
 
@@ -42,14 +43,12 @@ public class ConvertAllTablesHandler extends ConvertOldTableHandler {
 			Iterator<?> iter = list.iterator();
 			while(iter.hasNext()) {
 				Object current = iter.next();
-				if(current instanceof IAdaptable) {
-					EObject eobject = (EObject)((IAdaptable)current).getAdapter(EObject.class);
-					if(eobject != null) {
-						final IPageManager manager = getPageManager(eobject);
-						for(final Object page : manager.allPages()) {
-							if(page instanceof PapyrusTableInstance) {
-								allPapyrusTableInstances.add((PapyrusTableInstance)page);
-							}
+				EObject eobject = EMFHelper.getEObject(selection);
+				if(eobject != null) {
+					final IPageManager manager = getPageManager(eobject);
+					for(final Object page : manager.allPages()) {
+						if(page instanceof PapyrusTableInstance) {
+							allPapyrusTableInstances.add((PapyrusTableInstance)page);
 						}
 					}
 				}

@@ -44,6 +44,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -405,8 +406,7 @@ public class ConvertOldTableHandler extends AbstractHandler {
 				List<?> currentSelection = (selection instanceof List<?>) ? (List<?>)selection : new java.util.ArrayList<Object>((Collection<?>)selection);
 				if(currentSelection.size() == 1) {
 					Object current = currentSelection.get(0);
-					if(current instanceof IAdaptable) {
-						EObject eobject = (EObject)((IAdaptable)current).getAdapter(EObject.class);
+						EObject eobject= EMFHelper.getEObject(current);
 						if(eobject instanceof PapyrusTableInstance) {
 
 							this.oldPapyrusTableInstance.add((PapyrusTableInstance)eobject);
@@ -414,7 +414,6 @@ public class ConvertOldTableHandler extends AbstractHandler {
 						setBaseEnabled(this.oldPapyrusTableInstance != null && this.oldPapyrusTableInstance.size() == 1);
 						return;
 					}
-				}
 			}
 		}
 		setBaseEnabled(false);
