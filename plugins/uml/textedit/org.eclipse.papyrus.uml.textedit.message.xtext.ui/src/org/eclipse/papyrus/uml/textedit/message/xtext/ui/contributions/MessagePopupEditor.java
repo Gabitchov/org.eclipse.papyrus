@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -42,7 +42,7 @@ public class MessagePopupEditor extends DefaultXtextDirectEditorConfiguration {
 	protected ICommand getParseCommand(EObject umlObject, EObject xtextObject) {
 		Message message = (Message)umlObject;
 		EObject modifiedObject = xtextObject;
-		while(xtextObject != null && !(xtextObject instanceof MessageRule)) {
+		while(modifiedObject != null && !(modifiedObject instanceof MessageRule)) {
 			modifiedObject = modifiedObject.eContainer();
 		}
 		if(modifiedObject == null) {
@@ -80,7 +80,7 @@ public class MessagePopupEditor extends DefaultXtextDirectEditorConfiguration {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
-	 * 
+	 *
 	 * @param editedObject
 	 * @return the text to edit
 	 */
