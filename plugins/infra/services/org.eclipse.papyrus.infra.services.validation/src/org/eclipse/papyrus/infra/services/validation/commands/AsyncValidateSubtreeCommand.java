@@ -29,6 +29,11 @@ import org.eclipse.swt.widgets.Display;
  */
 public class AsyncValidateSubtreeCommand extends ValidateSubtreeCommand {
 
+	/**
+	 * Constructor based on selected element and diagnostician
+	 * @param selectedElement the element from which on a subtree should be validated
+	 * @param diagnostician the diagnostician (e.g. UMLDiagnostician)
+	 */
 	public AsyncValidateSubtreeCommand(EObject selectedElement,
 			IPapyrusDiagnostician diagnostician) {
 		super(selectedElement, diagnostician);
