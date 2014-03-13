@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.integration.papyrus.svn;
+package org.eclipse.papyrus.team.collaborative.controlmode;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -22,7 +22,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.team.collaborative.integration.papyrus.svn"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.team.collaborative.core.integration.papyrus.svn"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

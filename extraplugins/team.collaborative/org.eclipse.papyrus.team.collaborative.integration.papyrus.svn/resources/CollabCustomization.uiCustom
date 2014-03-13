@@ -3,7 +3,7 @@
   <types metaclassName="CollabFacet.CollabElement">
     <customizedFeatures customizedFeature="facetOverlayIcon">
       <valueCases>
-        <value xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.team.collaborative.integration.papyrus.svn/icons/PartialLock_16x16.png:TopRight"/>
+        <value xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.team.collaborative.core.integration.papyrus.svn/icons/PartialLock_16x16.png:TopRight"/>
         <condition xsi:type="query:JavaModelQuery" href="CollabQueries.querySet#IsPartialyLocked"/>
       </valueCases>
     </customizedFeatures>

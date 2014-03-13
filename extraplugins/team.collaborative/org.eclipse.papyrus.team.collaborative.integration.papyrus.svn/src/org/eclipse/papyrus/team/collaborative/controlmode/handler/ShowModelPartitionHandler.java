@@ -8,16 +8,16 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.handler;
+package org.eclipse.papyrus.team.collaborative.controlmode.handler;
 
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.ui.dialogs.PreviewDialog;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.ui.providers.ExtensivePartitionNameLabelProvider;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.utils.UIUtils;
+import org.eclipse.papyrus.team.collaborative.strategy.ui.dialogs.PreviewDialog;
+import org.eclipse.papyrus.team.collaborative.strategy.ui.providers.ExtensivePartitionNameLabelProvider;
+import org.eclipse.papyrus.team.collaborative.strategy.utils.UIUtils;
 import org.eclipse.papyrus.views.modelexplorer.handler.AbstractModelExplorerHandler;
 import org.eclipse.swt.widgets.Display;
 

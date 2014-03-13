@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.participants;
+package org.eclipse.papyrus.team.collaborative.core.participants;
 
 
 /**

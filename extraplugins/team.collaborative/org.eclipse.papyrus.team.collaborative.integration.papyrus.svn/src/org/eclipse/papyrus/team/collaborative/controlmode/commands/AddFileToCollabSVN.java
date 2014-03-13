@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.commands;
+package org.eclipse.papyrus.team.collaborative.controlmode.commands;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -25,12 +25,12 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.connector.svn.utils.SVNUtils;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.ui.actions.CommitHandler;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.ui.actions.LockAction;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.utils.UIUtils;
-import org.eclipse.papyrus.team.collaborative.utils.CollabFunctionsFactory;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.utils.CollabFunctionsFactory;
+import org.eclipse.papyrus.team.collaborative.strategy.ui.actions.CommitHandler;
+import org.eclipse.papyrus.team.collaborative.strategy.ui.actions.LockAction;
+import org.eclipse.papyrus.team.collaborative.strategy.utils.UIUtils;
+import org.eclipse.papyrus.team.collaborative.svn.utils.SVNUtils;
 
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Sets;

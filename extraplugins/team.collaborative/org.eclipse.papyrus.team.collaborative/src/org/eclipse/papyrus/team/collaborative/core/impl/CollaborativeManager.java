@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.impl;
+package org.eclipse.papyrus.team.collaborative.core.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,16 +22,16 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.team.collaborative.Activator;
-import org.eclipse.papyrus.team.collaborative.ICollabFactory;
-import org.eclipse.papyrus.team.collaborative.ICollaborativeManager;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.participants.locker.ILocker;
-import org.eclipse.papyrus.team.collaborative.participants.locker.IUnlocker;
-import org.eclipse.papyrus.team.collaborative.participants.version.ICommitter;
-import org.eclipse.papyrus.team.collaborative.participants.version.IReverter;
-import org.eclipse.papyrus.team.collaborative.participants.version.IUpdater;
-import org.eclipse.papyrus.team.collaborative.strategy.ILockingStrategy;
+import org.eclipse.papyrus.team.collaborative.core.Activator;
+import org.eclipse.papyrus.team.collaborative.core.ICollabFactory;
+import org.eclipse.papyrus.team.collaborative.core.ICollaborativeManager;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.participants.locker.ILocker;
+import org.eclipse.papyrus.team.collaborative.core.participants.locker.IUnlocker;
+import org.eclipse.papyrus.team.collaborative.core.participants.version.ICommitter;
+import org.eclipse.papyrus.team.collaborative.core.participants.version.IReverter;
+import org.eclipse.papyrus.team.collaborative.core.participants.version.IUpdater;
+import org.eclipse.papyrus.team.collaborative.core.strategy.ILockingStrategy;
 
 
 /**
@@ -78,7 +78,7 @@ public class CollaborativeManager implements ICollaborativeManager {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollaborativeManager#getStrategies()
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollaborativeManager#getStrategies()
 	 */
 	@Override
 	public Map<String, ILockingStrategy.Descriptor> getStrategies() {
@@ -124,7 +124,7 @@ public class CollaborativeManager implements ICollaborativeManager {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollaborativeManager#getLockingStrategy(java.lang.String)
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollaborativeManager#getLockingStrategy(java.lang.String)
 	 */
 	@Override
 	public ILockingStrategy getLockingStrategy(String id) {
@@ -152,7 +152,7 @@ public class CollaborativeManager implements ICollaborativeManager {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollaborativeManager#getLocker(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollaborativeManager#getLocker(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	@Override
 	public ILocker getLocker(Set<IExtendedURI> objectToLock, ResourceSet resourceSet) {
@@ -166,7 +166,7 @@ public class CollaborativeManager implements ICollaborativeManager {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollaborativeManager#getUnlocker(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollaborativeManager#getUnlocker(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	@Override
 	public IUnlocker getUnlocker(Set<IExtendedURI> objectToLock, ResourceSet resourceSet) {
@@ -180,7 +180,7 @@ public class CollaborativeManager implements ICollaborativeManager {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollaborativeManager#getUpdater(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollaborativeManager#getUpdater(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	@Override
 	public IUpdater getUpdater(Set<IExtendedURI> objectToLock, ResourceSet resourceSet) {
@@ -194,7 +194,7 @@ public class CollaborativeManager implements ICollaborativeManager {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollaborativeManager#getCommitter(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollaborativeManager#getCommitter(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	@Override
 	public ICommitter getCommitter(Set<IExtendedURI> objectToLock, ResourceSet resourceSet) {
@@ -208,7 +208,7 @@ public class CollaborativeManager implements ICollaborativeManager {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollaborativeManager#getReverter(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollaborativeManager#getReverter(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	@Override
 	public IReverter getReverter(Set<IExtendedURI> objectToLock, ResourceSet resourceSet) {
@@ -227,7 +227,7 @@ public class CollaborativeManager implements ICollaborativeManager {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollaborativeManager#isCollab(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollaborativeManager#isCollab(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	@Override
 	public boolean isCollab(Set<IExtendedURI> uris, ResourceSet resourceSet) {

@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.team.collaborative" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.team.collaborative.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.team.collaborative" id="contribution" name="Collaborative Mode Contribution"/>
+         <meta.schema plugin="org.eclipse.papyrus.team.collaborative.core" id="contribution" name="Collaborative Mode Contribution"/>
       </appinfo>
       <documentation>
          This extension point is used to register contributions to the collaborative framework, either as locking strategies (used to define which objects are to be affected) or as participants implementing one or more of 4 different actions
@@ -70,7 +70,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.team.collaborative.ILockingStrategy"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.team.collaborative.core.ILockingStrategy"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -97,7 +97,7 @@
                   This is an implentation of a participant for the collaboration mode. Depending on the feature that this participant provide it as to inherite from ILocker, IUnlocker, IUpdater, ICommitter
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.team.collaborative.ICollabFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.team.collaborative.core.ICollabFactory"/>
                </appinfo>
             </annotation>
          </attribute>

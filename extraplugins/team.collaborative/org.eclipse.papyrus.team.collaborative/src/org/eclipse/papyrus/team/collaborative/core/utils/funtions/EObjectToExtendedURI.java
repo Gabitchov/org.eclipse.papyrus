@@ -8,12 +8,12 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.utils.funtions;
+package org.eclipse.papyrus.team.collaborative.core.utils.funtions;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.team.collaborative.ExtendedURI;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.ExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
 
 import com.google.common.base.Function;
 

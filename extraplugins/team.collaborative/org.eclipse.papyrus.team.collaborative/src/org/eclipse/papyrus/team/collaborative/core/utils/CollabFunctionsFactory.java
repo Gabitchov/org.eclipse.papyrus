@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.utils;
+package org.eclipse.papyrus.team.collaborative.core.utils;
 
 import java.util.Collection;
 
@@ -18,15 +18,15 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.team.collaborative.ExtendedURI;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.utils.funtions.EObjectToExtendedURI;
-import org.eclipse.papyrus.team.collaborative.utils.funtions.ExtendedURIToEObjects;
-import org.eclipse.papyrus.team.collaborative.utils.funtions.ExtendedURIToIResource;
-import org.eclipse.papyrus.team.collaborative.utils.funtions.ResourceToIFile;
-import org.eclipse.papyrus.team.collaborative.utils.funtions.ResourceToURI;
-import org.eclipse.papyrus.team.collaborative.utils.funtions.URIToExtendedURI;
-import org.eclipse.papyrus.team.collaborative.utils.funtions.URIToExtendedURIWithContainment;
+import org.eclipse.papyrus.team.collaborative.core.ExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.utils.funtions.EObjectToExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.utils.funtions.ExtendedURIToEObjects;
+import org.eclipse.papyrus.team.collaborative.core.utils.funtions.ExtendedURIToIResource;
+import org.eclipse.papyrus.team.collaborative.core.utils.funtions.ResourceToIFile;
+import org.eclipse.papyrus.team.collaborative.core.utils.funtions.ResourceToURI;
+import org.eclipse.papyrus.team.collaborative.core.utils.funtions.URIToExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.utils.funtions.URIToExtendedURIWithContainment;
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;

@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn.versioncontroller;
+package org.eclipse.papyrus.team.collaborative.svn.versioncontroller;
 
 /*******************************************************************************
  * Copyright (c) 2013 Atos.
@@ -25,10 +25,10 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.connector.svn.tracing.ITracingConstant;
-import org.eclipse.papyrus.team.collaborative.connector.svn.tracing.Tracer;
-import org.eclipse.papyrus.team.collaborative.participants.version.IReverter;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.participants.version.IReverter;
+import org.eclipse.papyrus.team.collaborative.svn.tracing.ITracingConstant;
+import org.eclipse.papyrus.team.collaborative.svn.tracing.Tracer;
 import org.eclipse.team.svn.core.operation.CompositeOperation;
 import org.eclipse.team.svn.core.operation.IActionOperation;
 import org.eclipse.team.svn.core.operation.file.RevertOperation;

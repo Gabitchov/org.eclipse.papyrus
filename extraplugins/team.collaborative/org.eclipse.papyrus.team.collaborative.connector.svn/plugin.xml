@@ -2,10 +2,10 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.team.collaborative.contribution">
+         point="org.eclipse.papyrus.team.collaborative.core.contribution">
       <ParticipantFactory
-            id="org.eclipse.papyrus.team.collaborative.connector.svn"
-            impl="org.eclipse.papyrus.team.collaborative.connector.svn.SVNCollabFactory"
+            id="org.eclipse.papyrus.team.collaborative.svn"
+            impl="org.eclipse.papyrus.team.collaborative.svn.SVNCollabFactory"
             priority="10">
       </ParticipantFactory>
    </extension>

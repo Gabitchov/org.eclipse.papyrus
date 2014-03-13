@@ -8,11 +8,11 @@
  * Contributors:
  *     Arthur Daussy <a href="mailto:arthur.daussy@atos.net"> - initial API and implementation
  ******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn.tracing;
+package org.eclipse.papyrus.team.collaborative.svn.tracing;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.papyrus.team.collaborative.connector.svn.Activator;
+import org.eclipse.papyrus.team.collaborative.svn.Activator;
 
 /**
  * Utils class used to trace element

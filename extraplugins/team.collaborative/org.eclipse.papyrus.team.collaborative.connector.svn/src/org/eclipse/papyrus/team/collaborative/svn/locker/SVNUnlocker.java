@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn.locker;
+package org.eclipse.papyrus.team.collaborative.svn.locker;
 
 import java.util.Set;
 
@@ -16,11 +16,11 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.connector.svn.tracing.ITracingConstant;
-import org.eclipse.papyrus.team.collaborative.connector.svn.tracing.Tracer;
-import org.eclipse.papyrus.team.collaborative.participants.locker.IUnlocker;
-import org.eclipse.papyrus.team.collaborative.reports.CollabStatus;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.participants.locker.IUnlocker;
+import org.eclipse.papyrus.team.collaborative.core.reports.CollabStatus;
+import org.eclipse.papyrus.team.collaborative.svn.tracing.ITracingConstant;
+import org.eclipse.papyrus.team.collaborative.svn.tracing.Tracer;
 import org.eclipse.team.svn.core.operation.CompositeOperation;
 import org.eclipse.team.svn.core.operation.IActionOperation;
 import org.eclipse.team.svn.core.operation.local.RefreshResourcesOperation;
@@ -53,7 +53,7 @@ public class SVNUnlocker extends AbstractSVNCollab implements IUnlocker {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.participants.locker.IUnlocker#unlock()
+	 * @see org.eclipse.papyrus.team.collaborative.core.participants.locker.IUnlocker#unlock()
 	 */
 	public IStatus unlock() {
 		IResource[] resourcesToProcess = getTargetFiles(getTargetResources());
@@ -85,7 +85,7 @@ public class SVNUnlocker extends AbstractSVNCollab implements IUnlocker {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.participants.AbstractExtendedURIBuilder#doBuild()
+	 * @see org.eclipse.papyrus.team.collaborative.core.participants.AbstractExtendedURIBuilder#doBuild()
 	 */
 	@Override
 	protected Set<IExtendedURI> doBuild() {

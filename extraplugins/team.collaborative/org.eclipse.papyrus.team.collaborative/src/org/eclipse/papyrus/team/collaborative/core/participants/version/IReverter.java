@@ -8,10 +8,10 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.participants.version;
+package org.eclipse.papyrus.team.collaborative.core.participants.version;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.papyrus.team.collaborative.participants.IExtendedURISuperSet;
+import org.eclipse.papyrus.team.collaborative.core.participants.IExtendedURISuperSet;
 
 
 /**

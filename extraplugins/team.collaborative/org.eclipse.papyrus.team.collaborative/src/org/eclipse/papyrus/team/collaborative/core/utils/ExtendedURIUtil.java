@@ -1,11 +1,11 @@
-package org.eclipse.papyrus.team.collaborative.utils;
+package org.eclipse.papyrus.team.collaborative.core.utils;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
 
 
 public class ExtendedURIUtil {

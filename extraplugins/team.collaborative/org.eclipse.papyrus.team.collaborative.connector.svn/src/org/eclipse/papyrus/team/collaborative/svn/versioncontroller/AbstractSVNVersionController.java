@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn.versioncontroller;
+package org.eclipse.papyrus.team.collaborative.svn.versioncontroller;
 
 import java.util.Set;
 
@@ -18,11 +18,11 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.connector.svn.AbstractExtendedURIBuilderForFile;
-import org.eclipse.papyrus.team.collaborative.connector.svn.utils.SVNUtils;
-import org.eclipse.papyrus.team.collaborative.participants.version.IWorkOnModifiedElementParticipant;
-import org.eclipse.papyrus.team.collaborative.reports.CollabStatus;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.participants.version.IWorkOnModifiedElementParticipant;
+import org.eclipse.papyrus.team.collaborative.core.reports.CollabStatus;
+import org.eclipse.papyrus.team.collaborative.svn.AbstractExtendedURIBuilderForFile;
+import org.eclipse.papyrus.team.collaborative.svn.utils.SVNUtils;
 import org.eclipse.team.svn.core.connector.SVNChangeStatus;
 import org.eclipse.team.svn.core.connector.SVNEntryStatus;
 

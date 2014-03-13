@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn.utils;
+package org.eclipse.papyrus.team.collaborative.svn.utils;
 
 import java.io.File;
 import java.io.FileInputStream;

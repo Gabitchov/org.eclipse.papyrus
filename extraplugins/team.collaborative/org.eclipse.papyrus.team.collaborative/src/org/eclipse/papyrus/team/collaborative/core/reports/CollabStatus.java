@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.reports;
+package org.eclipse.papyrus.team.collaborative.core.reports;
 
 import org.eclipse.core.runtime.Status;
 
@@ -73,7 +73,7 @@ public class CollabStatus extends Status {
 	 * @return the collab status
 	 */
 	public static CollabStatus createErrorStatus(String message) {
-		return new CollabStatus(ERROR, org.eclipse.papyrus.team.collaborative.Activator.PLUGIN_ID, message);
+		return new CollabStatus(ERROR, org.eclipse.papyrus.team.collaborative.core.Activator.PLUGIN_ID, message);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class CollabStatus extends Status {
 	 * @return the collab status
 	 */
 	public static CollabStatus createErrorStatus(String message, Throwable e) {
-		return new CollabStatus(ERROR, org.eclipse.papyrus.team.collaborative.Activator.PLUGIN_ID, message, e);
+		return new CollabStatus(ERROR, org.eclipse.papyrus.team.collaborative.core.Activator.PLUGIN_ID, message, e);
 	}
 
 

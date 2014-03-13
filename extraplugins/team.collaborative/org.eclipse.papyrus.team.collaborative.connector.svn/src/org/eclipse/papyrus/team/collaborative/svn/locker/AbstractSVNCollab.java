@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn.locker;
+package org.eclipse.papyrus.team.collaborative.svn.locker;
 
 import java.util.Set;
 
@@ -18,10 +18,10 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.connector.svn.AbstractExtendedURIBuilderForFile;
-import org.eclipse.papyrus.team.collaborative.participants.ICollabParticipant;
-import org.eclipse.papyrus.team.collaborative.reports.CollabStatus;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.participants.ICollabParticipant;
+import org.eclipse.papyrus.team.collaborative.core.reports.CollabStatus;
+import org.eclipse.papyrus.team.collaborative.svn.AbstractExtendedURIBuilderForFile;
 import org.eclipse.team.svn.core.resource.ILocalResource;
 import org.eclipse.team.svn.core.svnstorage.SVNRemoteStorage;
 

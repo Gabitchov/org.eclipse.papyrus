@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy <a href="mailto:arthur.daussy@atos.net"> - initial API and implementation
  ******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn.utils;
+package org.eclipse.papyrus.team.collaborative.svn.utils;
 
 import java.util.Arrays;
 import java.util.HashSet;

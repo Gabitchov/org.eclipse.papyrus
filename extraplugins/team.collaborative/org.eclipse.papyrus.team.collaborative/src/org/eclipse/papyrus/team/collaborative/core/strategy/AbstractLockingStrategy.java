@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.strategy;
+package org.eclipse.papyrus.team.collaborative.core.strategy;
 
 import java.util.Collection;
 
@@ -24,7 +24,7 @@ public abstract class AbstractLockingStrategy implements ILockingStrategy {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.strategy.ILockingStrategy#applyOn(java.util.Collection)
+	 * @see org.eclipse.papyrus.team.collaborative.core.strategy.ILockingStrategy#applyOn(java.util.Collection)
 	 */
 	@Override
 	public boolean applyOn(Collection<EObject> target) {

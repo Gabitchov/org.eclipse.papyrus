@@ -10,7 +10,7 @@
  *     Philippe Roland (Atos) philippe.roland@atos.net - minor change to the 
  *         default naming algorithm to ensure it suggests a valid name
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.handler;
+package org.eclipse.papyrus.team.collaborative.controlmode.handler;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,10 +27,10 @@ import org.eclipse.papyrus.infra.services.controlmode.ControlModeManager;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 import org.eclipse.papyrus.infra.services.controlmode.IControlModeManager;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.ui.CreateCollabModelFragmentDialog;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.ui.dialogs.PreviewDialog;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.ui.providers.ExtensivePartitionNameLabelProvider;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.utils.UIUtils;
+import org.eclipse.papyrus.team.collaborative.controlmode.ui.CreateCollabModelFragmentDialog;
+import org.eclipse.papyrus.team.collaborative.strategy.ui.dialogs.PreviewDialog;
+import org.eclipse.papyrus.team.collaborative.strategy.ui.providers.ExtensivePartitionNameLabelProvider;
+import org.eclipse.papyrus.team.collaborative.strategy.utils.UIUtils;
 import org.eclipse.papyrus.views.modelexplorer.handler.AbstractModelExplorerHandler;
 import org.eclipse.swt.widgets.Display;
 

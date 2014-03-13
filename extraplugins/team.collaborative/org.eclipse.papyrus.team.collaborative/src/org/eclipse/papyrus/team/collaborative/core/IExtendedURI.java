@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.team.collaborative;
+package org.eclipse.papyrus.team.collaborative.core;
 
 import org.eclipse.emf.common.util.URI;
 

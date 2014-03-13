@@ -9,7 +9,7 @@
  *    Thales Global Services S.A.S. - initial API and implementation
  * 
  */
-package org.eclipse.papyrus.team.collaborative.utils;
+package org.eclipse.papyrus.team.collaborative.core.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

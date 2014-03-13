@@ -8,12 +8,12 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.reports;
+package org.eclipse.papyrus.team.collaborative.core.reports;
 
 import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.papyrus.team.collaborative.Activator;
+import org.eclipse.papyrus.team.collaborative.core.Activator;
 
 
 /**

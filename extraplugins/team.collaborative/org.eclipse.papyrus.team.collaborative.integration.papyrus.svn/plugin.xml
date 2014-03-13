@@ -4,19 +4,19 @@
    <extension
          point="org.eclipse.papyrus.infra.services.controlmode.participant">
       <participant
-            class="org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.control.SVNControlModeParticipant">
+            class="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.svn.control.SVNControlModeParticipant">
       </participant>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.handler.SVNCollabControlCommandHandler"
-            id="org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.createcollaborative fragment"
+            defaultHandler="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.svn.handler.SVNCollabControlCommandHandler"
+            id="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.svn.createcollaborative fragment"
             name="Create collaborative fragment">
       </command>
       <command
-            defaultHandler="org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.handler.ShowModelPartitionHandler"
-            id="org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.showModelPartition"
+            defaultHandler="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.svn.handler.ShowModelPartitionHandler"
+            id="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.svn.showModelPartition"
             name="Show model partition">
       </command>
    </extension>
@@ -24,9 +24,9 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.team.collaborative.ui.collab.menu">
+            locationURI="popup:org.eclipse.papyrus.team.collaborative.core.ui.collab.menu">
          <command
-               commandId="org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.createcollaborative fragment"
+               commandId="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.svn.createcollaborative fragment"
                icon="icons/CreateCollabPartition_16x16.png"
                label="Create partition"
                style="push">
@@ -43,7 +43,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.showModelPartition"
+               commandId="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.svn.showModelPartition"
                icon="icons/ShowPartition_16x16.png"
                label="Show partition"
                style="push">

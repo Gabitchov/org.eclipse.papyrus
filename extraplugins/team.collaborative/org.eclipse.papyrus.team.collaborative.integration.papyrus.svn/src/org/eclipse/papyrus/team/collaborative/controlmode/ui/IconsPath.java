@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.ui;
+package org.eclipse.papyrus.team.collaborative.controlmode.ui;
 
 
 /**
@@ -17,6 +17,6 @@ package org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.ui;
 public interface IconsPath {
 
 	/** The Constant PARTIAL_LOCKED_OVERLAY. */
-	public static final String PARTIAL_LOCKED_OVERLAY = "/org.eclipse.papyrus.team.collaborative.integration.papyrus.svn/icons/PartialLock_16x16.png";
+	public static final String PARTIAL_LOCKED_OVERLAY = "/org.eclipse.papyrus.team.collaborative.core.integration.papyrus.svn/icons/PartialLock_16x16.png";
 
 }

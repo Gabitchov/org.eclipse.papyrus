@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn.versioncontroller;
+package org.eclipse.papyrus.team.collaborative.svn.versioncontroller;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,13 +20,13 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.connector.svn.CollabResourceSelector;
-import org.eclipse.papyrus.team.collaborative.connector.svn.tracing.ITracingConstant;
-import org.eclipse.papyrus.team.collaborative.connector.svn.tracing.Tracer;
-import org.eclipse.papyrus.team.collaborative.connector.svn.utils.CommitActionUtilityWithProperties;
-import org.eclipse.papyrus.team.collaborative.participants.version.ICommitter;
-import org.eclipse.papyrus.team.collaborative.utils.ResourceUtils;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.participants.version.ICommitter;
+import org.eclipse.papyrus.team.collaborative.core.utils.ResourceUtils;
+import org.eclipse.papyrus.team.collaborative.svn.CollabResourceSelector;
+import org.eclipse.papyrus.team.collaborative.svn.tracing.ITracingConstant;
+import org.eclipse.papyrus.team.collaborative.svn.tracing.Tracer;
+import org.eclipse.papyrus.team.collaborative.svn.utils.CommitActionUtilityWithProperties;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.team.svn.core.operation.CompositeOperation;
 import org.eclipse.team.svn.core.operation.IActionOperation;
@@ -60,7 +60,7 @@ public class SVNCommitter extends SVNWorkOnModifiedFile implements ICommitter {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.participants.version.ICommitter#commit(java.lang.String, boolean)
+	 * @see org.eclipse.papyrus.team.collaborative.core.participants.version.ICommitter#commit(java.lang.String, boolean)
 	 */
 	public IStatus commit(String message, boolean keepLock) {
 		IStatus status = doCommit(message, keepLock, getTargetResources());

@@ -8,16 +8,16 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.control;
+package org.eclipse.papyrus.team.collaborative.controlmode.control;
 
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 import org.eclipse.papyrus.infra.services.controlmode.participants.IControlCommandParticipant;
 import org.eclipse.papyrus.infra.services.controlmode.participants.IUncontrolCommandParticipant;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.commands.AddFileToCollabSVN;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.commands.SaveCommand;
-import org.eclipse.papyrus.team.collaborative.utils.CollabUtils;
+import org.eclipse.papyrus.team.collaborative.controlmode.commands.AddFileToCollabSVN;
+import org.eclipse.papyrus.team.collaborative.controlmode.commands.SaveCommand;
+import org.eclipse.papyrus.team.collaborative.core.utils.CollabUtils;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISaveablePart;
 import org.eclipse.ui.PlatformUI;
@@ -42,7 +42,7 @@ public class SVNControlModeParticipant implements IControlCommandParticipant, IU
 	 * @see org.eclipse.papyrus.controlmode.interfaces.IControlModeParticipant#getID()
 	 */
 	public String getID() {
-		return "org.eclipse.papyrus.team.collaborative.integration.papyrus.control.SVNControlModeParticipant";
+		return "org.eclipse.papyrus.team.collaborative.core.integration.papyrus.control.SVNControlModeParticipant";
 	}
 
 	/*

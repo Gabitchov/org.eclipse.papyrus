@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.utils;
+package org.eclipse.papyrus.team.collaborative.core.utils;
 
 
 
@@ -23,7 +23,7 @@ public abstract class AbstractRunnableWithProgressWithResult<T> implements IRunn
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.utils.IRunnableWithProgressWithResult#getResult()
+	 * @see org.eclipse.papyrus.team.collaborative.core.utils.IRunnableWithProgressWithResult#getResult()
 	 */
 	@Override
 	public T getResult() {

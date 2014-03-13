@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative;
+package org.eclipse.papyrus.team.collaborative.core;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -20,7 +20,7 @@ public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
 	/** The Constant PLUGIN_ID. */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.team.collaborative"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.team.collaborative.core"; //$NON-NLS-1$
 
 	// The shared instance
 	/** The plugin. */

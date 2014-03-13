@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.participants;
+package org.eclipse.papyrus.team.collaborative.core.participants;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,9 +16,9 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.team.collaborative.ExtendedURI;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.utils.URIUtils;
+import org.eclipse.papyrus.team.collaborative.core.ExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.utils.URIUtils;
 
 import com.google.common.base.Function;
 
@@ -85,7 +85,7 @@ public abstract class AbstractExtendedURIBuilder implements IExtendedURISuperSet
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.participants.IExtendedURISuperSet#getResourceSet()
+	 * @see org.eclipse.papyrus.team.collaborative.core.participants.IExtendedURISuperSet#getResourceSet()
 	 */
 	public ResourceSet getResourceSet() {
 		return resourceSet;
@@ -95,7 +95,7 @@ public abstract class AbstractExtendedURIBuilder implements IExtendedURISuperSet
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.participants.IExtendedURISuperSet#getExtendedSet()
+	 * @see org.eclipse.papyrus.team.collaborative.core.participants.IExtendedURISuperSet#getExtendedSet()
 	 */
 	public Set<IExtendedURI> getExtendedSet() {
 		if(uriToHandle == null) {

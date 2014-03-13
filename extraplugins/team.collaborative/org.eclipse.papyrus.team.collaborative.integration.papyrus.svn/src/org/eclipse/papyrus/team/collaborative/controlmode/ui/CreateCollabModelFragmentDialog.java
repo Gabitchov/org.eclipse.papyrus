@@ -7,7 +7,7 @@
  * Contributors: Jacques Lescot (Anyware Technologies) - initial API and
  * implementation
  ******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.ui;
+package org.eclipse.papyrus.team.collaborative.controlmode.ui;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,10 +26,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.Activator;
-import org.eclipse.papyrus.team.collaborative.reports.LogHelper;
-import org.eclipse.papyrus.team.collaborative.utils.CollabFunctionsFactory;
-import org.eclipse.papyrus.team.collaborative.utils.URIUtils;
+import org.eclipse.papyrus.team.collaborative.controlmode.Activator;
+import org.eclipse.papyrus.team.collaborative.core.reports.LogHelper;
+import org.eclipse.papyrus.team.collaborative.core.utils.CollabFunctionsFactory;
+import org.eclipse.papyrus.team.collaborative.core.utils.URIUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;

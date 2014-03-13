@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.queries;
+package org.eclipse.papyrus.team.collaborative.controlmode.queries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
-import org.eclipse.papyrus.team.collaborative.ICollaborativeManager;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.integration.papyrus.utils.PapyrusResourceUtils;
-import org.eclipse.papyrus.team.collaborative.participants.locker.ILocker;
-import org.eclipse.papyrus.team.collaborative.utils.CollabFunctionsFactory;
+import org.eclipse.papyrus.team.collaborative.core.ICollaborativeManager;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.participants.locker.ILocker;
+import org.eclipse.papyrus.team.collaborative.core.utils.CollabFunctionsFactory;
+import org.eclipse.papyrus.team.collaborative.strategy.utils.PapyrusResourceUtils;
 
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Sets;

@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn.versioncontroller;
+package org.eclipse.papyrus.team.collaborative.svn.versioncontroller;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,10 +23,10 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.connector.svn.tracing.ITracingConstant;
-import org.eclipse.papyrus.team.collaborative.connector.svn.tracing.Tracer;
-import org.eclipse.papyrus.team.collaborative.participants.version.IUpdater;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.participants.version.IUpdater;
+import org.eclipse.papyrus.team.collaborative.svn.tracing.ITracingConstant;
+import org.eclipse.papyrus.team.collaborative.svn.tracing.Tracer;
 import org.eclipse.team.svn.core.connector.SVNEntryInfo;
 import org.eclipse.team.svn.core.connector.SVNLogEntry;
 import org.eclipse.team.svn.core.connector.SVNRevision;

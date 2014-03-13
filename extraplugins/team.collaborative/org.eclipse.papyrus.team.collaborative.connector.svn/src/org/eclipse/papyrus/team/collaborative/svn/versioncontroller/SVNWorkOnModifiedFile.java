@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn.versioncontroller;
+package org.eclipse.papyrus.team.collaborative.svn.versioncontroller;
 
 
 
@@ -24,9 +24,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.connector.svn.CollabResourceSelector;
-import org.eclipse.papyrus.team.collaborative.participants.IExtendedURISuperSet;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.participants.IExtendedURISuperSet;
+import org.eclipse.papyrus.team.collaborative.svn.CollabResourceSelector;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.team.svn.ui.utility.CommitActionUtility;
 

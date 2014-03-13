@@ -8,16 +8,16 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn.utils;
+package org.eclipse.papyrus.team.collaborative.svn.utils;
 
 import java.util.Collection;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.papyrus.team.collaborative.connector.svn.tracing.ITracingConstant;
-import org.eclipse.papyrus.team.collaborative.connector.svn.tracing.Tracer;
-import org.eclipse.papyrus.team.collaborative.connector.svn.versioncontroller.SVNCommitter;
+import org.eclipse.papyrus.team.collaborative.svn.tracing.ITracingConstant;
+import org.eclipse.papyrus.team.collaborative.svn.tracing.Tracer;
+import org.eclipse.papyrus.team.collaborative.svn.versioncontroller.SVNCommitter;
 import org.eclipse.team.svn.core.connector.SVNChangeStatus;
 import org.eclipse.team.svn.core.extension.CoreExtensionsManager;
 import org.eclipse.team.svn.core.extension.factory.ISVNConnectorFactory;

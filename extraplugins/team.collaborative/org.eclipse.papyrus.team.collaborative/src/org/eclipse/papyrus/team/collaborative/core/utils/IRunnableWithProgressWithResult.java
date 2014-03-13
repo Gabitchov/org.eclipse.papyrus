@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.utils;
+package org.eclipse.papyrus.team.collaborative.core.utils;
 
 import org.eclipse.jface.operation.IRunnableWithProgress;
 

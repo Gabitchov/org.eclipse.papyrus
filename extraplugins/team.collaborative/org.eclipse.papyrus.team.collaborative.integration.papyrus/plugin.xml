@@ -8,14 +8,14 @@
             locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
          <menu
                icon="icons/TeamIcon.png"
-               id="org.eclipse.papyrus.team.collaborative.ui.collab.menu"
+               id="org.eclipse.papyrus.team.collaborative.core.ui.collab.menu"
                label="Collaborative">
             <visibleWhen
                   checkEnabled="false">
                <with
                      variable="selection">
                   <test
-                        property="org.eclipse.papyrus.team.collaborative.integration.papyrus.isCollab"
+                        property="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.isCollab"
                         value="true">
                   </test>
                </with>
@@ -24,41 +24,41 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.team.collaborative.ui.collab.menu">
+            locationURI="popup:org.eclipse.papyrus.team.collaborative.core.ui.collab.menu">
          <menu
                icon="icons/lock.gif"
-               id="org.eclipse.papyrus.team.collaborative.integration.papyrus.menu"
+               id="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.menu"
                label="Lock">
             <dynamic
-                  class="org.eclipse.papyrus.team.collaborative.integration.papyrus.ui.items.LockStrategyItemProvider"
-                  id="org.eclipse.papyrus.team.collaborative.integration.papyrus.lockItems">
+                  class="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.ui.items.LockStrategyItemProvider"
+                  id="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.lockItems">
             </dynamic>
          </menu>
          <menu
                icon="icons/unlock.gif"
-               id="org.eclipse.papyrus.team.collaborative.integration.papyrus.unlock"
+               id="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.unlock"
                label="Unlock">
             <dynamic
-                  class="org.eclipse.papyrus.team.collaborative.integration.papyrus.ui.items.UnlockStrategyItemProvider"
-                  id="org.eclipse.papyrus.team.collaborative.integration.papyrus.UnlockItem">
+                  class="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.ui.items.UnlockStrategyItemProvider"
+                  id="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.UnlockItem">
             </dynamic>
          </menu>
          <command
-               commandId="org.eclipse.papyrus.team.collaborative.integration.papyrus.update"
+               commandId="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.update"
                icon="icons/update.gif"
                label="Update"
                style="push"
                tooltip="Update the all model from the repository">
          </command>
          <command
-               commandId="org.eclipse.papyrus.team.collaborative.integration.papyrus.commit"
+               commandId="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.commit"
                icon="icons/commit.gif"
                label="Commit"
                style="push"
                tooltip="Commit all modification to the repository">
          </command>
          <command
-               commandId="org.eclipse.papyrus.team.collaborative.integration.papyrus.revert"
+               commandId="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.revert"
                icon="icons/revert.gif"
                label="Revert"
                style="push"
@@ -67,42 +67,42 @@
       </menuContribution>
    </extension>
    <extension
-         point="org.eclipse.papyrus.team.collaborative.contribution">
+         point="org.eclipse.papyrus.team.collaborative.core.contribution">
       <LockingStrategy
-            id="org.eclipse.papyrus.team.collaborative.integration.papyrus.elementsandcontents"
-            impl="org.eclipse.papyrus.team.collaborative.integration.papyrus.stategies.PapyrusSelectionAllContent"
+            id="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.elementsandcontents"
+            impl="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.stategies.PapyrusSelectionAllContent"
             name="Selected element and content">
       </LockingStrategy>
        <LockingStrategy
-             id="org.eclipse.papyrus.team.collaborative.integration.papyrus.papyrusResourceContent"
-             impl="org.eclipse.papyrus.team.collaborative.integration.papyrus.stategies.PapyrusCurrentResource"
+             id="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.papyrusResourceContent"
+             impl="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.stategies.PapyrusCurrentResource"
              name="Selected element">
       </LockingStrategy>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.eclipse.papyrus.team.collaborative.integration.papyrus.ui.actions.UpdateHandler"
-            id="org.eclipse.papyrus.team.collaborative.integration.papyrus.update"
+            defaultHandler="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.ui.actions.UpdateHandler"
+            id="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.update"
             name="Update">
       </command>
       <command
-            defaultHandler="org.eclipse.papyrus.team.collaborative.integration.papyrus.ui.actions.CommitHandler"
-            id="org.eclipse.papyrus.team.collaborative.integration.papyrus.commit"
+            defaultHandler="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.ui.actions.CommitHandler"
+            id="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.commit"
             name="Commit">
       </command>
       <command
-            defaultHandler="org.eclipse.papyrus.team.collaborative.integration.papyrus.ui.actions.RevertHandler"
-            id="org.eclipse.papyrus.team.collaborative.integration.papyrus.revert"
+            defaultHandler="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.ui.actions.RevertHandler"
+            id="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.revert"
             name="Revert">
       </command>
    </extension>
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
-            class="org.eclipse.papyrus.team.collaborative.integration.papyrus.IsCollabPropertyTest"
-            id="org.eclipse.papyrus.team.collaborative.integration.papyrus.iCollabID"
-            namespace="org.eclipse.papyrus.team.collaborative.integration.papyrus"
+            class="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.IsCollabPropertyTest"
+            id="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.iCollabID"
+            namespace="org.eclipse.papyrus.team.collaborative.core.integration.papyrus"
             properties="isCollab"
             type="org.eclipse.jface.viewers.ISelection">
       </propertyTester>
@@ -110,15 +110,15 @@
    <extension
          point="org.eclipse.papyrus.infra.emf.readonly.readOnlyHandler">
       <readOnlyHandler
-            class="org.eclipse.papyrus.team.collaborative.integration.papyrus.security.CollabReadOnlyHandler"
-            id="org.eclipse.papyrus.team.collaborative.integration.papyrus.CollabReadOnlyHandler"
+            class="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.security.CollabReadOnlyHandler"
+            id="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.CollabReadOnlyHandler"
             priority="700">
       </readOnlyHandler>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.core.model">
       <modelSetSnippet
-            classname="org.eclipse.papyrus.team.collaborative.integration.papyrus.security.PreCommitReadOnlyHandler">
+            classname="org.eclipse.papyrus.team.collaborative.core.integration.papyrus.security.PreCommitReadOnlyHandler">
       </modelSetSnippet>
    </extension>
 

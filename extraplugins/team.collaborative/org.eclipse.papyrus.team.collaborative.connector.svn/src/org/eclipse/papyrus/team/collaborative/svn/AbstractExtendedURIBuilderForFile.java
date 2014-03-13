@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn;
+package org.eclipse.papyrus.team.collaborative.svn;
 
 import java.util.Collection;
 import java.util.Set;
@@ -17,8 +17,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.participants.AbstractExtendedURIBuilder;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.participants.AbstractExtendedURIBuilder;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;

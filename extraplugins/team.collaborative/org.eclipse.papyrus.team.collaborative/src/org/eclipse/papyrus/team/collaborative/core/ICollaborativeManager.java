@@ -8,20 +8,20 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative;
+package org.eclipse.papyrus.team.collaborative.core;
 
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.team.collaborative.impl.CollaborativeManager;
-import org.eclipse.papyrus.team.collaborative.participants.ICollabParticipant;
-import org.eclipse.papyrus.team.collaborative.participants.locker.ILocker;
-import org.eclipse.papyrus.team.collaborative.participants.locker.IUnlocker;
-import org.eclipse.papyrus.team.collaborative.participants.version.ICommitter;
-import org.eclipse.papyrus.team.collaborative.participants.version.IReverter;
-import org.eclipse.papyrus.team.collaborative.participants.version.IUpdater;
-import org.eclipse.papyrus.team.collaborative.strategy.ILockingStrategy;
+import org.eclipse.papyrus.team.collaborative.core.impl.CollaborativeManager;
+import org.eclipse.papyrus.team.collaborative.core.participants.ICollabParticipant;
+import org.eclipse.papyrus.team.collaborative.core.participants.locker.ILocker;
+import org.eclipse.papyrus.team.collaborative.core.participants.locker.IUnlocker;
+import org.eclipse.papyrus.team.collaborative.core.participants.version.ICommitter;
+import org.eclipse.papyrus.team.collaborative.core.participants.version.IReverter;
+import org.eclipse.papyrus.team.collaborative.core.participants.version.IUpdater;
+import org.eclipse.papyrus.team.collaborative.core.strategy.ILockingStrategy;
 
 /**
  * The Interface ICollaborativeManager.

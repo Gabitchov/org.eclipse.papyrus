@@ -9,7 +9,7 @@
  *     Arthur Daussy - initial implementation
  *     Philippe Roland (Atos) philippe.roland@atos.net - added workaround for eclipse bug 385394
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn;
+package org.eclipse.papyrus.team.collaborative.svn;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,19 +18,19 @@ import java.util.WeakHashMap;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.team.collaborative.ICollabFactory;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.connector.svn.locker.SVNLocker;
-import org.eclipse.papyrus.team.collaborative.connector.svn.locker.SVNUnlocker;
-import org.eclipse.papyrus.team.collaborative.connector.svn.versioncontroller.SVNCommitter;
-import org.eclipse.papyrus.team.collaborative.connector.svn.versioncontroller.SVNReverter;
-import org.eclipse.papyrus.team.collaborative.connector.svn.versioncontroller.SVNUpdater;
-import org.eclipse.papyrus.team.collaborative.participants.locker.ILocker;
-import org.eclipse.papyrus.team.collaborative.participants.locker.IUnlocker;
-import org.eclipse.papyrus.team.collaborative.participants.version.ICommitter;
-import org.eclipse.papyrus.team.collaborative.participants.version.IReverter;
-import org.eclipse.papyrus.team.collaborative.participants.version.IUpdater;
-import org.eclipse.papyrus.team.collaborative.utils.CollabFunctionsFactory;
+import org.eclipse.papyrus.team.collaborative.core.ICollabFactory;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.participants.locker.ILocker;
+import org.eclipse.papyrus.team.collaborative.core.participants.locker.IUnlocker;
+import org.eclipse.papyrus.team.collaborative.core.participants.version.ICommitter;
+import org.eclipse.papyrus.team.collaborative.core.participants.version.IReverter;
+import org.eclipse.papyrus.team.collaborative.core.participants.version.IUpdater;
+import org.eclipse.papyrus.team.collaborative.core.utils.CollabFunctionsFactory;
+import org.eclipse.papyrus.team.collaborative.svn.locker.SVNLocker;
+import org.eclipse.papyrus.team.collaborative.svn.locker.SVNUnlocker;
+import org.eclipse.papyrus.team.collaborative.svn.versioncontroller.SVNCommitter;
+import org.eclipse.papyrus.team.collaborative.svn.versioncontroller.SVNReverter;
+import org.eclipse.papyrus.team.collaborative.svn.versioncontroller.SVNUpdater;
 import org.eclipse.team.svn.core.utility.FileUtility;
 
 import com.google.common.collect.Collections2;
@@ -44,7 +44,7 @@ import com.google.common.collect.Collections2;
 public class SVNCollabFactory implements ICollabFactory {
 
 	/** The Constant SVN_COLLAB_ID. */
-	public static final String SVN_COLLAB_ID = "org.eclipse.papyrus.team.collaborative.connector.svn";
+	public static final String SVN_COLLAB_ID = "org.eclipse.papyrus.team.collaborative.core.connector.svn";
 
 	/**
 	 * Resource set svn status cache
@@ -60,7 +60,7 @@ public class SVNCollabFactory implements ICollabFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollabFactory#provide(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollabFactory#provide(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public boolean provide(Set<IExtendedURI> uris, ResourceSet resourceSet) {
 		/**
@@ -100,7 +100,7 @@ public class SVNCollabFactory implements ICollabFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollabFactory#createLocker(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollabFactory#createLocker(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public ILocker createLocker(Set<IExtendedURI> uris, ResourceSet resourceSet) {
 		return new SVNLocker(uris, resourceSet);
@@ -109,7 +109,7 @@ public class SVNCollabFactory implements ICollabFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollabFactory#createUnlocker(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollabFactory#createUnlocker(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public IUnlocker createUnlocker(Set<IExtendedURI> uris, ResourceSet resourceSet) {
 		return new SVNUnlocker(uris, resourceSet);
@@ -118,7 +118,7 @@ public class SVNCollabFactory implements ICollabFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollabFactory#createReverter(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollabFactory#createReverter(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public IReverter createReverter(Set<IExtendedURI> uris, ResourceSet resourceSet) {
 		return new SVNReverter(uris, resourceSet);
@@ -127,7 +127,7 @@ public class SVNCollabFactory implements ICollabFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollabFactory#createCommitter(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollabFactory#createCommitter(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public ICommitter createCommitter(Set<IExtendedURI> uris, ResourceSet resourceSet) {
 		return new SVNCommitter(uris, resourceSet);
@@ -136,7 +136,7 @@ public class SVNCollabFactory implements ICollabFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.ICollabFactory#createUpdater(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * @see org.eclipse.papyrus.team.collaborative.core.ICollabFactory#createUpdater(java.util.Set, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public IUpdater createUpdater(Set<IExtendedURI> uris, ResourceSet resourceSet) {
 		return new SVNUpdater(uris, resourceSet);

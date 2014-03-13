@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.utils.funtions;
+package org.eclipse.papyrus.team.collaborative.core.utils.funtions;
 
 import java.io.File;
 

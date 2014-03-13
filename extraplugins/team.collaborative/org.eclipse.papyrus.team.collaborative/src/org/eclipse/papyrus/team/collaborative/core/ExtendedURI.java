@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative;
+package org.eclipse.papyrus.team.collaborative.core;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +56,7 @@ public class ExtendedURI implements IExtendedURI {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.papyrus.team.collaborative.IExtendedURI#isContainment()
+	 * @see org.eclipse.papyrus.team.collaborative.core.IExtendedURI#isContainment()
 	 */
 	@Override
 	public boolean isContainment() {
@@ -68,7 +68,7 @@ public class ExtendedURI implements IExtendedURI {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.papyrus.team.collaborative.IExtendedURI#setParameter(java.lang.String, java.lang.Object)
+	 * @see org.eclipse.papyrus.team.collaborative.core.IExtendedURI#setParameter(java.lang.String, java.lang.Object)
 	 */
 	@Override
 	public ExtendedURI setParameter(String id, Object value) {
@@ -93,7 +93,7 @@ public class ExtendedURI implements IExtendedURI {
 
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.papyrus.team.collaborative.IExtendedURI#getParameter(java.lang.String)
+	 * @see org.eclipse.papyrus.team.collaborative.core.IExtendedURI#getParameter(java.lang.String)
 	 */
 	@Override
 	public Object getParameter(String id) {
@@ -102,7 +102,7 @@ public class ExtendedURI implements IExtendedURI {
 
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.papyrus.team.collaborative.IExtendedURI#getUri()
+	 * @see org.eclipse.papyrus.team.collaborative.core.IExtendedURI#getUri()
 	 */
 	@Override
 	public URI getUri() {

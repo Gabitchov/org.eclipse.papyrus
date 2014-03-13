@@ -8,12 +8,12 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.participants.locker;
+package org.eclipse.papyrus.team.collaborative.core.participants.locker;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.papyrus.team.collaborative.ExtendedURI;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.participants.IExtendedURISuperSet;
+import org.eclipse.papyrus.team.collaborative.core.ExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.participants.IExtendedURISuperSet;
 
 
 /**

@@ -8,7 +8,7 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.connector.svn.locker;
+package org.eclipse.papyrus.team.collaborative.svn.locker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +17,12 @@ import java.util.Set;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
-import org.eclipse.papyrus.team.collaborative.connector.svn.tracing.ITracingConstant;
-import org.eclipse.papyrus.team.collaborative.connector.svn.tracing.Tracer;
-import org.eclipse.papyrus.team.collaborative.connector.svn.utils.SVNUtils;
-import org.eclipse.papyrus.team.collaborative.participants.locker.ILocker;
-import org.eclipse.papyrus.team.collaborative.reports.CollabStatus;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.participants.locker.ILocker;
+import org.eclipse.papyrus.team.collaborative.core.reports.CollabStatus;
+import org.eclipse.papyrus.team.collaborative.svn.tracing.ITracingConstant;
+import org.eclipse.papyrus.team.collaborative.svn.tracing.Tracer;
+import org.eclipse.papyrus.team.collaborative.svn.utils.SVNUtils;
 import org.eclipse.team.svn.core.operation.CompositeOperation;
 import org.eclipse.team.svn.core.operation.IActionOperation;
 import org.eclipse.team.svn.core.operation.local.LockOperation;
@@ -47,7 +47,7 @@ public class SVNLocker extends AbstractSVNCollab implements ILocker {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.team.collaborative.participants.locker.ILocker#lock()
+	 * @see org.eclipse.papyrus.team.collaborative.core.participants.locker.ILocker#lock()
 	 */
 	public IStatus lock() {
 		IResource[] resourcesToProcess = getTargetFiles(getTargetResources());

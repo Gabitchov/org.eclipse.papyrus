@@ -8,13 +8,13 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.strategy;
+package org.eclipse.papyrus.team.collaborative.core.strategy;
 
 import java.util.Collection;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.team.collaborative.IExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
 
 
 /**

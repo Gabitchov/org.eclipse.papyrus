@@ -8,13 +8,13 @@
  * Contributors:
  *     Arthur Daussy - initial implementation
  *******************************************************************************/
-package org.eclipse.papyrus.team.collaborative.utils;
+package org.eclipse.papyrus.team.collaborative.core.utils;
 
 import java.util.Collections;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.team.collaborative.ICollaborativeManager;
-import org.eclipse.papyrus.team.collaborative.utils.funtions.EObjectToExtendedURI;
+import org.eclipse.papyrus.team.collaborative.core.ICollaborativeManager;
+import org.eclipse.papyrus.team.collaborative.core.utils.funtions.EObjectToExtendedURI;
 
 
 /**
