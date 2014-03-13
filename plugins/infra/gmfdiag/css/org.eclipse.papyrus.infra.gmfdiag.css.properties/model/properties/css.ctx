@@ -61,6 +61,9 @@
     <elements name="DiagramStyle" supertypes="//@dataContexts.0/@elements.0">
       <properties name="css_stylesheets" label="Diagram style sheets" type="Reference" multiplicity="-1" description="The style sheets associated to this diagram"/>
     </elements>
+    <elements name="ModelStyle">
+      <properties name="modelStyleSheets" label="Model style sheets" type="Reference" multiplicity="-1" description="The style sheets associated to this model"/>
+    </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.css.properties/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
   <dataContexts name="modelstylesheets" label="StyleSheets">

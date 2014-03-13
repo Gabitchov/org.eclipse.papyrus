@@ -41,6 +41,10 @@ public interface CSSStyles {
 	 * The Diagram Stylesheets key
 	 */
 	public static final String CSS_DIAGRAM_STYLESHEETS_KEY = "css_stylesheets"; //$NON-NLS-1$
+	/**
+	 * The Model Stylesheets key
+	 */
+	public static final String CSS_MODEL_STYLESHEETS_KEY = "modelStyleSheets"; //$NON-NLS-1$
 
 	/**
 	 * The list of reserved CSS Keywords used in GMF NamedStyle
@@ -51,7 +55,8 @@ public interface CSSStyles {
 			CSS_GMF_ID_KEY,
 			CSS_GMF_CLASS_KEY,
 			CSS_GMF_STYLE_KEY,
-			CSS_DIAGRAM_STYLESHEETS_KEY
+			CSS_DIAGRAM_STYLESHEETS_KEY,
+			CSS_MODEL_STYLESHEETS_KEY
 	}));
 
 }

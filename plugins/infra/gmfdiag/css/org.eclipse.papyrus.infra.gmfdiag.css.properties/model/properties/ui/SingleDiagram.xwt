@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns="http://www.eclipse.org/xwt/presentation"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:x="http://www.eclipse.org/xwt"
 	xmlns:css="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.css.properties.widgets">
 	<Composite.layout>
 		<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
@@ -18,15 +18,22 @@
 		<Composite.layout>
 			<GridLayout></GridLayout>
 		</Composite.layout>
-		<css:ResetStyleWidget input="{Binding}" property="CSS:PapyrusCSSStyle:cssStyle"></css:ResetStyleWidget>
+		<css:ResetStyleWidget property="CSS:PapyrusCSSStyle:cssStyle"
+			input="{Binding}"></css:ResetStyleWidget>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="CSS:DiagramStyle:css_stylesheets"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="CSS:ModelStyle:modelStyleSheets"></ppe:MultiReference>
 	</Composite>
 	<Composite>
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:MultiReference input="{Binding}"
-			property="CSS:DiagramStyle:css_stylesheets"></ppe:MultiReference>
-		<ppe:MultiString property="CSS:PapyrusCSSStyle:cssClass"
-			input="{Binding}"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}" property="CSS:PapyrusCSSStyle:cssClass"></ppe:MultiString>
 	</Composite>
 </Composite>

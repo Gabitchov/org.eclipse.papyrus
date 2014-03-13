@@ -12,60 +12,127 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding;
 
 import java.util.Collection;
+import java.util.List;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomEObjectStyleObservableList;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.gmf.runtime.notation.EObjectListValueStyle;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Style;
+import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
-import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StyleSheetReferenceImpl;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
+import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 
-public class ModelStyleSheetObservableList extends CustomEObjectStyleObservableList {
+public class ModelStyleSheetObservableList extends EMFObservableList implements  IChangeListener {
 
-	public ModelStyleSheetObservableList(View view, EditingDomain domain,String styleName) {
-		super(view, domain, styleName);
+	private Resource notationResource;
+	private EObject source;
+	
+	public ModelStyleSheetObservableList(Resource notationResource, List<?> wrappedList,EditingDomain domain,EObject source,EStructuralFeature feature){
+		super(wrappedList, domain, source, feature);
+		this.notationResource = notationResource;
+		this.source = source;
+	}
+
+	@Override
+	public void handleChange(ChangeEvent event) {
+		// TODO Auto-generated method stub
+		super.handleChange(event);
+	}
+	
+	
+	@Override
+	public Command getAddAllCommand(Collection<?> values) {
+		CompoundCommand vcc = new CompoundCommand();
+		vcc.append(super.getAddAllCommand(values));
+		vcc.append(new ModelStyleSheetCommand(notationResource,source));
+		return vcc;
 	}
 	
 	@Override
-	public Command getAddCommand(int index, Object value) {
-		return new AddCSSStyleSheetCommand(domain, view, styleName, eClass, feature, value, index);
+	public Command getRemoveCommand(int index) {
+		// TODO Auto-generated method stub
+		return super.getRemoveCommand(index);
 	}
-
+	
 	@Override
-	public Command getAddCommand(Object value) {
-		return new AddCSSStyleSheetCommand(domain, view, styleName, eClass, feature, value);
+	public Command getRemoveCommand(Object value) {	
+		StyleSheetReference ref = null;
+		//Retrieve all instance of NameStyle
+		Collection<Object> objects = EcoreUtil.getObjectsByType(notationResource.getContents(), NotationPackage.eINSTANCE.getStyle());
+		//Compare Objects to the object to remove
+		for(Object object : objects){
+			if(object instanceof NamedStyle){
+				// If the StyleReference to delete is used on a diagram 
+				if(((Style)object)==value){
+					ref = (StyleSheetReference)value;
+				}
+			}
+		}
+		
+		
+		return super.getRemoveCommand(value);
 	}
-
-	@Override
-	public Command getAddAllCommand(Collection<?> values) {
-		return new AddAllModelStyleSheetCommand(domain, view, styleName, eClass, feature, values);
-	}
-
-	@Override
-	public Command getAddAllCommand(int index, Collection<?> values) {
-		return new AddAllCSSStyleSheetCommand(domain, view, styleName, eClass, feature, values, index);
-	}
-
-	@Override
-	public Command getRemoveCommand(Object value) {
-		return new RemoveCSSStyleSheetCommand(domain, view, styleName, eClass, feature, value);
-	}
-
+	
+	
 	@Override
 	public Command getRemoveAllCommand(Collection<?> values) {
-		return new RemoveAllCSSStyleSheetValueCommand(domain, view, styleName, eClass, feature, values);
-	}
+	
+				
+		
+		
+		//Compare it to the object to remove
 
-	@Override
-	public Command getSetCommand(int index, Object value) {
-		return new SetCSSStyleSheetCommand(domain, view, styleName, eClass, feature, index, value);
+//		
+//		NamedStyle
+//		
+//		notationResource.getContents();
+//		
+//		ModelStyleSheets vSource = null;
+//		if(vObject instanceof ModelStyleSheets){
+//			vSource = (ModelStyleSheets) vObject;
+//		} else {
+//			vSource = StylesheetsFactory.eINSTANCE.createModelStyleSheets();
+//		}
+//		
+//		for(Object styleObject : getStyles()) {
+//			if(styleObject instanceof NamedStyle) {
+//
+//				NamedStyle style = (NamedStyle)styleObject;
+//
+//				if(CSSStyles.CSS_DIAGRAM_STYLESHEETS_KEY.equals(style.getName())) {
+//					if(style instanceof EObjectListValueStyle) {
+//
+//						EObjectListValueStyle stylesheetsStyle = (EObjectListValueStyle)style;
+//
+//						for(Object eObjectValue : stylesheetsStyle.getEObjectListValue()) {
+//							if(eObjectValue instanceof StyleSheet) {
+//								result.add((StyleSheet)eObjectValue);
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+		return super.getRemoveAllCommand(values);
 	}
+	
+//	public void initialiseModelStyleSheets(){
+//		ModelStyleSheetCommand command = new ModelStyleSheetCommand(notationResource,source);
+//		 editingDomain.getCommandStack().execute(command);
+//	}
 
 }
