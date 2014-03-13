@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 
 <!--
- Copyright (c) 2013 CEA LIST.
+ Copyright (c) 2013, 2014 CEA LIST and others.
  
  All rights reserved. This program and the accompanying materials
  are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  
  Contributors:
    CEA LIST - Initial API and implementation
+   Christian W. Damus (CEA) - bug 386118
  
 -->
 
@@ -117,7 +118,7 @@
                      name="org.eclipse.emf.ecore.EObject">
                </objectClass>
                <objectClass
-                     name="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement">
+                     name="org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement">
                </objectClass>
             </or>
          </enablement>
@@ -310,7 +311,7 @@
          </adapter>
       </factory>
       <factory
-            adaptableType="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement"
+            adaptableType="org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement"
             class="org.eclipse.papyrus.cdo.internal.ui.adapters.CDOAdapterFactory">
          <adapter
                type="org.eclipse.emf.cdo.CDOObject">
