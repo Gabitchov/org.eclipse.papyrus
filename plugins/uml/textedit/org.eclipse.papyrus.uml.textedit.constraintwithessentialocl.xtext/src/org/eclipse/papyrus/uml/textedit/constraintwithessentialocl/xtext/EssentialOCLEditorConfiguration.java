@@ -44,9 +44,11 @@ import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.ICon
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.xtext.resource.XtextResource;
 
 import com.google.inject.Inject;
@@ -75,10 +77,7 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 	
 	@Override
 	public Object preEditAction(Object editedObject) {
-		if (editedObject instanceof OpaqueExpression) {
-			editedObject = ((OpaqueExpression) editedObject).getOwner(); 
-		}
-		else if (editedObject instanceof Constraint) {
+		if (editedObject instanceof Constraint) {
 			Constraint constraint = (Constraint) editedObject;
 			if (!(constraint.getSpecification() instanceof OpaqueExpression)) {
 				if (constraint.getSpecification().stringValue().length() > 0) {
@@ -132,19 +131,59 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 			return CommandResult.newOKCommandResult(constraint);
 		}
 	}
-		
+	
+	/**
+	 * the command to save the content of an opaque expression
+	 * 
+	 */
+	protected class UpdateOpaqueExpressionCommand extends AbstractTransactionalCommand {
+
+		protected final OpaqueExpression opaqueExpression;
+
+		protected final String newTextualRepresentation;
+
+		public UpdateOpaqueExpressionCommand(TransactionalEditingDomain editingDomain, OpaqueExpression expression, String newTextualRepresentation) {
+			super(editingDomain, "Opaque expression update", getWorkspaceFiles(expression)); //$NON-NLS-1$
+			this.opaqueExpression = expression;
+			this.newTextualRepresentation = newTextualRepresentation;
+		}
+
+		@Override
+		protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
+			int indexOfOCLBody = -1;
+			for(int i = 0; i < opaqueExpression.getLanguages().size() && indexOfOCLBody == -1; i++) {
+				if(opaqueExpression.getLanguages().get(i).equals(OCL)) {
+					indexOfOCLBody = i;
+				}
+			}
+			if(indexOfOCLBody == -1) {
+				opaqueExpression.getLanguages().add(OCL);
+				opaqueExpression.getBodies().add(newTextualRepresentation);
+			} else {
+				opaqueExpression.getBodies().set(indexOfOCLBody, newTextualRepresentation);
+			}
+			return CommandResult.newOKCommandResult(opaqueExpression);
+		}
+	}
+
 	@Override
 	public String getTextToEdit(Object editedObject) {
-		Constraint umlConstraint = (Constraint)objectToEdit;
 		String value = ""; //$NON-NLS-1$
-		if(umlConstraint.getSpecification() != null) {
-			if(umlConstraint.getSpecification() instanceof LiteralString) {
-				if(((LiteralString)umlConstraint.getSpecification()).getValue() != null) {
-					value += ((LiteralString)umlConstraint.getSpecification()).getValue();
+		ValueSpecification specification = null;
+		if (objectToEdit instanceof Constraint) {
+			specification = ((Constraint)objectToEdit).getSpecification();
+		}
+		else if (objectToEdit instanceof ValueSpecification) {
+			specification = (ValueSpecification) objectToEdit;
+		}
+		if (specification != null) {
+			if(specification instanceof LiteralString) {
+				if(((LiteralString)specification).getValue() != null) {
+					value += ((LiteralString)specification).getValue();
 				}
-			} else if(umlConstraint.getSpecification() instanceof org.eclipse.uml2.uml.OpaqueExpression) {
+			} else if(specification instanceof org.eclipse.uml2.uml.OpaqueExpression) {
 				int indexOfOCLBody = -1;
-				org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression)umlConstraint.getSpecification();
+				org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression)specification;
 				for(int i = 0; i < opaqueExpression.getLanguages().size() && indexOfOCLBody == -1; i++) {
 					if(opaqueExpression.getLanguages().get(i).equals(OCL)) {
 						value += opaqueExpression.getBodies().get(i);
@@ -163,6 +202,11 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 			public EObject getContextObject() {
 				if(objectToEdit instanceof Constraint) {
 					return ((Constraint)objectToEdit).getContext();
+				}
+				else if(objectToEdit instanceof OpaqueExpression) {
+					Element owner = ((OpaqueExpression) objectToEdit).getOwner();
+					if (owner instanceof Constraint);
+					return ((Constraint)owner).getContext();
 				}
 				return null;
 			}
@@ -203,10 +247,13 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 				TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(semanticObject);
 				if (semanticObject instanceof Constraint) {
 					result.add(new UpdateConstraintCommand(editingDomain, (Constraint) semanticObject, newString));
-					final AbstractValidateCommand validationCommand = new AsyncValidateSubtreeCommand(semanticObject, new UMLDiagnostician());
-					validationCommand.disableUIFeedback();
-					result.add(validationCommand);
 				}
+				else if (semanticObject instanceof OpaqueExpression) {
+					result.add(new UpdateOpaqueExpressionCommand(editingDomain, (OpaqueExpression) semanticObject, newString));
+				}
+				final AbstractValidateCommand validationCommand = new AsyncValidateSubtreeCommand(semanticObject, new UMLDiagnostician());
+				validationCommand.disableUIFeedback();
+				result.add(validationCommand);
 				return result;
 			}
 
