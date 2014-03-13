@@ -99,9 +99,7 @@ public class CustomizationsDelegatingList implements List<Customization> {
 				tmp.add((Customization)facetSet);
 			}
 			
-		}
-		
-		
+		}		
 		return   tmp.containsAll(c); 
 	}
 
@@ -134,8 +132,15 @@ public class CustomizationsDelegatingList implements List<Customization> {
 	}
 
 	public Customization get(final int index) {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
+		ArrayList<Customization> tmp= new ArrayList<Customization>();
+		for(Iterator<FacetSet> iterator = this.delegate.iterator(); iterator.hasNext();) {
+			FacetSet facetSet = (FacetSet)iterator.next();
+			if( facetSet instanceof Customization){
+				tmp.add((Customization)facetSet);
+			}
+			
+		}		
+		return   tmp.get(index); 
 	}
 
 	public Customization set(final int index, final Customization element) {

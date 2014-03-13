@@ -36,6 +36,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
@@ -207,9 +208,23 @@ public abstract class AbstractModelExplorerTest {
 		Assert.assertNotNull("Impossible to find IBD_B1", iBD_B1_Diagram);
 		bDD_Main_Diagram = getDiagram("BDD_Main");
 		Assert.assertNotNull("Impossible to find BDD_Main", bDD_Main_Diagram);
+		List<Customization> appliedCustomizations=org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations();
+		Customization SimpleUML=null;
+		Iterator<?>iter=appliedCustomizations.iterator();
+		while(iter.hasNext()) {
+			Customization custo = (Customization)iter.next();
+			if( custo.getName().equals("SimpleUML")){
+				SimpleUML=custo;
+			}
+		}
+		org.junit.Assert.assertNotNull("Custom SimpleUML not found", SimpleUML);
+		org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations().add(0, SimpleUML);
 
 
-		/** end of generated selectable objects */
+
+		org.junit.Assert.assertEquals("bad order of applied Custom", "SimpleUML", appliedCustomizations.get(0).getName());
+
+	/** end of generated selectable objects */
 	}
 
 	/**
@@ -347,12 +362,15 @@ public abstract class AbstractModelExplorerTest {
 		if(bookViewPart != null) {
 			modelExplorerView = (ModelExplorerView)bookViewPart.getActiveView();
 		}
+		modelExplorerView.getCommonViewer().expandAll();
 		// Set selection on new element in the model explorer
 		if((modelExplorerView != null) && (newDiagrams != null)) {
 			List<Diagram> semanticElementList = new ArrayList<Diagram>();
 			semanticElementList.addAll(newDiagrams);
 			// reveal 'container' of the diagram
-			reveal(semanticElementList, modelExplorerView.getCommonViewer());
+
+			modelExplorerView.revealSemanticElement(semanticElementList);
+			//reveal(semanticElementList, modelExplorerView.getCommonViewer());
 		} else {
 			throw new Exception("Impossible to find the model explorer required to select: " + newDiagrams);
 		}
@@ -476,6 +494,7 @@ public abstract class AbstractModelExplorerTest {
 	 *         exception thrown in case of issue
 	 */
 	protected EObjectTreeElement findSemanticModelElementItem(Diagram diagramToFind) throws Exception {
+
 		selectAndRevealDiagram(diagramToFind);
 		IStructuredSelection selection = (IStructuredSelection)modelExplorerPart.getSite().getSelectionProvider().getSelection();
 		Assert.assertEquals("one and only one diagram should be selected", 1, selection.size());
