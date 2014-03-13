@@ -198,6 +198,7 @@ public class UMLTableUtils {
 		}
 		return stereotypes;
 	}
+	
 	/**
 	 * 
 	 * @param editedElement
@@ -212,11 +213,14 @@ public class UMLTableUtils {
 	 */
 	public static final List<StereotypeApplicationStructure> findStereotypeApplicationDataStructure(final Element editedElement, final String id, final Map<?, ?> sharedMap) {
 		//TODO : enhance the data structure to look for an editedElement + a propQn as Key!
+		@SuppressWarnings("unchecked")
 		List<StereotypeApplicationStructure> list = (List<StereotypeApplicationStructure>)sharedMap.get(editedElement);
-		final String propertyQN = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
-		for(final StereotypeApplicationStructure current : list) {
-			if(current.getProperty().getQualifiedName().equals(propertyQN)) {
-				return Collections.singletonList(current);//TODO : doesn't manage when several stereotype with the same property are applied
+		if(list != null && !list.isEmpty()) {
+			final String propertyQN = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
+			for(final StereotypeApplicationStructure current : list) {
+				if(current.getProperty().getQualifiedName().equals(propertyQN)) {
+					return Collections.singletonList(current);//TODO : doesn't manage when several stereotype with the same property are applied
+				}
 			}
 		}
 		return null;
