@@ -73,9 +73,11 @@ import org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLParserProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
+import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Feature;
 
@@ -128,6 +130,14 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 	 */
 	public ConstraintBodyEditPart(View view) {
 		super(view);
+	}
+
+	@Override
+	public void performRequest(Request req) {
+	    if(req.getType() == RequestConstants.REQ_DIRECT_EDIT) {
+	       System.err.println("Request: got direct edit"); //$NON-NLS-1$
+	    }
+	    super.performRequest(req);
 	}
 
 	/**
@@ -354,7 +364,12 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 	 * @generated
 	 */
 	protected void performDirectEdit() {
-		getManager().show();
+		BusyIndicator.showWhile(Display.getDefault(), new Runnable() {
+			
+			public void run() {
+				getManager().show();
+			}
+		});
 	}
 
 	/**
@@ -473,9 +488,6 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 						if(request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character)request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if((request instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							DirectEditRequest editRequest = (DirectEditRequest)request;
-							performDirectEdit(editRequest.getLocation());
 						} else {
 							performDirectEdit();
 						}

@@ -18,6 +18,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.AssociationEndSourceEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.AssociationEndTargetEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomAssociationNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomConstraintBodyEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomConstraintBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomDependencyBranchEditPart;
@@ -31,6 +33,8 @@ import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomProfileEd
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationRoleSourceEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationRoleTargetEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBodyEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyBranchEditPart;
@@ -92,6 +96,10 @@ public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 				return new CustomConstraintEditPart(view);
 			case ConstraintEditPartCN.VISUAL_ID:
 				return new CustomConstraintEditPartCN(view);
+			case ConstraintBodyEditPart.VISUAL_ID:
+				return new CustomConstraintBodyEditPart(view);
+			case ConstraintBodyEditPartCN.VISUAL_ID:
+				return new CustomConstraintBodyEditPartCN(view);
 			}
 		}
 		return super.createEditPart(context, model);

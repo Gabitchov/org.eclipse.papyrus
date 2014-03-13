@@ -37,10 +37,6 @@
          </editor>
          <editor editor="org.eclipse.papyrus.uml.properties.widgets.NaturalLanguageEditor" language="Natural language">
          </editor>
-         <editor
-               editor="org.eclipse.papyrus.uml.properties.widgets.NaturalLanguageEditor"
-               language="OCL">
-         </editor>
       </extension>
       <extension point="org.eclipse.papyrus.views.properties.context">
          <context contextModel="Model/UMLNotation/UMLNotation.ctx">

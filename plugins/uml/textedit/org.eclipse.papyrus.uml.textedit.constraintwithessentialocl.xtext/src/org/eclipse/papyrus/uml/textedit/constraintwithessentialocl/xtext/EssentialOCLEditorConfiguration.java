@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
@@ -41,8 +42,10 @@ import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfigu
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProviderWithInit;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.LiteralString;
+import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.xtext.resource.XtextResource;
 
@@ -70,17 +73,35 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 		return SWT.MULTI | SWT.WRAP;
 	}
 	
+	@Override
+	public Object preEditAction(Object editedObject) {
+		if (editedObject instanceof OpaqueExpression) {
+			editedObject = ((OpaqueExpression) editedObject).getOwner(); 
+		}
+		else if (editedObject instanceof Constraint) {
+			Constraint constraint = (Constraint) editedObject;
+			if (!(constraint.getSpecification() instanceof OpaqueExpression)) {
+				if (constraint.getSpecification().stringValue().length() > 0) {
+					MessageDialog.openWarning(new Shell(),
+						Messages.EssentialOCLEditorConfiguration_ExistingSpecification,
+						Messages.EssentialOCLEditorConfiguration_AlreadyContainsNonEmpty);
+				}
+			}
+		}
+		return super.preEditAction(editedObject);
+	}
+
 	/**
 	 * the command to save the content of the OCL constraint into the body of the UML constraint element
 	 * 
 	 */
 	protected class UpdateConstraintCommand extends AbstractTransactionalCommand {
 
-		protected final org.eclipse.uml2.uml.Constraint constraint;
+		protected final Constraint constraint;
 
 		protected final String newTextualRepresentation;
 
-		public UpdateConstraintCommand(TransactionalEditingDomain editingDomain, org.eclipse.uml2.uml.Constraint constraint, String newTextualRepresentation) {
+		public UpdateConstraintCommand(TransactionalEditingDomain editingDomain, Constraint constraint, String newTextualRepresentation) {
 			super(editingDomain, "Constraint Update", getWorkspaceFiles(constraint)); //$NON-NLS-1$
 			this.constraint = constraint;
 			this.newTextualRepresentation = newTextualRepresentation;
@@ -104,8 +125,7 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 				opaqueExpression.getLanguages().add(OCL);
 				opaqueExpression.getBodies().add(newTextualRepresentation);
 			} else {
-				opaqueExpression.getBodies().remove(indexOfOCLBody);
-				opaqueExpression.getBodies().add(indexOfOCLBody, newTextualRepresentation);
+				opaqueExpression.getBodies().set(indexOfOCLBody, newTextualRepresentation);
 			}
 			constraint.setSpecification(opaqueExpression);
 			

@@ -1,5 +1,5 @@
 
-package org.eclipse.papyrus.uml.properties.xtext.sheet;
+package org.eclipse.papyrus.uml.properties.xtext;
 
 import java.util.Stack;
 

@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -24,15 +27,21 @@ import org.eclipse.gmf.runtime.common.core.util.Trace;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
+import org.eclipse.uml2.uml.Constraint;
 
 /**
- * @generated
+ * Custom variant. Automatically changes to context link tool.
  */
 @SuppressWarnings("restriction")
 public class CustomConstraintEditPart extends ConstraintEditPart {
 
+	protected boolean first = true;
+	
 	public CustomConstraintEditPart(View view) {
 		super(view);
 	}
@@ -42,6 +51,17 @@ public class CustomConstraintEditPart extends ConstraintEditPart {
 	 */
 	@Override
 	protected void performDirectEditRequest(Request request) {
+		if (resolveSemanticElement() instanceof Constraint) {
+			Constraint constraint = (Constraint) resolveSemanticElement();
+			if (first && constraint.getContext() == null)  {
+				first = false;
+				// instead of editing, open link element tool
+				List<IElementType> elementTypes = new ArrayList<IElementType>();
+				elementTypes.add(UMLElementTypes.ConstraintContext_8500);
+				getEditDomain().setActiveTool(new AspectUnspecifiedTypeConnectionTool(elementTypes));
+				return;
+			}
+		}
 		EditPart editPart = this;
 		if (request instanceof DirectEditRequest){
 			Point p = new Point(((DirectEditRequest)request).getLocation());

@@ -32,4 +32,11 @@
             realization="org.eclipse.papyrus.uml.properties.xtext.sheet.ModelListener">
       </listener>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.properties.languageEditor">
+      <editor
+            editor="org.eclipse.papyrus.uml.properties.xtext.XtextLanguageEditor"
+            language="OCL">
+      </editor>
+   </extension>
 </plugin>
