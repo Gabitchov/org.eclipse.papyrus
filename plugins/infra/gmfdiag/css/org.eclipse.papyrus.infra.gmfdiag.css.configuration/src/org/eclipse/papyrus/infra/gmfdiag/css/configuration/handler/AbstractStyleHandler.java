@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -267,7 +267,9 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 
 		for(EStructuralFeature feature : style.eClass().getEAllStructuralFeatures()) {
 			if(NotationPackage.eINSTANCE.getStyle().isSuperTypeOf(feature.getEContainingClass())) {
-				boolean check = style.eGet(feature) != feature.getDefaultValue();
+				Object currentValue = style.eGet(feature);
+				Object defaultValue = feature.getDefaultValue();
+				boolean check = currentValue == null ? currentValue != defaultValue : !currentValue.equals(defaultValue);
 				declarations.put(handleStyleFeature(style, feature), check);
 			}
 		}
