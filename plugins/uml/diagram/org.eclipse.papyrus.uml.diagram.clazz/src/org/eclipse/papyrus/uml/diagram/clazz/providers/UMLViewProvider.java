@@ -1888,7 +1888,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6032.setX(0);
 		location6032.setY(20);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "AssociationClassLink");
 		return edge;
 	}
 
@@ -1946,7 +1945,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6034.setX(0);
 		location6034.setY(-20);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "AssociationLink");
 		return edge;
 	}
 
@@ -1984,7 +1982,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6035.setX(0);
 		location6035.setY(20);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "AssociationBranchLink");
 		return edge;
 	}
 
@@ -2017,7 +2014,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6007.setX(0);
 		location6007.setY(40);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Generalization");
 		return edge;
 	}
 
@@ -2055,7 +2051,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6009.setX(0);
 		location6009.setY(60);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "InterfaceRealization");
 		return edge;
 	}
 
@@ -2093,7 +2088,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6011.setX(0);
 		location6011.setY(60);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Substitution");
 		return edge;
 	}
 
@@ -2131,7 +2125,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6013.setX(0);
 		location6013.setY(60);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Realization");
 		return edge;
 	}
 
@@ -2169,7 +2162,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6015.setX(0);
 		location6015.setY(60);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Abstraction");
 		return edge;
 	}
 
@@ -2207,7 +2199,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6017.setX(0);
 		location6017.setY(60);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Usage");
 		return edge;
 	}
 
@@ -2245,7 +2236,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6027.setX(0);
 		location6027.setY(60);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "DependencyLink");
 		return edge;
 	}
 
@@ -2310,7 +2300,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6021.setX(0);
 		location6021.setY(60);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "ElementImport");
 		return edge;
 	}
 
@@ -2343,7 +2332,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6022.setX(0);
 		location6022.setY(40);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "PackageImport");
 		return edge;
 	}
 
@@ -2376,7 +2364,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6030.setX(0);
 		location6030.setY(40);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "PackageMerge");
 		return edge;
 	}
 
@@ -2493,7 +2480,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6036.setX(0);
 		location6036.setY(20);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "TemplateBinding");
 		return edge;
 	}
 
@@ -2531,7 +2517,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6037.setX(0);
 		location6037.setY(40);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "GeneralizationSet");
 		return edge;
 	}
 
@@ -2569,7 +2554,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6038.setX(0);
 		location6038.setY(20);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "InstanceSpecificationLink");
 		return edge;
 	}
 
@@ -2713,7 +2697,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6041.setX(0);
 		location6041.setY(15);
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "InformationFlow");
 		return edge;
 	}
 

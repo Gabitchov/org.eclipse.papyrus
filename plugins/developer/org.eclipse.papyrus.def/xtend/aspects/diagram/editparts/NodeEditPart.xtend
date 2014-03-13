@@ -106,7 +106,7 @@ import xpt.diagram.editparts.Utils_qvto
 	override extendsList (GenNode it)''' extends «aspectsNodeEditPartImpl.extendsListContents(it)»'''
 	//END: PapyrusGenCode
 
-	override additions(GenNode it) '''
-	«aspectsNodeEditPartImpl.genPreferredValue(it)»
-	'''
+	//	override additions(GenNode it) '''
+	//	«aspectsNodeEditPartImpl.genPreferredValue(it)»
+	//	'''
 }

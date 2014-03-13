@@ -86,8 +86,8 @@
       </viewProvider>
    </extension>
 <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
-      <?gmfgen generated="true"?>
-      <editpartProvider class="org.eclipse.papyrus.uml.diagram.clazz.providers.UMLEditPartProvider">
+      <?gmfgen generated="false"?>
+      <editpartProvider class="org.eclipse.papyrus.uml.diagram.clazz.custom.providers.CustomUMLEditPartProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
             <method name="getType()" value="PapyrusUMLClassDiagram"/>
@@ -1628,59 +1628,6 @@
             name="Medium">
       </Priority>
    </ParserProvider>
-</extension>
-<extension
-      id="ep-provider"
-      point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
-   <editpartProvider
-         class="org.eclipse.papyrus.uml.diagram.clazz.custom.providers.CUMLEditPartProvider">
-      <Priority
-            name="High">
-      </Priority>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Diagram"
-            id="generated-diagram">
-         <method
-               name="getType()"
-               value="PapyrusUMLClassDiagram">
-         </method>
-      </object>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Node"
-            id="generated-nodes">
-         <method
-               name="getType()"
-               value="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2016,3002,3003,3004,3015,3031,3016,3005,3006,3007,3008,3020,3021,3022,3023,3024,3025,3017,3009,3010,3011,3012,3013,3014,3026,3027,3018,3019,3028,3029,3030">
-         </method>
-      </object>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Edge"
-            id="generated-links">
-         <method
-               name="getType()"
-               value="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020,4021">
-         </method>
-      </object>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Node"
-            id="generated-labels">
-         <method
-               name="getType()"
-               value="5066,5002,5005,5008,5011,5020,5023,5026,5029,5032,5035,5037,5038,0,5040,5043,5046,5049,5052,5055,5017,5014,5058,5061,5063,5064">
-         </method>
-      </object>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Node"
-            id="generated-compartments">
-         <method
-               name="getType()"
-               value="7034,7001,7002,7003,7004,7014,7005,7006,7007,7008,7009,7023,7024,7025,7026,7027,7028,7029,7030,7031,7010,7011,7012,7013,7032,7033,7015,7016,7017,7018,7019,7020,7021,7035">
-         </method>
-      </object>
-      <context
-            views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments">
-      </context>
-   </editpartProvider>
 </extension>
 <extension
 			id="PapyrusUMLClassDiagram.palettedefinition"

@@ -55,7 +55,7 @@ import xpt.providers.ElementTypes
 	@Inject  aspects.xpt.diagram.editpolicies.Utils_qvto aspectsUtils_qvto
 	@Inject VisualIDRegistry xptVisualIDRegistry;
 	@Inject ElementTypes xptElementTypes;
-		@Inject CreateLinkCommand xptCreateLinkCommand;
+	@Inject CreateLinkCommand xptCreateLinkCommand;
 
 	override createLinkCommands(GenLinkEnd it) '''
 		

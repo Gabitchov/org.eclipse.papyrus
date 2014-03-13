@@ -4,13 +4,10 @@ import aspects.xpt.editor.palette.Utils_qvto
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.gmf.codegen.gmfgen.AbstractToolEntry
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator
-import org.eclipse.gmf.codegen.gmfgen.GenLink
 import org.eclipse.gmf.codegen.gmfgen.GenPlugin
 import org.eclipse.gmf.codegen.gmfgen.ToolEntry
 import org.eclipse.gmf.codegen.gmfgen.ToolGroup
-import utils.PrefsConstant_qvto
 import xpt.Common
 import xpt.editor.extensions
 import xpt.plugin.pluginUtils
@@ -20,7 +17,6 @@ import xpt.plugin.pluginUtils
 	@Inject extension Common
 	@Inject extension pluginUtils
 	@Inject extension Utils_qvto
-	@Inject extension PrefsConstant_qvto
 
 	@Inject extensions xptEditorExtension
 	@Inject xpt.diagram.preferences.extensions xptPreferencesExtension

@@ -45,7 +45,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 /**
  * this is custom editpart factory to create our own editpart
  */
-public class CustomUMLeditPartFactory extends UMLEditPartFactory {
+public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {

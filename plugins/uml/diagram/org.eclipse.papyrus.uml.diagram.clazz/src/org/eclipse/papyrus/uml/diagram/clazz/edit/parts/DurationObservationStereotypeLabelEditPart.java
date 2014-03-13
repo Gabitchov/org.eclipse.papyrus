@@ -67,7 +67,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
@@ -87,7 +86,6 @@ import org.eclipse.uml2.uml.Feature;
 public class DurationObservationStereotypeLabelEditPart extends
 		AbstractLabelEditPart
 		implements ITextAwareEditPart, IBorderItemEditPart
-		, ILabelRoleProvider
 {
 
 	/**
@@ -812,17 +810,4 @@ public class DurationObservationStereotypeLabelEditPart extends
 		return new AppliedStereotypeWrappingLabelFigure();
 	}
 
-	/**
-	 * @generated
-	 */
-	public String getLabelRole() {
-		return "Stereotype";//$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	public String getIconPathRole() {
-		return "platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif";//$NON-NLS-1$
-	}
 }

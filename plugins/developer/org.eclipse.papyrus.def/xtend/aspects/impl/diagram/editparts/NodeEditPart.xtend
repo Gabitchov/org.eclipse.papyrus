@@ -213,54 +213,54 @@ def genSpecificLocator(SpecificLocator it, GenChildSideAffixedNode child)'''
 
 //BEGIN PapyrusGencode
 //Overwrite an existing method to set the preference value in the editpart
-def genPreferredValue (GenNode it)'''
-
-	«generatedMemberComment»
-	@Override
-	public Object getPreferredValue(org.eclipse.emf.ecore.EStructuralFeature feature) {
-		org.eclipse.jface.preference.IPreferenceStore preferenceStore = (org.eclipse.jface.preference.IPreferenceStore) getDiagramPreferencesHint()
-				.getPreferenceStore();
-		Object result = null;
-			
-		if(feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
-					.getFontStyle_FontColor() || feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
-					.getFillStyle_FillColor()){
-			String prefColor = null;
-			if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_LINE);
-			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
-					.getFontStyle_FontColor()) {
-				prefColor = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_FONT);
-			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
-					.getFillStyle_FillColor()) {
-				prefColor = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_FILL);
-			}
-			result = org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities
-						.RGBToInteger(org.eclipse.jface.preference.PreferenceConverter
-								.getColor(
-										(org.eclipse.jface.preference.IPreferenceStore) preferenceStore, prefColor));
-		} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
-					.getFillStyle_Transparency() || feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
-					.getFillStyle_Gradient()) {
-			String prefGradient = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_GRADIENT);
-			org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter(
-						preferenceStore.getString(prefGradient));
-			if(feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
-					.getFillStyle_Transparency()){
-				result = new Integer(gradientPreferenceConverter
-						.getTransparency());
-			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
-					.getFillStyle_Gradient()){
-				result = gradientPreferenceConverter.getGradientData();
-			}
-		}
-		
-		if(result == null){
-			result = getStructuralFeatureValue(feature);
-		}
-		return result;
-	}
-'''
+//def genPreferredValue (GenNode it)'''
+//
+//	«generatedMemberComment»
+//	@Override
+//	public Object getPreferredValue(org.eclipse.emf.ecore.EStructuralFeature feature) {
+//		org.eclipse.jface.preference.IPreferenceStore preferenceStore = (org.eclipse.jface.preference.IPreferenceStore) getDiagramPreferencesHint()
+//				.getPreferenceStore();
+//		Object result = null;
+//			
+//		if(feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+//					.getFontStyle_FontColor() || feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+//					.getFillStyle_FillColor()){
+//			String prefColor = null;
+//			if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+//				prefColor = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_LINE);
+//			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+//					.getFontStyle_FontColor()) {
+//				prefColor = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_FONT);
+//			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+//					.getFillStyle_FillColor()) {
+//				prefColor = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_FILL);
+//			}
+//			result = org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities
+//						.RGBToInteger(org.eclipse.jface.preference.PreferenceConverter
+//								.getColor(
+//										(org.eclipse.jface.preference.IPreferenceStore) preferenceStore, prefColor));
+//		} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+//					.getFillStyle_Transparency() || feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+//					.getFillStyle_Gradient()) {
+//			String prefGradient = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_GRADIENT);
+//			org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter(
+//						preferenceStore.getString(prefGradient));
+//			if(feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+//					.getFillStyle_Transparency()){
+//				result = new Integer(gradientPreferenceConverter
+//						.getTransparency());
+//			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
+//					.getFillStyle_Gradient()){
+//				result = gradientPreferenceConverter.getGradientData();
+//			}
+//		}
+//		
+//		if(result == null){
+//			result = getStructuralFeatureValue(feature);
+//		}
+//		return result;
+//	}
+//'''
 //END PapyrusGencode
 
 //BEGIN: PapyrusGenCode
