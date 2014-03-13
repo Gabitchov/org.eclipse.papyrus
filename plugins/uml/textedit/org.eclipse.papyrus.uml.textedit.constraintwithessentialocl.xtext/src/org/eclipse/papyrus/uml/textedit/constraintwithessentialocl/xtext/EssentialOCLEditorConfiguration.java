@@ -20,6 +20,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -35,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLRuntimeModule;
+import org.eclipse.papyrus.infra.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.infra.services.validation.commands.AbstractValidateCommand;
 import org.eclipse.papyrus.infra.services.validation.commands.AsyncValidateSubtreeCommand;
 import org.eclipse.papyrus.uml.service.validation.UMLDiagnostician;
@@ -159,8 +161,10 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 			if(indexOfOCLBody == -1) {
 				opaqueExpression.getLanguages().add(OCL);
 				opaqueExpression.getBodies().add(newTextualRepresentation);
-			} else {
+			} else if (indexOfOCLBody < opaqueExpression.getBodies().size()) {	// might not be true, if body list is not synchronized with language list
 				opaqueExpression.getBodies().set(indexOfOCLBody, newTextualRepresentation);
+			} else {
+				opaqueExpression.getBodies().add(newTextualRepresentation);
 			}
 			return CommandResult.newOKCommandResult(opaqueExpression);
 		}
@@ -186,7 +190,9 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 				org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression)specification;
 				for(int i = 0; i < opaqueExpression.getLanguages().size() && indexOfOCLBody == -1; i++) {
 					if(opaqueExpression.getLanguages().get(i).equals(OCL)) {
-						value += opaqueExpression.getBodies().get(i);
+						if (i < opaqueExpression.getBodies().size()) {
+							value += opaqueExpression.getBodies().get(i);
+						}
 						indexOfOCLBody = i;
 					}
 				}
@@ -205,8 +211,9 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 				}
 				else if(objectToEdit instanceof OpaqueExpression) {
 					Element owner = ((OpaqueExpression) objectToEdit).getOwner();
-					if (owner instanceof Constraint);
-					return ((Constraint)owner).getContext();
+					if (owner instanceof Constraint) {
+						return ((Constraint)owner).getContext();
+					}
 				}
 				return null;
 			}
@@ -245,15 +252,25 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 				// since the OCL expression is already stored in opaque form within the constraint.
 				CompositeCommand result = new CompositeCommand("validation"); //$NON-NLS-1$
 				TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(semanticObject);
+				boolean doValidation = editingDomain != null;
+				if (editingDomain == null) {
+					// can be null for opaque expression that have been created but have not been added to parent
+					// try to get resource set from nested dialog context
+					ResourceSet rs = NestedEditingDialogContext.getInstance().getResourceSet();
+					editingDomain = TransactionUtil.getEditingDomain(rs);
+					
+				}
 				if (semanticObject instanceof Constraint) {
 					result.add(new UpdateConstraintCommand(editingDomain, (Constraint) semanticObject, newString));
 				}
 				else if (semanticObject instanceof OpaqueExpression) {
 					result.add(new UpdateOpaqueExpressionCommand(editingDomain, (OpaqueExpression) semanticObject, newString));
 				}
-				final AbstractValidateCommand validationCommand = new AsyncValidateSubtreeCommand(semanticObject, new UMLDiagnostician());
-				validationCommand.disableUIFeedback();
-				result.add(validationCommand);
+				if (doValidation) {
+					final AbstractValidateCommand validationCommand = new AsyncValidateSubtreeCommand(semanticObject, new UMLDiagnostician());
+					validationCommand.disableUIFeedback();
+					result.add(validationCommand);
+				}
 				return result;
 			}
 

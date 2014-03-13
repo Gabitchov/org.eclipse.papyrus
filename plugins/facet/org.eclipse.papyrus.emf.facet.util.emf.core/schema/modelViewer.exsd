@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.util.emf.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.util.emf.core" id="modelViewer" name="Model Viewer"/>
+      </appinfo>
+      <documentation>
+         A model viewer for an EPackage, EObject and/or Resource can be declared with this extension point.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="ePackageViewer" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="eObjectViewer" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="resourceViewer" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="ePackageViewer">
+      <annotation>
+         <documentation>
+            Registers a model browser that is capable of opening itself on an EPackage.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A class that implements IEPackageBrowserOpener.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.util.emf.ui.IEPackageBrowserOpener"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="eObjectViewer">
+      <annotation>
+         <documentation>
+            Registers a model browser that is capable of opening itself on an EObject.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A class that implements IEObjectBrowserOpener.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.util.emf.ui.IEObjectBrowserOpener"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="resourceViewer">
+      <annotation>
+         <documentation>
+            Registers a model browser that is capable of opening itself on a Resource.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A class that implements IResourceBrowserOpener.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.util.emf.ui.IResourceBrowserOpener"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         0.1.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         For example, the MoDisco model browser is registered like this in &lt;strong&gt;org.eclipse.gmt.modisco.infra.browser&lt;/strong&gt;:
+&lt;pre&gt;
+  &lt;extension
+        point=&quot;org.eclipse.papyrus.emf.facet.util.emf.core.modelViewer&quot;&gt;
+     &lt;resourceViewer
+           class=&quot;org.eclipse.gmt.modisco.infra.browser.opener.BrowserOpener&quot;&gt;
+     &lt;/resourceViewer&gt;
+     &lt;eObjectViewer
+           class=&quot;org.eclipse.gmt.modisco.infra.browser.opener.BrowserOpener&quot;&gt;
+     &lt;/eObjectViewer&gt;
+     &lt;ePackageViewer
+           class=&quot;org.eclipse.gmt.modisco.infra.browser.opener.BrowserOpener&quot;&gt;
+     &lt;/ePackageViewer&gt;
+  &lt;/extension&gt;   
+&lt;/pre&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         You must implement a subset or all of these interfaces:&lt;ul&gt;
+&lt;li&gt;IEObjectBrowserOpener to open an EObject
+&lt;li&gt;IEPackageBrowserOpener to open an EPackage
+&lt;li&gt;IResourceBrowserOpener to open a Resource
+&lt;/ul&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         &lt;strong&gt;org.eclipse.gmt.modisco.infra.browser&lt;/strong&gt; implements this extension.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright (c) 2011 Mia-Software.
+ 
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+ Nicolas Guyomar (Mia-Software) - initial API and implementation
+ Fabien Giquel (Mia-Software)
+ Nicolas Bros (Mia-Software)
+      </documentation>
+   </annotation>
+
+</schema>

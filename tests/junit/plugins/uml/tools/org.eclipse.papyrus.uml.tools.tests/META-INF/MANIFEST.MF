@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0",
  org.junit;bundle-version="4.10.0",
  org.eclipse.papyrus.junit.utils;bundle-version="1.0.0",
- org.eclipse.emf.transaction;bundle-version="1.4.0"
+ org.eclipse.emf.transaction;bundle-version="1.4.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.uml.tools.tests,
  org.eclipse.papyrus.uml.tools.tests.tests
 Bundle-Vendor: Eclipse Modeling Project

@@ -19,13 +19,15 @@
       </package>
    </extension>
 
+   <!-- TODO: EMF-FACET update uicustom
    <extension
-         point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+         point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization
             file="custom/constraints.uiCustom"
             loadByDefault="true">
       </browserCustomization>
    </extension>
+   -->
    <extension
          point="org.eclipse.papyrus.infra.constraints.ConstraintEnvironment">
       <environment

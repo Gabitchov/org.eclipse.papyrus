@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.facet.infra.query.QueryPackage;
 import org.eclipse.papyrus.infra.queries.core.configuration.ConfigurationFactory;
 import org.eclipse.papyrus.infra.queries.core.configuration.ConfigurationPackage;
 import org.eclipse.papyrus.infra.queries.core.configuration.ConstantParameterValue;
@@ -120,7 +119,7 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		isInited = true;
 
 		// Initialize simple dependencies
-		QueryPackage.eINSTANCE.eClass();
+		//QueryPackage.eINSTANCE.eClass();
 		UMLPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -332,7 +331,7 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		QueryPackage theQueryPackage = (QueryPackage)EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI);
+		//QueryPackage theQueryPackage = (QueryPackage)EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI);
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
@@ -350,11 +349,11 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		initEAttribute(getQueryConfiguration_Name(), ecorePackage.getEString(), "name", null, 1, 1, QueryConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modiscoQueryConfigurationEClass, ModiscoQueryConfiguration.class, "ModiscoQueryConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModiscoQueryConfiguration_Query(), theQueryPackage.getModelQuery(), null, "query", null, 1, 1, ModiscoQueryConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		//initEReference(getModiscoQueryConfiguration_Query(), theQueryPackage.getModelQuery(), null, "query", null, 1, 1, ModiscoQueryConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModiscoQueryConfiguration_ParameterValues(), this.getParameterValue(), null, "parameterValues", null, 0, -1, ModiscoQueryConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(parameterValueEClass, ParameterValue.class, "ParameterValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getParameterValue_Parameter(), theQueryPackage.getModelQueryParameter(), null, "parameter", null, 1, 1, ParameterValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		//initEReference(getParameterValue_Parameter(), theQueryPackage.getModelQueryParameter(), null, "parameter", null, 1, 1, ParameterValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(queryExecutionValueEClass, QueryExecutionValue.class, "QueryExecutionValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getQueryExecutionValue_Configuration(), this.getQueryConfiguration(), null, "configuration", null, 1, 1, QueryExecutionValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

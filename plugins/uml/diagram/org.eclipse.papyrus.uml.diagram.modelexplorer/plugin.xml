@@ -23,7 +23,7 @@
          </triggerPoints>
          <possibleChildren>
             <or>
-               <instanceof value="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem">
+               <instanceof value="org.eclipse.papyrus.emf.facet.infra.browser.uicore.internal.model.ModelElementItem">
                </instanceof>
                <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
                </instanceof>

@@ -30,13 +30,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
 import org.eclipse.papyrus.sysml.modelexplorer.Activator;
@@ -207,9 +208,23 @@ public abstract class AbstractModelExplorerTest {
 		Assert.assertNotNull("Impossible to find IBD_B1", iBD_B1_Diagram);
 		bDD_Main_Diagram = getDiagram("BDD_Main");
 		Assert.assertNotNull("Impossible to find BDD_Main", bDD_Main_Diagram);
+		List<Customization> appliedCustomizations=org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations();
+		Customization SimpleUML=null;
+		Iterator<?>iter=appliedCustomizations.iterator();
+		while(iter.hasNext()) {
+			Customization custo = (Customization)iter.next();
+			if( custo.getName().equals("SimpleUML")){
+				SimpleUML=custo;
+			}
+		}
+		org.junit.Assert.assertNotNull("Custom SimpleUML not found", SimpleUML);
+		org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations().add(0, SimpleUML);
 
 
-		/** end of generated selectable objects */
+
+		org.junit.Assert.assertEquals("bad order of applied Custom", "SimpleUML", appliedCustomizations.get(0).getName());
+
+	/** end of generated selectable objects */
 	}
 
 	/**
@@ -347,12 +362,15 @@ public abstract class AbstractModelExplorerTest {
 		if(bookViewPart != null) {
 			modelExplorerView = (ModelExplorerView)bookViewPart.getActiveView();
 		}
+		modelExplorerView.getCommonViewer().expandAll();
 		// Set selection on new element in the model explorer
 		if((modelExplorerView != null) && (newDiagrams != null)) {
 			List<Diagram> semanticElementList = new ArrayList<Diagram>();
 			semanticElementList.addAll(newDiagrams);
 			// reveal 'container' of the diagram
-			reveal(semanticElementList, modelExplorerView.getCommonViewer());
+
+			modelExplorerView.revealSemanticElement(semanticElementList);
+			//reveal(semanticElementList, modelExplorerView.getCommonViewer());
 		} else {
 			throw new Exception("Impossible to find the model explorer required to select: " + newDiagrams);
 		}
@@ -455,15 +473,15 @@ public abstract class AbstractModelExplorerTest {
 	 * @throws Exception
 	 *         exception thrown in case of issue
 	 */
-	protected ModelElementItem findSemanticModelElementItem(EObject objectToFind) throws Exception {
+	protected EObjectTreeElement findSemanticModelElementItem(EObject objectToFind) throws Exception {
 		selectAndReveal(objectToFind);
 		IStructuredSelection selection = (IStructuredSelection)modelExplorerPart.getSite().getSelectionProvider().getSelection();
 		Assert.assertEquals("one and only one object should be selected", 1, selection.size());
 		Object selectedElement = selection.getFirstElement();
-		Assert.assertTrue("selection should be a model item element", selectedElement instanceof ModelElementItem);
-		Assert.assertTrue("selection should be linked to a EObject", ((ModelElementItem)selectedElement).getEObject() instanceof EObject);
-		Assert.assertTrue("selection should be linked to the Object: " + objectToFind, ((ModelElementItem)selectedElement).getEObject().equals(objectToFind));
-		return (ModelElementItem)selectedElement;
+		Assert.assertTrue("selection should be a model item element", selectedElement instanceof EObjectTreeElement);
+		Assert.assertTrue("selection should be linked to a EObject", ((EObjectTreeElement)selectedElement).getEObject() instanceof EObject);
+		Assert.assertTrue("selection should be linked to the Object: " + objectToFind, ((EObjectTreeElement)selectedElement).getEObject().equals(objectToFind));
+		return (EObjectTreeElement)selectedElement;
 	}
 
 	/**
@@ -475,15 +493,16 @@ public abstract class AbstractModelExplorerTest {
 	 * @throws Exception
 	 *         exception thrown in case of issue
 	 */
-	protected ModelElementItem findSemanticModelElementItem(Diagram diagramToFind) throws Exception {
+	protected EObjectTreeElement findSemanticModelElementItem(Diagram diagramToFind) throws Exception {
+
 		selectAndRevealDiagram(diagramToFind);
 		IStructuredSelection selection = (IStructuredSelection)modelExplorerPart.getSite().getSelectionProvider().getSelection();
 		Assert.assertEquals("one and only one diagram should be selected", 1, selection.size());
 		Object selectedElement = selection.getFirstElement();
-		Assert.assertTrue("selection should be a model item element", selectedElement instanceof ModelElementItem);
-		Assert.assertTrue("selection should be linked to a Diagram", ((ModelElementItem)selectedElement).getEObject() instanceof Diagram);
-		Assert.assertTrue("selection should be linked to the Object: " + diagramToFind, ((ModelElementItem)selectedElement).getEObject().equals(diagramToFind));
-		return (ModelElementItem)selectedElement;
+		Assert.assertTrue("selection should be a model item element", selectedElement instanceof EObjectTreeElement);
+		Assert.assertTrue("selection should be linked to a Diagram", ((EObjectTreeElement)selectedElement).getEObject() instanceof Diagram);
+		Assert.assertTrue("selection should be linked to the Object: " + diagramToFind, ((EObjectTreeElement)selectedElement).getEObject().equals(diagramToFind));
+		return (EObjectTreeElement)selectedElement;
 	}
 
 	protected String printElement(EObject object) {

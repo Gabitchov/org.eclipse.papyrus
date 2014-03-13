@@ -1,6 +1,8 @@
 package org.eclipse.papyrus.uml.properties.xtext;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
@@ -11,6 +13,7 @@ import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLModelElement;
 import org.eclipse.papyrus.uml.properties.widgets.BodyEditor;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
@@ -74,8 +77,16 @@ public class XtextLanguageEditor implements BodyEditor, IContextElementProvider 
 							new EObjectAdapter(getEObject()),
 							textControl.getText(), 0);
 
-					TransactionUtil.getEditingDomain(getEObject()).getCommandStack().execute(
-						new GMFtoEMFCommandWrapper(command));
+					TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getEObject());
+					if (domain == null) {
+						// can be null for opaque expression that have been created but have not been added to parent
+						// try to get resource set from nested dialog context
+						ResourceSet rs = NestedEditingDialogContext.getInstance().getResourceSet();
+						domain = TransactionUtil.getEditingDomain(rs);
+					}
+					if (domain != null) {
+						domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+					}
 				}
 			}
 
@@ -229,7 +240,9 @@ public class XtextLanguageEditor implements BodyEditor, IContextElementProvider 
 	}
 	
 	public void setInput(String value) {
-		textControl.setText(value);
+		if (value != null) {
+			textControl.setText(value);
+		}
 	}
 
 	public void dispose() {

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc topic="resource/editor.html" label="EMF Facet Customization Editor">
+	<topic href="resource/editor.html" label="Customization of model with EMF Facet"></topic>
+	<topic href="resource/editor.html#Creationof.customfile" label="Creation of .custom file"></topic>
+	<topic href="resource/editor.html#EClassCustomandFacetCustom" label="EClassCustom and FacetCustom">
+		<topic href="resource/editor.html#Creationandbasicedition" label="Creation and basic edition"></topic>
+		<topic href="resource/editor.html#Finetuneedition" label="Fine-tune edition"></topic>
+	</topic>
+	<topic href="resource/editor.html#DerivedTypedElement" label="DerivedTypedElement">
+		<topic href="resource/editor.html#Creationandbasicedition2" label="Creation and basic edition"></topic>
+		<topic href="resource/editor.html#Structuredviews" label="Structured views"></topic>
+		<topic href="resource/editor.html#Finetuneedition2" label="Fine-tune edition"></topic>
+	</topic>
+</toc>

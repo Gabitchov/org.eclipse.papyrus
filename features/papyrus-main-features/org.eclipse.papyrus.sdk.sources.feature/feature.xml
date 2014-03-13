@@ -43,11 +43,11 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.infra.queries.source.feature"
+         id="org.eclipse.papyrus.infra.services.source.feature"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.infra.services.source.feature"
+         id="org.eclipse.papyrus.emf.facet.source.feature"
          version="0.0.0"/>
 
    <includes

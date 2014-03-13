@@ -15,7 +15,7 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.emf.Activator;
  * @deprecated Use SemanticUMLContentProvider instead
  */
 @Deprecated
-public class MoDiscoContentProvider extends CustomizableModelContentProvider {
+public class MoDiscoContentProvider extends CustomizedTreeContentProvider {
 
 	/** The ModelSet containing all the models. This is the initial input. */
 	protected ModelSet modelSet;
@@ -69,7 +69,7 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 	 * @return
 	 */
 	@Override
-	public EObject[] getRootElements(Object inputElement) {
+	protected EObject[] getRootElements(Object inputElement) {
 
 		try {
 			if(!(inputElement instanceof ServicesRegistry)) {

@@ -6,7 +6,7 @@
  */
 package org.eclipse.papyrus.infra.emf.newchild;
 
-import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +39,7 @@ public interface MenuAction extends MenuItem {
 	 * @model required="true"
 	 * @generated
 	 */
-	ExtendedElementTypeConfiguration getElementType();
+	EObject getElementType();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.emf.newchild.MenuAction#getElementType <em>Element Type</em>}' reference.
@@ -49,6 +49,6 @@ public interface MenuAction extends MenuItem {
 	 * @see #getElementType()
 	 * @generated
 	 */
-	void setElementType(ExtendedElementTypeConfiguration value);
+	void setElementType(EObject value);
 
 } // MenuAction

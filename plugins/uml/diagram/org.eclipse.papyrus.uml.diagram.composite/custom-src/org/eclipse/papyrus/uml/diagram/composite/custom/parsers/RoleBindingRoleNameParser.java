@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -145,7 +146,7 @@ public class RoleBindingRoleNameParser implements ISemanticParser {
 	 * @return the {@link Dependency} adapted from the adaptable
 	 */
 	private Dependency doAdapt(IAdaptable adaptable) {
-		Dependency element = (Dependency)adaptable.getAdapter(EObject.class);
+		Dependency element = (Dependency)EMFHelper.getEObject(adaptable);
 		return element;
 	}
 

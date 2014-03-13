@@ -16,7 +16,7 @@ package org.eclipse.papyrus.views.modelexplorer.matching;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
 
 /***
  * An IMatchingItem implementation that matches for LinkItems
@@ -35,9 +35,9 @@ public class LinkItemMatchingItem implements IMatchingItem {
 	}
 
 	public boolean matchingItemEquals(Object obj) {
-		if(obj instanceof LinkItem) {
+		if(obj instanceof EReferenceTreeElement) {
 			if(ref != null && parent != null) {
-				return parent.equals(((LinkItem)obj).getParent()) && ref.equals(((LinkItem)obj).getReference());
+				return parent.equals(((EReferenceTreeElement)obj).getParent()) && ref.equals(((EReferenceTreeElement)obj).getEReference());
 			}
 		}
 		return super.equals(obj);
@@ -45,9 +45,7 @@ public class LinkItemMatchingItem implements IMatchingItem {
 
 	public int matchingItemHashcode() {
 		if(ref != null && parent != null) {
-			final int hashPrime1 = 47;
-			final int hashPrime2 = 13;
-			return ref.hashCode() * hashPrime1 + parent.hashCode() + hashPrime2;
+			return HashCodeCalculus.getHashCode(parent, ref);
 		}
 		return 0;
 	}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom:Customization xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:custom="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:efacet="http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet" xmlns:javaQuery="http://www.eclipse.org/papyrus/emf/facet/query/java/0.2.incubation/javaquery" xmlns:query="http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet/query" name="PapyrusDiagram" documentation="Display contained diagram and their icons" mustBeLoadedByDefault="true">
+  <eClassifiers xsi:type="custom:EClassCustomization" name="Diagram" documentation="Representation of diagram in model explorer">
+    <extendedMetaclass href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+    <facetOperations name="GetDiagramIcon" documentation="Return the path to the icon of the corresponding diagram">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom_primitive_types#//Image"/>
+      <eParameters name="eObject">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eParameters>
+      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.GetDiagramIcon"/>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/image"/>
+    </facetOperations>
+    <facetOperations name="NotVisibleStructuralFeature">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
+      </eParameters>
+      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.NotVisibleStructuralFeatureQuery"/>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
+    </facetOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="custom:EClassCustomization" name="EObject" documentation="representation around EObject displayed in model explorer">
+    <extendedMetaclass href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <facetElements xsi:type="efacet:FacetReference" name="diagrams" upperBound="-1" defaultValueLiteral="" derived="true">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+      <query xsi:type="query:OperationCallQuery" operation="//EObject/DiagramsRefContent"/>
+    </facetElements>
+    <facetOperations name="DiagramsRefVisibility" documentation="Return true if the element contains diagrams">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
+      </eParameters>
+      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.IsDiagramContainer"/>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
+    </facetOperations>
+    <facetOperations name="DiagramsRefContent" upperBound="-1" documentation="Get the collection of all contained diagrams">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.GetContainedDiagrams"/>
+    </facetOperations>
+    <facetOperations name="DiagramsRefCollapse">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
+      </eParameters>
+      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.DiagramsRefCollapseQuery"/>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
+    </facetOperations>
+  </eClassifiers>
+</custom:Customization>

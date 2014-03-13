@@ -26,6 +26,7 @@ import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraint
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IValidationRule;
 import org.eclipse.papyrus.dsml.validation.model.profilenames.Utils;
 import org.eclipse.papyrus.dsml.validation.wizard.CreateEMFValidationProject;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Profile;
@@ -65,13 +66,7 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 		// Treat non-null selected object (try to adapt and return EObject)
 		if(selection != null) {
 
-			if(selection instanceof IAdaptable) {
-				selection = ((IAdaptable)selection).getAdapter(EObject.class);
-			}
-
-			if(selection instanceof EObject) {
-				eObject = (EObject)selection;
-			}
+			eObject = EMFHelper.getEObject(selection);
 		}
 		return eObject;
 	}

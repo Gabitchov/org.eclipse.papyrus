@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.papyrus.emf.facet.custom.ui">
+   <implementation class="org.eclipse.papyrus.emf.facet.custom.ui.internal.DefaultCustomOverride"/>
+   <service>
+      <provide interface="org.eclipse.papyrus.emf.facet.custom.ui.ICustomOverride"/>
+   </service>
+</scr:component>

@@ -22,11 +22,11 @@ import java.util.List;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.papyrus.sysml.modelexplorer.tests.common.AbstractModelExplorerTest;
 import org.eclipse.papyrus.sysml.modelexplorer.tests.utils.EditorUtils;
 import org.eclipse.papyrus.views.modelexplorer.CustomCommonViewer;
@@ -69,13 +69,13 @@ public class AbstractDragDropTest extends AbstractModelExplorerTest {
 
 	public List<CompoundCommand> getListOfDropCommands(EObject sourceElement, EObject targetElement) throws Exception {
 		// init source object
-		ModelElementItem sourceMEI = null;
+		EObjectTreeElement sourceMEI = null;
 		if(sourceElement instanceof Diagram) {
 			sourceMEI = findSemanticModelElementItem((Diagram)sourceElement);
 		} else {
 			sourceMEI = findSemanticModelElementItem(sourceElement);
 		}
-		ModelElementItem targetMEI = null;
+		EObjectTreeElement targetMEI = null;
 		if(targetElement instanceof Diagram) {
 			targetMEI = findSemanticModelElementItem((Diagram)targetElement);
 		} else {

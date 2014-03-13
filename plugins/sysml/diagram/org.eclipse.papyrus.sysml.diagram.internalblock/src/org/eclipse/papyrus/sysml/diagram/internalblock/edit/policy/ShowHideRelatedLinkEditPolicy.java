@@ -286,7 +286,7 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 					for (View targetView : targetViewList) {
 						if (canDisplayExistingLinkBetweenViews((Connector) linkToShow, sourceView, targetView)){
 							
-							if (connectorUtils.canDisplayExistingConnectorBetweenViewsAccordingToPartWithPort((Connector) linkToShow, sourceView, targetView)){
+							if (connectorUtils.canDisplayExistingConnectorBetweenViewsAccordingToNestedPaths((Connector) linkToShow, sourceView, targetView)){
 								boolean alreadyDisplayed = false;
 								if (linkSet != null){
 									for (View viewLink : linkSet) {	

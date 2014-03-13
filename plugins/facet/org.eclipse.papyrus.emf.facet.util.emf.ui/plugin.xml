@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<!--
+    Copyright (c) 2011 Mia-Software.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+   
+    Contributors:
+        Nicolas Guyomar (Mia-Software) - Bug 333652 Extension point offering the possibility to declare an EPackage browser
+        Fabien Giquel (Mia-Software)
+        Gregoire Dupe (Mia-software) - Bug 366155 - [Unit Test Failure][0.2/3.8][0.2/4.2] org.eclipse.papyrus.emf.facet.util.emf.ui.tests.EPackageRegistryTest.canOpenERegistryView
+        Gregoire Dupe (Mia-Sodtware) - Bug 406570 - Handlers to Save and SaveAs EMF resources
+ -->
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.papyrus.emf.facet.common.ui.views"
+            class="org.eclipse.papyrus.emf.facet.util.emf.ui.internal.view.PackageRegistryView"
+            icon="icons/EPackageView.gif"
+            id="org.eclipse.papyrus.emf.facet.infra.common.ui.views.packageRegistry"
+            name="%view.name"
+            restorable="true">
+      </view>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="org.eclipse.papyrus.emf.facet.util.emf.ui.category"
+            name="%emf.facet.category.name">
+      </category>
+      <command
+            categoryId="org.eclipse.papyrus.emf.facet.util.emf.ui.category"
+            id="org.eclipse.papyrus.emf.facet.util.emf.ui.OpenModelFromEmfRegistryCommand"
+            name="%openmodel.command.name">
+      </command>
+   </extension>
+
+    <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.eclipse.papyrus.emf.facet.common.editor.actionSet"
+            label="%actionSet.label"
+            visible="true">
+         <action
+               class="org.eclipse.papyrus.emf.facet.util.emf.ui.internal.actions.OpenModelFromEmfRegistryAction"
+               definitionId="org.eclipse.papyrus.emf.facet.util.emf.ui.OpenModelFromEmfRegistryCommand"
+               icon="icons/logoEmfFacetMini.gif"
+               id="org.eclipse.papyrus.emf.facet.util.emf.actions.OpenModelFromEmfRegistry"
+               label="%action.label"
+               menubarPath="navigate/open.ext2"
+               style="push"
+               toolbarPath="Normal"
+               tooltip="%action.tooltip">
+         </action>
+      </actionSet>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.emf.facet.util.emf.ui.internal.handler.SaveHandler"
+            commandId="org.eclipse.ui.file.save">
+         <activeWhen>
+            <reference
+                  definitionId="org.eclipse.modisco.infra.browser.resourcemanager.ui.expression.isResource">
+            </reference>
+         </activeWhen>
+         <enabledWhen>
+            <reference
+                  definitionId="org.eclipse.modisco.infra.browser.resourcemanager.ui.expression.isResource">
+            </reference>
+         </enabledWhen>
+      </handler>
+            <handler
+            class="org.eclipse.papyrus.emf.facet.util.emf.ui.internal.handler.SaveAsHandler"
+            commandId="org.eclipse.ui.file.saveAs">
+         <activeWhen>
+            <reference
+                  definitionId="org.eclipse.modisco.infra.browser.resourcemanager.ui.expression.isResource">
+            </reference>
+         </activeWhen>
+         <enabledWhen>
+            <reference
+                  definitionId="org.eclipse.modisco.infra.browser.resourcemanager.ui.expression.isResource">
+            </reference>
+         </enabledWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="org.eclipse.modisco.infra.browser.resourcemanager.ui.expression.isResource">
+         <with
+               variable="activeMenuSelection">
+            <iterate
+                  ifEmpty="false"
+                  operator="or">
+               <adapt
+                     type="org.eclipse.emf.ecore.resource.Resource">
+               </adapt>
+            </iterate>
+         </with>
+      </definition>
+   </extension>   
+    <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.emf.facet.common.ui.preference.pages.EmfFacetRootPreferencePage"
+            class="org.eclipse.papyrus.emf.facet.util.emf.ui.internal.preference.pages.DefaultBrowserPreferencePage"
+            id="org.eclipse.papyrus.emf.facet.util.emf.ui.DefaultBrowserPreferencePage"
+            name="%page.name">
+      </page>
+   </extension>
+</plugin>

@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.MaskLabelHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
@@ -83,7 +84,7 @@ public class MultiplicityElementLabelParser implements IMaskManagedSemanticParse
 		}
 
 		String result = "";
-		EObject eObject = (EObject)element.getAdapter(EObject.class);
+		EObject eObject = EMFHelper.getEObject(element);
 
 		if((eObject != null) && (eObject instanceof MultiplicityElement)) {
 
