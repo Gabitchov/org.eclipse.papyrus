@@ -1,0 +1,379 @@
+Manifest-Version: 1.0
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Built-By: hudsonbuild
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.custom.sdk.ui;singleton:=true
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.papyrus.emf.facet.widgets.celleditors;bundle-version="0.2.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.2.0",
+ org.eclipse.swt;bundle-version="3.6.0",
+ org.eclipse.emf.ecore;bundle-version="2.6.0",
+ org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="0.2.0",
+ org.eclipse.papyrus.emf.facet.util.core;bundle-version="0.2.0",
+ org.eclipse.core.resources;bundle-version="3.6.0",
+ org.eclipse.papyrus.emf.facet.custom.sdk.core;bundle-version="0.2.1",
+ org.eclipse.papyrus.emf.facet.util.emf.core;bundle-version="0.2.1",
+ org.eclipse.papyrus.emf.facet.util.ui;bundle-version="0.3.0",
+ org.eclipse.papyrus.emf.facet.efacet.sdk.ui;bundle-version="0.2.0",
+ org.eclipse.papyrus.emf.facet.efacet.ui;bundle-version="0.2.1",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="0.2.1",
+ org.eclipse.papyrus.emf.facet.util.emf.ui;bundle-version="0.3.0",
+ org.eclipse.emf.edit;bundle-version="2.6.0",
+ org.eclipse.ui.ide;bundle-version="3.6.0",
+ org.eclipse.core.expressions;bundle-version="3.4.200"
+Bundle-Activator: org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.Activat
+ or
+Bundle-Version: 1.0.0.qualifier
+Build-Jdk: 1.6.0_27
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Name: %Bundle-Name
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Bundle-ManifestVersion: 2
+Export-Package: org.eclipse.papyrus.emf.facet.custom.sdk.ui.dialog
+
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.custom.sdk
+ .ui/pom.properties
+SHA1-Digest: 96E/uYHm8QwzJpH96NOc4UoxF4Y=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/widgets/celleditors
+ /composite/ImageComposite$2.class
+SHA1-Digest: +l/wxqSBJnv49KlEy7xeBdj4ayo=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/messages.properties
+SHA1-Digest: 0eDpJbTjo7IgoOpcCiLJJMMOd5w=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/sync/SynchronizedGe
+ tOrCreateFilteredElementCommmandWidget$10.class
+SHA1-Digest: /oCj5CcrQLrdsMYI59MAKwyjUTs=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/sync/Sy
+ nchronizedCreateFacetCustomizationDialog.class
+SHA1-Digest: HwGWbdmeGSMXHAn2J6mhZCAfaEk=
+
+Name: icons/treeView.gif
+SHA1-Digest: J08i2rueFvxIsJ1Z9BgktWZSpEE=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/sync/SynchronizedGe
+ tOrCreateFilteredElementCommmandWidget.class
+SHA1-Digest: IkOq12o4KlHBXypJYltlRzt1VCU=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/getorcr
+ eate/GetOperationFacetWidget.class
+SHA1-Digest: UngYpYn3UPX43cn2d9tbYc6rsT0=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/handler/AddCus
+ tomizationPropertyInEClassHandler.class
+SHA1-Digest: 3w+d2LpR8uPJtHEEV7x8q+DOSbM=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/wizard/page/Cu
+ stomPropertyWizardPage$2.class
+SHA1-Digest: C85x6sbZR27Znl+f8ylVA93gVTA=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/getorcr
+ eate/GetCustomizedFacetWidget.class
+SHA1-Digest: hDSkmH/+bE1t4hvGHnnpOQSLVjc=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/handler/Create
+ FacetCustomizationHandler.class
+SHA1-Digest: aYXIH6FBR7G1J+vmvp0RHemaEMo=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/Startup.class
+SHA1-Digest: 7uVIrYLoA4w1HF9/vzqXs9FxA4M=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/Abstrac
+ tGetCustomizationDialog.class
+SHA1-Digest: UQ3tgwJ+cgZBDWdMYFEBW/CI+nM=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/handler/AddCas
+ eQueryHandler.class
+SHA1-Digest: jMo7ic/AiwyRthwlzaatu37jTp8=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/Abstrac
+ tGetOrCreateCustomizationDialog.class
+SHA1-Digest: h51bYF7i8fZKwnPcswVJA4fpdps=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/wizard/page/ICreate
+ CustomizationWizardPage.class
+SHA1-Digest: /Cgt8XfYc2INZt/nUzNNp+FVd8E=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/sync/SynchronizedGe
+ tOrCreateFilteredElementCommmandWidget$2.class
+SHA1-Digest: qwiQoxr+s3OPsSI8vJvutw02kNY=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/command
+ /GetOrCreateCustomizationWidget.class
+SHA1-Digest: zvuYu1sF/did58y1MJyaIH2l1TA=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/selecti
+ on/GetCustomizedFacetDialog.class
+SHA1-Digest: Kq5I7fRZomW+0OHNFCrCHuLg2AM=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/command
+ /QueryContext.class
+SHA1-Digest: 9baC5HUaH3N3a+aS4Oq6ge0ScOM=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/sync/SynchronizedGe
+ tOrCreateFilteredElementCommmandWidget$4.class
+SHA1-Digest: k+NMbNkyFGG+InEUV3tK+s/bgeY=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/dialog/Customizatio
+ nDialogFactory$1.class
+SHA1-Digest: QysGrXIUDop28MG5/IU2eQ3XAUY=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/propert
+ y/name/GetCaseQueryTypeWidget.class
+SHA1-Digest: zu4yC41Dhw7xu0E2HFl7OEgDST0=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/sync/SynchronizedGe
+ tOrCreateFilteredElementCommmandWidget$6.class
+SHA1-Digest: 9ZGIJeANIoMf64TFdiq8KAw+ZQM=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/wizard/CreateC
+ ustimizationWizardImpl.class
+SHA1-Digest: jicaCoQG2xqg0vV8nEBfSNnuWsY=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/sync/SynchronizedGe
+ tOrCreateFilteredElementCommmandWidget$8.class
+SHA1-Digest: 9vobku/pQqXgYc7RQiGjDooYvO4=
+
+Name: META-INF/eclipse.inf
+SHA1-Digest: 09gN05tobgS/MdtqyTNQhOhB73M=
+
+Name: icons/querySet.gif
+SHA1-Digest: Ypcn7ddJ56HdPpJYqBYET9A8l1Q=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/selecti
+ on/GetExtendedFacetDialog.class
+SHA1-Digest: NKIPx26XZh+iIbDTOnYGkaV57SI=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/command
+ /AddCustomizationPropertyDialog.class
+SHA1-Digest: JcH80agQQOKqhaTApM/376E3yU0=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/command
+ /AddCustomizationPropertyWidget.class
+SHA1-Digest: 7sH3jb49E3pQe4VSSTVOCYqufuM=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/widgets/celleditors
+ /composite/ImageCompositeFactory.class
+SHA1-Digest: 7LRlMZHl1v02W/qBmQYLhPfmI1A=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/wizard/CreateC
+ ustimizationWizardImpl$1.class
+SHA1-Digest: 6jxu718ASPssVEmyJ7F/ANH4L60=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/getorcr
+ eate/GetFiltredCustomizedFacetWidget.class
+SHA1-Digest: vgMM4Qkjj+JogLP7i9vQwViH5LE=
+
+Name: icons/FacetAttribute.gif
+SHA1-Digest: iJVUkNzDcR93MimauSwnnNlqlzw=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/Activator.class
+SHA1-Digest: jZRKBVH5PnNYfxyjxJ1fplE2J1o=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/getorcr
+ eate/GetOrCreateCustomizationDialog.class
+SHA1-Digest: xn0NDTp3iZDHdEZnQyBUWt6DqYU=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/getorcr
+ eate/GetOrCreateCustomizationWidget.class
+SHA1-Digest: PtoY+sa6i1esFGwm7WwW1IwDx9c=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/getorcr
+ eate/GetFiltredOperationFacetWidget.class
+SHA1-Digest: gvhVB5Om6pIuoKVLHgMe6dgaoVo=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/sync/Sy
+ nchronizedCreateEClassCustomizationDialog.class
+SHA1-Digest: nN2z3oC9aRlok+NvVWxTjpz8j30=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/widgets/celleditors
+ /composite/ImageComposite.class
+SHA1-Digest: JP4tlD/yAj40lHjY6CeACuW0A1c=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/sync/Sy
+ nchronizedAddCustomizationPropertyDialog.class
+SHA1-Digest: xKgnZ8G00kQatBgBIuWmpi0TlxA=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/wizard/page/Cr
+ eateCustomizationWizardPage.class
+SHA1-Digest: CHtofczIDGjts89SpVZTyScfqP0=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/command
+ /CreateEClassCustomizationWidget.class
+SHA1-Digest: pXvx+O9Kqxcoy7OqKgW7Vl5TMP8=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/Messages.class
+SHA1-Digest: bZidPO4d7Z0DTYG6auRXqnmsbQk=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/widgets/celleditors
+ /composite/ImageComposite$1.class
+SHA1-Digest: sXtK3X90+UUwYXZ8QjFSg3OJRxY=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/wizard/page/Cu
+ stomPropertyWizardPage.class
+SHA1-Digest: PFKQ3SDeT2ZegrbeP0r3pfV7UnI=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/widgets/celleditors
+ /composite/ImageComposite$3.class
+SHA1-Digest: US4JQlC83UyPrbRUs9kAiCU2xYU=
+
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.custom.sdk
+ .ui/pom.xml
+SHA1-Digest: Os/QnVt3ICG82YcUwUsYEBhTh1I=
+
+Name: OSGI-INF/l10n/bundle.properties
+SHA1-Digest: IdWwkz9OBwHz8QRbCFAdiyA+zrc=
+
+Name: icons/full/wizban/NewCustom.gif
+SHA1-Digest: CfAK4I3/f4RWRH687PmoPhy5xjI=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/command
+ /CreateEClassCustomizationDialog.class
+SHA1-Digest: ZPgTCVlK+sMINGfkwmLVl6mvbo4=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/sync/SynchronizedGe
+ tOrCreateFilteredElementCommmandWidget$11.class
+SHA1-Digest: wNJpU+maXUW73HPYBwFzt19Vp6U=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/selecti
+ on/GetFacetOperationDialog.class
+SHA1-Digest: cvLE8ybTMcU/nimv2TqRvixnHnQ=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/handler/AddCus
+ tomizationPropertyInFacetHandler.class
+SHA1-Digest: 0D2rBsllbaqIC3OPn4+fiygf7MU=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/dialog/Customizatio
+ nDialogFactory.class
+SHA1-Digest: /GCocBSTAKIPjCWmWXRD2UzttFw=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/wizard/page/Cu
+ stomPropertyWizardPage$1.class
+SHA1-Digest: SMDhaPm/p77Lg5CCWiJVOkbYxxo=
+
+Name: icons/ParameterValue.gif
+SHA1-Digest: k6QiLCZYrVmMJ6A2ZM7y663F7w0=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/Abstrac
+ tCustomizationMainDialog.class
+SHA1-Digest: 0eB1NbSk8zl9UgdvFBfTaLJdMAo=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/command
+ /AddCaseQueryDialog.class
+SHA1-Digest: qXUcdnQnr+FqUVvAERur1MuwDsY=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/command
+ /AddCaseQueryWidget.class
+SHA1-Digest: 8jh4HDb736X2s1igjgaY79aliXk=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/handler/Utils.
+ class
+SHA1-Digest: qZkE2nctlQ8yMmCEJcAV3GkbAxg=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/getorcr
+ eate/AbstractGetFacetWidget.class
+SHA1-Digest: +KhMbHCsj7fXAnBNIBKET9eyZTM=
+
+Name: icons/facet.gif
+SHA1-Digest: XEEa0LVNEosBP0izGtitfq02WAI=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/metacla
+ ss/GetExtendedMetaclassWidget.class
+SHA1-Digest: c3rIsmNHEfgkMbAG9acd8PkesWU=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/widgets/celleditors
+ /ImageCellEditor.class
+SHA1-Digest: z1mioOF/nWLjqTMi90ij2W6q0AU=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/sync/SynchronizedGe
+ tOrCreateFilteredElementCommmandWidget$1.class
+SHA1-Digest: xrcOkv0LDkdagbv6FCkGa44EVmE=
+
+Name: plugin.xml
+SHA1-Digest: EOhq9rAmJ6XKc21SJKFVXdIsJqE=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/getorcr
+ eate/GetExtendedFacetWidget.class
+SHA1-Digest: MNEOrpJDF4V65WLHj7YLkoewY64=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/sync/SynchronizedGe
+ tOrCreateFilteredElementCommmandWidget$3.class
+SHA1-Digest: okZsR4FZ9dcyoteCwtuxVD8kReA=
+
+Name: icons/FacetReference.gif
+SHA1-Digest: QMWLPiWsn1Q3mCC6dVej6KW6aes=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/sync/SynchronizedGe
+ tOrCreateFilteredElementCommmandWidget$5.class
+SHA1-Digest: XUXasN1BS4WqChIoR2Ee4MV63dU=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/sync/SynchronizedGe
+ tOrCreateFilteredElementCommmandWidget$7.class
+SHA1-Digest: E1pi+U63KBVMV1RQuokltKm/TAc=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/sync/SynchronizedGe
+ tOrCreateFilteredElementCommmandWidget$9.class
+SHA1-Digest: NhNosZy/WhBsr+fDFNGX36e1llo=
+
+Name: icons/flatView.gif
+SHA1-Digest: m7CoejyO/BwL1K8nsf+3iF2nYsg=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/sync/Sy
+ nchronizedAddCaseQueryDialog.class
+SHA1-Digest: objP1JIjz9Au1C7W1oDUFEsAZ4c=
+
+Name: about.html
+SHA1-Digest: ucbJ2JQyMW17Zy+4pyWJhaS7Sws=
+
+Name: icons/full/obj16/CustomModelFile.gif
+SHA1-Digest: zjQCllhiXDEnFg6c6wdc1isUBw8=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/wizard/page/ICustom
+ izationPropertyWizardPage.class
+SHA1-Digest: qmcNaNWnh5Io4PMp7w+fhk7V4H8=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/wizard/CreateC
+ ustimizationWizardImpl$2.class
+SHA1-Digest: jQM8FncXiY19lm770N4c3AcerIw=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/propert
+ y/name/GetCaseQueryNameWidget.class
+SHA1-Digest: eNl1wzPNKqjPmevAd6r9vQL+S/Q=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/handler/Create
+ EClassCustomizationHandler.class
+SHA1-Digest: HgkLeq4tFQaY0mMYLQuJgH4RBio=
+
+Name: icons/FacetSet.gif
+SHA1-Digest: ZNjHVhFyhjicmeiWt004wpwJdNU=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/dialog/command
+ /CreateFacetCustomizationDialog.class
+SHA1-Digest: VGS+PUhptUnp2uc2JfqmyxMJLOY=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/command
+ /CreateFacetCustomizationWidget.class
+SHA1-Digest: CwSI8mpzKA4zk7BJ5LfSHX22+W0=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/getorcr
+ eate/GetFiltredExtendedFacetWidget.class
+SHA1-Digest: 3qWTYaSbElVgYoco1tKdZvK4Bf8=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/internal/util/widget/propert
+ y/name/GetEClassCustomizationNameWidget.class
+SHA1-Digest: KjK421M4uOrnWsRzUAjk2FVPqxQ=
+
+Name: icons/FacetOperation.gif
+SHA1-Digest: geCi1ofnq5obJShghQN1sk0ACoI=
+
+Name: org.eclipse.papyrus.emf.facet.custom.sdk.ui.modelcelleditors
+SHA1-Digest: mOF8luq4olJe/WCRqBrtQY1AjWo=
+
+Name: org/eclipse/emf/facet/custom/sdk/ui/dialog/ICustomizationDialogF
+ actory.class
+SHA1-Digest: moRiQJ3BDVJYJYHxlTIkFTbZymQ=
+

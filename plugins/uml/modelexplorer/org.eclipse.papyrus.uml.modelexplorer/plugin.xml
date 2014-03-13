@@ -3,12 +3,17 @@
 
 <plugin>
 
-   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+<extension point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+  <modeldeclaration file="resource/SimpleUML.custom"/>
+</extension>
+
+   <!-- TODO: EMF-FACET update queries and custom
+   <extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resource/UMLPapyrusDefaultBrowserCustomization.uiCustom" loadByDefault="true"/>
    </extension>
-   <extension point="org.eclipse.emf.facet.infra.query.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.query.registration">
       <modelqueryset file="resource/PapyrusBrowserQuery.querySet"/>
-   </extension>
+   </extension-->
    <extension point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             activeByDefault="true"
@@ -22,25 +27,25 @@
             <or>
                <instanceof value="org.eclipse.emf.ecore.EObject">
                </instanceof>
-               <adapt type="org.eclipse.emf.ecore.EObject">
-               </adapt>
                <instanceof value="java.lang.Object">
                </instanceof>
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
-               <instanceof value="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem">
-               </instanceof>
                <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
+               </instanceof>
+               <instanceof
+                     value="org.eclipse.emf.ecore.EObject">
                </instanceof>
             </or>
          </possibleChildren>
          <actionProvider class="org.eclipse.papyrus.views.modelexplorer.actionprovider.GenericTransformActionProvider" id="org.eclipse.papyrus.views.modelexplorer.actionprovider.GenericTransformActionProvider">
             <enablement>
                <or>
-                  <adapt type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
                </or>
             </enablement>
          </actionProvider>
@@ -51,8 +56,9 @@
                      <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
                      </instanceof>
                   </not>
-                  <adapt type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
                </and>
             </enablement>
          </actionProvider>
@@ -61,8 +67,9 @@
                <or>
                   <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
                   </instanceof>
-                  <adapt type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
                </or>
             </possibleDropTargets>
          </dropAssistant>
@@ -1080,17 +1087,17 @@
      and to mask the command in case it is not supported or executable.
   -->
 <extension point="org.eclipse.core.runtime.adapters">
-   <factory adaptableType="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem" class="org.eclipse.papyrus.uml.modelexplorer.factory.ModelElementItemFactory">
+   <factory adaptableType="org.eclipse.papyrus.emf.facet.infra.browser.uicore.internal.model.ModelElementItem" class="org.eclipse.papyrus.uml.modelexplorer.factory.ModelElementItemFactory">
       <adapter type="org.eclipse.uml2.uml.NamedElement">
       </adapter>
    </factory>
 </extension>
 
-   <extension point="org.eclipse.emf.facet.infra.facet.registration">
+   <!--extension point="org.eclipse.papyrus.emf.facet.infra.facet.registration">
       <facetset file="resource/PapyrusUMLFacet.facetSet">
       </facetset>
    </extension>
-   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resource/UMLFacetDefaultBrowserCustomization.uiCustom" loadByDefault="true"/>
       <browserCustomization file="resource/NotationCustomization.uiCustom" loadByDefault="true">
       </browserCustomization>
@@ -1098,7 +1105,7 @@
             file="resource/SimpleUML.uiCustom"
             loadByDefault="true">
       </browserCustomization>
-   </extension>
+   </extension-->
    <extension point= "org.eclipse.ui.handlers">
 <handler class= "org.eclipse.papyrus.uml.modelexplorer.handler.AbstractionHandler" commandId="org.eclipse.papyrus.uml.service.types.AbstractionCreateCommand">
    <activeWhen>
@@ -3318,6 +3325,12 @@
                id="org.eclipse.ui.commands.toggleState">
          </state>
       </command>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+      <modeldeclaration
+            file="resource/StereotypeDisplay.custom">
+      </modeldeclaration>
    </extension>
    
 </plugin>

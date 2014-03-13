@@ -1,0 +1,37 @@
+<efacet:FacetSet xmi:version="2.0"
+      xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+      xmlns:efacet="http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet"
+      xmlns:query="http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet/query"
+      xmlns:javaQuery2="http://www.eclipse.org/papyrus/emf/facet/query/java/0.2.incubation"
+      xmlns:library="http://www.eclipse.org/papyrus/emf/facet/examples/library/0.2.incubation/library"
+      name="org.eclipse.papyrus.emf.facet.efacet.examples.library.core.facet"
+      documentation="Queries">
+	<eSubpackages xsi:type="efacet:FacetSet" name="PaletteConfiguration" documentation="PaletteConfiguration">
+		<eClassifiers xsi:type="efacet:Facet" name="Configuration" documentation="Configuration">
+			<extendedMetaclass	href="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7#//Configuration"/>
+			<facetOperations xsi:type="efacet:FacetOperation" name="hasIcon" lowerBound="1" documentation="Returns true if the element has a specific icon to display" >
+				<eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+				<query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.customization.paletteconfiguration.queries.HasIconQuery"/>
+			</facetOperations>
+			<facetOperations xsi:type="efacet:FacetOperation" name="getIcon" lowerBound="1" documentation="Gets the icon for a configuration element in the palette configuration model" >
+				<eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+				<query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.customization.paletteconfiguration.queries.GetIconQuery"/>
+			</facetOperations>
+		</eClassifiers>
+		<eClassifiers xsi:type="efacet:Facet" name="ToolConfiguration" documentation="ToolConfiguration">
+			<extendedMetaclass	href="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7#//ToolConfiguration"/>
+			<facetOperations xsi:type="efacet:FacetOperation" name="getToolLabel" lowerBound="1" documentation="Returns the Label for a tool." >
+				<eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+				<query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.customization.paletteconfiguration.queries.GetToolLabelQuery"/>
+			</facetOperations>
+		</eClassifiers>
+		<eClassifiers xsi:type="efacet:Facet" name="DrawerConfiguration" documentation="DrawerConfiguration">
+			<extendedMetaclass href="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7#//DrawerConfiguration"/>
+		 	<facetOperations xsi:type="efacet:FacetOperation" name="getDrawerLabel"  documentation="Returns the label for a drawer">
+				<eType  xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+				<query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.customization.paletteconfiguration.queries.GetDrawerLabelQuery"/>
+			</facetOperations>
+		</eClassifiers>
+	</eSubpackages>
+</efacet:FacetSet>

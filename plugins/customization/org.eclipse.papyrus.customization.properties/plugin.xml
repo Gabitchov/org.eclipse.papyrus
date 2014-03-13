@@ -4,6 +4,7 @@
 <plugin>
    <extension-point id="contextStorage" name="Context Storage Action Providers" schema="schema/contextStorage.exsd"/>
     
+   <!-- TODO: EMF-FACET update uicustom
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="UICustom/context.uiCustom" loadByDefault="true">
       </browserCustomization>
@@ -22,7 +23,7 @@
       <modelqueryset
             file="Query/Ui.querySet">
       </modelqueryset>
-   </extension>
+   </extension-->
    <extension point="org.eclipse.ui.editors">
       <editor class="org.eclipse.papyrus.customization.properties.editor.UIEditor" contributorClass="org.eclipse.papyrus.customization.properties.editor.ContextEditorActionBarContributor" default="true" extensions="ctx" icon="platform:/plugin/org.eclipse.papyrus.views.properties.model.edit/icons/full/obj16/Context.gif" id="org.eclipse.papyrus.customization.properties.UIEditor" name="%editor.name">
       </editor>

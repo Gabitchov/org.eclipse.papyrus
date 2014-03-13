@@ -1,0 +1,32 @@
+== Retention Policy for EMF Facet builds (Draft) ==
+
+=== Code in SVN ===
+
+Any code that was included in a Release, is left in SVN forever. The version of a module that is included in a release will typically have a convenience version tag on the module, such as "R3_1_2".
+
+=== Distributions in zip files ===
+
+Formal releases are kept forever, but only the most recent release is kept on the [http://www.eclipse.org/modeling/emft/facet/downloads/ main download page]. Other, older distributions can be found on the [http://archive.eclipse.org/facet/downloads/ archive site]. 
+
+While developing a new release, milestone builds are kept until the release, at which point they are deleted. 
+
+Similarly, while developing a milestone, weekly integration builds are kept until the milestone is available, and then they are deleted.
+
+=== Features in update site repository === 
+
+The update site repository will be treated as a persistent repository of content. Once something is installable from a release repository URL, it will always be installable from that repository URL. Note that the efficiency of installing old releases may not be maintained. Also, the "categories" that display the features in Eclipse 'Install New Software' dialog will change over time, but the underlying features and bundles will be there, even if not displayed in a category.
+
+=== What if these policies don't work for you? === 
+
+Just ask. Open a bug and request what you need. 
+For example, an adopter might be building against an I-build, and isn't ready to move up to a particular milestone build for a few more weeks, so they'd prefer some I-build to not be removed at the end of the milestone. 
+
+In other words, we are glad to be accommodating, but don't want to accommodate every hypothetical combination, since it's more work for us, we don't test it, and requires higher disk and bandwidth on the Eclipse mirroring system. So, open a bug if something special is required.
+
+<font size="-2">
+Copyright (c) 2012 Mia-Software.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html.
+</font>

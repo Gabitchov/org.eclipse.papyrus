@@ -37,6 +37,7 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.ShowHideRelatedLinkRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.ShowHideRelatedLinkRequest.ShowHideKind;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AbstractShowHideRelatedLinkEditPolicy;
@@ -167,7 +168,7 @@ public class ShowHideRelatedLinkHandler extends AbstractHandler implements IExec
 				if(current instanceof EditPart) {
 					final EditPart top = DiagramEditPartsUtil.getTopSemanticEditPart((EditPart)current);
 					if(top instanceof IGraphicalEditPart) {
-						final EObject currentEObject = (EObject)top.getAdapter(EObject.class);
+						final EObject currentEObject = EMFHelper.getEObject(top);
 						if(!eobjectsAlreadyManaged.contains(currentEObject)) {//to avoid duplicated semantic element
 							this.selection.add((IGraphicalEditPart)top);
 							eobjectsAlreadyManaged.add(currentEObject);

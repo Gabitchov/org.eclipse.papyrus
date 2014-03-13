@@ -6,7 +6,6 @@ Export-Package: org.eclipse.papyrus.infra.queries.core.configuration,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.emf.facet.infra.query,
  org.eclipse.uml2.uml
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

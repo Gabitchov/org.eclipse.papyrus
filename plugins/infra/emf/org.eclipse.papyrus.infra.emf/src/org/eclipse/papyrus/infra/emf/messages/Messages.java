@@ -1,4 +1,5 @@
-/*
+
+/*************************************************************
  * Copyright (c) 2012, 2014 CEA and others.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +12,7 @@
  *   Christian W. Damus (CEA) - bug 323802
  *
  */
+
 package org.eclipse.papyrus.infra.emf.messages;
 
 import org.eclipse.osgi.util.NLS;

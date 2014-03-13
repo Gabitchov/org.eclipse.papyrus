@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 
@@ -95,7 +96,7 @@ public abstract class AbstractAssociationEndParser implements IParser {
 	 * @return the property associated or null if it can't be found.
 	 */
 	protected Property doAdapt(IAdaptable element) {
-		Object obj = element.getAdapter(EObject.class);
+		Object obj = EMFHelper.getEObject(element);
 		Property property = null;
 		if(obj instanceof Association) {
 			Association association = (Association)obj;

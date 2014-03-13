@@ -2,17 +2,10 @@
 <?eclipse version="3.4"?>
 <plugin>
 
-<!-- SysML ModelExplorer customization -->
-<extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
-	<browserCustomization
-       file="resources/SysMLDefaultExplorerCustomization.uiCustom"
-       loadByDefault="true"/>
+<extension point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+  <modeldeclaration file="resources/SimpleSysML.custom"/>
 </extension>
-   
-<extension point="org.eclipse.emf.facet.infra.query.registration">
-	<modelqueryset file="resources/SysMLDefaultExplorerQueries.querySet"/>
-</extension>
-
+-->
 <!-- This declaration is added in order command (CommandHandler) status to be
      verified (isVisible and isEnabled) before any attempt to execute the command, 
      and to mask the command in case it is not supported or executable.

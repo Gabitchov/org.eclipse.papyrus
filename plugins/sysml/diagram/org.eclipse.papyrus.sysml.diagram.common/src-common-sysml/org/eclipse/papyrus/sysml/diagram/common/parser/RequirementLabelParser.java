@@ -22,6 +22,7 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.uml.diagram.common.parser.NamedElementLabelParser;
@@ -52,7 +53,7 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 		}
 
 		String result = "";
-		EObject eObject = (EObject)element.getAdapter(EObject.class);
+		EObject eObject =EMFHelper.getEObject(element);
 
 		if((eObject != null) && (eObject instanceof Class)) {
 

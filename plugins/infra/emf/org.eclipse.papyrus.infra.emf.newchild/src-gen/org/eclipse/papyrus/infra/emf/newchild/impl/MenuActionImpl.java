@@ -8,11 +8,11 @@ package org.eclipse.papyrus.infra.emf.newchild.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.papyrus.infra.emf.newchild.MenuAction;
 import org.eclipse.papyrus.infra.emf.newchild.NewchildPackage;
-import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
 
 
 /**
@@ -37,7 +37,7 @@ public class MenuActionImpl extends MenuItemImpl implements MenuAction {
 	 * @generated
 	 * @ordered
 	 */
-	protected ExtendedElementTypeConfiguration elementType;
+	protected EObject elementType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,10 +63,10 @@ public class MenuActionImpl extends MenuItemImpl implements MenuAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtendedElementTypeConfiguration getElementType() {
+	public EObject getElementType() {
 		if (elementType != null && elementType.eIsProxy()) {
 			InternalEObject oldElementType = (InternalEObject)elementType;
-			elementType = (ExtendedElementTypeConfiguration)eResolveProxy(oldElementType);
+			elementType = (EObject)eResolveProxy(oldElementType);
 			if (elementType != oldElementType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NewchildPackage.MENU_ACTION__ELEMENT_TYPE, oldElementType, elementType));
@@ -80,7 +80,7 @@ public class MenuActionImpl extends MenuItemImpl implements MenuAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtendedElementTypeConfiguration basicGetElementType() {
+	public EObject basicGetElementType() {
 		return elementType;
 	}
 
@@ -89,8 +89,8 @@ public class MenuActionImpl extends MenuItemImpl implements MenuAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElementType(ExtendedElementTypeConfiguration newElementType) {
-		ExtendedElementTypeConfiguration oldElementType = elementType;
+	public void setElementType(EObject newElementType) {
+		EObject oldElementType = elementType;
 		elementType = newElementType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NewchildPackage.MENU_ACTION__ELEMENT_TYPE, oldElementType, elementType));
@@ -120,7 +120,7 @@ public class MenuActionImpl extends MenuItemImpl implements MenuAction {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case NewchildPackage.MENU_ACTION__ELEMENT_TYPE:
-				setElementType((ExtendedElementTypeConfiguration)newValue);
+				setElementType((EObject)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -135,7 +135,7 @@ public class MenuActionImpl extends MenuItemImpl implements MenuAction {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case NewchildPackage.MENU_ACTION__ELEMENT_TYPE:
-				setElementType((ExtendedElementTypeConfiguration)null);
+				setElementType((EObject)null);
 				return;
 		}
 		super.eUnset(featureID);

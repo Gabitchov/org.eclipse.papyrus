@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<!--
+  Copyright (c) 2011 Mia-Software.
+  
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+  
+  Contributors: 	
+ 	Nicolas Guyomar (Mia-Software) - Bug 333553 - The user has not to deal with two files to create a facet
+ 	Nicolas Guyomar (Mia-Software) - Bug 339899 - everything must be externalized before UI freeze
+ 	Nicolas Bros (Mia-Software) - Bug 362191 - [Restructuring] Query mechanism for eFacet2
+    Olivier Remaud (Soft-Maint) - Bug 369824 - Add a simple way to return string literal constants from a customization query
+    Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
+    Gregoire Dupe (Mia-Software) - Bug 375087 - [Table] ITableWidget.addColumn(List<ETypedElement>, List<FacetSet>)
+    Nicolas Bros (Mia-Software) - Bug 376941 - [EFacet] Facet operation arguments in Facet model
+ -->
+
+<plugin>
+   <extension-point id="org.eclipse.papyrus.emf.facet.efacet.core.query.evaluatorregistration" name="%queryEvaluatorRegistration.extension-point.name" schema="schema/org.eclipse.papyrus.emf.facet.efacet.core.query.evaluatorregistration.exsd"/>
+   <extension-point id="derivedTypedElementImplementationRegistration" name="%derivedTypedElementImplementationRegistration.extension-point.name" schema="schema/derivedTypedElementImplementationRegistration.exsd"/>
+   <extension-point id="queryImplementationRegistration" name="EMF Facet Query implementation registration" schema="schema/queryImplementationRegistration.exsd"/>
+   <extension-point id="org.eclipse.papyrus.emf.facet.efacet.core.internal.resolver" name="Resolver" schema="schema/internal.resolver.exsd"/>
+   
+   <extension point="org.eclipse.papyrus.emf.facet.util.emf.core.catalogmanager">
+      <catalog class="org.eclipse.papyrus.emf.facet.efacet.core.internal.catalog.EFacetCatalogManager"/>
+      <catalog class="org.eclipse.papyrus.emf.facet.efacet.core.internal.catalog.EFacetCatalogManager2"/>
+   </extension>
+   
+   <extension point="org.eclipse.papyrus.emf.facet.efacet.core.queryImplementationRegistration">
+      <queryImplementationRegistration class="org.eclipse.papyrus.emf.facet.efacet.core.internal.query.NavigationQueryImplementationFactory"/>
+      <queryImplementationRegistration class="org.eclipse.papyrus.emf.facet.efacet.core.internal.query.IsOneOfQueryImplementationFactory"/>
+      <queryImplementationRegistration class="org.eclipse.papyrus.emf.facet.efacet.core.internal.query.StringLiteralQueryImplementationFactory"/>
+      <queryImplementationRegistration class="org.eclipse.papyrus.emf.facet.efacet.core.internal.query.FalseLiteralQueryImplementationFactory"/>
+      <queryImplementationRegistration class="org.eclipse.papyrus.emf.facet.efacet.core.internal.query.TrueLiteralQueryImplementationFactory"/>
+      <queryImplementationRegistration class="org.eclipse.papyrus.emf.facet.efacet.core.internal.query.NullLiteralQueryImplementationFactory"/>
+      <queryImplementationRegistration class="org.eclipse.papyrus.emf.facet.efacet.core.internal.query.EObjectLiteralQueryImplementationFactory"/>
+      <queryImplementationRegistration class="org.eclipse.papyrus.emf.facet.efacet.core.internal.query.FloatLiteralQueryImplementationFactory"/>
+      <queryImplementationRegistration class="org.eclipse.papyrus.emf.facet.efacet.core.internal.query.IntegerLiteralQueryImplementationFactory"/>
+      <queryImplementationRegistration class="org.eclipse.papyrus.emf.facet.efacet.core.internal.query.OperationCallQueryImplementationFactory"/>
+   </extension>
+</plugin>
