@@ -67,6 +67,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.Domain2Notation;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.Element;
 
 
 /**
@@ -527,7 +528,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 					Set<View> targetViewList = domain2NotationMap.get(descriptor.getDestination());
 						for (View targetView : targetViewList) {
 							
-							if (canDisplayExistingLinkBetweenViews((Connector) linkToShow, sourceView, targetView)){
+							if (canDisplayExistingLinkBetweenViews((Element) linkToShow, sourceView, targetView)){
 								
 								EditPart sourceEditPart = getEditPartFromView(sourceView);
 								EditPart targetEditPart = getEditPartFromView(targetView);
@@ -562,12 +563,12 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	/**
 	 * Can display existing link between views.
 	 *
-	 * @param connector the connector
+	 * @param element the element represented by the link
 	 * @param sourceView the source view
 	 * @param targetView the target view
 	 * @return true, if successful
 	 */
-	public boolean canDisplayExistingLinkBetweenViews(final Connector connector, final View sourceView, final View targetView) {
+	public boolean canDisplayExistingLinkBetweenViews(final Element element, final View sourceView, final View targetView) {
 		return true;
 	}
 
