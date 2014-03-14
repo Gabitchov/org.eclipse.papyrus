@@ -26,6 +26,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.part.IPaletteDescription;
@@ -45,9 +46,6 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 	 */
 	protected NodeList contributions = null;
 
-	/** parser used for the xml file */
-	protected XMLDefinitionPaletteParser parser;
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -56,12 +54,12 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 		if(contributions ==null) {
 			return;
 		}
-		parser = new XMLDefinitionPaletteParser(new XMLDefinitionPaletteFactory(root, predefinedEntries));
+		XMLPaletteDefinitionWalker walker = new XMLPaletteDefinitionWalker(new XMLPaletteApplicator(((DiagramEditor) editor).getDiagram(), root, predefinedEntries));
 		
 		for(int i = 0; i < contributions.getLength(); i++) {
 			Node node = contributions.item(i);
 			if(PALETTE_DEFINITION.equals(node.getNodeName())) {
-				parser.parsePaletteDefinition(node);
+				walker.walk(node);
 			}
 		}
 	}

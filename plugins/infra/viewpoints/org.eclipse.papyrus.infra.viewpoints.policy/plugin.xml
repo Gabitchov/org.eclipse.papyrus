@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.eclipse.papyrus.infra.viewpoints.policy.custom" name="Custom Viewpoints Policy" schema="schema/custom.exsd"/>
+   <extension-point id="org.eclipse.papyrus.infra.viewpoints.policy.profilehelper" name="Viewpoints Policy Profile Helper" schema="schema/profilehelper.exsd"/>
+   <extension-point id="org.eclipse.papyrus.infra.viewpoints.policy.viewType" name="View Type Definition" schema="schema/viewType.exsd"/>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.papyrus.infra.viewpoints.style.StylePackage"
+            genModel="model/style.genmodel"
+            uri="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.papyrus.infra.viewpoints.policy.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="org.eclipse.papyrus.infra.viewpoints.policy.commands"
+            name="Dynamic Creation Commands">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="org.eclipse.papyrus.infra.viewpoints.policy.toolbar"
+               label="Viewpoints Toolbar">
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.papyrus.views.category"
+            class="org.eclipse.papyrus.infra.viewpoints.policy.ViewpointExplorer"
+            icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.configuration.edit/icons/full/obj16/PapyrusViewpoint.png"
+            id="org.eclipse.papyrus.infra.viewpoints.policy.ViewpointExplorer"
+            name="Viewpoint Explorer">
+      </view>
+   </extension>
+
+
+</plugin>

@@ -29,7 +29,7 @@ helper gmfgen::ToolGroup::activatorFQN() : String {
 }
 
 helper i18nKey(group : gmfgen::EntryBase) : String {
-	return let rv = group.createMethodName in (if rv.xpandStartsWith('get') then rv.xpandSubstring(3) else (if rv.xpandStartsWith('create') then rv.xpandSubstring(6) else rv endif) endif)
+	return let rv = group.createMethodName in (if rv.startsWith('get') then rv.xpandSubstring(3) else (if rv.startsWith('create') then rv.xpandSubstring(6) else rv endif) endif)
 }
 
 helper i18nTitleKey(group : gmfgen::EntryBase) : String {

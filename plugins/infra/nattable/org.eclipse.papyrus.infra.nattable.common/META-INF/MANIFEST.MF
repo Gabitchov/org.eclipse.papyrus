@@ -14,7 +14,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.e4.ui.workbench,
  org.eclipse.e4.core.contexts,
  org.eclipse.core.expressions,
- org.eclipse.emf.edit.ui
+ org.eclipse.emf.edit.ui,
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.infra.nattable.common,
  org.eclipse.papyrus.infra.nattable.common.editor,
  org.eclipse.papyrus.infra.nattable.common.factory,

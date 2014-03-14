@@ -24,11 +24,15 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.uml.diagram.profile.providers.ElementInitializers;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -38,7 +42,7 @@ public class DataTypePropertyCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private EClass eClass = null;
+	private Diagram diagram = null;
 
 	/**
 	 * @generated
@@ -48,24 +52,25 @@ public class DataTypePropertyCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public DataTypePropertyCreateCommand(CreateElementRequest req, EObject eObject) {
+	public DataTypePropertyCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static DataTypePropertyCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new DataTypePropertyCreateCommand(req, eObject);
+	public static DataTypePropertyCreateCommand create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new DataTypePropertyCreateCommand(req, eObject, diagram);
 	}
 
 	/**
 	 * @generated
 	 */
-	public DataTypePropertyCreateCommand(CreateElementRequest req) {
+	public DataTypePropertyCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -88,7 +93,9 @@ public class DataTypePropertyCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		return true;
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getProperty());
+		return data.isPermitted();
 	}
 
 	/**
@@ -96,8 +103,19 @@ public class DataTypePropertyCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Property newElement = UMLFactory.eINSTANCE.createProperty();
-		DataType owner = (DataType)getElementToEdit();
-		owner.getOwnedAttributes().add(newElement);
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		if(data.isPermitted()) {
+			if(data.isPathDefined()) {
+				if(!data.execute(target, newElement))
+					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
+			} else {
+				DataType qualifiedTarget = (DataType)target;
+				qualifiedTarget.getOwnedAttributes().add(newElement);
+			}
+		} else {
+			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
+		}
 		ElementInitializers.getInstance().init_Property_3018(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

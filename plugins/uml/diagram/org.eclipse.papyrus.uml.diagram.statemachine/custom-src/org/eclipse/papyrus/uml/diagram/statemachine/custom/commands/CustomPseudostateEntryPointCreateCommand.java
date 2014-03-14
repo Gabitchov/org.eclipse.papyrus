@@ -5,6 +5,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.PseudostateEntryPointCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Pseudostate;
@@ -14,8 +15,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 
 public class CustomPseudostateEntryPointCreateCommand extends PseudostateEntryPointCreateCommand {
 
-	public CustomPseudostateEntryPointCreateCommand(CreateElementRequest req) {
-		super(req);
+	public CustomPseudostateEntryPointCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 		// TODO Auto-generated constructor stub
 	}
 

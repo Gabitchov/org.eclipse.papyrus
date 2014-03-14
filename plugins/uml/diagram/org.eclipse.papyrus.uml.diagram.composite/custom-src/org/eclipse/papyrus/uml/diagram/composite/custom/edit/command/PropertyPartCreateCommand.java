@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
@@ -26,8 +27,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class PropertyPartCreateCommand extends org.eclipse.papyrus.uml.diagram.composite.edit.commands.PropertyPartCreateCommandCN {
 
 	/** Constructor **/
-	public PropertyPartCreateCommand(CreateElementRequest req) {
-		super(req);
+	public PropertyPartCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 	}
 
 	/**

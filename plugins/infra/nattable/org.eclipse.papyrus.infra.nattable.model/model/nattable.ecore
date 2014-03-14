@@ -28,6 +28,9 @@
         <details key="documentation" value="The context is used for two things : &#xD;&#xA;&lt;ul> &lt;li>&quot;virtual&quot; parent to display the table in the Papyrus Model Explorer &lt;/li>&#xD;&#xA;&lt;li>container of the objects created in the table&lt;/li>&#xD;&#xA;&lt;/ul> &#xD;&#xA;The context can't be null;"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prototype" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tableConfiguration" lowerBound="1"
         eType="#//nattableconfiguration/TableConfiguration">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

@@ -47,11 +47,11 @@ public class MessageLostReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public MessageLostReorientCommand(final ReorientRelationshipRequest request) {
+	public MessageLostReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
-		this.reorientDirection = request.getDirection();
-		this.oldEnd = request.getOldRelationshipEnd();
-		this.newEnd = request.getNewRelationshipEnd();
+		reorientDirection = request.getDirection();
+		oldEnd = request.getOldRelationshipEnd();
+		newEnd = request.getNewRelationshipEnd();
 	}
 
 	/**
@@ -62,10 +62,10 @@ public class MessageLostReorientCommand extends EditElementCommand {
 		if(false == getElementToEdit() instanceof Message) {
 			return false;
 		}
-		if(this.reorientDirection == ReorientRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if(this.reorientDirection == ReorientRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -75,14 +75,14 @@ public class MessageLostReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if(!(this.oldEnd instanceof MessageEnd && this.newEnd instanceof MessageEnd)) {
+		if(!(oldEnd instanceof MessageEnd && newEnd instanceof MessageEnd)) {
 			return false;
 		}
-		final Element target = getLink().getOwner();
+		Element target = getLink().getOwner();
 		if(!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}
-		final Interaction container = (Interaction)getLink().eContainer();
+		Interaction container = (Interaction)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_50(container, getLink(), getNewSource(), target);
 	}
 
@@ -90,14 +90,14 @@ public class MessageLostReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if(!(this.oldEnd instanceof Element && this.newEnd instanceof Element)) {
+		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		final MessageEnd source = getLink().getReceiveEvent();
+		MessageEnd source = getLink().getReceiveEvent();
 		if(!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}
-		final Interaction container = (Interaction)getLink().eContainer();
+		Interaction container = (Interaction)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_50(container, getLink(), source, getNewTarget());
 	}
 
@@ -105,14 +105,14 @@ public class MessageLostReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if(this.reorientDirection == ReorientRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if(this.reorientDirection == ReorientRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -144,27 +144,27 @@ public class MessageLostReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected MessageEnd getOldSource() {
-		return (MessageEnd)this.oldEnd;
+		return (MessageEnd)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected MessageEnd getNewSource() {
-		return (MessageEnd)this.newEnd;
+		return (MessageEnd)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getOldTarget() {
-		return (Element)this.oldEnd;
+		return (Element)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getNewTarget() {
-		return (Element)this.newEnd;
+		return (Element)newEnd;
 	}
 }

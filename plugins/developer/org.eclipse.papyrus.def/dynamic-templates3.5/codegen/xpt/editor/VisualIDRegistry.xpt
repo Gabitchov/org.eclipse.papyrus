@@ -166,10 +166,7 @@ public static int «EXPAND getDiagramVisualIDMethodName»(org.eclipse.emf.ecore.
 	if (domainElement == null) {
 		«EXPAND unrecognizedVID-»
 	}
-«IF null <> domainDiagramElement-»
-	«EXPAND returnVisualID-»
-«ENDIF-»
-	«EXPAND unrecognizedVID-»
+	return «EXPAND visualID»;
 }
 «ENDDEFINE»
 

@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -67,8 +68,8 @@ public class CreateExtensionPointCommand extends Command {
 	/** adapter to get the extend element */
 	private IAdaptable adapter;
 
-	public CreateExtensionPointCommand(IHintedType elementType, AbstractEditPart compartmentPart, EObject container, IAdaptable adapter) {
-		elementCreationCommand = getElementCreationCommand(container, elementType);
+	public CreateExtensionPointCommand(IHintedType elementType, AbstractEditPart compartmentPart, EObject container, IAdaptable adapter, Diagram diagram) {
+		elementCreationCommand = getElementCreationCommand(container, elementType, diagram);
 		type = elementType;
 		compartment = compartmentPart;
 		containerObject = container;
@@ -84,10 +85,10 @@ public class CreateExtensionPointCommand extends Command {
 	 *        the type of the extension point
 	 * @return the command to create model element or null
 	 */
-	private static ICommandProxy getElementCreationCommand(EObject container, IHintedType elementType) {
+	private static ICommandProxy getElementCreationCommand(EObject container, IHintedType elementType, Diagram diagram) {
 		CreateElementRequest createElementReq = new CreateElementRequest(container, elementType);
 		if(UMLElementTypes.ExtensionPoint_3007.equals(elementType)) {
-			ExtensionPointCreateCommand cmd = new ExtensionPointCreateCommand(createElementReq);
+			ExtensionPointCreateCommand cmd = new ExtensionPointCreateCommand(createElementReq, diagram);
 			return new ICommandProxy(cmd);
 		} else {
 			return null;

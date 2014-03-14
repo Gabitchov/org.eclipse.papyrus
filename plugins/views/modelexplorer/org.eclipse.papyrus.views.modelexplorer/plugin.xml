@@ -117,7 +117,10 @@
  <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
     <menu id="org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild" label="New Child">
     </menu>
-    <menu id="org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram" label="New Diagram">
+    <menu
+          icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/NewDiagram.gif"
+          id="org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram"
+          label="New Diagram">
     </menu>
     <command commandId="org.eclipse.ui.edit.delete" disabledIcon="IMG_TOOL_DELETE_DISABLED" icon="IMG_TOOL_DELETE" label="Delete" style="push" tooltip="Delete">
        <visibleWhen checkEnabled="true">

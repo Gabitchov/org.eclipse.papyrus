@@ -47,7 +47,7 @@
 <extension id="papyrus.robotML.menuspapyrus.generate" name="Generate to Middleware/Simulator" point="org.eclipse.ui.menus">
       <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild">
          <menu
-               icon="icons/default.gif"
+               icon="icons/code_generation.gif"
                id="org.eclipse.papyrus.robotML.modelexplorer.popupmenu.generate"
                label="Generate to Middleware/Simulator"
                mnemonic="&amp;G"
@@ -60,6 +60,52 @@
             </visibleWhen>
          </menu>     
        </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
+         <menu
+               icon="icons/robotml_16x16.png"
+               id="org.eclipse.papyrus.robotml.diagram.migrate"
+               label="RobotML">
+               <visibleWhen
+                  checkEnabled="false">
+                  <reference
+                     definitionId="org.eclipse.papyrus.robotml.diagram.common.IsPapyrusActiveWithRobotml">
+               </reference>
+            </visibleWhen>
+            <command
+                  commandId="org.eclipse.papyrus.robotml.diagram.migrate"
+                  style="push">
+                  <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="selection">
+                     <iterate
+                           ifEmpty="false"
+                           operator="and">
+                        <adapt
+                              type="org.eclipse.core.resources.IFile">
+                           <or>
+                              <test
+                                    property="org.eclipse.core.resources.extension"
+                                    value="di">
+                              </test>
+                              <test
+                                    property="org.eclipse.core.resources.extension"
+                                    value="uml">
+                              </test>
+                              <test
+                                    property="org.eclipse.core.resources.extension"
+                                    value="notation">
+                              </test>
+                           </or>
+                        </adapt>
+                     </iterate>
+                  </with>
+               </visibleWhen>
+            </command>
+         </menu>
+      </menuContribution>
  </extension>    
  <extension
          point="org.eclipse.ui.commands">
@@ -68,6 +114,11 @@
             id="org.eclipse.papyrus.robotML.generation.category"
             name="RobotML generation Category">
       </category>
+      <command
+            defaultHandler="org.eclipse.papyrus.robotml.diagram.common.migration.MigrateDiagramsHandler"
+            id="org.eclipse.papyrus.robotml.diagram.migrate"
+            name="Migrate RobotML diagrams from 0.9 to 1.0 version">
+      </command>
    </extension>
  <extension
        point="org.eclipse.papyrus.uml.properties.languageEditor">
@@ -76,4 +127,18 @@
           language="alf">
     </editor>
  </extension>
+ <extension
+       point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
+    <contribution
+          file="viewpoints/robotml.configuration"
+          original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
+    </contribution>
+ </extension>
+ <extension
+	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+	<editpolicyProvider
+		class="org.eclipse.papyrus.robotml.diagram.common.editpolicy.provider.RobotMLDiagramsEditPolicyProvider">
+		<Priority name="Low"/>
+	</editpolicyProvider>
+</extension>
 </plugin>

@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.OperationForComponentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 
@@ -56,7 +57,7 @@ public class AssociationClassOperationCompartmentItemSemanticEditPolicy extends 
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new OperationForComponentCreateCommand(req));
+			return getGEFWrapper(new OperationForComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

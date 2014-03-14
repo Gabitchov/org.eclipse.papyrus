@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -28,6 +29,8 @@ import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.Messages;
 
@@ -68,7 +71,7 @@ public class DoubleClickListener implements IDoubleClickListener {
 					Object currentObject = iter.next();
 					EObject diag = EMFHelper.getEObject(currentObject);
 
-					if(isPage(diag, pageManager)) {
+					if(isPage(diag, pageManager) && canOpenByPolicy(diag)) {
 						if(pageManager.isOpen(diag)) {
 							pageToSelect = diag;
 						} else {
@@ -89,6 +92,20 @@ public class DoubleClickListener implements IDoubleClickListener {
 		}
 	}
 
+	/**
+	 * Determines whether the current policy allows this object to be opened
+	 * @param selection The object to open
+	 * @return <code>true</code> if the object can be opened
+	 */
+	private boolean canOpenByPolicy(EObject selection) {
+		if (selection instanceof Diagram) {
+			Diagram diagram = (Diagram)selection;
+			ViewPrototype proto = DiagramUtils.getPrototype(diagram);
+			return (proto != ViewPrototype.UNAVAILABLE_VIEW && proto != ViewPrototype.UNAVAILABLE_DIAGRAM);
+		}
+		return true;
+	}
+	
 	protected boolean isPage(EObject element, IPageManager pageManager) {
 		if(pageManager.allPages().contains(element)) {
 			return true;

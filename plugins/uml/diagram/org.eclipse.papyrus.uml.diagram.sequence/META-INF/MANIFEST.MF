@@ -65,19 +65,18 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
  org.eclipse.gmf.tooling.runtime,
  org.eclipse.papyrus.uml.diagram.menu;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.constraints;bundle-version="1.0.0"
+ org.eclipse.papyrus.infra.constraints;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.viewpoints.configuration;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.sequence.part.UMLDia
- gramEditorPlugin
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.sequence;singleto
- n:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.sequence; singleton:=true
 Import-Package: org.eclipse.core.databinding.observable,
  org.eclipse.papyrus.infra.emf.databinding,
  org.eclipse.papyrus.infra.tools.databinding,
  org.eclipse.papyrus.uml.tools.databinding,
  org.eclipse.papyrus.views.properties.contexts,
  org.eclipse.papyrus.views.properties.modelelement
-

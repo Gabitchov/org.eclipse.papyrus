@@ -9,6 +9,7 @@
  * Contributors:
  *		Régis CHEVREL: chevrel.regis <at> gmail.com
  *		CEA LIST - Initial API and implementation
+ *		Laurent Wouters (CEA LIST) laurent.wouters@cea.fr - Viewpoints application
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric;
@@ -31,6 +32,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramC
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.GMFCommandUtils;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.parametric.provider.ElementTypes;
@@ -41,17 +43,18 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
-// Start of user code custom imports
-//  End of user code
-
+/**
+ * Represents a creation command for a SysML parametric diagram
+ * @author Laurent Wouters
+ */
 public class ParametricDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected String getDefaultDiagramName() {
-		return "NewParametricDiagram"; //$NON-NLS-1$
+		return "New Parametric Diagram"; //$NON-NLS-1$
 	}
 
 	/**
@@ -74,27 +77,26 @@ public class ParametricDiagramCreateCommand extends AbstractPapyrusGmfCreateDiag
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
+	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, ViewPrototype prototype, String name) {
 		// Start of user code Custom diagram creation
 		Diagram diagram = null;
 
-		if(owner instanceof org.eclipse.uml2.uml.Class) {
-			org.eclipse.uml2.uml.Class cOwner = (org.eclipse.uml2.uml.Class)owner;
+		if (element instanceof org.eclipse.uml2.uml.Class) {
+			org.eclipse.uml2.uml.Class cOwner = (org.eclipse.uml2.uml.Class)element;
 			Block block = UMLUtil.getStereotypeApplication(cOwner, Block.class);
 
 			if(block != null) {
-				canvasDomainElement = (EObject)owner;
-				Package owningPackage = ((Element)owner).getNearestPackage();
-				diagram = super.createDiagram(diagramResource, owningPackage, name);
+				canvasDomainElement = (EObject)element;
+				Package owningPackage = ((Element)element).getNearestPackage();
+				diagram = super.doCreateDiagram(diagramResource, owner, owningPackage, prototype, name);
 			}
 
-		} else if(owner instanceof Package) {
+		} else if (element instanceof Package) {
 
 			try {
 				canvasDomainElement = null;
-
-				IEditCommandRequest request = new CreateElementRequest((Package)owner, SysMLElementTypes.BLOCK);
-				IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(owner);
+				IEditCommandRequest request = new CreateElementRequest((Package)element, SysMLElementTypes.BLOCK);
+				IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(element);
 				if(commandService == null) {
 					return null;
 				}
@@ -104,7 +106,7 @@ public class ParametricDiagramCreateCommand extends AbstractPapyrusGmfCreateDiag
 					createElementCommand.execute(new NullProgressMonitor(), null);
 					EObject block = GMFCommandUtils.getCommandEObjectResult(createElementCommand);
 					canvasDomainElement = block;
-					diagram = super.createDiagram(diagramResource, (Package)owner, name);
+					diagram = super.doCreateDiagram(diagramResource, owner, (Package)element, prototype, name);
 				}
 
 			} catch (ExecutionException e) {

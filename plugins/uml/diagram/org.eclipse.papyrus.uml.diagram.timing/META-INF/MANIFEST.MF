@@ -67,13 +67,13 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.papyrus.infra.extendedtypes;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.gmfdiag.navigation;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="1.0.0"
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.viewpoints.configuration;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.timing.part.UMLDiagr
- amEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.timing;singleton:
- =true
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.timing.part.UMLDiagramEditorPlugin
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.timing; singleton:=true
 

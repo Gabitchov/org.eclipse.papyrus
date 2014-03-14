@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.LifelineCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
@@ -53,8 +54,8 @@ public class CustomLifelineCreateCommand extends LifelineCreateCommand {
 	 * @param req
 	 * @param eObject
 	 */
-	public CustomLifelineCreateCommand(CreateElementRequest req, EObject eObject) {
-		super(req, eObject);
+	public CustomLifelineCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		super(req, eObject, diagram);
 	}
 
 	/**
@@ -62,8 +63,8 @@ public class CustomLifelineCreateCommand extends LifelineCreateCommand {
 	 * 
 	 * @param req
 	 */
-	public CustomLifelineCreateCommand(CreateElementRequest req) {
-		super(req);
+	public CustomLifelineCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 	}
 
 	/**

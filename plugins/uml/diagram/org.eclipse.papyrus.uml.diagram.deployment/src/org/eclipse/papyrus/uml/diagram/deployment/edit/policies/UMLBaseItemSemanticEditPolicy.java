@@ -301,7 +301,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
-
 		EObject targetCEObject = req.getTargetContainer();
 		if(targetCEObject != null) {
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetCEObject);
@@ -315,7 +314,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		} else {
 			return getGEFWrapper(new MoveElementsCommand(req));
 		}
-
 	}
 
 	/**
@@ -399,13 +397,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateCommentAnnotatedElement_4008(Comment source, Element target) {
 			if(source != null) {
-				if(source.getAnnotatedElements().contains(target)
-
-				) {
+				if(source.getAnnotatedElements().contains(target)) {
 					return false;
 				}
 			}
-
 			return canExistCommentAnnotatedElement_4008(source, target);
 		}
 
@@ -414,13 +409,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraintConstrainedElement_4009(Constraint source, Element target) {
 			if(source != null) {
-				if(source.getConstrainedElements().contains(target)
-
-				) {
+				if(source.getConstrainedElements().contains(target)) {
 					return false;
 				}
 			}
-
 			return canExistConstraintConstrainedElement_4009(source, target);
 		}
 

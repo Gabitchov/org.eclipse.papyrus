@@ -11,6 +11,8 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:StringEditor input="{Binding}" property="notation:Diagram:name"></ppe:StringEditor>
-		<ppe:StringLabel input="{Binding}" property="notation:View:type"></ppe:StringLabel>
+		<ppe:ReferenceLabel input="{Binding}" property="notation:View:prototype" readOnly="true" customLabel="View Type"></ppe:ReferenceLabel>
+		<ppe:ReferenceDialog input="{Binding}" property="notation:View:owner" customLabel="Owner"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}" property="notation:View:element" customLabel="Root element"></ppe:ReferenceDialog>
 	</Composite>
 </Composite>

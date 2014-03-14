@@ -27,6 +27,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -36,7 +37,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -46,6 +46,7 @@ import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryDescriptor;
 import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryRegistry;
 import org.eclipse.papyrus.uml.diagram.wizards.category.NewPapyrusModelCommand;
@@ -55,6 +56,7 @@ import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage.CategoryProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectStorageProviderPage;
 import org.eclipse.papyrus.uml.diagram.wizards.template.InitFromTemplateCommand;
+import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
@@ -586,13 +588,19 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *        the category id
 	 */
 	protected void initDiagrams(ModelSet resourceSet, EObject root, String categoryId) {
-		List<ICreationCommand> creationCommands = getDiagramKindsFor(categoryId);
+		if (root == null)  {
+			UmlModel model = (UmlModel)resourceSet.getModel(UmlModel.MODEL_ID);
+			EList<EObject> roots = model.getResource().getContents();
+			if (!roots.isEmpty())
+				root = roots.get(0);
+		}
+		List<ViewPrototype> creationCommands = getPrototypesFor(categoryId);
 		String diagramName = selectDiagramKindPage.getDiagramName();
 		if(creationCommands.isEmpty()) {
 			createEmptyDiagramEditor(resourceSet);
 		} else {
 			for(int i = 0; i < creationCommands.size(); i++) {
-				creationCommands.get(i).createDiagram(resourceSet, root, diagramName);
+				creationCommands.get(i).instantiateOn(root, diagramName);
 			}
 		}
 	}
@@ -604,8 +612,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *        the category id
 	 * @return the diagram kinds for
 	 */
-	protected List<ICreationCommand> getDiagramKindsFor(String categoryId) {
-		return selectDiagramKindPage.getCreationCommands(categoryId);
+	protected List<ViewPrototype> getPrototypesFor(String categoryId) {
+		return selectDiagramKindPage.getSelectedPrototypes(categoryId);
 	}
 
 

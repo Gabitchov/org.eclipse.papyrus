@@ -50,7 +50,8 @@
    <extension
          point="org.eclipse.papyrus.infra.nattable.configuration">
       <configuration
-            file="resources/viewpage.nattableconfiguration">
+            file="resources/viewpage.nattableconfiguration"
+            type="PapyrusViewsTable">
       </configuration>
    </extension>
 </plugin>

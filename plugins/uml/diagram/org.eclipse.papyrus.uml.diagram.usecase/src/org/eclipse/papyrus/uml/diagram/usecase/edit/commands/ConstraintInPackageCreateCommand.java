@@ -24,12 +24,16 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -39,7 +43,7 @@ public class ConstraintInPackageCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private EClass eClass = null;
+	private Diagram diagram = null;
 
 	/**
 	 * @generated
@@ -49,24 +53,25 @@ public class ConstraintInPackageCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ConstraintInPackageCreateCommand(CreateElementRequest req, EObject eObject) {
+	public ConstraintInPackageCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static ConstraintInPackageCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new ConstraintInPackageCreateCommand(req, eObject);
+	public static ConstraintInPackageCreateCommand create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new ConstraintInPackageCreateCommand(req, eObject, diagram);
 	}
 
 	/**
 	 * @generated
 	 */
-	public ConstraintInPackageCreateCommand(CreateElementRequest req) {
+	public ConstraintInPackageCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -89,7 +94,9 @@ public class ConstraintInPackageCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		return true;
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getConstraint());
+		return data.isPermitted();
 	}
 
 	/**
@@ -97,8 +104,19 @@ public class ConstraintInPackageCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Constraint newElement = UMLFactory.eINSTANCE.createConstraint();
-		Package owner = (Package)getElementToEdit();
-		owner.getPackagedElements().add(newElement);
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		if(data.isPermitted()) {
+			if(data.isPathDefined()) {
+				if(!data.execute(target, newElement))
+					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
+			} else {
+				Package qualifiedTarget = (Package)target;
+				qualifiedTarget.getPackagedElements().add(newElement);
+			}
+		} else {
+			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
+		}
 		Namespace childHolder = (Namespace)getElementToEdit();
 		childHolder.getOwnedRules().add(newElement);
 		ElementInitializers.getInstance().init_Constraint_3010(newElement);

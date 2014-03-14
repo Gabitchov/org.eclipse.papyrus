@@ -196,18 +196,35 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * 
 	 * @generated
 	 */
-	public EReference getTable_TableConfiguration() {
+	public EReference getTable_Owner() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public EReference getTable_Prototype() {
+		return (EReference)tableEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTable_TableConfiguration() {
+		return (EReference)tableEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getTable_InvertAxis() {
-		return (EAttribute)tableEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)tableEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -217,26 +234,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * @generated
 	 */
 	public EReference getTable_ColumnAxisProvidersHistory() {
-		return (EReference)tableEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getTable_RowAxisProvidersHistory() {
-		return (EReference)tableEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getTable_LocalRowHeaderAxisConfiguration() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -246,7 +243,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * 
 	 * @generated
 	 */
-	public EReference getTable_LocalColumnHeaderAxisConfiguration() {
+	public EReference getTable_RowAxisProvidersHistory() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -256,7 +253,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * 
 	 * @generated
 	 */
-	public EReference getTable_CurrentRowAxisProvider() {
+	public EReference getTable_LocalRowHeaderAxisConfiguration() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -266,7 +263,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * 
 	 * @generated
 	 */
-	public EReference getTable_CurrentColumnAxisProvider() {
+	public EReference getTable_LocalColumnHeaderAxisConfiguration() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -276,8 +273,28 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * 
 	 * @generated
 	 */
-	public EReference getTable_Cells() {
+	public EReference getTable_CurrentRowAxisProvider() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getTable_CurrentColumnAxisProvider() {
+		return (EReference)tableEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getTable_Cells() {
+		return (EReference)tableEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -314,6 +331,8 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		// Create classes and their features
 		tableEClass = createEClass(TABLE);
 		createEReference(tableEClass, TABLE__CONTEXT);
+		createEReference(tableEClass, TABLE__OWNER);
+		createEReference(tableEClass, TABLE__PROTOTYPE);
 		createEReference(tableEClass, TABLE__TABLE_CONFIGURATION);
 		createEAttribute(tableEClass, TABLE__INVERT_AXIS);
 		createEReference(tableEClass, TABLE__COLUMN_AXIS_PROVIDERS_HISTORY);
@@ -381,6 +400,8 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		// Initialize classes, features, and operations; add parameters
 		initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTable_Context(), ecorePackage.getEObject(), null, "context", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTable_Owner(), ecorePackage.getEObject(), null, "owner", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTable_Prototype(), ecorePackage.getEObject(), null, "prototype", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTable_TableConfiguration(), theNattableconfigurationPackage.getTableConfiguration(), null, "tableConfiguration", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTable_InvertAxis(), ecorePackage.getEBoolean(), "invertAxis", "false", 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getTable_ColumnAxisProvidersHistory(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "columnAxisProvidersHistory", null, 1, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

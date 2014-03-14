@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.ui.TemplateParameterConfigurationDialog;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.TemplateParameterCreateCommand;
 import org.eclipse.swt.SWT;
@@ -31,8 +32,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class CTemplateParameterCreateCommand extends TemplateParameterCreateCommand {
 
-	public CTemplateParameterCreateCommand(CreateElementRequest req) {
-		super(req);
+	public CTemplateParameterCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 	}
 
 	/**

@@ -23,6 +23,8 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.composite.custom.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.composite.custom.ui.CollaborationRoleValidator;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.CollaborationRoleCreateCommandCN;
@@ -49,8 +51,8 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 	 * @param req
 	 *        the creation request
 	 */
-	public CollaborationRoleCreateCommand(CreateElementRequest req) {
-		super(req);
+	public CollaborationRoleCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 	}
 
 	/**
@@ -61,8 +63,8 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 	 * @param eObject
 	 *        the element to edit
 	 */
-	public CollaborationRoleCreateCommand(CreateElementRequest req, EObject eObject) {
-		super(req, eObject);
+	public CollaborationRoleCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		super(req, eObject, diagram);
 	}
 
 	/**
@@ -74,8 +76,8 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 	 *        the element to edit
 	 * @return the new creation command for CollaborationRole
 	 */
-	public static CollaborationRoleCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new CollaborationRoleCreateCommand(req, eObject);
+	public static CollaborationRoleCreateCommand create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new CollaborationRoleCreateCommand(req, eObject, diagram);
 	}
 
 	/**

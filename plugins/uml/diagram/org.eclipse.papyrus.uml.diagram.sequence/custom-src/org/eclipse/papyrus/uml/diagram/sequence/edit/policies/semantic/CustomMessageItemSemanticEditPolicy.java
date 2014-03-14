@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomCommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomDurationConstraintCreateCommand;
@@ -70,10 +71,10 @@ public class CustomMessageItemSemanticEditPolicy extends MessageItemSemanticEdit
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.DurationConstraint_3023 == req.getElementType()) {
-			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req));
+			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
-			return getGEFWrapper(new CustomDurationObservationCreateCommand(req));
+			return getGEFWrapper(new CustomDurationObservationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return null;
 	}

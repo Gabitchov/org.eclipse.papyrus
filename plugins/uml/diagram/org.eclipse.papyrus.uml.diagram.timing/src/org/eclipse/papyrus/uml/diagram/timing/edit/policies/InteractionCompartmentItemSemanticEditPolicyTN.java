@@ -13,6 +13,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.timing.edit.commands.CompactLifelineCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.timing.edit.commands.FullLifelineCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.timing.providers.UMLElementTypes;
@@ -35,8 +36,8 @@ public class InteractionCompartmentItemSemanticEditPolicyTN extends UMLBaseItemS
 	 * @generated
 	 */
 	@Override
-	protected Command getCreateCommand(final CreateElementRequest req) {
-		final IElementType requestElementType = req.getElementType();
+	protected Command getCreateCommand(CreateElementRequest req) {
+		IElementType requestElementType = req.getElementType();
 		if(requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
@@ -47,8 +48,7 @@ public class InteractionCompartmentItemSemanticEditPolicyTN extends UMLBaseItemS
 			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but
-				// can lead to bugs.
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
 				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
@@ -57,15 +57,14 @@ public class InteractionCompartmentItemSemanticEditPolicyTN extends UMLBaseItemS
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new FullLifelineCreateCommandCN(req));
+			return getGEFWrapper(new FullLifelineCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Lifeline_20 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new CompactLifelineCreateCommandCN(req));
+			return getGEFWrapper(new CompactLifelineCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

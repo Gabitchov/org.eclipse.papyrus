@@ -8,6 +8,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ArtifactCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.DeviceCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ExecutionEnvironmentCreateCommandCN;
@@ -47,38 +48,29 @@ public class NodeCompositeCompartmentItemSemanticEditPolicyCN extends UMLBaseIte
 			}
 		}
 		if(UMLElementTypes.Device_16 == baseElementType) {
-
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new DeviceCreateCommandCN(req));
-
+			return getGEFWrapper(new DeviceCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.ExecutionEnvironment_21 == baseElementType) {
-
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ExecutionEnvironmentCreateCommandCN(req));
-
+			return getGEFWrapper(new ExecutionEnvironmentCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Node_23 == baseElementType) {
-
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new NodeCreateCommandCN(req));
-
+			return getGEFWrapper(new NodeCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Artifact_25 == baseElementType) {
-
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ArtifactCreateCommandCN(req));
-
+			return getGEFWrapper(new ArtifactCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

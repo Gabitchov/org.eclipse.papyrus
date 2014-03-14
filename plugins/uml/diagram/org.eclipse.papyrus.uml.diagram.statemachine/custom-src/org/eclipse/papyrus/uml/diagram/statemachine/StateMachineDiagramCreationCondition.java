@@ -12,7 +12,6 @@ package org.eclipse.papyrus.uml.diagram.statemachine;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
-import org.eclipse.uml2.uml.StateMachine;
 
 /**
  * StateMachineDiagramCreationCondition class allows to check if a State Machine
@@ -24,10 +23,6 @@ public class StateMachineDiagramCreationCondition extends PerspectiveContextDepe
 	 * @return whether the diagram can be created.
 	 */
 	public boolean create(EObject selectedElement) {
-		if(super.create(selectedElement)) {
-			// TODO : to specify according to the spec
-			return selectedElement instanceof StateMachine;
-		}
 		return false;
 	}
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition>
+	<content>
+		<drawer
+			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+			id="org.eclipse.papyrus.robotml.diagram.interfacedef.ROBOTML_InterfaceDef__Nodes" name="Nodes">
+			<aspectTool description="Create a new Package" id="interfacedef.tool.package"
+				name="Package" refToolId="clazz.tool.package">
+			</aspectTool>
+			<aspectTool description="Create a new Interface" id="interfacedef.tool.interface"
+				name="Interface" refToolId="clazz.tool.interface">
+			</aspectTool>
+			<aspectTool description="Create a new Property" id="interfacedef.tool.property"
+				name="Property" refToolId="clazz.tool.property">
+			</aspectTool>
+			<aspectTool description="Create a new Operation" id="interfacedef.tool.operation"
+				name="Operation" refToolId="clazz.tool.operation">
+			</aspectTool>
+			<aspectTool description="Create a new Signal" id="interfacedef.tool.signal"
+				name="Signal" refToolId="clazz.tool.signal">
+			</aspectTool>
+			<aspectTool description="Create a new Reception" id="interfacedef.tool.reception"
+				name="Signal" refToolId="clazz.tool.reception">
+			</aspectTool>
+				<aspectTool description="Create a new Comment" id="interfacedef.tool.comment"
+				name="Comment" refToolId="clazz.tool.comment">
+			</aspectTool>
+			<aspectTool description="Create a new Constraint" id="interfacedef.tool.constraint"
+				name="Constraint" refToolId="clazz.tool.constraint">
+			</aspectTool>
+			</drawer>
+			<drawer
+			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+			id="org.eclipse.papyrus.robotml.diagram.interfacedef.ROBOTML_InterfaceDef__Edges" name="Edges">
+			
+			
+			<aspectTool description="Create a new Usage" id="interfacedef.tool.packageimport"
+				name="Usage" refToolId="clazz.tool.usage">
+			</aspectTool>
+			
+			<aspectTool description="Create a new Realization" id="interfacedef.tool.packagemerge"
+				name="Realization" refToolId="clazz.tool.realization">
+			</aspectTool>
+			<aspectTool description="Create a new Link (Comment/Constraint)" id="interfacedef.tool.link"
+				name="Comment/Constraint link" refToolId="clazz.tool.link">
+			</aspectTool>
+			
+		</drawer>
+	</content>
+</paletteDefinition>

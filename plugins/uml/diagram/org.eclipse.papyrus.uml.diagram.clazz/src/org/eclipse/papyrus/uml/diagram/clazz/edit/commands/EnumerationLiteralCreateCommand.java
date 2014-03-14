@@ -23,11 +23,15 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -37,7 +41,7 @@ public class EnumerationLiteralCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private EClass eClass = null;
+	private Diagram diagram = null;
 
 	/**
 	 * @generated
@@ -47,24 +51,25 @@ public class EnumerationLiteralCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public EnumerationLiteralCreateCommand(CreateElementRequest req, EObject eObject) {
+	public EnumerationLiteralCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static EnumerationLiteralCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new EnumerationLiteralCreateCommand(req, eObject);
+	public static EnumerationLiteralCreateCommand create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new EnumerationLiteralCreateCommand(req, eObject, diagram);
 	}
 
 	/**
 	 * @generated
 	 */
-	public EnumerationLiteralCreateCommand(CreateElementRequest req) {
+	public EnumerationLiteralCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -87,7 +92,9 @@ public class EnumerationLiteralCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		return true;
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getEnumerationLiteral());
+		return data.isPermitted();
 	}
 
 	/**
@@ -95,8 +102,19 @@ public class EnumerationLiteralCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		EnumerationLiteral newElement = UMLFactory.eINSTANCE.createEnumerationLiteral();
-		Enumeration owner = (Enumeration)getElementToEdit();
-		owner.getOwnedLiterals().add(newElement);
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		if(data.isPermitted()) {
+			if(data.isPathDefined()) {
+				if(!data.execute(target, newElement))
+					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
+			} else {
+				Enumeration qualifiedTarget = (Enumeration)target;
+				qualifiedTarget.getOwnedLiterals().add(newElement);
+			}
+		} else {
+			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
+		}
 		ElementInitializers.getInstance().init_EnumerationLiteral_3017(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

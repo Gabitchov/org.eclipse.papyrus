@@ -45,6 +45,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.AssociationClassViewCreateCommand;
@@ -68,11 +69,11 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class AssociationClassHelper extends ElementHelper {
 
-	public static EObject createAssociationClass(TransactionalEditingDomain domain, Type source, Type target, Package container) {
+	public static EObject createAssociationClass(TransactionalEditingDomain domain, Type source, Type target, Package container, Diagram diagram) {
 		AssociationClass association = UMLFactory.eINSTANCE.createAssociationClass();
 		// create target property
 		CreateElementRequest request = new CreateElementRequest(domain, source, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
-		EditElementCommand c = new PropertyForComponentCreateCommand(request);
+		EditElementCommand c = new PropertyForComponentCreateCommand(request, diagram);
 		try {
 			c.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
@@ -88,7 +89,7 @@ public class AssociationClassHelper extends ElementHelper {
 		targetProperty.setUpper(1);
 		// create source property
 		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
-		c = new PropertyCommandForAssociation(request);
+		c = new PropertyCommandForAssociation(request, diagram);
 		try {
 			c.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {

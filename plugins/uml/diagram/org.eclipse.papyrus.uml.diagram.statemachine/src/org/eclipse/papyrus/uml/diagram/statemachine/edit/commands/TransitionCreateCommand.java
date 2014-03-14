@@ -32,7 +32,7 @@ public class TransitionCreateCommand extends EditElementCommand {
 	 */
 	protected Region deduceContainer(EObject source, EObject target) {
 		// TODO: avoid modification of generated code, problem is that model needs to be changed at many places ... 
-		return EMFCustomTransitionRetargetContainerCommand.deduceContainer (source, target);
+		return EMFCustomTransitionRetargetContainerCommand.deduceContainer(source, target);
 	}
 
 	/**
@@ -78,9 +78,6 @@ public class TransitionCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		if(getContainer() == null) {
-			return false;
-		}
-		if(!EMFCustomTransitionRetargetContainerCommand.isValid(source, target)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateTransition_7000(getContainer(), getSource(), getTarget());

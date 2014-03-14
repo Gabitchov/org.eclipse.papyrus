@@ -19,10 +19,14 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -34,7 +38,7 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private EClass eClass = null;
+	private Diagram diagram = null;
 
 	/**
 	 * @generated
@@ -44,24 +48,25 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public TimeObservationCreateCommand(final CreateElementRequest req, final EObject eObject) {
+	public TimeObservationCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static TimeObservationCreateCommand create(final CreateElementRequest req, final EObject eObject) {
-		return new TimeObservationCreateCommand(req, eObject);
+	public static TimeObservationCreateCommand create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new TimeObservationCreateCommand(req, eObject, diagram);
 	}
 
 	/**
 	 * @generated
 	 */
-	public TimeObservationCreateCommand(final CreateElementRequest req) {
+	public TimeObservationCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -71,7 +76,6 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	 */
 	@Override
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -79,7 +83,7 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 		if(container != null) {
 			return container;
 		}
-		return this.eObject;
+		return eObject;
 	}
 
 	/**
@@ -87,24 +91,31 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-
-		return true;
-
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getTimeObservation());
+		return data.isPermitted();
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-
-		final TimeObservation newElement = UMLFactory.eINSTANCE.createTimeObservation();
-
-		final Package owner = (Package)getElementToEdit();
-		owner.getPackagedElements().add(newElement);
-
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		TimeObservation newElement = UMLFactory.eINSTANCE.createTimeObservation();
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		if(data.isPermitted()) {
+			if(data.isPathDefined()) {
+				if(!data.execute(target, newElement))
+					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
+			} else {
+				Package qualifiedTarget = (Package)target;
+				qualifiedTarget.getPackagedElements().add(newElement);
+			}
+		} else {
+			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
+		}
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -112,15 +123,14 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(final TimeObservation newElement, final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-		final IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
-		final ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+	protected void doConfigure(TimeObservation newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		final ICommand configureCommand = elementType.getEditCommand(configureRequest);
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
 		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

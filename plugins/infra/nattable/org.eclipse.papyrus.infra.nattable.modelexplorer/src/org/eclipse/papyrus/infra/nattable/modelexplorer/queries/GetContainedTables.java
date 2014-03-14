@@ -11,28 +11,39 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.modelexplorer.queries;
 
-//TODO: EMF-FACET update query
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
+import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
+
 /** Get the collection of all contained tables */
-public class GetContainedTables {/*
-	extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Collection<Table>> {
+public class GetContainedTables extends AbstractEditorContainerQuery implements IJavaQuery2<EObject, Collection<Table>> {
 
-
-	@Override
-	public Collection<Table> evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
+	public Collection<Table> evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
 		List<Table> result = new ArrayList<Table>();
-		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
+		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(source);
 		if(roots == null) {
 			return result;
 		}
 
 		while(roots.hasNext()) {
 			EObject root = roots.next();
-			if(root instanceof Table) {
-				if(EcoreUtil.equals(((Table)root).getContext(), context)) {
-					result.add((Table)root);
+			if (root instanceof Table) {
+				if (EcoreUtil.equals(((Table) root).getOwner(), source)) {
+					result.add((Table) root);
 				}
 			}
 		}
 		return result;
-	}**/
+	}
 }

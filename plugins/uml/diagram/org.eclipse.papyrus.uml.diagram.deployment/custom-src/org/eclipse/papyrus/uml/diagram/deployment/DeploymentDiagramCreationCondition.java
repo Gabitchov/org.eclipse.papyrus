@@ -23,9 +23,6 @@ public class DeploymentDiagramCreationCondition extends PerspectiveContextDepend
 	 * @return whether the diagram can be created.
 	 */
 	public boolean create(EObject selectedElement) {
-		if(super.create(selectedElement)) {
-			return selectedElement instanceof org.eclipse.uml2.uml.Package;
-		}
 		return false;
 	}
 

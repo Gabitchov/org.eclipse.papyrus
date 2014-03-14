@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.timing.edit.commands.GateCreateCommand;
@@ -49,8 +50,8 @@ public class InteractionNodeItemSemanticEditPolicyTN extends UMLBaseItemSemantic
 	 * @generated
 	 */
 	@Override
-	protected Command getCreateCommand(final CreateElementRequest req) {
-		final IElementType requestElementType = req.getElementType();
+	protected Command getCreateCommand(CreateElementRequest req) {
+		IElementType requestElementType = req.getElementType();
 		if(requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
@@ -61,8 +62,7 @@ public class InteractionNodeItemSemanticEditPolicyTN extends UMLBaseItemSemantic
 			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but
-				// can lead to bugs.
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
 				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
@@ -71,7 +71,7 @@ public class InteractionNodeItemSemanticEditPolicyTN extends UMLBaseItemSemantic
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new GateCreateCommand(req));
+			return getGEFWrapper(new GateCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}
@@ -80,13 +80,12 @@ public class InteractionNodeItemSemanticEditPolicyTN extends UMLBaseItemSemantic
 	 * @generated
 	 */
 	@Override
-	protected Command getDestroyElementCommand(final DestroyElementRequest req) {
-		final EObject selectedEObject = req.getElementToDestroy();
-		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		EObject selectedEObject = req.getElementToDestroy();
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
-			final ICommand deleteCommand = provider.getEditCommand(req);
-
+			ICommand deleteCommand = provider.getEditCommand(req);
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
@@ -98,16 +97,16 @@ public class InteractionNodeItemSemanticEditPolicyTN extends UMLBaseItemSemantic
 	 * @generated
 	 */
 	@Override
-	protected Command getCreateRelationshipCommand(final CreateRelationshipRequest req) {
-		final Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
+	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(final CreateRelationshipRequest req) {
-		final IElementType requestElementType = req.getElementType();
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		IElementType requestElementType = req.getElementType();
 		if(requestElementType == null) {
 			return null;
 		}
@@ -118,8 +117,7 @@ public class InteractionNodeItemSemanticEditPolicyTN extends UMLBaseItemSemantic
 			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but
-				// can lead to bugs.
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
 				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
@@ -139,8 +137,8 @@ public class InteractionNodeItemSemanticEditPolicyTN extends UMLBaseItemSemantic
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(final CreateRelationshipRequest req) {
-		final IElementType requestElementType = req.getElementType();
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		IElementType requestElementType = req.getElementType();
 		if(requestElementType == null) {
 			return null;
 		}
@@ -151,8 +149,7 @@ public class InteractionNodeItemSemanticEditPolicyTN extends UMLBaseItemSemantic
 			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but
-				// can lead to bugs.
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
 				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
@@ -176,7 +173,7 @@ public class InteractionNodeItemSemanticEditPolicyTN extends UMLBaseItemSemantic
 	 * @generated
 	 */
 	@Override
-	protected Command getReorientRelationshipCommand(final ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
 		case MessageLostEditPart.VISUAL_ID:
 			return getGEFWrapper(new MessageLostReorientCommand(req));
@@ -185,5 +182,4 @@ public class InteractionNodeItemSemanticEditPolicyTN extends UMLBaseItemSemantic
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
-
 }

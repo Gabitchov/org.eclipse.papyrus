@@ -28,6 +28,11 @@ import org.eclipse.papyrus.infra.gmfdiag.css.engine.DiagramCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
+import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
+import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
  * Default implementation for CSSDiagram
@@ -84,7 +89,29 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {
 			}
 		}
 
+		StyleSheet s = getViewpointDefinedStylesheet();
+		if (s != null)
+			result.add(s);
+
 		return result;
+	}
+
+	private StyleSheet getViewpointDefinedStylesheet() {
+		ViewPrototype proto = ViewPrototype.get(this);
+		if (proto == null) {
+			return null;
+		}
+		PapyrusView conf = proto.getConfiguration();
+		if (conf == null || !(conf instanceof PapyrusDiagram)) {
+			return null;
+		}
+		String path = ((PapyrusDiagram) conf).getCustomStyle();
+		if (path == null || path.isEmpty()) {
+			return null;
+		}
+		StyleSheetReference ref = StylesheetsFactory.eINSTANCE.createStyleSheetReference();
+		ref.setPath(path);
+		return ref;
 	}
 
 	private class DiagramDisposeListener extends AdapterImpl {

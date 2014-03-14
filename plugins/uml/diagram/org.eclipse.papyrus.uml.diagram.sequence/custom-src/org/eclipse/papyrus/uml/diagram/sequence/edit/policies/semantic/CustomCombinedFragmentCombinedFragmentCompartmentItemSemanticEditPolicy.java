@@ -19,6 +19,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomInteractionOperandCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -52,7 +53,7 @@ public class CustomCombinedFragmentCombinedFragmentCompartmentItemSemanticEditPo
 			}
 			// make compound command
 			CompoundCommand result = new CompoundCommand();
-			Command cmd = getGEFWrapper(new CustomInteractionOperandCreateCommand(req));
+			Command cmd = getGEFWrapper(new CustomInteractionOperandCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 			result.add(cmd);
 			// append a command which notifies
 			// Fixed bug: remove the notify dialog, see: https://bugs.eclipse.org/bugs/show_bug.cgi?id=402977

@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.OperationForInterfaceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ReceptionInInterfaceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
@@ -58,13 +59,13 @@ public class InterfaceOperationCompartmentItemSemanticEditPolicy extends UMLBase
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new OperationForInterfaceCreateCommand(req));
+			return getGEFWrapper(new OperationForInterfaceCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Reception_6 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ReceptionInInterfaceCreateCommand(req));
+			return getGEFWrapper(new ReceptionInInterfaceCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

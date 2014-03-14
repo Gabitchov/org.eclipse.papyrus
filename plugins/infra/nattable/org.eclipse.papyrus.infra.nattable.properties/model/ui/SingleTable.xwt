@@ -12,12 +12,10 @@
 		</Composite.layout>
 		<ppe:StringEditor input="{Binding}"
 			property="nattable:nattableconfiguration:TableNamedElement:name"></ppe:StringEditor>
-		<ppe:ReferenceLabel input="{Binding}" property="nattable:Table:context"
-			readOnly="true"></ppe:ReferenceLabel>
+		<ppe:ReferenceLabel input="{Binding}" property="nattable:Table:prototype" readOnly="true" customLabel="View Type"></ppe:ReferenceLabel>
+		<ppe:ReferenceLabel input="{Binding}" property="nattable:Table:owner" readOnly="true" customLabel="Owner"></ppe:ReferenceLabel>
+		<ppe:ReferenceDialog input="{Binding}" property="nattable:Table:context" customLabel="Root element"></ppe:ReferenceDialog>
 		<ppe:BooleanRadio input="{Binding}" property="nattable:Table:invertAxis"></ppe:BooleanRadio>
-		<ppe:StringEditor input="{Binding}"
-			property="nattable:Table:tableConfiguration.type" readOnly="true"
-			customLabel="Type"></ppe:StringEditor>
 	</Composite>
 	<Composite>
 		<Composite.layout>
