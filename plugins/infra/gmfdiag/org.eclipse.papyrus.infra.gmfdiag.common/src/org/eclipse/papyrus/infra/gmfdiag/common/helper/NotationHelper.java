@@ -33,7 +33,8 @@ public class NotationHelper {
 		if(source instanceof View) {
 			return (View)source;
 		}
-		return (View) EMFHelper.getEObject(source);
+		EObject obj = EMFHelper.getEObject(source);
+		return (obj instanceof View) ? (View) obj : null;
 	}
 
 	/**
