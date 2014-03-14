@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,10 +12,13 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
@@ -24,30 +27,25 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.gmf.runtime.notation.EObjectListValueStyle;
-import org.eclipse.gmf.runtime.notation.NamedStyle;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.Style;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.impl.EObjectListValueStyleImpl;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
-import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles;
-import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
-import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
-import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
-import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
-import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 
 public class ModelStyleSheetObservableList extends EMFObservableList implements  IChangeListener {
 
 	private Resource notationResource;
 	private EObject source;
+	private EditingDomain domain;
 	
 	public ModelStyleSheetObservableList(Resource notationResource, List<?> wrappedList,EditingDomain domain,EObject source,EStructuralFeature feature){
 		super(wrappedList, domain, source, feature);
 		this.notationResource = notationResource;
 		this.source = source;
+		this.domain = domain;
 	}
 
 	@Override
@@ -61,7 +59,7 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	public Command getAddAllCommand(Collection<?> values) {
 		CompoundCommand vcc = new CompoundCommand();
 		vcc.append(super.getAddAllCommand(values));
-		vcc.append(new ModelStyleSheetCommand(notationResource,source));
+		vcc.append(new AddModelStyleSheetCommand((TransactionalEditingDomain) domain, notationResource,source));
 		return vcc;
 	}
 	
@@ -73,37 +71,34 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	
 	@Override
 	public Command getRemoveCommand(Object value) {	
-		StyleSheetReference ref = null;
+		StyleSheetReference styleSheetReference = null;
 		
-		//Retrieve all instance of NameStyle on CSSDiagramImpl
+		CompoundCommand vcc = new CompoundCommand();
+		//vcc.append(super.getRemoveCommand(value));
+		
+		//Retrieve all instance of EObjectListValueStyleImpl on all CSSDiagramImpl to 
 		EList<EObject> objectsFromRessource = notationResource.getContents();
 		for(Object objectFromRessource : objectsFromRessource){
+			//For each CSSDiagramImpl of the ressource look for EObjectListValueStyleImpl
 			if(objectFromRessource instanceof CSSDiagramImpl){
 				EList<EObject> objectsFromDiagram = ((CSSDiagramImpl)objectFromRessource).getStyles();
 				for(Object objectFromDiagram : objectsFromDiagram){
+					//For each EObjectListValueStyleImpl of each diagram
 					if(objectFromDiagram instanceof EObjectListValueStyleImpl){
-						NamedStyle listValueStyle = ((NamedStyle)objectFromDiagram);
-						//listValueStyle.
+						EObjectListValueStyleImpl vObjListVal = ((EObjectListValueStyleImpl)objectFromDiagram);
+						 styleSheetReference = (StyleSheetReference) vObjListVal.getEObjectListValue().get(0);
+						 //If the current style sheet to delete from model exist on a diagram, add it on the root
+						 if (value == styleSheetReference) {			
+							vcc.append(new RemoveObjectCommand((TransactionalEditingDomain)domain,styleSheetReference));
+							vcc.append(new AddModelStyleSheetCommand((TransactionalEditingDomain) domain, notationResource,styleSheetReference));
+						 }
 					}
 				}
 			}
 		}
 		
-		
-		//Compare Objects to the object to remove
-//		for(Object object : objects1){
-//			if(object instanceof NamedStyle){
-//				// If the StyleReference to delete is used on a diagram 
-//				if(((Style)object)==value){
-//					ref = (StyleSheetReference)value;
-//				}
-//			}
-//		}
-		
-		
-		return super.getRemoveCommand(value);
+		return vcc;
 	}
-	
 	
 	@Override
 	public Command getRemoveAllCommand(Collection<?> values) {

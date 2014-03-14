@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -19,6 +19,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.ui.services.parser.GetParserOperation;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ModelCSSEngine;
@@ -28,28 +30,27 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 
-public class ModelStyleSheetCommand extends AbstractCommand {
+public class AddModelStyleSheetCommand extends RecordingCommand {
 	
 	Resource resource;
 	EObject object;
 	EObject vRef;
-	protected final Set<EObject> createdEObjects = new HashSet<EObject>();
 	
-	public ModelStyleSheetCommand(Resource resource, EObject object) {
+	public AddModelStyleSheetCommand(TransactionalEditingDomain domain, Resource resource, EObject object) {
+		super(domain);
 		this.resource= resource;
 		this.object=object;
 	}
 	
-	public void execute() {
+	public void doExecute() {
 		
 		//add ModelSteelSheet
 		resource.getContents().add(object);
-		createdEObjects.add(object);
 
 		//reloadStyleSheets for the model
 //		EList<EObject> objects = resource.getContents();
 		
-		((CSSNotationResource)resource).getModelEngine().getAllStylesheets();
+		//((CSSNotationResource)resource).getModelEngine().getAllStylesheets();
 		
 //		for(EObject object : objects){
 //			
@@ -70,14 +71,4 @@ public class ModelStyleSheetCommand extends AbstractCommand {
 //		}
 	}
 	
-	@Override
-	public void undo(){
-		if(createdEObjects.contains(object)) {
-			object.eResource().getContents().remove(object);
-		}
-	}
-	
-	public void redo() {
-		execute();
-	}
 }
