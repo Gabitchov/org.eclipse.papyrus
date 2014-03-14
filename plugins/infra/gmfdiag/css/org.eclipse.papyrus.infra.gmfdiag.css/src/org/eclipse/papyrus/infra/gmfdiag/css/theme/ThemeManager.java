@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.theme;
 
@@ -28,10 +29,15 @@ import org.eclipse.jface.preference.IPersistentPreferenceStore;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.preferences.ThemePreferences;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ThemeImpl;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * A Singleton to manage CSS Themes. Reads Themes from an extension point,
+ * A Singleton to manage CSS Themes. Reads Themes from an extension point
  * and provides an access to them.
  *
  * @author Camille Letavernier
@@ -39,11 +45,14 @@ import org.eclipse.swt.graphics.Image;
  */
 public class ThemeManager {
 
+	/** Extension point ID. */
 	public static String EXTENSION_ID = Activator.PLUGIN_ID + ".theme";
 
+	/** Unique instance of manager. */
 	public static ThemeManager instance = new ThemeManager();
 
-	private Map<String, Theme> allThemes;
+	/** All found themes in application. */
+	private Map<String, Theme> allThemes = null;
 
 	/**
 	 * Returns all the Themes, sorted alphabetically
@@ -61,12 +70,12 @@ public class ThemeManager {
 	 *
 	 * @return
 	 */
-	public List<URL> getWorkspaceStyleSheets() {
+	public List<StyleSheet> getWorkspaceStyleSheets() {
 		Theme current = findCurrentTheme();
 		if(current == null) {
 			return Collections.emptyList();
 		}
-		return current.getStyleSheets();
+		return current.getStylesheets();
 	}
 
 	/**
@@ -93,8 +102,17 @@ public class ThemeManager {
 		return allThemes;
 	}
 
+	/**
+	 * Load theme definitions.
+	 *
+	 * @param config
+	 *        configuration of all contribution definition
+	 */
 	private void loadThemeDefinitions(IConfigurationElement[] config) {
+
+		// For all theme definitions
 		for(IConfigurationElement themeConfig : config) {
+
 			if(!themeConfig.getName().equals("themeDefinition")) {
 				continue;
 			}
@@ -104,7 +122,10 @@ public class ThemeManager {
 				Activator.log.warn("Cannot define a CSS Theme with an empty id (Contributed by " + themeConfig.getContributor() + ")");
 				continue;
 			}
-			Theme theme = new Theme(themeId);
+
+			//Create theme 
+			Theme theme = StylesheetsFactory.eINSTANCE.createTheme();
+			theme.setId(themeId);
 
 			String themeLabel = themeConfig.getAttribute("label");
 			theme.setLabel(themeLabel);
@@ -114,7 +135,7 @@ public class ThemeManager {
 				//FIXME: Use the Papyrus Image service when it is available
 				Image icon = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(themeConfig.getContributor().getName(), themeIcon);
 				if(icon != null) {
-					theme.setIcon(icon);
+					theme.setIcon(themeIcon);
 				}
 			}
 
@@ -122,8 +143,16 @@ public class ThemeManager {
 		}
 	}
 
+	/**
+	 * Load theme contributions.
+	 *
+	 * @param config
+	 *        configuration of all contribution definition
+	 */
 	private void loadThemeContributions(IConfigurationElement[] config) {
 		for(IConfigurationElement themeConfig : config) {
+
+			// Verify that 
 			if(!themeConfig.getName().equals("themeContribution")) {
 				continue;
 			}
@@ -141,7 +170,9 @@ public class ThemeManager {
 				String path = stylesheetConfig.getAttribute("stylesheetPath");
 				try {
 					URL url = new URL("platform:/plugin/" + themeConfig.getContributor().getName() + "/" + path);
-					theme.addStyleSheet(url);
+					StyleSheetReference styleSheet = StylesheetsFactory.eINSTANCE.createStyleSheetReference();
+					styleSheet.setPath(url.toString());
+					theme.getStylesheets().add(styleSheet);
 				} catch (IOException ex) {
 					Activator.log.error(ex);
 				}
@@ -175,15 +206,14 @@ public class ThemeManager {
 		return theme;
 	}
 
-	public static class EmptyTheme extends Theme {
+	public static class EmptyTheme extends ThemeImpl {
 
 		public static Theme instance = new EmptyTheme();
 
 		private EmptyTheme() {
-			super("none"); //$NON-NLS-1$
+			setId("none");
 			setLabel("No theme");
-			Image icon = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("icons/Delete_12x12.gif");
-			setIcon(icon);
+			setIcon("icons/Delete_12x12.gif");
 		}
 	}
 

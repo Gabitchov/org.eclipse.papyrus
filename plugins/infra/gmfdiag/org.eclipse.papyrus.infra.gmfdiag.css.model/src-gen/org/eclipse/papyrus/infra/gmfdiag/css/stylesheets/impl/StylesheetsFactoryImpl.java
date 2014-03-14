@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.*;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
@@ -28,7 +29,7 @@ public class StylesheetsFactoryImpl extends EFactoryImpl implements StylesheetsF
 	 */
 	public static StylesheetsFactory init() {
 		try {
-			StylesheetsFactory theStylesheetsFactory = (StylesheetsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/infra/gmfdiag/css"); 
+			StylesheetsFactory theStylesheetsFactory = (StylesheetsFactory)EPackage.Registry.INSTANCE.getEFactory(StylesheetsPackage.eNS_URI);
 			if (theStylesheetsFactory != null) {
 				return theStylesheetsFactory;
 			}
@@ -60,6 +61,8 @@ public class StylesheetsFactoryImpl extends EFactoryImpl implements StylesheetsF
 			case StylesheetsPackage.MODEL_STYLE_SHEETS: return createModelStyleSheets();
 			case StylesheetsPackage.STYLE_SHEET_REFERENCE: return createStyleSheetReference();
 			case StylesheetsPackage.EMBEDDED_STYLE_SHEET: return createEmbeddedStyleSheet();
+			case StylesheetsPackage.WORKSPACE_THEMES: return createWorkspaceThemes();
+			case StylesheetsPackage.THEME: return createTheme();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -93,6 +96,26 @@ public class StylesheetsFactoryImpl extends EFactoryImpl implements StylesheetsF
 	public EmbeddedStyleSheet createEmbeddedStyleSheet() {
 		EmbeddedStyleSheetImpl embeddedStyleSheet = new EmbeddedStyleSheetImpl();
 		return embeddedStyleSheet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkspaceThemes createWorkspaceThemes() {
+		WorkspaceThemesImpl workspaceThemes = new WorkspaceThemesImpl();
+		return workspaceThemes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Theme createTheme() {
+		ThemeImpl theme = new ThemeImpl();
+		return theme;
 	}
 
 	/**

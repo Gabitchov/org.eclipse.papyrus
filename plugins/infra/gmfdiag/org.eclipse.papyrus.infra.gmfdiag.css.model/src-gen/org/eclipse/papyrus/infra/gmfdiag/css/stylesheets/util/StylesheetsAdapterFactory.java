@@ -7,6 +7,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.*;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
@@ -86,6 +87,14 @@ public class StylesheetsAdapterFactory extends AdapterFactoryImpl {
 				return createEmbeddedStyleSheetAdapter();
 			}
 			@Override
+			public Adapter caseWorkspaceThemes(WorkspaceThemes object) {
+				return createWorkspaceThemesAdapter();
+			}
+			@Override
+			public Adapter caseTheme(Theme object) {
+				return createThemeAdapter();
+			}
+			@Override
 			public Adapter caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
@@ -162,6 +171,34 @@ public class StylesheetsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEmbeddedStyleSheetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes <em>Workspace Themes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes
+	 * @generated
+	 */
+	public Adapter createWorkspaceThemesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme <em>Theme</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme
+	 * @generated
+	 */
+	public Adapter createThemeAdapter() {
 		return null;
 	}
 

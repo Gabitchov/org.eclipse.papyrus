@@ -14,6 +14,8 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,6 +51,20 @@ public class StylesheetsPackageImpl extends EPackageImpl implements StylesheetsP
 	 * @generated
 	 */
 	private EClass embeddedStyleSheetEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass workspaceThemesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass themeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -191,6 +207,69 @@ public class StylesheetsPackageImpl extends EPackageImpl implements StylesheetsP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getWorkspaceThemes() {
+		return workspaceThemesEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getWorkspaceThemes_Themes() {
+		return (EReference)workspaceThemesEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTheme() {
+		return themeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTheme_Id() {
+		return (EAttribute)themeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTheme_Label() {
+		return (EAttribute)themeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTheme_Icon() {
+		return (EAttribute)themeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTheme_Stylesheets() {
+		return (EReference)themeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public StylesheetsFactory getStylesheetsFactory() {
 		return (StylesheetsFactory)getEFactoryInstance();
 	}
@@ -225,6 +304,15 @@ public class StylesheetsPackageImpl extends EPackageImpl implements StylesheetsP
 		embeddedStyleSheetEClass = createEClass(EMBEDDED_STYLE_SHEET);
 		createEAttribute(embeddedStyleSheetEClass, EMBEDDED_STYLE_SHEET__LABEL);
 		createEAttribute(embeddedStyleSheetEClass, EMBEDDED_STYLE_SHEET__CONTENT);
+
+		workspaceThemesEClass = createEClass(WORKSPACE_THEMES);
+		createEReference(workspaceThemesEClass, WORKSPACE_THEMES__THEMES);
+
+		themeEClass = createEClass(THEME);
+		createEAttribute(themeEClass, THEME__ID);
+		createEAttribute(themeEClass, THEME__LABEL);
+		createEAttribute(themeEClass, THEME__ICON);
+		createEReference(themeEClass, THEME__STYLESHEETS);
 	}
 
 	/**
@@ -261,6 +349,7 @@ public class StylesheetsPackageImpl extends EPackageImpl implements StylesheetsP
 		modelStyleSheetsEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 		styleSheetReferenceEClass.getESuperTypes().add(this.getStyleSheet());
 		embeddedStyleSheetEClass.getESuperTypes().add(this.getStyleSheet());
+		workspaceThemesEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelStyleSheetsEClass, ModelStyleSheets.class, "ModelStyleSheets", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -274,6 +363,15 @@ public class StylesheetsPackageImpl extends EPackageImpl implements StylesheetsP
 		initEClass(embeddedStyleSheetEClass, EmbeddedStyleSheet.class, "EmbeddedStyleSheet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEmbeddedStyleSheet_Label(), ecorePackage.getEString(), "label", null, 0, 1, EmbeddedStyleSheet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEmbeddedStyleSheet_Content(), theEcorePackage.getEString(), "content", null, 1, 1, EmbeddedStyleSheet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(workspaceThemesEClass, WorkspaceThemes.class, "WorkspaceThemes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWorkspaceThemes_Themes(), this.getTheme(), null, "themes", null, 0, -1, WorkspaceThemes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(themeEClass, Theme.class, "Theme", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTheme_Id(), theEcorePackage.getEString(), "id", null, 0, 1, Theme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTheme_Label(), theEcorePackage.getEString(), "label", null, 0, 1, Theme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTheme_Icon(), theEcorePackage.getEString(), "icon", null, 0, 1, Theme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTheme_Stylesheets(), this.getStyleSheet(), null, "stylesheets", null, 0, -1, Theme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

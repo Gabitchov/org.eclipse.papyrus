@@ -11,10 +11,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.eclipse.e4.ui.css.core.dom.IElementProvider;
 import org.eclipse.e4.ui.css.core.engine.CSSElementContext;
+import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.theme.ThemeManager;
 import org.w3c.dom.Element;
 
@@ -42,8 +46,17 @@ public class WorkspaceCSSEngine extends ExtendedCSSEngineImpl {
 	@Override
 	protected void reloadStyleSheets() {
 		styleSheetURLs.clear();
-		for(URL styleSheetURL : ThemeManager.instance.getWorkspaceStyleSheets()) {
-			styleSheetURLs.add(styleSheetURL);
+		for(StyleSheet styleSheet : ThemeManager.instance.getWorkspaceStyleSheets()) {
+
+			if(styleSheet instanceof StyleSheetReference) {
+				try {
+					URL styleSheetURL = new URL(((StyleSheetReference)styleSheet).getPath());
+					styleSheetURLs.add(styleSheetURL);
+				} catch (MalformedURLException e) {
+					Activator.log.error(e);
+				}
+			}
+
 		}
 	}
 

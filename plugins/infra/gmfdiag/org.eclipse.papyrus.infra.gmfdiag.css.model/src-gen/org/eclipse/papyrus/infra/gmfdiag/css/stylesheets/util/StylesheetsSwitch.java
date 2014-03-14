@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.*;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
@@ -96,6 +97,19 @@ public class StylesheetsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case StylesheetsPackage.WORKSPACE_THEMES: {
+				WorkspaceThemes workspaceThemes = (WorkspaceThemes)theEObject;
+				T result = caseWorkspaceThemes(workspaceThemes);
+				if (result == null) result = caseEModelElement(workspaceThemes);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StylesheetsPackage.THEME: {
+				Theme theme = (Theme)theEObject;
+				T result = caseTheme(theme);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -157,6 +171,36 @@ public class StylesheetsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEmbeddedStyleSheet(EmbeddedStyleSheet object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workspace Themes</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workspace Themes</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkspaceThemes(WorkspaceThemes object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Theme</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Theme</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTheme(Theme object) {
 		return null;
 	}
 

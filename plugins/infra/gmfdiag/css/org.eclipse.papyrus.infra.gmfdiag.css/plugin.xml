@@ -81,4 +81,51 @@
           implementation="org.eclipse.papyrus.infra.gmfdiag.css.CssSvgPostProcessor">
     </postProcessor>
  </extension>
+ <extension
+       point="org.eclipse.ui.menus">
+    <menuContribution
+          allPopups="false"
+          locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+       <command
+             commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme"
+             style="push">
+          <visibleWhen
+                checkEnabled="true">
+             <with
+                   variable="activePartId">
+                <equals
+                      value="org.eclipse.ui.navigator.ProjectExplorer">
+                </equals>
+             </with>
+          </visibleWhen>
+       </command>
+    </menuContribution>
+ </extension>
+ <extension
+       point="org.eclipse.ui.commands">
+    <command
+          id="org.eclipse.papyrus.infra.gmfdiag.css.theme"
+          name="Define theme">
+    </command>
+ </extension>
+ <extension
+       point="org.eclipse.ui.handlers">
+    <handler
+          class="org.eclipse.papyrus.infra.gmfdiag.css.handler.CSSFileHandler"
+          commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme">
+       <enabledWhen>
+          <with
+                variable="selection">
+             <iterate>
+                <adapt
+                      type="org.eclipse.core.resources.IResource">
+                   <test
+                         property="org.eclipse.core.resources.extension"
+                         value="css">
+                   </test>
+                </adapt>
+             </iterate>
+          </with></enabledWhen>
+    </handler>
+ </extension>
 </plugin>

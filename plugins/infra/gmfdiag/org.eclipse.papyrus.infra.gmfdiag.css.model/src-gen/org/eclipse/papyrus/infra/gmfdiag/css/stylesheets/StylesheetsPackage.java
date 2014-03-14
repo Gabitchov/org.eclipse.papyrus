@@ -179,6 +179,99 @@ public interface StylesheetsPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.WorkspaceThemesImpl <em>Workspace Themes</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.WorkspaceThemesImpl
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getWorkspaceThemes()
+	 * @generated
+	 */
+	int WORKSPACE_THEMES = 4;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE_THEMES__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Themes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE_THEMES__THEMES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Workspace Themes</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE_THEMES_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ThemeImpl <em>Theme</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ThemeImpl
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getTheme()
+	 * @generated
+	 */
+	int THEME = 5;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEME__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEME__LABEL = 1;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEME__ICON = 2;
+
+	/**
+	 * The feature id for the '<em><b>Stylesheets</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEME__STYLESHEETS = 3;
+
+	/**
+	 * The number of structural features of the '<em>Theme</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEME_FEATURE_COUNT = 4;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets <em>Model Style Sheets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -261,6 +354,81 @@ public interface StylesheetsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEmbeddedStyleSheet_Content();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes <em>Workspace Themes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Workspace Themes</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes
+	 * @generated
+	 */
+	EClass getWorkspaceThemes();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes#getThemes <em>Themes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Themes</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes#getThemes()
+	 * @see #getWorkspaceThemes()
+	 * @generated
+	 */
+	EReference getWorkspaceThemes_Themes();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme <em>Theme</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Theme</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme
+	 * @generated
+	 */
+	EClass getTheme();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getId()
+	 * @see #getTheme()
+	 * @generated
+	 */
+	EAttribute getTheme_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getLabel <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Label</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getLabel()
+	 * @see #getTheme()
+	 * @generated
+	 */
+	EAttribute getTheme_Label();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getIcon <em>Icon</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Icon</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getIcon()
+	 * @see #getTheme()
+	 * @generated
+	 */
+	EAttribute getTheme_Icon();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getStylesheets <em>Stylesheets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Stylesheets</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getStylesheets()
+	 * @see #getTheme()
+	 * @generated
+	 */
+	EReference getTheme_Stylesheets();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -355,6 +523,66 @@ public interface StylesheetsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EMBEDDED_STYLE_SHEET__CONTENT = eINSTANCE.getEmbeddedStyleSheet_Content();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.WorkspaceThemesImpl <em>Workspace Themes</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.WorkspaceThemesImpl
+		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getWorkspaceThemes()
+		 * @generated
+		 */
+		EClass WORKSPACE_THEMES = eINSTANCE.getWorkspaceThemes();
+
+		/**
+		 * The meta object literal for the '<em><b>Themes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WORKSPACE_THEMES__THEMES = eINSTANCE.getWorkspaceThemes_Themes();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ThemeImpl <em>Theme</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ThemeImpl
+		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getTheme()
+		 * @generated
+		 */
+		EClass THEME = eINSTANCE.getTheme();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THEME__ID = eINSTANCE.getTheme_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THEME__LABEL = eINSTANCE.getTheme_Label();
+
+		/**
+		 * The meta object literal for the '<em><b>Icon</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THEME__ICON = eINSTANCE.getTheme_Icon();
+
+		/**
+		 * The meta object literal for the '<em><b>Stylesheets</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference THEME__STYLESHEETS = eINSTANCE.getTheme_Stylesheets();
 
 	}
 
