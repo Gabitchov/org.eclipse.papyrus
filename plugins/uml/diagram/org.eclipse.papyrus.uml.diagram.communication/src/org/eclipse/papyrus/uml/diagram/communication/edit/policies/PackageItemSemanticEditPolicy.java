@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.common.commands.DuplicateNamedElementCommand;
 import org.eclipse.papyrus.uml.diagram.communication.edit.commands.InteractionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.communication.edit.commands.ShortCutDiagramCreateCommand;
@@ -63,13 +64,13 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new InteractionCreateCommand(req));
+			return getGEFWrapper(new InteractionCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Diagram_8016 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ShortCutDiagramCreateCommand(req));
+			return getGEFWrapper(new ShortCutDiagramCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

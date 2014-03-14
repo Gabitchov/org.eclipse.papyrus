@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.communication.edit.commands.CommentCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.commands.ConstraintCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.commands.DurationObservationCreateCommandCN;
@@ -61,31 +62,31 @@ public class InteractionCompartmentItemSemanticEditPolicy extends UMLBaseItemSem
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new LifelineCreateCommandCN(req));
+			return getGEFWrapper(new LifelineCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Comment_8005 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new CommentCreateCommandCN(req));
+			return getGEFWrapper(new CommentCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Constraint_8004 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ConstraintCreateCommandCN(req));
+			return getGEFWrapper(new ConstraintCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.TimeObservation_8006 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new TimeObservationCreateCommandCN(req));
+			return getGEFWrapper(new TimeObservationCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.DurationObservation_8007 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new DurationObservationCreateCommandCN(req));
+			return getGEFWrapper(new DurationObservationCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

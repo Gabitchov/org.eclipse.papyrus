@@ -25,6 +25,8 @@ public class Constants {
 		//to prevent instanciation
 	}
 
+	
+	public static final String TABLE_CONTEXT = "context"; //$NON-NLS-1$
 
 	public static final String LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION_DISPLAY_LABEL = "localColumnHeaderAxisConfiguration.displayLabel"; //$NON-NLS-1$
 

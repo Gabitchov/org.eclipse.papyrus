@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintAsLocalPostcondCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintAsLocalPrecondCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.DurationConstraintAsLocalPostcondCreateCommand;
@@ -80,7 +81,7 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	 *        the part of the action owning the condition
 	 */
 	public CreateActionLocalConditionViewCommand(IHintedType conditionType, ActivityActivityContentCompartmentEditPart graphicalParent, EObject containerAction, EditPart actionPart) {
-		elementCreationCommand = getElementCreationCommand(containerAction, conditionType);
+		elementCreationCommand = getElementCreationCommand(containerAction, conditionType, graphicalParent);
 		compartment = graphicalParent;
 		linkedActionEditPart = actionPart;
 		type = conditionType;
@@ -96,31 +97,31 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	 *        (Constraint_3011) or postcondition (Constraint_3012)
 	 * @return the command to create model element or null
 	 */
-	private static ICommandProxy getElementCreationCommand(EObject containerAction, IHintedType conditionType) {
+	private static ICommandProxy getElementCreationCommand(EObject containerAction, IHintedType conditionType, EditPart part) {
 		CreateElementRequest createElementReq = new CreateElementRequest(containerAction, conditionType);
 		if(UMLElementTypes.Constraint_3011.equals(conditionType)) {
-			ConstraintAsLocalPrecondCreateCommand cmd = new ConstraintAsLocalPrecondCreateCommand(createElementReq);
+			ConstraintAsLocalPrecondCreateCommand cmd = new ConstraintAsLocalPrecondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
 			return new ICommandProxy(cmd);
 		} else if(UMLElementTypes.Constraint_3012.equals(conditionType)) {
-			ConstraintAsLocalPostcondCreateCommand cmd = new ConstraintAsLocalPostcondCreateCommand(createElementReq);
+			ConstraintAsLocalPostcondCreateCommand cmd = new ConstraintAsLocalPostcondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
 			return new ICommandProxy(cmd);
 		} else if(UMLElementTypes.IntervalConstraint_3032.equals(conditionType)) {
-			IntervalConstraintAsLocalPrecondCreateCommand cmd = new IntervalConstraintAsLocalPrecondCreateCommand(createElementReq);
+			IntervalConstraintAsLocalPrecondCreateCommand cmd = new IntervalConstraintAsLocalPrecondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
 			return new ICommandProxy(cmd);
 		} else if(UMLElementTypes.IntervalConstraint_3033.equals(conditionType)) {
-			IntervalConstraintAsLocalPostcondCreateCommand cmd = new IntervalConstraintAsLocalPostcondCreateCommand(createElementReq);
+			IntervalConstraintAsLocalPostcondCreateCommand cmd = new IntervalConstraintAsLocalPostcondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
 			return new ICommandProxy(cmd);
 		} else if(UMLElementTypes.DurationConstraint_3034.equals(conditionType)) {
-			DurationConstraintAsLocalPrecondCreateCommand cmd = new DurationConstraintAsLocalPrecondCreateCommand(createElementReq);
+			DurationConstraintAsLocalPrecondCreateCommand cmd = new DurationConstraintAsLocalPrecondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
 			return new ICommandProxy(cmd);
 		} else if(UMLElementTypes.DurationConstraint_3035.equals(conditionType)) {
-			DurationConstraintAsLocalPostcondCreateCommand cmd = new DurationConstraintAsLocalPostcondCreateCommand(createElementReq);
+			DurationConstraintAsLocalPostcondCreateCommand cmd = new DurationConstraintAsLocalPostcondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
 			return new ICommandProxy(cmd);
 		} else if(UMLElementTypes.TimeConstraint_3036.equals(conditionType)) {
-			TimeConstraintAsLocalPrecondCreateCommand cmd = new TimeConstraintAsLocalPrecondCreateCommand(createElementReq);
+			TimeConstraintAsLocalPrecondCreateCommand cmd = new TimeConstraintAsLocalPrecondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
 			return new ICommandProxy(cmd);
 		} else if(UMLElementTypes.TimeConstraint_3037.equals(conditionType)) {
-			TimeConstraintAsLocalPostcondCreateCommand cmd = new TimeConstraintAsLocalPostcondCreateCommand(createElementReq);
+			TimeConstraintAsLocalPostcondCreateCommand cmd = new TimeConstraintAsLocalPostcondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
 			return new ICommandProxy(cmd);
 		} else {
 			return null;

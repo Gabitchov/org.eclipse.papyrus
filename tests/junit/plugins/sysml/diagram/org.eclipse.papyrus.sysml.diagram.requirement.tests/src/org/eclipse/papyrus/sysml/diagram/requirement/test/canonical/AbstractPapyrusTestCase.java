@@ -14,6 +14,7 @@ package org.eclipse.papyrus.sysml.diagram.requirement.test.canonical;
 
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand;
+import org.eclipse.papyrus.sysml.diagram.requirement.test.IRequirementDiagramTestsConstants;
 
 /**
  * The Class AbstractPapyrusTestCase.
@@ -23,5 +24,10 @@ public abstract class AbstractPapyrusTestCase extends org.eclipse.papyrus.diagra
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new RequirementDiagramCreateCommand();
+	}
+
+	@Override
+	protected String[] getRequiredProfiles() {
+		return IRequirementDiagramTestsConstants.PROFILES;
 	}
 }

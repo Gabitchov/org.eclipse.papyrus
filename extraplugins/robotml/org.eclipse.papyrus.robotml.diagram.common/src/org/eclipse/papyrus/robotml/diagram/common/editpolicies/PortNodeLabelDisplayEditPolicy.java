@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.communication.custom.helper.RotationHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -25,7 +26,7 @@ import org.eclipse.uml2.uml.Stereotype;
 
 
 
-public class PortNodeLabelDisplayEditPolicy extends StereotypeNodeLabelDisplayEditPolicy {
+public class PortNodeLabelDisplayEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
 
 
 

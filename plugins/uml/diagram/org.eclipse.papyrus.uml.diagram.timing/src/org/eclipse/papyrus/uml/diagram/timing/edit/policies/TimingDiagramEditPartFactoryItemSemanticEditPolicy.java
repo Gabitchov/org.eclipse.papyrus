@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.common.commands.DuplicateNamedElementCommand;
 import org.eclipse.papyrus.uml.diagram.timing.edit.commands.InteractionCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.timing.providers.UMLElementTypes;
@@ -39,8 +40,8 @@ public class TimingDiagramEditPartFactoryItemSemanticEditPolicy extends UMLBaseI
 	 * @generated
 	 */
 	@Override
-	protected Command getCreateCommand(final CreateElementRequest req) {
-		final IElementType requestElementType = req.getElementType();
+	protected Command getCreateCommand(CreateElementRequest req) {
+		IElementType requestElementType = req.getElementType();
 		if(requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
@@ -51,8 +52,7 @@ public class TimingDiagramEditPartFactoryItemSemanticEditPolicy extends UMLBaseI
 			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but
-				// can lead to bugs.
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
 				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
@@ -61,7 +61,7 @@ public class TimingDiagramEditPartFactoryItemSemanticEditPolicy extends UMLBaseI
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new InteractionCreateCommandTN(req));
+			return getGEFWrapper(new InteractionCreateCommandTN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}
@@ -70,8 +70,8 @@ public class TimingDiagramEditPartFactoryItemSemanticEditPolicy extends UMLBaseI
 	 * @generated
 	 */
 	@Override
-	protected Command getDuplicateCommand(final DuplicateElementsRequest req) {
-		final TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		Diagram currentDiagram = null;
 		if(getHost() instanceof IGraphicalEditPart) {
 			currentDiagram = ((IGraphicalEditPart)getHost()).getNotationView().getDiagram();
@@ -87,15 +87,14 @@ public class TimingDiagramEditPartFactoryItemSemanticEditPolicy extends UMLBaseI
 		/**
 		 * @generated
 		 */
-		private final Diagram diagram;
+		private Diagram diagram;
 
 		/**
 		 * @generated
 		 */
-		public DuplicateAnythingCommand(final TransactionalEditingDomain editingDomain, final DuplicateElementsRequest req, final Diagram currentDiagram) {
+		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req, Diagram currentDiagram) {
 			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap(), currentDiagram);
 			this.diagram = currentDiagram;
 		}
 	}
-
 }

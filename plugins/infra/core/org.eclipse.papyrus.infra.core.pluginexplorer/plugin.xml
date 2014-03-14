@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.papyrus.views.category"
+            class="org.eclipse.papyrus.infra.core.pluginexplorer.PluginsContentView"
+            icon="icons/plugin_obj.gif"
+            id="org.eclipse.papyrus.infra.core.pluginexplorer.PluginsContentView"
+            name="Plugin Content Explorer">
+      </view>
+   </extension>
+
+</plugin>

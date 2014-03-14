@@ -129,6 +129,24 @@ public interface NattablePackage extends EPackage {
 	int TABLE__CONTEXT = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__OWNER = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Prototype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__PROTOTYPE = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Table Configuration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -136,7 +154,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__TABLE_CONFIGURATION = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int TABLE__TABLE_CONFIGURATION = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Invert Axis</b></em>' attribute.
@@ -146,7 +164,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__INVERT_AXIS = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int TABLE__INVERT_AXIS = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Column Axis Providers History</b></em>' containment reference list.
@@ -156,7 +174,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__COLUMN_AXIS_PROVIDERS_HISTORY = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int TABLE__COLUMN_AXIS_PROVIDERS_HISTORY = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Row Axis Providers History</b></em>' containment reference list.
@@ -166,7 +184,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__ROW_AXIS_PROVIDERS_HISTORY = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int TABLE__ROW_AXIS_PROVIDERS_HISTORY = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Local Row Header Axis Configuration</b></em>' containment reference.
@@ -176,7 +194,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Local Column Header Axis Configuration</b></em>' containment reference.
@@ -186,7 +204,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Current Row Axis Provider</b></em>' reference.
@@ -196,7 +214,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__CURRENT_ROW_AXIS_PROVIDER = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int TABLE__CURRENT_ROW_AXIS_PROVIDER = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Current Column Axis Provider</b></em>' reference.
@@ -206,7 +224,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__CURRENT_COLUMN_AXIS_PROVIDER = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 8;
+	int TABLE__CURRENT_COLUMN_AXIS_PROVIDER = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Cells</b></em>' containment reference list.
@@ -216,7 +234,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__CELLS = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 9;
+	int TABLE__CELLS = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of structural features of the '<em>Table</em>' class.
@@ -226,7 +244,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_FEATURE_COUNT = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 10;
+	int TABLE_FEATURE_COUNT = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -273,8 +291,29 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_Context();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getTableConfiguration
-	 * <em>Table Configuration</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Owner</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getOwner()
+	 * @see #getTable()
+	 * @generated
+	 */
+	EReference getTable_Owner();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getPrototype <em>Prototype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Prototype</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getPrototype()
+	 * @see #getTable()
+	 * @generated
+	 */
+	EReference getTable_Prototype();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getTableConfiguration <em>Table Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
@@ -435,6 +474,22 @@ public interface NattablePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TABLE__CONTEXT = eINSTANCE.getTable_Context();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE__OWNER = eINSTANCE.getTable_Owner();
+
+		/**
+		 * The meta object literal for the '<em><b>Prototype</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE__PROTOTYPE = eINSTANCE.getTable_Prototype();
 
 		/**
 		 * The meta object literal for the '<em><b>Table Configuration</b></em>' reference feature.

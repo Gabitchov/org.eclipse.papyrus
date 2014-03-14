@@ -64,6 +64,13 @@
                </appinfo>
             </annotation>
          </attribute>
+         <attribute name="type" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unique type identifier of the table as a string
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.ui.TemplateParameterConfigurationDialog;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.OperationTemplateParameterCreateCommand;
 import org.eclipse.swt.SWT;
@@ -28,8 +29,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class COperationTemplateParameterCreateCommand extends OperationTemplateParameterCreateCommand {
 
-	public COperationTemplateParameterCreateCommand(CreateElementRequest req) {
-		super(req);
+	public COperationTemplateParameterCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 		// TODO Auto-generated constructor stub
 	}
 

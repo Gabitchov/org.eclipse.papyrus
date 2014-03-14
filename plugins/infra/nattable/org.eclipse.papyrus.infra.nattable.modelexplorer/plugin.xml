@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <!-- TODO: EMF-FACET update uicustom and queries
-   <extension point="org.eclipse.papyrus.emf.facet.infra.query.registration">
-      <modelqueryset file="resources/PapyrusTablesFacet.querySet">
-      </modelqueryset>
+   <extension point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+      <modeldeclaration file="resources/PapyrusTable.custom"/>
    </extension>
-   <extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
-      <browserCustomization file="resources/PapyrusTables.uiCustom" loadByDefault="true"/>
-   </extension>
-   <extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
-      <browserCustomization file="resources/PapyrusTablesFacet.uiCustom" loadByDefault="true"/>
-   </extension>
-   <extension point="org.eclipse.papyrus.emf.facet.infra.facet.registration">
-      <facetset file="resources/PapyrusTablesFacet.facetSet">
-      </facetset>
-   </extension-->
    <extension point="org.eclipse.ui.handlers">
       <handler class="org.eclipse.papyrus.infra.nattable.modelexplorer.handlers.RenameTableHandler" commandId="org.eclipse.ui.edit.rename">
          <activeWhen>

@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.command.ConnectorCreateCommand;
@@ -51,7 +52,7 @@ public class PropertyPartItemSemanticEditPolicyCN extends org.eclipse.papyrus.um
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes.Port_3069 == req.getElementType()) {
-			return getGEFWrapper(new org.eclipse.papyrus.uml.diagram.component.custom.command.PortCreateCommand(req));
+			return getGEFWrapper(new org.eclipse.papyrus.uml.diagram.component.custom.command.PortCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

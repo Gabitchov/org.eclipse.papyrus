@@ -64,7 +64,7 @@ public class ContextLinkCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateConstraintContext_8500(getSource(), resolveTargetNamespace());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateConstraintContext_8500(getSource(), getTarget());
 	}
 
 	/**
@@ -74,8 +74,8 @@ public class ContextLinkCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		if(getSource() != null && resolveTargetNamespace() != null) {
-			getSource().setContext(resolveTargetNamespace());
+		if(getSource() != null && getTarget() != null) {
+			getSource().setContext(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 	}
@@ -97,7 +97,7 @@ public class ContextLinkCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Namespace resolveTargetNamespace() {
+	protected Namespace getTarget() {
 		return (Namespace)target;
 	}
 }

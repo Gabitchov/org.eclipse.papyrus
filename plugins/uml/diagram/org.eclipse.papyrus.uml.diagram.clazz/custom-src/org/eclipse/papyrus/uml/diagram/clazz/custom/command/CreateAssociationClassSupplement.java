@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.PropertyForComponentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
@@ -52,8 +53,8 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 	 * @param target
 	 *        the target of the association (Type)
 	 */
-	public CreateAssociationClassSupplement(EObject container, EObject source, EObject target) {
-		super(container, source, target);
+	public CreateAssociationClassSupplement(EObject container, EObject source, EObject target, Diagram diagram) {
+		super(container, source, target, diagram);
 	}
 
 	/**
@@ -82,7 +83,7 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 		AssociationClass association = UMLFactory.eINSTANCE.createAssociationClass();
 		// create target property
 		CreateElementRequest request = new CreateElementRequest(domain, getSource(), UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
-		EditElementCommand c = new PropertyForComponentCreateCommand(request);
+		EditElementCommand c = new PropertyForComponentCreateCommand(request, diagram);
 		try {
 			c.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
@@ -98,7 +99,7 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 		targetProperty.setUpper(1);
 		// create source property
 		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
-		c = new PropertyCommandForAssociation(request);
+		c = new PropertyCommandForAssociation(request, diagram);
 		try {
 			c.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {

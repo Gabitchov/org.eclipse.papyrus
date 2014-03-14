@@ -65,12 +65,10 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		if(getSource() != null && getTarget() != null) {
 			getSource().getAnnotatedElements().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
-
 	}
 
 	/**

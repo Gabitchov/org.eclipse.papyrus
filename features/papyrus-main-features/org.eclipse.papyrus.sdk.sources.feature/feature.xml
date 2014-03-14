@@ -51,6 +51,10 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <includes
+         id="org.eclipse.papyrus.infra.viewpoints.source.feature"
+         version="0.0.0"/>
+
+   <includes
          id="org.eclipse.papyrus.infra.widget.source.feature"
          version="0.0.0"/>
 

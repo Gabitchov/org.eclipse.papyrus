@@ -47,18 +47,18 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.i
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getContext <em>Context</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getTableConfiguration <em>Table Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#isInvertAxis <em>Invert Axis</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getColumnAxisProvidersHistory <em>Column Axis Providers History</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getRowAxisProvidersHistory <em>Row Axis Providers History</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getLocalRowHeaderAxisConfiguration <em>Local Row Header Axis
- * Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getLocalColumnHeaderAxisConfiguration <em>Local Column Header Axis
- * Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCurrentRowAxisProvider <em>Current Row Axis Provider</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCurrentColumnAxisProvider <em>Current Column Axis Provider</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCells <em>Cells</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getContext <em>Context</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getOwner <em>Owner</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getPrototype <em>Prototype</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getTableConfiguration <em>Table Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#isInvertAxis <em>Invert Axis</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getColumnAxisProvidersHistory <em>Column Axis Providers History</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getRowAxisProvidersHistory <em>Row Axis Providers History</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getLocalRowHeaderAxisConfiguration <em>Local Row Header Axis Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getLocalColumnHeaderAxisConfiguration <em>Local Column Header Axis Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCurrentRowAxisProvider <em>Current Row Axis Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCurrentColumnAxisProvider <em>Current Column Axis Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCells <em>Cells</em>}</li>
  * </ul>
  * </p>
  * 
@@ -76,6 +76,26 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * @ordered
 	 */
 	protected EObject context;
+
+	/**
+	 * The cached value of the '{@link #getOwner() <em>Owner</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwner()
+	 * @generated
+	 * @ordered
+	 */
+	protected EObject owner;
+
+	/**
+	 * The cached value of the '{@link #getPrototype() <em>Prototype</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrototype()
+	 * @generated
+	 * @ordered
+	 */
+	protected EObject prototype;
 
 	/**
 	 * The cached value of the '{@link #getTableConfiguration() <em>Table Configuration</em>}' reference.
@@ -253,7 +273,82 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public EObject getOwner() {
+		if (owner != null && owner.eIsProxy()) {
+			InternalEObject oldOwner = (InternalEObject)owner;
+			owner = eResolveProxy(oldOwner);
+			if (owner != oldOwner) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablePackage.TABLE__OWNER, oldOwner, owner));
+			}
+		}
+		return owner;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EObject basicGetOwner() {
+		return owner;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwner(EObject newOwner) {
+		EObject oldOwner = owner;
+		owner = newOwner;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__OWNER, oldOwner, owner));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EObject getPrototype() {
+		if (prototype != null && prototype.eIsProxy()) {
+			InternalEObject oldPrototype = (InternalEObject)prototype;
+			prototype = eResolveProxy(oldPrototype);
+			if (prototype != oldPrototype) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablePackage.TABLE__PROTOTYPE, oldPrototype, prototype));
+			}
+		}
+		return prototype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EObject basicGetPrototype() {
+		return prototype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPrototype(EObject newPrototype) {
+		EObject oldPrototype = prototype;
+		prototype = newPrototype;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__PROTOTYPE, oldPrototype, prototype));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TableConfiguration getTableConfiguration() {
@@ -564,35 +659,37 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablePackage.TABLE__CONTEXT:
-			if(resolve)
-				return getContext();
-			return basicGetContext();
-		case NattablePackage.TABLE__TABLE_CONFIGURATION:
-			if(resolve)
-				return getTableConfiguration();
-			return basicGetTableConfiguration();
-		case NattablePackage.TABLE__INVERT_AXIS:
-			return isInvertAxis();
-		case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
-			return getColumnAxisProvidersHistory();
-		case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
-			return getRowAxisProvidersHistory();
-		case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
-			return getLocalRowHeaderAxisConfiguration();
-		case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
-			return getLocalColumnHeaderAxisConfiguration();
-		case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
-			if(resolve)
-				return getCurrentRowAxisProvider();
-			return basicGetCurrentRowAxisProvider();
-		case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
-			if(resolve)
-				return getCurrentColumnAxisProvider();
-			return basicGetCurrentColumnAxisProvider();
-		case NattablePackage.TABLE__CELLS:
-			return getCells();
+		switch (featureID) {
+			case NattablePackage.TABLE__CONTEXT:
+				if (resolve) return getContext();
+				return basicGetContext();
+			case NattablePackage.TABLE__OWNER:
+				if (resolve) return getOwner();
+				return basicGetOwner();
+			case NattablePackage.TABLE__PROTOTYPE:
+				if (resolve) return getPrototype();
+				return basicGetPrototype();
+			case NattablePackage.TABLE__TABLE_CONFIGURATION:
+				if (resolve) return getTableConfiguration();
+				return basicGetTableConfiguration();
+			case NattablePackage.TABLE__INVERT_AXIS:
+				return isInvertAxis();
+			case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
+				return getColumnAxisProvidersHistory();
+			case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
+				return getRowAxisProvidersHistory();
+			case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
+				return getLocalRowHeaderAxisConfiguration();
+			case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
+				return getLocalColumnHeaderAxisConfiguration();
+			case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
+				if (resolve) return getCurrentRowAxisProvider();
+				return basicGetCurrentRowAxisProvider();
+			case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
+				if (resolve) return getCurrentColumnAxisProvider();
+				return basicGetCurrentColumnAxisProvider();
+			case NattablePackage.TABLE__CELLS:
+				return getCells();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -606,40 +703,46 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablePackage.TABLE__CONTEXT:
-			setContext((EObject)newValue);
-			return;
-		case NattablePackage.TABLE__TABLE_CONFIGURATION:
-			setTableConfiguration((TableConfiguration)newValue);
-			return;
-		case NattablePackage.TABLE__INVERT_AXIS:
-			setInvertAxis((Boolean)newValue);
-			return;
-		case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
-			getColumnAxisProvidersHistory().clear();
-			getColumnAxisProvidersHistory().addAll((Collection<? extends AbstractAxisProvider>)newValue);
-			return;
-		case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
-			getRowAxisProvidersHistory().clear();
-			getRowAxisProvidersHistory().addAll((Collection<? extends AbstractAxisProvider>)newValue);
-			return;
-		case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
-			setLocalRowHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)newValue);
-			return;
-		case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
-			setLocalColumnHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)newValue);
-			return;
-		case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
-			setCurrentRowAxisProvider((AbstractAxisProvider)newValue);
-			return;
-		case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
-			setCurrentColumnAxisProvider((AbstractAxisProvider)newValue);
-			return;
-		case NattablePackage.TABLE__CELLS:
-			getCells().clear();
-			getCells().addAll((Collection<? extends Cell>)newValue);
-			return;
+		switch (featureID) {
+			case NattablePackage.TABLE__CONTEXT:
+				setContext((EObject)newValue);
+				return;
+			case NattablePackage.TABLE__OWNER:
+				setOwner((EObject)newValue);
+				return;
+			case NattablePackage.TABLE__PROTOTYPE:
+				setPrototype((EObject)newValue);
+				return;
+			case NattablePackage.TABLE__TABLE_CONFIGURATION:
+				setTableConfiguration((TableConfiguration)newValue);
+				return;
+			case NattablePackage.TABLE__INVERT_AXIS:
+				setInvertAxis((Boolean)newValue);
+				return;
+			case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
+				getColumnAxisProvidersHistory().clear();
+				getColumnAxisProvidersHistory().addAll((Collection<? extends AbstractAxisProvider>)newValue);
+				return;
+			case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
+				getRowAxisProvidersHistory().clear();
+				getRowAxisProvidersHistory().addAll((Collection<? extends AbstractAxisProvider>)newValue);
+				return;
+			case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
+				setLocalRowHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)newValue);
+				return;
+			case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
+				setLocalColumnHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)newValue);
+				return;
+			case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
+				setCurrentRowAxisProvider((AbstractAxisProvider)newValue);
+				return;
+			case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
+				setCurrentColumnAxisProvider((AbstractAxisProvider)newValue);
+				return;
+			case NattablePackage.TABLE__CELLS:
+				getCells().clear();
+				getCells().addAll((Collection<? extends Cell>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -652,37 +755,43 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablePackage.TABLE__CONTEXT:
-			setContext((EObject)null);
-			return;
-		case NattablePackage.TABLE__TABLE_CONFIGURATION:
-			setTableConfiguration((TableConfiguration)null);
-			return;
-		case NattablePackage.TABLE__INVERT_AXIS:
-			setInvertAxis(INVERT_AXIS_EDEFAULT);
-			return;
-		case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
-			getColumnAxisProvidersHistory().clear();
-			return;
-		case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
-			getRowAxisProvidersHistory().clear();
-			return;
-		case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
-			setLocalRowHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)null);
-			return;
-		case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
-			setLocalColumnHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)null);
-			return;
-		case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
-			setCurrentRowAxisProvider((AbstractAxisProvider)null);
-			return;
-		case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
-			setCurrentColumnAxisProvider((AbstractAxisProvider)null);
-			return;
-		case NattablePackage.TABLE__CELLS:
-			getCells().clear();
-			return;
+		switch (featureID) {
+			case NattablePackage.TABLE__CONTEXT:
+				setContext((EObject)null);
+				return;
+			case NattablePackage.TABLE__OWNER:
+				setOwner((EObject)null);
+				return;
+			case NattablePackage.TABLE__PROTOTYPE:
+				setPrototype((EObject)null);
+				return;
+			case NattablePackage.TABLE__TABLE_CONFIGURATION:
+				setTableConfiguration((TableConfiguration)null);
+				return;
+			case NattablePackage.TABLE__INVERT_AXIS:
+				setInvertAxis(INVERT_AXIS_EDEFAULT);
+				return;
+			case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
+				getColumnAxisProvidersHistory().clear();
+				return;
+			case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
+				getRowAxisProvidersHistory().clear();
+				return;
+			case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
+				setLocalRowHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)null);
+				return;
+			case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
+				setLocalColumnHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)null);
+				return;
+			case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
+				setCurrentRowAxisProvider((AbstractAxisProvider)null);
+				return;
+			case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
+				setCurrentColumnAxisProvider((AbstractAxisProvider)null);
+				return;
+			case NattablePackage.TABLE__CELLS:
+				getCells().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -695,27 +804,31 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablePackage.TABLE__CONTEXT:
-			return context != null;
-		case NattablePackage.TABLE__TABLE_CONFIGURATION:
-			return tableConfiguration != null;
-		case NattablePackage.TABLE__INVERT_AXIS:
-			return invertAxis != INVERT_AXIS_EDEFAULT;
-		case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
-			return columnAxisProvidersHistory != null && !columnAxisProvidersHistory.isEmpty();
-		case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
-			return rowAxisProvidersHistory != null && !rowAxisProvidersHistory.isEmpty();
-		case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
-			return localRowHeaderAxisConfiguration != null;
-		case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
-			return localColumnHeaderAxisConfiguration != null;
-		case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
-			return currentRowAxisProvider != null;
-		case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
-			return currentColumnAxisProvider != null;
-		case NattablePackage.TABLE__CELLS:
-			return cells != null && !cells.isEmpty();
+		switch (featureID) {
+			case NattablePackage.TABLE__CONTEXT:
+				return context != null;
+			case NattablePackage.TABLE__OWNER:
+				return owner != null;
+			case NattablePackage.TABLE__PROTOTYPE:
+				return prototype != null;
+			case NattablePackage.TABLE__TABLE_CONFIGURATION:
+				return tableConfiguration != null;
+			case NattablePackage.TABLE__INVERT_AXIS:
+				return invertAxis != INVERT_AXIS_EDEFAULT;
+			case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
+				return columnAxisProvidersHistory != null && !columnAxisProvidersHistory.isEmpty();
+			case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
+				return rowAxisProvidersHistory != null && !rowAxisProvidersHistory.isEmpty();
+			case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
+				return localRowHeaderAxisConfiguration != null;
+			case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
+				return localColumnHeaderAxisConfiguration != null;
+			case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
+				return currentRowAxisProvider != null;
+			case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
+				return currentColumnAxisProvider != null;
+			case NattablePackage.TABLE__CELLS:
+				return cells != null && !cells.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

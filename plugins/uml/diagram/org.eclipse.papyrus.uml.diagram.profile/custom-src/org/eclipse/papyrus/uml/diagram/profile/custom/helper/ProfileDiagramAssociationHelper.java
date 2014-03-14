@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.PropertyCommandForAssociation;
 import org.eclipse.papyrus.uml.diagram.profile.providers.ElementInitializers;
@@ -42,24 +43,26 @@ public class ProfileDiagramAssociationHelper {
 	 * Returns the created Association corresponding to these parameters
 	 * 
 	 * @param domain
-	 *        the {@link TransactionalEditingDomain}
+	 *            the {@link TransactionalEditingDomain}
 	 * @param source
-	 *        the source of the {@link Association}
+	 *            the source of the {@link Association}
 	 * @param target
-	 *        the target of the {@link Association}
+	 *            the target of the {@link Association}
 	 * @param container
-	 *        the {@link Container} of the {@link Association}
+	 *            the {@link Container} of the {@link Association}
+	 * @param diagram
+	 *            the current diagram
 	 * @return
 	 *         The created Association corresponding to these parameters
 	 */
-	public static EObject createAssociation(TransactionalEditingDomain domain, Type source, Type target, Package container) {
+	public static EObject createAssociation(TransactionalEditingDomain domain, Type source, Type target, Package container, Diagram diagram) {
 
 		Association association = UMLFactory.eINSTANCE.createAssociation();
 		String targetString = target.getName().substring(0, 1).toLowerCase() + target.getName().substring(1, target.getName().length());
 		String sourceString = source.getName().substring(0, 1).toLowerCase() + source.getName().substring(1, source.getName().length());
 		// create target property
 		CreateElementRequest request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
-		EditElementCommand c = new PropertyCommandForAssociation(request);
+		EditElementCommand c = new PropertyCommandForAssociation(request, diagram);
 		try {
 			c.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
@@ -81,7 +84,7 @@ public class ProfileDiagramAssociationHelper {
 		// create source property
 
 		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
-		c = new PropertyCommandForAssociation(request);
+		c = new PropertyCommandForAssociation(request, diagram);
 		try {
 			c.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {

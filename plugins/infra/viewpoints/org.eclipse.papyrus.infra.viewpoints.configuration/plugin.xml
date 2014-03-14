@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated configuration -->
+      <package
+            uri="http://www.eclipse.org/papyrus/infra/viewpoints/configuration"
+            class="org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage"
+            genModel="model/configuration.genmodel"/>
+   </extension>
+</plugin>

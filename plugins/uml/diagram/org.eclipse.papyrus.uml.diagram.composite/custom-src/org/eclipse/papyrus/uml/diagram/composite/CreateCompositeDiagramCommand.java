@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Collaboration;
@@ -54,7 +55,7 @@ public class CreateCompositeDiagramCommand extends AbstractPapyrusGmfCreateDiagr
 	 * Name of the Diagram
 	 */
 	protected static final String CSD_DEFAULT_NAME = "CompositeDiagram"; //$NON-NLS-1$
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -99,17 +100,17 @@ public class CreateCompositeDiagramCommand extends AbstractPapyrusGmfCreateDiagr
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
+	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, ViewPrototype prototype, String name) {
 		Diagram diagram = null;
 
-		if(owner instanceof org.eclipse.uml2.uml.Class || (owner instanceof Collaboration)) {
-			canvasDomainElement = (EObject)owner;
-			Package owningPackage = ((Element)owner).getNearestPackage();
-			diagram = super.createDiagram(diagramResource, owningPackage, name);
+		if(element instanceof org.eclipse.uml2.uml.Class || (element instanceof Collaboration)) {
+			canvasDomainElement = (EObject)element;
+			Package owningPackage = ((Element)element).getNearestPackage();
+			diagram = super.doCreateDiagram(diagramResource, owner, owningPackage, prototype, name);
 
-		} else if(owner instanceof Package) {
+		} else if(element instanceof Package) {
 			canvasDomainElement = null;
-			diagram = super.createDiagram(diagramResource, owner, name);
+			diagram = super.doCreateDiagram(diagramResource, owner, element, prototype, name);
 		}
 		return diagram;
 	}

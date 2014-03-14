@@ -90,7 +90,7 @@ public class CustomParametricContextLinkCreateCommand extends
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		Namespace context = resolveTargetNamespace();
+		Namespace context = getTarget();
 		if(getSource() != null && context != null) {
 			getSource().setContext(context);
 			String defaultNameWithIncrementFromBase = NamedElementHelper.getDefaultNameWithIncrementFromBase(Constraint.class.getSimpleName(), context.getOwnedRules(), getSource());
@@ -122,7 +122,7 @@ public class CustomParametricContextLinkCreateCommand extends
 	 * Get the property Namespace in case of property typed by a Namespace
 	 */
 	@Override
-	protected Namespace resolveTargetNamespace() {
+	protected Namespace getTarget() {
 		EObject targetNamespace;
 		if (target instanceof Property) {
 			targetNamespace = ((Property) target).getType();

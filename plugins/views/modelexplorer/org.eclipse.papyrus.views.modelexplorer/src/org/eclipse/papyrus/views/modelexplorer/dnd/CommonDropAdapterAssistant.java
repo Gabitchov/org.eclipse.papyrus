@@ -36,18 +36,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
-import org.eclipse.papyrus.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.commands.CreationCommandRegistry;
-import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
@@ -60,6 +55,8 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.commands.MoveOpenableCommand;
 import org.eclipse.swt.dnd.DND;
@@ -123,73 +120,46 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	}
 
 	/**
-	 * get a list that contains command to move a diagram into a new element
+	 * get a list that contains command to move a view into a new element
 	 * 
 	 * @param domain
 	 *        the transactionnal edit domain, cannot be null
-	 * @param targetOwner
+	 * @param target
 	 *        the target of the drop, cannot be null
-	 * @param childElement
+	 * @param view
 	 *        the diagram that will move, cannot be null
 	 * @return a list that contains one command to move the diagram
 	 */
-	protected List<Command> getDropDiagramIntoCommand(TransactionalEditingDomain domain, EObject targetOwner, Diagram childElement) {
-		List<Command> commandList = new ArrayList<Command>();
-		EReference eref = NotationPackage.eINSTANCE.getView_Element();
-		if(eref != null) {
-			String diagType = childElement.getType();
-			ICreationCommand correctCommandDescription = null;
-			// check if diagram can exist in new location
-			for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
-				if(desc.getCondition() == null || desc.getCondition().create(targetOwner)) {
-					try {
-						ICreationCommand cmd = desc.getCommand();
-						String type = cmd.getCreatedDiagramType();
-						if(diagType == null || diagType.equals(type)) {
-							// the descriptor correspond to existing diagram's type
-							correctCommandDescription = cmd;
-							break;
-						}
-					} catch (BackboneException e) {
-						Activator.log.error(e);
-						// stop here with unexecutable command
-						commandList.add(UnexecutableCommand.INSTANCE);
-						return commandList;
-					}
-				}
-			}
-			// check if diagram can be moved
-			if(correctCommandDescription != null && correctCommandDescription.isParentReassignable()) {
-				SetRequest setRequest = new SetRequest(childElement, eref, targetOwner);
-				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(childElement);
-				if(provider != null) {
-					// Retrieve reassignment command from the Element Edit service
-					ICommand command = provider.getEditCommand(setRequest);
+	protected Command getDropViewCommands(TransactionalEditingDomain domain, EObject target, EObject view) {
+		
+		
+		ViewPrototype proto = ViewPrototype.get(view);
+		
+		// check if diagram can exist in new location
+		if (!proto.isOwnerReassignable() || !PolicyChecker.getCurrent().canOwnNewView(target, proto)) {
+			// stop here with unexecutable command
+			return UnexecutableCommand.INSTANCE;
+		}
+		
+		// Retrieve reassignment command from the Element Edit service
+		Command command = proto.getCommandChangeOwner(view, target);
 
-					if(command != null) {
-						Resource targetNotationResource = getTargetNotationResource(targetOwner);
-						if(targetNotationResource != null) {
-							if(!targetNotationResource.equals(childElement.eResource())) {
-
-								// move diagram in the correct resource
-								CompositeTransactionalCommand cc = new CompositeTransactionalCommand(domain, "");
-								cc.add(command);
-								cc.add(new MoveOpenableCommand(domain, "", childElement, targetNotationResource));
-
-								commandList.add(new GMFtoEMFCommandWrapper(cc));
-								return commandList;
-							} else { // diagram stays in the same resource. Only execute the set command
-								commandList.add(new GMFtoEMFCommandWrapper(command));
-								return commandList;
-							}
-						}
-					}
+		if(command != null) {
+			Resource targetNotationResource = getTargetNotationResource(target);
+			if(targetNotationResource != null) {
+				if(!targetNotationResource.equals(view.eResource())) {
+					List<Command> list = new ArrayList<Command>();
+					list.add(command);
+					list.add(new GMFtoEMFCommandWrapper(new MoveOpenableCommand(domain, "", view, targetNotationResource)));
+					return new CompoundCommand(list);
+				} else { // diagram stays in the same resource. Only execute the set command
+					return command;
 				}
 			}
 		}
+		
 		// Failed : stop here with unexecutable command
-		commandList.add(UnexecutableCommand.INSTANCE);
-		return commandList;
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	protected Resource getTargetNotationResource(EObject targetOwner) {
@@ -378,20 +348,12 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			while(it.hasNext()) {
 				Object object = it.next();
 				EObject eObjectchild =  EMFHelper.getEObject(object);
-
-				//				if(eObjectchild instanceof Diagram){
-				//					result.addAll(getDropDiagramIntoCommand(getEditingDomain(), targetEObject,(Diagram) eObjectchild));
-				//				}
-
-				//FIXME: Editors are not necessarily diagrams
-				//Temporary fix: Check whether the eObjectChild is an instanceof Diagram
-				if(eObjectchild instanceof Diagram && getEditors(targetEObject).contains(eObjectchild)) {
-					result.addAll(getDropDiagramIntoCommand(getEditingDomain(targetEObject), targetEObject, (Diagram)eObjectchild));
+				
+				if (ViewPrototype.isViewObject(eObjectchild) && getEditors(targetEObject).contains(eObjectchild)) {
+					result.add(getDropViewCommands(getEditingDomain(targetEObject), targetEObject, eObjectchild));
 				}
-
 				//test if object is an eobject
 				else if(eObjectchild != null) {
-
 					result.addAll(getDropIntoCommand(getEditingDomain(targetEObject), targetEObject, eObjectchild, eref));
 				}
 

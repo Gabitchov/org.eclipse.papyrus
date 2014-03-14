@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
@@ -32,8 +33,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class PortCreateCommand extends org.eclipse.papyrus.uml.diagram.composite.edit.commands.PortCreateCommand {
 
 	/** Constructor **/
-	public PortCreateCommand(CreateElementRequest req) {
-		super(req);
+	public PortCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 	}
 
 	/**

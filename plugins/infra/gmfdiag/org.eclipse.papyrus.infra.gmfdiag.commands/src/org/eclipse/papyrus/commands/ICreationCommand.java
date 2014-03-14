@@ -12,7 +12,10 @@ package org.eclipse.papyrus.commands;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
  * Define a command use to create new diagram. It use to provide Eclipse
@@ -24,33 +27,66 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 public interface ICreationCommand {
 
 	/**
-	 * Create a new diagram in diResourceSet with the given name and open it.
+	 * Create a diagram.
+	 * This method will try to find an adequate view for the passed arguments
 	 * 
 	 * @param modelSet
-	 *        the resourceSet containing all diagrams
-	 * @param container
-	 *        of the diagram, if container is null, the diagram is contained
-	 *        by the top level container
-	 * @param diagramName
-	 *        the name of the new diagram or null to use a dialog to choose
-	 *        the name
+	 *            the current model set
+	 * @param owner
+	 *            the diagram's owner and root element
+	 * @param name
+	 *            the diagram's name
+	 * @return the created diagram, or <code>null</code> if the creation failed
 	 */
-	public void createDiagram(ModelSet modelSet, EObject container, String diagramName);
+	public Diagram createDiagram(ModelSet modelSet, EObject owner, String name);
 
 	/**
-	 * Get a command to create a new diagram in diResourceSet with the given
-	 * name.
+	 * Create a diagram.
 	 * 
 	 * @param modelSet
-	 *        the resourceSet containing all diagrams
-	 * @param container
-	 *        of the diagram, if container is null, the diagram is contained
-	 *        by the top level container
-	 * @param diagramName
-	 *        the name of the new diagram or null to use a dialog to choose
-	 *        the name
+	 *            the current model set
+	 * @param owner
+	 *            the diagram's owner
+	 * @param element
+	 *            the diagram's model element
+	 * @param prototype
+	 *            the diagram's prototype
+	 * @param name
+	 *            the diagram's name
+	 * @return the created diagram, or <code>null</code> if the creation failed
 	 */
-	public ICommand getCreateDiagramCommand(final ModelSet modelSet, final EObject container, final String diagramName);
+	public Diagram createDiagram(ModelSet modelSet, EObject owner, EObject element, ViewPrototype prototype, String name);
+
+	/**
+	 * Gets the GMF command for the diagram creation
+	 * This method will try to find an adequate view for the passed arguments
+	 * 
+	 * @param modelSet
+	 *            the current model set
+	 * @param owner
+	 *            the diagram's owner and root element
+	 * @param name
+	 *            the diagram's name
+	 * @return the created diagram, or <code>null</code> if the creation failed
+	 */
+	public ICommand getCreateDiagramCommand(ModelSet modelSet, EObject owner, String name);
+
+	/**
+	 * Gets the GMF command for the diagram creation
+	 * 
+	 * @param modelSet
+	 *            the current model set
+	 * @param owner
+	 *            the diagram's owner
+	 * @param element
+	 *            the diagram's model element
+	 * @param prototype
+	 *            the diagram's prototype
+	 * @param name
+	 *            the diagram's name
+	 * @return the created diagram, or <code>null</code> if the creation failed
+	 */
+	public ICommand getCreateDiagramCommand(ModelSet modelSet, EObject owner, EObject element, ViewPrototype prototype, String name);
 
 	/**
 	 * Get the type of the diagram to create.

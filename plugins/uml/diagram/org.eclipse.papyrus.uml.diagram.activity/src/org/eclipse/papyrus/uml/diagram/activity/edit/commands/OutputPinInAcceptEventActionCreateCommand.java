@@ -25,11 +25,16 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -39,7 +44,7 @@ public class OutputPinInAcceptEventActionCreateCommand extends EditElementComman
 	/**
 	 * @generated
 	 */
-	private EClass eClass = null;
+	private Diagram diagram = null;
 
 	/**
 	 * @generated
@@ -49,24 +54,25 @@ public class OutputPinInAcceptEventActionCreateCommand extends EditElementComman
 	/**
 	 * @generated
 	 */
-	public OutputPinInAcceptEventActionCreateCommand(CreateElementRequest req, EObject eObject) {
+	public OutputPinInAcceptEventActionCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static OutputPinInAcceptEventActionCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new OutputPinInAcceptEventActionCreateCommand(req, eObject);
+	public static OutputPinInAcceptEventActionCreateCommand create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new OutputPinInAcceptEventActionCreateCommand(req, eObject, diagram);
 	}
 
 	/**
 	 * @generated
 	 */
-	public OutputPinInAcceptEventActionCreateCommand(CreateElementRequest req) {
+	public OutputPinInAcceptEventActionCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -89,7 +95,9 @@ public class OutputPinInAcceptEventActionCreateCommand extends EditElementComman
 	 * @generated
 	 */
 	public boolean canExecute() {
-		return true;
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getOutputPin());
+		return data.isPermitted();
 	}
 
 	/**
@@ -97,8 +105,19 @@ public class OutputPinInAcceptEventActionCreateCommand extends EditElementComman
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		OutputPin newElement = UMLFactory.eINSTANCE.createOutputPin();
-		AcceptEventAction owner = (AcceptEventAction)getElementToEdit();
-		owner.getResults().add(newElement);
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		if(data.isPermitted()) {
+			if(data.isPathDefined()) {
+				if(!data.execute(target, newElement))
+					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
+			} else {
+				AcceptEventAction qualifiedTarget = (AcceptEventAction)target;
+				qualifiedTarget.getResults().add(newElement);
+			}
+		} else {
+			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
+		}
 		ElementInitializers.getInstance().init_OutputPin_3064(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
