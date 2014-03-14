@@ -36,6 +36,11 @@ public class TestRequirementDiagramLinkOwnedBySource extends TestLinkOwnedBySour
 		return IRequirementDiagramTestsConstants.FILE_NAME;
 	}
 
+	@Override
+	protected String[] getRequiredProfiles() {
+		return IRequirementDiagramTestsConstants.PROFILES;
+	}
+
 	/**
 	 * Test to manage Package import
 	 */

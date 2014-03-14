@@ -81,8 +81,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected UMLBaseItemSemanticEditPolicy(final IElementType elementType) {
-		this.myElementType = elementType;
+	protected UMLBaseItemSemanticEditPolicy(IElementType elementType) {
+		myElementType = elementType;
 	}
 
 	/**
@@ -96,13 +96,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public Command getCommand(final Request request) {
+	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
-			final Object view = ((ReconnectRequest)request).getConnectionEditPart().getModel();
+			Object view = ((ReconnectRequest)request).getConnectionEditPart().getModel();
 			if(view instanceof View) {
-				final Integer id = new Integer(UMLVisualIDRegistry.getVisualID((View)view));
+				Integer id = new Integer(UMLVisualIDRegistry.getVisualID((View)view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
-				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, view);
+				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, (View)view);
 			}
 		}
 		return super.getCommand(request);
@@ -113,8 +113,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
-	protected int getVisualID(final IEditCommandRequest request) {
-		final Object id = request.getParameter(VISUAL_ID_KEY);
+	protected int getVisualID(IEditCommandRequest request) {
+		Object id = request.getParameter(VISUAL_ID_KEY);
 		return id instanceof Integer ? ((Integer)id).intValue() : -1;
 	}
 
@@ -122,12 +122,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	@Override
-	protected Command getSemanticCommand(final IEditCommandRequest request) {
-		final IEditCommandRequest completedRequest = completeRequest(request);
+	protected Command getSemanticCommand(IEditCommandRequest request) {
+		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
 		semanticCommand = getEditHelperCommand(completedRequest, semanticCommand);
 		if(completedRequest instanceof DestroyRequest) {
-			final DestroyRequest destroyRequest = (DestroyRequest)completedRequest;
+			DestroyRequest destroyRequest = (DestroyRequest)completedRequest;
 			return shouldProceed(destroyRequest) ? addDeleteViewCommand(semanticCommand, destroyRequest) : null;
 		}
 		return semanticCommand;
@@ -136,20 +136,20 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command addDeleteViewCommand(final Command mainCommand, final DestroyRequest completedRequest) {
-		final Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View)getHost().getModel()));
+	protected Command addDeleteViewCommand(Command mainCommand, DestroyRequest completedRequest) {
+		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View)getHost().getModel()));
 		return mainCommand == null ? deleteViewCommand : mainCommand.chain(deleteViewCommand);
 	}
 
 	/**
 	 * @generated
 	 */
-	private Command getEditHelperCommand(final IEditCommandRequest request, final Command editPolicyCommand) {
+	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if(editPolicyCommand != null) {
-			final ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
+			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, command);
 		}
-		final IElementType requestContextElementType = getContextElementType(request);
+		IElementType requestContextElementType = getContextElementType(request);
 		request.setParameter(GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE, requestContextElementType);
 		ICommand command = requestContextElementType.getEditCommand(request);
 		request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, null);
@@ -166,15 +166,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected IElementType getContextElementType(final IEditCommandRequest request) {
-		final IElementType requestContextElementType = UMLElementTypes.getElementType(getVisualID(request));
-		return requestContextElementType != null ? requestContextElementType : this.myElementType;
+	protected IElementType getContextElementType(IEditCommandRequest request) {
+		IElementType requestContextElementType = UMLElementTypes.getElementType(getVisualID(request));
+		return requestContextElementType != null ? requestContextElementType : myElementType;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getSemanticCommandSwitch(final IEditCommandRequest req) {
+	protected Command getSemanticCommandSwitch(IEditCommandRequest req) {
 		if(req instanceof CreateRelationshipRequest) {
 			return getCreateRelationshipCommand((CreateRelationshipRequest)req);
 		} else if(req instanceof CreateElementRequest) {
@@ -204,22 +204,22 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getConfigureCommand(final ConfigureRequest req) {
+	protected Command getConfigureCommand(ConfigureRequest req) {
 		return null;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getCreateRelationshipCommand(final CreateRelationshipRequest req) {
+	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		return null;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getCreateCommand(final CreateElementRequest req) {
-		// no more usage of the extended types here.
+	protected Command getCreateCommand(CreateElementRequest req) {
+		// no more usage of the extended types here. 
 		return null;
 	}
 
@@ -227,39 +227,39 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getExtendedTypeCreationCommand(final CreateElementRequest request, final IExtendedHintedElementType requestElementType) {
-		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(request.getContainer());
+	protected Command getExtendedTypeCreationCommand(CreateElementRequest request, IExtendedHintedElementType requestElementType) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(request.getContainer());
 		if(provider == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// Retrieve create command from the Element Edit service
-		final ICommand createGMFCommand = provider.getEditCommand(request);
+		ICommand createGMFCommand = provider.getEditCommand(request);
 		return getGEFWrapper(createGMFCommand);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getExtendedStartCreateRelationshipCommand(final CreateElementRequest request, final IExtendedHintedElementType requestElementType) {
-		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
+	protected Command getExtendedStartCreateRelationshipCommand(CreateElementRequest request, IExtendedHintedElementType requestElementType) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
 		if(provider == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// Retrieve create command from the Element Edit service
-		final ICommand createGMFCommand = provider.getEditCommand(request);
+		ICommand createGMFCommand = provider.getEditCommand(request);
 		return getGEFWrapper(createGMFCommand);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getExtendedCompleteCreateRelationshipCommand(final CreateElementRequest request, final IExtendedHintedElementType requestElementType) {
-		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
+	protected Command getExtendedCompleteCreateRelationshipCommand(CreateElementRequest request, IExtendedHintedElementType requestElementType) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
 		if(provider == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// Retrieve create command from the Element Edit service
-		final ICommand createGMFCommand = provider.getEditCommand(request);
+		ICommand createGMFCommand = provider.getEditCommand(request);
 		return getGEFWrapper(createGMFCommand);
 	}
 
@@ -267,48 +267,47 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getSetCommand(final SetRequest req) {
+	protected Command getSetCommand(SetRequest req) {
 		return null;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getEditContextCommand(final GetEditContextRequest req) {
+	protected Command getEditContextCommand(GetEditContextRequest req) {
 		return null;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getDestroyElementCommand(final DestroyElementRequest req) {
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		return null;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getDestroyReferenceCommand(final DestroyReferenceRequest req) {
+	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return null;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getDuplicateCommand(final DuplicateElementsRequest req) {
+	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
 		return null;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getMoveCommand(final MoveRequest req) {
-
-		final EObject targetCEObject = req.getTargetContainer();
+	protected Command getMoveCommand(MoveRequest req) {
+		EObject targetCEObject = req.getTargetContainer();
 		if(targetCEObject != null) {
-			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetCEObject);
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetCEObject);
 			if(provider != null) {
-				final ICommand moveCommand = provider.getEditCommand(req);
+				ICommand moveCommand = provider.getEditCommand(req);
 				if(moveCommand != null) {
 					return new ICommandProxy(moveCommand);
 				}
@@ -317,27 +316,26 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		} else {
 			return getGEFWrapper(new MoveElementsCommand(req));
 		}
-
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(final ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(final ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected final Command getGEFWrapper(final ICommand cmd) {
+	protected final Command getGEFWrapper(ICommand cmd) {
 		return new ICommandProxy(cmd);
 	}
 
@@ -355,10 +353,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
-	protected void addDestroyShortcutsCommand(final ICompositeCommand cmd, final View view) {
+	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
 		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
-		for(final Iterator it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
-			final View nextView = (View)it.next();
+		for(Iterator it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
+			View nextView = (View)it.next();
 			if(nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
 				continue;
 			}
@@ -392,100 +390,99 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateMessage_3(final Interaction container, final MessageEnd source, final MessageEnd target) {
+		public boolean canCreateMessage_3(Interaction container, MessageEnd source, MessageEnd target) {
 			return canExistMessage_3(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateMessage_4(final Interaction container, final MessageEnd source, final MessageEnd target) {
+		public boolean canCreateMessage_4(Interaction container, MessageEnd source, MessageEnd target) {
 			return canExistMessage_4(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateMessage_41(final Interaction container, final MessageEnd source, final MessageEnd target) {
+		public boolean canCreateMessage_41(Interaction container, MessageEnd source, MessageEnd target) {
 			return canExistMessage_41(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateMessage_44(final Interaction container, final MessageEnd source, final MessageEnd target) {
+		public boolean canCreateMessage_44(Interaction container, MessageEnd source, MessageEnd target) {
 			return canExistMessage_44(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateMessage_47(final Interaction container, final MessageEnd source, final MessageEnd target) {
+		public boolean canCreateMessage_47(Interaction container, MessageEnd source, MessageEnd target) {
 			return canExistMessage_47(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateMessage_50(final Interaction container, final MessageEnd source, final Element target) {
+		public boolean canCreateMessage_50(Interaction container, MessageEnd source, Element target) {
 			return canExistMessage_50(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateMessage_53(final Interaction container, final Element source, final MessageEnd target) {
+		public boolean canCreateMessage_53(Interaction container, Element source, MessageEnd target) {
 			return canExistMessage_53(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistMessage_3(final Interaction container, final Message linkInstance, final MessageEnd source, final MessageEnd target) {
+		public boolean canExistMessage_3(Interaction container, Message linkInstance, MessageEnd source, MessageEnd target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistMessage_4(final Interaction container, final Message linkInstance, final MessageEnd source, final MessageEnd target) {
+		public boolean canExistMessage_4(Interaction container, Message linkInstance, MessageEnd source, MessageEnd target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistMessage_41(final Interaction container, final Message linkInstance, final MessageEnd source, final MessageEnd target) {
+		public boolean canExistMessage_41(Interaction container, Message linkInstance, MessageEnd source, MessageEnd target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistMessage_44(final Interaction container, final Message linkInstance, final MessageEnd source, final MessageEnd target) {
+		public boolean canExistMessage_44(Interaction container, Message linkInstance, MessageEnd source, MessageEnd target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistMessage_47(final Interaction container, final Message linkInstance, final MessageEnd source, final MessageEnd target) {
+		public boolean canExistMessage_47(Interaction container, Message linkInstance, MessageEnd source, MessageEnd target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistMessage_50(final Interaction container, final Message linkInstance, final MessageEnd source, final Element target) {
+		public boolean canExistMessage_50(Interaction container, Message linkInstance, MessageEnd source, Element target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistMessage_53(final Interaction container, final Message linkInstance, final Element source, final MessageEnd target) {
+		public boolean canExistMessage_53(Interaction container, Message linkInstance, Element source, MessageEnd target) {
 			return true;
 		}
 	}
-
 }

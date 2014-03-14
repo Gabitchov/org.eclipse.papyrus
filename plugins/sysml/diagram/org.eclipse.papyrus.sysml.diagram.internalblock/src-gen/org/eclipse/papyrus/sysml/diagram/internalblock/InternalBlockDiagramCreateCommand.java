@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
  *		CEA LIST - Initial API and implementation
+ *		Laurent Wouters (CEA LIST) laurent.wouters@cea.fr - Viewpoints application
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock;
@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramC
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.GMFCommandUtils;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
@@ -40,18 +41,19 @@ import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.util.UMLUtil;
-// Start of user code custom imports
 
-//  End of user code
-
+/**
+ * Represents the creation command for a SysML internal block diagram
+ * @author Laurent Wouters
+ */
 public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected String getDefaultDiagramName() {
-		return "NewDiagram"; //$NON-NLS-1$
+		return "New Internal Block Diagram"; //$NON-NLS-1$
 	}
 
 	/**
@@ -74,27 +76,27 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
+	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, ViewPrototype prototype, String name) {
 		// Start of user code Custom diagram creation
 		Diagram diagram = null;
 
-		if(owner instanceof org.eclipse.uml2.uml.Class) {
-			org.eclipse.uml2.uml.Class cOwner = (org.eclipse.uml2.uml.Class)owner;
+		if (element instanceof org.eclipse.uml2.uml.Class) {
+			org.eclipse.uml2.uml.Class cOwner = (org.eclipse.uml2.uml.Class)element;
 			Block block = UMLUtil.getStereotypeApplication(cOwner, Block.class);
 
 			if(block != null) {
-				canvasDomainElement = (EObject)owner;
-				Package owningPackage = ((Element)owner).getNearestPackage();
-				diagram = super.createDiagram(diagramResource, owningPackage, name);
+				canvasDomainElement = (EObject)element;
+				Package owningPackage = ((Element)element).getNearestPackage();
+				diagram = super.doCreateDiagram(diagramResource, owner, owningPackage, prototype, name);
 			}
 
-		} else if(owner instanceof Package) {
+		} else if (element instanceof Package) {
 
 			try {
 				canvasDomainElement = null;
 
-				IEditCommandRequest request = new CreateElementRequest((Package)owner, SysMLElementTypes.BLOCK);
-				IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(owner);
+				IEditCommandRequest request = new CreateElementRequest((Package)element, SysMLElementTypes.BLOCK);
+				IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(element);
 				if(commandService == null) {
 					return null;
 				}
@@ -104,7 +106,7 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 					createElementCommand.execute(new NullProgressMonitor(), null);
 					EObject block = GMFCommandUtils.getCommandEObjectResult(createElementCommand);
 					canvasDomainElement = block;
-					diagram = super.createDiagram(diagramResource, (Package)owner, name);
+					diagram = super.doCreateDiagram(diagramResource, owner, (Package)element, prototype, name);
 				}
 
 			} catch (ExecutionException e) {

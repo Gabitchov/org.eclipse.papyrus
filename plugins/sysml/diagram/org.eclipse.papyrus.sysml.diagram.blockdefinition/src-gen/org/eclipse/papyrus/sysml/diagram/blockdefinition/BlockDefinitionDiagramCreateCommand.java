@@ -7,27 +7,28 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
- *		CEA LIST - Initial API and implementation
+ * 		CEA LIST - Initial API and implementation
+ * 		Laurent Wouters (CEA LIST) laurent.wouters@cea.fr - Viewpoints application
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 
+/**
+ * Represents the creation command for a SysML block definition diagram
+ * @author Laurent Wouters
+ */
 public class BlockDefinitionDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected String getDefaultDiagramName() {
-		return "NewDiagram"; // //$NON-NLS-1$
+		return "New Block Definition Diagram"; // //$NON-NLS-1$
 	}
 
 	/**
@@ -44,15 +45,5 @@ public class BlockDefinitionDiagramCreateCommand extends AbstractPapyrusGmfCreat
 	@Override
 	protected PreferencesHint getPreferenceHint() {
 		return Activator.DIAGRAM_PREFERENCES_HINT;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
-		// Start of user code Custom diagram creation
-		return super.createDiagram(diagramResource, owner, name);
-		// End of user code
 	}
 }

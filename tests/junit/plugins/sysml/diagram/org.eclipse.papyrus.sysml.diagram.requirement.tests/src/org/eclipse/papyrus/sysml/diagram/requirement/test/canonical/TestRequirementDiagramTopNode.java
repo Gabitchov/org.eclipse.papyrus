@@ -47,6 +47,11 @@ public class TestRequirementDiagramTopNode extends TestTopNode {
 		return IRequirementDiagramTestsConstants.FILE_NAME;
 	}
 
+	@Override
+	protected String[] getRequiredProfiles() {
+		return IRequirementDiagramTestsConstants.PROFILES;
+	}
+
 	/**
 	 * Test to manage i package.
 	 */

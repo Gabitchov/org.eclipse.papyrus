@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomActionExecutionSpecificationCreateCommand;
@@ -93,42 +94,42 @@ public class CustomLifelineItemSemanticEditPolicy extends LifelineItemSemanticEd
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.ActionExecutionSpecification_3006 == req.getElementType()) {
-			return getGEFWrapper(new CustomActionExecutionSpecificationCreateCommand(req));
+			return getGEFWrapper(new CustomActionExecutionSpecificationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.BehaviorExecutionSpecification_3003 == req.getElementType()) {
-			return getGEFWrapper(new CustomBehaviorExecutionSpecificationCreateCommand(req));
+			return getGEFWrapper(new CustomBehaviorExecutionSpecificationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.StateInvariant_3017 == req.getElementType()) {
-			return getGEFWrapper(new CustomStateInvariantCreateCommand(req));
+			return getGEFWrapper(new CustomStateInvariantCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.CombinedFragment_3018 == req.getElementType()) {
-			return getGEFWrapper(new CustomCombinedFragment2CreateCommand(req));
+			return getGEFWrapper(new CustomCombinedFragment2CreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.TimeConstraint_3019 == req.getElementType()) {
-			return getGEFWrapper(new CustomTimeConstraintCreateCommand(req));
+			return getGEFWrapper(new CustomTimeConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		//Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826		
 		//		if(UMLElementTypes.TimeObservation_3020 == req.getElementType()) {
 		//			return getGEFWrapper(new TimeObservationCreateCommand(req));
 		//		}
 		if(UMLElementTypes.DurationConstraint_3021 == req.getElementType()) {
-			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req));
+			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.DestructionOccurrenceSpecification_3022 == req.getElementType()) {
-			return getGEFWrapper(new CustomDestructionOccurrenceSpecificationCreateCommand(req));
+			return getGEFWrapper(new CustomDestructionOccurrenceSpecificationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		//add lifelines
 		if(UMLElementTypes.Lifeline_3001 == req.getElementType()) {
 			CustomLifelineEditPart lifelineEditPart = (CustomLifelineEditPart)getHost();
 			if(lifelineEditPart.isInlineCapability()) {
-				CustomLifelineCreateCommand cmd = new CustomLifelineCreateCommand(req);
+				CustomLifelineCreateCommand cmd = new CustomLifelineCreateCommand(req, DiagramUtils.getDiagramFrom(getHost()));
 				cmd.setAvailableProperties(lifelineEditPart.getAvailableProperties());
 				return getGEFWrapper(cmd);
 			}
 		}
 		//add DurationObservation/Constraint
 		if(UMLElementTypes.DurationConstraint_3023 == req.getElementType()) {
-			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req));
+			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		//		Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826			
 		//		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {

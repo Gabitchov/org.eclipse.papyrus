@@ -21,21 +21,28 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.uml2.uml.ClassifierTemplateParameter;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
 public class ClassifierTemplateParameterCreateCommand extends EditElementCommand {
 
+	private Diagram diagram = null;
+
 	/**
 	 * @generated
 	 */
-	public ClassifierTemplateParameterCreateCommand(CreateElementRequest req) {
+	public ClassifierTemplateParameterCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -54,7 +61,10 @@ public class ClassifierTemplateParameterCreateCommand extends EditElementCommand
 	 * @generated
 	 */
 	public boolean canExecute() {
-		return true;
+
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getClassifierTemplateParameter());
+		return data.isPermitted();
 
 	}
 
@@ -65,9 +75,23 @@ public class ClassifierTemplateParameterCreateCommand extends EditElementCommand
 
 		ClassifierTemplateParameter newElement = UMLFactory.eINSTANCE.createClassifierTemplateParameter();
 
-		TemplateSignature owner = (TemplateSignature) getElementToEdit();
-		owner.getOwnedParameters()
-				.add(newElement);
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		if (data.isPermitted()) {
+			if (data.isPathDefined()) {
+				if (!data.execute(target, newElement))
+					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
+			} else {
+
+				TemplateSignature qualifiedTarget = (TemplateSignature) target;
+				qualifiedTarget.getOwnedParameters()
+						.add(newElement);
+
+			}
+		} else {
+			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
+		}
+
 		TemplateSignature childHolder = (TemplateSignature) getElementToEdit();
 		childHolder.getParameters()
 				.add(newElement);

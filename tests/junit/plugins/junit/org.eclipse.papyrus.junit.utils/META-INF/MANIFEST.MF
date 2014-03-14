@@ -15,8 +15,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.tools;bundle-version="1.0.0",
  org.eclipse.papyrus.editor;bundle-version="1.0.0",
  org.junit;bundle-version="4.10.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0"
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.tools;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.junit.utils,
+ org.eclipse.papyrus.junit.utils.classification,
  org.eclipse.papyrus.junit.utils.rules,
  org.eclipse.papyrus.junit.utils.tests
 Bundle-Vendor: %Bundle-Vendor

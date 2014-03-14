@@ -12,7 +12,6 @@ package org.eclipse.papyrus.uml.diagram.activity;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
-import org.eclipse.uml2.uml.Activity;
 
 /**
  * ActivityDiagramCreationCondition class allows to check if an Activity diagram can be added to the
@@ -25,9 +24,6 @@ public class ActivityDiagramCreationCondition extends PerspectiveContextDependen
 	 */
 	@Override
 	public boolean create(EObject selectedElement) {
-		if(super.create(selectedElement)) {
-			return selectedElement instanceof Activity;
-		}
 		return false;
 	}
 }

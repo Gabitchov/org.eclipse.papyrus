@@ -15,19 +15,54 @@ package aspects.xpt.diagram.commands
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import metamodel.MetaModel
+import org.eclipse.gmf.codegen.gmfgen.GenNode
 import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet
-import utils.NodeConstraintUtils_qvto
 import xpt.Common
 import xpt.OclMigrationProblems_qvto
+import xpt.diagram.Utils_qvto
 
 @Singleton class CreateNodeCommand extends xpt.diagram.commands.CreateNodeCommand  {
 	@Inject extension Common;
 
 	@Inject extension OclMigrationProblems_qvto;
 	@Inject extension MetaModel
-	@Inject extension NodeConstraintUtils_qvto
+	@Inject extension Utils_qvto;
+
 
 	@Inject MetaModel xptMetaModel;
+	
+		override CreateNodeCommand(TypeModelFacet it) '''
+		«copyright(ownerGenNode(it).diagram.editorGen)»
+		package «packageName(it)»;
+		
+		
+		
+		«generatedClassComment()»
+		public class «className(it)» extends org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand {
+			
+			private org.eclipse.gmf.runtime.notation.Diagram diagram = null;
+		
+			«_constructor(it)»
+		
+			«getElementToEdit(it)»
+		
+			«canExecuteMethod(it)»
+		
+			«doExecuteWithResultMethod(it)»
+		
+			«doConfigureMethod(it)»
+			
+			«additions(it)»	
+		}
+	'''
+	
+	override _constructor(TypeModelFacet it) '''
+		«generatedMemberComment()»
+		public «className(it)»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.gmf.runtime.notation.Diagram diagram) {
+			super(req.getLabel(), null, req);
+			this.diagram = diagram;
+		}
+	'''
 
 //	override CreateNodeCommand(TypeModelFacet it) '''
 //		«copyright(ownerGenNode(it).diagram.editorGen)»
@@ -120,8 +155,8 @@ import xpt.OclMigrationProblems_qvto
 	«IF containmentMetaFeature != null»
 		«IF  containmentMetaFeature.ecoreFeature != null»
 			«IF ! isUnbounded(containmentMetaFeature.ecoreFeature) || (childMetaFeature != containmentMetaFeature && ! isUnbounded(childMetaFeature.ecoreFeature))»
-				«DeclareAndAssign(containmentMetaFeature.genClass,'container', 'getElementToEdit()') »
 				«IF ! isUnbounded(containmentMetaFeature.ecoreFeature)»
+				«DeclareAndAssign(containmentMetaFeature.genClass,'container', 'getElementToEdit()') »
 						«IF isSingleValued(containmentMetaFeature.ecoreFeature)»
 						if («getFeatureValue(containmentMetaFeature,'container', containmentMetaFeature.genClass) » != null) {
 							«ELSE»
@@ -142,20 +177,44 @@ import xpt.OclMigrationProblems_qvto
 			«ENDIF»
 		«ENDIF»
 	«ENDIF»
-	«««[NodeCreationConstraint] START
-	«IF hasNodeCreationConstraint(getOwningGenNode(it))»
-		«getNodeCreationConstraintBody(getOwningGenNode(it))»
-	«ELSE»
-	««« [NodeCreationConstraint] END
-	return true;
-	««« [NodeCreationConstraint] START
-	«ENDIF»
-	«««[NodeCreationConstraint] END
+	
+	org.eclipse.emf.ecore.EObject target = getElementToEdit();
+	org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), «MetaClass(metaClass)»);
+	return data.isPermitted();
+
 	'''
 
 
+	override normalElementCreation(TypeModelFacet it, GenNode node, String varName) '''
+		«xptMetaModel.NewInstance(it.metaClass, varName)»
+		
+		org.eclipse.emf.ecore.EObject target = getElementToEdit();
+				org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getCurrent().getChildAddData(diagram, target, «varName»);
+				if (data.isPermitted()) {
+					if (data.isPathDefined()) {
+						if (!data.execute(target, «varName»))
+							return org.eclipse.gmf.runtime.common.core.command.CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
+					} else {
+		«extraLineBreak»
+		«IF containmentMetaFeature != null»
+			«xptMetaModel.DeclareAndAssign(it.containmentMetaFeature.genClass, 'qualifiedTarget', 'target')»
+			«xptMetaModel.modifyFeature(containmentMetaFeature, 'qualifiedTarget', containmentMetaFeature.genClass, varName)»
+		«ELSE»
+			//
+			// FIXME no containment feature found in the genmodel, toolsmith need to manually write code here to add «varName» to a parent
+			//
+		«ENDIF»
+		
+					}
+				} else {
+					return org.eclipse.gmf.runtime.common.core.command.CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
+				}
 
-	
+		«IF hasExplicitChildFeature(it)»
+			«xptMetaModel.DeclareAndAssign(it.childMetaFeature.genClass, 'childHolder', 'getElementToEdit()')»
+			«xptMetaModel.modifyFeature(it.childMetaFeature, 'childHolder', childMetaFeature.genClass, varName)»
+		«ENDIF»
+	'''
 
 
 

@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
 import org.eclipse.papyrus.emf.facet.custom.ui.ImageUtils;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
@@ -27,6 +29,7 @@ public class GetDiagramIcon extends AbstractGetEditorIconQuery implements IJavaQ
 
 
 	public IImage evaluate(Diagram source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
-		return ImageUtils.wrap(org.eclipse.emf.common.util.URI.createPlatformPluginURI(getEditorRegistry(source).getEditorURLIcon(source), true).toString()); //$NON-NLS-1$
+		ViewPrototype prototype = DiagramUtils.getPrototype(source);
+		return ImageUtils.wrap(prototype.getIconURI());
 	}
 }

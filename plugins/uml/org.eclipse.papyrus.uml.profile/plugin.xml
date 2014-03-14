@@ -164,5 +164,11 @@
             provider="org.eclipse.papyrus.uml.profile.providers.ProfileDefinitionLabelProvider">
       </labelProvider>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.viewpoints.policy.profilehelper">
+      <helper
+            class="org.eclipse.papyrus.uml.profile.UMLProfileHelper">
+      </helper>
+   </extension>
 
 </plugin>

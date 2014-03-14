@@ -22,6 +22,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.SupplementCommand;
@@ -49,8 +50,8 @@ public class CreateAssociationSupplement extends SupplementCommand {
 	 * @param target
 	 *        the target of the association (Type)
 	 */
-	public CreateAssociationSupplement(EObject container, EObject source, EObject target) {
-		super(container, source, target);
+	public CreateAssociationSupplement(EObject container, EObject source, EObject target, Diagram diagram) {
+		super(container, source, target, diagram);
 	}
 
 	/**
@@ -79,7 +80,7 @@ public class CreateAssociationSupplement extends SupplementCommand {
 		Association association = UMLFactory.eINSTANCE.createAssociation();
 		// create target property
 		CreateElementRequest request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
-		EditElementCommand c = new PropertyCommandForAssociation(request);
+		EditElementCommand c = new PropertyCommandForAssociation(request, diagram);
 		try {
 			c.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
@@ -95,7 +96,7 @@ public class CreateAssociationSupplement extends SupplementCommand {
 		targetProperty.setUpper(1);
 		// create source property
 		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
-		c = new PropertyCommandForAssociation(request);
+		c = new PropertyCommandForAssociation(request, diagram);
 		try {
 			c.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {

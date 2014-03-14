@@ -12,13 +12,11 @@
  */
 package org.eclipse.papyrus.uml.diagram.clazz.custom.command;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Connector;
@@ -65,14 +63,7 @@ public class CustomContextLinkCreateCommand extends ContextLinkCreateCommand {
 
 		if (viewSource != null && source instanceof Constraint) {
 			View viewTarget = findView(target);
-
-			List<ConnectionEditPart> sourceConnections = new ArrayList<ConnectionEditPart>();
-			for (Object connection : ViewUtil.getSourceConnections(viewSource)) {
-				if (connection instanceof ConnectionEditPart)
-				{
-					sourceConnections.add((ConnectionEditPart) connection);
-				}
-			}
+			List sourceConnections = ViewUtil.getSourceConnections(viewSource);
 
 			for (Object connector : sourceConnections) {
 				if (!(connector instanceof Connector)) {
@@ -89,7 +80,7 @@ public class CustomContextLinkCreateCommand extends ContextLinkCreateCommand {
 				}
 			}
 		}
-		if (resolveTargetNamespace() != null && (resolveTargetNamespace().getOwnedRules().contains(resolveTargetNamespace()))) {
+		if (getTarget() != null && (getTarget().getOwnedRules().contains(getTarget()))) {
 
 			return false;
 		}
@@ -110,9 +101,5 @@ public class CustomContextLinkCreateCommand extends ContextLinkCreateCommand {
 			}
 		}
 		return null;
-	}
-
-	protected Namespace resolveTargetNamespace() {
-		return (Namespace) target;
 	}
 }

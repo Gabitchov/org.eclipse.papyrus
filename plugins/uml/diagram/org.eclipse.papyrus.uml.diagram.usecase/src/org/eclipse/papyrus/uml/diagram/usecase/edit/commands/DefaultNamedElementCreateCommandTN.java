@@ -24,8 +24,12 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -35,7 +39,7 @@ public class DefaultNamedElementCreateCommandTN extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private EClass eClass = null;
+	private Diagram diagram = null;
 
 	/**
 	 * @generated
@@ -45,24 +49,25 @@ public class DefaultNamedElementCreateCommandTN extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public DefaultNamedElementCreateCommandTN(CreateElementRequest req, EObject eObject) {
+	public DefaultNamedElementCreateCommandTN(CreateElementRequest req, EObject eObject, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static DefaultNamedElementCreateCommandTN create(CreateElementRequest req, EObject eObject) {
-		return new DefaultNamedElementCreateCommandTN(req, eObject);
+	public static DefaultNamedElementCreateCommandTN create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new DefaultNamedElementCreateCommandTN(req, eObject, diagram);
 	}
 
 	/**
 	 * @generated
 	 */
-	public DefaultNamedElementCreateCommandTN(CreateElementRequest req) {
+	public DefaultNamedElementCreateCommandTN(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -85,7 +90,9 @@ public class DefaultNamedElementCreateCommandTN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		return true;
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getNamedElement());
+		return data.isPermitted();
 	}
 
 	/**

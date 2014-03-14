@@ -14,10 +14,14 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -27,7 +31,7 @@ public class NodeCreateCommandCN extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private EClass eClass = null;
+	private Diagram diagram = null;
 
 	/**
 	 * @generated
@@ -37,24 +41,25 @@ public class NodeCreateCommandCN extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public NodeCreateCommandCN(CreateElementRequest req, EObject eObject) {
+	public NodeCreateCommandCN(CreateElementRequest req, EObject eObject, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static NodeCreateCommandCN create(CreateElementRequest req, EObject eObject) {
-		return new NodeCreateCommandCN(req, eObject);
+	public static NodeCreateCommandCN create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new NodeCreateCommandCN(req, eObject, diagram);
 	}
 
 	/**
 	 * @generated
 	 */
-	public NodeCreateCommandCN(CreateElementRequest req) {
+	public NodeCreateCommandCN(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -63,7 +68,6 @@ public class NodeCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -78,25 +82,31 @@ public class NodeCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
-		return true;
-
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getNode());
+		return data.isPermitted();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		Node newElement = UMLFactory.eINSTANCE.createNode();
-
-		Node owner = (Node)getElementToEdit();
-		owner.getNestedNodes().add(newElement);
-
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		if(data.isPermitted()) {
+			if(data.isPathDefined()) {
+				if(!data.execute(target, newElement))
+					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
+			} else {
+				Node qualifiedTarget = (Node)target;
+				qualifiedTarget.getNestedNodes().add(newElement);
+			}
+		} else {
+			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
+		}
 		ElementInitializers.getInstance().init_Node_23(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -114,5 +124,4 @@ public class NodeCreateCommandCN extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

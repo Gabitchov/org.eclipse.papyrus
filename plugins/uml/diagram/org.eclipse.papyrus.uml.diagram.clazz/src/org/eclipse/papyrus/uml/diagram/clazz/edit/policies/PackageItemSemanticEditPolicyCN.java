@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.AbstractionCreateCommand;
@@ -115,14 +116,14 @@ public class PackageItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new RedefinableTemplateSignatureCreateCommand(req));
+			return getGEFWrapper(new RedefinableTemplateSignatureCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
 		if (UMLElementTypes.TemplateSignature_3033 == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new TemplateSignatureCreateCommand(req));
+			return getGEFWrapper(new TemplateSignatureCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
 		return super.getCreateCommand(req);

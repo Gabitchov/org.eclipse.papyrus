@@ -45,64 +45,7 @@
       </command>
    </extension>
    
-   <extension
-         point="org.eclipse.ui.handlers">
-      <handler
-            class="org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramWithNavigationHandler"
-            commandId="org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand">
-         <activeWhen>
-               <with variable="activeEditorId">
-                  <equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
-               </with>
-         </activeWhen>
-      </handler>
-   </extension>
    
-<extension
-		point="org.eclipse.ui.menus">
-
-	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
-		<command commandId="org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand"
-			icon="icons/obj16/Diagram_Activity.gif"
-			label="Create a new Activity Diagram"
-			style="push"
-			tooltip="Create a new Activity Diagram">
-			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
-			</visibleWhen>
-		</command>
-	</toolbar>
-	</menuContribution>
-	
-	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-	<menu id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams"
-		label="Diagrams">
-		<command commandId="org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand"
-			icon="icons/obj16/Diagram_Activity.gif"
-			label="Create a new Activity Diagram"
-			style="push"
-			tooltip="Create a new Activity Diagram">
-			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
-			</visibleWhen> 				
-		</command>
-	</menu>
-	</menuContribution>
-
-	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
-		<command commandId="org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand"
-			icon="icons/obj16/Diagram_Activity.gif"
-			label="Create a new Activity Diagram"
-			style="push"
-			tooltip="Create a new Activity Diagram">
-			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
-			</visibleWhen>
-		</command>
-	</menuContribution>
-
-</extension>
 
 
    <extension

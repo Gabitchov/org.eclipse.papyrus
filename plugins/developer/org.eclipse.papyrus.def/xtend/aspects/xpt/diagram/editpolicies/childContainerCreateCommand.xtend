@@ -76,7 +76,7 @@ if («accessElementType(node)» == baseElementType) {
 	«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size>0»
 	return getGEFWrapper(getSemanticCreationCommand(req));
 	«ELSE»
-	return getGEFWrapper(new «node.getCreateCommandQualifiedClassName()»(req));
+	return getGEFWrapper(new «node.getCreateCommandQualifiedClassName()»(req, org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getDiagramFrom(getHost())));
 	«ENDIF»
 	
 }

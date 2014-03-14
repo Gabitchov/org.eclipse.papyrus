@@ -31,11 +31,14 @@ import org.eclipse.gmf.runtime.notation.View;
  */
 public class ShortCutDiagramCreateCommand extends EditElementCommand {
 
+	private Diagram diagram = null;
+
 	/**
 	 * @generated
 	 */
-	public ShortCutDiagramCreateCommand(CreateElementRequest req) {
+	public ShortCutDiagramCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**

@@ -16,7 +16,6 @@ package org.eclipse.papyrus.qompass.designer.ui.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.ui.PlatformUI;
 
@@ -36,8 +35,7 @@ public abstract class CmdHandler extends AbstractHandler {
 				.getSelectionService().getSelection();
 				
 		if(selection != null) {
-			
-				selectedEObject = EMFHelper.getEObject(selection);
+			selectedEObject = EMFHelper.getEObject(selection.getFirstElement());
 		}
 	}
 

@@ -1241,7 +1241,7 @@
         <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.eclipse.uml2.uml.diagram.pathmaps" name="Pathmaps" kind="Pathmaps"/>
       </preferencePages>
     </diagram>
-    <plugin iD="org.eclipse.papyrus.uml.diagram.profile" name="PapyrusUMLProfileDiagram" provider="CEA LIST" version="1.0.0.vqualifier">
+    <plugin iD="org.eclipse.papyrus.uml.diagram.profile" name="PapyrusUMLProfileDiagram" provider="CEA LIST" version="1.0.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>

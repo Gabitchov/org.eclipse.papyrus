@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.PropertyCreateCommandCLN;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
 
@@ -57,7 +58,7 @@ public class DataTypeAttributeCompartmentItemSemanticEditPolicy extends UMLBaseI
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new PropertyCreateCommandCLN(req));
+			return getGEFWrapper(new PropertyCreateCommandCLN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

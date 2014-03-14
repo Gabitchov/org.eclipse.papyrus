@@ -103,6 +103,12 @@
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/plugins/infra/viewpoints/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/plugins/infra/widget/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>

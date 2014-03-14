@@ -19,6 +19,8 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioredClassifier;
@@ -102,18 +104,21 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractP
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
+	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, ViewPrototype prototype, String name) {
 		Diagram diagram = null;
-		if(owner instanceof org.eclipse.uml2.uml.Package) {
-			diagram = ViewService.createDiagram(owner, getDiagramNotationID(), getPreferenceHint());
-		} else if(owner instanceof BehavioredClassifier) {
-			diagram = ViewService.createDiagram(((BehavioredClassifier)owner).getNearestPackage(), getDiagramNotationID(), getPreferenceHint());
+		if(element instanceof org.eclipse.uml2.uml.Package) {
+			diagram = ViewService.createDiagram(element, getDiagramNotationID(), getPreferenceHint());
+		} else if(element instanceof BehavioredClassifier) {
+			diagram = ViewService.createDiagram(((BehavioredClassifier)element).getNearestPackage(), getDiagramNotationID(), getPreferenceHint());
 		}
 		// create diagram
 		if(diagram != null) {
 			setName(name);
-
-			initializeModel(owner);
+			diagram.setElement(element);
+			DiagramUtils.setOwner(diagram, owner);
+			if (!prototype.isNatural())
+				DiagramUtils.setPrototype(diagram, prototype);
+			initializeModel(element);
 			initializeDiagram(diagram);
 			diagramResource.getContents().add(diagram);
 		}
@@ -134,35 +139,5 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractP
 
 	protected String getName() {
 		return name;
-	}
-
-	// @Override
-	// protected void runAsTransaction(DiResourceSet diResourceSet, EObject
-	// container, String name) {
-	// if(name == null && container instanceof NamedElement) {
-	// setName(((NamedElement)container).getName());
-	// if(!"".equals(getName())) {
-	// // initialize name with activity's name
-	// name = openDiagramNameDialog(getName());
-	// if(name == null) {
-	// // operation canceled
-	// return;
-	// }
-	// }
-	// }
-	// super.runAsTransaction(diResourceSet, container,
-	// getDefaultDiagramName());
-	// }
-	
-	/**
-	 * Check if the creation of this diagram is strongly attached to its parent
-	 * or if it can be reassigned after creation.
-	 * 
-	 * @return true if parent can be reassigned
-	 */
-	public boolean isParentReassignable() {
-		// Behavioral diagrams describe their parent behavior and only this one.
-		// They can not be moved to another parent.
-		return false;
 	}
 }

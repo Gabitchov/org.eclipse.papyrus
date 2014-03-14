@@ -16,7 +16,7 @@ package org.eclipse.papyrus.acceleo.ui.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.ui.PlatformUI;
 
 
@@ -35,7 +35,7 @@ public abstract class CmdHandler extends AbstractHandler {
 				.getSelectionService().getSelection();
 
 		if(selection != null) {
-			Object selectedObject = BusinessModelResolver.getInstance().getBusinessModel(selection.getFirstElement());
+			Object selectedObject = EMFHelper.getEObject(selection.getFirstElement());
 			if (selectedObject instanceof EObject) {
 				selectedEObject = (EObject) selectedObject;
 			}

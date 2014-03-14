@@ -21,22 +21,29 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
 public class NestedSignalForComponentCreateCommand extends EditElementCommand {
 
+	private Diagram diagram = null;
+
 	/**
 	 * @generated
 	 */
-	public NestedSignalForComponentCreateCommand(CreateElementRequest req) {
+	public NestedSignalForComponentCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -55,7 +62,10 @@ public class NestedSignalForComponentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		return true;
+
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getSignal());
+		return data.isPermitted();
 
 	}
 
@@ -66,9 +76,22 @@ public class NestedSignalForComponentCreateCommand extends EditElementCommand {
 
 		Signal newElement = UMLFactory.eINSTANCE.createSignal();
 
-		Class owner = (Class) getElementToEdit();
-		owner.getNestedClassifiers()
-				.add(newElement);
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		if (data.isPermitted()) {
+			if (data.isPathDefined()) {
+				if (!data.execute(target, newElement))
+					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
+			} else {
+
+				Class qualifiedTarget = (Class) target;
+				qualifiedTarget.getNestedClassifiers()
+						.add(newElement);
+
+			}
+		} else {
+			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
+		}
 
 		ElementInitializers.getInstance().init_Signal_3051(newElement);
 

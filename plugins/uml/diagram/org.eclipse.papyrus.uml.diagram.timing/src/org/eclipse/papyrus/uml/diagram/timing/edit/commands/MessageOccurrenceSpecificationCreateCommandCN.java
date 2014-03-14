@@ -19,10 +19,14 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -34,7 +38,7 @@ public class MessageOccurrenceSpecificationCreateCommandCN extends EditElementCo
 	/**
 	 * @generated
 	 */
-	private EClass eClass = null;
+	private Diagram diagram = null;
 
 	/**
 	 * @generated
@@ -44,24 +48,25 @@ public class MessageOccurrenceSpecificationCreateCommandCN extends EditElementCo
 	/**
 	 * @generated
 	 */
-	public MessageOccurrenceSpecificationCreateCommandCN(final CreateElementRequest req, final EObject eObject) {
+	public MessageOccurrenceSpecificationCreateCommandCN(CreateElementRequest req, EObject eObject, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static MessageOccurrenceSpecificationCreateCommandCN create(final CreateElementRequest req, final EObject eObject) {
-		return new MessageOccurrenceSpecificationCreateCommandCN(req, eObject);
+	public static MessageOccurrenceSpecificationCreateCommandCN create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new MessageOccurrenceSpecificationCreateCommandCN(req, eObject, diagram);
 	}
 
 	/**
 	 * @generated
 	 */
-	public MessageOccurrenceSpecificationCreateCommandCN(final CreateElementRequest req) {
+	public MessageOccurrenceSpecificationCreateCommandCN(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -71,7 +76,6 @@ public class MessageOccurrenceSpecificationCreateCommandCN extends EditElementCo
 	 */
 	@Override
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -79,7 +83,7 @@ public class MessageOccurrenceSpecificationCreateCommandCN extends EditElementCo
 		if(container != null) {
 			return container;
 		}
-		return this.eObject;
+		return eObject;
 	}
 
 	/**
@@ -87,24 +91,31 @@ public class MessageOccurrenceSpecificationCreateCommandCN extends EditElementCo
 	 */
 	@Override
 	public boolean canExecute() {
-
-		return true;
-
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getMessageOccurrenceSpecification());
+		return data.isPermitted();
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-
-		final MessageOccurrenceSpecification newElement = UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
-
-		final Lifeline owner = (Lifeline)getElementToEdit();
-		owner.getCoveredBys().add(newElement);
-
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		MessageOccurrenceSpecification newElement = UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		if(data.isPermitted()) {
+			if(data.isPathDefined()) {
+				if(!data.execute(target, newElement))
+					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
+			} else {
+				Lifeline qualifiedTarget = (Lifeline)target;
+				qualifiedTarget.getCoveredBys().add(newElement);
+			}
+		} else {
+			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
+		}
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -112,15 +123,14 @@ public class MessageOccurrenceSpecificationCreateCommandCN extends EditElementCo
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(final MessageOccurrenceSpecification newElement, final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-		final IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
-		final ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+	protected void doConfigure(MessageOccurrenceSpecification newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		final ICommand configureCommand = elementType.getEditCommand(configureRequest);
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
 		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

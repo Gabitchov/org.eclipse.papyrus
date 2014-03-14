@@ -39,6 +39,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.AbstractionCreateCommand;
@@ -105,7 +106,7 @@ public class PropertyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new PortCreateCommand(req));
+			return getGEFWrapper(new PortCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}
@@ -361,25 +362,7 @@ public class PropertyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
-		ICommand reorientCommand =null;
 		switch(getVisualID(req)) {
-		case org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorEditPart.VISUAL_ID:
-			if(provider == null) {
-				return UnexecutableCommand.INSTANCE;
-			}
-
-			// Add graphical new end View in request parameters
-			View targetView = (View)getHost().getModel();
-			req.setParameter(RequestParameterConstants.EDGE_REORIENT_REQUEST_END_VIEW, targetView);
-
-			// Retrieve re-orient command from the Element Edit service
-			reorientCommand = provider.getEditCommand(req);
-			if(reorientCommand == null) {
-				return UnexecutableCommand.INSTANCE;
-			}
-			return getGEFWrapper(reorientCommand.reduce());
-		
 		case UsageEditPart.VISUAL_ID:
 		case InterfaceRealizationEditPart.VISUAL_ID:
 		case SubstitutionEditPart.VISUAL_ID:
@@ -388,12 +371,12 @@ public class PropertyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		case AbstractionEditPart.VISUAL_ID:
 		case DependencyEditPart.VISUAL_ID:
 		case DependencyBranchEditPart.VISUAL_ID:
-			
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
 			// Retrieve re-orient command from the Element Edit service
-			reorientCommand = provider.getEditCommand(req);
+			ICommand reorientCommand = provider.getEditCommand(req);
 			if(reorientCommand == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
@@ -417,5 +400,4 @@ public class PropertyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

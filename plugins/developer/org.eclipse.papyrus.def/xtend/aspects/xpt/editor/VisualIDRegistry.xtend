@@ -32,6 +32,16 @@ import xpt.Common
 	@Inject extension Common
 	@Inject CodeStyle xptCodeStyle;
 
+	override getDiagramVisualID(GenDiagram it) '''
+		«generatedMemberComment()»
+		public static int «getDiagramVisualIDMethodName(it)»(org.eclipse.emf.ecore.EObject domainElement) {
+			if (domainElement == null) {
+				«unrecognizedVID(it)»
+			}
+			return «visualID»;
+		}
+	'''
+
 	/**
 	 * Support for extra contstraints to check about model element.
 	 * Includes expression fields for interpreted constrains (like ocl or regexp).
@@ -42,8 +52,10 @@ import xpt.Common
 	 */
 	override constraintMethods(GenDiagram it) '''
 		«IF null != editorGen.expressionProviders»
-			«FOR topNode : topLevelNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(topNode)»«ENDFOR»
-			«FOR childNode : childNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(childNode)»«ENDFOR»
+			«FOR topNode : topLevelNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
+			topNode)»«ENDFOR»
+			«FOR childNode : childNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
+			childNode)»«ENDFOR»
 			«FOR link : links.filter[n|!n.sansDomain]»«constraintMethod(link.modelFacet, link)»«ENDFOR»
 		«ENDIF»
 	'''
@@ -53,16 +65,19 @@ import xpt.Common
 	«««	 [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case)
 	«IF commonBase instanceof GenLink»
 		«««	[ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
-	«IF null != modelElementSelector» && «domainElementConstraintMethodName(commonBase)»(«CastEObject(metaClass, 'domainElement')»)«ENDIF»
+	«IF null != modelElementSelector» && «domainElementConstraintMethodName(commonBase)»(«CastEObject(metaClass,
+		'domainElement')»)«ENDIF»
 	«««	[ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case) 
 	«ELSE»
-		«IF null != modelElementSelector» && «domainElementConstraintMethodName(commonBase)»(containerView, «CastEObject(metaClass, 'domainElement')»)«ENDIF»
+		«IF null != modelElementSelector» && «domainElementConstraintMethodName(commonBase)»(containerView, «CastEObject(
+		metaClass, 'domainElement')»)«ENDIF»
 	«ENDIF»
 	«««	[ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
 	'''
 
 	//	[ExtendedConstraint] Model selector constraint
-	override _domainElementConstraintMethod(GenJavaExpressionProvider it, GenCommonBase diagramElement, ValueExpression expression, GenClass context) '''
+	override _domainElementConstraintMethod(GenJavaExpressionProvider it, GenCommonBase diagramElement,
+		ValueExpression expression, GenClass context) '''
 		«generatedMemberComment»
 		«««	[ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case)
 	«IF diagramElement instanceof GenLink»
@@ -70,7 +85,8 @@ import xpt.Common
 	private static boolean «domainElementConstraintMethodName(diagramElement)»(«QualifiedClassName(context)» domainElement) {
 		««« [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case)
 	«ELSE»
-			private static boolean «domainElementConstraintMethodName(diagramElement)»(org.eclipse.gmf.runtime.notation.View containerView, «QualifiedClassName(context)» domainElement) {
+			private static boolean «domainElementConstraintMethodName(diagramElement)»(org.eclipse.gmf.runtime.notation.View containerView, «QualifiedClassName(
+			context)» domainElement) {
 		«ENDIF»
 		««« [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
 	«IF injectExpressionBody && (expression.body != null && expression.body.length() != 0)»
@@ -84,8 +100,8 @@ import xpt.Common
 		«ENDIF»
 		}
 	'''
-	
-		override runtimeTypedInstance(GenDiagram it) '''
+
+	override runtimeTypedInstance(GenDiagram it) '''
 		«generatedClassComment()»
 		public static final org.eclipse.gmf.tooling.runtime.structure.DiagramStructure «runtimeTypedInstanceName(it)» = new org.eclipse.gmf.tooling.runtime.structure.DiagramStructure() {
 			«generatedMemberComment()»
@@ -125,7 +141,5 @@ import xpt.Common
 			}
 		};
 	'''
-	
-
 
 }

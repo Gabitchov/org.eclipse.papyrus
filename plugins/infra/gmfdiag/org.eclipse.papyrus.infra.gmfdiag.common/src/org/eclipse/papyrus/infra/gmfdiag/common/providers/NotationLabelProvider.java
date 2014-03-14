@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.providers;
 
+import javax.swing.text.Element;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
@@ -19,15 +21,14 @@ import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.infra.core.extension.diagrameditor.PluggableEditorFactoryReader;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.types.NotationTypesMap;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.NamedElement;
-import org.w3c.dom.Element;
 
 /**
  * A Label Provider for GMF Notation model
@@ -37,28 +38,27 @@ public class NotationLabelProvider extends EMFLabelProvider {
 	/** icon for a compartment */
 	public static final String ICON_COMPARTMENT = "/icons/none_comp_vis.gif"; //$NON-NLS-1$
 
-	private IPageIconsRegistry pageIconsRegistry;
-
 	@Override
 	public void dispose() {
 		super.dispose();
-		if(pageIconsRegistry != null) {
-			pageIconsRegistry.dispose();
-			pageIconsRegistry = null;
+	}
+
+	@Override
+	public Image getImage(Object element) {
+		EObject eObject = EMFHelper.getEObject(element);
+		if (eObject != null) {
+			return getImage(eObject);
 		}
+		return super.getImage(element);
 	}
 
 	@Override
 	protected Image getImage(EObject element) {
 		if(element instanceof Diagram) {
-			//return getPagesIconsRegistry().getEditorIcp
-			if(pageIconsRegistry == null) {
-				pageIconsRegistry = new PageIconsRegistry();
-				PluggableEditorFactoryReader editorReader = new PluggableEditorFactoryReader(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
-				editorReader.populate((PageIconsRegistry)pageIconsRegistry);
-			}
-
-			return pageIconsRegistry.getEditorIcon(element);
+			ViewPrototype proto = DiagramUtils.getPrototype((Diagram)element);
+			if (proto == null)
+				return null;
+			return proto.getIcon();
 		}
 
 		// if the element is a compartment

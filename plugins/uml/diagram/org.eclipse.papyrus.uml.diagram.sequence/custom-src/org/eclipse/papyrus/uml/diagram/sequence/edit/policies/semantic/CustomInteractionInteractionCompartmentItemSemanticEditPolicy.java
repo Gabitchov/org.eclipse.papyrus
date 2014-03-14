@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomCombinedFragmentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomConsiderIgnoreFragmentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomConstraintCreateCommand;
@@ -38,31 +39,31 @@ public class CustomInteractionInteractionCompartmentItemSemanticEditPolicy exten
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.ConsiderIgnoreFragment_3007 == req.getElementType()) {
-			return getGEFWrapper(new CustomConsiderIgnoreFragmentCreateCommand(req));
+			return getGEFWrapper(new CustomConsiderIgnoreFragmentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.CombinedFragment_3004 == req.getElementType()) {
-			return getGEFWrapper(new CustomCombinedFragmentCreateCommand(req));
+			return getGEFWrapper(new CustomCombinedFragmentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Lifeline_3001 == req.getElementType()) {
-			return getGEFWrapper(new CustomLifelineCreateCommand(req));
+			return getGEFWrapper(new CustomLifelineCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.InteractionUse_3002 == req.getElementType()) {
-			return getGEFWrapper(new CustomInteractionUseCreateCommand(req));
+			return getGEFWrapper(new CustomInteractionUseCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Constraint_3008 == req.getElementType()) {
-			return getGEFWrapper(new CustomConstraintCreateCommand(req));
+			return getGEFWrapper(new CustomConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Comment_3009 == req.getElementType()) {
-			return getGEFWrapper(new CommentCreateCommand(req));
+			return getGEFWrapper(new CommentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.TimeObservation_3020 == req.getElementType()) {
 			return getGEFWrapper(new CustomTimeObservationCreateCommand(req));
 		}
 		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
-			return getGEFWrapper(new CustomDurationObservationCreateCommand(req));
+			return getGEFWrapper(new CustomDurationObservationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.DurationConstraint_3021 == req.getElementType()) {
-			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req));
+			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

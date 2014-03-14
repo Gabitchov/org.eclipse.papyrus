@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.AssociationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.GeneralizationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
@@ -35,7 +36,7 @@ public class CustomDefaultNamedElementItemSemanticEditPolicyTN extends DefaultNa
 		EObject eobject = ((GraphicalEditPart)getHost()).resolveSemanticElement();
 		if((eobject instanceof Class) || (eobject instanceof Actor) || (eobject instanceof UseCase)) {
 			if(UMLElementTypes.Association_4011 == req.getElementType()) {
-				return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
+				return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget(), DiagramUtils.getDiagramFrom(getHost())));
 			}
 		}
 		if((eobject instanceof Class) || (eobject instanceof Actor) || (eobject instanceof UseCase)) {
@@ -51,7 +52,7 @@ public class CustomDefaultNamedElementItemSemanticEditPolicyTN extends DefaultNa
 		EObject eobject = ((GraphicalEditPart)getHost()).resolveSemanticElement();
 		if((eobject instanceof Class) || (eobject instanceof Actor) || (eobject instanceof UseCase)) {
 			if(UMLElementTypes.Association_4011 == req.getElementType()) {
-				return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
+				return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget(), DiagramUtils.getDiagramFrom(getHost())));
 			}
 		}
 		if((eobject instanceof Class) || (eobject instanceof Actor) || (eobject instanceof UseCase)) {

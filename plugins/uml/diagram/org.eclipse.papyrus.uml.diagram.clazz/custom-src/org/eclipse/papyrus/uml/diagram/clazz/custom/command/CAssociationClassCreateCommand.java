@@ -20,7 +20,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.AssociationClassHelper;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.AssociationClassLinkCreateCommand;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Type;
@@ -28,10 +30,13 @@ import org.eclipse.uml2.uml.Type;
 /**
  * custom class to create an association
  */
-public class CAssociationClassCreateCommand extends org.eclipse.papyrus.uml.diagram.clazz.edit.commands.AssociationClassLinkCreateCommand {
+public class CAssociationClassCreateCommand extends AssociationClassLinkCreateCommand {
 
-	public CAssociationClassCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	private final Diagram diagram;
+	
+	public CAssociationClassCreateCommand(CreateRelationshipRequest request, EObject source, EObject target, Diagram diagram) {
 		super(request, source, target);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -39,12 +44,12 @@ public class CAssociationClassCreateCommand extends org.eclipse.papyrus.uml.diag
 	 * {@inheritDoc}
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		if (source instanceof Type && target instanceof Type && container instanceof Package) {
-			AssociationClass newElement = (AssociationClass) AssociationClassHelper.createAssociationClass(getEditingDomain(), (Type) source, (Type) target, (Package) container);
-			((CreateElementRequest) getRequest()).setNewElement(newElement);
+		if(source instanceof Type && target instanceof Type && container instanceof Package) {
+			AssociationClass newElement = (AssociationClass)AssociationClassHelper.createAssociationClass(getEditingDomain(), (Type)source, (Type)target, (Package)container, diagram);
+			((CreateElementRequest)getRequest()).setNewElement(newElement);
 			return CommandResult.newOKCommandResult(newElement);
 		}
 		return null;

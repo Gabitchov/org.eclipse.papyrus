@@ -37,6 +37,11 @@ public class Load10RequirementTest extends AbstractPapyrusTestCase {
 		return IRequirementDiagramTestsConstants.FILE_NAME;
 	}
 
+	@Override
+	protected String[] getRequiredProfiles() {
+		return IRequirementDiagramTestsConstants.PROFILES;
+	}
+
 	/**
 	 * Test to create a node.
 	 * 

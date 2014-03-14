@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,14 +31,14 @@ import org.junit.Assert;
 import org.osgi.framework.Bundle;
 
 
-public abstract class AbstractEditorTest {
+public abstract class AbstractEditorTest extends AbstractPapyrusTest {
 
 	protected IMultiDiagramEditor editor;
 
 	protected IProject project;
 
 	/**
-	 * 
+	 *
 	 * @return
 	 *         the current bundle
 	 */
@@ -49,7 +49,7 @@ public abstract class AbstractEditorTest {
 	/**
 	 * Inits this.editor
 	 * Fails or throws an exception if an error occurs
-	 * 
+	 *
 	 * @param bundle
 	 *        TODO
 	 */
@@ -108,7 +108,7 @@ public abstract class AbstractEditorTest {
 
 	/**
 	 * The path to the source model folder
-	 * 
+	 *
 	 * @return
 	 */
 	protected abstract String getSourcePath();

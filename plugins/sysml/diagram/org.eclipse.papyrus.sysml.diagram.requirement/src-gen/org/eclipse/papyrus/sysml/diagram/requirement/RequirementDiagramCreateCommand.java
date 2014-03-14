@@ -10,27 +10,27 @@
  * Contributors:
  * CEA LIST- Initial API and implementation
  * Nizar GUEDIDI (CEA LIST)- modification
+ * Laurent Wouters (CEA LIST) laurent.wouters@cea.fr - Viewpoints application
  *
  ****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.sysml.diagram.requirement.provider.ElementTypes;
 
-
-
+/**
+ * Represents the creation command for a SysML requirements diagram
+ * @author Laurent Wouters
+ */
 public class RequirementDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected String getDefaultDiagramName() {
-		return "RequirementDiagram"; // //$NON-NLS-1$
+		return "New Requirements Diagram"; // //$NON-NLS-1$
 	}
 
 	/**
@@ -47,21 +47,5 @@ public class RequirementDiagramCreateCommand extends AbstractPapyrusGmfCreateDia
 	@Override
 	protected PreferencesHint getPreferenceHint() {
 		return Activator.DIAGRAM_PREFERENCES_HINT;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
-		// Start of user code Custom diagram creation
-		Diagram diagram = null;
-
-		if(owner instanceof org.eclipse.uml2.uml.Package) {
-			diagram = super.createDiagram(diagramResource, owner, name);
-		}
-
-		return diagram;
-		// End of user code
 	}
 }

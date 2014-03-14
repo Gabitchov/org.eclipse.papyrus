@@ -16,6 +16,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ClassifierTemplateParameterCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.OperationTemplateParameterCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.TemplateParameterCreateCommand;
@@ -58,21 +59,21 @@ public class TemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new ClassifierTemplateParameterCreateCommand(req));
+			return getGEFWrapper(new ClassifierTemplateParameterCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
 		if (UMLElementTypes.OperationTemplateParameter_3035 == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new OperationTemplateParameterCreateCommand(req));
+			return getGEFWrapper(new OperationTemplateParameterCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
 		if (UMLElementTypes.TemplateParameter_3016 == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new TemplateParameterCreateCommand(req));
+			return getGEFWrapper(new TemplateParameterCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
 		return super.getCreateCommand(req);

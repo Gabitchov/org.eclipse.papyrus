@@ -71,7 +71,7 @@ import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.papyrus.customization.palette.proxies.XMLDefinitionPaletteProxyFactory;
+import org.eclipse.papyrus.customization.palette.proxies.XMLPaletteDefinitionProxyFactory;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
@@ -79,7 +79,7 @@ import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectCreationEntry;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService;
-import org.eclipse.papyrus.uml.diagram.common.service.XMLDefinitionPaletteParser;
+import org.eclipse.papyrus.uml.diagram.common.service.XMLPaletteDefinitionWalker;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectAction;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.StereotypeAspectActionProvider;
 import org.eclipse.swt.SWT;
@@ -644,12 +644,14 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			} else {
 				Document document = documentBuilder.parse(file);
 				Map<String, PaletteEntry> entries = PaletteUtil.getAvailableEntriesSet(editorPart, ProviderPriority.HIGHEST);
-				XMLDefinitionPaletteProxyFactory factory = new XMLDefinitionPaletteProxyFactory(entries);
-				XMLDefinitionPaletteParser parser = new XMLDefinitionPaletteParser(factory);
+				
+				XMLPaletteDefinitionProxyFactory factory = new XMLPaletteDefinitionProxyFactory(entries);
+				XMLPaletteDefinitionWalker walker = new XMLPaletteDefinitionWalker(factory);
+				
 				for(int i = 0; i < document.getChildNodes().getLength(); i++) {
 					Node node = document.getChildNodes().item(i);
 					if(IPapyrusPaletteConstant.PALETTE_DEFINITION.equals(node.getNodeName())) {
-						parser.parsePaletteDefinition(node);
+						walker.walk(node);
 					}
 				}
 				contentNode = factory.getRootProxy();

@@ -13,29 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.model;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
-
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 
 /**
  * Utilities method to manage notation models. Should be moved in a more
@@ -120,9 +112,8 @@ public class NotationUtils {
 			for(EObject obj : notationResource.getContents()) {
 				if(obj instanceof Diagram) {
 					Diagram diagram = (Diagram)obj;
-					if(eObject != null && eObject.equals(diagram.getElement())) {
+					if (DiagramUtils.getOwner(diagram) == eObject)
 						return diagram;
-					}
 				}
 			}
 		}
@@ -161,9 +152,8 @@ public class NotationUtils {
 			for(EObject obj : notationResource.getContents()) {
 				if(obj instanceof Diagram) {
 					Diagram diagram = (Diagram)obj;
-					if(EcoreUtil.isAncestor(eObject, diagram.getElement())) {
+					if (EcoreUtil.isAncestor(eObject, DiagramUtils.getOwner(diagram)))
 						diagrams.add(diagram);
-					}
 				}
 			}
 		}
@@ -216,57 +206,5 @@ public class NotationUtils {
 			return null;
 		}
 	}
-	
-	/**
-	 * Gets the loaded associated diagrams of the specified eObject.
-	 * This method uses the cross referencer to compute them.
-	 * 
-	 * @param eObject
-	 * @param notationResource
-	 * 
-	 * @return the associated diagram
-	 */
-	public static List<Diagram> getLoadedAssociatedDiagrams(EObject eObject) {
-		Predicate<EStructuralFeature.Setting> p = new Predicate<EStructuralFeature.Setting>() {
-
-			public boolean apply(EStructuralFeature.Setting setting) {
-				return setting.getEObject() instanceof Diagram && NotationPackage.Literals.VIEW__ELEMENT.equals(setting.getEStructuralFeature());
-			}
-		};
-		Function<EStructuralFeature.Setting, Diagram> f = new Function<EStructuralFeature.Setting, Diagram>() {
-
-			public Diagram apply(EStructuralFeature.Setting setting) {
-				return (Diagram)setting.getEObject();
-			}
-
-		};
-		return Lists.newArrayList(Iterables.transform(Iterables.filter(EMFHelper.getUsages(eObject), p), f));
-	}
-
-	/**
-	 * Gets the all the diagrams contained in the specified ancestor eObject and
-	 * currently stored in the specified notation resource.
-	 * 
-	 * @param notationResource
-	 * @param eObject
-	 * 
-	 * @return all the contained diagrams
-	 * 
-	 */
-	public static List<Diagram> getAllDescendantDiagramsInResource(EObject eObject, Resource notationResource) {
-		List<Diagram> diagrams = new ArrayList<Diagram>();
-		if(notationResource != null) {
-			for(EObject obj : notationResource.getContents()) {
-				if(obj instanceof Diagram) {
-					Diagram diagram = (Diagram)obj;
-					if(EcoreUtil.isAncestor(eObject, diagram.getElement())) {
-						diagrams.add(diagram);
-					}
-				}
-			}
-		}
-		return diagrams;
-	}
-
-
 }
+

@@ -27,20 +27,20 @@ package «getDiagram().editCommandsPackageName»;
 public class «createCommandClassName» extends org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand {
 	«REM» Mutating canvas auxiliary «ENDREM»
 	«EXPAND xpt::Common::generatedMemberComment-»
-	private org.eclipse.emf.ecore.EClass eClass = null;
+	private org.eclipse.gmf.runtime.notation.Diagram diagram = null;
 	«EXPAND xpt::Common::generatedMemberComment-»
 	private org.eclipse.emf.ecore.EObject eObject = null;
 	«REM» Mutating canvas auxiliary constructor «ENDREM»
 	«EXPAND xpt::Common::generatedMemberComment-»
-	public «createCommandClassName»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.emf.ecore.EObject eObject) {
+	public «createCommandClassName»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.emf.ecore.EObject eObject, org.eclipse.gmf.runtime.notation.Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 	«REM» Mutating canvas auxiliary builder «ENDREM»	
 	«EXPAND xpt::Common::generatedMemberComment-»
-	public static «createCommandClassName» create(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.emf.ecore.EObject eObject) {
-		return new «createCommandClassName»(req, eObject);
+	public static «createCommandClassName» create(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.emf.ecore.EObject eObject, org.eclipse.gmf.runtime.notation.Diagram diagram) {
+		return new «createCommandClassName»(req, eObject, diagram);
 	}
 	«EXPAND _constructor-»
 	«EXPAND getElementToEdit-»
@@ -51,8 +51,9 @@ public class «createCommandClassName» extends org.eclipse.gmf.runtime.emf.type
 «ENDDEFINE»
 «DEFINE _constructor FOR gmfgen::GenNode-»
 	«EXPAND xpt::Common::generatedMemberComment»
-	public «createCommandClassName»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
+	public «createCommandClassName»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.gmf.runtime.notation.Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 «ENDDEFINE»
 /*
@@ -131,11 +132,12 @@ protected org.eclipse.emf.ecore.EObject getElementToEdit() {
 	}
 «ENDDEFINE»
 «DEFINE canExecute_Normal FOR gmfgen::TypeModelFacet-»
+
 «IF not containmentMetaFeature.oclIsUndefined()-»
 	«IF  not containmentMetaFeature.ecoreFeature.oclIsUndefined()-»
 		«IF not isUnbounded(containmentMetaFeature.ecoreFeature) or (childMetaFeature <> containmentMetaFeature and not isUnbounded(childMetaFeature.ecoreFeature))-»
-			«EXPAND MetaModel::DeclareAndAssign('container', 'getElementToEdit()') FOR containmentMetaFeature.genClass-»
 			«IF not isUnbounded(containmentMetaFeature.ecoreFeature)-»
+				«EXPAND MetaModel::DeclareAndAssign('container', 'getElementToEdit()') FOR containmentMetaFeature.genClass-»
 					«IF isSingleValued(containmentMetaFeature.ecoreFeature)»
 				if («EXPAND MetaModel::getFeatureValue('container', containmentMetaFeature.genClass) FOR containmentMetaFeature» != null) {
 					«ELSE-»
@@ -156,16 +158,12 @@ protected org.eclipse.emf.ecore.EObject getElementToEdit() {
 		«ENDIF-»
 	«ENDIF-»
 «ENDIF-»
-«REM» [NodeCreationConstraint] START   «ENDREM»
-«IF getOwningGenNode().hasNodeCreationConstraint()-»
-	«getOwningGenNode().getNodeCreationConstraintBody()-»
-«ELSE-»
-«REM» [NodeCreationConstraint] END   «ENDREM»
-return true;
-«REM» [NodeCreationConstraint] START   «ENDREM»
-«ENDIF-»
-«REM» [NodeCreationConstraint] END   «ENDREM»
+
+	org.eclipse.emf.ecore.EObject target = getElementToEdit();
+	org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), «EXPAND MetaModel::MetaClass FOR metaClass»);
+	return data.isPermitted();
 «ENDDEFINE»
+
 «DEFINE phantomElementCreation(node : gmfgen::GenNode, varName : String) FOR gmfgen::TypeModelFacet-»
 	// Uncomment to put "phantom" objects into the diagram file.		
 	// org.eclipse.emf.ecore.resource.Resource resource = 
@@ -177,16 +175,29 @@ return true;
 	«EXPAND MetaModel::NewInstance(varName) FOR metaClass»
 	resource.getContents().add(«EXPAND MetaModel::DowncastToEObject(varName) FOR metaClass»);
 «ENDDEFINE»
+
 «DEFINE normalElementCreation(node : gmfgen::GenNode, varName : String) FOR gmfgen::TypeModelFacet-»
 	«EXPAND MetaModel::NewInstance(varName) FOR metaClass»
+	org.eclipse.emf.ecore.EObject target = getElementToEdit();
+	org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getCurrent().getChildAddData(diagram, target, «varName»);
+	if (data.isPermitted()) {
+		if (data.isPathDefined()) {
+			if (!data.execute(target, «varName»))
+				return org.eclipse.gmf.runtime.common.core.command.CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
+		} else {
 «IF not containmentMetaFeature.oclIsUndefined()-»
-	«EXPAND MetaModel::DeclareAndAssign('owner', 'getElementToEdit()') FOR containmentMetaFeature.genClass»
-	«EXPAND MetaModel::modifyFeature('owner', containmentMetaFeature.genClass, varName) FOR containmentMetaFeature-»
+	«EXPAND MetaModel::DeclareAndAssign('qualifiedTarget', 'target') FOR containmentMetaFeature.genClass»
+	«EXPAND MetaModel::modifyFeature('qualifiedTarget', containmentMetaFeature.genClass, varName) FOR containmentMetaFeature-»
 «ELSE-»
 	//
 	// FIXME no containment feature found in the genmodel, toolsmith need to manually write code here to add «varName» to a parent
 	//
 «ENDIF»
+		}
+	} else {
+		return org.eclipse.gmf.runtime.common.core.command.CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
+	}
+	
 «IF hasExplicitChildFeature(self)-»
 	«EXPAND MetaModel::DeclareAndAssign('childHolder', 'getElementToEdit()') FOR childMetaFeature.genClass»
 	«EXPAND MetaModel::modifyFeature('childHolder', childMetaFeature.genClass, varName) FOR childMetaFeature»
@@ -194,3 +205,4 @@ return true;
 «ENDDEFINE»
 
 «DEFINE initialize(node : gmfgen::GenNode, newElementVar : String) FOR gmfgen::TypeModelFacet»«EXPAND xpt::providers::ElementInitializers::initMethodCall(self, newElementVar) FOR node»«ENDDEFINE»
+
