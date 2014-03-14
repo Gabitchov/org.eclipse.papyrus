@@ -11,17 +11,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils.tests;
 
-import org.eclipse.papyrus.junit.utils.classification.ClassificationRule;
-import org.junit.Rule;
+import org.eclipse.papyrus.junit.utils.classification.ClassificationRunner;
+import org.junit.runner.RunWith;
 
 /**
  * An abstract class which should be extended by all Papyrus tests
  *
+ * It provides generic support for papyrus-specific annotations (e.g. ClassificationRunner)
+ *
  * @author Camille Letavernier
  *
  */
+@RunWith(ClassificationRunner.class)
 public abstract class AbstractPapyrusTest {
 
-	@Rule
-	public final ClassificationRule classification = new ClassificationRule();
 }

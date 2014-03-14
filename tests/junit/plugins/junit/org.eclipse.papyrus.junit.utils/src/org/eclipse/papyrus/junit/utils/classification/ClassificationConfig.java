@@ -38,6 +38,9 @@ import org.eclipse.papyrus.infra.tools.util.ListHelper;
  *
  * @author Camille Letavernier
  *
+ * @see {@link TestCategory}
+ * @see {@link ClassificationRunner}
+ *
  */
 public class ClassificationConfig {
 
