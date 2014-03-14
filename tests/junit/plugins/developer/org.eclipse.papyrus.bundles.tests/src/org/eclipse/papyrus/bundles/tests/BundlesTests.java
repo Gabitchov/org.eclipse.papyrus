@@ -22,21 +22,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.junit.utils.TestMode;
+import org.eclipse.papyrus.junit.utils.classification.NotImplemented;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.pde.internal.core.feature.Feature;
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
 /**
  * suppress restriction for org.eclipse.pde.internal.core.feature.Feature;
- * 
+ *
  * @author VL222926
  *
  */
 @SuppressWarnings("restriction")
-public class BundlesTests {
+public class BundlesTests extends AbstractPapyrusTest {
 
 	// Transform the version number to the regex format
 	// Adds .* (Valid version numbers are e.g. 0.10.1.qualifier)
@@ -113,20 +113,18 @@ public class BundlesTests {
 	/**
 	 * Tests that we don't use import package
 	 */
+	@NotImplemented("Usage of importPackage is discouraged")
 	@Test
 	public void importPackage() {
-		Assume.assumeTrue("Usage of importPackage is discouraged", TestMode.isStrict()); //$NON-NLS-1$
-
 		testManifestProperty(BundleTestsUtils.BUNDLE_IMPORT_PACKAGE, "", true, false); //$NON-NLS-1$
 	}
 
 	/**
 	 * This test verify that we doesn't re-export dependencies
 	 */
+	@NotImplemented("Usage of reexported dependencies is discouraged")
 	@Test
 	public void reexportDependencies() {
-		Assume.assumeTrue("Usage of reexported dependencies is discouraged", TestMode.isStrict());
-
 		StringBuffer message = new StringBuffer();
 		int nb = 0;
 		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
@@ -163,7 +161,7 @@ public class BundlesTests {
 
 	/**
 	 * Tests if a the value of a property in the Manifest is correct
-	 * 
+	 *
 	 * @param property
 	 *        the property to test
 	 * @param regex
@@ -202,7 +200,7 @@ public class BundlesTests {
 
 	/**
 	 * Tests if the file is owned by the bundle
-	 * 
+	 *
 	 * @param filepath
 	 *        the file path
 	 */
@@ -337,7 +335,7 @@ public class BundlesTests {
 		}
 
 		/**
-		 * 
+		 *
 		 * @param first
 		 * @param second
 		 * @return <ul>
@@ -365,7 +363,7 @@ public class BundlesTests {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param partialDependencyName
 	 *        the fullName or a part of the name of the plugin
 	 * @param wantedBundleVersionRegex
@@ -420,10 +418,9 @@ public class BundlesTests {
 	/**
 	 * This test verify that the plugin contains pdoc file
 	 */
+	@NotImplemented("Documentation file is not mandatory")
 	@Test
 	public void documentationFileTest() {
-		Assume.assumeTrue("It is a good practice to add a plugin.pdoc file to each plug-in", TestMode.isStrict());
-
 		String message = null;
 		int nb = 0;
 		for(final Bundle bundle : BundleTestsUtils.getPapyrusBundles()) {
