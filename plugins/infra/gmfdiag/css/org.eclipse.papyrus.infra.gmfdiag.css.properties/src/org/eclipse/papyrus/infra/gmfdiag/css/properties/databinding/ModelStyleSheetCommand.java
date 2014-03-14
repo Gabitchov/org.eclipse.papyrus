@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Mickaël Adam (ALL4TEC) mia@all4tec.net - Initial API and implementation
+ *  Mickaël Adam (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding;
@@ -15,10 +15,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.command.AbstractCommand;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.ui.services.parser.GetParserOperation;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
+import org.eclipse.papyrus.infra.gmfdiag.css.engine.ModelCSSEngine;
+import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
@@ -42,6 +46,21 @@ public class ModelStyleSheetCommand extends AbstractCommand {
 		resource.getContents().add(object);
 		createdEObjects.add(object);
 
+		//reloadStyleSheets for the model
+//		EList<EObject> objects = resource.getContents();
+		
+		((CSSNotationResource)resource).getModelEngine().getAllStylesheets();
+		
+//		for(EObject object : objects){
+//			
+//			if(object instanceof ModelCSSEngine){
+//				//((ModelCSSEngine)object).reloadStyleSheets();
+//			}
+//		}
+		//Parcourir pour trouver ModelCSSEngine
+		
+		//refresh
+		
 		//add  StyleSheetReference
 //		for(Object vObject : ((ModelStyleSheets)object).getStylesheets()) {
 //			vRef = StylesheetsFactory.eINSTANCE.createStyleSheetReference();

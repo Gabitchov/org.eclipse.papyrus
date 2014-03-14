@@ -18,6 +18,7 @@ import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -27,7 +28,9 @@ import org.eclipse.gmf.runtime.notation.EObjectListValueStyle;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Style;
+import org.eclipse.gmf.runtime.notation.impl.EObjectListValueStyleImpl;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
@@ -71,17 +74,31 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	@Override
 	public Command getRemoveCommand(Object value) {	
 		StyleSheetReference ref = null;
-		//Retrieve all instance of NameStyle
-		Collection<Object> objects = EcoreUtil.getObjectsByType(notationResource.getContents(), NotationPackage.eINSTANCE.getStyle());
-		//Compare Objects to the object to remove
-		for(Object object : objects){
-			if(object instanceof NamedStyle){
-				// If the StyleReference to delete is used on a diagram 
-				if(((Style)object)==value){
-					ref = (StyleSheetReference)value;
+		
+		//Retrieve all instance of NameStyle on CSSDiagramImpl
+		EList<EObject> objectsFromRessource = notationResource.getContents();
+		for(Object objectFromRessource : objectsFromRessource){
+			if(objectFromRessource instanceof CSSDiagramImpl){
+				EList<EObject> objectsFromDiagram = ((CSSDiagramImpl)objectFromRessource).getStyles();
+				for(Object objectFromDiagram : objectsFromDiagram){
+					if(objectFromDiagram instanceof EObjectListValueStyleImpl){
+						NamedStyle listValueStyle = ((NamedStyle)objectFromDiagram);
+						//listValueStyle.
+					}
 				}
 			}
 		}
+		
+		
+		//Compare Objects to the object to remove
+//		for(Object object : objects1){
+//			if(object instanceof NamedStyle){
+//				// If the StyleReference to delete is used on a diagram 
+//				if(((Style)object)==value){
+//					ref = (StyleSheetReference)value;
+//				}
+//			}
+//		}
 		
 		
 		return super.getRemoveCommand(value);
@@ -91,42 +108,6 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	@Override
 	public Command getRemoveAllCommand(Collection<?> values) {
 	
-				
-		
-		
-		//Compare it to the object to remove
-
-//		
-//		NamedStyle
-//		
-//		notationResource.getContents();
-//		
-//		ModelStyleSheets vSource = null;
-//		if(vObject instanceof ModelStyleSheets){
-//			vSource = (ModelStyleSheets) vObject;
-//		} else {
-//			vSource = StylesheetsFactory.eINSTANCE.createModelStyleSheets();
-//		}
-//		
-//		for(Object styleObject : getStyles()) {
-//			if(styleObject instanceof NamedStyle) {
-//
-//				NamedStyle style = (NamedStyle)styleObject;
-//
-//				if(CSSStyles.CSS_DIAGRAM_STYLESHEETS_KEY.equals(style.getName())) {
-//					if(style instanceof EObjectListValueStyle) {
-//
-//						EObjectListValueStyle stylesheetsStyle = (EObjectListValueStyle)style;
-//
-//						for(Object eObjectValue : stylesheetsStyle.getEObjectListValue()) {
-//							if(eObjectValue instanceof StyleSheet) {
-//								result.add((StyleSheet)eObjectValue);
-//							}
-//						}
-//					}
-//				}
-//			}
-//		}
 		return super.getRemoveAllCommand(values);
 	}
 	
