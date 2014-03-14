@@ -12,25 +12,25 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
- org.eclipse.papyrus.emf.facet.query.java.core,
+ org.eclipse.papyrus.emf.facet.query.java.core;bundle-version="1.0.0",
  org.eclipse.emf.ecore,
- org.eclipse.papyrus.emf.facet.efacet.core,
- org.eclipse.papyrus.emf.facet.efacet,
- org.eclipse.papyrus.emf.facet.efacet.metamodel,
- org.eclipse.papyrus.emf.facet.custom.metamodel,
- org.eclipse.papyrus.infra.emf,
+ org.eclipse.papyrus.emf.facet.efacet.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.efacet;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.modelexplorer.Acti
  vator
-Bundle-ManifestVersion: 2
+Import-Package: org.eclipse.papyrus.emf.facet.custom.ui
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.modelexplorer;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Import-Package: org.eclipse.papyrus.emf.facet.custom.ui
 

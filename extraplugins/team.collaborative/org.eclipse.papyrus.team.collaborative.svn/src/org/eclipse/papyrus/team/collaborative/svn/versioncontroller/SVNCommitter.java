@@ -108,7 +108,7 @@ public class SVNCommitter extends SVNWorkOnModifiedFile implements ICommitter {
 			}
 			Tracer.logInfo(stringBuilder.toString());
 		}
-		CompositeOperation mainOp = tt.getCompositeCommitOperation(allResources, new IResource[0], message, keepLock, Display.getDefault().getActiveShell(), PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart(), true);
+		CompositeOperation mainOp = tt.getCompositeCommitOperation(allResources, new IResource[0], message, keepLock, Display.getDefault().getActiveShell(), PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart());
 		ICancellableOperationWrapper runnable = UIMonitorUtility.doTaskNowDefault(mainOp, false);
 		IActionOperation resultStatus = runnable.getOperation();
 		return resultStatus.getStatus();

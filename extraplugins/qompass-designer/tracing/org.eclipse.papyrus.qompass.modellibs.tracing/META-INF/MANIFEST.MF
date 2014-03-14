@@ -1,4 +1,6 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.qompass.modellibs.tracing,
+ org.eclipse.papyrus.qompass.modellibs.tracing.acceleo
 Require-Bundle: org.eclipse.papyrus.fcm.profile;bundle-version="1.0.0",
  org.eclipse.papyrus.qompass.modellibs.core;bundle-version="1.0.0",
  org.eclipse.ui,
@@ -10,16 +12,14 @@ Require-Bundle: org.eclipse.papyrus.fcm.profile;bundle-version="1.0.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0",
  org.eclipse.papyrus.qompass.designer.ui;bundle-version="1.0.0"
-Export-Package: org.eclipse.papyrus.qompass.modellibs.tracing,
- org.eclipse.papyrus.qompass.modellibs.tracing.acceleo
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.qompass.modellibs.tracing.Activa
  tor
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.qompass.modellibs.tracing;sin
  gleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

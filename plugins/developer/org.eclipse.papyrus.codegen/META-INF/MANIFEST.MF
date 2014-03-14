@@ -1,20 +1,18 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.codegen;x-internal:=true,
+ org.eclipse.papyrus.codegen.actions;x-internal:=true,
+ org.eclipse.papyrus.codegen.utils
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.gmf.codegen;bundle-version="2.1.0",
  org.eclipse.gmf.codegen.ui;bundle-version="1.1.0",
- org.eclipse.gmf.codegen.xtend.ui;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
- org.eclipse.jdt.core;bundle-version="3.10.0",
- org.eclipse.m2m.qvt.oml;bundle-version="3.4.0"
-Export-Package: org.eclipse.papyrus.codegen;x-internal:=true,
- org.eclipse.papyrus.codegen.actions;x-internal:=true
+ org.eclipse.m2m.qvt.oml;bundle-version="2.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.codegen.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.codegen;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

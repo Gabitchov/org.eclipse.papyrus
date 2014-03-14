@@ -56,7 +56,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.parametric.Activat
  or
+Import-Package: org.eclipse.gmf.runtime.notation
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.parametric;sing
  leton:=true
-Import-Package: org.eclipse.gmf.runtime.notation
 

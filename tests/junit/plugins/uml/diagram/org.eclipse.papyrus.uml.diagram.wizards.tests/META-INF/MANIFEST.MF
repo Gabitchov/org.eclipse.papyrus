@@ -17,4 +17,4 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.wizards.tests
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.papyrus.uml.diagram.wizards
-
+Bundle-Localization: plugin

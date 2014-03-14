@@ -1,157 +1,105 @@
 Manifest-Version: 1.0
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
 Built-By: hudsonbuild
-Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.custom.metamodel.editor;singleton:=true
-Bundle-Activator: org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation.Activator
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Created-By: Apache Maven
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.emf.facet.custom.metamodel.edit;visibility:=reexport,
+ org.eclipse.papyrus.emf.facet.custom.metamodel.edit;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.ui.forms,
- org.eclipse.papyrus.emf.facet.util.core,
- org.eclipse.papyrus.emf.facet.custom.core,
+ org.eclipse.papyrus.emf.facet.util.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0",
  org.eclipse.emf.ecore.edit,
- org.eclipse.papyrus.emf.facet.efacet.sdk.ui,
- org.eclipse.papyrus.emf.facet.util.ui,
+ org.eclipse.papyrus.emf.facet.efacet.sdk.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.util.ui;bundle-version="1.0.0",
  org.eclipse.jface,
- org.eclipse.papyrus.emf.facet.custom.sdk.ui,
- org.eclipse.papyrus.emf.facet.custom.ui,
- org.eclipse.papyrus.emf.facet.query.java.core,
- org.eclipse.papyrus.emf.facet.query.java.metamodel,
- org.eclipse.papyrus.emf.facet.query.ocl.metamodel
-Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: .
-Build-Jdk: 1.6.0_27
-Bundle-ActivationPolicy: lazy
+ org.eclipse.papyrus.emf.facet.custom.sdk.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.query.java.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.query.java.metamodel;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.query.ocl.metamodel;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
-Bundle-Name: %pluginName
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
+Bundle-Version: 1.0.0.qualifier
+Build-Jdk: 1.6.0_27
 Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_
+ 0.custom.presentation.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.custom.metamodel.ed
+ itor;singleton:=true
+Archiver-Version: Plexus Archiver
 
 Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$4$1.class
-SHA1-Digest: tGOjU+4z3DxdxWdwBs+v8eOKU40=
+ n/CustomEditor$3$1.class
+SHA1-Digest: 7/Z2RI2RDP58/qM5l6Xn1wmDl18=
 
 Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$3$2.class
-SHA1-Digest: 7v6GXQClx8CBuOkKZiDsHVU6hdY=
-
-Name: icons/full/wizban/NewCustom.gif
-SHA1-Digest: CfAK4I3/f4RWRH687PmoPhy5xjI=
-
-Name: plugin.properties
-SHA1-Digest: fFcgM6YBhoNcfziHLJKe9rRZk5Q=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomModelWizard.class
-SHA1-Digest: zPICwLw1MMdSYMw3Qy77cPTD/iE=
-
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.custom.met
- amodel.editor/pom.properties
-SHA1-Digest: aaofIniFQcvYh/8YffWqmdAjU6Y=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomActionBarContributor.class
-SHA1-Digest: jUbbHal786bYoEFb+HQ1V04eUMY=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$10.class
-SHA1-Digest: rGP+RAhFdKK1z0i6y6uVSUqRpy8=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomModelWizard$CustomModelWizardInitialObjectCreationPage.class
-SHA1-Digest: JCf9KzP6eqGktQfMgiCHT2Fqpug=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$1MyContentOutlinePage.class
-SHA1-Digest: r6puwT+FcjuGMZ6VtCjrAf5q+YY=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditorPlugin$Implementation.class
-SHA1-Digest: HyoABJYgdiywLgyKeeM6TmOkjiQ=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$11.class
-SHA1-Digest: aCGd0LETYBDgF5HzVOt4Keo5hB4=
-
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.custom.met
- amodel.editor/pom.xml
-SHA1-Digest: HLvXDSszH515HuZ/i7KF+OpgR7U=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$12.class
-SHA1-Digest: 99WQOldMXPAKEbMMSPGPFyAOyZA=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$13.class
-SHA1-Digest: vMmQuv11+BuuX6wrgjRBuNm9H58=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$14.class
-SHA1-Digest: PwQg16lZjOxlrFSQ1yg6JLBTHcY=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$15.class
-SHA1-Digest: dx4TR5eJT2wFLEWaswxWdLiJTew=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$16.class
-SHA1-Digest: +sM38Zzn9kKnyDWhJrOpTUezTak=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$17.class
-SHA1-Digest: B3+AEZoxZe1p/twgF27G2zEU5BQ=
-
-Name: plugin.xml
-SHA1-Digest: tstUoV2JuOKmJRuK8Cps96TMCNE=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$18.class
-SHA1-Digest: sNMquBqHAaZ/cQOrC+jGYiFVHTM=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomModelWizard$1.class
-SHA1-Digest: NMQWpKENYfFQ57f5MsF9AkCeJVE=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomModelWizard$2.class
-SHA1-Digest: 02SUfq89oKTPJ21ygzg6Rn94wBk=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomModelWizard$CustomModelWizardInitialObjectCreationPage$1.clas
- s
-SHA1-Digest: aSDZNSxEDYWi7AYEsADZUmGhWdQ=
+ n/CustomEditor$7.class
+SHA1-Digest: QesY+HjPovGwBqF/KzUWTMhIKL4=
 
 Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
  n/CustomActionBarContributor$1.class
 SHA1-Digest: b6NHs6MXxzGTM0v+I9sDZKFXJS8=
 
 Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomActionBarContributor$2.class
-SHA1-Digest: gGnxPxZBPgAFnI5uHTioSKbL6pc=
+ n/CustomEditor$5.class
+SHA1-Digest: sOZlOeMugef1ZliYkrDPVF2CYog=
 
 Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$ReverseAdapterFactoryContentProvider.class
-SHA1-Digest: rV5mQHtsCbaGgWDKLQibz8//pJg=
+ n/CustomModelWizard$CustomModelWizardNewFileCreationPage.class
+SHA1-Digest: QSMjUcx0LwI/KAs7x7pbk9DmnjE=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$10.class
+SHA1-Digest: rGP+RAhFdKK1z0i6y6uVSUqRpy8=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$2.class
+SHA1-Digest: f0IyTNp0D/D0HogKihbdpFuuyk4=
+
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.cu
+ stom.metamodel.editor/pom.properties
+SHA1-Digest: aaofIniFQcvYh/8YffWqmdAjU6Y=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomModelWizard.class
+SHA1-Digest: zPICwLw1MMdSYMw3Qy77cPTD/iE=
+
+Name: icons/full/wizban/NewCustom.gif
+SHA1-Digest: CfAK4I3/f4RWRH687PmoPhy5xjI=
 
 Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
  n/CustomActionBarContributor$3.class
 SHA1-Digest: 1RMb2Dc/I2QC6ey39qgENxnavtQ=
 
 Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$3$1ResourceDeltaVisitor.class
-SHA1-Digest: pKEp96kJaaBR2idFYqmI+4dJ4B8=
+ n/CustomEditor$11.class
+SHA1-Digest: aCGd0LETYBDgF5HzVOt4Keo5hB4=
 
 Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor.class
-SHA1-Digest: +PcDDo1QQsFQ9CNAzbzc0iAU4zg=
+ n/CustomEditor$16.class
+SHA1-Digest: +sM38Zzn9kKnyDWhJrOpTUezTak=
 
-Name: META-INF/eclipse.inf
-SHA1-Digest: 09gN05tobgS/MdtqyTNQhOhB73M=
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.cu
+ stom.metamodel.editor/pom.xml
+SHA1-Digest: HLvXDSszH515HuZ/i7KF+OpgR7U=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$18.class
+SHA1-Digest: sNMquBqHAaZ/cQOrC+jGYiFVHTM=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$4$1.class
+SHA1-Digest: tGOjU+4z3DxdxWdwBs+v8eOKU40=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$1.class
+SHA1-Digest: EMGiFg1kQ2AWnUXcwJm+KfN/300=
 
 Name: about.html
 SHA1-Digest: ru0WjokUORxDPBmweIE2eujSA24=
@@ -160,54 +108,108 @@ Name: icons/full/obj16/CustomModelFile.gif
 SHA1-Digest: zjQCllhiXDEnFg6c6wdc1isUBw8=
 
 Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomModelWizard$CustomModelWizardNewFileCreationPage.class
-SHA1-Digest: QSMjUcx0LwI/KAs7x7pbk9DmnjE=
+ n/CustomModelWizard$2.class
+SHA1-Digest: 02SUfq89oKTPJ21ygzg6Rn94wBk=
 
 Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$1.class
-SHA1-Digest: EMGiFg1kQ2AWnUXcwJm+KfN/300=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$2.class
-SHA1-Digest: f0IyTNp0D/D0HogKihbdpFuuyk4=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$3.class
-SHA1-Digest: Ujvl286N57XXS5QAcH9561MpCcI=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$4.class
-SHA1-Digest: FTDIj12FLFYzuYvPZ5/3HwW0Bxk=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$5.class
-SHA1-Digest: sOZlOeMugef1ZliYkrDPVF2CYog=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$6.class
-SHA1-Digest: 5ftPgemKKGrFwHnm4jsXaWXwQSs=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$7.class
-SHA1-Digest: QesY+HjPovGwBqF/KzUWTMhIKL4=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditorPlugin.class
-SHA1-Digest: qr5mdUQRmFnaClrP6+ypvG0fMEk=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$8.class
-SHA1-Digest: vOv9uSo0oKahHMrnTbOygwRC6Dw=
-
-Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$9.class
-SHA1-Digest: Xdh/nG+cixVM9Zur3JWx0MZ/oiI=
+ n/CustomEditor$14.class
+SHA1-Digest: PwQg16lZjOxlrFSQ1yg6JLBTHcY=
 
 Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
  n/CustomEditor$2$1.class
 SHA1-Digest: uvC60qxgN2C/cO2rdMwejHm0OOs=
 
 Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
- n/CustomEditor$3$1.class
-SHA1-Digest: 7/Z2RI2RDP58/qM5l6Xn1wmDl18=
+ n/CustomEditor$4.class
+SHA1-Digest: FTDIj12FLFYzuYvPZ5/3HwW0Bxk=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditorPlugin.class
+SHA1-Digest: qr5mdUQRmFnaClrP6+ypvG0fMEk=
+
+Name: META-INF/eclipse.inf
+SHA1-Digest: 09gN05tobgS/MdtqyTNQhOhB73M=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$3$1ResourceDeltaVisitor.class
+SHA1-Digest: pKEp96kJaaBR2idFYqmI+4dJ4B8=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$12.class
+SHA1-Digest: 99WQOldMXPAKEbMMSPGPFyAOyZA=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$ReverseAdapterFactoryContentProvider.class
+SHA1-Digest: rV5mQHtsCbaGgWDKLQibz8//pJg=
+
+Name: plugin.properties
+SHA1-Digest: fFcgM6YBhoNcfziHLJKe9rRZk5Q=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$1MyContentOutlinePage.class
+SHA1-Digest: r6puwT+FcjuGMZ6VtCjrAf5q+YY=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomModelWizard$CustomModelWizardInitialObjectCreationPage.class
+SHA1-Digest: JCf9KzP6eqGktQfMgiCHT2Fqpug=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$13.class
+SHA1-Digest: vMmQuv11+BuuX6wrgjRBuNm9H58=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$15.class
+SHA1-Digest: dx4TR5eJT2wFLEWaswxWdLiJTew=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$6.class
+SHA1-Digest: 5ftPgemKKGrFwHnm4jsXaWXwQSs=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$3.class
+SHA1-Digest: Ujvl286N57XXS5QAcH9561MpCcI=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomActionBarContributor$2.class
+SHA1-Digest: gGnxPxZBPgAFnI5uHTioSKbL6pc=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$8.class
+SHA1-Digest: vOv9uSo0oKahHMrnTbOygwRC6Dw=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomModelWizard$1.class
+SHA1-Digest: NMQWpKENYfFQ57f5MsF9AkCeJVE=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$9.class
+SHA1-Digest: Xdh/nG+cixVM9Zur3JWx0MZ/oiI=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$3$2.class
+SHA1-Digest: 7v6GXQClx8CBuOkKZiDsHVU6hdY=
+
+Name: plugin.xml
+SHA1-Digest: tstUoV2JuOKmJRuK8Cps96TMCNE=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomModelWizard$CustomModelWizardInitialObjectCreationPage$1.clas
+ s
+SHA1-Digest: aSDZNSxEDYWi7AYEsADZUmGhWdQ=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor.class
+SHA1-Digest: +PcDDo1QQsFQ9CNAzbzc0iAU4zg=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomActionBarContributor.class
+SHA1-Digest: jUbbHal786bYoEFb+HQ1V04eUMY=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditorPlugin$Implementation.class
+SHA1-Digest: HyoABJYgdiywLgyKeeM6TmOkjiQ=
+
+Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
+ n/CustomEditor$17.class
+SHA1-Digest: B3+AEZoxZe1p/twgF27G2zEU5BQ=
 

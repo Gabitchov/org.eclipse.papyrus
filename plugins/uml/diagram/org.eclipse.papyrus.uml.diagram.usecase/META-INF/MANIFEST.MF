@@ -75,6 +75,8 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiag
+ ramEditorPlugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.usecase; singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.usecase;singleton:=true
+

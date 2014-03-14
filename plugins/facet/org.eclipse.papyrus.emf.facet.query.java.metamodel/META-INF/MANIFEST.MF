@@ -1,14 +1,18 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.query.java.metamodel;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.emf.facet.query.java.metamodel.internal.Activator
-Bundle-Vendor: %Bundle-Vendor
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
- org.eclipse.papyrus.emf.facet.efacet;bundle-version="0.1.0",
- org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="0.2.0"
+ org.eclipse.papyrus.emf.facet.efacet;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="1.0.0"
+Export-Package: org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_
+ 2_0.javaquery
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Activator: org.eclipse.papyrus.emf.facet.query.java.metamodel.i
+ nternal.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.query.java.metamode
+ l;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

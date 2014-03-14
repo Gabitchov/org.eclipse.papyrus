@@ -1,8 +1,10 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.viewpoints.doc;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.help
+Bundle-Vendor: %providerName
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.viewpoints.doc;singleto
+ n:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin

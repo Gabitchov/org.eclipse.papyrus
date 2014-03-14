@@ -1,16 +1,18 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.design.profile.architecture;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: .
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.design.profile.architecture,
- org.eclipse.papyrus.design.profile.architecture.impl,
- org.eclipse.papyrus.design.profile.architecture.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="5.0.0";visibility:=reexport
+Export-Package: org.eclipse.papyrus.design.profile.architecture,
+ org.eclipse.papyrus.design.profile.architecture.impl,
+ org.eclipse.papyrus.design.profile.architecture.util
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.design.profile.architecture;s
+ ingleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

@@ -471,7 +471,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	
 	@Override
 	protected CreationContext getCreationContext(Object element) {
-		return getCreationContext((EObject)element, true);
+		return (element instanceof EObject) ? getCreationContext((EObject)element, true) : super.getCreationContext(element);
 	}
 	
 	/**

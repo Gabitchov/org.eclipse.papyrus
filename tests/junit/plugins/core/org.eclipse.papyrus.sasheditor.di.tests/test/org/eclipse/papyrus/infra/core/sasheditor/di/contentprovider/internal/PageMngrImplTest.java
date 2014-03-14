@@ -32,7 +32,6 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.swt.SWT;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 
 
 /**
@@ -60,7 +59,7 @@ public class PageMngrImplTest extends TestCase {
 
 	/**
 	 * @see junit.framework.TestCase#setUp()
-	 * 
+	 *
 	 * @throws java.lang.Exception
 	 */
 	@Override
@@ -85,7 +84,7 @@ public class PageMngrImplTest extends TestCase {
 
 	/**
 	 * @see junit.framework.TestCase#tearDown()
-	 * 
+	 *
 	 * @throws java.lang.Exception
 	 */
 	@After
@@ -96,7 +95,7 @@ public class PageMngrImplTest extends TestCase {
 
 	/**
 	 * Lookup for a folder in the SashModel. Return the first folder found.
-	 * 
+	 *
 	 * @return
 	 */
 	private ITabFolderModel lookupFolderModel() {
@@ -116,7 +115,7 @@ public class PageMngrImplTest extends TestCase {
 	/**
 	 * Recursively search in sash models for a FolderModel.
 	 * Return the first encountered folder.
-	 * 
+	 *
 	 * @param panelModel
 	 * @return
 	 */
@@ -144,7 +143,6 @@ public class PageMngrImplTest extends TestCase {
 	 * Test method for
 	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#addPage(org.eclipse.emf.ecore.EObject)}.
 	 */
-	@Ignore("This test is deprecated (Bug 429239)")
 	public void testAddPage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -384,7 +382,6 @@ public class PageMngrImplTest extends TestCase {
 	 * Test method for
 	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#removePage(org.eclipse.emf.ecore.EObject)}.
 	 */
-	@Ignore("This test is deprecated (Bug 429239)")
 	public void testRemovePage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -434,7 +431,7 @@ public class PageMngrImplTest extends TestCase {
 	 * Check if closing the last page in a second tabfolder work propoerly.
 	 * Create 3 editors, move one in a new folder, then remove the moved one.
 	 * The new folder should automatically be removed.
-	 * 
+	 *
 	 */
 	public void testCloseLastPageOfTabFolder() {
 		// A listener on change event.

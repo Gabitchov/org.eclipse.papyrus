@@ -10,12 +10,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.acceleo.engine,
  org.eclipse.papyrus.domaincontextcodegen;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.domaincodegen.ui.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.domaincodegen.ui;singleton:=t
  rue
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

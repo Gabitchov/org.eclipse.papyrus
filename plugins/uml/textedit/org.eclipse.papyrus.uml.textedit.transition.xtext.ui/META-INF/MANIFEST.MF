@@ -1,18 +1,4 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.uml.textedit.transition.xtext.ui,
- org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contentassist,
- org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contentassist.antlr,
- org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contentassist.antlr.internal,
- org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contributions,
- org.eclipse.papyrus.uml.textedit.transition.xtext.ui.editor,
- org.eclipse.papyrus.uml.textedit.transition.xtext.ui.internal,
- org.eclipse.papyrus.uml.textedit.transition.xtext.ui.labeling,
- org.eclipse.papyrus.uml.textedit.transition.xtext.ui.outline,
- org.eclipse.papyrus.uml.textedit.transition.xtext.ui.quickfix
-Bundle-ActivationPolicy: lazy
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.papyrus.uml.textedit.transition.xtext;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
@@ -31,11 +17,25 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.transition.xtext;bundle-version
  org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0"
+Export-Package: org.eclipse.papyrus.uml.textedit.transition.xtext.ui,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contentassist,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contentassist.antlr,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contentassist.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contributions,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.editor,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.internal,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.labeling,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.outline,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.quickfix
 Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-ManifestVersion: 2
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.transition.xtext.ui
  .internal.UmlTransitionActivator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.transition.xtext
  .ui;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

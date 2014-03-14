@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +8,12 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 386118
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -33,7 +36,17 @@ public class NotationHelper {
 		if(source instanceof View) {
 			return (View)source;
 		}
-		return (View) EMFHelper.getEObject(source);
+		
+		if(source instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable)source;
+			Object adapter = adaptable.getAdapter(View.class);
+			if(adapter instanceof View) {
+				return (View)adapter;
+			}
+		}
+		
+		EObject obj = EMFHelper.getEObject(source);
+		return (obj instanceof View) ? (View) obj : null;
 	}
 
 	/**

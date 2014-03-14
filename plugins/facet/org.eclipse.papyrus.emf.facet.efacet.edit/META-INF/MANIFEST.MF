@@ -1,15 +1,18 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.efacet.edit;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.emf.facet.efacet.provider.EfacetEditPlugin$Implementation
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.emf.facet.efacet.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.edit,
- org.eclipse.papyrus.emf.facet.efacet;bundle-version="0.1.0"
+ org.eclipse.papyrus.emf.facet.efacet;bundle-version="1.0.0"
+Export-Package: org.eclipse.papyrus.emf.facet.efacet.provider
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.emf.facet.efacet.provider.Efacet
+ EditPlugin$Implementation
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.efacet.edit;singlet
+ on:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+
