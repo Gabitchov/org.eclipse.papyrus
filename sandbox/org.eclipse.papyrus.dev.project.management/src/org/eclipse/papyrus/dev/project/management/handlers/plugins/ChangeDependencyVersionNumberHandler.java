@@ -1,6 +1,8 @@
 package org.eclipse.papyrus.dev.project.management.handlers.plugins;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -22,6 +24,7 @@ import org.eclipse.papyrus.dev.project.management.utils.Utils;
 import org.eclipse.papyrus.eclipse.project.editors.file.ManifestEditor;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 //TODO should be covered with JUnit test
 public class ChangeDependencyVersionNumberHandler extends AbstractHandler {
@@ -61,7 +64,27 @@ public class ChangeDependencyVersionNumberHandler extends AbstractHandler {
 
 				@Override
 				protected IStatus run(IProgressMonitor monitor) {
-					return runAsJob(newVersion, pattern, monitor);
+
+					final AtomicReference<IStatus> result = new AtomicReference<IStatus>();
+
+					WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+
+						@Override
+						protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
+							result.set(runAsJob(newVersion, pattern, monitor));
+						}
+
+					};
+
+					try {
+						operation.run(monitor);
+					} catch (InvocationTargetException e) {
+						return new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage());
+					} catch (InterruptedException e) {
+						return new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage());
+					}
+
+					return result.get();
 				}
 
 			};
@@ -90,20 +113,26 @@ public class ChangeDependencyVersionNumberHandler extends AbstractHandler {
 			monitor.worked(1);
 		}
 
-		//FIXME: We're not in the UI Thread anymore. We can't open a dialog here.
-		if(notManagedProjectNames.equals("")) {
-			final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE2, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
-			informationDialog.open();
-		} else {
-			final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE + "\n" + notManagedProjectNames, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
-			informationDialog.open();
-		}
+
+		final String textResult = notManagedProjectNames;
+		Display.getDefault().asyncExec(new Runnable() {
+
+			public void run() {
+				if(textResult.equals("")) {
+					final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE2, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
+					informationDialog.open();
+				} else {
+					final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE + "\n" + textResult, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
+					informationDialog.open();
+				}
+			}
+		});
 
 		return Status.OK_STATUS;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param project
 	 *        the project to manage
 	 * @param dependencyPattern

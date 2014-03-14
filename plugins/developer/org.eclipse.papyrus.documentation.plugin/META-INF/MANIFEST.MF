@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.documentation.plugin.documentation,
- org.eclipse.papyrus.documentation.plugin.documentation.impl,
- org.eclipse.papyrus.documentation.plugin.documentation.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.ui;bundle-version="3.7.0"
+Export-Package: org.eclipse.papyrus.documentation.plugin.documentation,
+ org.eclipse.papyrus.documentation.plugin.documentation.impl,
+ org.eclipse.papyrus.documentation.plugin.documentation.util
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.documentation.plugin;singleto
  n:=true

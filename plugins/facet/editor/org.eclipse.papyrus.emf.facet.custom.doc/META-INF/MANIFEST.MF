@@ -1,27 +1,82 @@
 Manifest-Version: 1.0
-Build-Jdk: 1.6.0_27
-Bundle-ActivationPolicy: lazy
-Bundle-Vendor: %Bundle-Vendor
-Bundle-Name: %Bundle-Name
-Built-By: hudsonbuild
-Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.custom.doc;singleton:=true
 Require-Bundle: org.eclipse.core.runtime
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
+Built-By: hudsonbuild
+Build-Jdk: 1.6.0_27
+Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
-
-Name: img/EClassAndFacetCustomizationMetaclasses.png
-SHA1-Digest: KT/9/5377DWv4iHFubpVpN20MO0=
+Created-By: Apache Maven
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.custom.doc;singleto
+ n:=true
+Archiver-Version: Plexus Archiver
 
 Name: mediawiki/plugin_dev-toc.xml
 SHA1-Digest: EytCw4aqp43EeifY60VasqvtrkQ=
 
+Name: img/bottomMiddleOverlay.png
+SHA1-Digest: KW+VnZzQw+o1q1QXrXgXNv+78fc=
+Bundle-Activator: activator
+
+Name: mediawiki/user.html
+SHA1-Digest: I3KO0mCYrlOaNRjtRszW3QjwNTQ=
+
+Name: toc-user.xml
+SHA1-Digest: nJDwOHTLVShDaAKcYawrKvTFWhs=
+
+Name: mediawiki/plugin_dev.html
+SHA1-Digest: GytCJgSKFsygnG72KFrdK9NsPTQ=
+
+Name: img/topMiddleOverlay.png
+SHA1-Digest: X6CxDIPYy5403NFB0Ojf6Y2s+mQ=
+
+Name: img/EClassAndFacetCustomizationMetaclasses.png
+SHA1-Digest: KT/9/5377DWv4iHFubpVpN20MO0=
+
+Name: img/ETypedElementSwitchQuery.png
+SHA1-Digest: GGyk2KU3Vw6bM5xBSiDWW5LsTBs=
+
+Name: img/customizationWithOverride.png
+SHA1-Digest: FgaEwaChv4KhPkEQn00NERWfcnY=
+
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.cu
+ stom.doc/pom.xml
+SHA1-Digest: 4aJXr5iQjP41tAR9kOZMqLkEn8s=
+
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.cu
+ stom.doc/pom.properties
+SHA1-Digest: 7/zxAz8zdWAeaTVdcE0Lf9CIq4Q=
+
+Name: img/LibraryModelInModelBrowser.png
+SHA1-Digest: XmOqZc578G4zTkNwsJZE4ezX1+4=
+
+Name: about.html
+SHA1-Digest: ucbJ2JQyMW17Zy+4pyWJhaS7Sws=
+
+Name: img/CustomizedEObject.png
+SHA1-Digest: +nOdCJco88LpRtJYdLFgslm6cHE=
+
+Name: img/bottomLeftOverlay.png
+SHA1-Digest: dJWbqgt8rfj3KXhfR4aRkMHoXCs=
+
+Name: img/customizingFacetWithOverride.png
+SHA1-Digest: EI0DY9KPSRa/fo7Dy94AJTLi6Ww=
+
+Name: img/topLeftOverlay.png
+SHA1-Digest: jBVSn/vyk1D+ENgZXtuTq70lQlM=
+
+Name: img/bottomRightOverlay.png
+SHA1-Digest: FA4uzJfZENFYwDw0N2EHoCn2c58=
+
 Name: OSGI-INF/l10n/bundle.properties
 SHA1-Digest: jcQC/e7346kZV/NkOrNhYJWUYFI=
 
-Name: mediawiki/plugin_dev.mediawiki
-SHA1-Digest: h1iG9G8dkESwlZ0kGpmC5YEinWE=
+Name: img/CustomizationMetaclass.png
+SHA1-Digest: clfdviinwTyac0+0ISFY13VU5wE=
+
+Name: META-INF/eclipse.inf
+SHA1-Digest: 09gN05tobgS/MdtqyTNQhOhB73M=
 
 Name: mediawiki/user-toc.xml
 SHA1-Digest: hoU8eezblOWf4BkqVNeYXXMCqow=
@@ -29,72 +84,18 @@ SHA1-Digest: hoU8eezblOWf4BkqVNeYXXMCqow=
 Name: mediawiki/user.mediawiki
 SHA1-Digest: o2wKLH3th9aHaruxqbK+MxLJe+0=
 
-Name: img/bottomLeftOverlay.png
-SHA1-Digest: dJWbqgt8rfj3KXhfR4aRkMHoXCs=
-
-Name: img/CustomizedEObject.png
-SHA1-Digest: +nOdCJco88LpRtJYdLFgslm6cHE=
-
-Name: img/customizationWithOverride.png
-SHA1-Digest: FgaEwaChv4KhPkEQn00NERWfcnY=
-
-Name: img/LoadCustomizationsDialog.png
-SHA1-Digest: BsfRPTHJdmKxztMo2vOJC96KQ+g=
-
-Name: toc-user.xml
-SHA1-Digest: nJDwOHTLVShDaAKcYawrKvTFWhs=
+Name: mediawiki/plugin_dev.mediawiki
+SHA1-Digest: h1iG9G8dkESwlZ0kGpmC5YEinWE=
 
 Name: plugin.xml
 SHA1-Digest: 5KUarOJ2rgoOl2RXSpuXKl5RgXI=
 
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.custom.doc
- /pom.properties
-SHA1-Digest: 7/zxAz8zdWAeaTVdcE0Lf9CIq4Q=
-
-Name: META-INF/eclipse.inf
-SHA1-Digest: 09gN05tobgS/MdtqyTNQhOhB73M=
-
-Name: img/ETypedElementSwitchQuery.png
-SHA1-Digest: GGyk2KU3Vw6bM5xBSiDWW5LsTBs=
-
-Name: img/bottomRightOverlay.png
-SHA1-Digest: FA4uzJfZENFYwDw0N2EHoCn2c58=
-
-Name: img/CustomizationMetaclass.png
-SHA1-Digest: clfdviinwTyac0+0ISFY13VU5wE=
-
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.custom.doc
- /pom.xml
-SHA1-Digest: 4aJXr5iQjP41tAR9kOZMqLkEn8s=
-
-Name: about.html
-SHA1-Digest: ucbJ2JQyMW17Zy+4pyWJhaS7Sws=
-
-Name: img/topMiddleOverlay.png
-SHA1-Digest: X6CxDIPYy5403NFB0Ojf6Y2s+mQ=
-
-Name: img/customizingFacetWithOverride.png
-SHA1-Digest: EI0DY9KPSRa/fo7Dy94AJTLi6Ww=
-
-Name: mediawiki/user.html
-SHA1-Digest: I3KO0mCYrlOaNRjtRszW3QjwNTQ=
-
-Name: mediawiki/plugin_dev.html
-SHA1-Digest: GytCJgSKFsygnG72KFrdK9NsPTQ=
+Name: img/LoadCustomizationsDialog.png
+SHA1-Digest: BsfRPTHJdmKxztMo2vOJC96KQ+g=
 
 Name: img/topRightOverlay.png
 SHA1-Digest: RlZCXmpdKj+spQh2HnCjd0nxSmc=
 
-Name: img/LibraryModelInModelBrowser.png
-SHA1-Digest: XmOqZc578G4zTkNwsJZE4ezX1+4=
-
 Name: toc-dev.xml
 SHA1-Digest: 55pxFgCOz/vpnN/huBuMMQE5MtI=
-
-Name: img/topLeftOverlay.png
-SHA1-Digest: jBVSn/vyk1D+ENgZXtuTq70lQlM=
-
-Name: img/bottomMiddleOverlay.png
-SHA1-Digest: KW+VnZzQw+o1q1QXrXgXNv+78fc=
-Bundle-Activator: activator
 

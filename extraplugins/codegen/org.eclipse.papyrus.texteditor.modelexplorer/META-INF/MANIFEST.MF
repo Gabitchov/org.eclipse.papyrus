@@ -23,8 +23,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.texteditor.modelexplorer.Activat
  or
-Import-Package: org.eclipse.papyrus.infra.core.editorsfactory,
- org.eclipse.papyrus.infra.viewpoints.policy
 Bundle-SymbolicName: org.eclipse.papyrus.texteditor.modelexplorer;sing
  leton:=true
+Import-Package: org.eclipse.papyrus.infra.core.editorsfactory,
+ org.eclipse.papyrus.infra.viewpoints.policy
 

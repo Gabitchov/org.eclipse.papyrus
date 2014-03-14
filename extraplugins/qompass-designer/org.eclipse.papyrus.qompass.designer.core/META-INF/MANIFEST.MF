@@ -1,4 +1,16 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.qompass.designer.core,
+ org.eclipse.papyrus.qompass.designer.core.acceleo,
+ org.eclipse.papyrus.qompass.designer.core.commands,
+ org.eclipse.papyrus.qompass.designer.core.deployment,
+ org.eclipse.papyrus.qompass.designer.core.extensions,
+ org.eclipse.papyrus.qompass.designer.core.generate,
+ org.eclipse.papyrus.qompass.designer.core.listeners,
+ org.eclipse.papyrus.qompass.designer.core.preferences,
+ org.eclipse.papyrus.qompass.designer.core.sync,
+ org.eclipse.papyrus.qompass.designer.core.templates,
+ org.eclipse.papyrus.qompass.designer.core.transformations,
+ org.eclipse.papyrus.qompass.designer.core.transformations.filters
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.uml2.uml,
@@ -24,25 +36,13 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
  org.eclipse.ui
-Export-Package: org.eclipse.papyrus.qompass.designer.core,
- org.eclipse.papyrus.qompass.designer.core.acceleo,
- org.eclipse.papyrus.qompass.designer.core.commands,
- org.eclipse.papyrus.qompass.designer.core.deployment,
- org.eclipse.papyrus.qompass.designer.core.extensions,
- org.eclipse.papyrus.qompass.designer.core.generate,
- org.eclipse.papyrus.qompass.designer.core.listeners,
- org.eclipse.papyrus.qompass.designer.core.preferences,
- org.eclipse.papyrus.qompass.designer.core.sync,
- org.eclipse.papyrus.qompass.designer.core.templates,
- org.eclipse.papyrus.qompass.designer.core.transformations,
- org.eclipse.papyrus.qompass.designer.core.transformations.filters
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.qompass.designer.core.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.qompass.designer.core;singlet
  on:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

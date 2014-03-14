@@ -89,6 +89,8 @@ Require-Bundle: org.eclipse.core.expressions,
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.activity.part.UMLDia
+ gramEditorPlugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.activity; singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.activity;singleton:=true
+

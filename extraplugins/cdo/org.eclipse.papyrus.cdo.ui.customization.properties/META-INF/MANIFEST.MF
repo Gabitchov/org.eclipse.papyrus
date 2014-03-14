@@ -1,4 +1,8 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.cdo.internal.ui.customization.properties;x-internal:=true,
+ org.eclipse.papyrus.cdo.internal.ui.customization.properties.messages;x-internal:=true,
+ org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage;x-internal:=true,
+ org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage.action;x-internal:=true
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
@@ -10,18 +14,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
  org.eclipse.papyrus.cdo.ui;bundle-version="1.0.0",
  com.google.guava;bundle-version="11.0.0"
-Export-Package: org.eclipse.papyrus.cdo.internal.ui.customization.properties;x-internal:=true,
- org.eclipse.papyrus.cdo.internal.ui.customization.properties.messages;x-internal:=true,
- org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage;x-internal:=true,
- org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage.action;x-internal:=true
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.cdo.internal.ui.customization.pr
  operties.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.cdo.ui.customization.properti
  es;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

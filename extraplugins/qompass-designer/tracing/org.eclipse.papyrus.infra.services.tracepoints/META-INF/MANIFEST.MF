@@ -1,4 +1,8 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.services.tracepoints,
+ org.eclipse.papyrus.infra.services.tracepoints.commands,
+ org.eclipse.papyrus.infra.services.tracepoints.dialogs,
+ org.eclipse.papyrus.infra.services.tracepoints.preferences
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf;bundle-version="2.6.0",
@@ -15,18 +19,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.services.markerlistener;bundle-version="1.0.0"
-Export-Package: org.eclipse.papyrus.infra.services.tracepoints,
- org.eclipse.papyrus.infra.services.tracepoints.commands,
- org.eclipse.papyrus.infra.services.tracepoints.dialogs,
- org.eclipse.papyrus.infra.services.tracepoints.preferences
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.services.tracepoints.Activ
  ator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.tracepoints;si
  ngleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

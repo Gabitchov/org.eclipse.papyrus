@@ -1,4 +1,16 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.operation.editor.xtext,
+ org.eclipse.papyrus.operation.editor.xtext.operation,
+ org.eclipse.papyrus.operation.editor.xtext.operation.impl,
+ org.eclipse.papyrus.operation.editor.xtext.operation.util,
+ org.eclipse.papyrus.operation.editor.xtext.parseTreeConstruction,
+ org.eclipse.papyrus.operation.editor.xtext.parser.antlr,
+ org.eclipse.papyrus.operation.editor.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.operation.editor.xtext.scoping,
+ org.eclipse.papyrus.operation.editor.xtext.services,
+ org.eclipse.papyrus.operation.editor.xtext.utils,
+ org.eclipse.papyrus.operation.editor.xtext.validation,
+ org.eclipse.papyrus.operation.editor.xtext.validation.typing
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
@@ -12,27 +24,15 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.uml2.uml;bundle-version="3.2.0",
  org.eclipse.uml2.codegen.ecore;bundle-version="1.7.0",
  org.eclipse.xtext.gmf.glue;bundle-version="0.8.0",
- org.eclipse.papyrus.alf;bundle-version="0.10.0"
-Export-Package: org.eclipse.papyrus.operation.editor.xtext,
- org.eclipse.papyrus.operation.editor.xtext.operation,
- org.eclipse.papyrus.operation.editor.xtext.operation.impl,
- org.eclipse.papyrus.operation.editor.xtext.operation.util,
- org.eclipse.papyrus.operation.editor.xtext.parseTreeConstruction,
- org.eclipse.papyrus.operation.editor.xtext.parser.antlr,
- org.eclipse.papyrus.operation.editor.xtext.parser.antlr.internal,
- org.eclipse.papyrus.operation.editor.xtext.scoping,
- org.eclipse.papyrus.operation.editor.xtext.services,
- org.eclipse.papyrus.operation.editor.xtext.utils,
- org.eclipse.papyrus.operation.editor.xtext.validation,
- org.eclipse.papyrus.operation.editor.xtext.validation.typing
+ org.eclipse.papyrus.alf;bundle-version="1.0.0"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.0.qualifier
 Bundle-Name: org.eclipse.papyrus.operation.editor.xtext
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.operation.editor.xtext;single
- ton:=true
 Import-Package: org.apache.commons.logging,
  org.apache.log4j
+Bundle-SymbolicName: org.eclipse.papyrus.operation.editor.xtext;single
+ ton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

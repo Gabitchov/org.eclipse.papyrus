@@ -1,21 +1,4 @@
 Manifest-Version: 1.0
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Built-By: hudsonbuild
-Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.efacet.sdk.ui;singleton:=true
-Bundle-Activator: org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.Activat
- or
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.papyrus.emf.facet.util.emf.core;bundle-version="0.2.0",
- org.eclipse.papyrus.emf.facet.custom.core;bundle-version="0.2.0",
- org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.2.0",
- org.eclipse.papyrus.emf.facet.util.ui;bundle-version="0.3.0",
- org.eclipse.papyrus.emf.facet.util.core;bundle-version="0.2.0",
- org.eclipse.core.expressions;bundle-version="3.4.200",
- org.eclipse.emf.edit;bundle-version="2.6.0",
- org.eclipse.core.resources;bundle-version="3.6.0",
- org.eclipse.papyrus.emf.facet.util.emf.ui;bundle-version="0.3.0",
- org.eclipse.ui.ide;bundle-version="3.6.0"
 Export-Package: org.eclipse.papyrus.emf.facet.efacet.sdk.ui.dialog,
  org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported,
  org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.dialog.query,
@@ -28,228 +11,1020 @@ Export-Package: org.eclipse.papyrus.emf.facet.efacet.sdk.ui.dialog,
  org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.wizard.page,
  org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.creation,
  org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.query
+Bundle-ActivationPolicy: lazy
+Built-By: hudsonbuild
+Bundle-Name: %Bundle-Name
+Created-By: Apache Maven
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.papyrus.emf.facet.util.emf.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.util.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.util.core;bundle-version="1.0.0",
+ org.eclipse.core.expressions;bundle-version="3.4.200",
+ org.eclipse.emf.edit;bundle-version="2.6.0",
+ org.eclipse.core.resources;bundle-version="3.6.0",
+ org.eclipse.papyrus.emf.facet.util.emf.ui;bundle-version="1.0.0",
+ org.eclipse.ui.ide;bundle-version="3.6.0"
+Bundle-Vendor: %Bundle-Vendor
 Bundle-Version: 1.0.0.qualifier
 Build-Jdk: 1.6.0_27
-Bundle-ActivationPolicy: lazy
-Bundle-Vendor: %Bundle-Vendor
-Bundle-Name: %Bundle-Name
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
 Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal
+ .Activator
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.efacet.sdk.ui;singl
+ eton:=true
+Archiver-Version: Plexus Archiver
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Add
- ReferenceInFacetDialog.class
-SHA1-Digest: MjtTp4qKGv0ezi2lmqyt5X2lztc=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
+ nizedCreateFacetSetWizardPage$3.class
+SHA1-Digest: p1S+lb0qs/Q34Tucq2gaHIHCP1s=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/messages.properties
-SHA1-Digest: lv851W67hr/W+werWhtEa6XEPAs=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/WizardFactor
+ y$1.class
+SHA1-Digest: UOJVYCi0ktZMlmsKmxfzsSGXtIs=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedCreateQueryWidget$1.class
-SHA1-Digest: vtcQKgoxKCrtUNHNeBK6DQYcUAU=
+ hronizedEStructuralFeatureWidget$22.class
+SHA1-Digest: tCpzujIC+a3WB6B8FezCv+K4fKY=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/wizard/pag
+ e/ICreateFacetSetWizardPage.class
+SHA1-Digest: txyemH87DffFn5u6rZUd680nJW4=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$11.class
-SHA1-Digest: 3e2tgMG0+dGn+kaXfzYpVbRXGKk=
+ hronizedDerivedTypedElementWidget.class
+SHA1-Digest: jGSwTaZU4spHVbyWbD+yNFHTOyk=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/dialog/que
- ry/IQueryDialogFactory.class
-SHA1-Digest: 986wx5k/dibkWwxfQKK9R0dzVAs=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget$3.class
+SHA1-Digest: ejAOxt8oLbKbc8Pij6L64suXWX0=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/Activator.class
+SHA1-Digest: aTmgLIG/BrrXTt/qjUvSIwIk85A=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedCreateQueryWidget$7.class
+SHA1-Digest: CCa4KPZ1bWiSpJww1vkWr93t5oo=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredElementCommmandWidget$2.class
+SHA1-Digest: 3necdqp5KktDmPUlxs0Dk81GRgg=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedFacetWidget.class
+SHA1-Digest: 92ZC5Z8uJ6OO5XH1oPhWZAkUFpo=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetExtendedMetaclassWidget$6.class
+SHA1-Digest: A56rtNfycxapqN5MZdHyiDxY5+Y=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/composite/Ge
+ tOrCreateFacetSetDialog.class
+SHA1-Digest: Oe/+GEvuXLcfcFDSTTheKeEmnk0=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetExtendedMetaclassWidget.class
+SHA1-Digest: MGs2XdEtLAPFsfdGT5TyJCX1qOg=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredElementCommmandWidget$6.class
+SHA1-Digest: JDAGy0YtxR/iZIrK5q9rzn6skyM=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/IES
+ tructuralFeatureWidget.class
+SHA1-Digest: o49HjVfUjKn/mWzBD/GWgoU5NzM=
+
+Name: icons/flatView.gif
+SHA1-Digest: m7CoejyO/BwL1K8nsf+3iF2nYsg=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/CreateFacetS
- etWizard.class
-SHA1-Digest: qVf/O2bnsm7T+eOYYdFHilUNIOc=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedCreateQueryWidget$9.class
-SHA1-Digest: qvKlHEURwfb74c7TjxmT/ZHRoPQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$17.class
-SHA1-Digest: NEqjHCcOXxB79x/agkT6fhyrvzQ=
+ etWizard$1.class
+SHA1-Digest: Jb1XoTXiWsKlJ5FDy25nbGYwYMU=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
- FacetDialogFactory$11.class
-SHA1-Digest: +wZIvaIEFdSWO5hXQkaxMRTH/5o=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$7.class
-SHA1-Digest: +7ezS7tYiBCtsyQ0VhPNPcSzDUE=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Add
- ParameterInOperationDialog.class
-SHA1-Digest: fntrQ3q89fDKCZ6zJ5E9HIpFA7k=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/edition/Edi
- tFacetOperationHandler.class
-SHA1-Digest: s7Pfg3IEaKlXG3ggcLs1jhwXlvw=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$13.class
-SHA1-Digest: T5yGEY5DLr+eLHit+vKiF9JoezA=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/ge
- torcreate/GetOrCreateFacetWidget.class
-SHA1-Digest: vu61uxzWao/wFIZfKcqcAFFPOm0=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredFacetSetWidget$4.class
-SHA1-Digest: ijUfUuWHnQSIkMC/E7tHzpIGg78=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$11.class
-SHA1-Digest: d1xESeaKBvJsxDXDqku+Yx2cWLE=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$5.class
-SHA1-Digest: R7K0IIu7Fb+Fo0WEDQwUbGLtXio=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/dialog/IFacetDialogFactory.c
- lass
-SHA1-Digest: 1s3RcxaDbaXeJUGsM433ePMWOpo=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/composite/Ab
- stractComandExecDialog.class
-SHA1-Digest: Oa+vOL278tSNwSjEyHYnD5ec2ck=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedENamedElementWidget$11.class
-SHA1-Digest: AjT+ChOXELpfB14JgsT4YPry1NA=
+ FacetDialogFactory$10.class
+SHA1-Digest: jvS4Iryp/w+enssX5D7SywBO8JU=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
  hronizedETypedElementWidget$7.class
 SHA1-Digest: CAWg4Z9UbHJVHr6r2tqmzzEzyq8=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$26.class
+SHA1-Digest: BZHtEsb3DgDe9EpnPURIQGQzLgE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget$6.class
+SHA1-Digest: FMAzvFE5OqqAGH9c+4qzgoIaPDY=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedCreateQueryWidget.class
+SHA1-Digest: i1sSu9Y6M6NO7jvEJBJ+efS3rPI=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$25.class
+SHA1-Digest: /YsRpnkd8E0FZ7xwUcupNpkEQ2g=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedENamedElementWidget$8.class
+SHA1-Digest: fQaPMBXdPtbrzBKU2bQ7xYLNufI=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedCreateQueryWidget$4.class
+SHA1-Digest: /gjzxa8MrksdFpa9eFqMpQiO1/Q=
+
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.ef
+ acet.sdk.ui/pom.properties
+SHA1-Digest: yD+WbzH4BzVMAjz8QRrxAqhS/64=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedFacetWidget$13.class
+SHA1-Digest: C2ko0fvbrpIC6MrVXf5ClkaWc7k=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$6.class
+SHA1-Digest: QE90xoWtNtTCrtD1BU0ujfiEu2s=
+
+Name: icons/FacetReference.gif
+SHA1-Digest: QMWLPiWsn1Q3mCC6dVej6KW6aes=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedFacetWidget$6.class
+SHA1-Digest: SxIhaEDv51GjFqN8+EbndGP9Wac=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$7.class
+SHA1-Digest: +7ezS7tYiBCtsyQ0VhPNPcSzDUE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/edition/Edi
+ tFacetReferenceHandler.class
+SHA1-Digest: bdYfEN2qKfxkfQtbFJ2+J2BAEb8=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedCreateQueryWidget$5.class
+SHA1-Digest: +63UjkGDottJw3ycpJG2OIzg4TQ=
+
+Name: icons/FacetAttribute.gif
+SHA1-Digest: iJVUkNzDcR93MimauSwnnNlqlzw=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/edition/Edi
+ tFacetOperationParameterHandler.class
+SHA1-Digest: BRc7Wln/K/8Gn4X7qgVBCSCI6VY=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$13.class
+SHA1-Digest: EeO69rX3iShEWFGHrci/7EVBT2s=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedCreateQueryWidget$2.class
+SHA1-Digest: VFw3rIgUt8AXwDtXz6AdXvzLVJs=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Abs
+ tractEStructuralFeatureWidget.class
+SHA1-Digest: s7O/zcdwexDAfCmWCQ4aufQPrDU=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedENamedElementWidget.class
+SHA1-Digest: CUP9W8RtLOBPRR0v2qWgkWSHnxk=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$6.class
+SHA1-Digest: VKJMn/V8ZyJamgJHiT2HNyIhYsw=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/edition/Edit
+ FacetReferenceDialog.class
+SHA1-Digest: cFHgShyGks6VrpBTe1RwkUGUP5w=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/QueryWidgetCo
+ mpositeFactoryImpl.class
+SHA1-Digest: 7POOqC/TQ4ofct9og7tF0DJJLOg=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredElementCommmandWidget$8.class
+SHA1-Digest: 15RBvt8glR69OoUNE+Knb+L6Bo4=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$19.class
+SHA1-Digest: g0RJ3WXZo0Oj7NVtFAbBAoxxqV8=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredFacetSetWidget$4.class
+SHA1-Digest: ijUfUuWHnQSIkMC/E7tHzpIGg78=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Add
+ AttributeInFacetDialog.class
+SHA1-Digest: 1j3HkJH3sbQtojN13DRBrCha7Lw=
+
+Name: icons/ParameterValue.gif
+SHA1-Digest: k6QiLCZYrVmMJ6A2ZM7y663F7w0=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
+ nizedFacetSetPropertyWizardPage$4.class
+SHA1-Digest: jB43aUbIGFg6S+wF4a9iFVk/iBE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/qu
+ ery/CreateQueryWidget.class
+SHA1-Digest: SnoIemJUJgRKnGYT4nA3eIMNA24=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedENamedElementWidget$6.class
+SHA1-Digest: ssP2ovfBBFombiuYlB2fR0kOxZc=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/wizard/IWi
+ zardFactory.class
+SHA1-Digest: cvH+xtSnztjE5aG6ZyKYhpVdJAI=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$1.class
+SHA1-Digest: whiwZmgbr9pWyL6r8DLch4pLnL8=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/com
+ ponent/getorcreate/IGetOrCreateFacetSetWidget.class
+SHA1-Digest: O2j0TMmiueBjs+uVMjtNIxzQARQ=
+
+Name: about.html
+SHA1-Digest: NzkdsipDl2TZ7N0j74YvOk9GTsY=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Add
+ OperationInFacetDialog.class
+SHA1-Digest: 8QG2RjVBJupPwB1HrjwJRhoredg=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/dialog/IFacetDialogFactory.c
+ lass
+SHA1-Digest: 1s3RcxaDbaXeJUGsM433ePMWOpo=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget$23.class
+SHA1-Digest: 7cLTC3AdyglCEIMV6FGhdXo+Xf8=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
+ FacetDialogFactory$11.class
+SHA1-Digest: +wZIvaIEFdSWO5hXQkaxMRTH/5o=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/qu
+ ery/GetCanHaveSideEffectsWidget.class
+SHA1-Digest: PbtT1Rob50ecB0YdarlYYiGfdwQ=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$14.class
+SHA1-Digest: BzWgQe+8mTpJm9Zka+TzG4Hf4fo=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$31.class
+SHA1-Digest: F8pYO2ZuY5vpXXBb5hBWL1ZxHhw=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedENamedElementWidget$9.class
+SHA1-Digest: G2Ip+aQHUcBsxblEoYCq/+TVfBk=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$9.class
+SHA1-Digest: NtAZ6LBX11VwLSYzqhMOTwrlr6w=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/creation/Ad
+ dOperationInFacetHandler.class
+SHA1-Digest: fjpi5YLkgGrxnzWAxVlr1oYiXjs=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
  hronizedEStructuralFeatureWidget$36.class
 SHA1-Digest: HGEoU2j917jABVet4QvOrUAQEBw=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetExtendedMetaclassWidget$6.class
-SHA1-Digest: A56rtNfycxapqN5MZdHyiDxY5+Y=
+Name: icons/facet.gif
+SHA1-Digest: XEEa0LVNEosBP0izGtitfq02WAI=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
- operties/GetDerivedWidget.class
-SHA1-Digest: TyAqVyJjVBxtuFrsvobDgUwo/28=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/IQueryCreatio
+ nResult.class
+SHA1-Digest: BTc5j1d2MB66uBTERAPMq7LDO70=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredElementCommmandWidget$6.class
-SHA1-Digest: JDAGy0YtxR/iZIrK5q9rzn6skyM=
+ hronizedEStructuralFeatureWidget$17.class
+SHA1-Digest: 9UqZRn3Bh+DnrvxGVceUQs72WaA=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
+ nizedCreateFacetSetWizardPage$1.class
+SHA1-Digest: DCMv9bbd30tS5PKmYgXUKTKvqYc=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$2.class
+SHA1-Digest: tLFatAHhisH72n78GIPEYVnYLYY=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredElementCommmandWidget$11.class
+SHA1-Digest: u3ZOWwRhn36hIhJXPFvowL1A1Pk=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/com
+ ponent/metaclass/IGetExtendedMetaclassWidget.class
+SHA1-Digest: bKXJdBj4M8G0psdbYbq8bUJ1jVw=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
+ FacetOperationWidget.class
+SHA1-Digest: 04BqXHNH93dYBsIMoB/r8hRxhlM=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
+ nizedFacetSetPropertyWizardPage$2.class
+SHA1-Digest: hxpOWHgrhXfvR+oGGLGE83GRTFE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedFacetWidget$3.class
+SHA1-Digest: IRpWCfs2DAOyMSeWAZeW+2GkK5M=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedCreateQueryWidget$3.class
+SHA1-Digest: b0rr/q0XsA72rwLJLThBZDJdi9M=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/edition/Edi
+ tFacetOperationHandler.class
+SHA1-Digest: s7Pfg3IEaKlXG3ggcLs1jhwXlvw=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$29.class
+SHA1-Digest: y9bucM8FJL/PKe7sSmOPr4OhhqM=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/FacetSe
+ tPropertyWizardPage$1.class
+SHA1-Digest: ngkBZfm0XmQasC2eIVodL0E0RnE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/IDe
+ rivedTypedElementWidget.class
+SHA1-Digest: pWrKZM1fRhGG1Y93MIt/e7FTlO4=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Add
+ ReferenceInFacetDialog.class
+SHA1-Digest: MjtTp4qKGv0ezi2lmqyt5X2lztc=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$30.class
+SHA1-Digest: 9FpLOCW7561LJhZxv1GBtv2FiHk=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/edition/Edit
+ FacetDialog.class
+SHA1-Digest: gYp1uHu64qNWHb08ZhaWfNJpEQ0=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
+ FacetWidget$1.class
+SHA1-Digest: mDGZIu/9/lyA21QD76gLcClFXoM=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
  hronizedEStructuralFeatureWidget$19.class
 SHA1-Digest: ue/aKKornwwEtXAEBZXP8vcTWRo=
 
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$4.class
+SHA1-Digest: Kd72LTQr6wAGk3ZItwQGCyi2iho=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredElementCommmandWidget$7.class
+SHA1-Digest: jboS0TXodRmWngZnXKixNS0kiTY=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Abs
+ tractDerivedTypedElementWidget$QueryContext.class
+SHA1-Digest: J6nhPG4nf16yIgohY6PErUkS+yY=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$23.class
+SHA1-Digest: 7Lrd6FxNTuPklcEIZVoCdqDzG+o=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget$21.class
+SHA1-Digest: jggCXZ2+MCd6XWsJjG+l/XHn8rY=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/IQueryWidgetC
+ ompositeFactoryFactory.class
+SHA1-Digest: jc5LQ0xEddGpG0Elkt2YghYLSsc=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget.class
+SHA1-Digest: 4TBtqUTYxNa5EKQhOKeqk7MqhKA=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/wizard/pag
+ e/IFacetSetPropertyWizardPage.class
+SHA1-Digest: QNWUW8rxEojccuJV2m8fKjAWB1o=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
+ operties/bounds/GetUpperBoundWidget.class
+SHA1-Digest: 7Ys35IzChRQQ4fmIHIj/nN9CGDk=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/ge
+ torcreate/GetOrCreateFacetSetWidget.class
+SHA1-Digest: MIXNj7JN4M81Mn55VEdRf8VJ6bA=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
+ operties/name/GetReferenceNameWidget.class
+SHA1-Digest: WUZRH/WcjW0DvXf/9tmdxGiflrM=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/dialog/que
+ ry/IQueryDialogFactory.class
+SHA1-Digest: 986wx5k/dibkWwxfQKK9R0dzVAs=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedENamedElementWidget$10.class
+SHA1-Digest: DFGkleywdk2rpbdQRxx5sDOfTH8=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedCreateQueryWidget$8.class
+SHA1-Digest: ASpStU1DB5qeH8lFFGfHTLZ8PtY=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/me
+ taclass/GetExtendedMetaclassWidget.class
+SHA1-Digest: 7cgsSxoSn5Yls0F2s96YKf6JtKI=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$5.class
+SHA1-Digest: 73C2Qo5/slE0iKa5GJv4NrhKOUc=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedFacetWidget$15.class
+SHA1-Digest: SHH+FJsjAQPkcUyafNgYTbbmD+Q=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
+ operties/GetTransientWidget.class
+SHA1-Digest: 8O6gZKSepOAj1E5ECI2MQNhLxhY=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/AbstractQuery
+ DialogFactory.class
+SHA1-Digest: +n+7TgZGMVCVKSvDZ1ANyfTPfPE=
+
+Name: schema/queryFactoryDialogRegistration.exsd
+SHA1-Digest: niiNGk2T2FuTsP+DS+kVIQ6K+/c=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedENamedElementWidget$2.class
+SHA1-Digest: 5K8648VDzP3O769S9kyAp7zM7ew=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$13.class
+SHA1-Digest: T5yGEY5DLr+eLHit+vKiF9JoezA=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/GetQueryDialo
+ g.class
+SHA1-Digest: FPggScdQ/cURwgetMc2eadwJ/ws=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/CreateF
+ acetSetWizardPage.class
+SHA1-Digest: 1x5sgjJkA3RXQrS7s9EGI32mqKc=
+
+Name: icons/FacetSet.gif
+SHA1-Digest: ZNjHVhFyhjicmeiWt004wpwJdNU=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
+ nizedCreateFacetSetWizardPage.class
+SHA1-Digest: 3NTl0NUluSvN7/MLpmQFbCI6bo4=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget$5.class
+SHA1-Digest: sS5GtBixfN5JrvQEMvxcEolqYdc=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Abs
+ tractETypedElementWidget.class
+SHA1-Digest: muGSBXb/yAU/4i2rhb63QyCrsZQ=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/FacetDialogF
+ actoryImpl.class
+SHA1-Digest: yKteMdm9D6JE7QnhBpNGUojQDIA=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetExtendedMetaclassWidget$5.class
+SHA1-Digest: Kk5Cn/Odu5MKvGJfEt6sfsbX9HU=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget$13.class
+SHA1-Digest: R9jXbLrMbv5tKAOgR2Y5vpKDC48=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
+ operties/GetDerivedWidget.class
+SHA1-Digest: TyAqVyJjVBxtuFrsvobDgUwo/28=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/FacetSe
+ tPropertyWizardPage$2.class
+SHA1-Digest: JM6Y8kj4tcGn1zmIZg/eOJY5yLk=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Abs
+ tractENamedElementWidget.class
+SHA1-Digest: fwExVETddsmg8uvkosVy1sBcP10=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/WorkbenchUtils$1.cl
+ ass
+SHA1-Digest: qIX9NbfN0GCAer+yFSr/ztoDd0I=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
+ FacetDialogFactory.class
+SHA1-Digest: NTwIbphpRsTCy1e2K/6WuLf5rIM=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$20.class
+SHA1-Digest: 1o0dTBghICLcRHxOy8COhACYflw=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/creation/Ad
+ dReferenceInFacetHandler.class
+SHA1-Digest: kE/rYGsC70eBjpELJf10FYCZQiM=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/Startup.class
+SHA1-Digest: A9VJPM9oedz1Tt7TlnLBt2FH/PM=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredFacetSetWidget.class
+SHA1-Digest: bctz2SsS7NF7iiVtTgUzT3MRkI0=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredElementCommmandWidget$3.class
+SHA1-Digest: 5W9tubrqm7fzpmrD1klxj1dztIA=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$21.class
+SHA1-Digest: NflsARahBOKO9wrrJY+wf4OHFSA=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$10.class
+SHA1-Digest: ATzyiwNkskVXt0Ocf+RdBKeGx6E=
+
+Name: icons/FacetOperation.gif
+SHA1-Digest: geCi1ofnq5obJShghQN1sk0ACoI=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$15.class
+SHA1-Digest: 9UKL+vbuXmtXUlJp7OJK+jlwE0w=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/edition/Edi
+ tFacetAttributeHandler.class
+SHA1-Digest: oan+1H5R5PkORzUM8YJcHYRHEVc=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$25.class
+SHA1-Digest: shGjPYwhtbu3pHl6V9/Sdnlv6Uo=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/FacetSe
+ tPropertyWizardPage.class
+SHA1-Digest: GMiV12sa7MpLot6OYTkX391djho=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/CreateFacetS
+ etWizard.class
+SHA1-Digest: qVf/O2bnsm7T+eOYYdFHilUNIOc=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$8.class
+SHA1-Digest: mBaPs+IRYXcnQZt+Y3FrwL6ZfXg=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedENamedElementWidget$3.class
+SHA1-Digest: p1NLmaimtrfRAmc2aiGRZFP2c9U=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/creation/Ad
+ dAttributeInFacetHandler.class
+SHA1-Digest: tr/tsFhpfA82QNly3ZZcsYnh1eI=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$17.class
+SHA1-Digest: XDAFIgWU6JSXEKbDqQkV3BjRrwE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget.class
+SHA1-Digest: yjgnA5c/BDvXAVQXdNZP1/u1evc=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/IQueryDial
+ ogFactoryStrategy.class
+SHA1-Digest: ac2O1Ipe4A0YlWjxoxloys6/AG0=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredElementCommmandWidget$10.class
+SHA1-Digest: cP/KLRdS+o8je1nqlX2qRB9pGhs=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/SelectQueryTy
+ peWidget$1.class
+SHA1-Digest: 9wIIiIWE8KGdUAwUTmwSFlKR/sU=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$9.class
+SHA1-Digest: B5/XedATFCihAx35H5CH3CWsKE8=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
+ operties/GetOrderedWidget.class
+SHA1-Digest: aSagMJbh7p1tqsjeF+hbglDbt40=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredFacetSetWidget$9.class
+SHA1-Digest: ggf/GD2TTHenlW5U93ns1TcZPP4=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$11.class
+SHA1-Digest: 91gZmO00ZuA2tny9/ETE4yEgDko=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$22.class
+SHA1-Digest: 0gMtDjVFRYgdRpd0qpPoTd0WteE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$4.class
+SHA1-Digest: Wcplw19dFicINnzF2XowqS2wEUQ=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$18.class
+SHA1-Digest: GObGhBUlPTH0aYaIQ+Vsukx5Des=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$26.class
+SHA1-Digest: aUJeazEe5ayYcugYsYtnSmMbmGk=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget$12.class
+SHA1-Digest: dsJ1j0dV2uOcN6zgQgpwL84vtro=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/creation/Cr
+ eateFacetInFacetSetHandler.class
+SHA1-Digest: HisVk2o0T7dtdDyXJ0Lkbr5LDqk=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredFacetSetWidget$6.class
+SHA1-Digest: 4Gy6LtyQlxv1p8sf+3WEDmyNcVM=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
+ FacetDialogFactory$3.class
+SHA1-Digest: kLGYCHk8HTlIFntIR6o9cKCTQfQ=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Add
+ ParameterInOperationDialog.class
+SHA1-Digest: fntrQ3q89fDKCZ6zJ5E9HIpFA7k=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget$22.class
+SHA1-Digest: xy3zoPW8SVvGunOMXruFnEFS9Rc=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/messages.properties
+SHA1-Digest: lv851W67hr/W+werWhtEa6XEPAs=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Abs
+ tractDerivedTypedElementDialog.class
+SHA1-Digest: RQUTbnu/KM9nIb6dJer7PbexD8w=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/com
+ ponent/query/ICreateQueryWidget.class
+SHA1-Digest: z3JxvjaEf7uuad2tD8ki6W+ayRw=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/WorkbenchUtils.clas
+ s
+SHA1-Digest: fZD985h2SErny0N6vH3PwzB8xYQ=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredFacetSetWidget$7.class
+SHA1-Digest: 8N9IuaptePHvc4jbnUU4x07tLec=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$16.class
+SHA1-Digest: Drd8UX2Aw6P/c5kVpjjN11D1/8A=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedFacetWidget$2.class
+SHA1-Digest: dUIqpX0yXjXmDbsUo4T+Ahm8OpU=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredElementCommmandWidget$4.class
+SHA1-Digest: 6sKw6/qs8m/oyHSCwIlw7qz9uZs=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget$19.class
+SHA1-Digest: 12FbB+lPBrcEYd+7y/h4P37azFI=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/composite/Ge
+ tOrCreateOperationDialog.class
+SHA1-Digest: Tu+xQBTVa6kMa6sPRax2bZ2uDY0=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/Messages.class
+SHA1-Digest: 9T9Nac2oIzrVyDb914PiELlo0Jg=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredElementCommmandWidget$5.class
+SHA1-Digest: ltvdlJb2XqnSa0o2UqKgdyCxocQ=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/composite/Ge
+ tSubTypingTypeDialog.class
+SHA1-Digest: jpgtDOYumQacOJQw2hph6VLmcG0=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedENamedElementWidget$5.class
+SHA1-Digest: ZmEsY5y7XqTH6iJ4/VFSSAld1xk=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Get
+ OrCreateFiltredFacetWidget.class
+SHA1-Digest: B9JUK/dSBZDJCpx0O+F6EcV7ow8=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
+ operties/name/GetOperationNameWidget.class
+SHA1-Digest: 32eDvt/hmd9ygNj3JuzfUo9ZCg4=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredElementCommmandWidget$1.class
+SHA1-Digest: j29zlgHW2weFexV7p5V9QIoLieE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedENamedElementWidget$1.class
+SHA1-Digest: X2f7JWb0mcUskWPkgJyivq15QDA=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredElementCommmandWidget.class
+SHA1-Digest: etZQKrv8WISBePQN1H3rXZEBFRQ=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
+ FacetDialogFactory$4.class
+SHA1-Digest: j4SmRp9iEuveEMcxzmqBspadYvE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$7.class
+SHA1-Digest: meGKyu/sn4+X4xWJdc+xIr6fqXE=
+
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/edition/Edi
  tFacetHandler.class
 SHA1-Digest: YDkjKtQqU8H4WRhq7WxJKg2fRcw=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
+ FacetDialogFactory$8.class
+SHA1-Digest: GFvz6zPuSnm9ZjQb0r8xlEfki7c=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/IFa
+ cetWidget.class
+SHA1-Digest: cOk7H5I3vVvjGh09/7ympECACAg=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
  FacetAttributeWidget.class
 SHA1-Digest: hskDu+48iL5PXgmZEkPe3bKvJHE=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$20.class
-SHA1-Digest: H7H1pPQq6Pef+LX6HKLHVJkcl3o=
+ hronizedETypedElementWidget$9.class
+SHA1-Digest: 7movfwLUrjl/PUiTGAdJPv6JpFk=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedENamedElementWidget$5.class
-SHA1-Digest: ZmEsY5y7XqTH6iJ4/VFSSAld1xk=
+ hronizedETypedElementWidget$11.class
+SHA1-Digest: o3/WfI1ce4rcmtVcASu9xTpTh5g=
 
-Name: icons/FacetAttribute.gif
-SHA1-Digest: iJVUkNzDcR93MimauSwnnNlqlzw=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/composite/Ge
- tOrCreateFacetSetDialog.class
-SHA1-Digest: Oe/+GEvuXLcfcFDSTTheKeEmnk0=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$2.class
+SHA1-Digest: DjlDSyLweAzhSXCnYKW/3fAqvb8=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
- FacetDialogFactory$1.class
-SHA1-Digest: MPnpmJQ4eRHCiJqDLBiVYuQ/1lI=
+ FacetDialogFactory$2.class
+SHA1-Digest: fevW0Jbr0g2srrPPzxFHjbyGcmM=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedFacetWidget$11.class
+SHA1-Digest: 3e2tgMG0+dGn+kaXfzYpVbRXGKk=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$33.class
+SHA1-Digest: CJuPAibbL81VwOPE7rFr6c/NQBw=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/cre
  ation/IGetOrCreateFilteredFacetSetWidget.class
 SHA1-Digest: KLnDAYfqY63v4Z61zpMRm0UjHzY=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Abs
- tractETypedElementWidget.class
-SHA1-Digest: muGSBXb/yAU/4i2rhb63QyCrsZQ=
-
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$8.class
-SHA1-Digest: Esn0UmIpvxOrD+YBEryRTZQfYZc=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Get
- OrCreateFiltredOperationWidget.class
-SHA1-Digest: yCeGeIdgWWWwdFIYN2h73LGawIw=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/CreateF
- acetSetWizardPage.class
-SHA1-Digest: 1x5sgjJkA3RXQrS7s9EGI32mqKc=
+ hronizedEStructuralFeatureWidget$21.class
+SHA1-Digest: AR9Z8QlULQXaRxSetb+hRgqpJKk=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
- nizedCreateFacetSetWizardPage$1.class
-SHA1-Digest: DCMv9bbd30tS5PKmYgXUKTKvqYc=
+ nizedFacetSetPropertyWizardPage.class
+SHA1-Digest: Uz3FKaN1NIvHtUAldYR8CvgvR1Q=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/me
- taclass/GetSubTypingTypeWidget.class
-SHA1-Digest: M47lzwHdVlzB2zaYmEcOWFH9Q60=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/cre
+ ation/ICreateFacetInFacetSetWidget.class
+SHA1-Digest: iip2CSFttaN8sHDEkLNfxnB/DMQ=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
- FacetDialogFactory$9.class
-SHA1-Digest: xI6Y3xME893W1S6d6q+qGGTugk0=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Add
+ OperationInFacetWidget.class
+SHA1-Digest: DjHs0kN4ke5jDq6TZliKyC53elQ=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$12.class
+SHA1-Digest: 1VVbinP2UOv5HrX5zAJghAGIG8A=
+
+Name: OSGI-INF/l10n/bundle.properties
+SHA1-Digest: Pg5k6WVgv1eL+p/bUDjPWJe5I/Y=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$3.class
+SHA1-Digest: DbB/60LXKU+/jbWj78ChCEzDiUQ=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
  hronizedDerivedTypedElementWidget$24.class
 SHA1-Digest: wJJofz1hfVng198PobLhc00yOAc=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/GetQueryDialo
- g.class
-SHA1-Digest: FPggScdQ/cURwgetMc2eadwJ/ws=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/AbstractQuery
- DialogFactory.class
-SHA1-Digest: +n+7TgZGMVCVKSvDZ1ANyfTPfPE=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/edition/Edit
+ FacetAttributeDialog.class
+SHA1-Digest: 6TntfrgqQENvlmvDuvwa6+cNLEo=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$22.class
-SHA1-Digest: tCpzujIC+a3WB6B8FezCv+K4fKY=
+ hronizedFacetWidget$7.class
+SHA1-Digest: ciVbxbyHzmjOM3+hIMxu8MZQhzw=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/creation/Cr
- eateFacetSetInFacetSetHandler.class
-SHA1-Digest: yt56DuViA0rWjobbSdTPaylNbVo=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/creation/Ad
+ dParameterInOperationHandler.class
+SHA1-Digest: ENJWETph5Y/6rciYSEt+Bu6rCU0=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Cre
- ateFacetSetInFacetSetDialog.class
-SHA1-Digest: Oi6qstX5UOjwQBD04bEy/XTUwro=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Abs
+ tractDerivedTypedElementWidget.class
+SHA1-Digest: N0ow9aqaMRpVsMHW3leesmfMgzw=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget$15.class
+SHA1-Digest: Us+s4sAsvonGC2JbydJyrDNCWkc=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/IQueryCont
+ ext.class
+SHA1-Digest: ZuovEezIJoFDEa28EuVjS6dOThI=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetExtendedMetaclassWidget$1.class
+SHA1-Digest: ASdpjILrNrlDRPy3oerxAZUF0q0=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$8.class
+SHA1-Digest: Esn0UmIpvxOrD+YBEryRTZQfYZc=
+
+Name: icons/treeView.gif
+SHA1-Digest: J08i2rueFvxIsJ1Z9BgktWZSpEE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/ge
+ torcreate/GetOrCreateFacetWidget.class
+SHA1-Digest: vu61uxzWao/wFIZfKcqcAFFPOm0=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/edition/Edit
+ FacetOperationDialog.class
+SHA1-Digest: rawiXr7ZE5t+UD5WdrUV4Q/DEeo=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$16.class
+SHA1-Digest: QEACZv+VGIU7/NjnHqdGpb8dQlc=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
+ nizedFacetSetPropertyWizardPage$1.class
+SHA1-Digest: q5PV6WIc1nwJvAJ2+4HZYOhC3Eg=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/edition/Edi
+ tFacetSetHandler.class
+SHA1-Digest: jQ/5m433Feey6rXfP8SRyVKzYOg=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/qu
- ery/GetCanHaveSideEffectsWidget.class
-SHA1-Digest: PbtT1Rob50ecB0YdarlYYiGfdwQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/WorkbenchUtils.clas
- s
-SHA1-Digest: fZD985h2SErny0N6vH3PwzB8xYQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/IEN
- amedElementWidget.class
-SHA1-Digest: Tni1038SKoH4ZgqS3qcRhiHZuyU=
+ ery/GetCanBeCachedWidget.class
+SHA1-Digest: +T5SUwGVYqGSkUBiOSTUDRHW4aU=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget.class
-SHA1-Digest: 92ZC5Z8uJ6OO5XH1oPhWZAkUFpo=
+ hronizedDerivedTypedElementWidget$28.class
+SHA1-Digest: vhuHrFpkPFTpWZk7Ew3c/4xxEfM=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/me
+ taclass/GetElementTypeWidget.class
+SHA1-Digest: 10lVhY6DbkDTRZk5Un+WlKmEUT0=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedCreateQueryWidget$10.class
+SHA1-Digest: VXTvbmFMd3t3GYIv5xJVOe5WfvE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$11.class
+SHA1-Digest: d1xESeaKBvJsxDXDqku+Yx2cWLE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget$1.class
+SHA1-Digest: mrXEbbhMuvihivkfJ9Q/mQ1mrQs=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/SelectQueryTy
  peWidget$2.class
 SHA1-Digest: jrHv+9OHsccrELJnoMQA+SXFj0s=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredElementCommmandWidget.class
-SHA1-Digest: etZQKrv8WISBePQN1H3rXZEBFRQ=
+ hronizedCreateQueryWidget$9.class
+SHA1-Digest: qvKlHEURwfb74c7TjxmT/ZHRoPQ=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
- nizedFacetSetPropertyWizardPage$4.class
-SHA1-Digest: jB43aUbIGFg6S+wF4a9iFVk/iBE=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/SelectQueryTy
+ peWidget$3.class
+SHA1-Digest: 6XTrPIxxsj10QqQgjL9tkUTkVc8=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$15.class
+SHA1-Digest: RwGqnFUadMZrX1yJ99iaI/d3SD4=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$27.class
+SHA1-Digest: m5/E9KF4eNgLkuR8XsGGD0ET5Tw=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedENamedElementWidget$4.class
+SHA1-Digest: RgtZNzijONXA8/Pj0JBjh5Mnp2M=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredFacetSetWidget$8.class
+SHA1-Digest: YdeQsEHhPxbx0nf3UyKvN6hPLoQ=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredFacetSetWidget$10.class
+SHA1-Digest: WuBV5yZLecJ+PzzXD5mpbdfnBVI=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredElementCommmandWidget$9.class
+SHA1-Digest: dVzoJc4x0uAUks6MqUBHgvfwOSI=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$32.class
+SHA1-Digest: 2ZW63GCUwAIXoxVucqyRza/dT+Y=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/composite/Ab
+ stractComandExecDialog.class
+SHA1-Digest: Oa+vOL278tSNwSjEyHYnD5ec2ck=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedFacetWidget$14.class
+SHA1-Digest: RwUS5s95YRhqR38Y0GmdoIJ9QAE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exception/SdkUiRunt
+ imeException.class
+SHA1-Digest: oVOEdjFMm8E17jXvwjVsgZWt8jI=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Abs
+ tractENamedElementDialog.class
+SHA1-Digest: +U3BuWz7RHJwOqwGyokE/wxk29Q=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget$8.class
+SHA1-Digest: cC6hL6W2HZ9XRhFUuatD12u0/TE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/IEN
+ amedElementWidget.class
+SHA1-Digest: Tni1038SKoH4ZgqS3qcRhiHZuyU=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Cre
+ ateFacetSetInFacetSetDialog.class
+SHA1-Digest: Oi6qstX5UOjwQBD04bEy/XTUwro=
+
+Name: plugin.xml
+SHA1-Digest: 6phyjUBWsLLw6LKYQjJ+ig4jojA=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$3.class
+SHA1-Digest: 6RMGyR0Hqn3UXtJuoXmTP8Uq6XY=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/FacetDialogF
+ actoryImpl$1.class
+SHA1-Digest: rzoKfPZbabpvrgexc/cNBOuPcWQ=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$24.class
+SHA1-Digest: H7++NWOFAXhn8JrSGGk+6/mE2Yo=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/creation/Cr
+ eateFacetSetInFacetSetHandler.class
+SHA1-Digest: yt56DuViA0rWjobbSdTPaylNbVo=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Abs
+ tractEStructuralFeatureDialog.class
+SHA1-Digest: 4tX6zoHFLFVfn1vlUNhf2AHEcyg=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredFacetSetWidget$3.class
+SHA1-Digest: 5ra+Eiaf/D9y7WOdznmONR46qjY=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedETypedElementWidget$18.class
+SHA1-Digest: 4njJS4r+lB9TglIC2ONlQ2eASiE=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/AbstractComm
+ andDialog.class
+SHA1-Digest: cmc8nTfolJA5blLzt6Hb7MqCWlk=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
+ FacetDialogFactory$12.class
+SHA1-Digest: a9JfywEo4F/RdZzQlHS8QsyvwkU=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetExtendedMetaclassWidget$4.class
+SHA1-Digest: iOlP6ubSS0c9MlRSCiMOryk6jeo=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Add
+ ParameterInOperationWidget.class
+SHA1-Digest: l42HtQ+Y9Yl3fSF4AdSoERFtpT8=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$1.class
+SHA1-Digest: RHv6sJdc8HysPJah0odgYf1r6f4=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedEStructuralFeatureWidget$20.class
+SHA1-Digest: 2hG+DC89BjrIxi4IKp6Y5BVBZA4=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$27.class
+SHA1-Digest: /LAlT/WkZvmUb2dEj9LclE2xqCQ=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
+ FacetDialogFactory$5.class
+SHA1-Digest: UxxHanOewnftOQ8YKbWUHcfCYpo=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedENamedElementWidget$7.class
+SHA1-Digest: n2TfiZjPzeHQFo4JwYIrq7Sb+Zg=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetExtendedMetaclassWidget$3.class
+SHA1-Digest: lA2WDlnvIJRZ700CubcJkeuEC5E=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
  hronizedETypedElementWidget$14.class
@@ -260,1042 +1035,268 @@ Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
 SHA1-Digest: 6NCEI1N7PN7QdaVnCGXwv30iqfI=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$4.class
-SHA1-Digest: Kd72LTQr6wAGk3ZItwQGCyi2iho=
+ hronizedDerivedTypedElementWidget$23.class
+SHA1-Digest: nrRQrmmibbahM8mbpAXQ+dbn/Bg=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$10.class
-SHA1-Digest: CKkTO8pjSoSiPQqwtYD2CtfsfpY=
+ hronizedDerivedTypedElementWidget$5.class
+SHA1-Digest: pTim9Cpygxq6WZfs5dh7cfiDIKM=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredFacetSetWidget$1.class
-SHA1-Digest: +KglPFqPwDY5gq6e4xkkIJAfjr8=
+ hronizedEStructuralFeatureWidget$35.class
+SHA1-Digest: BDK+99LGr2tptDtjLQKO7iXhx3U=
 
-Name: icons/facet.gif
-SHA1-Digest: XEEa0LVNEosBP0izGtitfq02WAI=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$2.class
-SHA1-Digest: dUIqpX0yXjXmDbsUo4T+Ahm8OpU=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$4.class
-SHA1-Digest: 5oMvZB+k4T1i5nGeBiefIEfbtJA=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
+ FacetSetWidget.class
+SHA1-Digest: 89TnHGYdDVDHFFkmEiG0GTeeLk0=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
  FacetReferenceWidget.class
 SHA1-Digest: mRsduQYdAG7oxk1+w/LXVXOQ3Go=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$33.class
-SHA1-Digest: CJuPAibbL81VwOPE7rFr6c/NQBw=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetExtendedMetaclassWidget$3.class
-SHA1-Digest: lA2WDlnvIJRZ700CubcJkeuEC5E=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$18.class
-SHA1-Digest: kuYJrW9cG4Nun8wdTzXvwonhd4c=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Abs
- tractEStructuralFeatureDialog.class
-SHA1-Digest: 4tX6zoHFLFVfn1vlUNhf2AHEcyg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredElementCommmandWidget$3.class
-SHA1-Digest: 5W9tubrqm7fzpmrD1klxj1dztIA=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredFacetSetWidget$9.class
-SHA1-Digest: ggf/GD2TTHenlW5U93ns1TcZPP4=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$16.class
-SHA1-Digest: QEACZv+VGIU7/NjnHqdGpb8dQlc=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/com
- ponent/query/ICreateQueryWidget.class
-SHA1-Digest: z3JxvjaEf7uuad2tD8ki6W+ayRw=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Cre
- ateFacetInFacetSetDialog.class
-SHA1-Digest: 5Py94f+ljIBRwDaeuL9UwgUrL1c=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Add
- OperationInFacetDialog.class
-SHA1-Digest: 8QG2RjVBJupPwB1HrjwJRhoredg=
-
-Name: icons/flatView.gif
-SHA1-Digest: m7CoejyO/BwL1K8nsf+3iF2nYsg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Abs
- tractDerivedTypedElementDialog.class
-SHA1-Digest: RQUTbnu/KM9nIb6dJer7PbexD8w=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedENamedElementWidget$2.class
-SHA1-Digest: 5K8648VDzP3O769S9kyAp7zM7ew=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/IQueryCont
- ext.class
-SHA1-Digest: ZuovEezIJoFDEa28EuVjS6dOThI=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$5.class
-SHA1-Digest: 73C2Qo5/slE0iKa5GJv4NrhKOUc=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/IES
- tructuralFeatureWidget.class
-SHA1-Digest: o49HjVfUjKn/mWzBD/GWgoU5NzM=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
- operties/GetOrderedWidget.class
-SHA1-Digest: aSagMJbh7p1tqsjeF+hbglDbt40=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
- FacetSetWidget.class
-SHA1-Digest: 89TnHGYdDVDHFFkmEiG0GTeeLk0=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/me
+ taclass/SelectSubTypingTypeWidget.class
+SHA1-Digest: Oi8gp7bKuCgO087vyf/de6sfioo=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
  FacetDialogFactory$6.class
 SHA1-Digest: z0bPPbJgUIZnHaKWyPaRmxfgG8s=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$21.class
-SHA1-Digest: NflsARahBOKO9wrrJY+wf4OHFSA=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
- FacetOperationWidget.class
-SHA1-Digest: 04BqXHNH93dYBsIMoB/r8hRxhlM=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedCreateQueryWidget$10.class
-SHA1-Digest: VXTvbmFMd3t3GYIv5xJVOe5WfvE=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/edition/Edi
- tFacetSetHandler.class
-SHA1-Digest: jQ/5m433Feey6rXfP8SRyVKzYOg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedCreateQueryWidget.class
-SHA1-Digest: i1sSu9Y6M6NO7jvEJBJ+efS3rPI=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$27.class
-SHA1-Digest: m5/E9KF4eNgLkuR8XsGGD0ET5Tw=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exception/SdkUiRunt
- imeException.class
-SHA1-Digest: oVOEdjFMm8E17jXvwjVsgZWt8jI=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/ge
- torcreate/GetOrCreateFacetSetWidget.class
-SHA1-Digest: MIXNj7JN4M81Mn55VEdRf8VJ6bA=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
- nizedFacetSetPropertyWizardPage$1.class
-SHA1-Digest: q5PV6WIc1nwJvAJ2+4HZYOhC3Eg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
- FacetOperationParameterWidget.class
-SHA1-Digest: Ml2izsjjYSXNVSJs+sshsm3D5fA=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$11.class
-SHA1-Digest: o3/WfI1ce4rcmtVcASu9xTpTh5g=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedCreateQueryWidget$3.class
-SHA1-Digest: b0rr/q0XsA72rwLJLThBZDJdi9M=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$1.class
-SHA1-Digest: whiwZmgbr9pWyL6r8DLch4pLnL8=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$13.class
-SHA1-Digest: C2ko0fvbrpIC6MrVXf5ClkaWc7k=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Add
- ParameterInOperationWidget.class
-SHA1-Digest: l42HtQ+Y9Yl3fSF4AdSoERFtpT8=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$19.class
-SHA1-Digest: 12FbB+lPBrcEYd+7y/h4P37azFI=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$9.class
-SHA1-Digest: NtAZ6LBX11VwLSYzqhMOTwrlr6w=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$1.class
-SHA1-Digest: mrXEbbhMuvihivkfJ9Q/mQ1mrQs=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$30.class
-SHA1-Digest: 9FpLOCW7561LJhZxv1GBtv2FiHk=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$15.class
-SHA1-Digest: 9UKL+vbuXmtXUlJp7OJK+jlwE0w=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedENamedElementWidget.class
-SHA1-Digest: CUP9W8RtLOBPRR0v2qWgkWSHnxk=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Get
- OrCreateFiltredFacetSetWidget.class
-SHA1-Digest: 2TEiYYa9HKUBTlBlNXhs6GplNRg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredFacetSetWidget$6.class
-SHA1-Digest: 4Gy6LtyQlxv1p8sf+3WEDmyNcVM=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$7.class
-SHA1-Digest: ciVbxbyHzmjOM3+hIMxu8MZQhzw=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$13.class
-SHA1-Digest: EeO69rX3iShEWFGHrci/7EVBT2s=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$9.class
-SHA1-Digest: 7movfwLUrjl/PUiTGAdJPv6JpFk=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/CreateFacetS
- etWizard$1.class
-SHA1-Digest: Jb1XoTXiWsKlJ5FDy25nbGYwYMU=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetExtendedMetaclassWidget$8.class
-SHA1-Digest: sxLiepZd7B4rZ2qEY18D/ciBbg0=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredElementCommmandWidget$8.class
-SHA1-Digest: 15RBvt8glR69OoUNE+Knb+L6Bo4=
-
-Name: META-INF/eclipse.inf
-SHA1-Digest: 09gN05tobgS/MdtqyTNQhOhB73M=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
- operties/name/GetReferenceNameWidget.class
-SHA1-Digest: WUZRH/WcjW0DvXf/9tmdxGiflrM=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/composite/Ge
- tOrCreateOperationDialog.class
-SHA1-Digest: Tu+xQBTVa6kMa6sPRax2bZ2uDY0=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/creation/Cr
- eateFacetInFacetSetHandler.class
-SHA1-Digest: HisVk2o0T7dtdDyXJ0Lkbr5LDqk=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredElementCommmandWidget$10.class
-SHA1-Digest: cP/KLRdS+o8je1nqlX2qRB9pGhs=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/creation/Ad
- dReferenceInFacetHandler.class
-SHA1-Digest: kE/rYGsC70eBjpELJf10FYCZQiM=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$2.class
-SHA1-Digest: DjlDSyLweAzhSXCnYKW/3fAqvb8=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/edition/Edit
- FacetAttributeDialog.class
-SHA1-Digest: 6TntfrgqQENvlmvDuvwa6+cNLEo=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedENamedElementWidget$7.class
-SHA1-Digest: n2TfiZjPzeHQFo4JwYIrq7Sb+Zg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$22.class
-SHA1-Digest: xy3zoPW8SVvGunOMXruFnEFS9Rc=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Abs
- tractETypedElementDialog.class
-SHA1-Digest: BjOTi6v2aW4nkAa4y24db5dgMow=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
- FacetDialogFactory$3.class
-SHA1-Digest: kLGYCHk8HTlIFntIR6o9cKCTQfQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/edition/Edi
- tFacetReferenceHandler.class
-SHA1-Digest: bdYfEN2qKfxkfQtbFJ2+J2BAEb8=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
- nizedCreateFacetSetWizardPage$3.class
-SHA1-Digest: p1S+lb0qs/Q34Tucq2gaHIHCP1s=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$26.class
-SHA1-Digest: BZHtEsb3DgDe9EpnPURIQGQzLgE=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/FacetDialogF
- actoryImpl$1.class
-SHA1-Digest: rzoKfPZbabpvrgexc/cNBOuPcWQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$24.class
-SHA1-Digest: H7++NWOFAXhn8JrSGGk+6/mE2Yo=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
- operties/name/GetOperationNameWidget.class
-SHA1-Digest: 32eDvt/hmd9ygNj3JuzfUo9ZCg4=
-
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.efacet.sdk
- .ui/pom.properties
-SHA1-Digest: yD+WbzH4BzVMAjz8QRrxAqhS/64=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Get
- FilteredSubTypingTypeWidget.class
-SHA1-Digest: 2cIDsJ/y1SaPr8A+wZ2X8cESSyg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/me
- taclass/SelectSubTypingTypeWidget$1.class
-SHA1-Digest: nS37A4Ne14XZqEN8lAhjW0RZclQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/creation/Ad
- dOperationInFacetHandler.class
-SHA1-Digest: fjpi5YLkgGrxnzWAxVlr1oYiXjs=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$10.class
-SHA1-Digest: yBoBm81eQlu3GzR8i5qYDxa6zmI=
+ hronizedEStructuralFeatureWidget$28.class
+SHA1-Digest: 23/4ZoXm0/8/tco+sKlVfaPLM7I=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
  hronizedGetOrCreateFilteredFacetSetWidget$11.class
 SHA1-Digest: GXophdByiF3a4dXWafuUehYRGmU=
 
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedGetOrCreateFilteredFacetSetWidget$2.class
+SHA1-Digest: AKp+d3ELZg0Lk0x7dnluVcwVSG8=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/me
+ taclass/GetSubTypingTypeWidget.class
+SHA1-Digest: M47lzwHdVlzB2zaYmEcOWFH9Q60=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$14.class
+SHA1-Digest: bA6nfM20WJT+1LJ+ShisBl2o95k=
+
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/WizardFactor
  y.class
 SHA1-Digest: PtX8eESqLsT5aOrMVcThpT8reyE=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedCreateQueryWidget$8.class
-SHA1-Digest: ASpStU1DB5qeH8lFFGfHTLZ8PtY=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$16.class
-SHA1-Digest: z3mZIZLMigRfhuDBf8lUJ7TiZoE=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
- FacetDialogFactory$10.class
-SHA1-Digest: jvS4Iryp/w+enssX5D7SywBO8JU=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$6.class
-SHA1-Digest: VKJMn/V8ZyJamgJHiT2HNyIhYsw=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$12.class
-SHA1-Digest: 1VVbinP2UOv5HrX5zAJghAGIG8A=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/creation/Ad
- dParameterInOperationHandler.class
-SHA1-Digest: ENJWETph5Y/6rciYSEt+Bu6rCU0=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredFacetSetWidget$3.class
-SHA1-Digest: 5ra+Eiaf/D9y7WOdznmONR46qjY=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/me
- taclass/GetElementTypeWidget.class
-SHA1-Digest: 10lVhY6DbkDTRZk5Un+WlKmEUT0=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$4.class
-SHA1-Digest: GWQSlB3Fyqnf00GK2z/P3WUXhuY=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$10.class
-SHA1-Digest: ATzyiwNkskVXt0Ocf+RdBKeGx6E=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/edition/Edit
- FacetReferenceDialog.class
-SHA1-Digest: cFHgShyGks6VrpBTe1RwkUGUP5w=
-
-Name: plugin.xml
-SHA1-Digest: 6phyjUBWsLLw6LKYQjJ+ig4jojA=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedENamedElementWidget$10.class
-SHA1-Digest: DFGkleywdk2rpbdQRxx5sDOfTH8=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$6.class
-SHA1-Digest: FMAzvFE5OqqAGH9c+4qzgoIaPDY=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$35.class
-SHA1-Digest: BDK+99LGr2tptDtjLQKO7iXhx3U=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetExtendedMetaclassWidget$5.class
-SHA1-Digest: Kk5Cn/Odu5MKvGJfEt6sfsbX9HU=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredElementCommmandWidget$5.class
-SHA1-Digest: ltvdlJb2XqnSa0o2UqKgdyCxocQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$18.class
-SHA1-Digest: GObGhBUlPTH0aYaIQ+Vsukx5Des=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
- nizedCreateFacetSetWizardPage.class
-SHA1-Digest: 3NTl0NUluSvN7/MLpmQFbCI6bo4=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Add
- OperationInFacetWidget.class
-SHA1-Digest: DjHs0kN4ke5jDq6TZliKyC53elQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Abs
- tractDerivedTypedElementWidget.class
-SHA1-Digest: N0ow9aqaMRpVsMHW3leesmfMgzw=
-
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
- operties/GetUniqueWidget.class
-SHA1-Digest: TCL4cVyG6Lb1e/DYKT97soYDybk=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedENamedElementWidget$4.class
-SHA1-Digest: RgtZNzijONXA8/Pj0JBjh5Mnp2M=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
- FacetWidget.class
-SHA1-Digest: yfRYPJs4mRHrLidL2Vk6tr8RNtU=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$7.class
-SHA1-Digest: meGKyu/sn4+X4xWJdc+xIr6fqXE=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/IDe
- rivedTypedElementWidget.class
-SHA1-Digest: pWrKZM1fRhGG1Y93MIt/e7FTlO4=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/IQueryDial
- ogFactoryStrategy.class
-SHA1-Digest: ac2O1Ipe4A0YlWjxoxloys6/AG0=
+ operties/GetChangeableWidget.class
+SHA1-Digest: 7VlTMkgW/11m2Drjh6jkYcAp+JA=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/edition/Edit
- FacetDialog.class
-SHA1-Digest: gYp1uHu64qNWHb08ZhaWfNJpEQ0=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/edition/Edit
- FacetOperationDialog.class
-SHA1-Digest: rawiXr7ZE5t+UD5WdrUV4Q/DEeo=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
- FacetDialogFactory$8.class
-SHA1-Digest: GFvz6zPuSnm9ZjQb0r8xlEfki7c=
+ FacetSetDialog.class
+SHA1-Digest: gVBKHo0lWLFLmT7TWZimgtnKN9M=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$23.class
-SHA1-Digest: nrRQrmmibbahM8mbpAXQ+dbn/Bg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$21.class
-SHA1-Digest: AR9Z8QlULQXaRxSetb+hRgqpJKk=
-
-Name: schema/queryFactoryDialogRegistration.exsd
-SHA1-Digest: niiNGk2T2FuTsP+DS+kVIQ6K+/c=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/AbstractComm
- andDialog.class
-SHA1-Digest: cmc8nTfolJA5blLzt6Hb7MqCWlk=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Abs
- tractENamedElementWidget.class
-SHA1-Digest: fwExVETddsmg8uvkosVy1sBcP10=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Get
- OrCreateFiltredFacetWidget.class
-SHA1-Digest: B9JUK/dSBZDJCpx0O+F6EcV7ow8=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/edition/Edi
- tFacetAttributeHandler.class
-SHA1-Digest: oan+1H5R5PkORzUM8YJcHYRHEVc=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$29.class
-SHA1-Digest: y9bucM8FJL/PKe7sSmOPr4OhhqM=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/qu
- ery/CreateQueryWidget.class
-SHA1-Digest: SnoIemJUJgRKnGYT4nA3eIMNA24=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/SelectQueryTy
- peWidget$1.class
-SHA1-Digest: 9wIIiIWE8KGdUAwUTmwSFlKR/sU=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
- nizedFacetSetPropertyWizardPage$3.class
-SHA1-Digest: qzi+fktzjNG9XyJuzwOwqX6QfSc=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$13.class
-SHA1-Digest: R9jXbLrMbv5tKAOgR2Y5vpKDC48=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedCreateQueryWidget$5.class
-SHA1-Digest: +63UjkGDottJw3ycpJG2OIzg4TQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$3.class
-SHA1-Digest: 6RMGyR0Hqn3UXtJuoXmTP8Uq6XY=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$15.class
-SHA1-Digest: SHH+FJsjAQPkcUyafNgYTbbmD+Q=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
- operties/bounds/GetLowerBoundWidget.class
-SHA1-Digest: 49Mx4fqEmIp59aihquiE11uaEU8=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Add
- AttributeInFacetDialog.class
-SHA1-Digest: 1j3HkJH3sbQtojN13DRBrCha7Lw=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$1.class
-SHA1-Digest: +Uhs2HXj2YINNq5jd6jHOgh18Jo=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$3.class
-SHA1-Digest: ejAOxt8oLbKbc8Pij6L64suXWX0=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/IQueryCreatio
- nResult.class
-SHA1-Digest: BTc5j1d2MB66uBTERAPMq7LDO70=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$32.class
-SHA1-Digest: 2ZW63GCUwAIXoxVucqyRza/dT+Y=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/FacetSe
- tPropertyWizardPage$2.class
-SHA1-Digest: JM6Y8kj4tcGn1zmIZg/eOJY5yLk=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetExtendedMetaclassWidget$2.class
-SHA1-Digest: QCCT0aP9Jec0nkqqXV64QhO24hQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$17.class
-SHA1-Digest: XDAFIgWU6JSXEKbDqQkV3BjRrwE=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredElementCommmandWidget$2.class
-SHA1-Digest: 3necdqp5KktDmPUlxs0Dk81GRgg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredFacetSetWidget$8.class
-SHA1-Digest: YdeQsEHhPxbx0nf3UyKvN6hPLoQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$9.class
-SHA1-Digest: TSXslMyEE95W1o2LzDZiNxef2ew=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$15.class
-SHA1-Digest: RwGqnFUadMZrX1yJ99iaI/d3SD4=
-
-Name: icons/querySet.gif
-SHA1-Digest: Ypcn7ddJ56HdPpJYqBYET9A8l1Q=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/QueryWidgetCo
- mpositeFactoryImpl.class
-SHA1-Digest: 7POOqC/TQ4ofct9og7tF0DJJLOg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedENamedElementWidget$1.class
-SHA1-Digest: X2f7JWb0mcUskWPkgJyivq15QDA=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$4.class
-SHA1-Digest: Wcplw19dFicINnzF2XowqS2wEUQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/FacetDialogF
- actoryImpl.class
-SHA1-Digest: yKteMdm9D6JE7QnhBpNGUojQDIA=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedENamedElementWidget$9.class
-SHA1-Digest: G2Ip+aQHUcBsxblEoYCq/+TVfBk=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
- FacetDialogFactory$5.class
-SHA1-Digest: UxxHanOewnftOQ8YKbWUHcfCYpo=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$20.class
-SHA1-Digest: 1o0dTBghICLcRHxOy8COhACYflw=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/me
- taclass/SelectSubTypingTypeWidget.class
-SHA1-Digest: Oi8gp7bKuCgO087vyf/de6sfioo=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
- FacetWidget$1.class
-SHA1-Digest: mDGZIu/9/lyA21QD76gLcClFXoM=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$28.class
-SHA1-Digest: vhuHrFpkPFTpWZk7Ew3c/4xxEfM=
+ hronizedDerivedTypedElementWidget$18.class
+SHA1-Digest: kuYJrW9cG4Nun8wdTzXvwonhd4c=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/AbstractComa
  ndMainDialog.class
 SHA1-Digest: XZH2H73oum6VR1zhtEZ3KkIOCaU=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
- FacetSetWidget$1.class
-SHA1-Digest: zHYBnGNjLUwmrxB65ixZjYLHOTE=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$26.class
-SHA1-Digest: aUJeazEe5ayYcugYsYtnSmMbmGk=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/ge
- torcreate/GetOrCreateOperationWidget.class
-SHA1-Digest: Xm5SBuY6dFWlqTcdXcc1N4eyre4=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedCreateQueryWidget$2.class
-SHA1-Digest: VFw3rIgUt8AXwDtXz6AdXvzLVJs=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
  hronizedETypedElementWidget$10.class
 SHA1-Digest: ecSqqOV0zOTJ9+tJAiiEiAWEYuk=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$12.class
-SHA1-Digest: MRq/RW1DUIQHYEyY63lsuUwYxXk=
+ hronizedCreateQueryWidget$1.class
+SHA1-Digest: vtcQKgoxKCrtUNHNeBK6DQYcUAU=
 
-Name: icons/ParameterValue.gif
-SHA1-Digest: k6QiLCZYrVmMJ6A2ZM7y663F7w0=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
+ operties/GetVolatileWidget.class
+SHA1-Digest: +Nkpb19JYoDhABhaaSt+sclL4UQ=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$18.class
-SHA1-Digest: 4njJS4r+lB9TglIC2ONlQ2eASiE=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Abs
- tractDerivedTypedElementWidget$QueryContext.class
-SHA1-Digest: J6nhPG4nf16yIgohY6PErUkS+yY=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Abs
- tractEStructuralFeatureWidget.class
-SHA1-Digest: s7O/zcdwexDAfCmWCQ4aufQPrDU=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/WorkbenchUtils$1.cl
- ass
-SHA1-Digest: qIX9NbfN0GCAer+yFSr/ztoDd0I=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
- FacetDialogFactory$12.class
-SHA1-Digest: a9JfywEo4F/RdZzQlHS8QsyvwkU=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$8.class
-SHA1-Digest: mBaPs+IRYXcnQZt+Y3FrwL6ZfXg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$14.class
-SHA1-Digest: bA6nfM20WJT+1LJ+ShisBl2o95k=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/IQueryWidgetC
- ompositeFactoryFactory.class
-SHA1-Digest: jc5LQ0xEddGpG0Elkt2YghYLSsc=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredFacetSetWidget$5.class
-SHA1-Digest: 2+CwS5HexKi+HwuUeIjPwd0YM+I=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$12.class
-SHA1-Digest: YvFjXix4kBrnLBXYQbefRrwxu3E=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$6.class
-SHA1-Digest: SxIhaEDv51GjFqN8+EbndGP9Wac=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget.class
-SHA1-Digest: yjgnA5c/BDvXAVQXdNZP1/u1evc=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/me
- taclass/GetExtendedMetaclassWidget.class
-SHA1-Digest: 7cgsSxoSn5Yls0F2s96YKf6JtKI=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$8.class
-SHA1-Digest: cC6hL6W2HZ9XRhFUuatD12u0/TE=
-
-Name: icons/FacetReference.gif
-SHA1-Digest: QMWLPiWsn1Q3mCC6dVej6KW6aes=
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.ef
+ acet.sdk.ui/pom.xml
+SHA1-Digest: PBWN1Z+YTBgmCtjuTVTVGasoAw8=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
  hronizedGetExtendedMetaclassWidget$7.class
 SHA1-Digest: fCTD572/wUsi6nilSLyyWGgytIk=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredElementCommmandWidget$7.class
-SHA1-Digest: jboS0TXodRmWngZnXKixNS0kiTY=
+ hronizedETypedElementWidget$17.class
+SHA1-Digest: NEqjHCcOXxB79x/agkT6fhyrvzQ=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$1.class
-SHA1-Digest: RHv6sJdc8HysPJah0odgYf1r6f4=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/edition/Edit
+ FacetOperationParameterDialog.class
+SHA1-Digest: fc5I8hnuiFnp49LjFAw5BTesRQg=
 
-Name: about.html
-SHA1-Digest: NzkdsipDl2TZ7N0j74YvOk9GTsY=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$21.class
-SHA1-Digest: jggCXZ2+MCd6XWsJjG+l/XHn8rY=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedENamedElementWidget$6.class
-SHA1-Digest: ssP2ovfBBFombiuYlB2fR0kOxZc=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/composite/Ge
- tSubTypingTypeDialog.class
-SHA1-Digest: jpgtDOYumQacOJQw2hph6VLmcG0=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
- FacetDialogFactory$2.class
-SHA1-Digest: fevW0Jbr0g2srrPPzxFHjbyGcmM=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$9.class
-SHA1-Digest: B5/XedATFCihAx35H5CH3CWsKE8=
-
-Name: icons/FacetSet.gif
-SHA1-Digest: ZNjHVhFyhjicmeiWt004wpwJdNU=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
- nizedCreateFacetSetWizardPage$2.class
-SHA1-Digest: U4phQySiTt+laHmAYrDM0181XTg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/composite/Ge
- tOrCreateFacetDialog.class
-SHA1-Digest: 34tNMaa+FiNaO8rb6fZ7mZoYFlw=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
+ operties/GetUniqueWidget.class
+SHA1-Digest: TCL4cVyG6Lb1e/DYKT97soYDybk=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/IET
  ypedElementWidget.class
 SHA1-Digest: B3VloYbpErHKX5wBYj8A2vFG78U=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$25.class
-SHA1-Digest: /YsRpnkd8E0FZ7xwUcupNpkEQ2g=
-
-Name: icons/FacetOperation.gif
-SHA1-Digest: geCi1ofnq5obJShghQN1sk0ACoI=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/creation/Ad
- dAttributeInFacetHandler.class
-SHA1-Digest: tr/tsFhpfA82QNly3ZZcsYnh1eI=
+ hronizedEStructuralFeatureWidget$12.class
+SHA1-Digest: YvFjXix4kBrnLBXYQbefRrwxu3E=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$23.class
-SHA1-Digest: 7Lrd6FxNTuPklcEIZVoCdqDzG+o=
+ hronizedFacetWidget$4.class
+SHA1-Digest: GWQSlB3Fyqnf00GK2z/P3WUXhuY=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
- nizedFacetSetPropertyWizardPage.class
-SHA1-Digest: Uz3FKaN1NIvHtUAldYR8CvgvR1Q=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
+ FacetSetWidget$1.class
+SHA1-Digest: zHYBnGNjLUwmrxB65ixZjYLHOTE=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Abs
- tractENamedElementDialog.class
-SHA1-Digest: +U3BuWz7RHJwOqwGyokE/wxk29Q=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/GetQueryDialo
- g$1.class
-SHA1-Digest: Ye9wqsSAUa6RXxLmXH3QwUsDynk=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/wizard/pag
- e/ICreateFacetSetWizardPage.class
-SHA1-Digest: txyemH87DffFn5u6rZUd680nJW4=
+Name: icons/querySet.gif
+SHA1-Digest: Ypcn7ddJ56HdPpJYqBYET9A8l1Q=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredFacetSetWidget.class
-SHA1-Digest: bctz2SsS7NF7iiVtTgUzT3MRkI0=
+ hronizedFacetWidget$5.class
+SHA1-Digest: R7K0IIu7Fb+Fo0WEDQwUbGLtXio=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Get
+ FilteredSubTypingTypeWidget.class
+SHA1-Digest: 2cIDsJ/y1SaPr8A+wZ2X8cESSyg=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredFacetSetWidget$10.class
-SHA1-Digest: WuBV5yZLecJ+PzzXD5mpbdfnBVI=
-
-Name: icons/treeView.gif
-SHA1-Digest: J08i2rueFvxIsJ1Z9BgktWZSpEE=
+ hronizedFacetWidget$1.class
+SHA1-Digest: +Uhs2HXj2YINNq5jd6jHOgh18Jo=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
- operties/GetTransientWidget.class
-SHA1-Digest: 8O6gZKSepOAj1E5ECI2MQNhLxhY=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/SelectQueryTy
- peWidget$3.class
-SHA1-Digest: 6XTrPIxxsj10QqQgjL9tkUTkVc8=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
- operties/bounds/GetUpperBoundWidget.class
-SHA1-Digest: 7Ys35IzChRQQ4fmIHIj/nN9CGDk=
+ operties/bounds/GetLowerBoundWidget.class
+SHA1-Digest: 49Mx4fqEmIp59aihquiE11uaEU8=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedCreateQueryWidget$7.class
-SHA1-Digest: CCa4KPZ1bWiSpJww1vkWr93t5oo=
+ hronizedGetExtendedMetaclassWidget$2.class
+SHA1-Digest: QCCT0aP9Jec0nkqqXV64QhO24hQ=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$15.class
-SHA1-Digest: Us+s4sAsvonGC2JbydJyrDNCWkc=
+ hronizedFacetWidget$12.class
+SHA1-Digest: MRq/RW1DUIQHYEyY63lsuUwYxXk=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
+ FacetWidget.class
+SHA1-Digest: yfRYPJs4mRHrLidL2Vk6tr8RNtU=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Get
+ OrCreateFiltredOperationWidget.class
+SHA1-Digest: yCeGeIdgWWWwdFIYN2h73LGawIw=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$5.class
-SHA1-Digest: pTim9Cpygxq6WZfs5dh7cfiDIKM=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/edition/Edit
- FacetOperationParameterDialog.class
-SHA1-Digest: fc5I8hnuiFnp49LjFAw5BTesRQg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$11.class
-SHA1-Digest: 91gZmO00ZuA2tny9/ETE4yEgDko=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredFacetSetWidget$2.class
-SHA1-Digest: AKp+d3ELZg0Lk0x7dnluVcwVSG8=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$3.class
-SHA1-Digest: IRpWCfs2DAOyMSeWAZeW+2GkK5M=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$5.class
-SHA1-Digest: sS5GtBixfN5JrvQEMvxcEolqYdc=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$34.class
-SHA1-Digest: lqWB5PEZtdYsC3qPc4rPtJR7Eq8=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetExtendedMetaclassWidget$4.class
-SHA1-Digest: iOlP6ubSS0c9MlRSCiMOryk6jeo=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$19.class
-SHA1-Digest: g0RJ3WXZo0Oj7NVtFAbBAoxxqV8=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/WizardFactor
- y$1.class
-SHA1-Digest: UOJVYCi0ktZMlmsKmxfzsSGXtIs=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredElementCommmandWidget$4.class
-SHA1-Digest: 6sKw6/qs8m/oyHSCwIlw7qz9uZs=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$17.class
-SHA1-Digest: 9UqZRn3Bh+DnrvxGVceUQs72WaA=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
- operties/GetChangeableWidget.class
-SHA1-Digest: 7VlTMkgW/11m2Drjh6jkYcAp+JA=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/Messages.class
-SHA1-Digest: 9T9Nac2oIzrVyDb914PiELlo0Jg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
- FacetDialogFactory.class
-SHA1-Digest: NTwIbphpRsTCy1e2K/6WuLf5rIM=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/cre
- ation/ICreateFacetInFacetSetWidget.class
-SHA1-Digest: iip2CSFttaN8sHDEkLNfxnB/DMQ=
-
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.efacet.sdk
- .ui/pom.xml
-SHA1-Digest: PBWN1Z+YTBgmCtjuTVTVGasoAw8=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedENamedElementWidget$3.class
-SHA1-Digest: p1NLmaimtrfRAmc2aiGRZFP2c9U=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/com
- ponent/getorcreate/IGetOrCreateFacetSetWidget.class
-SHA1-Digest: O2j0TMmiueBjs+uVMjtNIxzQARQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$6.class
-SHA1-Digest: QE90xoWtNtTCrtD1BU0ujfiEu2s=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/Activator.class
-SHA1-Digest: aTmgLIG/BrrXTt/qjUvSIwIk85A=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
- operties/GetVolatileWidget.class
-SHA1-Digest: +Nkpb19JYoDhABhaaSt+sclL4UQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/wizard/IWi
- zardFactory.class
-SHA1-Digest: cvH+xtSnztjE5aG6ZyKYhpVdJAI=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$22.class
-SHA1-Digest: 0gMtDjVFRYgdRpd0qpPoTd0WteE=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
- FacetDialogFactory$7.class
-SHA1-Digest: 1L678rwHExBwaygVCr5J+pDcG8c=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$20.class
-SHA1-Digest: 2hG+DC89BjrIxi4IKp6Y5BVBZA4=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/SelectQueryTy
- peWidget.class
-SHA1-Digest: rtMJd2zhJqwS9ND0Op+5jDpGRkg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$28.class
-SHA1-Digest: 23/4ZoXm0/8/tco+sKlVfaPLM7I=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget.class
-SHA1-Digest: jGSwTaZU4spHVbyWbD+yNFHTOyk=
-
-Name: OSGI-INF/l10n/bundle.properties
-SHA1-Digest: Pg5k6WVgv1eL+p/bUDjPWJe5I/Y=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/handler/edition/Edi
- tFacetOperationParameterHandler.class
-SHA1-Digest: BRc7Wln/K/8Gn4X7qgVBCSCI6VY=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget.class
-SHA1-Digest: 4TBtqUTYxNa5EKQhOKeqk7MqhKA=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/FacetSe
- tPropertyWizardPage.class
-SHA1-Digest: GMiV12sa7MpLot6OYTkX391djho=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetExtendedMetaclassWidget.class
-SHA1-Digest: MGs2XdEtLAPFsfdGT5TyJCX1qOg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
- nizedFacetSetPropertyWizardPage$2.class
-SHA1-Digest: hxpOWHgrhXfvR+oGGLGE83GRTFE=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedCreateQueryWidget$4.class
-SHA1-Digest: /gjzxa8MrksdFpa9eFqMpQiO1/Q=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$12.class
-SHA1-Digest: dsJ1j0dV2uOcN6zgQgpwL84vtro=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$2.class
-SHA1-Digest: tLFatAHhisH72n78GIPEYVnYLYY=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedFacetWidget$14.class
-SHA1-Digest: RwUS5s95YRhqR38Y0GmdoIJ9QAE=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/com
- ponent/metaclass/IGetExtendedMetaclassWidget.class
-SHA1-Digest: bKXJdBj4M8G0psdbYbq8bUJ1jVw=
+ hronizedETypedElementWidget$16.class
+SHA1-Digest: z3mZIZLMigRfhuDBf8lUJ7TiZoE=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
  hronizedETypedElementWidget$2.class
 SHA1-Digest: 4kHW2QWU64APms5ctgunkg7Otoo=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$31.class
-SHA1-Digest: F8pYO2ZuY5vpXXBb5hBWL1ZxHhw=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/FacetSe
- tPropertyWizardPage$1.class
-SHA1-Digest: ngkBZfm0XmQasC2eIVodL0E0RnE=
+ hronizedGetOrCreateFilteredFacetSetWidget$1.class
+SHA1-Digest: +KglPFqPwDY5gq6e4xkkIJAfjr8=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetExtendedMetaclassWidget$1.class
-SHA1-Digest: ASdpjILrNrlDRPy3oerxAZUF0q0=
+ hronizedETypedElementWidget$20.class
+SHA1-Digest: H7H1pPQq6Pef+LX6HKLHVJkcl3o=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/Startup.class
-SHA1-Digest: A9VJPM9oedz1Tt7TlnLBt2FH/PM=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/composite/Ge
+ tOrCreateFacetDialog.class
+SHA1-Digest: 34tNMaa+FiNaO8rb6fZ7mZoYFlw=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/creation/Get
+ OrCreateFiltredFacetSetWidget.class
+SHA1-Digest: 2TEiYYa9HKUBTlBlNXhs6GplNRg=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/me
+ taclass/SelectSubTypingTypeWidget$1.class
+SHA1-Digest: nS37A4Ne14XZqEN8lAhjW0RZclQ=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/edition/Edit
+ FacetOperationParameterWidget.class
+SHA1-Digest: Ml2izsjjYSXNVSJs+sshsm3D5fA=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$16.class
-SHA1-Digest: Drd8UX2Aw6P/c5kVpjjN11D1/8A=
+ hronizedENamedElementWidget$11.class
+SHA1-Digest: AjT+ChOXELpfB14JgsT4YPry1NA=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredElementCommmandWidget$1.class
-SHA1-Digest: j29zlgHW2weFexV7p5V9QIoLieE=
+ hronizedGetOrCreateFilteredFacetSetWidget$5.class
+SHA1-Digest: 2+CwS5HexKi+HwuUeIjPwd0YM+I=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Cre
+ ateFacetInFacetSetDialog.class
+SHA1-Digest: 5Py94f+ljIBRwDaeuL9UwgUrL1c=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredFacetSetWidget$7.class
-SHA1-Digest: 8N9IuaptePHvc4jbnUU4x07tLec=
+ hronizedETypedElementWidget$4.class
+SHA1-Digest: 5oMvZB+k4T1i5nGeBiefIEfbtJA=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedDerivedTypedElementWidget$10.class
+SHA1-Digest: CKkTO8pjSoSiPQqwtYD2CtfsfpY=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
  hronizedFacetWidget$8.class
 SHA1-Digest: upWA9JJBSSwjGLhl+6ED3lw42xw=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$14.class
-SHA1-Digest: BzWgQe+8mTpJm9Zka+TzG4Hf4fo=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/wizard/pag
- e/IFacetSetPropertyWizardPage.class
-SHA1-Digest: QNWUW8rxEojccuJV2m8fKjAWB1o=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/qu
- ery/GetCanBeCachedWidget.class
-SHA1-Digest: +T5SUwGVYqGSkUBiOSTUDRHW4aU=
+Name: META-INF/eclipse.inf
+SHA1-Digest: 09gN05tobgS/MdtqyTNQhOhB73M=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredElementCommmandWidget$9.class
-SHA1-Digest: dVzoJc4x0uAUks6MqUBHgvfwOSI=
+ hronizedEStructuralFeatureWidget$34.class
+SHA1-Digest: lqWB5PEZtdYsC3qPc4rPtJR7Eq8=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
+ nizedCreateFacetSetWizardPage$2.class
+SHA1-Digest: U4phQySiTt+laHmAYrDM0181XTg=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/SelectQueryTy
+ peWidget.class
+SHA1-Digest: rtMJd2zhJqwS9ND0Op+5jDpGRkg=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedGetOrCreateFilteredElementCommmandWidget$11.class
-SHA1-Digest: u3ZOWwRhn36hIhJXPFvowL1A1Pk=
+ hronizedGetExtendedMetaclassWidget$8.class
+SHA1-Digest: sxLiepZd7B4rZ2qEY18D/ciBbg0=
 
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$3.class
-SHA1-Digest: DbB/60LXKU+/jbWj78ChCEzDiUQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedETypedElementWidget$23.class
-SHA1-Digest: 7cLTC3AdyglCEIMV6FGhdXo+Xf8=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedENamedElementWidget$8.class
-SHA1-Digest: fQaPMBXdPtbrzBKU2bQ7xYLNufI=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/edition/Edit
- FacetSetDialog.class
-SHA1-Digest: gVBKHo0lWLFLmT7TWZimgtnKN9M=
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/wizard/page/Synchro
+ nizedFacetSetPropertyWizardPage$3.class
+SHA1-Digest: qzi+fktzjNG9XyJuzwOwqX6QfSc=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
- FacetDialogFactory$4.class
-SHA1-Digest: j4SmRp9iEuveEMcxzmqBspadYvE=
+ FacetDialogFactory$9.class
+SHA1-Digest: xI6Y3xME893W1S6d6q+qGGTugk0=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
+ FacetDialogFactory$1.class
+SHA1-Digest: MPnpmJQ4eRHCiJqDLBiVYuQ/1lI=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/query/GetQueryDialo
+ g$1.class
+SHA1-Digest: Ye9wqsSAUa6RXxLmXH3QwUsDynk=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedFacetWidget$9.class
+SHA1-Digest: TSXslMyEE95W1o2LzDZiNxef2ew=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
+ hronizedFacetWidget$10.class
+SHA1-Digest: yBoBm81eQlu3GzR8i5qYDxa6zmI=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/ge
+ torcreate/GetOrCreateOperationWidget.class
+SHA1-Digest: Xm5SBuY6dFWlqTcdXcc1N4eyre4=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/Synchronized
+ FacetDialogFactory$7.class
+SHA1-Digest: 1L678rwHExBwaygVCr5J+pDcG8c=
+
+Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/dialog/creation/Abs
+ tractETypedElementDialog.class
+SHA1-Digest: BjOTi6v2aW4nkAa4y24db5dgMow=
 
 Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
  operties/name/GetAttributeNameWidget.class
 SHA1-Digest: tu+o2qxX2HO6AtByq0y4IvkKU70=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/IFa
- cetWidget.class
-SHA1-Digest: cOk7H5I3vVvjGh09/7ympECACAg=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedDerivedTypedElementWidget$27.class
-SHA1-Digest: /LAlT/WkZvmUb2dEj9LclE2xqCQ=
-
-Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/sync/generated/Sync
- hronizedEStructuralFeatureWidget$25.class
-SHA1-Digest: shGjPYwhtbu3pHl6V9/Sdnlv6Uo=
 

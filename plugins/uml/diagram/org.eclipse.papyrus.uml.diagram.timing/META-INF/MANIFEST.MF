@@ -73,7 +73,8 @@ Require-Bundle: org.eclipse.emf.ecore,
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.timing.part.UMLDiagr
+ amEditorPlugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.timing.part.UMLDiagramEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.timing; singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.timing;singleton:=true
 

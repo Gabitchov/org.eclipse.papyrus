@@ -1,24 +1,4 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
- org.eclipse.papyrus.infra.gmfdiag.common.adapter,
- org.eclipse.papyrus.infra.gmfdiag.common.commands,
- org.eclipse.papyrus.infra.gmfdiag.common.commands.requests,
- org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom,
- org.eclipse.papyrus.infra.gmfdiag.common.editpart,
- org.eclipse.papyrus.infra.gmfdiag.common.editpolicies,
- org.eclipse.papyrus.infra.gmfdiag.common.figure.edge,
- org.eclipse.papyrus.infra.gmfdiag.common.figure.node,
- org.eclipse.papyrus.infra.gmfdiag.common.handler,
- org.eclipse.papyrus.infra.gmfdiag.common.helper,
- org.eclipse.papyrus.infra.gmfdiag.common.listener,
- org.eclipse.papyrus.infra.gmfdiag.common.model,
- org.eclipse.papyrus.infra.gmfdiag.common.preferences,
- org.eclipse.papyrus.infra.gmfdiag.common.providers,
- org.eclipse.papyrus.infra.gmfdiag.common.service.shape,
- org.eclipse.papyrus.infra.gmfdiag.common.snap,
- org.eclipse.papyrus.infra.gmfdiag.common.types,
- org.eclipse.papyrus.infra.gmfdiag.common.undocontext,
- org.eclipse.papyrus.infra.gmfdiag.common.utils
 Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.eclipse.emf.ecore.edit;bundle-version="2.5.0",
  org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
@@ -51,21 +31,41 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.apache.batik.xml;bundle-version="[1.6.0,1.7.0)",
  org.eclipse.gmf.tooling.runtime,
  com.ibm.icu,
- org.eclipse.papyrus.emf.facet.custom.core;bundle-version="0.4.0",
- org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.4.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.services.decoration;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.services.markerlistener;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.viewpoints.configuration;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.0.0",
- org.eclipse.papyrus.uml.tools
+ org.eclipse.papyrus.uml.tools;bundle-version="1.0.0"
+Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
+ org.eclipse.papyrus.infra.gmfdiag.common.adapter,
+ org.eclipse.papyrus.infra.gmfdiag.common.commands,
+ org.eclipse.papyrus.infra.gmfdiag.common.commands.requests,
+ org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom,
+ org.eclipse.papyrus.infra.gmfdiag.common.editpart,
+ org.eclipse.papyrus.infra.gmfdiag.common.editpolicies,
+ org.eclipse.papyrus.infra.gmfdiag.common.figure.edge,
+ org.eclipse.papyrus.infra.gmfdiag.common.figure.node,
+ org.eclipse.papyrus.infra.gmfdiag.common.handler,
+ org.eclipse.papyrus.infra.gmfdiag.common.helper,
+ org.eclipse.papyrus.infra.gmfdiag.common.listener,
+ org.eclipse.papyrus.infra.gmfdiag.common.model,
+ org.eclipse.papyrus.infra.gmfdiag.common.preferences,
+ org.eclipse.papyrus.infra.gmfdiag.common.providers,
+ org.eclipse.papyrus.infra.gmfdiag.common.service.shape,
+ org.eclipse.papyrus.infra.gmfdiag.common.snap,
+ org.eclipse.papyrus.infra.gmfdiag.common.types,
+ org.eclipse.papyrus.infra.gmfdiag.common.undocontext,
+ org.eclipse.papyrus.infra.gmfdiag.common.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.common.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.common;singleto
  n:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

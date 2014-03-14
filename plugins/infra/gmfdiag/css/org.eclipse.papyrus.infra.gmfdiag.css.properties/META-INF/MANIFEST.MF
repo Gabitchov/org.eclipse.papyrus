@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.gmfdiag.css.properties.creation,
+ org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding,
+ org.eclipse.papyrus.infra.gmfdiag.css.properties.provider
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.views.properties;bundle-version="1.0.0",
@@ -19,18 +22,15 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.css.model;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
- org.eclipse.papyrus.emf.facet.custom.core;bundle-version="0.4.0",
- org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.4.0"
-Export-Package: org.eclipse.papyrus.infra.gmfdiag.css.properties.creation,
- org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding,
- org.eclipse.papyrus.infra.gmfdiag.css.properties.provider
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: CSS Properties (Incubation)
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.properties.Act
  ivator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.properties;
  singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

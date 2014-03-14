@@ -1,18 +1,22 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.widgets
-Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.emf.facet.widgets.internal.Activator
-Bundle-Vendor: %Bundle-Vendor
+Export-Package: org.eclipse.papyrus.emf.facet.widgets.internal;x-frien
+ ds:="org.eclipse.papyrus.emf.facet.widgets.nattable,org.eclipse.papyr
+ us.emf.facet.widgets.celleditors"
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;bundle-version="2.6.0",
  org.eclipse.emf.edit;bundle-version="2.6.0",
  org.eclipse.emf.edit.ui;bundle-version="2.6.0",
- org.eclipse.papyrus.emf.facet.util.core;bundle-version="0.1.0",
- org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.2.0",
- org.eclipse.papyrus.emf.facet.custom.core;bundle-version="0.2.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+ org.eclipse.papyrus.emf.facet.util.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0"
+Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.emf.facet.widgets.internal;x-friends:="org.eclipse.papyrus.emf.facet.widgets.nattable,org.eclipse.papyrus.emf.facet.widgets.celleditors"
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Activator: org.eclipse.papyrus.emf.facet.widgets.internal.Activ
+ ator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.widgets
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

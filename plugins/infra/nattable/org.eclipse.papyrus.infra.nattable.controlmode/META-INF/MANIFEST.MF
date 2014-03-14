@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.nattable.controlmode,
+ org.eclipse.papyrus.infra.nattable.controlmode.commands,
+ org.eclipse.papyrus.infra.nattable.controlmode.helpers
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
@@ -12,16 +15,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.nattable.common;bundle-version="1.0.0"
-Export-Package: org.eclipse.papyrus.infra.nattable.controlmode,
- org.eclipse.papyrus.infra.nattable.controlmode.commands,
- org.eclipse.papyrus.infra.nattable.controlmode.helpers
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.controlmode.Activ
  ator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.controlmode;si
  ngleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

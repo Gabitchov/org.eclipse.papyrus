@@ -1,4 +1,8 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.customization.properties.editor,
+ org.eclipse.papyrus.customization.properties.modelelement,
+ org.eclipse.papyrus.customization.properties.providers,
+ org.eclipse.papyrus.customization.properties.storage.actions
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.6.0",
  org.eclipse.core.databinding.observable;bundle-version="1.3.0",
@@ -15,22 +19,18 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.constraints;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
- org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.4.0",
- org.eclipse.papyrus.emf.facet.custom.core;bundle-version="0.4.0",
- org.eclipse.papyrus.emf.facet.query.java.core
-Export-Package: org.eclipse.papyrus.customization.properties.editor,
- org.eclipse.papyrus.customization.properties.modelelement,
- org.eclipse.papyrus.customization.properties.providers,
- org.eclipse.papyrus.customization.properties.storage.actions
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.query.java.core;bundle-version="1.0.0"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.customization.properties.Activat
  or
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.customization.properties;sing
  leton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

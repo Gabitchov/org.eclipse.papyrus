@@ -11,6 +11,10 @@ Export-Package: org.eclipse.papyrus.views.modelexplorer,
  org.eclipse.papyrus.views.modelexplorer.matching,
  org.eclipse.papyrus.views.modelexplorer.preferences,
  org.eclipse.papyrus.views.modelexplorer.queries
+Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.navigator;bundle-version="3.4.0",
@@ -42,26 +46,22 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.tools;bundle-version="1.0.0",
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0",
- org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.4.0",
- org.eclipse.papyrus.emf.facet.custom.metamodel,
- org.eclipse.papyrus.emf.facet.util.ui;bundle-version="0.4.0",
- org.eclipse.papyrus.emf.facet.query.java.core,
- org.eclipse.papyrus.emf.facet.custom.core,
- org.eclipse.papyrus.emf.facet.util.emf.ui;bundle-version="0.4.0",
- org.eclipse.papyrus.emf.facet.efacet.core,
- org.eclipse.papyrus.emf.facet.efacet,
- org.eclipse.papyrus.emf.facet.efacet.metamodel,
- org.eclipse.papyrus.emf.facet.util.emf.core,
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.util.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.query.java.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.util.emf.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.efacet.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.efacet;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.util.emf.core;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Localization: plugin
-Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.Activator
 Bundle-ManifestVersion: 2
+Import-Package: org.eclipse.papyrus.emf.facet.custom.core
 Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer;singleton
  :=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Import-Package: org.eclipse.papyrus.emf.facet.custom.core
 

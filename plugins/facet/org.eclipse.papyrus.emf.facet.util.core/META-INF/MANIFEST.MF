@@ -1,15 +1,18 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.util.core;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.emf.facet.util.core.internal.Activator
-Bundle-Vendor: %Bundle-Vendor
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.core.resources;bundle-version="3.6.0",
- com.ibm.icu;bundle-version="4.2.1"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.emf.facet.util.core,
  org.eclipse.papyrus.emf.facet.util.core.internal,
  org.eclipse.papyrus.emf.facet.util.core.internal.exported
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources;bundle-version="3.6.0",
+ com.ibm.icu;bundle-version="4.2.1"
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Activator: org.eclipse.papyrus.emf.facet.util.core.internal.Act
+ ivator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.util.core;singleton
+ :=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

@@ -9,11 +9,11 @@ Require-Bundle: org.eclipse.ui,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.oclconstraintevaluation.Acti
  vator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.oclconstraintevaluation;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

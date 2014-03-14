@@ -1,18 +1,18 @@
 Manifest-Version: 1.0
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.uml2.uml;visibility:=reexport
 Export-Package: japa.parser,
  japa.parser.ast,
  javagen.umlparser,
  org.eclipse.papyrus.java.reverse.utils
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.uml2.uml;visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.java.reverse.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.java.reverse;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

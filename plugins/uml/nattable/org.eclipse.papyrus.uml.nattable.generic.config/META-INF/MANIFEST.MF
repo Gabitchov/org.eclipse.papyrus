@@ -7,9 +7,9 @@ Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: UML Generic Table Config (Incubation)
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.generic.config.Acti
  vator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.generic.config;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -28,8 +28,8 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-Vendor: %providerName
 Bundle-Version: 1.0.0.qualifier
 Eclipse-BuddyPolicy: dependent
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.emf.newchild.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.newchild;singleton:
  =true
 

@@ -1,10 +1,4 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="1.0.0",
- org.eclipse.core.runtime,
- org.eclipse.emf.ecore,
- org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.uml2.types;visibility:=reexport,
- org.eclipse.uml2.uml
 Export-Package: org.eclipse.papyrus.RobotML,
  org.eclipse.papyrus.RobotML.impl,
  org.eclipse.papyrus.RobotML.util,
@@ -32,12 +26,18 @@ Export-Package: org.eclipse.papyrus.RobotML,
  org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes,
  org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl,
  org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.util
+Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="1.0.0",
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.uml2.types;visibility:=reexport,
+ org.eclipse.uml2.uml
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %Bundle-Name
 Bundle-Localization: plugin
+Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.robotml;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

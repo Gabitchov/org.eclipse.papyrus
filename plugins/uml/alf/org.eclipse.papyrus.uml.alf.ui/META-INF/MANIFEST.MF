@@ -22,6 +22,6 @@ Bundle-Vendor: %providerName
 Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.alf.ui.internal.AlfActivator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.ui;singleton:=true
 Import-Package: org.apache.log4j
+Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.ui;singleton:=true
 

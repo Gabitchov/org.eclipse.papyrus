@@ -1,4 +1,11 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.nattable.common,
+ org.eclipse.papyrus.infra.nattable.common.editor,
+ org.eclipse.papyrus.infra.nattable.common.factory,
+ org.eclipse.papyrus.infra.nattable.common.handlers,
+ org.eclipse.papyrus.infra.nattable.common.modelresource,
+ org.eclipse.papyrus.infra.nattable.common.utils,
+ org.eclipse.papyrus.infra.nattable.common.wizards
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
@@ -16,19 +23,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.expressions,
  org.eclipse.emf.edit.ui,
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.0.0"
-Export-Package: org.eclipse.papyrus.infra.nattable.common,
- org.eclipse.papyrus.infra.nattable.common.editor,
- org.eclipse.papyrus.infra.nattable.common.factory,
- org.eclipse.papyrus.infra.nattable.common.handlers,
- org.eclipse.papyrus.infra.nattable.common.modelresource,
- org.eclipse.papyrus.infra.nattable.common.utils,
- org.eclipse.papyrus.infra.nattable.common.wizards
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.common.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.common;singlet
  on:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

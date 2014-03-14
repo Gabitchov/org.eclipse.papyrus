@@ -1,4 +1,6 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.qompass.modellibs.core,
+ org.eclipse.papyrus.qompass.modellibs.core.acceleo
 Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide;bundle-version="3.8.0",
  org.eclipse.core.runtime,
@@ -9,15 +11,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
  org.eclipse.core.resources
-Export-Package: org.eclipse.papyrus.qompass.modellibs.core,
- org.eclipse.papyrus.qompass.modellibs.core.acceleo
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.qompass.modellibs.core.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.qompass.modellibs.core;single
  ton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
