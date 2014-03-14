@@ -13,11 +13,12 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
+import org.eclipse.papyrus.junit.utils.classification.NotImplemented;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.swt.SWT;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -25,7 +26,7 @@ import org.junit.Test;
  *
  * @author cedric dumoulin
  */
-public class DiContentProviderTest {
+public class DiContentProviderTest extends AbstractPapyrusTest {
 
 	/**
 	 * The {@link DiContentProvider} under test.
@@ -198,7 +199,7 @@ public class DiContentProviderTest {
 	 * Check if the method works and DO NO send any event.
 	 */
 	@Test
-	@Ignore("This test is currently deprecated; current folder cannot be set programmatically")
+	@NotImplemented("This test is currently deprecated; current folder cannot be set programmatically")
 	public void testSetCurrentFolder() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
