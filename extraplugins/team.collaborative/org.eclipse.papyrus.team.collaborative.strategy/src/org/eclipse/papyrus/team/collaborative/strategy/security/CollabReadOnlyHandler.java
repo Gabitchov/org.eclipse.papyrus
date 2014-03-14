@@ -13,14 +13,15 @@ package org.eclipse.papyrus.team.collaborative.strategy.security;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
-//import org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler;
+import org.eclipse.papyrus.infra.core.resource.AbstractReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
-import org.eclipse.papyrus.infra.emf.readonly.AbstractReadOnlyHandler;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.team.collaborative.core.ICollaborativeManager;
 import org.eclipse.papyrus.team.collaborative.core.IExtendedURI;
 import org.eclipse.papyrus.team.collaborative.core.participants.locker.ILocker;
@@ -48,8 +49,8 @@ public class CollabReadOnlyHandler extends AbstractReadOnlyHandler {
 	 * 
 	 * @see org.eclipse.papyrus.readonly.IReadOnlyHandler#isReadOnly(org.eclipse.emf.common.util.URI[], org.eclipse.emf.edit.domain.EditingDomain)
 	 */
-	public Optional<Boolean> anyReadOnly(URI[] uris) {
-		if(uris != null && uris.length > 0 && getEditingDomain() != null) {
+	public Optional<Boolean> anyReadOnly(Set<ReadOnlyAxis> axes, URI[] uris) {
+		if(uris != null && uris.length > 0 && getEditingDomain() != null && axes.contains(ReadOnlyAxis.PERMISSION)) {
 			ArrayList<URI> urisList = Lists.newArrayList(uris);
 			Collection<IExtendedURI> extendedURICollection = Collections2.transform(urisList, CollabFunctionsFactory.getURIToExtendedURIWithContainment());
 			HashSet<IExtendedURI> extendURISet = Sets.newHashSet(extendedURICollection);
@@ -75,19 +76,20 @@ public class CollabReadOnlyHandler extends AbstractReadOnlyHandler {
 	 * 
 	 * @see org.eclipse.papyrus.readonly.IReadOnlyHandler#enableWrite(org.eclipse.emf.common.util.URI[], org.eclipse.emf.edit.domain.EditingDomain)
 	 */
-	public Optional<Boolean> makeWritable(URI[] uris) {
-		ArrayList<URI> urisList = Lists.newArrayList(uris);
-		Collection<IExtendedURI> extendedURICollection = Collections2.transform(urisList, CollabFunctionsFactory.getURIToExtendedURIWithContainment());
-		HashSet<IExtendedURI> extendedURISet = Sets.newHashSet(extendedURICollection);
-		ResourceSet resourceSet = getEditingDomain().getResourceSet();
-		if(ICollaborativeManager.INSTANCE.isCollab(extendedURISet, resourceSet)) {
-			IStatus status = LockAction.doSafeLock(resourceSet, extendedURISet, true);
-			if(!status.isOK()) {
-				return Optional.absent();
+	public Optional<Boolean> makeWritable(Set<ReadOnlyAxis> axes, URI[] uris) {
+		if(axes.contains(ReadOnlyAxis.PERMISSION)) {
+			ArrayList<URI> urisList = Lists.newArrayList(uris);
+			Collection<IExtendedURI> extendedURICollection = Collections2.transform(urisList, CollabFunctionsFactory.getURIToExtendedURIWithContainment());
+			HashSet<IExtendedURI> extendedURISet = Sets.newHashSet(extendedURICollection);
+			ResourceSet resourceSet = getEditingDomain().getResourceSet();
+			if(ICollaborativeManager.INSTANCE.isCollab(extendedURISet, resourceSet)) {
+				IStatus status = LockAction.doSafeLock(resourceSet, extendedURISet, true);
+				if(!status.isOK()) {
+					return Optional.absent();
+				}
+				return Optional.of(true);
 			}
-			return Optional.of(true);
 		}
 		return Optional.absent();
 	}
-
 }

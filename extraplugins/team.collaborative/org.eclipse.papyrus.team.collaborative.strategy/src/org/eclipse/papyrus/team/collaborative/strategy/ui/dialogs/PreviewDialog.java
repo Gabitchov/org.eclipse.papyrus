@@ -117,20 +117,20 @@ public class PreviewDialog extends TitleAreaDialog {
 //				return result.toArray(new EObject[result.size()]);
 //			}
 
-			@Override
-			public Object[] getChildren(Object parentElement) {
-				//Remove duplicate
-				Object[] superChildren = super.getChildren(parentElement);
-
-				List<Object> result = new ArrayList<Object>();
-				for(int i = 0; i < superChildren.length; i++) {
-					Object c = superChildren[i];
-					if(!result.contains(c)) {
-						result.add(c);
-					}
-				}
-				return result.toArray(new Object[result.size()]);
-			}
+//			@Override
+//			public Object[] getChildren(Object parentElement) {
+//				//Remove duplicate
+//				Object[] superChildren = super.getChildren(parentElement);
+//
+//				List<Object> result = new ArrayList<Object>();
+//				for(int i = 0; i < superChildren.length; i++) {
+//					Object c = superChildren[i];
+//					if(!result.contains(c)) {
+//						result.add(c);
+//					}
+//				}
+//				return result.toArray(new Object[result.size()]);
+//			}
 		});
 		treeViewer.setLabelProvider(labelProvider);
 
