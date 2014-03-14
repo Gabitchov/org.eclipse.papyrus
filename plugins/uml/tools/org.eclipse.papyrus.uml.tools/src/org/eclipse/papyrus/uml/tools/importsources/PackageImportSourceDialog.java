@@ -115,7 +115,7 @@ public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
 
 		setLabelProvider(labelProvider);
 
-		resourceSet = Util.getSharedResourceSet();
+		resourceSet = Util.createTemporaryResourceSet();
 	}
 
 	/**

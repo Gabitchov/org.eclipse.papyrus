@@ -23,7 +23,7 @@ import org.eclipse.papyrus.infra.emf.resource.DependencyManagementHelper;
 import org.eclipse.papyrus.junit.utils.ModelUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.papyrus.junit.utils.TestMode;
+import org.eclipse.papyrus.junit.utils.classification.NotImplemented;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.eclipse.papyrus.uml.tools.tests.Activator;
 import org.eclipse.uml2.uml.Model;
@@ -32,16 +32,15 @@ import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
 /**
  * Test case for DependencyManagementHelper
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class DependencyManagementTest extends AbstractEditorTest {
 
@@ -111,9 +110,8 @@ public class DependencyManagementTest extends AbstractEditorTest {
 	//Problem: !!Stereotypes are not references!! They are instances. After the switch, the new
 	//profile is correctly applied, but the applied Stereotypes are the ones from the initial Profile
 	@Test
+	@NotImplemented("Bug 408491 is not yet implemented")
 	public void testSwitchProfilesWithStereotypes() throws Exception {
-		Assume.assumeTrue("Bug 408491 is not yet implemented", TestMode.isStrict());
-
 		IProject project = ProjectUtils.createProject("dependencyManagement.switchProfiles");
 		PapyrusProjectUtils.copyPapyrusModel(project, getBundle(), getSourcePath(), "profiles/model");
 		PapyrusProjectUtils.copyPapyrusModel(project, getBundle(), getSourcePath(), "profiles/p1/profile1.profile");
