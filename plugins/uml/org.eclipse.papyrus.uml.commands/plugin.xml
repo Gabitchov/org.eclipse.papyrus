@@ -66,9 +66,9 @@
                          value="1">
                    </count>
                    <iterate>
-                      <adapt
-                            type="org.eclipse.uml2.uml.NamedElement">
-                      </adapt>
+                      <instanceof
+                            value="org.eclipse.emf.ecore.EObject">
+                      </instanceof>
                    </iterate>
                    <!-- we add these test to force the refresh of the Menu + to avoid handlers conflit   -->
                     <test

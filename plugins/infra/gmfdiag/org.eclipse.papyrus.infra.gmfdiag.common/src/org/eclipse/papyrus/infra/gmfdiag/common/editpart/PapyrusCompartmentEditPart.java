@@ -24,9 +24,17 @@ public abstract class PapyrusCompartmentEditPart extends CompartmentEditPart {
 
 	@Override
 	public boolean isSelectable() {
-		return false;
+		return super.isSelectable();
 	}
 
+	/**
+	 * Provide access to isSelectable operation from super class, allows sub-classes to restore original behavior
+	 * @return
+	 */
+	public boolean isSelectableOrig() {
+		return super.isSelectable();
+	}
+	
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();

@@ -43,6 +43,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.EditorNameInitializer;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
@@ -250,13 +251,11 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 				final Iterator<?> it = structuredSelection.iterator();
 				while(it.hasNext()) {
 					final Object object = it.next();
-					if(object instanceof IAdaptable) {
-						final EObject currentEObject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
+						final EObject currentEObject = EMFHelper.getEObject(object);
 
 						if(currentEObject != null) {
 							selectedElements.add(currentEObject);
 						}
-					}
 
 				}
 			}

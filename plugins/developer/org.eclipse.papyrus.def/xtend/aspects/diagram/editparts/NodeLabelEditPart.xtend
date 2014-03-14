@@ -25,7 +25,7 @@ import xpt.Common
 
 	@Inject impl.diagram.editparts.NodeLabelEditPart xptNodeLabelEditPart;
 
-
+override implementsList(GenNodeLabel it)'''implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit'''
 
 //BEGIN: PapyrusGenCode
 //Definition of the inheritance

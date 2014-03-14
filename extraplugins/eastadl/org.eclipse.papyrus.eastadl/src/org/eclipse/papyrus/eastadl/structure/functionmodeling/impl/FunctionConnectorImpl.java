@@ -42,13 +42,13 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionConnectorImpl#getPort <em>Port</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionConnectorImpl#getBase_Connector <em>Base Connector</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionConnectorImpl#getPort1_path <em>Port1 path</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionConnectorImpl#getPort2_path <em>Port2 path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionConnectorImpl#getPort <em>Port</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionConnectorImpl#getBase_Connector <em>Base Connector</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionConnectorImpl#getPort1_path <em>Port1 path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionConnectorImpl#getPort2_path <em>Port2 path</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FunctionConnectorImpl extends EAElementImpl implements FunctionConnector {
@@ -57,6 +57,7 @@ public class FunctionConnectorImpl extends EAElementImpl implements FunctionConn
 	 * The cached value of the '{@link #getBase_Connector() <em>Base Connector</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Connector()
 	 * @generated
 	 * @ordered
@@ -67,6 +68,7 @@ public class FunctionConnectorImpl extends EAElementImpl implements FunctionConn
 	 * The cached value of the '{@link #getPort1_path() <em>Port1 path</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPort1_path()
 	 * @generated
 	 * @ordered
@@ -77,6 +79,7 @@ public class FunctionConnectorImpl extends EAElementImpl implements FunctionConn
 	 * The cached value of the '{@link #getPort2_path() <em>Port2 path</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPort2_path()
 	 * @generated
 	 * @ordered
@@ -85,6 +88,7 @@ public class FunctionConnectorImpl extends EAElementImpl implements FunctionConn
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FunctionConnectorImpl() {
@@ -93,68 +97,73 @@ public class FunctionConnectorImpl extends EAElementImpl implements FunctionConn
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT:
-				return getPort();
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__BASE_CONNECTOR:
-				if (resolve) return getBase_Connector();
-				return basicGetBase_Connector();
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT1_PATH:
-				return getPort1_path();
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT2_PATH:
-				return getPort2_path();
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT:
+			return getPort();
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__BASE_CONNECTOR:
+			if(resolve)
+				return getBase_Connector();
+			return basicGetBase_Connector();
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT1_PATH:
+			return getPort1_path();
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT2_PATH:
+			return getPort2_path();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT:
-				return !getPort().isEmpty();
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__BASE_CONNECTOR:
-				return base_Connector != null;
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT1_PATH:
-				return port1_path != null && !port1_path.isEmpty();
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT2_PATH:
-				return port2_path != null && !port2_path.isEmpty();
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT:
+			return !getPort().isEmpty();
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__BASE_CONNECTOR:
+			return base_Connector != null;
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT1_PATH:
+			return port1_path != null && !port1_path.isEmpty();
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT2_PATH:
+			return port2_path != null && !port2_path.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__BASE_CONNECTOR:
-				setBase_Connector((Connector)newValue);
-				return;
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT1_PATH:
-				getPort1_path().clear();
-				getPort1_path().addAll((Collection<? extends FunctionPrototype>)newValue);
-				return;
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT2_PATH:
-				getPort2_path().clear();
-				getPort2_path().addAll((Collection<? extends FunctionPrototype>)newValue);
-				return;
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__BASE_CONNECTOR:
+			setBase_Connector((Connector)newValue);
+			return;
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT1_PATH:
+			getPort1_path().clear();
+			getPort1_path().addAll((Collection<? extends FunctionPrototype>)newValue);
+			return;
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT2_PATH:
+			getPort2_path().clear();
+			getPort2_path().addAll((Collection<? extends FunctionPrototype>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,20 +173,21 @@ public class FunctionConnectorImpl extends EAElementImpl implements FunctionConn
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__BASE_CONNECTOR:
-				setBase_Connector((Connector)null);
-				return;
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT1_PATH:
-				getPort1_path().clear();
-				return;
-			case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT2_PATH:
-				getPort2_path().clear();
-				return;
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__BASE_CONNECTOR:
+			setBase_Connector((Connector)null);
+			return;
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT1_PATH:
+			getPort1_path().clear();
+			return;
+		case FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT2_PATH:
+			getPort2_path().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,14 +227,15 @@ public class FunctionConnectorImpl extends EAElementImpl implements FunctionConn
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Connector getBase_Connector() {
-		if (base_Connector != null && base_Connector.eIsProxy()) {
+		if(base_Connector != null && base_Connector.eIsProxy()) {
 			InternalEObject oldBase_Connector = (InternalEObject)base_Connector;
 			base_Connector = (Connector)eResolveProxy(oldBase_Connector);
-			if (base_Connector != oldBase_Connector) {
-				if (eNotificationRequired())
+			if(base_Connector != oldBase_Connector) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionmodelingPackage.FUNCTION_CONNECTOR__BASE_CONNECTOR, oldBase_Connector, base_Connector));
 			}
 		}
@@ -234,6 +245,7 @@ public class FunctionConnectorImpl extends EAElementImpl implements FunctionConn
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Connector basicGetBase_Connector() {
@@ -243,22 +255,24 @@ public class FunctionConnectorImpl extends EAElementImpl implements FunctionConn
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Connector(Connector newBase_Connector) {
 		Connector oldBase_Connector = base_Connector;
 		base_Connector = newBase_Connector;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FunctionmodelingPackage.FUNCTION_CONNECTOR__BASE_CONNECTOR, oldBase_Connector, base_Connector));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<FunctionPrototype> getPort1_path() {
-		if (port1_path == null) {
+		if(port1_path == null) {
 			port1_path = new EObjectResolvingEList<FunctionPrototype>(FunctionPrototype.class, this, FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT1_PATH);
 		}
 		return port1_path;
@@ -267,10 +281,11 @@ public class FunctionConnectorImpl extends EAElementImpl implements FunctionConn
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<FunctionPrototype> getPort2_path() {
-		if (port2_path == null) {
+		if(port2_path == null) {
 			port2_path = new EObjectResolvingEList<FunctionPrototype>(FunctionPrototype.class, this, FunctionmodelingPackage.FUNCTION_CONNECTOR__PORT2_PATH);
 		}
 		return port2_path;

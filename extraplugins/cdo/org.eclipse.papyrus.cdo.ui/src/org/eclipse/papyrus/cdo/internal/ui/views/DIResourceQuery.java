@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.views;
 
@@ -26,6 +28,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
+import org.eclipse.emf.cdo.eresource.EresourcePackage;
 import org.eclipse.emf.cdo.view.CDOQuery;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
@@ -59,6 +62,8 @@ public class DIResourceQuery {
 
 	private final StructuredViewer viewer;
 
+	private final CDOQuery legacyQuery;
+
 	private final CDOQuery query;
 
 	private final Job queryJob = new QueryJob();
@@ -71,9 +76,19 @@ public class DIResourceQuery {
 		super();
 
 		this.viewer = viewer;
-		this.query = view.createQuery("ocl", //$NON-NLS-1$
-			"SashWindowsMngr.allInstances()->collect(oclAsType(ecore::EObject).eResource())", //$NON-NLS-1$
+
+		// Query for all SashWindowsMngr instances (legacy DI models, definitely accurate) and
+		// all resources named *.di that are empty (new-style DI models)
+		this.legacyQuery = view.createQuery("ocl", //$NON-NLS-1$
+			"SashWindowsMngr.allInstances()->collect(oclAsType(ecore::EObject).eResource()).oclAsType(eresource::CDOResource)->union(" + //$NON-NLS-1$
+			"eresource::CDOResource.allInstances()->select(uRI.toString().endsWith('.di') and contents->isEmpty()))", //$NON-NLS-1$
 			DiPackage.Literals.SASH_MODEL);
+
+		// Query for new-style models only, used when the repository does not know the DiPackage
+		// (because it contains no legacy models)
+		this.query = view.createQuery("ocl", //$NON-NLS-1$
+			"eresource::CDOResource.allInstances()->select(uRI.toString().endsWith('.di') and contents->isEmpty())", //$NON-NLS-1$
+			EresourcePackage.Literals.CDO_RESOURCE);
 
 		view.addListener(cdoViewListener);
 		viewer.getControl().addDisposeListener(createViewerDisposeListener());
@@ -184,9 +199,7 @@ public class DIResourceQuery {
 		// we cannot query for EClasses that the server doesn't know about. And,
 		// if it doesn't know about an EClass, then a priori, none of its
 		// instances exist, so we don't need to run the query
-		if(query.getView().getSession().getPackageRegistry().getPackageInfo(DiPackage.eINSTANCE) != null) {
-			queryJob.schedule();
-		}
+		queryJob.schedule();
 	}
 
 	void refresh() {
@@ -251,7 +264,7 @@ public class DIResourceQuery {
 		@Override
 		protected IStatus run(IProgressMonitor monitor) {
 			ImmutableSet.Builder<CDOResource> resultBuilder = ImmutableSet.builder();
-			List<CDOResource> rawResult = query.getResult(CDOResource.class);
+			List<CDOResource> rawResult = hasLegacyModels() ? legacyQuery.getResult(CDOResource.class) : query.getResult(CDOResource.class);
 
 			// don't use an iterator because it won't be able to advance
 			// past a resource proxy that cannot be resolved
@@ -287,6 +300,10 @@ public class DIResourceQuery {
 			}
 
 			return Status.OK_STATUS;
+		}
+
+		private boolean hasLegacyModels() {
+			return query.getView().getSession().getPackageRegistry().getPackageInfo(DiPackage.eINSTANCE) != null;
 		}
 
 		private boolean isContained(CDOResource resource) {

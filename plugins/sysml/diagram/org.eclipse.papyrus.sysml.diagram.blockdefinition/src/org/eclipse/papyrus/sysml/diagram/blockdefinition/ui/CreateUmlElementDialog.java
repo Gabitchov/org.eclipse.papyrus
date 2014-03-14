@@ -205,7 +205,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 		int max = 0;
 		do {
 
-			ArrayList<?> allInterface = Util.getInstancesFilteredByType(pack, Interface.class, null);
+			List<Interface> allInterface = Util.getInstancesFilteredByType(pack, Interface.class, null);
 			for(Object object : allInterface) {
 				String name = NamedElementUtil.getName((NamedElement)object);
 				if(name != null && name.startsWith(type)) {

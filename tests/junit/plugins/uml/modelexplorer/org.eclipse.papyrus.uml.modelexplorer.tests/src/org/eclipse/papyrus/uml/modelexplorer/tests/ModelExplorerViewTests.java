@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -156,6 +156,9 @@ public class ModelExplorerViewTests extends AbstractHandlerTest {
 		final int size = importedPackage.size();
 		Assert.assertTrue(size != 0);//to be sure that the tested model is correct
 		for(NamedElement current : importedPackage) {
+
+			waitForPendingMessages();
+
 			selectedElement.clear();
 			selectedElement.add(current);
 			getModelExplorerView().revealSemanticElement(selectedElement);
@@ -180,6 +183,21 @@ public class ModelExplorerViewTests extends AbstractHandlerTest {
 		}
 	}
 
+	private void waitForPendingMessages() {
+		//Run all pending tasks to refresh the ModelExplorer
+		if(Display.getCurrent() != null) {
+			while(true) {
+				try {
+					if(!Display.getCurrent().readAndDispatch()) {
+						break;
+					}
+				} catch (Throwable t) {
+					Activator.log.error(t);
+				}
+			}
+		}
+	}
+
 	@Test
 	public void revealSemanticElement_selectImportedPackageList() {
 		final List<EObject> selectedElement = new ArrayList<EObject>();
@@ -187,6 +205,10 @@ public class ModelExplorerViewTests extends AbstractHandlerTest {
 		final EList<Package> importedPackage = pack.getImportedPackages();
 		final int size = importedPackage.size();
 		Assert.assertNotSame(0, size);//to be sure that the tested model is correct
+
+		//Run all pending tasks to refresh the ModelExplorer
+		waitForPendingMessages();
+
 		selectedElement.addAll(importedPackage);
 		getModelExplorerView().revealSemanticElement(selectedElement);
 		RunnableWithResult<IWorkbenchPart> activePartRunnable;

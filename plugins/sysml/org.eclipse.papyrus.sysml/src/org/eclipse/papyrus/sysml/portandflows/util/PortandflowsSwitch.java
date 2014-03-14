@@ -21,12 +21,6 @@ import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.ItemFlow;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
-import org.eclipse.uml2.uml.InformationFlow;
-import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -71,10 +65,7 @@ public class PortandflowsSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected boolean isSwitchFor(EPackage ePackage) {
-		/**
-		 * ePackage == UMLPackage.eINSTANCE in order to accept UML element
-		 */
-		return ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE;
+		return ePackage == modelPackage;
 	}
 
 	/**
@@ -159,122 +150,6 @@ public class PortandflowsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Tell if the Port is a FlowPort implementation
-	 * 
-	 * @param Port
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isFlowPortFromPort(Port port_) {
-		if(UMLUtil.getStereotypeApplication(port_, FlowPort.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>FlowPort</em>' from Port object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>FlowPort</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePortStereotypedByFlowPort(Port port_) {
-		return null;
-	}
-
-	/**
-	 * Tell if the Property is a FlowProperty implementation
-	 * 
-	 * @param Property
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isFlowPropertyFromProperty(Property property_) {
-		if(UMLUtil.getStereotypeApplication(property_, FlowProperty.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>FlowProperty</em>' from Property object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>FlowProperty</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePropertyStereotypedByFlowProperty(Property property_) {
-		return null;
-	}
-
-	/**
-	 * Tell if the Interface is a FlowSpecification implementation
-	 * 
-	 * @param Interface
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isFlowSpecificationFromInterface(Interface interface_) {
-		if(UMLUtil.getStereotypeApplication(interface_, FlowSpecification.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>FlowSpecification</em>' from Interface object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>FlowSpecification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInterfaceStereotypedByFlowSpecification(Interface interface_) {
-		return null;
-	}
-
-	/**
-	 * Tell if the InformationFlow is a ItemFlow implementation
-	 * 
-	 * @param InformationFlow
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isItemFlowFromInformationFlow(InformationFlow informationFlow_) {
-		if(UMLUtil.getStereotypeApplication(informationFlow_, ItemFlow.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>ItemFlow</em>' from InformationFlow object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>ItemFlow</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInformationFlowStereotypedByItemFlow(InformationFlow informationFlow_) {
-		return null;
-	}
-
-	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -284,136 +159,41 @@ public class PortandflowsSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		if(theEObject.eClass().getEPackage() == UMLPackage.eINSTANCE) {
-			switch(classifierID) {
-
-
-
-
-
-			case UMLPackage.INFORMATION_FLOW:
-			{
-				InformationFlow umlElement = (InformationFlow)theEObject;
-				T result;
-
-				result = caseInformationFlowStereotypedByItemFlow(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-				return null;
-			}
-
-
-
-
-
-			case UMLPackage.INTERFACE:
-			{
-				Interface umlElement = (Interface)theEObject;
-				T result;
-
-				result = caseInterfaceStereotypedByFlowSpecification(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-				return null;
-			}
-
-
-
-
-
-			case UMLPackage.PORT:
-			{
-				Port umlElement = (Port)theEObject;
-				T result;
-
-				result = casePortStereotypedByFlowPort(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-				return null;
-			}
-
-
-
-
-
-			case UMLPackage.PROPERTY:
-			{
-				Property umlElement = (Property)theEObject;
-				T result;
-
-				result = casePropertyStereotypedByFlowProperty(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-				return null;
-			}
-
-
-
-
-			default:
-				return defaultCase(theEObject);
-			}
-
-
-
-
-		} else {
-			switch(classifierID) {
-
-			case PortandflowsPackage.FLOW_PORT:
-			{
-				FlowPort flowPort = (FlowPort)theEObject;
-				T result = caseFlowPort(flowPort);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-
-			case PortandflowsPackage.FLOW_PROPERTY:
-			{
-				FlowProperty flowProperty = (FlowProperty)theEObject;
-				T result = caseFlowProperty(flowProperty);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-
-			case PortandflowsPackage.FLOW_SPECIFICATION:
-			{
-				FlowSpecification flowSpecification = (FlowSpecification)theEObject;
-				T result = caseFlowSpecification(flowSpecification);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-
-			case PortandflowsPackage.ITEM_FLOW:
-			{
-				ItemFlow itemFlow = (ItemFlow)theEObject;
-				T result = caseItemFlow(itemFlow);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-			default:
-				return defaultCase(theEObject);
-			}
+		switch(classifierID) {
+		case PortandflowsPackage.FLOW_PORT:
+		{
+			FlowPort flowPort = (FlowPort)theEObject;
+			T result = caseFlowPort(flowPort);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case PortandflowsPackage.FLOW_PROPERTY:
+		{
+			FlowProperty flowProperty = (FlowProperty)theEObject;
+			T result = caseFlowProperty(flowProperty);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case PortandflowsPackage.FLOW_SPECIFICATION:
+		{
+			FlowSpecification flowSpecification = (FlowSpecification)theEObject;
+			T result = caseFlowSpecification(flowSpecification);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case PortandflowsPackage.ITEM_FLOW:
+		{
+			ItemFlow itemFlow = (ItemFlow)theEObject;
+			T result = caseItemFlow(itemFlow);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

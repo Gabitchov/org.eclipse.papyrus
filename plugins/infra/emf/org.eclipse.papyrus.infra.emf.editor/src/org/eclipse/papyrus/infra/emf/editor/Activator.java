@@ -1,6 +1,5 @@
 package org.eclipse.papyrus.infra.emf.editor;
 
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -16,7 +15,7 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 
-	private CustomizationManager fCustomizationManager;
+//	private CustomizationManager fCustomizationManager;
 
 	public static LogHelper log;
 
@@ -58,18 +57,18 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
-	/**
-	 * 
-	 * @return the customization manager in charge to adapt element in modisco
-	 */
-	public CustomizationManager getCustomizationManager() {
-		return org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager();
-		//		if(this.fCustomizationManager == null) {
-		//			this.fCustomizationManager = new CustomizationManager();
-		//			init(this.fCustomizationManager);
-		//		}
-		//		return this.fCustomizationManager;
-	}
+//	/**
+//	 * 
+//	 * @return the customization manager in charge to adapt element in modisco
+//	 */
+//	public CustomizationManager getCustomizationManager() {
+//		return org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager();
+//		//		if(this.fCustomizationManager == null) {
+//		//			this.fCustomizationManager = new CustomizationManager();
+//		//			init(this.fCustomizationManager);
+//		//		}
+//		//		return this.fCustomizationManager;
+//	}
 
 	//	private void init(final CustomizationManager customizationManager) {
 	//		customizationManager.setShowContainer(false);

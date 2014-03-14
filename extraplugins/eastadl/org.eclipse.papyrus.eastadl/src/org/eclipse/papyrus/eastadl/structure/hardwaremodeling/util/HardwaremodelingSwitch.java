@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.papyrus.eastadl.infrastructure.elements.Context;
 import org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement;
+import org.eclipse.papyrus.eastadl.structure.hardwaremodeling.*;
 import org.eclipse.papyrus.eastadl.structure.hardwaremodeling.Actuator;
 import org.eclipse.papyrus.eastadl.structure.hardwaremodeling.AllocationTarget;
 import org.eclipse.papyrus.eastadl.structure.hardwaremodeling.CommunicationHardwarePin;
@@ -40,21 +41,23 @@ import org.eclipse.papyrus.eastadl.structure.hardwaremodeling.Sensor;
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
- * It supports the call {@link #doSwitch(EObject) doSwitch(object)}
- * to invoke the <code>caseXXX</code> method for each class of the model,
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object
  * and proceeding up the inheritance hierarchy
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwaremodelingPackage
  * @generated
  */
 public class HardwaremodelingSwitch<T> extends Switch<T> {
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static HardwaremodelingPackage modelPackage;
@@ -63,10 +66,11 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public HardwaremodelingSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = HardwaremodelingPackage.eINSTANCE;
 		}
 	}
@@ -75,6 +79,7 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @parameter ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
@@ -90,7 +95,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Actuator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -105,7 +112,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Allocation Target</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -120,7 +129,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>IO Hardware Pin</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -135,7 +146,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Communication Hardware Pin</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -150,7 +163,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Context</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -165,7 +180,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Hardware Component Prototype</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -180,7 +197,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Hardware Component Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -195,7 +214,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EA Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -210,7 +231,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Hardware Connector</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -225,7 +248,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Hardware Pin</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -240,7 +265,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Hardware Pin Group</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -255,7 +282,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Logical Bus</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -270,7 +299,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -285,7 +316,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Power Hardware Pin</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -300,7 +333,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Power Supply</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -315,7 +350,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Sensor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -330,7 +367,9 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -344,125 +383,183 @@ public class HardwaremodelingSwitch<T> extends Switch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-			case HardwaremodelingPackage.HARDWARE_CONNECTOR: {
-				HardwareConnector hardwareConnector = (HardwareConnector)theEObject;
-				T result = caseHardwareConnector(hardwareConnector);
-				if (result == null) result = caseEAElement(hardwareConnector);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case HardwaremodelingPackage.HARDWARE_PIN: {
-				HardwarePin hardwarePin = (HardwarePin)theEObject;
-				T result = caseHardwarePin(hardwarePin);
-				if (result == null) result = caseEAElement(hardwarePin);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case HardwaremodelingPackage.HARDWARE_COMPONENT_PROTOTYPE: {
-				HardwareComponentPrototype hardwareComponentPrototype = (HardwareComponentPrototype)theEObject;
-				T result = caseHardwareComponentPrototype(hardwareComponentPrototype);
-				if (result == null) result = caseAllocationTarget(hardwareComponentPrototype);
-				if (result == null) result = caseEAElement(hardwareComponentPrototype);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case HardwaremodelingPackage.ALLOCATION_TARGET: {
-				AllocationTarget allocationTarget = (AllocationTarget)theEObject;
-				T result = caseAllocationTarget(allocationTarget);
-				if (result == null) result = caseEAElement(allocationTarget);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case HardwaremodelingPackage.IO_HARDWARE_PIN: {
-				IOHardwarePin ioHardwarePin = (IOHardwarePin)theEObject;
-				T result = caseIOHardwarePin(ioHardwarePin);
-				if (result == null) result = caseHardwarePin(ioHardwarePin);
-				if (result == null) result = caseEAElement(ioHardwarePin);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case HardwaremodelingPackage.POWER_HARDWARE_PIN: {
-				PowerHardwarePin powerHardwarePin = (PowerHardwarePin)theEObject;
-				T result = casePowerHardwarePin(powerHardwarePin);
-				if (result == null) result = caseHardwarePin(powerHardwarePin);
-				if (result == null) result = caseEAElement(powerHardwarePin);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case HardwaremodelingPackage.COMMUNICATION_HARDWARE_PIN: {
-				CommunicationHardwarePin communicationHardwarePin = (CommunicationHardwarePin)theEObject;
-				T result = caseCommunicationHardwarePin(communicationHardwarePin);
-				if (result == null) result = caseHardwarePin(communicationHardwarePin);
-				if (result == null) result = caseEAElement(communicationHardwarePin);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case HardwaremodelingPackage.NODE: {
-				Node node = (Node)theEObject;
-				T result = caseNode(node);
-				if (result == null) result = caseHardwareComponentType(node);
-				if (result == null) result = caseContext(node);
-				if (result == null) result = caseEAElement(node);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case HardwaremodelingPackage.POWER_SUPPLY: {
-				PowerSupply powerSupply = (PowerSupply)theEObject;
-				T result = casePowerSupply(powerSupply);
-				if (result == null) result = caseHardwareComponentType(powerSupply);
-				if (result == null) result = caseContext(powerSupply);
-				if (result == null) result = caseEAElement(powerSupply);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case HardwaremodelingPackage.SENSOR: {
-				Sensor sensor = (Sensor)theEObject;
-				T result = caseSensor(sensor);
-				if (result == null) result = caseHardwareComponentType(sensor);
-				if (result == null) result = caseContext(sensor);
-				if (result == null) result = caseEAElement(sensor);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case HardwaremodelingPackage.ACTUATOR: {
-				Actuator actuator = (Actuator)theEObject;
-				T result = caseActuator(actuator);
-				if (result == null) result = caseHardwareComponentType(actuator);
-				if (result == null) result = caseContext(actuator);
-				if (result == null) result = caseEAElement(actuator);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case HardwaremodelingPackage.LOGICAL_BUS: {
-				LogicalBus logicalBus = (LogicalBus)theEObject;
-				T result = caseLogicalBus(logicalBus);
-				if (result == null) result = caseAllocationTarget(logicalBus);
-				if (result == null) result = caseEAElement(logicalBus);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP: {
-				HardwarePinGroup hardwarePinGroup = (HardwarePinGroup)theEObject;
-				T result = caseHardwarePinGroup(hardwarePinGroup);
-				if (result == null) result = caseEAElement(hardwarePinGroup);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case HardwaremodelingPackage.HARDWARE_COMPONENT_TYPE: {
-				HardwareComponentType hardwareComponentType = (HardwareComponentType)theEObject;
-				T result = caseHardwareComponentType(hardwareComponentType);
-				if (result == null) result = caseContext(hardwareComponentType);
-				if (result == null) result = caseEAElement(hardwareComponentType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		switch(classifierID) {
+		case HardwaremodelingPackage.HARDWARE_CONNECTOR:
+		{
+			HardwareConnector hardwareConnector = (HardwareConnector)theEObject;
+			T result = caseHardwareConnector(hardwareConnector);
+			if(result == null)
+				result = caseEAElement(hardwareConnector);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case HardwaremodelingPackage.HARDWARE_PIN:
+		{
+			HardwarePin hardwarePin = (HardwarePin)theEObject;
+			T result = caseHardwarePin(hardwarePin);
+			if(result == null)
+				result = caseEAElement(hardwarePin);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case HardwaremodelingPackage.HARDWARE_COMPONENT_PROTOTYPE:
+		{
+			HardwareComponentPrototype hardwareComponentPrototype = (HardwareComponentPrototype)theEObject;
+			T result = caseHardwareComponentPrototype(hardwareComponentPrototype);
+			if(result == null)
+				result = caseAllocationTarget(hardwareComponentPrototype);
+			if(result == null)
+				result = caseEAElement(hardwareComponentPrototype);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case HardwaremodelingPackage.ALLOCATION_TARGET:
+		{
+			AllocationTarget allocationTarget = (AllocationTarget)theEObject;
+			T result = caseAllocationTarget(allocationTarget);
+			if(result == null)
+				result = caseEAElement(allocationTarget);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case HardwaremodelingPackage.IO_HARDWARE_PIN:
+		{
+			IOHardwarePin ioHardwarePin = (IOHardwarePin)theEObject;
+			T result = caseIOHardwarePin(ioHardwarePin);
+			if(result == null)
+				result = caseHardwarePin(ioHardwarePin);
+			if(result == null)
+				result = caseEAElement(ioHardwarePin);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case HardwaremodelingPackage.POWER_HARDWARE_PIN:
+		{
+			PowerHardwarePin powerHardwarePin = (PowerHardwarePin)theEObject;
+			T result = casePowerHardwarePin(powerHardwarePin);
+			if(result == null)
+				result = caseHardwarePin(powerHardwarePin);
+			if(result == null)
+				result = caseEAElement(powerHardwarePin);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case HardwaremodelingPackage.COMMUNICATION_HARDWARE_PIN:
+		{
+			CommunicationHardwarePin communicationHardwarePin = (CommunicationHardwarePin)theEObject;
+			T result = caseCommunicationHardwarePin(communicationHardwarePin);
+			if(result == null)
+				result = caseHardwarePin(communicationHardwarePin);
+			if(result == null)
+				result = caseEAElement(communicationHardwarePin);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case HardwaremodelingPackage.NODE:
+		{
+			Node node = (Node)theEObject;
+			T result = caseNode(node);
+			if(result == null)
+				result = caseHardwareComponentType(node);
+			if(result == null)
+				result = caseContext(node);
+			if(result == null)
+				result = caseEAElement(node);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case HardwaremodelingPackage.POWER_SUPPLY:
+		{
+			PowerSupply powerSupply = (PowerSupply)theEObject;
+			T result = casePowerSupply(powerSupply);
+			if(result == null)
+				result = caseHardwareComponentType(powerSupply);
+			if(result == null)
+				result = caseContext(powerSupply);
+			if(result == null)
+				result = caseEAElement(powerSupply);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case HardwaremodelingPackage.SENSOR:
+		{
+			Sensor sensor = (Sensor)theEObject;
+			T result = caseSensor(sensor);
+			if(result == null)
+				result = caseHardwareComponentType(sensor);
+			if(result == null)
+				result = caseContext(sensor);
+			if(result == null)
+				result = caseEAElement(sensor);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case HardwaremodelingPackage.ACTUATOR:
+		{
+			Actuator actuator = (Actuator)theEObject;
+			T result = caseActuator(actuator);
+			if(result == null)
+				result = caseHardwareComponentType(actuator);
+			if(result == null)
+				result = caseContext(actuator);
+			if(result == null)
+				result = caseEAElement(actuator);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case HardwaremodelingPackage.LOGICAL_BUS:
+		{
+			LogicalBus logicalBus = (LogicalBus)theEObject;
+			T result = caseLogicalBus(logicalBus);
+			if(result == null)
+				result = caseAllocationTarget(logicalBus);
+			if(result == null)
+				result = caseEAElement(logicalBus);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP:
+		{
+			HardwarePinGroup hardwarePinGroup = (HardwarePinGroup)theEObject;
+			T result = caseHardwarePinGroup(hardwarePinGroup);
+			if(result == null)
+				result = caseEAElement(hardwarePinGroup);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case HardwaremodelingPackage.HARDWARE_COMPONENT_TYPE:
+		{
+			HardwareComponentType hardwareComponentType = (HardwareComponentType)theEObject;
+			T result = caseHardwareComponentType(hardwareComponentType);
+			if(result == null)
+				result = caseContext(hardwareComponentType);
+			if(result == null)
+				result = caseEAElement(hardwareComponentType);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

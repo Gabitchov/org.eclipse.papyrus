@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -60,9 +60,9 @@ import org.junit.Test;
 /**
  * Tests the basic PageManager cases, integrated with the CoreMultiDiagramEditor
  * and a few UML Diagrams/Tables
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class PageManagerTests extends AbstractEditorIntegrationTest {
 
@@ -234,44 +234,44 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 	@Test
 	@Ignore("new papyrus table are not yet in the main build")
 	public void testAvailableAndActivePageWithNatTable() throws Exception {
-//		initModel("availableAndActivePage2", "two_tables_model");
-//		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
-//		Assert.assertEquals(2, pageManager.allPages().size());
-//		IEditorPart tableEditor = editor.getActiveEditor();
-//		Assert.assertTrue(tableEditor instanceof NatTableEditor); //TODO: The PageManager doesn't provide the getActivePage() method
-//		INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
-//		Assert.assertNotNull(manager);
-//		Assert.assertEquals("PapyrusGenericTable", manager.getTable().getTableConfiguration().getType());
-//
-//		Resource notationResource = NotationUtils.getNotationModel(editor.getServicesRegistry().getService(ModelSet.class)).getResource();
-//
-//		Table genericTable = (Table)notationResource.getContents().get(0);
-//		Table tableOfViews = (Table)notationResource.getContents().get(1);
-//
-//		TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
-//		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, tableOfViews)));
-//		tableEditor = editor.getActiveEditor();
-//		Assert.assertTrue(tableEditor instanceof NatTableEditor);
-//		manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
-//		Assert.assertNotNull(manager);
-//		Assert.assertEquals("PapyrusViewsTable", manager.getTable().getTableConfiguration().getType());
-//
-//		//FIXME: Does not work yet. See Bug 401107: [IPageManager] selectPage does not work
-//		//TODO: There should be a specific test for selectPage, with a basic and a complex model
-//		pageManager.selectPage(genericTable);
-//		tableEditor = editor.getActiveEditor();
-//		Assert.assertTrue(tableEditor instanceof NatTableEditor); //TODO: The PageManager doesn't provide the getActivePage() method
-//		manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
-//		Assert.assertNotNull(manager);
-//		Assert.assertEquals("Couldn't change the page selection", "PapyrusGenericTable", manager.getTable().getTableConfiguration().getType());
-//
-//
-//		pageManager.selectPage(tableOfViews);
-//		tableEditor = editor.getActiveEditor();
-//		Assert.assertTrue(tableEditor instanceof NatTableEditor); //TODO: The PageManager doesn't provide the getActivePage() method
-//		manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
-//		Assert.assertNotNull(manager);
-//		Assert.assertEquals("Couldn't change the page selection", "PapyrusViewsTable", manager.getTable().getTableConfiguration().getType());
+		//		initModel("availableAndActivePage2", "two_tables_model");
+		//		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
+		//		Assert.assertEquals(2, pageManager.allPages().size());
+		//		IEditorPart tableEditor = editor.getActiveEditor();
+		//		Assert.assertTrue(tableEditor instanceof NatTableEditor); //TODO: The PageManager doesn't provide the getActivePage() method
+		//		INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
+		//		Assert.assertNotNull(manager);
+		//		Assert.assertEquals("PapyrusGenericTable", manager.getTable().getTableConfiguration().getType());
+		//
+		//		Resource notationResource = NotationUtils.getNotationModel(editor.getServicesRegistry().getService(ModelSet.class)).getResource();
+		//
+		//		Table genericTable = (Table)notationResource.getContents().get(0);
+		//		Table tableOfViews = (Table)notationResource.getContents().get(1);
+		//
+		//		TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
+		//		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, tableOfViews)));
+		//		tableEditor = editor.getActiveEditor();
+		//		Assert.assertTrue(tableEditor instanceof NatTableEditor);
+		//		manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
+		//		Assert.assertNotNull(manager);
+		//		Assert.assertEquals("PapyrusViewsTable", manager.getTable().getTableConfiguration().getType());
+		//
+		//		//FIXME: Does not work yet. See Bug 401107: [IPageManager] selectPage does not work
+		//		//TODO: There should be a specific test for selectPage, with a basic and a complex model
+		//		pageManager.selectPage(genericTable);
+		//		tableEditor = editor.getActiveEditor();
+		//		Assert.assertTrue(tableEditor instanceof NatTableEditor); //TODO: The PageManager doesn't provide the getActivePage() method
+		//		manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
+		//		Assert.assertNotNull(manager);
+		//		Assert.assertEquals("Couldn't change the page selection", "PapyrusGenericTable", manager.getTable().getTableConfiguration().getType());
+		//
+		//
+		//		pageManager.selectPage(tableOfViews);
+		//		tableEditor = editor.getActiveEditor();
+		//		Assert.assertTrue(tableEditor instanceof NatTableEditor); //TODO: The PageManager doesn't provide the getActivePage() method
+		//		manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
+		//		Assert.assertNotNull(manager);
+		//		Assert.assertEquals("Couldn't change the page selection", "PapyrusViewsTable", manager.getTable().getTableConfiguration().getType());
 	}
 
 	@Test
@@ -297,7 +297,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 		final Diagram diagram = (Diagram)NotationUtils.getNotationModel(modelSet).getResource().getContents().get(0);
 		testPageDeletion(diagram, UmlClassDiagramForMultiEditor.class);
 	}
-	
+
 	/**
 	 * @author vincent lorenzo
 	 * @throws Exception
@@ -305,15 +305,15 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 	@Test
 	@Ignore("new papyrus table are not yet in the main build")
 	public void testNatTableDeletion() throws Exception {
-//		initModel("tableDeletion", "simple_uml_generic_table_model");
-//		ModelSet modelSet = getModelSet();
-//		final Table diagram = (Table)NotationUtils.getNotationModel(modelSet).getResource().getContents().get(0);
-//		testPageDeletion(diagram, NatTableEditor.class);
+		//		initModel("tableDeletion", "simple_uml_generic_table_model");
+		//		ModelSet modelSet = getModelSet();
+		//		final Table diagram = (Table)NotationUtils.getNotationModel(modelSet).getResource().getContents().get(0);
+		//		testPageDeletion(diagram, NatTableEditor.class);
 	}
 
 	//Does not work. The table creation produces two executable commands (Create Table Editor and Identity)
 	//Only Identity (which does nothing) is undoable. Undoing the table creation does nothing
-	//This is an EMF Facet Table bug, which tries to delete columns for an empty table as soon as the table is created 
+	//This is an EMF Facet Table bug, which tries to delete columns for an empty table as soon as the table is created
 	@Test
 	public void testTableCreation() throws Exception {
 		initModel("tableCreation", "empty_model", getBundle());
@@ -324,7 +324,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 		final EObject tableContext = UmlUtils.getUmlModel(modelSet).getResource().getContents().get(0);
 
-		
+
 	}
 
 
@@ -452,7 +452,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
 		final int initialSize = pageManager.allPages().size();
-		Model model = (Model)UmlUtils.getUmlModel(modelSet).getResource().getContents().get(0);
+		Model model = (Model)UmlUtils.getUmlModel(modelSet).lookupRoot();
 
 		IElementEditService provider;
 
@@ -491,7 +491,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 		Assert.assertTrue("All remaining pages should have been destroyed", pageManager.allPages().isEmpty());
 	}
-	
+
 	@Ignore("Unsupported yet")
 	@Test
 	public void testContainedTableDeletion() throws Exception {

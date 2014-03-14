@@ -19,8 +19,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist.CompletionProposalUtils;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist.CustomCompletionProposal;
 import org.eclipse.papyrus.uml.textedit.port.xtext.scoping.UmlPortScopeProvider;
 import org.eclipse.papyrus.uml.textedit.port.xtext.ui.contribution.UMLPortEditorPropertyUtil;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.ModifierSpecification;
@@ -29,6 +27,8 @@ import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.MultiplicityRule;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.PortRule;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.QualifiedName;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.TypeRule;
+import org.eclipse.papyrus.uml.xtext.integration.CompletionProposalUtils;
+import org.eclipse.papyrus.uml.xtext.integration.CustomCompletionProposal;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -59,8 +59,7 @@ public class UmlPortProposalProvider extends org.eclipse.papyrus.uml.textedit.po
 	@Override
 	public void completePortRule_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		List<Classifier> allClassifiers = new ArrayList<Classifier>();
-		Namespace namespace = (Namespace) EcoreUtil.getRootContainer(ContextElementUtil.getContextElement(model
-				.eResource()));
+		Namespace namespace = (Namespace)EcoreUtil.getRootContainer(ContextElementUtil.getContextElement(model.eResource()));
 		allClassifiers.addAll(getRecursivelyOwnedClassifiers(namespace));
 		allClassifiers.addAll(getRecursivelyImportedClassifiers(namespace));
 		for(Classifier c : allClassifiers) {
@@ -82,8 +81,7 @@ public class UmlPortProposalProvider extends org.eclipse.papyrus.uml.textedit.po
 	 */
 	@Override
 	public void completeTypeRule_Path(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		Namespace root = (Namespace) EcoreUtil
-				.getRootContainer(ContextElementUtil.getContextElement(model.eResource()));
+		Namespace root = (Namespace)EcoreUtil.getRootContainer(ContextElementUtil.getContextElement(model.eResource()));
 
 		if(root == null) {
 			return;
@@ -120,7 +118,7 @@ public class UmlPortProposalProvider extends org.eclipse.papyrus.uml.textedit.po
 	@Override
 	public void completeTypeRule_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 
-		Namespace namespace = ((Property) ContextElementUtil.getContextElement(model.eResource())).getNamespace();
+		Namespace namespace = ((Property)ContextElementUtil.getContextElement(model.eResource())).getNamespace();
 		if(model instanceof TypeRule) {
 			TypeRule typeRule = (TypeRule)model;
 			QualifiedName path = typeRule.getPath();
@@ -190,7 +188,7 @@ public class UmlPortProposalProvider extends org.eclipse.papyrus.uml.textedit.po
 
 	@Override
 	public void completeRedefinesRule_Port(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		for(Property inherited : UmlPortScopeProvider.retrieveInheritedProperties()) {
+		for(Property inherited : UmlPortScopeProvider.retrieveInheritedProperties(model)) {
 			if(inherited.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
 				String completionString = inherited.getName();
 				String displayString = UMLPortEditorPropertyUtil.getLabel(inherited);
@@ -202,7 +200,7 @@ public class UmlPortProposalProvider extends org.eclipse.papyrus.uml.textedit.po
 
 	@Override
 	public void completeSubsetsRule_Port(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		for(Property inherited : UmlPortScopeProvider.retrieveInheritedProperties()) {
+		for(Property inherited : UmlPortScopeProvider.retrieveInheritedProperties(model)) {
 			if(inherited.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
 				String completionString = inherited.getName();
 				String displayString = UMLPortEditorPropertyUtil.getLabel(inherited);

@@ -16,8 +16,6 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.papyrus.infra.emf.newchild.MenuAction;
-import org.eclipse.papyrus.infra.emf.newchild.action.ExtendedTypeAction;
-import org.eclipse.papyrus.infra.emf.newchild.util.MenuHelper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 
@@ -43,7 +41,7 @@ public class FillMenuAction implements FillElement {
 	}
 
 	public void fill(IMenuManager menuManager) {
-		MenuHelper.add(parentGroup, menuManager, new ExtendedTypeAction(selectedEObject, menuAction.getElementType(), domain));
+//		MenuHelper.add(parentGroup, menuManager, new ExtendedTypeAction(selectedEObject, menuAction.getElementType(), domain));
 	}
 
 }

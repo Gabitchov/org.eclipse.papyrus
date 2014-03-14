@@ -38,20 +38,24 @@ import org.eclipse.uml2.uml.NamedElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.userattributes.impl.UserAttributeableElementImpl#getUaValue <em>Ua Value</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.userattributes.impl.UserAttributeableElementImpl#getUaType <em>Ua Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.userattributes.impl.UserAttributeableElementImpl#getAttributedElement <em>Attributed Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.userattributes.impl.UserAttributeableElementImpl#getBase_NamedElement <em>Base Named Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.userattributes.impl.UserAttributeableElementImpl#getUaValue <em>Ua Value</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.userattributes.impl.UserAttributeableElementImpl#getUaType <em>Ua Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.userattributes.impl.UserAttributeableElementImpl#getAttributedElement <em>Attributed Element
+ * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.userattributes.impl.UserAttributeableElementImpl#getBase_NamedElement <em>Base Named Element
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class UserAttributeableElementImpl extends EObjectImpl implements UserAttributeableElement {
+
 	/**
 	 * The cached value of the '{@link #getUaValue() <em>Ua Value</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getUaValue()
 	 * @generated
 	 * @ordered
@@ -62,6 +66,7 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	 * The cached value of the '{@link #getUaType() <em>Ua Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getUaType()
 	 * @generated
 	 * @ordered
@@ -72,6 +77,7 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	 * The cached value of the '{@link #getAttributedElement() <em>Attributed Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAttributedElement()
 	 * @generated
 	 * @ordered
@@ -82,6 +88,7 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	 * The cached value of the '{@link #getBase_NamedElement() <em>Base Named Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_NamedElement()
 	 * @generated
 	 * @ordered
@@ -91,6 +98,7 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UserAttributeableElementImpl() {
@@ -100,21 +108,24 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_VALUE:
-				return getUaValue();
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_TYPE:
-				return getUaType();
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__ATTRIBUTED_ELEMENT:
-				if (resolve) return getAttributedElement();
-				return basicGetAttributedElement();
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__BASE_NAMED_ELEMENT:
-				if (resolve) return getBase_NamedElement();
-				return basicGetBase_NamedElement();
+		switch(featureID) {
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_VALUE:
+			return getUaValue();
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_TYPE:
+			return getUaType();
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__ATTRIBUTED_ELEMENT:
+			if(resolve)
+				return getAttributedElement();
+			return basicGetAttributedElement();
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__BASE_NAMED_ELEMENT:
+			if(resolve)
+				return getBase_NamedElement();
+			return basicGetBase_NamedElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,19 +133,20 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_VALUE:
-				return uaValue != null && !uaValue.isEmpty();
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_TYPE:
-				return uaType != null && !uaType.isEmpty();
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__ATTRIBUTED_ELEMENT:
-				return attributedElement != null;
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__BASE_NAMED_ELEMENT:
-				return base_NamedElement != null;
+		switch(featureID) {
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_VALUE:
+			return uaValue != null && !uaValue.isEmpty();
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_TYPE:
+			return uaType != null && !uaType.isEmpty();
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__ATTRIBUTED_ELEMENT:
+			return attributedElement != null;
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__BASE_NAMED_ELEMENT:
+			return base_NamedElement != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -142,26 +154,27 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_VALUE:
-				getUaValue().clear();
-				getUaValue().addAll((Collection<? extends UserAttributeValue>)newValue);
-				return;
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_TYPE:
-				getUaType().clear();
-				getUaType().addAll((Collection<? extends UserAttributeElementType>)newValue);
-				return;
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__ATTRIBUTED_ELEMENT:
-				setAttributedElement((NamedElement)newValue);
-				return;
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__BASE_NAMED_ELEMENT:
-				setBase_NamedElement((NamedElement)newValue);
-				return;
+		switch(featureID) {
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_VALUE:
+			getUaValue().clear();
+			getUaValue().addAll((Collection<? extends UserAttributeValue>)newValue);
+			return;
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_TYPE:
+			getUaType().clear();
+			getUaType().addAll((Collection<? extends UserAttributeElementType>)newValue);
+			return;
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__ATTRIBUTED_ELEMENT:
+			setAttributedElement((NamedElement)newValue);
+			return;
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__BASE_NAMED_ELEMENT:
+			setBase_NamedElement((NamedElement)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -169,6 +182,7 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -179,23 +193,24 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_VALUE:
-				getUaValue().clear();
-				return;
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_TYPE:
-				getUaType().clear();
-				return;
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__ATTRIBUTED_ELEMENT:
-				setAttributedElement((NamedElement)null);
-				return;
-			case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__BASE_NAMED_ELEMENT:
-				setBase_NamedElement((NamedElement)null);
-				return;
+		switch(featureID) {
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_VALUE:
+			getUaValue().clear();
+			return;
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_TYPE:
+			getUaType().clear();
+			return;
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__ATTRIBUTED_ELEMENT:
+			setAttributedElement((NamedElement)null);
+			return;
+		case UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__BASE_NAMED_ELEMENT:
+			setBase_NamedElement((NamedElement)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -203,10 +218,11 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UserAttributeElementType> getUaType() {
-		if (uaType == null) {
+		if(uaType == null) {
 			uaType = new EObjectResolvingEList<UserAttributeElementType>(UserAttributeElementType.class, this, UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_TYPE);
 		}
 		return uaType;
@@ -215,14 +231,15 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NamedElement getAttributedElement() {
-		if (attributedElement != null && attributedElement.eIsProxy()) {
+		if(attributedElement != null && attributedElement.eIsProxy()) {
 			InternalEObject oldAttributedElement = (InternalEObject)attributedElement;
 			attributedElement = (NamedElement)eResolveProxy(oldAttributedElement);
-			if (attributedElement != oldAttributedElement) {
-				if (eNotificationRequired())
+			if(attributedElement != oldAttributedElement) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__ATTRIBUTED_ELEMENT, oldAttributedElement, attributedElement));
 			}
 		}
@@ -232,6 +249,7 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NamedElement basicGetAttributedElement() {
@@ -241,26 +259,28 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAttributedElement(NamedElement newAttributedElement) {
 		NamedElement oldAttributedElement = attributedElement;
 		attributedElement = newAttributedElement;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__ATTRIBUTED_ELEMENT, oldAttributedElement, attributedElement));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NamedElement getBase_NamedElement() {
-		if (base_NamedElement != null && base_NamedElement.eIsProxy()) {
+		if(base_NamedElement != null && base_NamedElement.eIsProxy()) {
 			InternalEObject oldBase_NamedElement = (InternalEObject)base_NamedElement;
 			base_NamedElement = (NamedElement)eResolveProxy(oldBase_NamedElement);
-			if (base_NamedElement != oldBase_NamedElement) {
-				if (eNotificationRequired())
+			if(base_NamedElement != oldBase_NamedElement) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__BASE_NAMED_ELEMENT, oldBase_NamedElement, base_NamedElement));
 			}
 		}
@@ -270,6 +290,7 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NamedElement basicGetBase_NamedElement() {
@@ -279,22 +300,24 @@ public class UserAttributeableElementImpl extends EObjectImpl implements UserAtt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_NamedElement(NamedElement newBase_NamedElement) {
 		NamedElement oldBase_NamedElement = base_NamedElement;
 		base_NamedElement = newBase_NamedElement;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__BASE_NAMED_ELEMENT, oldBase_NamedElement, base_NamedElement));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UserAttributeValue> getUaValue() {
-		if (uaValue == null) {
+		if(uaValue == null) {
 			uaValue = new EObjectResolvingEList<UserAttributeValue>(UserAttributeValue.class, this, UserattributesPackage.USER_ATTRIBUTEABLE_ELEMENT__UA_VALUE);
 		}
 		return uaValue;

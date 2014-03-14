@@ -1111,31 +1111,31 @@
         </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowChangeAttribute"
             ordered="false" lowerBound="1" eType="#//structure/vehiclefeaturemodeling/DeviationPermissionKind"
-            defaultValueLiteral="YES"/>
+            defaultValueLiteral="yes"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowChangeCardinality"
             ordered="false" lowerBound="1" eType="#//structure/vehiclefeaturemodeling/DeviationPermissionKind"
-            defaultValueLiteral="YES"/>
+            defaultValueLiteral="yes"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowChangeDescription"
             ordered="false" lowerBound="1" eType="#//structure/vehiclefeaturemodeling/DeviationPermissionKind"
-            defaultValueLiteral="YES"/>
+            defaultValueLiteral="yes"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowChangeName" ordered="false"
             lowerBound="1" eType="#//structure/vehiclefeaturemodeling/DeviationPermissionKind"
-            defaultValueLiteral="YES"/>
+            defaultValueLiteral="yes"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowMove" ordered="false"
             lowerBound="1" eType="#//structure/vehiclefeaturemodeling/DeviationPermissionKind"
-            defaultValueLiteral="YES"/>
+            defaultValueLiteral="yes"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowReduction" ordered="false"
             lowerBound="1" eType="#//structure/vehiclefeaturemodeling/DeviationPermissionKind"
-            defaultValueLiteral="YES"/>
+            defaultValueLiteral="yes"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowRefinement" ordered="false"
             lowerBound="1" eType="#//structure/vehiclefeaturemodeling/DeviationPermissionKind"
-            defaultValueLiteral="YES"/>
+            defaultValueLiteral="yes"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowRegrouping" ordered="false"
             lowerBound="1" eType="#//structure/vehiclefeaturemodeling/DeviationPermissionKind"
-            defaultValueLiteral="YES"/>
+            defaultValueLiteral="yes"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowRemoval" ordered="false"
             lowerBound="1" eType="#//structure/vehiclefeaturemodeling/DeviationPermissionKind"
-            defaultValueLiteral="YES"/>
+            defaultValueLiteral="yes"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="base_DataType" ordered="false"
             unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//DataType"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
@@ -1653,7 +1653,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="base_RedefinableElement"
           ordered="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//RedefinableElement"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Refine" eSuperTypes="#//requirements/RequirementsRelationship platform:/plugin/org.eclipse.uml2.uml.profile.l2/model/L2.ecore#//Refine">
+    <eClassifiers xsi:type="ecore:EClass" name="Refine" eSuperTypes="#//requirements/RequirementsRelationship platform:/plugin/org.eclipse.uml2.uml.profile.standard/model/Standard.ecore#//Refine">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The Refine is a relationship metaclass, which signifies a dependency relationship in-between Requirements and EAElements, showing the relationship when a client EAElement refines the supplier Requirement.&#xA;&#xA;Semantics:&#xA;The Refine metaclass signifies a refined requirement/refined by relationship between a Requirement and an EAElement, where the modification of the supplier Requirement may impact the refining client EAElement. The Refine metaclass implies the semantics that the refining client EAElement is not complete, without the supplier Requirement. &#xA;&#xA;Constraints:&#xA;[1] The property refinedBy must not have the types Requirement or RequirementContainer.&#xA;&#xA;Notation:&#xA;A Refine relationship is shown as a dashed arrow between the Requirements and EAElement. The entity at the tail of the arrow (the refining EAElement) depends on the Requirement at the arrowhead (the refined Requirement).&#xA;&#xA;Extension: specializes UML2 stereotype Refine, which extends Dependency."/>
       </eAnnotations>
@@ -3036,7 +3036,7 @@
         <details key="documentation" value="The GenericConstraint denotes a property, requirement, or a validation result for the identified element of the model. The kind of GenericConstraint is described as one of the GenericConstraintKind literals.&#xA;&#xA;Example: If the attribute genericConstraintType is cableLength, the genericConstraintValue could be &quot;5 meters&quot; (value of a numerical datatype with unit &quot;meters&quot;).&#xA;&#xA;Semantics:&#xA;The GenericConstraint does not describe what is classically referred to as a design constraint but has the role of a property, requirement, or a validation result. It is a requirement if this GenericConstraint refines a Requirement (by the Refine relationship). The GenericConstraint is a validation result if it realizes a VVActualOutcome, it is an intended validation result if it realizes a VVIntendedOutcome, and in other cases it denotes a property.&#xA;&#xA;&#xA;&#xA;Extension: Class, Constraint"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="designConstraintType"
-          ordered="false" eType="#//genericconstraints/GenericConstraintKind" defaultValueLiteral=""/>
+          ordered="false" eType="#//genericconstraints/GenericConstraintKind" />
       <eStructuralFeatures xsi:type="ecore:EReference" name="base_Constraint" ordered="false"
           unique="false" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="genericConstraintValue"

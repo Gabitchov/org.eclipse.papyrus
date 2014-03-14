@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.tooling.runtime.parsers.AbstractAttributeParser;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.component.part.Messages;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 
@@ -204,7 +205,7 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	 * @generated
 	 */
 	public String getEditString(IAdaptable adapter, int flags) {
-		EObject element = (EObject)adapter.getAdapter(EObject.class);
+		EObject element =EMFHelper.getEObject(adapter);
 		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
@@ -255,7 +256,7 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	 * @generated
 	 */
 	public String getPrintString(IAdaptable adapter, int flags) {
-		EObject element = (EObject)adapter.getAdapter(EObject.class);
+		EObject element = EMFHelper.getEObject(adapter);
 		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 }

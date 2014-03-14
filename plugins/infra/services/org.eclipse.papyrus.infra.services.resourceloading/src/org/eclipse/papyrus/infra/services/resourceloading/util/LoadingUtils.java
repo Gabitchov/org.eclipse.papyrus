@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 Atos Origin.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,20 +27,16 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.util.EditPartUtilities;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.services.resourceloading.Activator;
@@ -77,8 +73,8 @@ public class LoadingUtils {
 		IProgressMonitor monitor = dialog.getProgressMonitor();
 
 		IEditorPart editor = getEditor();
-		if(editor instanceof CoreMultiDiagramEditor) {
-			CoreMultiDiagramEditor core = (CoreMultiDiagramEditor)editor;
+		if(editor instanceof IMultiDiagramEditor) {
+			IMultiDiagramEditor core = (IMultiDiagramEditor)editor;
 			try {
 				IPageManager pageMngr = core.getServicesRegistry().getService(IPageManager.class);
 				List<Object> allPages = pageMngr.allPages();
@@ -150,7 +146,7 @@ public class LoadingUtils {
 	 *        path of resources to unload without file extension
 	 */
 	public static void unloadResourcesFromModelSet(ModelSet modelSet, URI uriWithoutFileExtension) {
-		unloadResourcesFromModelSet(modelSet, uriWithoutFileExtension, true);
+		unloadResourcesFromModelSet(modelSet, uriWithoutFileExtension, false);
 	}
 
 	/**
@@ -210,12 +206,23 @@ public class LoadingUtils {
 				// (registered libraries in the model set have different URIs - e.g. due to a pathmap -
 				// although they point to the same location).
 				// TODO: Use a single detection mechanism in ResourceUpdateService and here
-				String unloadPlatformString = uriWithoutFileExtension.toPlatformString(true);
-				URIConverter uriConverter = modelSet.getURIConverter();
+				String unloadPlatformString;
+				if(uriWithoutFileExtension.isPlatform()) {
+					unloadPlatformString = uriWithoutFileExtension.toPlatformString(true);
+				} else {
+					unloadPlatformString = URI.decode(uriWithoutFileExtension.toString());
+				}
+				//URIConverter uriConverter = modelSet.getURIConverter();
 				// unload resource
 				for(Resource res : new ArrayList<Resource>(modelSet.getResources())) {
-					URI normalizedURI = uriConverter.normalize(res.getURI());
-					String platformString = normalizedURI.trimFileExtension().toPlatformString(true);
+					URI normalizedURI = res.getURI();
+					String platformString;
+					if(normalizedURI.isPlatform()) {
+						platformString = normalizedURI.trimFileExtension().toPlatformString(true);
+					} else {
+						platformString = URI.decode(normalizedURI.trimFileExtension().toString());
+					}
+
 					if((platformString != null) && platformString.equals(unloadPlatformString)) {
 						// unload this resource
 						modelSet.getResources().remove(res);
@@ -248,7 +255,13 @@ public class LoadingUtils {
 								// refresh page's diagram if needed
 								Diagram diag = ((Diagram)eobject);
 								if(pageMngr.isOpen(diag)) {
-									Object part = ((IDiagramGraphicalViewer)core.getAdapter(IDiagramGraphicalViewer.class)).getEditPartRegistry().get(diag);
+
+									IDiagramGraphicalViewer graphicalViewer = (IDiagramGraphicalViewer)core.getAdapter(IDiagramGraphicalViewer.class);
+									if(graphicalViewer == null) {
+										continue;
+									}
+
+									Object part = graphicalViewer.getEditPartRegistry().get(diag);
 									if(part instanceof GraphicalEditPart) {
 										// refresh nodes
 										for(Object child : EditPartUtilities.getAllChildren((GraphicalEditPart)part)) {

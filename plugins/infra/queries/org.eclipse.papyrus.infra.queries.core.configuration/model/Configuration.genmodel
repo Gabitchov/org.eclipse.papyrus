@@ -31,11 +31,11 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configuration.ecore#//ListParameterValue/values"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Types" ecorePackage="http://www.eclipse.org/uml2/4.0.0/Types#/">
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//Real"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//UnlimitedNatural"/>
+  <genPackages prefix="Types" ecorePackage="http://www.eclipse.org/uml2/5.0.0/Types#/">
+    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/5.0.0/Types#//Integer"/>
+    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/5.0.0/Types#//Real"/>
+    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/5.0.0/Types#//UnlimitedNatural"/>
   </genPackages>
 </genmodel:GenModel>

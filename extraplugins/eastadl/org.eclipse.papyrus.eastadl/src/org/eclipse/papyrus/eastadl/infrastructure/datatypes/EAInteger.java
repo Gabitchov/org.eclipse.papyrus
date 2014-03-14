@@ -20,28 +20,29 @@ package org.eclipse.papyrus.eastadl.infrastructure.datatypes;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>EA Integer</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.EAInteger#getMin <em>Min</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.EAInteger#getMax <em>Max</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.EAInteger#getMin <em>Min</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.EAInteger#getMax <em>Max</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.infrastructure.datatypes.DatatypesPackage#getEAInteger()
  * @model
  * @generated
  */
 public interface EAInteger extends RangeableDatatype {
+
 	/**
 	 * Returns the value of the '<em><b>Max</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Max</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Max</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Max</em>' attribute.
 	 * @see #setMax(int)
 	 * @see org.eclipse.papyrus.eastadl.infrastructure.datatypes.DatatypesPackage#getEAInteger_Max()
@@ -54,10 +55,10 @@ public interface EAInteger extends RangeableDatatype {
 	 * Returns the value of the '<em><b>Min</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Min</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Min</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Min</em>' attribute.
 	 * @see #setMin(int)
 	 * @see org.eclipse.papyrus.eastadl.infrastructure.datatypes.DatatypesPackage#getEAInteger_Min()
@@ -70,7 +71,9 @@ public interface EAInteger extends RangeableDatatype {
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.EAInteger#getMax <em>Max</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Max</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Max</em>' attribute.
 	 * @see #getMax()
 	 * @generated
 	 */
@@ -80,7 +83,9 @@ public interface EAInteger extends RangeableDatatype {
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.EAInteger#getMin <em>Min</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Min</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Min</em>' attribute.
 	 * @see #getMin()
 	 * @generated
 	 */

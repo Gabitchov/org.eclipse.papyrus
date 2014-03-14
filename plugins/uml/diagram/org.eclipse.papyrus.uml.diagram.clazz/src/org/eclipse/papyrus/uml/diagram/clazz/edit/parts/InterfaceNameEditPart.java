@@ -61,6 +61,7 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
@@ -73,16 +74,18 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
+import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Feature;
 
 /**
  * @generated
  */
-public class InterfaceNameEditPart extends PapyrusCompartmentEditPart implements ITextAwareEditPart {
+public class InterfaceNameEditPart extends PapyrusCompartmentEditPart implements ITextAwareEditPart, IControlParserForDirectEdit {
 
 	/**
 	 * @generated
@@ -379,7 +382,12 @@ public class InterfaceNameEditPart extends PapyrusCompartmentEditPart implements
 	 * @generated
 	 */
 	protected void performDirectEdit() {
-		getManager().show();
+		BusyIndicator.showWhile(Display.getDefault(), new java.lang.Runnable() {
+
+			public void run() {
+				getManager().show();
+			}
+		});
 	}
 
 	/**
@@ -429,7 +437,6 @@ public class InterfaceNameEditPart extends PapyrusCompartmentEditPart implements
 				Dialog dialog = null;
 				if (configuration instanceof ICustomDirectEditorConfiguration) {
 					setManager(((ICustomDirectEditorConfiguration) configuration).createDirectEditManager(this));
-					setParser(((ICustomDirectEditorConfiguration) configuration).createParser(this.resolveSemanticElement()));
 					initializeDirectEditManager(theRequest);
 					return;
 				} else if (configuration instanceof IPopupEditorConfiguration) {
@@ -482,10 +489,8 @@ public class InterfaceNameEditPart extends PapyrusCompartmentEditPart implements
 								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if ((request instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							DirectEditRequest editRequest = (DirectEditRequest) request;
-							performDirectEdit(editRequest.getLocation());
-						} else {
+						}
+						else {
 							performDirectEdit();
 						}
 					}

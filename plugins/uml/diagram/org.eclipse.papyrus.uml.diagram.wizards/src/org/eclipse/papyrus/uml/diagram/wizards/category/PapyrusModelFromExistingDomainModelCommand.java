@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,7 +15,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.category;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
@@ -23,7 +22,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 
@@ -43,10 +42,13 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 
 	/**
 	 * Instantiates a new papyrus model from existing domain model command.
-	 *
-	 * @param diResourceSet the di resource set
-	 * @param newURI the URI of the new model's principal resource
-	 * @param root the root
+	 * 
+	 * @param diResourceSet
+	 *        the di resource set
+	 * @param newURI
+	 *        the URI of the new model's principal resource
+	 * @param root
+	 *        the root
 	 */
 	public PapyrusModelFromExistingDomainModelCommand(ModelSet modelSet, URI newURI, EObject root) {
 		super(modelSet.getTransactionalEditingDomain());
@@ -57,16 +59,18 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 		myRoot = root;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
 	 */
 	@Override
 	protected void doExecute() {
-		IModel model = myDiResourceSet.getModel(DiModel.MODEL_ID);
+		IModel model = myDiResourceSet.getModel(SashModel.MODEL_ID);
 		model.createModel(myURIWithoutExtension);
 		model = myDiResourceSet.getModel(NotationModel.MODEL_ID);
 		model.createModel(myURIWithoutExtension);
-		// START OF WORKAROUND for #315083 
+		// START OF WORKAROUND for #315083
 		IModel umlModel = new UmlModel() {
 
 			@Override
@@ -76,16 +80,14 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 					// as resource already exists, use rs.getResource() not rs.createResource() here
 					try {
 						resource = getResourceSet().getResource(resourceURI, true);
-					}
-					catch (WrappedException e){
-						if (ModelUtils.isDegradedModeAllowed(e.getCause())){
+					} catch (WrappedException e) {
+						if(ModelUtils.isDegradedModeAllowed(e.getCause())) {
 							// in this case Papyrus can work in degraded mode
 							resource = getResourceSet().getResource(resourceURI, false);
-							if (resource == null){
-								throw e ;
+							if(resource == null) {
+								throw e;
 							}
-						}
-						else {
+						} else {
 							throw e;
 						}
 					}
@@ -95,11 +97,11 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 			};
 		};
 		myDiResourceSet.getInternal().registerModel(umlModel, true);
-		umlModel.createModel((URI) null);
+		umlModel.createModel((URI)null);
 
 		//					// call snippets to allow them to do their stuff
 		//					snippets.performStart(this);
-		// END OF WORKAROUND for #315083 
+		// END OF WORKAROUND for #315083
 	}
 
 }

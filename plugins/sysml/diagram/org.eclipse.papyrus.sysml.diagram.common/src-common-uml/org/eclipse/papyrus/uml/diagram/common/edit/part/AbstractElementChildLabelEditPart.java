@@ -7,9 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
+ *		
  *		CEA LIST - Initial API and implementation
- *		Arthur Daussy - arthur.daussy@atos.net - 395920: [Block Diagram Definition] All element contained by a block should be able to be linked to constraint or comment
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.edit.part;

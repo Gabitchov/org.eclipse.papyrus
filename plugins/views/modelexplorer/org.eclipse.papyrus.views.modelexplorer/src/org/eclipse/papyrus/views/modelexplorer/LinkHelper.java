@@ -16,14 +16,13 @@ package org.eclipse.papyrus.views.modelexplorer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForWorkbenchPage;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -77,12 +76,10 @@ public class LinkHelper implements ILinkHelper {
 							ArrayList<Object> semanticElementList = new ArrayList<Object>();
 							while(selectionIterator.hasNext()) {
 								Object currentSelection = selectionIterator.next();
-								if(currentSelection instanceof IAdaptable) {
-									Object semanticElement = ((IAdaptable)currentSelection).getAdapter(EObject.class);
+									Object semanticElement = EMFHelper.getEObject(currentSelection);
 									if(semanticElement != null) {
 										semanticElementList.add(semanticElement);
 									}
-								}
 
 							}
 							((IRevealSemanticElement)diagramEditor).revealSemanticElement(semanticElementList);

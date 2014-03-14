@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.uml.diagram.internal.ui.wizards;
 
@@ -54,6 +56,7 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 		super();
 	}
 
+	@Override
 	public boolean canHandle(IStructuredSelection initialSelection) {
 		boolean result = false;
 
@@ -115,6 +118,7 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 		return result;
 	}
 
+	@Override
 	public List<? extends IWizardPage> createPages() {
 		if(newModelPage == null) {
 			return Collections.emptyList();
@@ -152,8 +156,11 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 		}
 
 		if(isCreateFromExistingDomainModel()) {
-			URI uri = getSelectedResourceURI(selection).trimFileExtension().appendFileExtension(wizard.getDiagramFileExtension(null));
-			return new NewDiagramForExistingModelPage(selection, wizard.getModelKindName(), bus, uri.lastSegment());
+			URI uri = getSelectedResourceURI(selection);
+			if(uri != null) {
+				uri = uri.trimFileExtension().appendFileExtension(wizard.getDiagramFileExtension(null));
+				return new NewDiagramForExistingModelPage(selection, wizard.getModelKindName(), bus, uri.lastSegment());
+			}
 		}
 
 		return new NewModelPage(selection, bus, wizard.getModelKindName());
@@ -163,6 +170,7 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 		return wizard.isInitModelWizard() && ((InitModelWizard)wizard).isCreateFromExistingDomainModel();
 	}
 
+	@Override
 	public URI createNewModelURI(String categoryId) {
 		return newModelPage.createNewModelResourceURI();
 	}
@@ -172,6 +180,7 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 		if(selectProviderPart == null) {
 			selectProviderPart = new RepositorySelectionPart(PapyrusRepositoryManager.INSTANCE, bus, new Supplier<IRunnableContext>() {
 
+				@Override
 				public IRunnableContext get() {
 					return wizard.getContainer();
 				}

@@ -27,6 +27,7 @@ import java.util.TreeSet;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -421,6 +422,23 @@ public class PackageUtil {
 		return set;
 	}
 
+	/**
+	 * Return all top-level packages within a resource set.
+	 * @param element an element
+	 * @return the list of top-level packages
+	 */
+	public static List<Package> getTopLevelPackages(Element element) {
+		List<Package> topLevelPackages = new BasicEList<Package>();
+		if (element.eResource() != null) {
+			for (Resource resource : element.eResource().getResourceSet().getResources()) {
+				if ((resource.getContents().size() > 0) && (resource.getContents().get(0) instanceof Package)) {
+					topLevelPackages.add((Package) resource.getContents().get(0)); 
+				}
+			}
+		}
+		return topLevelPackages;
+	}
+	
 	/**
 	 * Returns all accessible Collaboration in the model
 	 * 

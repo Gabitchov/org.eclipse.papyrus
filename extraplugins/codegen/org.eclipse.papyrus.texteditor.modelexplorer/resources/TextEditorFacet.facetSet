@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="ASCII"?>
 <facet:FacetSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:facet="http://www.eclipse.org/EmfFacet/infra/facet/0.8.incubation" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="TextEditorFacet" nsURI="http://org.eclipse.org/papyrus/modelExplorer/TextEditorFacet" nsPrefix="TextEditorFacet">
   <eClassifiers xsi:type="facet:Facet" name="FacetTextEditorContainer" abstract="true">
-    <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+    <eSuperTypes href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
     <eStructuralFeatures xsi:type="facet:FacetReference" name="texteditors" upperBound="-1" volatile="true" unsettable="true">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/Papyrus/Text/0.10.0/texteditormodel#//TextEditorModel"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/TextEditorQuery#GetContainedTextEditors"/>
     </eStructuralFeatures>
     <conditionQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/TextEditorQuery#IsTextEditorContainer"/>
   </eClassifiers>
-  <extendedPackage href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+  <extendedPackage href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
 </facet:FacetSet>

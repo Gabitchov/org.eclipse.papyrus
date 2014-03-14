@@ -129,6 +129,12 @@ public class IncludeEditPart extends UMLConnectionNodeEditPart implements ITreeB
 			setTargetDecoration(createTargetDecoration());
 		}
 
+		@Override
+		public void resetStyle() {
+			super.resetStyle();
+			setTargetDecoration(createTargetDecoration());
+		}
+
 		/**
 		 * @generated
 		 */

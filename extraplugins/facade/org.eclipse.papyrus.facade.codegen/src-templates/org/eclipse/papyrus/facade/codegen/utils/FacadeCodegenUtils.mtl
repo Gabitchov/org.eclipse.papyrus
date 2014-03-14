@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
  CEA LIST - Initial API and implementation[/comment]
 [comment encoding = UTF-8 /]
-[module FacadeCodegenUtils('http://www.eclipse.org/emf/2002/Ecore','http://www.eclipse.org/papyrus/facademapping', 'http://www.eclipse.org/emf/2002/GenModel','http://www.eclipse.org/uml2/4.0.0/UML')/]
+[module FacadeCodegenUtils('http://www.eclipse.org/emf/2002/Ecore','http://www.eclipse.org/papyrus/facademapping', 'http://www.eclipse.org/emf/2002/GenModel','http://www.eclipse.org/uml2/5.0.0/UML')/]
 
 [query public getUMLMetaElement( facadeMetaElement : EObject,  genModel :GenModel) : String
 = invoke('org.eclipse.papyrus.facade.codegen.utils.FacadeCodegenUtils', 'getUMLMetaElement( org.eclipse.emf.ecore.EObject,org.eclipse.emf.codegen.ecore.genmodel.GenModel)', Sequence{facadeMetaElement,genModel}) 

@@ -38,7 +38,7 @@ import org.eclipse.papyrus.sysml.statemachines.StatemachinesPackage;
 import org.eclipse.papyrus.sysml.statemachines.internal.impl.StatemachinesPackageImpl;
 import org.eclipse.papyrus.sysml.usecases.UsecasesFactory;
 import org.eclipse.papyrus.sysml.usecases.UsecasesPackage;
-import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
@@ -77,7 +77,7 @@ public class UsecasesPackageImpl extends EPackageImpl implements UsecasesPackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		L2Package.eINSTANCE.eClass();
+		StandardPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		SysmlPackageImpl theSysmlPackage = (SysmlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SysmlPackage.eNS_URI) instanceof SysmlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SysmlPackage.eNS_URI) : SysmlPackage.eINSTANCE);

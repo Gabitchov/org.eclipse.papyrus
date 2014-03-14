@@ -26,13 +26,15 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.impl.EAElementImpl;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class EnumerationLiteralImpl extends EAElementImpl implements EnumerationLiteral {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EnumerationLiteralImpl() {
@@ -42,6 +44,7 @@ public class EnumerationLiteralImpl extends EAElementImpl implements Enumeration
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.eastadl.dependability.safetyrequirement.*;
 import org.eclipse.papyrus.eastadl.dependability.safetyrequirement.FunctionalSafetyConcept;
 import org.eclipse.papyrus.eastadl.dependability.safetyrequirement.SafetyGoal;
 import org.eclipse.papyrus.eastadl.dependability.safetyrequirement.SafetyrequirementFactory;
@@ -31,12 +32,15 @@ import org.eclipse.papyrus.eastadl.dependability.safetyrequirement.TechnicalSafe
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SafetyrequirementFactoryImpl extends EFactoryImpl implements SafetyrequirementFactory {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -49,16 +53,16 @@ public class SafetyrequirementFactoryImpl extends EFactoryImpl implements Safety
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static SafetyrequirementFactory init() {
 		try {
 			SafetyrequirementFactory theSafetyrequirementFactory = (SafetyrequirementFactory)EPackage.Registry.INSTANCE.getEFactory(SafetyrequirementPackage.eNS_URI);
-			if (theSafetyrequirementFactory != null) {
+			if(theSafetyrequirementFactory != null) {
 				return theSafetyrequirementFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new SafetyrequirementFactoryImpl();
@@ -68,6 +72,7 @@ public class SafetyrequirementFactoryImpl extends EFactoryImpl implements Safety
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SafetyrequirementFactoryImpl() {
@@ -77,22 +82,27 @@ public class SafetyrequirementFactoryImpl extends EFactoryImpl implements Safety
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case SafetyrequirementPackage.FUNCTIONAL_SAFETY_CONCEPT: return createFunctionalSafetyConcept();
-			case SafetyrequirementPackage.SAFETY_GOAL: return createSafetyGoal();
-			case SafetyrequirementPackage.TECHNICAL_SAFETY_CONCEPT: return createTechnicalSafetyConcept();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch(eClass.getClassifierID()) {
+		case SafetyrequirementPackage.FUNCTIONAL_SAFETY_CONCEPT:
+			return createFunctionalSafetyConcept();
+		case SafetyrequirementPackage.SAFETY_GOAL:
+			return createSafetyGoal();
+		case SafetyrequirementPackage.TECHNICAL_SAFETY_CONCEPT:
+			return createTechnicalSafetyConcept();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionalSafetyConcept createFunctionalSafetyConcept() {
@@ -103,6 +113,7 @@ public class SafetyrequirementFactoryImpl extends EFactoryImpl implements Safety
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SafetyGoal createSafetyGoal() {
@@ -113,6 +124,7 @@ public class SafetyrequirementFactoryImpl extends EFactoryImpl implements Safety
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TechnicalSafetyConcept createTechnicalSafetyConcept() {
@@ -123,6 +135,7 @@ public class SafetyrequirementFactoryImpl extends EFactoryImpl implements Safety
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SafetyrequirementPackage getSafetyrequirementPackage() {

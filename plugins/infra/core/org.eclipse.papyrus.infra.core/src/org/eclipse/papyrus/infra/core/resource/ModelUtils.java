@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.eclipse.papyrus.infra.core.resource;
 
@@ -9,11 +9,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.internal.resources.ResourceException;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.xmi.IllegalValueException;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -107,17 +104,9 @@ public class ModelUtils {
 	}
 
 	public static boolean resourceFailedOnLoad(Resource r) {
-		if(r.getErrors() != null) {
-			for(Diagnostic d : r.getErrors()) {
-				if(d instanceof WrappedException) {
-					WrappedException wrapped = (WrappedException)d;
-					if(wrapped.getCause() instanceof ResourceException && r.getContents().isEmpty()) {
-						return true;
-					}
-				}
-			}
-		}
-		return false;
+		//If the resource failed on load, but the contents is not empty, then we may try to save it
+		//(e.g. the resource didn't exist, but we'll create it during save, if possible)
+		return !r.getErrors().isEmpty() && r.getContents().isEmpty();
 	}
 
 	/**
@@ -129,7 +118,7 @@ public class ModelUtils {
 		//		L <= Empty list that will contain the sorted nodes
 		//		while there are unmarked nodes do
 		//		    select an unmarked node n
-		//		    visit(n) 
+		//		    visit(n)
 		//		function visit(node n)
 		//		    if n has a temporary mark then stop (not a DAG)
 		//		    if n is not marked (i.e. has not been visited yet) then
@@ -143,7 +132,7 @@ public class ModelUtils {
 		do {
 			List<IModel> skippedModels = new ArrayList<IModel>();
 			for(IModel model : modelsToLoad) {
-				
+
 				List<String> dependencies = model.getAfterLoadModelIdentifiers();
 				// no dependency => start
 				if(dependencies == null) {
@@ -152,6 +141,7 @@ public class ModelUtils {
 					// model has dependencies. Check if the dependencies are already inserted in the ordered list
 					Collection<IModel> startedModels = Collections2.transform(dependencies, new Function<String, IModel>() {
 
+						@Override
 						public IModel apply(String arg0) {
 							return models.get(arg0);
 						}
@@ -163,25 +153,31 @@ public class ModelUtils {
 					}
 				}
 			}
-			
+
 			//  implement here a safeguard in case no models has been added to orderedModels
 			if(!skippedModels.isEmpty() && skippedModels.size() == modelsToLoad.size()) {
-				Activator.log.error("Impossible to load models. Cycles in dependency graph for the following set of models: "+modelsToLoad, null);
+				Activator.log.error("Impossible to load models. Cycles in dependency graph for the following set of models: " + modelsToLoad, null);
 				break;
 			} else {
 				modelsToLoad = skippedModels;
 			}
-		} while(!modelsToLoad.isEmpty()); 
-		
+		} while(!modelsToLoad.isEmpty());
+
 		return orderedModels;
 	}
-	
+
 	/**
-	 * Returns the resource from the model set. If the resource is not yet in the resource set, it will create it. Once it is created, if asked, it will load it. If it is already present, it will not load it.
-	 * @param modelSet model set in which the resource should be
-	 * @param loadAfterCreation <code>true</code> if the resource should be load if it has been created
-	 * @param resourceURI the uri of the resource
-	 * @param contentType the content type identifier of the resource if it has to be created.
+	 * Returns the resource from the model set. If the resource is not yet in the resource set, it will create it. Once it is created, if asked, it
+	 * will load it. If it is already present, it will not load it.
+	 *
+	 * @param modelSet
+	 *        model set in which the resource should be
+	 * @param loadAfterCreation
+	 *        <code>true</code> if the resource should be load if it has been created
+	 * @param resourceURI
+	 *        the uri of the resource
+	 * @param contentType
+	 *        the content type identifier of the resource if it has to be created.
 	 * @return the resource found or created
 	 */
 	public static Resource getOrCreateResource(ModelSet modelSet, boolean loadAfterCreation, URI resourceURI, String contentType) {
@@ -191,10 +187,10 @@ public class ModelUtils {
 			if(loadAfterCreation) {
 				try {
 					resource.load(modelSet.getLoadOptions());
-				} catch(IOException e) {
-					// physical resource does not exists, but EMF resource itself is build.  
+				} catch (IOException e) {
+					// physical resource does not exists, but EMF resource itself is build.
 					Activator.log.debug(e.getMessage());
-				} 
+				}
 			}
 		}
 		return resource;

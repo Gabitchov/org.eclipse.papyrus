@@ -31,17 +31,19 @@ import org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwareComponentT
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.HardwareFunctionTypeImpl#getHardwareComponent <em>Hardware Component</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.HardwareFunctionTypeImpl#getHardwareComponent <em>Hardware Component</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class HardwareFunctionTypeImpl extends DesignFunctionTypeImpl implements HardwareFunctionType {
+
 	/**
 	 * The cached value of the '{@link #getHardwareComponent() <em>Hardware Component</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getHardwareComponent()
 	 * @generated
 	 * @ordered
@@ -51,6 +53,7 @@ public class HardwareFunctionTypeImpl extends DesignFunctionTypeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected HardwareFunctionTypeImpl() {
@@ -60,6 +63,7 @@ public class HardwareFunctionTypeImpl extends DesignFunctionTypeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public HardwareComponentType basicGetHardwareComponent() {
@@ -69,14 +73,16 @@ public class HardwareFunctionTypeImpl extends DesignFunctionTypeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case FunctionmodelingPackage.HARDWARE_FUNCTION_TYPE__HARDWARE_COMPONENT:
-				if (resolve) return getHardwareComponent();
-				return basicGetHardwareComponent();
+		switch(featureID) {
+		case FunctionmodelingPackage.HARDWARE_FUNCTION_TYPE__HARDWARE_COMPONENT:
+			if(resolve)
+				return getHardwareComponent();
+			return basicGetHardwareComponent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -84,13 +90,14 @@ public class HardwareFunctionTypeImpl extends DesignFunctionTypeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.HARDWARE_FUNCTION_TYPE__HARDWARE_COMPONENT:
-				return hardwareComponent != null;
+		switch(featureID) {
+		case FunctionmodelingPackage.HARDWARE_FUNCTION_TYPE__HARDWARE_COMPONENT:
+			return hardwareComponent != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -98,14 +105,15 @@ public class HardwareFunctionTypeImpl extends DesignFunctionTypeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case FunctionmodelingPackage.HARDWARE_FUNCTION_TYPE__HARDWARE_COMPONENT:
-				setHardwareComponent((HardwareComponentType)newValue);
-				return;
+		switch(featureID) {
+		case FunctionmodelingPackage.HARDWARE_FUNCTION_TYPE__HARDWARE_COMPONENT:
+			setHardwareComponent((HardwareComponentType)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -113,6 +121,7 @@ public class HardwareFunctionTypeImpl extends DesignFunctionTypeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,14 +132,15 @@ public class HardwareFunctionTypeImpl extends DesignFunctionTypeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.HARDWARE_FUNCTION_TYPE__HARDWARE_COMPONENT:
-				setHardwareComponent((HardwareComponentType)null);
-				return;
+		switch(featureID) {
+		case FunctionmodelingPackage.HARDWARE_FUNCTION_TYPE__HARDWARE_COMPONENT:
+			setHardwareComponent((HardwareComponentType)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -138,14 +148,15 @@ public class HardwareFunctionTypeImpl extends DesignFunctionTypeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public HardwareComponentType getHardwareComponent() {
-		if (hardwareComponent != null && hardwareComponent.eIsProxy()) {
+		if(hardwareComponent != null && hardwareComponent.eIsProxy()) {
 			InternalEObject oldHardwareComponent = (InternalEObject)hardwareComponent;
 			hardwareComponent = (HardwareComponentType)eResolveProxy(oldHardwareComponent);
-			if (hardwareComponent != oldHardwareComponent) {
-				if (eNotificationRequired())
+			if(hardwareComponent != oldHardwareComponent) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionmodelingPackage.HARDWARE_FUNCTION_TYPE__HARDWARE_COMPONENT, oldHardwareComponent, hardwareComponent));
 			}
 		}
@@ -155,12 +166,13 @@ public class HardwareFunctionTypeImpl extends DesignFunctionTypeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setHardwareComponent(HardwareComponentType newHardwareComponent) {
 		HardwareComponentType oldHardwareComponent = hardwareComponent;
 		hardwareComponent = newHardwareComponent;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FunctionmodelingPackage.HARDWARE_FUNCTION_TYPE__HARDWARE_COMPONENT, oldHardwareComponent, hardwareComponent));
 	}
 

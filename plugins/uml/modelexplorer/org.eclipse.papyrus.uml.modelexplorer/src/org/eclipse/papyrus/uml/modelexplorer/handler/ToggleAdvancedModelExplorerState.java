@@ -14,9 +14,10 @@
 package org.eclipse.papyrus.uml.modelexplorer.handler;
 
 import org.eclipse.core.commands.State;
-import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
-import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 
 /**
@@ -33,19 +34,28 @@ public class ToggleAdvancedModelExplorerState extends State {
 
 	@Override
 	public Boolean getValue() {
-		MetamodelView simpleUMLCustomization = CustomizationsCatalog.getInstance().getCustomization(ToggleAdvancedModelExplorerHandler.SIMPLE_UML_CUSTOMIZATION);
+		ICustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
+		ICustomizationCatalogManager customCatalog = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(customizationManager.getResourceSet());
+		Customization simpleUMLCustomization = null;
+
+		//look for SIMPLE UML Customization
+		for(Customization customization : customCatalog.getRegisteredCustomizations()) {
+			if(ToggleAdvancedModelExplorerHandler.SIMPLE_UML_CUSTOMIZATION.equals(customization.getName())){
+				simpleUMLCustomization=	customization;
+			}
+		}
+
 		if(simpleUMLCustomization == null) {
 			//The SimpleUML Customization doesn't exist. The advanced mode is activated
 			return true;
 		}
 
-		CustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
 		if(customizationManager == null) {
 			//Should not happen, this is a singleton
 			return false;
 		}
-
-		return !customizationManager.getRegisteredCustomizations().contains(simpleUMLCustomization);
+		return false;
+		//return !customizationManager.getRegisteredCustomizations().contains(simpleUMLCustomization);
 	}
 
 }

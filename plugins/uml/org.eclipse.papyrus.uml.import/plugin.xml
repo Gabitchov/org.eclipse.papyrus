@@ -31,6 +31,17 @@
                id="org.eclipse.papyrus.uml.import.menu"
                label="&amp;Import"
                tooltip="Papyrus Import Menu">
+            <visibleWhen
+                  checkEnabled="false">
+                <with
+                      variable="selection">
+                   <test
+                         property="org.eclipse.papyrus.infra.emf.readonly.tester.canMakeWritable"
+                         value="true">
+                   </test>
+                </with>
+            </visibleWhen>
+            
             <command
                   commandId="org.eclipse.papyrus.import.registered.profile"
                   icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif"
@@ -62,12 +73,9 @@
                <with
                      variable="selection">
                   <iterate>
-                     <adapt
-                           type="org.eclipse.emf.ecore.EObject">
-                        <instanceof
-                              value="org.eclipse.uml2.uml.Package">
-                        </instanceof>
-                     </adapt>
+                     <instanceof
+                           value="org.eclipse.emf.ecore.EObject">
+                     </instanceof>
                   </iterate>
                </with>
                <count
@@ -84,12 +92,9 @@
                <with
                      variable="selection">
                   <iterate>
-                     <adapt
-                           type="org.eclipse.emf.ecore.EObject">
-                        <instanceof
-                              value="org.eclipse.uml2.uml.Package">
-                        </instanceof>
-                     </adapt>
+                     <instanceof
+                           value="org.eclipse.emf.ecore.EObject">
+                     </instanceof>
                   </iterate>
                </with>
                <count
@@ -106,12 +111,9 @@
             <with
                   variable="selection">
                <iterate>
-                  <adapt
-                        type="org.eclipse.emf.ecore.EObject">
-                     <instanceof
-                           value="org.eclipse.uml2.uml.Package">
-                     </instanceof>
-                  </adapt>
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
                </iterate>
             </with>
             <count

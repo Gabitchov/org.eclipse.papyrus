@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 323802
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.resource;
 
@@ -19,6 +20,7 @@ import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.Transaction;
@@ -39,8 +41,20 @@ public class CDOAwareTransactionalEditingDomain extends PapyrusROTransactionalEd
 	}
 
 	@Override
-	protected TransactionChangeRecorder createChangeRecorder(ResourceSet rset) {
-		return new DawnTransactionChangeRecorder(this, rset);
+	protected TransactionChangeRecorder doCreateChangeRecorder(ResourceSet rset) {
+		return new DawnTransactionChangeRecorder(this, rset) {
+
+			@Override
+			protected void appendNotification(Notification notification) {
+				// Append to the transaction first
+				super.appendNotification(notification);
+
+				if(!NotificationFilter.READ.matches(notification)) {
+					// Check whether we are modifying a read-only object
+					assertNotReadOnly(notification.getNotifier());
+				}
+			}
+		};
 	}
 
 	protected void fireResourceSetChanged(CDOViewInvalidationEvent event) {
@@ -53,6 +67,7 @@ public class CDOAwareTransactionalEditingDomain extends PapyrusROTransactionalEd
 
 		CDOUtils.notify(this, new Runnable() {
 
+			@Override
 			public void run() {
 				for(ResourceSetListener element : listeners) {
 					try {

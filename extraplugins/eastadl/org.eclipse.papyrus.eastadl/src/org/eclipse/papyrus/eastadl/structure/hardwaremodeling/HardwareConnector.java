@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.Connector;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Hardware Connector</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * Hardware connectors represent wires that electrically connect the hardware components through its ports.
  * 
@@ -34,30 +34,31 @@ import org.eclipse.uml2.uml.Connector;
  * Extension:
  * Connector
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwareConnector#getBase_Connector <em>Base Connector</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwareConnector#getPort <em>Port</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwareConnector#getPort1_path <em>Port1 path</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwareConnector#getPort2_path <em>Port2 path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwareConnector#getBase_Connector <em>Base Connector</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwareConnector#getPort <em>Port</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwareConnector#getPort1_path <em>Port1 path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwareConnector#getPort2_path <em>Port2 path</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwaremodelingPackage#getHardwareConnector()
  * @model
  * @generated
  */
 public interface HardwareConnector extends EAElement {
+
 	/**
 	 * Returns the value of the '<em><b>Base Connector</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Connector</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Base Connector</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Base Connector</em>' reference.
 	 * @see #setBase_Connector(Connector)
 	 * @see org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwaremodelingPackage#getHardwareConnector_Base_Connector()
@@ -67,10 +68,13 @@ public interface HardwareConnector extends EAElement {
 	Connector getBase_Connector();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwareConnector#getBase_Connector <em>Base Connector</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwareConnector#getBase_Connector
+	 * <em>Base Connector</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base Connector</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Base Connector</em>' reference.
 	 * @see #getBase_Connector()
 	 * @generated
 	 */
@@ -81,6 +85,7 @@ public interface HardwareConnector extends EAElement {
 	 * The list contents are of type {@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwarePin}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Port</em>' reference list.
 	 * @see org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwaremodelingPackage#getHardwareConnector_Port()
 	 * @model lower="2" upper="2" transient="true" volatile="true" derived="true" ordered="false"
@@ -93,10 +98,10 @@ public interface HardwareConnector extends EAElement {
 	 * The list contents are of type {@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwareComponentPrototype}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Port1 path</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Port1 path</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Port1 path</em>' reference list.
 	 * @see org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwaremodelingPackage#getHardwareConnector_Port1_path()
 	 * @model
@@ -109,10 +114,10 @@ public interface HardwareConnector extends EAElement {
 	 * The list contents are of type {@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwareComponentPrototype}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Port2 path</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Port2 path</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Port2 path</em>' reference list.
 	 * @see org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwaremodelingPackage#getHardwareConnector_Port2_path()
 	 * @model

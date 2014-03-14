@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Allocateable Element</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * The AllocateableElement is an abstract superclass for elements that are allocateable.
  * 
@@ -31,8 +31,8 @@ import org.eclipse.emf.ecore.EObject;
  * 
  * Extension: abstract, no extension
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPackage#getAllocateableElement()
  * @model abstract="true"
  * @generated

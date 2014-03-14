@@ -23,7 +23,7 @@
    <extension
       point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
    <metamodel
-         nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
       <adviceBinding
             class="org.eclipse.papyrus.dev.view.services.edit.request.helper.ViewEditHelperAdvice"
             id="org.eclipse.papyrus.infra.services.edit.request.helper.ViewEditHelperAdvice"

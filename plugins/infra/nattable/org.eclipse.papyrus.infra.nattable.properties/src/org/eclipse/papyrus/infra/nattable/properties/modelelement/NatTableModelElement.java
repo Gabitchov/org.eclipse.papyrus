@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.properties.modelelement;
@@ -418,15 +419,12 @@ public class NatTableModelElement extends EMFModelElement {
 	}
 
 	/**
-	 * 
-	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElement#isEditable(java.lang.String)
-	 * 
 	 * @param propertyPath
 	 * @return
 	 */
 	@Override
-	public boolean isEditable(String propertyPath) {
-		boolean res = super.isEditable(propertyPath);
+	protected boolean isFeatureEditable(String propertyPath) {
+		boolean res = super.isFeatureEditable(propertyPath);
 		if(!res) {
 			//feature column label property
 			if(Constants.COLUMN_FEATURE_LABEL_CONFIGURATION_DISPLAY_ICON.equals(propertyPath)) {

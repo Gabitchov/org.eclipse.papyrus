@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementRelated;
@@ -31,9 +31,9 @@ import org.eclipse.papyrus.sysml.requirements.Verify;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.profile.l2.L2Package;
-import org.eclipse.uml2.uml.profile.l2.Refine;
-import org.eclipse.uml2.uml.profile.l2.Trace;
+import org.eclipse.uml2.uml.profile.standard.Refine;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
+import org.eclipse.uml2.uml.profile.standard.Trace;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -51,7 +51,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * 
  * @generated
  */
-public class RequirementRelatedImpl extends EObjectImpl implements RequirementRelated {
+public class RequirementRelatedImpl extends MinimalEObjectImpl.Container implements RequirementRelated {
 
 	/**
 	 * The cached value of the '{@link #getBase_NamedElement() <em>Base Named Element</em>}' reference.
@@ -279,7 +279,7 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 				currentTrace = UMLUtil.getStereotypeApplication(currentDRelationship, Trace.class);
 
 				// Must be a Trace not a subtype (see bug #352563).
-				if((currentTrace != null) && (currentTrace.eClass() == L2Package.eINSTANCE.getTrace())) {
+				if((currentTrace != null) && (currentTrace.eClass() == StandardPackage.eINSTANCE.getTrace())) {
 					EList<NamedElement> clients = currentTrace.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = clients.iterator();
 					while(it.hasNext()) {

@@ -39,5 +39,5 @@ extends «FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGe
 def specifyInheritance (ExtendedGenView it)'''«superOwnedEditPart»'''
 //END: PapyrusGenCode
 
-override implementsList(GenChildLabelNode it) '''implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart'''
+override implementsList(GenChildLabelNode it) '''implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart, org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit'''
 }

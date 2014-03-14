@@ -14,17 +14,18 @@ package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 /**
  * A Helper class related to the GMF Notation metamodel.
- *
+ * 
  * @author Camille Letavernier
  */
 public class NotationHelper {
 
 	/**
 	 * Retrieves the GMF View associated to the source object
-	 *
+	 * 
 	 * @param source
 	 *        the source
 	 * @return the resolved view, or null if it cannot be found
@@ -39,7 +40,7 @@ public class NotationHelper {
 			if(adapter != null) {
 				return (View)adapter;
 			}
-			adapter = adaptable.getAdapter(EObject.class);
+			adapter =  EMFHelper.getEObject(adaptable);
 			if(adapter instanceof View) {
 				return (View)adapter;
 			}
@@ -51,7 +52,7 @@ public class NotationHelper {
 	 * Tests whether the given View is a reference to an external element.
 	 * A view is an external reference if its graphical container is different from its semantic
 	 * container (i.e. self.element.eContainer() != self.primaryView.eContainer().element)
-	 *
+	 * 
 	 * @param diagramElement
 	 * @return
 	 */
@@ -81,6 +82,7 @@ public class NotationHelper {
 			return false;
 		}
 
-		return parentSemanticElement != semanticElement.eContainer();
+		//Relax the constraints for elements displayed on themselves (e.g. Frame in Composite Structure Diagram)
+		return parentSemanticElement != semanticElement.eContainer() && parentSemanticElement != semanticElement;
 	}
 }

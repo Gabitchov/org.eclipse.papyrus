@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<!--
+Copyright (c) 2011 Mia-Software.
+
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+     Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model
+     David Couvrand (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
+     Nicolas Rault (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
+-->
+<plugin>
+   <extension point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+      <modeldeclaration file="resources/customproperties.efacet"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.papyrus.emf.facet.common.ui.views"
+            class="org.eclipse.papyrus.emf.facet.custom.ui.internal.view.CustomizationsCatalogView"
+            icon="icons/uiCustom.gif"
+            id="org.eclipse.papyrus.emf.facet.custom.ui.view.catalog"
+            name="%view.customizations"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.emf.facet.efacet.core.queryImplementationRegistration">
+      <queryImplementationRegistration
+            class="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.URIImageQueryImplementationFactory">
+      </queryImplementationRegistration>
+   </extension>
+</plugin>

@@ -1,8 +1,20 @@
-/**
- * 
- */
+/*****************************************************************************
+ * Copyright (c) 2010, 2014 LIFL, CEA LIST, and others.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 429242
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.history;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.infra.services.controlmode.mm.history.ControledResource;
@@ -63,6 +75,14 @@ public class HistoryModel extends AbstractModelWithSharedResource<ControledResou
 	@Override
 	protected boolean isModelRoot(EObject object) {
 		return object instanceof ControledResource;
+	}
+
+	@Override
+	public void loadModel(URI uriWithoutExtension) {
+		// It is a common use case that this resource does not (and will not) exist
+		if(exists(uriWithoutExtension)) {
+			super.loadModel(uriWithoutExtension);
+		}
 	}
 
 }

@@ -50,7 +50,7 @@ public class InteractionsFactoryImpl extends EFactoryImpl implements Interaction
 	 */
 	public static InteractionsFactory init() {
 		try {
-			InteractionsFactory theInteractionsFactory = (InteractionsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Interactions");
+			InteractionsFactory theInteractionsFactory = (InteractionsFactory)EPackage.Registry.INSTANCE.getEFactory(InteractionsPackage.eNS_URI);
 			if(theInteractionsFactory != null) {
 				return theInteractionsFactory;
 			}

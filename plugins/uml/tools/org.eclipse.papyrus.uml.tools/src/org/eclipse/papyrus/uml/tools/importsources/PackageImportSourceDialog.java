@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,14 +16,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
+import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -46,7 +44,7 @@ public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
 
 	/**
 	 * Initializes me.
-	 * 
+	 *
 	 * @param parentShell
 	 *        the shell to use as parent of the dialog
 	 * @param title
@@ -61,7 +59,7 @@ public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
 	/**
 	 * Opens a new {@code PackageImportSourceDialog} and returns the selected
 	 * models, if any.
-	 * 
+	 *
 	 * @return the selected models from which to import, or {@code null} if the
 	 *         user cancelled
 	 */
@@ -73,7 +71,7 @@ public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
 	/**
 	 * Opens a new {@code PackageImportSourceDialog} and returns the selected
 	 * models, if any.
-	 * 
+	 *
 	 * @return the selected models from which to import, or {@code null} if the
 	 *         user cancelled
 	 */
@@ -84,7 +82,7 @@ public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
 	/**
 	 * Opens a new {@code PackageImportSourceDialog} and returns the selected
 	 * models, if any.
-	 * 
+	 *
 	 * @return the selected models from which to import, or {@code null} if the
 	 *         user cancelled
 	 */
@@ -117,31 +115,12 @@ public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
 
 		setLabelProvider(labelProvider);
 
-		resourceSet = getResourceSet(selection);
-	}
-
-	private static ResourceSet getResourceSet(Collection<?> selection) {
-		ResourceSet result = null;
-
-		for(Object next : selection) {
-			EObject context = EMFHelper.getEObject(next);
-			if(context != null) {
-				Resource res = context.eResource();
-				if(res != null) {
-					result = res.getResourceSet();
-					if(result != null) {
-						break;
-					}
-				}
-			}
-		}
-
-		return result;
+		resourceSet = Util.createTemporaryResourceSet();
 	}
 
 	/**
 	 * Queries the packages selected by the user, if not cancelled.
-	 * 
+	 *
 	 * @return the selected packages, or {@code null} if the user cancelled
 	 */
 	public Collection<Package> getSelectedPackages() {

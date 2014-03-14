@@ -26,13 +26,15 @@ import org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPa
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class BasicSoftwareFunctionTypeImpl extends DesignFunctionTypeImpl implements BasicSoftwareFunctionType {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected BasicSoftwareFunctionTypeImpl() {
@@ -42,6 +44,7 @@ public class BasicSoftwareFunctionTypeImpl extends DesignFunctionTypeImpl implem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

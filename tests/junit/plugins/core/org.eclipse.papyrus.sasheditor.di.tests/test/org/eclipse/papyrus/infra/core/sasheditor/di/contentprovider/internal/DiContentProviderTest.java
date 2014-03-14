@@ -3,8 +3,6 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel;
@@ -16,14 +14,18 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.swt.SWT;
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 
 
 /**
- * 
+ *
  * @author cedric dumoulin
  */
-public class DiContentProviderTest extends TestCase {
+public class DiContentProviderTest {
 
 	/**
 	 * The {@link DiContentProvider} under test.
@@ -33,23 +35,8 @@ public class DiContentProviderTest extends TestCase {
 	/** The FolderModel of the first TabFolder */
 	protected ITabFolderModel folderModel;
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param name
-	 */
-	public DiContentProviderTest(String name) {
-		super(name);
-	}
-
-	/*
-	 * 
-	 */
 	@Before
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-
+	public void setUp() throws Exception {
 		IPageModelFactory pageModelFactory = new FakePageModelFactory();
 		SashModel diSashModel = DiUtils.createDefaultSashModel();
 		contentProvider = new DiContentProvider(diSashModel, pageModelFactory);
@@ -57,19 +44,19 @@ public class DiContentProviderTest extends TestCase {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see junit.framework.TestCase#tearDown()
-	 * 
+	 *
 	 * @throws Exception
 	 */
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
+	@After
+	public void tearDown() throws Exception {
+
 	}
 
 	/**
 	 * Lookup for a folder in the SashModel. Return the first folder found.
-	 * 
+	 *
 	 * @return
 	 */
 	private ITabFolderModel lookupFolderModel() {
@@ -86,7 +73,7 @@ public class DiContentProviderTest extends TestCase {
 	/**
 	 * Recursively search in sash models for a FolderModel.
 	 * Return the first encountered folder.
-	 * 
+	 *
 	 * @param panelModel
 	 * @return
 	 */
@@ -114,6 +101,7 @@ public class DiContentProviderTest extends TestCase {
 	 * Test a typical life cycle on contentProvider:
 	 * creation, add change listener, add pages, move page
 	 */
+	@Test
 	public void testLifeCycle() {
 
 		// A listener on change event.
@@ -135,14 +123,14 @@ public class DiContentProviderTest extends TestCase {
 			contentProvider.addPage(id);
 
 			// Check fired events
-			assertEquals("One event fired", 1, changeListener.getChangeCount());
+			Assert.assertEquals("One event fired", 1, changeListener.getChangeCount());
 		}
 
 		// Test moving a page
 		changeListener.reset();
 		contentProvider.movePage(folderModel, 3, 8);
 		// Check fired events
-		assertEquals("One event fired", 1, changeListener.getChangeCount());
+		Assert.assertEquals("One event fired", 1, changeListener.getChangeCount());
 
 	}
 
@@ -152,15 +140,17 @@ public class DiContentProviderTest extends TestCase {
 	 * Test type of the root model.
 	 * Actually, it should be subtype of AbstractPanel {@link DiContentProvider#getRootModel()}
 	 */
+	@Test
 	public void testGetRootModel() {
 
-		assertTrue("subtype of AbstractPanel", AbstractPanel.class.isInstance(contentProvider.getRootModel()));
+		Assert.assertTrue("subtype of AbstractPanel", AbstractPanel.class.isInstance(contentProvider.getRootModel()));
 	}
 
 
 	/**
 	 * Test {@link DiContentProvider#createFolder(ITabFolderModel, int, ITabFolderModel, int)}
 	 */
+	@Test
 	public void testCreateFolder() {
 
 		// A listener on change event.
@@ -185,30 +175,30 @@ public class DiContentProviderTest extends TestCase {
 		changeListener.reset();
 		// create a folder
 		contentProvider.createFolder(folderModel, 3, folderModel, SWT.RIGHT);
-		assertEquals("One event fired", 1, changeListener.getChangeCount());
+		Assert.assertEquals("One event fired", 1, changeListener.getChangeCount());
 
 		// Check if pageIdentifier 3 have change of folder
 		PageRef pageRef = contentProvider.getDiSashModel().lookupPage(identifiers.get(3));
-		assertNotNull("Moved page have a parent", pageRef.getParent());
-		assertNotSame("Moved page is in another parent", ((TabFolderModel)folderModel).getTabFolder(), pageRef.getParent());
+		Assert.assertNotNull("Moved page have a parent", pageRef.getParent());
+		Assert.assertNotSame("Moved page is in another parent", ((TabFolderModel)folderModel).getTabFolder(), pageRef.getParent());
 
 		// reset change count
 		changeListener.reset();
 		// Test creating a third folder
 		contentProvider.createFolder(folderModel, 2, folderModel, SWT.UP);
-		assertEquals("One event fired", 1, changeListener.getChangeCount());
+		Assert.assertEquals("One event fired", 1, changeListener.getChangeCount());
 		// Check if pageIdentifier 2 have change of folder
 		pageRef = contentProvider.getDiSashModel().lookupPage(identifiers.get(2));
-		assertNotNull("Moved page have a parent", pageRef.getParent());
-		assertNotSame("Moved page is in another parent", ((TabFolderModel)folderModel).getTabFolder(), pageRef.getParent());
-
-
+		Assert.assertNotNull("Moved page have a parent", pageRef.getParent());
+		Assert.assertNotSame("Moved page is in another parent", ((TabFolderModel)folderModel).getTabFolder(), pageRef.getParent());
 	}
 
 	/**
 	 * Check if {@link DiContentProvider#setCurrentFolder(Object)}.
 	 * Check if the method works and DO NO send any event.
 	 */
+	@Test
+	@Ignore("This test is currently deprecated; current folder cannot be set programmatically")
 	public void testSetCurrentFolder() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -232,7 +222,7 @@ public class DiContentProviderTest extends TestCase {
 		changeListener.reset();
 		// create a folder
 		contentProvider.createFolder(folderModel, 3, folderModel, SWT.RIGHT);
-		assertEquals("One event fired", 1, changeListener.getChangeCount());
+		Assert.assertEquals("One event fired", 1, changeListener.getChangeCount());
 
 
 		// Get the real di implementation of the first folder
@@ -240,21 +230,21 @@ public class DiContentProviderTest extends TestCase {
 		TabFolder createdDiFolder = contentProvider.getDiSashModel().getCurrentSelection();
 
 		// Check if the folder has changed
-		assertNotSame("current folder has change", firstFolder, createdDiFolder);
+		Assert.assertNotSame("current folder has change", firstFolder, createdDiFolder);
 		// Get the created folder
 
 		// Try to change the current selection by setting the first folder again
 		changeListener.reset();
 		contentProvider.setCurrentFolder(firstFolder);
 		// Check if really changed
-		assertEquals("current folder set correctly", firstFolder, contentProvider.getDiSashModel().getCurrentSelection());
-		assertEquals("No event fired", 0, changeListener.getChangeCount());
+		Assert.assertEquals("current folder set correctly", firstFolder, contentProvider.getDiSashModel().getCurrentSelection());
+		Assert.assertEquals("No event fired", 0, changeListener.getChangeCount());
 	}
 
 
 	/**
 	 * Listener on ContentChange.
-	 * 
+	 *
 	 * @author dumoulin
 	 */
 	public class ContentChangeListener implements IContentChangedListener {

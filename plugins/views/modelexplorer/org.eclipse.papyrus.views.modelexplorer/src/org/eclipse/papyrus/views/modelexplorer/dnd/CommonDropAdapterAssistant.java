@@ -20,7 +20,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
@@ -35,8 +34,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
@@ -53,6 +50,8 @@ import org.eclipse.papyrus.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -299,19 +298,19 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		switch(dropAdapter.getCurrentOperation()) {
 		case DND.DROP_MOVE:
 			if(dropAdapter.getCurrentLocation() == ViewerDropAdapter.LOCATION_BEFORE) {
-				if(target instanceof ModelElementItem) {
+				if(target instanceof EObjectTreeElement) {
 					commandList = getOrderChangeCommand(target, true);
 				}
 			} else if(dropAdapter.getCurrentLocation() == ViewerDropAdapter.LOCATION_AFTER) {
-				if(target instanceof ModelElementItem) {
+				if(target instanceof EObjectTreeElement) {
 					commandList = getOrderChangeCommand(target, false);
 				}
 			} else if(dropAdapter.getCurrentLocation() == ViewerDropAdapter.LOCATION_ON) {
-				if(target instanceof ModelElementItem) {
+				if(target instanceof EObjectTreeElement) {
 					commandList = getDropIntoCommand(target, null);
 				}
-				if(target instanceof LinkItem) {
-					commandList = getDropIntoCommand(((LinkItem)target).getParent(), ((LinkItem)target).getReference());
+				if(target instanceof EReferenceTreeElement) {
+					commandList = getDropIntoCommand(((EReferenceTreeElement)target).getParent(), ((EReferenceTreeElement)target).getEReference());
 				}
 			}
 
@@ -366,13 +365,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		ArrayList<Command> result = new ArrayList<Command>();
 		EObject targetEObject = null;
 
-		//target is an EObject?
-		if(target instanceof EObject) {
-			targetEObject = ((EObject)target);
-		}
-		if(target instanceof IAdaptable) {
-			targetEObject = ((EObject)((IAdaptable)target).getAdapter(EObject.class));
-		}
+		targetEObject = EMFHelper.getEObject(target);
 		if(targetEObject == null) {
 			return result;
 		}
@@ -384,12 +377,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			Iterator<?> it = selectedElements.iterator();
 			while(it.hasNext()) {
 				Object object = it.next();
-				EObject eObjectchild = null;
-				if(object instanceof IAdaptable) {
-					eObjectchild = (EObject)((IAdaptable)object).getAdapter(EObject.class);
-				} else if(object instanceof EObject) {
-					eObjectchild = (EObject)object;
-				}
+				EObject eObjectchild =  EMFHelper.getEObject(object);
 
 				//				if(eObjectchild instanceof Diagram){
 				//					result.addAll(getDropDiagramIntoCommand(getEditingDomain(), targetEObject,(Diagram) eObjectchild));
@@ -440,10 +428,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		EObject objectLocation = null;
 		EObject objectOwner = null;
 
-		//target is an EObject?
-		if(target instanceof IAdaptable) {
-			objectLocation = ((EObject)((IAdaptable)target).getAdapter(EObject.class));
-		}
+		objectLocation = EMFHelper.getEObject(target);
 		if(objectLocation == null) {
 			return result;
 		}
@@ -457,14 +442,12 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			Iterator<?> it = selectedElements.iterator();
 			while(it.hasNext()) {
 				Object object = it.next();
-				if(object instanceof IAdaptable) {
-					EObject eObjectchild = (EObject)((IAdaptable)object).getAdapter(EObject.class);
+					EObject eObjectchild = EMFHelper.getEObject(object);
 					//test if object is an eobject
 					if(eObjectchild != null && objectOwner != null) {
 
 						result.addAll(getOrderChangeCommand(getEditingDomain(eObjectchild), objectOwner, objectLocation, eObjectchild, before));
 					}
-				}
 			}
 		}
 		return result;

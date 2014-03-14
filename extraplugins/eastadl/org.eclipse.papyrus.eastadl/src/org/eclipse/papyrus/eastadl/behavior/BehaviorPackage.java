@@ -71,6 +71,7 @@ public interface BehaviorPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
@@ -79,6 +80,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl <em>Function Behavior</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl
 		 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getFunctionBehavior()
 		 * @generated
@@ -89,6 +91,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Base Behavior</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference FUNCTION_BEHAVIOR__BASE_BEHAVIOR = eINSTANCE.getFunctionBehavior_Base_Behavior();
@@ -97,6 +100,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute FUNCTION_BEHAVIOR__PATH = eINSTANCE.getFunctionBehavior_Path();
@@ -105,6 +109,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Representation</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute FUNCTION_BEHAVIOR__REPRESENTATION = eINSTANCE.getFunctionBehavior_Representation();
@@ -113,6 +118,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Function</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference FUNCTION_BEHAVIOR__FUNCTION = eINSTANCE.getFunctionBehavior_Function();
@@ -121,6 +127,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Mode</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference FUNCTION_BEHAVIOR__MODE = eINSTANCE.getFunctionBehavior_Mode();
@@ -129,6 +136,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.behavior.impl.BehaviorImpl <em>Behavior</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorImpl
 		 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getBehavior()
 		 * @generated
@@ -139,6 +147,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Behavior</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference BEHAVIOR__BEHAVIOR = eINSTANCE.getBehavior_Behavior();
@@ -147,6 +156,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Function Trigger</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference BEHAVIOR__FUNCTION_TRIGGER = eINSTANCE.getBehavior_FunctionTrigger();
@@ -155,6 +165,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Mode Group</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference BEHAVIOR__MODE_GROUP = eINSTANCE.getBehavior_ModeGroup();
@@ -163,6 +174,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Base Package</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference BEHAVIOR__BASE_PACKAGE = eINSTANCE.getBehavior_Base_Package();
@@ -171,6 +183,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference BEHAVIOR__BASE_CLASS = eINSTANCE.getBehavior_Base_Class();
@@ -179,6 +192,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl <em>Function Trigger</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl
 		 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getFunctionTrigger()
 		 * @generated
@@ -189,6 +203,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Trigger Condition</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute FUNCTION_TRIGGER__TRIGGER_CONDITION = eINSTANCE.getFunctionTrigger_TriggerCondition();
@@ -197,6 +212,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference FUNCTION_TRIGGER__BASE_CLASS = eINSTANCE.getFunctionTrigger_Base_Class();
@@ -205,6 +221,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Trigger Policy</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute FUNCTION_TRIGGER__TRIGGER_POLICY = eINSTANCE.getFunctionTrigger_TriggerPolicy();
@@ -213,6 +230,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Mode</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference FUNCTION_TRIGGER__MODE = eINSTANCE.getFunctionTrigger_Mode();
@@ -221,6 +239,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Function</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference FUNCTION_TRIGGER__FUNCTION = eINSTANCE.getFunctionTrigger_Function();
@@ -229,6 +248,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Port</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference FUNCTION_TRIGGER__PORT = eINSTANCE.getFunctionTrigger_Port();
@@ -237,6 +257,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Function Prototype</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference FUNCTION_TRIGGER__FUNCTION_PROTOTYPE = eINSTANCE.getFunctionTrigger_FunctionPrototype();
@@ -245,6 +266,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.behavior.impl.ModeGroupImpl <em>Mode Group</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.behavior.impl.ModeGroupImpl
 		 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getModeGroup()
 		 * @generated
@@ -255,6 +277,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Precondition</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute MODE_GROUP__PRECONDITION = eINSTANCE.getModeGroup_Precondition();
@@ -263,6 +286,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Mode</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference MODE_GROUP__MODE = eINSTANCE.getModeGroup_Mode();
@@ -271,6 +295,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference MODE_GROUP__BASE_CLASS = eINSTANCE.getModeGroup_Base_Class();
@@ -279,6 +304,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.behavior.impl.ModeImpl <em>Mode</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.behavior.impl.ModeImpl
 		 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getMode()
 		 * @generated
@@ -289,6 +315,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute MODE__CONDITION = eINSTANCE.getMode_Condition();
@@ -297,6 +324,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference MODE__BASE_CLASS = eINSTANCE.getMode_Base_Class();
@@ -305,6 +333,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.behavior.FunctionBehaviorKind <em>Function Behavior Kind</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.behavior.FunctionBehaviorKind
 		 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getFunctionBehaviorKind()
 		 * @generated
@@ -315,6 +344,7 @@ public interface BehaviorPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.behavior.TriggerPolicyKind <em>Trigger Policy Kind</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.behavior.TriggerPolicyKind
 		 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getTriggerPolicyKind()
 		 * @generated
@@ -326,6 +356,7 @@ public interface BehaviorPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "behavior";
@@ -333,6 +364,7 @@ public interface BehaviorPackage extends EPackage {
 	/**
 	 * The package namespace URI.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.papyrusuml.org/EAST-ADL2/Behavior/1";
@@ -340,6 +372,7 @@ public interface BehaviorPackage extends EPackage {
 	/**
 	 * The package namespace name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "Behavior";
@@ -347,6 +380,7 @@ public interface BehaviorPackage extends EPackage {
 	/**
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	BehaviorPackage eINSTANCE = org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl.init();
@@ -355,6 +389,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl <em>Function Behavior</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl
 	 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getFunctionBehavior()
 	 * @generated
@@ -365,6 +400,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.behavior.impl.BehaviorImpl <em>Behavior</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorImpl
 	 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getBehavior()
 	 * @generated
@@ -375,6 +411,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl <em>Function Trigger</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl
 	 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getFunctionTrigger()
 	 * @generated
@@ -385,6 +422,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.behavior.impl.ModeGroupImpl <em>Mode Group</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.behavior.impl.ModeGroupImpl
 	 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getModeGroup()
 	 * @generated
@@ -395,6 +433,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.behavior.impl.ModeImpl <em>Mode</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.behavior.impl.ModeImpl
 	 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getMode()
 	 * @generated
@@ -405,6 +444,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -414,6 +454,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Named Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -423,6 +464,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -432,6 +474,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Traceable Specification</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -441,6 +484,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -450,6 +494,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Behavior</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -459,6 +504,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -468,6 +514,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Representation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -477,6 +524,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Mode</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -486,6 +534,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Function</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -495,6 +544,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The number of structural features of the '<em>Function Behavior</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -504,6 +554,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -513,6 +564,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Named Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -522,6 +574,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -531,6 +584,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -540,6 +594,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -549,6 +604,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The number of structural features of the '<em>Mode</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -558,6 +614,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -567,6 +624,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Named Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -576,6 +634,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -585,6 +644,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Traceable Specification</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -594,6 +654,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -603,6 +664,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -612,6 +674,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Function Trigger</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -621,6 +684,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Mode Group</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -630,6 +694,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -639,6 +704,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -648,6 +714,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The number of structural features of the '<em>Behavior</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -657,6 +724,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -666,6 +734,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Named Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -675,6 +744,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -684,6 +754,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Trigger Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -693,6 +764,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -702,6 +774,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Trigger Policy</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -711,6 +784,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Mode</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -720,6 +794,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Function</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -729,6 +804,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Port</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -738,6 +814,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Function Prototype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -747,6 +824,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The number of structural features of the '<em>Function Trigger</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -756,6 +834,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -765,6 +844,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Named Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -774,6 +854,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -783,6 +864,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Packageable Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -792,6 +874,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -801,6 +884,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Precondition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -810,6 +894,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Mode</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -819,6 +904,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -828,6 +914,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The number of structural features of the '<em>Mode Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -837,6 +924,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.behavior.FunctionBehaviorKind <em>Function Behavior Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionBehaviorKind
 	 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getFunctionBehaviorKind()
 	 * @generated
@@ -847,6 +935,7 @@ public interface BehaviorPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.behavior.TriggerPolicyKind <em>Trigger Policy Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.behavior.TriggerPolicyKind
 	 * @see org.eclipse.papyrus.eastadl.behavior.impl.BehaviorPackageImpl#getTriggerPolicyKind()
 	 * @generated
@@ -857,6 +946,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.eastadl.behavior.Behavior <em>Behavior</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Behavior</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.Behavior
 	 * @generated
@@ -867,6 +957,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.eastadl.behavior.Behavior#getBehavior <em>Behavior</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Behavior</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.Behavior#getBehavior()
 	 * @see #getBehavior()
@@ -875,9 +966,11 @@ public interface BehaviorPackage extends EPackage {
 	EReference getBehavior_Behavior();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.eastadl.behavior.Behavior#getFunctionTrigger <em>Function Trigger</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.eastadl.behavior.Behavior#getFunctionTrigger
+	 * <em>Function Trigger</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Function Trigger</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.Behavior#getFunctionTrigger()
 	 * @see #getBehavior()
@@ -889,6 +982,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.eastadl.behavior.Behavior#getModeGroup <em>Mode Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Mode Group</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.Behavior#getModeGroup()
 	 * @see #getBehavior()
@@ -900,6 +994,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.behavior.Behavior#getBase_Package <em>Base Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Base Package</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.Behavior#getBase_Package()
 	 * @see #getBehavior()
@@ -911,6 +1006,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.behavior.Behavior#getBase_Class <em>Base Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.Behavior#getBase_Class()
 	 * @see #getBehavior()
@@ -922,6 +1018,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -931,6 +1028,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.eastadl.behavior.FunctionBehavior <em>Function Behavior</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Function Behavior</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionBehavior
 	 * @generated
@@ -938,9 +1036,11 @@ public interface BehaviorPackage extends EPackage {
 	EClass getFunctionBehavior();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.behavior.FunctionBehavior#getBase_Behavior <em>Base Behavior</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.behavior.FunctionBehavior#getBase_Behavior
+	 * <em>Base Behavior</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Base Behavior</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionBehavior#getBase_Behavior()
 	 * @see #getFunctionBehavior()
@@ -952,6 +1052,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.behavior.FunctionBehavior#getFunction <em>Function</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Function</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionBehavior#getFunction()
 	 * @see #getFunctionBehavior()
@@ -963,6 +1064,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.eastadl.behavior.FunctionBehavior#getMode <em>Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Mode</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionBehavior#getMode()
 	 * @see #getFunctionBehavior()
@@ -974,6 +1076,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.behavior.FunctionBehavior#getPath <em>Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Path</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionBehavior#getPath()
 	 * @see #getFunctionBehavior()
@@ -982,9 +1085,11 @@ public interface BehaviorPackage extends EPackage {
 	EAttribute getFunctionBehavior_Path();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.behavior.FunctionBehavior#getRepresentation <em>Representation</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.behavior.FunctionBehavior#getRepresentation
+	 * <em>Representation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Representation</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionBehavior#getRepresentation()
 	 * @see #getFunctionBehavior()
@@ -996,6 +1101,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.eastadl.behavior.FunctionBehaviorKind <em>Function Behavior Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for enum '<em>Function Behavior Kind</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionBehaviorKind
 	 * @generated
@@ -1006,6 +1112,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.eastadl.behavior.FunctionTrigger <em>Function Trigger</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Function Trigger</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionTrigger
 	 * @generated
@@ -1016,6 +1123,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getFunction <em>Function</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Function</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getFunction()
 	 * @see #getFunctionTrigger()
@@ -1024,9 +1132,11 @@ public interface BehaviorPackage extends EPackage {
 	EReference getFunctionTrigger_Function();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getFunctionPrototype <em>Function Prototype</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getFunctionPrototype
+	 * <em>Function Prototype</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Function Prototype</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getFunctionPrototype()
 	 * @see #getFunctionTrigger()
@@ -1038,6 +1148,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getMode <em>Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Mode</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getMode()
 	 * @see #getFunctionTrigger()
@@ -1049,6 +1160,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getPort <em>Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Port</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getPort()
 	 * @see #getFunctionTrigger()
@@ -1057,9 +1169,11 @@ public interface BehaviorPackage extends EPackage {
 	EReference getFunctionTrigger_Port();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getTriggerCondition <em>Trigger Condition</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getTriggerCondition
+	 * <em>Trigger Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Trigger Condition</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getTriggerCondition()
 	 * @see #getFunctionTrigger()
@@ -1071,6 +1185,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getBase_Class <em>Base Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getBase_Class()
 	 * @see #getFunctionTrigger()
@@ -1079,9 +1194,11 @@ public interface BehaviorPackage extends EPackage {
 	EReference getFunctionTrigger_Base_Class();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getTriggerPolicy <em>Trigger Policy</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getTriggerPolicy
+	 * <em>Trigger Policy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Trigger Policy</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.FunctionTrigger#getTriggerPolicy()
 	 * @see #getFunctionTrigger()
@@ -1093,6 +1210,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.eastadl.behavior.Mode <em>Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Mode</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.Mode
 	 * @generated
@@ -1103,6 +1221,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.behavior.Mode#getCondition <em>Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Condition</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.Mode#getCondition()
 	 * @see #getMode()
@@ -1114,6 +1233,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.behavior.Mode#getBase_Class <em>Base Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.Mode#getBase_Class()
 	 * @see #getMode()
@@ -1125,6 +1245,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.eastadl.behavior.ModeGroup <em>Mode Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Mode Group</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.ModeGroup
 	 * @generated
@@ -1135,6 +1256,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.eastadl.behavior.ModeGroup#getMode <em>Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Mode</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.ModeGroup#getMode()
 	 * @see #getModeGroup()
@@ -1146,6 +1268,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.behavior.ModeGroup#getBase_Class <em>Base Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.ModeGroup#getBase_Class()
 	 * @see #getModeGroup()
@@ -1157,6 +1280,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.behavior.ModeGroup#getPrecondition <em>Precondition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Precondition</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.ModeGroup#getPrecondition()
 	 * @see #getModeGroup()
@@ -1168,6 +1292,7 @@ public interface BehaviorPackage extends EPackage {
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.eastadl.behavior.TriggerPolicyKind <em>Trigger Policy Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for enum '<em>Trigger Policy Kind</em>'.
 	 * @see org.eclipse.papyrus.eastadl.behavior.TriggerPolicyKind
 	 * @generated

@@ -20,20 +20,21 @@ package org.eclipse.papyrus.eastadl.timing.timingconstraints;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Age Timing Constraint</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * Different tolerances on over-/undersampling can be identified when the solution has been modeled.
  * 
  * An age constraint is of interest in control engineering when looking back through the system.
  * 
- * In case of over- or undersampling, there is no one-to-one relation possible between the occurrences of stimuli and responses of the associated event chain. Thus, the age constraint defines the semantic of which delay must be constrained.
+ * In case of over- or undersampling, there is no one-to-one relation possible between the occurrences of stimuli and responses of the associated
+ * event chain. Thus, the age constraint defines the semantic of which delay must be constrained.
  * 
  * The attribute upper is applicable in worst-case analysis.
  * 
  * The attribute lower is applicable in best-case analysis.
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.timing.timingconstraints.TimingconstraintsPackage#getAgeTimingConstraint()
  * @model
  * @generated

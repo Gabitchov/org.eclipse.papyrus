@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.exporter.tests;
 
@@ -108,7 +110,7 @@ public abstract class AbstractModelExportTest extends AbstractPapyrusCDOTest {
 		// load blank model
 		Resource uml = ((AbstractBaseModel)result.getModel(UmlModel.MODEL_ID)).getResource();
 		Resource notation = ((AbstractBaseModel)result.getModel(NotationModel.MODEL_ID)).getResource();
-		Resource di = ((AbstractBaseModel)result.getModel(DiModel.MODEL_ID)).getResource();
+		Resource di = ((AbstractBaseModel)result.getModel(DiModel.DI_MODEL_ID)).getResource();
 		loadTemplate("empty", "model", uml, notation, di);
 
 		return result;

@@ -300,7 +300,7 @@ public class ConnectorUtils extends org.eclipse.papyrus.uml.service.types.utils.
 	 * @return true, if successful
 	 * <code>true</code> if displaying the existing connector between this source and this target view is correct
 	 */
-	public final boolean canDisplayExistingConnectorBetweenViewsAccordingToNestedPaths(final Connector connector, final View sourceView, final View targetView) {
+	public static boolean canDisplayExistingConnectorBetweenViewsAccordingToNestedPaths(final Connector connector, final View sourceView, final View targetView) {
 		ConnectorUtils utils = new ConnectorUtils();
 		final List<Property> sourcePath = utils.getNestedPropertyPath(sourceView, targetView);
 		final List<Property> targetPath = utils.getNestedPropertyPath(targetView, sourceView);
@@ -325,7 +325,7 @@ public class ConnectorUtils extends org.eclipse.papyrus.uml.service.types.utils.
 	 * @return true, if successful
 	 * true if the end has as nested path THE wanted path
 	 */
-	protected boolean haveSamePath(final List<Property> wantedPath, final ConnectorEnd end) {
+	protected static boolean haveSamePath(final List<Property> wantedPath, final ConnectorEnd end) {
 		Stereotype ste = end.getAppliedStereotype("SysML::Blocks::NestedConnectorEnd");//$NON-NLS-1$
 		if(ste != null) {
 			final NestedConnectorEnd nestedConnectorEnd = (NestedConnectorEnd)end.getStereotypeApplication(ste);

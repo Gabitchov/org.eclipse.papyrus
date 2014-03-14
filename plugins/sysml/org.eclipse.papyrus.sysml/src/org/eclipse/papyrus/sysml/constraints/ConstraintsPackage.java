@@ -156,6 +156,16 @@ public interface ConstraintsPackage extends EPackage {
 	int CONSTRAINT_BLOCK_FEATURE_COUNT = BlocksPackage.BLOCK_FEATURE_COUNT + 0;
 
 	/**
+	 * The number of operations of the '<em>Constraint Block</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_BLOCK_OPERATION_COUNT = BlocksPackage.BLOCK_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintPropertyImpl <em>Constraint Property</em>}'
 	 * class.
 	 * <!-- begin-user-doc --> <!--
@@ -184,6 +194,16 @@ public interface ConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINT_PROPERTY_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Constraint Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_PROPERTY_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.constraints.ConstraintBlock

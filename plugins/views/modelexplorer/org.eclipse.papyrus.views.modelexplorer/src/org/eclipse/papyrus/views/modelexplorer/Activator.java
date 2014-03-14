@@ -15,30 +15,15 @@ package org.eclipse.papyrus.views.modelexplorer;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.EMFEditPlugin;
-import org.eclipse.emf.facet.infra.browser.Messages;
-import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
-import org.eclipse.emf.facet.infra.browser.custom.TypeView;
-import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
-import org.eclipse.emf.facet.infra.facet.Facet;
-import org.eclipse.emf.facet.infra.facet.FacetSet;
-import org.eclipse.emf.facet.infra.facet.core.FacetSetCatalog;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -62,7 +47,7 @@ public class Activator extends AbstractUIPlugin {
 	public Activator() {
 	}
 
-	private CustomizationManager fCustomizationManager;
+	private ICustomizationManager fCustomizationManager;
 
 	/*
 	 * (non-Javadoc)
@@ -123,100 +108,100 @@ public class Activator extends AbstractUIPlugin {
 	 * 
 	 * @return the customization manager in charge to adapt element in modisco
 	 */
-	public CustomizationManager getCustomizationManager() {
+	public ICustomizationManager getCustomizationManager() {
 		return org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager();
 	}
 
-	private void init(final CustomizationManager customizationManager) {
+	private void init(final ICustomizationManager customizationManager) {
 		// the appearance can be customized here:
 
-		customizationManager.setShowDerivedLinks(true);
-
-		try {
-
-			// load customizations defined as default through the customization
-			// extension
-			List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
-			for(MetamodelView metamodelView : registryDefaultCustomizations) {
-				customizationManager.registerCustomization(metamodelView);
-			}
-			customizationManager.loadCustomizations();
-			loadFacetsForCustomizations(registryDefaultCustomizations, customizationManager);
-
-		} catch (Throwable e) {
-			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
-		}
+//		customizationManager.setShowDerivedLinks(true);
+//
+//		try {
+//
+//			// load customizations defined as default through the customization
+//			// extension
+//			List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
+//			for(MetamodelView metamodelView : registryDefaultCustomizations) {
+//				customizationManager.registerCustomization(metamodelView);
+//			}
+//			customizationManager.loadCustomizations();
+//			loadFacetsForCustomizations(registryDefaultCustomizations, customizationManager);
+//
+//		} catch (Throwable e) {
+//			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
+//		}
 	}
 
-	/**
-	 * load the facets
-	 * 
-	 * @param customizations
-	 *        list of customization
-	 * @param customizationManager
-	 *        the Customization Manager
-	 */
-	protected void loadFacetsForCustomizations(final List<MetamodelView> customizations, final CustomizationManager customizationManager) {
-		final Set<Facet> referencedFacets = new HashSet<Facet>();
-		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton().getAllFacetSets();
+//	/**
+//	 * load the facets
+//	 * 
+//	 * @param customizations
+//	 *        list of customization
+//	 * @param customizationManager
+//	 *        the Customization Manager
+//	 */
+//	protected void loadFacetsForCustomizations(final List<MetamodelView> customizations, final CustomizationManager customizationManager) {
+//		final Set<Facet> referencedFacets = new HashSet<Facet>();
+//		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton().getAllFacetSets();
+//
+//		for(MetamodelView customization : customizations) {
+//			String metamodelURI = customization.getMetamodelURI();
+//			// find customized FacetSet
+//			FacetSet customizedFacetSet = null;
+//			if(metamodelURI != null) {
+//				for(FacetSet facetSet : facetSets) {
+//					if(metamodelURI.equals(facetSet.getNsURI())) {
+//						customizedFacetSet = facetSet;
+//						break;
+//					}
+//				}
+//			}
+//			if(customizedFacetSet == null) {
+//				continue;
+//			}
+//
+//			// find customized Facets
+//			EList<TypeView> types = customization.getTypes();
+//			for(TypeView typeView : types) {
+//				String metaclassName = typeView.getMetaclassName();
+//				Facet facet = findFacetWithFullyQualifiedName(metaclassName, customizedFacetSet);
+//				if(facet != null) {
+//					referencedFacets.add(facet);
+//				} else {
+//					Activator.log.warn(NLS.bind(Messages.BrowserActionBarContributor_missingRequiredFacet, new Object[]{ metaclassName, customizedFacetSet.getName(), customization.getName() }));
+//				}
+//			}
+//
+//			for(Facet referencedFacet : referencedFacets) {
+//				customizationManager.loadFacet(referencedFacet);
+//			}
+//		}
+//
+//		//
+//		// for modified facets
+//		// customizationManager.getInstancesForMetaclasses().buildDerivationTree();
+//		// customizationManager.getAppearanceConfiguration().touch();
+//		// customizationManager.refreshDelayed(true);
+//	}
 
-		for(MetamodelView customization : customizations) {
-			String metamodelURI = customization.getMetamodelURI();
-			// find customized FacetSet
-			FacetSet customizedFacetSet = null;
-			if(metamodelURI != null) {
-				for(FacetSet facetSet : facetSets) {
-					if(metamodelURI.equals(facetSet.getNsURI())) {
-						customizedFacetSet = facetSet;
-						break;
-					}
-				}
-			}
-			if(customizedFacetSet == null) {
-				continue;
-			}
-
-			// find customized Facets
-			EList<TypeView> types = customization.getTypes();
-			for(TypeView typeView : types) {
-				String metaclassName = typeView.getMetaclassName();
-				Facet facet = findFacetWithFullyQualifiedName(metaclassName, customizedFacetSet);
-				if(facet != null) {
-					referencedFacets.add(facet);
-				} else {
-					Activator.log.warn(NLS.bind(Messages.BrowserActionBarContributor_missingRequiredFacet, new Object[]{ metaclassName, customizedFacetSet.getName(), customization.getName() }));
-				}
-			}
-
-			for(Facet referencedFacet : referencedFacets) {
-				customizationManager.loadFacet(referencedFacet);
-			}
-		}
-
-		//
-		// for modified facets
-		// customizationManager.getInstancesForMetaclasses().buildDerivationTree();
-		// customizationManager.getAppearanceConfiguration().touch();
-		// customizationManager.refreshDelayed(true);
-	}
-
-	/**
-	 * fin a facet from
-	 * 
-	 * @param metaclassName
-	 * @param customizedFacetSet
-	 * @return
-	 */
-	private Facet findFacetWithFullyQualifiedName(final String metaclassName, final FacetSet customizedFacetSet) {
-		EList<Facet> facets = customizedFacetSet.getFacets();
-		for(Facet facet : facets) {
-			String facetName = getMetaclassQualifiedName(facet);
-			if(metaclassName.equals(facetName)) {
-				return facet;
-			}
-		}
-		return null;
-	}
+//	/**
+//	 * fin a facet from
+//	 * 
+//	 * @param metaclassName
+//	 * @param customizedFacetSet
+//	 * @return
+//	 */
+//	private Facet findFacetWithFullyQualifiedName(final String metaclassName, final FacetSet customizedFacetSet) {
+//		EList<Facet> facets = customizedFacetSet.getFacets();
+//		for(Facet facet : facets) {
+//			String facetName = getMetaclassQualifiedName(facet);
+//			if(metaclassName.equals(facetName)) {
+//				return facet;
+//			}
+//		}
+//		return null;
+//	}
 
 	/** @return the qualified name of the given metaclass */
 	public static String getMetaclassQualifiedName(final EClassifier eClass) {

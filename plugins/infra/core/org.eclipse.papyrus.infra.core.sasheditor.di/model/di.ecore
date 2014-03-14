@@ -184,7 +184,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SashWindowsMngr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pageList" ordered="false"
-        unique="false" lowerBound="1" eType="#//PageList" containment="true"/>
+        unique="false" eType="#//PageList" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sashModel" ordered="false"
         unique="false" lowerBound="1" eType="#//SashModel" containment="true"/>
   </eClassifiers>

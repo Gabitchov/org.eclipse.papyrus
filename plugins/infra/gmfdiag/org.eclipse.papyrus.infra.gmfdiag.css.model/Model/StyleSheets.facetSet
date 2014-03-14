@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="ASCII"?>
 <facet:FacetSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:facet="http://www.eclipse.org/EmfFacet/infra/facet/0.8.incubation" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="StyleSheets" nsURI="http://www.eclipse.org/papyrus/infra/gmfdiag/css/facets" nsPrefix="cssFacets">
   <eClassifiers xsi:type="facet:Facet" name="StyleSheetsContainer" abstract="true">
-    <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+    <eSuperTypes href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
     <eStructuralFeatures xsi:type="facet:FacetReference" name="styleSheets" lowerBound="1" upperBound="-1" volatile="true" unsettable="true">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/infra/gmfdiag/css#//StyleSheet"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="StyleSheets.querySet#GetStyleSheets"/>
     </eStructuralFeatures>
     <conditionQuery xsi:type="query:JavaModelQuery" href="StyleSheets.querySet#IsStyleSheetContainer"/>
   </eClassifiers>
-  <extendedPackage href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+  <extendedPackage href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
 </facet:FacetSet>

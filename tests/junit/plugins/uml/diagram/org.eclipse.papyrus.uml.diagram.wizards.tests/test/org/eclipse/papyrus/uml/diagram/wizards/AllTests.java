@@ -21,7 +21,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 // {oep}.uml.diagram.wizards
 TestCreateModelWizard.class, TestCreateSysMLModelWizard.class, TestInitModelWizard.class,
-TestNewModelWizardBase.class, TestNewProjectWizard.class, TestNewSysMLProjectWizard.class
+TestNewProjectWizard.class, TestNewSysMLProjectWizard.class
 })
 /**
  * Suite Class for all tests in the plugin

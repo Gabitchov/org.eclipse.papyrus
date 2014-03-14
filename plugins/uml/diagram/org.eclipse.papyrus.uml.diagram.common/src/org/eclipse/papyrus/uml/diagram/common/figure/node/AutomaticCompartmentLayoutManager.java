@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
@@ -163,13 +164,19 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	protected void layoutOthers(Rectangle container) {
 		int totalHeight = 0;
 		for(IFigure child : visibleOthers) {
-			totalHeight += child.getPreferredSize().height;
+			totalHeight += child.getPreferredSize(50, -1).height;
 		}
 
 		IFigure previous = null;
 		for(IFigure child : visibleOthers) {
 			Rectangle bound = new Rectangle();
-			bound.setSize(getPreferedSize(child));
+			if (child instanceof WrappingLabel) {
+				((WrappingLabel) child).setTextWrap(true);
+				((WrappingLabel) child).setTextJustification(PositionConstants.CENTER);
+				bound.setSize(child.getPreferredSize(container.width, -1));
+			} else {
+				bound.setSize(getPreferedSize(child));
+			}
 			if(previous != null) {
 				bound.y = previous.getBounds().getBottomLeft().y + 1;
 				bound.x = container.x + 3;

@@ -27,6 +27,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.common.utils.ParameterLabelUtil;
@@ -70,7 +71,7 @@ public class OperationLabelParser extends NamedElementLabelParser {
 		}
 
 		String result = "";
-		EObject eObject = (EObject)element.getAdapter(EObject.class);
+		EObject eObject =EMFHelper.getEObject(element);
 
 		if((eObject != null) && (eObject instanceof Operation)) {
 

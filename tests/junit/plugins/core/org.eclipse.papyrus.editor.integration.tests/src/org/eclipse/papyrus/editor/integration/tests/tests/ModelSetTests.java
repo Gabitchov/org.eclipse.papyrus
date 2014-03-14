@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -36,9 +36,9 @@ import org.junit.Test;
 
 /**
  * Test case for handling models with special characters in their name/path
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class ModelSetTests extends AbstractEditorIntegrationTest {
 
@@ -48,7 +48,9 @@ public class ModelSetTests extends AbstractEditorIntegrationTest {
 	public void testOpenModelWithSpecialChars() throws Exception {
 		initModel("openSpecialChars", "^&_&^", getBundle());
 		IPageManager pageManager = getPageManager();
-		Assert.assertEquals("Some pages cannot be found", 3, pageManager.allPages().size());
+		//Fix test to match re-specification in Bug 429242: we only expect 2 pages (Instead of 3), because one of them is
+		//now invalid (Table v1 framework is deprecated and not available anymore)
+		Assert.assertEquals("Some pages cannot be found", 2, pageManager.allPages().size());
 
 		UmlModel umlModel = (UmlModel)getModelSet().getModel(UmlModel.MODEL_ID);
 		Model rootModel = (Model)umlModel.lookupRoot();

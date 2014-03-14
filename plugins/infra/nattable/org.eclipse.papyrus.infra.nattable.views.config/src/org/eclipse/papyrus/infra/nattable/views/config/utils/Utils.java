@@ -13,20 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.views.config.utils;
 
-import javax.naming.Context;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
-import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
-import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
-import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.views.config.Activator;
 
 /**
@@ -82,21 +73,6 @@ public class Utils {
 
 	/**
 	 * 
-	 * @return
-	 *         the page list used for this model
-	 */
-	public static final PageList getPageList(final Table table) {
-		final Resource resource = table.eResource();
-		final ModelSet modelSet = (ModelSet)resource.getResourceSet();
-		final Resource diResource = modelSet.getAssociatedResource(resource, DiModel.DI_FILE_EXTENSION, false);
-		final SashWindowsMngr windowMngr = DiUtils.lookupSashWindowsMngr(diResource);
-		final PageList pageList = windowMngr.getPageList();
-		assert pageList != null;
-		return pageList;
-	}
-
-	/**
-	 * 
 	 * @param eobject
 	 *        an eobject
 	 * @return
@@ -117,7 +93,7 @@ public class Utils {
 	 * @param editor
 	 *        an editor
 	 * @return
-	 *         the {@link Context} of this editor, or <code>null</code> if not found
+	 *         the Context of this editor, or <code>null</code> if not found
 	 */
 	public static final Object getEditorContext(final Object editor) {
 		if(editor instanceof EObject) {

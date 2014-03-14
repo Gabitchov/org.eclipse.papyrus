@@ -91,12 +91,14 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -104,16 +106,18 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link BehaviorPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link BehaviorPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static BehaviorPackage init() {
-		if (isInited) return (BehaviorPackage)EPackage.Registry.INSTANCE.getEPackage(BehaviorPackage.eNS_URI);
+		if(isInited)
+			return (BehaviorPackage)EPackage.Registry.INSTANCE.getEPackage(BehaviorPackage.eNS_URI);
 
 		// Obtain or create and register package
 		BehaviorPackageImpl theBehaviorPackage = (BehaviorPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof BehaviorPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new BehaviorPackageImpl());
@@ -215,7 +219,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 		// Mark meta-data to indicate it can't be changed
 		theBehaviorPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(BehaviorPackage.eNS_URI, theBehaviorPackage);
 		return theBehaviorPackage;
@@ -224,6 +228,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass functionBehaviorEClass = null;
@@ -231,6 +236,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass behaviorEClass = null;
@@ -238,6 +244,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass functionTriggerEClass = null;
@@ -245,6 +252,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass modeGroupEClass = null;
@@ -252,6 +260,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass modeEClass = null;
@@ -259,6 +268,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum functionBehaviorKindEEnum = null;
@@ -266,31 +276,33 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum triggerPolicyKindEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.behavior.BehaviorPackage#eNS_URI
 	 * @see #init()
@@ -301,13 +313,15 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -351,6 +365,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getBehavior() {
@@ -360,6 +375,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getBehavior_Behavior() {
@@ -369,6 +385,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getBehavior_FunctionTrigger() {
@@ -378,6 +395,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getBehavior_ModeGroup() {
@@ -387,6 +405,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getBehavior_Base_Package() {
@@ -396,6 +415,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getBehavior_Base_Class() {
@@ -404,6 +424,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BehaviorFactory getBehaviorFactory() {
@@ -413,6 +434,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFunctionBehavior() {
@@ -422,6 +444,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionBehavior_Base_Behavior() {
@@ -431,6 +454,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionBehavior_Function() {
@@ -440,6 +464,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionBehavior_Mode() {
@@ -449,6 +474,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFunctionBehavior_Path() {
@@ -458,6 +484,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFunctionBehavior_Representation() {
@@ -467,6 +494,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getFunctionBehaviorKind() {
@@ -476,6 +504,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFunctionTrigger() {
@@ -485,6 +514,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionTrigger_Function() {
@@ -494,6 +524,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionTrigger_FunctionPrototype() {
@@ -503,6 +534,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionTrigger_Mode() {
@@ -512,6 +544,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionTrigger_Port() {
@@ -521,6 +554,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFunctionTrigger_TriggerCondition() {
@@ -530,6 +564,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionTrigger_Base_Class() {
@@ -539,6 +574,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFunctionTrigger_TriggerPolicy() {
@@ -548,6 +584,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMode() {
@@ -557,6 +594,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMode_Condition() {
@@ -566,6 +604,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMode_Base_Class() {
@@ -575,6 +614,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getModeGroup() {
@@ -584,6 +624,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getModeGroup_Mode() {
@@ -593,6 +634,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getModeGroup_Base_Class() {
@@ -602,6 +644,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getModeGroup_Precondition() {
@@ -611,6 +654,7 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getTriggerPolicyKind() {
@@ -618,13 +662,15 @@ public class BehaviorPackageImpl extends EPackageImpl implements BehaviorPackage
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package

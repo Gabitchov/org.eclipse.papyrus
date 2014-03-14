@@ -22,12 +22,6 @@ import org.eclipse.papyrus.sysml.modelelements.Problem;
 import org.eclipse.papyrus.sysml.modelelements.Rationale;
 import org.eclipse.papyrus.sysml.modelelements.View;
 import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.Dependency;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -72,10 +66,7 @@ public class ModelelementsSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected boolean isSwitchFor(EPackage ePackage) {
-		/**
-		 * ePackage == UMLPackage.eINSTANCE in order to accept UML element
-		 */
-		return ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE;
+		return ePackage == modelPackage;
 	}
 
 	/**
@@ -175,151 +166,6 @@ public class ModelelementsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Tell if the Dependency is a Conform implementation
-	 * 
-	 * @param Dependency
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isConformFromDependency(Dependency dependency_) {
-		if(UMLUtil.getStereotypeApplication(dependency_, Conform.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Conform</em>' from Dependency object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Conform</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDependencyStereotypedByConform(Dependency dependency_) {
-		return null;
-	}
-
-	/**
-	 * Tell if the Package is a View implementation
-	 * 
-	 * @param Package
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isViewFromPackage(Package package_) {
-		if(UMLUtil.getStereotypeApplication(package_, View.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>View</em>' from Package object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>View</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePackageStereotypedByView(Package package_) {
-		return null;
-	}
-
-	/**
-	 * Tell if the Class is a ViewPoint implementation
-	 * 
-	 * @param Class
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isViewPointFromClass(Class class_) {
-		if(UMLUtil.getStereotypeApplication(class_, ViewPoint.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>ViewPoint</em>' from Class object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>ViewPoint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClassStereotypedByViewPoint(Class class_) {
-		return null;
-	}
-
-	/**
-	 * Tell if the Comment is a Rationale implementation
-	 * 
-	 * @param Comment
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isRationaleFromComment(Comment comment_) {
-		if(UMLUtil.getStereotypeApplication(comment_, Rationale.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Rationale</em>' from Comment object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Rationale</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCommentStereotypedByRationale(Comment comment_) {
-		return null;
-	}
-
-	/**
-	 * Tell if the Comment is a Problem implementation
-	 * 
-	 * @param Comment
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isProblemFromComment(Comment comment_) {
-		if(UMLUtil.getStereotypeApplication(comment_, Problem.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Problem</em>' from Comment object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Problem</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCommentStereotypedByProblem(Comment comment_) {
-		return null;
-	}
-
-	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -329,155 +175,49 @@ public class ModelelementsSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		if(theEObject.eClass().getEPackage() == UMLPackage.eINSTANCE) {
-			switch(classifierID) {
-
-
-
-
-
-			case UMLPackage.CLASS:
-			{
-				Class umlElement = (Class)theEObject;
-				T result;
-
-				result = caseClassStereotypedByViewPoint(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-				return null;
-			}
-
-
-
-
-
-			case UMLPackage.COMMENT:
-			{
-				Comment umlElement = (Comment)theEObject;
-				T result;
-
-				result = caseCommentStereotypedByRationale(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-
-
-
-				result = caseCommentStereotypedByProblem(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-				return null;
-			}
-
-
-
-
-
-			case UMLPackage.DEPENDENCY:
-			{
-				Dependency umlElement = (Dependency)theEObject;
-				T result;
-
-				result = caseDependencyStereotypedByConform(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-				return null;
-			}
-
-
-
-
-
-			case UMLPackage.PACKAGE:
-			{
-				Package umlElement = (Package)theEObject;
-				T result;
-
-				result = casePackageStereotypedByView(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-				return null;
-			}
-
-
-
-
-			default:
-				return defaultCase(theEObject);
-			}
-
-
-
-
-		} else {
-			switch(classifierID) {
-
-			case ModelelementsPackage.CONFORM:
-			{
-				Conform conform = (Conform)theEObject;
-				T result = caseConform(conform);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-
-			case ModelelementsPackage.VIEW:
-			{
-				View view = (View)theEObject;
-				T result = caseView(view);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-
-			case ModelelementsPackage.VIEW_POINT:
-			{
-				ViewPoint viewPoint = (ViewPoint)theEObject;
-				T result = caseViewPoint(viewPoint);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-
-			case ModelelementsPackage.RATIONALE:
-			{
-				Rationale rationale = (Rationale)theEObject;
-				T result = caseRationale(rationale);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-
-			case ModelelementsPackage.PROBLEM:
-			{
-				Problem problem = (Problem)theEObject;
-				T result = caseProblem(problem);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-			default:
-				return defaultCase(theEObject);
-			}
+		switch(classifierID) {
+		case ModelelementsPackage.CONFORM:
+		{
+			Conform conform = (Conform)theEObject;
+			T result = caseConform(conform);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelelementsPackage.VIEW:
+		{
+			View view = (View)theEObject;
+			T result = caseView(view);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelelementsPackage.VIEW_POINT:
+		{
+			ViewPoint viewPoint = (ViewPoint)theEObject;
+			T result = caseViewPoint(viewPoint);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelelementsPackage.RATIONALE:
+		{
+			Rationale rationale = (Rationale)theEObject;
+			T result = caseRationale(rationale);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelelementsPackage.PROBLEM:
+		{
+			Problem problem = (Problem)theEObject;
+			T result = caseProblem(problem);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText=" Copyright (c) 2013 Soft-Maint.&#xD;&#xA; &#xD;&#xA; All rights reserved. This program and the accompanying materials&#xD;&#xA; are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA; which accompanies this distribution, and is available at&#xD;&#xA; http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA; Contributors:&#xD;&#xA;&#x9;&#x9;David Couvrand (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI&#xD;&#xA; &#x9;Nicolas Rault (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI"
+    modelDirectory="/org.eclipse.papyrus.emf.facet.custom.metamodel/src" modelPluginID="org.eclipse.papyrus.emf.facet.custom.metamodel"
+    modelName="Query-0.3" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.papyrus.emf.facet.efacet.metamodel/model/efacet-0.2.0.genmodel#//efacet">
+  <foreignModel>query-0.3.0.ecore</foreignModel>
+  <genPackages prefix="Query" basePackage="org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0"
+      disposableProviderFactory="true" ecorePackage="query-0.3.0.ecore#/">
+    <genClasses ecoreClass="query-0.3.0.ecore#//URIImageQuery">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute query-0.3.0.ecore#//URIImageQuery/uri"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

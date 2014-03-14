@@ -24,9 +24,9 @@ import org.eclipse.ui.part.EditorPart;
 
 /**
  * A simple model that can be used as editor in tests.
- * 
+ *
  * @author cedric dumoulin
- * 
+ *
  */
 public class UnloadResourcesEditorModel implements IEditorModel {
 
@@ -42,7 +42,7 @@ public class UnloadResourcesEditorModel implements IEditorModel {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel#getTabTitle()
-	 * 
+	 *
 	 * @return
 	 */
 	public String getTabTitle() {
@@ -51,7 +51,7 @@ public class UnloadResourcesEditorModel implements IEditorModel {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel#getTabIcon()
-	 * 
+	 *
 	 * @return
 	 */
 	public Image getTabIcon() {
@@ -60,7 +60,7 @@ public class UnloadResourcesEditorModel implements IEditorModel {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel#getRawModel()
-	 * 
+	 *
 	 * @return
 	 */
 	public Object getRawModel() {
@@ -70,7 +70,7 @@ public class UnloadResourcesEditorModel implements IEditorModel {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel#createIEditorPart()
-	 * 
+	 *
 	 * @return
 	 * @throws PartInitException
 	 */
@@ -80,7 +80,7 @@ public class UnloadResourcesEditorModel implements IEditorModel {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel#getActionBarContributor()
-	 * 
+	 *
 	 * @return
 	 */
 	public EditorActionBarContributor getActionBarContributor() {
@@ -89,9 +89,9 @@ public class UnloadResourcesEditorModel implements IEditorModel {
 
 	/**
 	 * A class implementing a fake editor.
-	 * 
+	 *
 	 * @author dumoulin
-	 * 
+	 *
 	 */
 	public static class UnloadResourcesEditorPart extends EditorPart {
 
@@ -135,7 +135,7 @@ public class UnloadResourcesEditorModel implements IEditorModel {
 			label.setImage(image);
 			label.setLayoutData(new GridData(SWT.CENTER, SWT.TOP, false, false));
 			Text t = new Text(compo, SWT.None);
-			t.setText("This diagram is contained in an unresolved resource : " + unloadedUri.trimFragment().toString());
+			t.setText("This diagram is contained in an unresolved resource : " + URI.decode(unloadedUri.trimFragment().toString()));
 			t.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 			t.setEditable(false);
 			label.setBackground(t.getBackground());

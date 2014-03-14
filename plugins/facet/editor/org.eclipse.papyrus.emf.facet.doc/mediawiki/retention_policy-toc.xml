@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc topic="mediawiki/retention_policy.html" label="retention_policy">
+	<topic href="mediawiki/retention_policy.html" label="Retention Policy for EMF Facet builds (Draft)">
+		<topic href="mediawiki/retention_policy.html#Code_in_SVN" label="Code in SVN"></topic>
+		<topic href="mediawiki/retention_policy.html#Distributions_in_zip_files" label="Distributions in zip files"></topic>
+		<topic href="mediawiki/retention_policy.html#Features_in_update_site_repository" label="Features in update site repository"></topic>
+		<topic href="mediawiki/retention_policy.html#What_if_these_policies_don.27t_work_for_you.3F" label="What if these policies don't work for you?"></topic>
+	</topic>
+</toc>

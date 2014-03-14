@@ -20,18 +20,18 @@ package org.eclipse.papyrus.eastadl.structure.functionmodeling;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Basic Software Function Type</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * The BasicSoftwareFunctionType is an abstraction of middleware functionality.
  * 
  * Semantics:
  * The BasicSoftwareFunctionType is an abstraction of the middleware.
  * 
- * Extension: 
+ * Extension:
  * UML Class, specialization of SysML::Block
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPackage#getBasicSoftwareFunctionType()
  * @model
  * @generated

@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.MaskLabelHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -50,7 +51,7 @@ public class NamedElementLabelParser implements IMaskManagedSemanticParser {
 	public String getEditString(IAdaptable element, int flags) {
 		String editString = "";
 
-		EObject eObject = (EObject)element.getAdapter(EObject.class);
+		EObject eObject = EMFHelper.getEObject(element);
 		if((eObject != null) && (eObject instanceof NamedElement)) {
 			NamedElement semElement = (NamedElement)eObject;
 			if(semElement.isSetName()) {
@@ -74,7 +75,7 @@ public class NamedElementLabelParser implements IMaskManagedSemanticParser {
 
 		ICommand command = UnexecutableCommand.INSTANCE;
 
-		EObject objectToEdit = (EObject)element.getAdapter(EObject.class);
+		EObject objectToEdit =EMFHelper.getEObject(element);
 		if(objectToEdit == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -93,7 +94,7 @@ public class NamedElementLabelParser implements IMaskManagedSemanticParser {
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		String result = "";
-		EObject eObject = (EObject)element.getAdapter(EObject.class);
+		EObject eObject = EMFHelper.getEObject(element);
 
 		if(eObject instanceof NamedElement) {
 			return ((NamedElement)eObject).getName();

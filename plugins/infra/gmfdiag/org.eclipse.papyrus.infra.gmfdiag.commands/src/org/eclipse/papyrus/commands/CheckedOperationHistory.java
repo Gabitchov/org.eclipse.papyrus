@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos) - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 357250
+ *  Christian W. Damus (CEA) - bug 357250, bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
@@ -80,8 +80,8 @@ public class CheckedOperationHistory implements IOperationHistory {
 			if("operationApprover".equals(elem.getName())) { //$NON-NLS-1$
 				try {
 					ApproverPriorityPair approverPriorityPair = new ApproverPriorityPair();
-					approverPriorityPair.approver = (IOperationApprover2)elem.createExecutableExtension("class");
-					approverPriorityPair.priority = Integer.parseInt(elem.getAttribute("priority"));
+					approverPriorityPair.approver = (IOperationApprover2)elem.createExecutableExtension("class"); //$NON-NLS-1$
+					approverPriorityPair.priority = Integer.parseInt(elem.getAttribute("priority")); //$NON-NLS-1$
 
 					approverPriorityPairs.add(approverPriorityPair);
 				} catch (Exception e) {
@@ -101,6 +101,8 @@ public class CheckedOperationHistory implements IOperationHistory {
 
 	private CheckedOperationHistory() {
 		history = OperationHistoryFactory.getOperationHistory();
+		
+		addRegisteredListeners(history);
 	}
 
 	/*
@@ -218,6 +220,21 @@ public class CheckedOperationHistory implements IOperationHistory {
 		return history.redo(context, monitor, info);
 	}
 
+	private static void addRegisteredListeners(IOperationHistory history) {
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, "historyListeners"); //$NON-NLS-1$
+
+		for(IConfigurationElement elem : configElements) {
+			if("historyListener".equals(elem.getName())) { //$NON-NLS-1$
+				try {
+					IOperationHistoryListener listener = (IOperationHistoryListener)elem.createExecutableExtension("class"); //$NON-NLS-1$
+					history.addOperationHistoryListener(listener);
+				} catch (Exception e) {
+					Activator.log.error("Uncaught exception in instantiation of operation history listener.", e); //$NON-NLS-1$
+				}
+			}
+		}
+	}
+	
 	// all the following methods are pure delegation
 
 	public IStatus undoOperation(IUndoableOperation operation, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {

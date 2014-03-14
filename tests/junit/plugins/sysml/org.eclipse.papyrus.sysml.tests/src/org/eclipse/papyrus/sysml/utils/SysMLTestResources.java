@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -38,7 +38,7 @@ public class SysMLTestResources {
 
 	/**
 	 * Creates a model with SysML profile applied for JUnit test
-	 * 
+	 *
 	 * @return the created model
 	 */
 	public static Model createSysMLModel() {
@@ -54,7 +54,7 @@ public class SysMLTestResources {
 
 		// Apply UML Standard profile
 		// Retrieve standard profile
-		Profile umlStdProfile = (Profile)PackageUtil.loadPackage(URI.createURI(UMLResource.STANDARD_L2_PROFILE_URI), RESOURCE_SET);
+		Profile umlStdProfile = (Profile)PackageUtil.loadPackage(URI.createURI(UMLResource.STANDARD_PROFILE_URI), RESOURCE_SET);
 		// Apply to new model
 		model.applyProfile(umlStdProfile);
 

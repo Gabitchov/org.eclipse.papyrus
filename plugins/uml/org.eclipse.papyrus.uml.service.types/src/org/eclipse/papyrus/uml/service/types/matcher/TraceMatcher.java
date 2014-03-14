@@ -12,7 +12,7 @@ package org.eclipse.papyrus.uml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.uml2.uml.Abstraction;
-import org.eclipse.uml2.uml.profile.l2.Trace;
+import org.eclipse.uml2.uml.profile.standard.Trace;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**

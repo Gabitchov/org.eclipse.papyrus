@@ -1,20 +1,22 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
@@ -22,9 +24,6 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.Transaction;
-import org.eclipse.emf.transaction.impl.InternalTransaction;
-import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -51,6 +50,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AcceptEventActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
@@ -952,34 +952,8 @@ public class CallBehaviorActionAsInteractionEditPart extends NamedElementEditPar
 
 					final CreateSnapshotForInteractionFromRefreshCommand command = CreateSnapshotForInteractionFromRefreshCommand.create((View)getModel(), (GraphicalEditPart)getParent());
 					//use to avoid to put it in the command stack
-					final Map<String, Boolean> options = new HashMap<String, Boolean>();
-					options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-					final InternalTransactionalEditingDomain editingDomain = (InternalTransactionalEditingDomain)getEditingDomain();
 					try {
-						if(editingDomain.getActiveTransaction() == null) {
-							//Should not happen
-							final InternalTransaction transaction = editingDomain.startTransaction(false, options);
-							command.execute(null, null);
-							transaction.commit();
-						} else {
-							final InternalTransaction activeTransaction = editingDomain.getActiveTransaction();
-							if(activeTransaction.isReadOnly()) {
-								editingDomain.deactivate(activeTransaction);
-								try {
-									final InternalTransaction it = editingDomain.startTransaction(false, options);
-									command.execute(null, null);
-									it.commit();
-								} finally {
-									editingDomain.activate(activeTransaction);
-								}
-							} else {
-								command.execute(null, null);
-							}
-						}
-
-						final InternalTransaction it = ((InternalTransactionalEditingDomain)getEditingDomain()).startTransaction(false, options);
-						command.execute(null, null);
-						it.commit();
+						GMFUnsafe.write(getEditingDomain(), command);
 					} catch (final Exception e) {
 						Activator.log.error(e);
 					}

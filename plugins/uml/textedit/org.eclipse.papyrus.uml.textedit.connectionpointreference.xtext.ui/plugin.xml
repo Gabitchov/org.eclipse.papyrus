@@ -189,7 +189,7 @@
             language="Textual editor for connection point references"
             objectToEdit="org.eclipse.uml2.uml.ConnectionPointReference">
          <popupeditor
-               editorConfiguration="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.contributions.ConnectionPointReferencePopupEditorConfiguration">
+               editorConfiguration="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.contributions.ConnectionPointReferenceEditorConfiguration">
          </popupeditor>
       </DirectEditor>
    </extension>

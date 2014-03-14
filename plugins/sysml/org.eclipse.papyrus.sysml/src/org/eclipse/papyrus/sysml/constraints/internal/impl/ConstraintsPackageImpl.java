@@ -42,7 +42,7 @@ import org.eclipse.papyrus.sysml.statemachines.internal.impl.StatemachinesPackag
 import org.eclipse.papyrus.sysml.usecases.UsecasesPackage;
 import org.eclipse.papyrus.sysml.usecases.internal.impl.UsecasesPackageImpl;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
@@ -81,7 +81,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		isInited = true;
 
 		// Initialize simple dependencies
-		L2Package.eINSTANCE.eClass();
+		StandardPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		SysmlPackageImpl theSysmlPackage = (SysmlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SysmlPackage.eNS_URI) instanceof SysmlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SysmlPackage.eNS_URI) : SysmlPackage.eINSTANCE);
@@ -259,7 +259,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		// Add supertypes to classes
 		constraintBlockEClass.getESuperTypes().add(theBlocksPackage.getBlock());
 
-		// Initialize classes and features; add operations and parameters
+		// Initialize classes, features, and operations; add parameters
 		initEClass(constraintBlockEClass, ConstraintBlock.class, "ConstraintBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(constraintPropertyEClass, ConstraintProperty.class, "ConstraintProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

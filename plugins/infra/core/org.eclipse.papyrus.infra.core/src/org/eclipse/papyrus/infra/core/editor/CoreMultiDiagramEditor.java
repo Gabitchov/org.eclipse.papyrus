@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008, 2013 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -35,7 +35,6 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ui.actions.ActionRegistry;
@@ -176,8 +175,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 				@Override
 				public void run() {
 					// editor can be null if this object has been finalized, but
-					// still queued in the asyncExec queue. 
-					// This can happen if the editor is disposed, but some run still in 
+					// still queued in the asyncExec queue.
+					// This can happen if the editor is disposed, but some run still in
 					// the exec queue.
 					// When the method is executed asynchronously, the object is already finalized, and so
 					// editor is null.
@@ -493,6 +492,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 			@Override
 			public void run() {
+				//Because we are asynchronous, the editor may already have been disposed
+				//(Especially in the case of tests running in the UI Thread)
+				if(servicesRegistry == null) {
+					return;
+				}
 				getLifecycleManager().firePostDisplay(CoreMultiDiagramEditor.this);
 			}
 		});
@@ -628,6 +632,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	}
 
 	private InternalEditorLifecycleManager getLifecycleManager() {
+		//I've been disposed
+		if(servicesRegistry == null) {
+			return null;
+		}
 		try {
 			return (InternalEditorLifecycleManager)servicesRegistry.getService(EditorLifecycleManager.class);
 		} catch (ServiceException ex) {
@@ -674,14 +682,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 				if(pageManager.isOpen(pageIdentifier)) {
 					pageManager.selectPage(pageIdentifier);
 				} else {
-					transactionalEditingDomain.getCommandStack().execute(new RecordingCommand(transactionalEditingDomain, "Open page") {
-
-						@Override
-						protected void doExecute() {
-							pageManager.openPage(pageIdentifier);
-						}
-					});
-
+					pageManager.openPage(pageIdentifier);
 				}
 			}
 		}

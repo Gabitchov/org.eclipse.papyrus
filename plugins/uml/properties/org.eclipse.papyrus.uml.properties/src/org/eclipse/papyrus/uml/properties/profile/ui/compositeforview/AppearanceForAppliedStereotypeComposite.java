@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositeforview;
@@ -25,6 +26,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.profile.Activator;
@@ -218,6 +220,12 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 		});
 		return this;
 	}
+	
+	@Override
+	public boolean isReadOnly() {
+		EModelElement element = getDiagramElement();
+		return (element == null) || EMFHelper.isReadOnly(element);
+	}
 
 	/**
 	 * Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=417372
@@ -228,7 +236,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 		if(tree == null || tree.isDisposed()) {
 			return;
 		}
-		boolean enabled = getDiagramElement() != null && !treeViewer.getSelection().isEmpty();
+		boolean enabled = (getDiagramElement() != null && !treeViewer.getSelection().isEmpty()) && !isReadOnly();
 		if(displayButton != null && !displayButton.isDisposed()) {
 			displayButton.setEnabled(enabled);
 		}

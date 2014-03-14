@@ -35,6 +35,11 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 	protected static final String LINE_STYLE = "lineStyle";
 
 	/**
+	 * Supported values of the CSS property lineStyle
+	 */
+	protected static final String[] LINE_STYLE_VALUES = { "none", "hidden", "dotted", "dashed", "solid", "double" };
+
+	/**
 	 * CSS property for the line dashes' length
 	 */
 	protected static final String LINE_DASH_LENGTH = "lineDashLength";
@@ -43,6 +48,33 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 	 * CSS property for the length between line dashes
 	 */
 	protected static final String LINE_DASH_GAP = "lineDashGap";
+
+	/**
+	 * CSS property for the source decoration
+	 */
+	protected static final String SOURCE_DECORATION = "sourceDecoration";
+
+	/**
+	 * CSS property for the target decoration
+	 */
+	protected static final String TARGET_DECORATION = "targetDecoration";
+
+	/**
+	 * Supported values of the CSS property targetDecoration
+	 */
+	protected static final String[] DECORATION_VALUES = { "default", "none" };
+
+	/**
+	 * Minimum length of dashes for dashed connectors
+	 */
+	protected static final int LINE_DASH_MIN_LENGTH = 2;
+
+	/**
+	 * Minimum length of the gaps between dashes
+	 */
+	protected static final int LINE_GAP_MIN_LENGTH = 2;
+
+
 
 	public ConnectionEditPart(View view) {
 		super(view);
@@ -59,13 +91,22 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 		if(figure instanceof PapyrusEdgeFigure && model instanceof Connector) {
 			Connector connector = (Connector)model;
 			PapyrusEdgeFigure edge = (PapyrusEdgeFigure)figure;
+			// Reset the style
+			edge.resetStyle();
+			// Re-apply the CSS-defined style if any
 			String lineStyle = extract((StringValueStyle)connector.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), LINE_STYLE));
 			int lineDashLength = extract((IntValueStyle)connector.getNamedStyle(NotationPackage.eINSTANCE.getIntValueStyle(), LINE_DASH_LENGTH));
 			int lineDashGap = extract((IntValueStyle)connector.getNamedStyle(NotationPackage.eINSTANCE.getIntValueStyle(), LINE_DASH_GAP));
 			if(lineStyle != null) {
-				setupLineStyle(edge, lineStyle, connector.getLineWidth(), lineDashLength, lineDashGap);
-			} else {
-				edge.resetStyle();
+				setupLineStyle(edge, lineStyle, connector.getLineWidth(), lineDashLength < LINE_DASH_MIN_LENGTH ? LINE_DASH_MIN_LENGTH : lineDashLength, lineDashGap < LINE_GAP_MIN_LENGTH ? LINE_GAP_MIN_LENGTH : lineDashGap);
+			}
+			String decoration = extract((StringValueStyle) connector.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), TARGET_DECORATION));
+			if ("none".equals(decoration)) {
+				edge.setTargetDecoration(null);
+			}
+			decoration = extract((StringValueStyle) connector.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), SOURCE_DECORATION));
+			if ("none".equals(decoration)) {
+				edge.setSourceDecoration(null);
 			}
 		}
 	}
@@ -113,26 +154,22 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 	 *        Length of the gap between dashes
 	 */
 	private void setupLineStyle(PapyrusEdgeFigure edge, String style, int originalWidth, int lineDashLength, int lineDashGap) {
-		if("none".equals(style)) {
-			edge.resetStyle();
-		} else {
-			if("hidden".equals(style)) {
-				edge.setLineStyle(Graphics.LINE_SOLID);
-				edge.setLineWidth(0);
-				edge.setVisible(false);
-			} else if("dotted".equals(style)) {
-				edge.setLineStyle(Graphics.LINE_DOT);
-				edge.setLineWidth(originalWidth);
-			} else if("dashed".equals(style)) {
-				edge.setLineStyle(Graphics.LINE_CUSTOM);
-				edge.setLineWidth(originalWidth);
-				edge.setLineDash(new int[]{ lineDashLength, lineDashGap });
-			} else if("solid".equals(style)) {
-				edge.setLineStyle(Graphics.LINE_SOLID);
-				edge.setLineWidth(originalWidth);
-			} else if("double".equals(style)) {
-				edge.setLineWidth(originalWidth * 2);
-			}
+		if ("hidden".equals(style)) {
+			edge.setLineStyle(Graphics.LINE_SOLID);
+			edge.setLineWidth(0);
+			edge.setVisible(false);
+		} else if ("dotted".equals(style)) {
+			edge.setLineStyle(Graphics.LINE_DOT);
+			edge.setLineWidth(originalWidth);
+		} else if ("dashed".equals(style)) {
+			edge.setLineStyle(Graphics.LINE_CUSTOM);
+			edge.setLineWidth(originalWidth);
+			edge.setLineDash(new int[] { lineDashLength, lineDashGap });
+		} else if ("solid".equals(style)) {
+			edge.setLineStyle(Graphics.LINE_SOLID);
+			edge.setLineWidth(originalWidth);
+		} else if ("double".equals(style)) {
+			edge.setLineWidth(originalWidth * 2);
 		}
 	}
 

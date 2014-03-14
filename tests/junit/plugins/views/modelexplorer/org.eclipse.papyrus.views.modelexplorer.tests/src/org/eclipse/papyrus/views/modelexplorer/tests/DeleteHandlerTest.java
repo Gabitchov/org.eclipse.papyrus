@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
@@ -90,9 +92,7 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 		final IStructuredSelection currentSelection = getCurrentSelection();
 		Assert.assertEquals("Only one element should be selected", currentSelection.size(), 1); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
-		if(obj instanceof IAdaptable) {
-			obj = ((IAdaptable)obj).getAdapter(EObject.class);
-		}
+			obj = EMFHelper.getEObject(obj);
 		Assert.assertSame(getRootOfTheModel(), obj);
 		final IHandler currentHandler = getActiveHandler();
 		if(currentHandler == null) {
@@ -118,8 +118,8 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 
 		final Object[] expandedElement = runnable.getResult();
 		for(final Object object : expandedElement) {
-			if(object instanceof org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem) {
-				selectElementInTheModelexplorer((ITreeElement)object);
+			if(object instanceof EStructuralFeatureTreeElement) {
+				selectElementInTheModelexplorer((EStructuralFeatureTreeElement)object);
 				final IHandler handler = getActiveHandler();
 				if(handler != null) {
 					Assert.assertFalse("The handler " + handler + " is active on LinkItem, it is not the wanted behavior", handler.isEnabled()); //$NON-NLS-1$ //$NON-NLS-2$

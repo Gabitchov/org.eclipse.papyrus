@@ -1,18 +1,15 @@
 /*****************************************************************************
- * Copyright (c) 2011-2012 CEA LIST.
- *   
+ * Copyright (c) 2011 CEA LIST.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - refactor common behavior between diagrams
- *  
- *  CEA LIST - Adapted to use a local graphical type registry.
- *  
+ *		
+ *		CEA LIST - Initial API and implementation
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.diagram.common.edit.policy;
 
@@ -56,6 +53,8 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.DeferredSnapToGridCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewDescriptorUtil;
 import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
@@ -161,6 +160,16 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			Command dropCommand = new ICommandProxy(gmfDropCommand);
 			completeDropCommand.add(dropCommand.chain(refreshCommand));
 			completeDropCommand.add(arrangeCommand);
+
+			//add snap command if required
+			//430099: [Diagram] Snap to Grid for elements dropped from the ModelExplorer is ignored
+			//https://bugs.eclipse.org/bugs/show_bug.cgi?id=430099
+			final Object value = dropRequest.getExtendedData().get(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT);
+			if(value instanceof Boolean && Boolean.TRUE.equals(value)) {
+				DeferredSnapToGridCommand snapCommand = new DeferredSnapToGridCommand(getEditingDomain(), newValues, (IGraphicalEditPart)getHost());
+				completeDropCommand.add(new ICommandProxy(snapCommand));
+			}
+
 		}
 
 		return completeDropCommand;

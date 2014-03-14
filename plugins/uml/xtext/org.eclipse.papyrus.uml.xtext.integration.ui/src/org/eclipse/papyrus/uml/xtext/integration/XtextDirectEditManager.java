@@ -31,6 +31,8 @@ import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.Trace;
+import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
@@ -47,8 +49,9 @@ import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.papyrus.uml.xtext.integration.core.IXtextFakeContextResourcesProvider;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
+import org.eclipse.papyrus.uml.xtext.integration.core.IXtextFakeContextResourcesProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Color;
@@ -111,6 +114,11 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 	private Font zoomLevelFont = null;
 
 	/**
+	 * store used parser to enable activation, if required
+	 * */
+	protected IParser parser;
+	
+	/**
 	 * The superclass only relocates the cell editor when the location of the
 	 * editpart's figure moves, but we need to also relocate the cell editor
 	 * when the text figure's location changes.
@@ -151,11 +159,19 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 	}
 
 	public XtextDirectEditManager(ITextAwareEditPart source, Injector injector,
+			int style, DefaultXtextDirectEditorConfiguration configuration) {
+		this(source, null, getTextCellEditorLocator(source), injector, style);
+		this.contextProvider = configuration.getContextProvider();
+		this.parser = configuration.createParser(((IGraphicalEditPart) source).resolveSemanticElement());
+		installCustomParser();
+	}
+
+	public XtextDirectEditManager(ITextAwareEditPart source, Injector injector,
 			int style, IContextElementProvider provider) {
 		this(source, null, getTextCellEditorLocator(source), injector, style);
 		this.contextProvider = provider;
 	}
-
+	
 	/**
 	 * @param source
 	 * @param editorType
@@ -288,6 +304,8 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 	 */
 	protected CellEditor createCellEditorOn(Composite composite) {
 
+		// ((ICleanupAfterDirectEdit) getEditPart()).setParser(parser);
+
 		Composite parent = new Composite(composite, SWT.None);
 		FillLayout fillLayout = new FillLayout();
 		fillLayout.marginWidth = 10;
@@ -356,7 +374,6 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 		committed = false;
 
 		// Get the Text Compartments Edit Part
-
 		setEditText(getEditPart().getEditText());
 
 		IFigure label = getEditPart().getFigure();
@@ -375,6 +392,7 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 		actionHandler = new CellEditorActionHandler(actionBars);
 		actionHandler.addCellEditor(getCellEditor());
 		actionBars.updateActionBars();
+		resetDefaultParser();
 	}
 
 	/**
@@ -404,9 +422,35 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 			return;
 		}
 		committed = true;
+		// installCustomParser();
+		// already call eraseFeedback here, to assure that a refresh is done with the default parser
+		eraseFeedback();
+		// now install the custom parser before committing
+		installCustomParser();
 		super.commit();
+		resetDefaultParser();
+		getEditPart().refresh();
+		
 	}
 
+	/**
+	 * install the custom parser for the editor
+	 */
+	protected void installCustomParser() {
+		if ((parser != null) && getEditPart() instanceof IControlParserForDirectEdit) {
+			((IControlParserForDirectEdit) getEditPart()).setParser(parser);
+		}
+	}
+	
+	/**
+	 * reset to default parser
+	 */
+	protected void resetDefaultParser() {
+		if (getEditPart() instanceof IControlParserForDirectEdit) {
+			((IControlParserForDirectEdit) getEditPart()).setParser(null);
+		}
+	}
+	
 	/**
 	 * @see org.eclipse.gef.tools.DirectEditManager#bringDown()
 	 */
@@ -428,7 +472,7 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 		Display.getCurrent().asyncExec(new Runnable() {
 
 			public void run() {
-				// Content Assist hack - allow proper cleanup on childen
+				// Content Assist hack - allow proper cleanup on children
 				// controls
 				XtextDirectEditManager.super.bringDown();
 			}
@@ -497,11 +541,15 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 	 */
 	public void show(char initialChar) {
 		initialString = initialString.append(initialChar);
+		
+		((IControlParserForDirectEdit) getEditPart()).setParser(parser);
 		show();
 		if (SWT.getPlatform() != "carbon") { //$NON-NLS-1$ 
 			// Set the cell editor text to the initial character
 			setEditText(initialString.toString());
 		}
+		((IControlParserForDirectEdit) getEditPart()).setParser(null);
+
 	}
 
 	/**

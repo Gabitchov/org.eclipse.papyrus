@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
@@ -50,7 +51,7 @@ public class InteractionOperandAppliedStereotypeLabelDisplayEditPolicy extends A
 		// if (stereotypesToDisplay != "" || imageToDisplay != null) {
 		if(figure instanceof IPapyrusNodeUMLElementFigure) {
 			((IPapyrusNodeUMLElementFigure)figure).setStereotypeDisplay(tag + (stereotypesOnlyToDisplay().equals("") ? stereotypesToDisplay : stereotypesToDisplay), imageToDisplay);
-			refreshAppliedStereotypesProperties(((IPapyrusNodeUMLElementFigure)figure));
+			refreshAppliedStereotypesProperties(((IPapyrusNodeNamedElementFigure) figure));
 		}
 	}
 }

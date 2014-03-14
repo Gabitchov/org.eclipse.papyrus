@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,14 +32,14 @@ import org.junit.Test;
  * Tests the cases where the di model is not totally valid
  * The Editor should be able to load the valid parts and should not
  * fail on the invalid ones
- * 
+ *
  * In most cases, we're simply interested in opening the Papyrus Editor
  * (i.e. the model is invalid, so we don't expect to be able to manipulate
  * the diagrams; but we should still be able to manipulate the editor
  * and the semantic model, create new digrams, etc).
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class RecoveryTest extends AbstractEditorIntegrationTest {
 
@@ -81,8 +81,8 @@ public class RecoveryTest extends AbstractEditorIntegrationTest {
 	}
 
 	//We should be able to open a page even if is not (yet) in the availablePages list
-	//This works programmatically, but is not supported by the current implementation of handler#isEnabled
 	@Test
+	@Ignore("This test is not required anymore, as the allPages() is computed dynamically (Bug 429239)")
 	public void testUnavailablePageRecovery() throws Exception {
 		initModel("unavailablePageRecovery", "missing_page_recovery", getBundle());
 		final IPageManager manager = editor.getServicesRegistry().getService(IPageManager.class);

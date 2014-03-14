@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -103,7 +104,7 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	 */
 	@Override
 	protected String getStringByPattern(IAdaptable adapter, int flags, String pattern, MessageFormat processor) {
-		EObject element = (EObject)adapter.getAdapter(EObject.class);
+		EObject element = EMFHelper.getEObject(adapter);
 		element = getDomainElement(element);
 		return getStringByPattern(element, feature, processor);
 	}
@@ -165,7 +166,7 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	 */
 	@Override
 	public ICommand getParseCommand(IAdaptable adapter, Object[] values) {
-		EObject element = (EObject)adapter.getAdapter(EObject.class);
+		EObject element =EMFHelper.getEObject(adapter);
 		element = getDomainElement(element);
 		if(element == null) {
 			return UnexecutableCommand.INSTANCE;

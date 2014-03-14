@@ -22,7 +22,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.services.controlmode;bundle-version="1.0.0",
  org.eclipse.ui.navigator;bundle-version="3.5.300",
- org.eclipse.emf.cdo.ui.admin;bundle-version="[4.1.200,5.0.0)"
+ org.eclipse.emf.cdo.ui.admin;bundle-version="[4.1.200,5.0.0)",
+ org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.cdo.internal.ui;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.ui",
  org.eclipse.papyrus.cdo.internal.ui.actions;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
  org.eclipse.papyrus.cdo.internal.ui.adapters;x-friends:="org.eclipse.papyrus.cdo.ui.tests",

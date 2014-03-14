@@ -24,24 +24,29 @@ import org.eclipse.papyrus.eastadl.requirements.RequirementsContainer;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>RIF Area</b></em>'. <!--
  * end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * An extra allocated part of the EAST-ADL2 System Model that contains Requirement Specific Data (Container, Reqs etc...) from RIF Import resp. RIF Export.
+ * An extra allocated part of the EAST-ADL2 System Model that contains Requirement Specific Data (Container, Reqs etc...) from RIF Import resp. RIF
+ * Export.
  * 
- * Especially for the context of requirement engineering and considering the possibility to import/export requirement related data via RIF, the feature uuid will be used to check that two elements are semantically the same and thus should stay together in reference via a Multi-Level reference link.
+ * Especially for the context of requirement engineering and considering the possibility to import/export requirement related data via RIF, the
+ * feature uuid will be used to check that two elements are semantically the same and thus should stay together in reference via a Multi-Level
+ * reference link.
  * 
- * Since requirement data to be imported/exported will be put into RIFArea, requirement data elements which are not inside RIFArea and have semantically equal element in the RIFAreas (such elements have the same uuid value) will be connected with the appropriate elements in the RIFArea using Multi-Level reference links.
+ * Since requirement data to be imported/exported will be put into RIFArea, requirement data elements which are not inside RIFArea and have
+ * semantically equal element in the RIFAreas (such elements have the same uuid value) will be connected with the appropriate elements in the RIFArea
+ * using Multi-Level reference links.
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.interchange.RIFArea#getRootRequirementContainer <em>Root Requirement Container</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.interchange.RIFArea#getBase_Class <em>Base Class</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.interchange.RIFArea#getInterchangeReqSpecObject <em>Interchange Req Spec Object</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.interchange.RIFArea#getRootRequirementContainer <em>Root Requirement Container</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.interchange.RIFArea#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.interchange.RIFArea#getInterchangeReqSpecObject <em>Interchange Req Spec Object</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.interchange.InterchangePackage#getRIFArea()
  * @model abstract="true"
  * @generated
@@ -52,10 +57,10 @@ public interface RIFArea extends Context {
 	 * Returns the value of the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
 	 * @see org.eclipse.papyrus.eastadl.interchange.InterchangePackage#getRIFArea_Base_Class()
@@ -69,10 +74,10 @@ public interface RIFArea extends Context {
 	 * The list contents are of type {@link org.eclipse.papyrus.eastadl.requirements.RequirementSpecificationObject}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Interchange Req Spec Object</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Interchange Req Spec Object</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Interchange Req Spec Object</em>' reference list.
 	 * @see org.eclipse.papyrus.eastadl.interchange.InterchangePackage#getRIFArea_InterchangeReqSpecObject()
 	 * @model ordered="false"
@@ -85,10 +90,10 @@ public interface RIFArea extends Context {
 	 * The list contents are of type {@link org.eclipse.papyrus.eastadl.requirements.RequirementsContainer}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Root Requirement Container</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Root Requirement Container</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Root Requirement Container</em>' reference list.
 	 * @see org.eclipse.papyrus.eastadl.interchange.InterchangePackage#getRIFArea_RootRequirementContainer()
 	 * @model
@@ -99,7 +104,9 @@ public interface RIFArea extends Context {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.interchange.RIFArea#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base Class</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Base Class</em>' reference.
 	 * @see #getBase_Class()
 	 * @generated
 	 */

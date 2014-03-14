@@ -53,6 +53,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
@@ -149,6 +150,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
 			if(elementType != null) {
 				if(elementType instanceof IExtendedHintedElementType) {
+					if(domainElement !=null) {
+						if(!UMLVisualIDRegistry.checkNodeVisualID(op.getContainerView(), domainElement, visualID)) {
+							return false;
+						}
+					}
 //					IElementType closestNonExtendedType = ElementTypeUtils.getClosestDiagramType(elementType);
 //					if(!UMLElementTypes.isKnownElementType(closestNonExtendedType) || (!(closestNonExtendedType instanceof IHintedType))) {
 //						return false; // foreign element type.
@@ -3291,7 +3297,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		if(semanticAdapter == null) {
 			return null;
 		}
-		EObject eObject = (EObject)semanticAdapter.getAdapter(EObject.class);
+		EObject eObject = EMFHelper.getEObject(semanticAdapter);
 		if(eObject != null) {
 			return EMFCoreUtil.resolve(TransactionUtil.getEditingDomain(eObject), eObject);
 		}

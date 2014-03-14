@@ -233,7 +233,7 @@
             language="Advanced Parameter Editor"
             objectToEdit="org.eclipse.uml2.uml.Parameter">
          <popupeditor
-               editorConfiguration="org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.contributions.ParameterPopupEditor">
+               editorConfiguration="org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.contributions.ParameterXtextDirectEditorConfiguration">
          </popupeditor>
       </DirectEditor>
    </extension>

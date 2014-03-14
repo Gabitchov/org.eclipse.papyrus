@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.tests;
 
@@ -271,7 +273,7 @@ public abstract class AbstractPapyrusCDOTest {
 	}
 
 	protected void loadTemplate(String templateName, String resourceName, Resource... resource) {
-		ResourceSet rset = resource[0].getResourceSet();
+		ResourceSet rset = new ResourceSetImpl();
 
 		// load all the templates
 		Resource[] templates = new Resource[resource.length];
@@ -290,11 +292,12 @@ public abstract class AbstractPapyrusCDOTest {
 		}
 
 		// unload the now empty template resources
-		for(int i = 0; i < templates.length; i++) {
-			templates[i].unload();
-			rset.getResources().remove(templates[i]);
-			templates[i].eAdapters().clear();
+		for(Resource next : rset.getResources()) {
+			next.unload();
+			next.eAdapters().clear();
 		}
+		rset.getResources().clear();
+		rset.eAdapters().clear();
 	}
 
 	protected <T extends EObject> T getMasterViewObject(T object) {

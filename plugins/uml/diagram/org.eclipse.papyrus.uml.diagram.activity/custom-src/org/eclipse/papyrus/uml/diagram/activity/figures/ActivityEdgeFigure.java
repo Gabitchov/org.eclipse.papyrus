@@ -62,6 +62,12 @@ public class ActivityEdgeFigure extends UMLEdgeFigure {
 		super.createContents();
 	}
 
+	@Override
+	public void resetStyle() {
+		super.resetStyle();
+		setTargetDecoration(createTargetDecoration());
+	}
+
 	/**
 	 * Scale changed from default 7:3 to 5:2 to make a
 	 * smaller arrow

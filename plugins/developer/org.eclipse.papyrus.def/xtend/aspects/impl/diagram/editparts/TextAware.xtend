@@ -428,7 +428,12 @@ override setManager (GenCommonBase it)'''
 override performDirectEdit (GenCommonBase it)'''
 	«generatedMemberComment»
 	protected void performDirectEdit() {
-		getManager().show();
+		org.eclipse.swt.custom.BusyIndicator.showWhile(org.eclipse.swt.widgets.Display.getDefault(), new java.lang.Runnable() {
+					
+			public void run() {
+				getManager().show();
+			}
+		});
 	}
 '''
 	
@@ -478,7 +483,6 @@ def performDirectEditRequest(GenCommonBase it, GenDiagram diagram ) '''
 				org.eclipse.jface.dialogs.Dialog dialog = null;
 				if (configuration instanceof org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration) {
 					setManager(((org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration) configuration).createDirectEditManager(this));
-					setParser(((org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration) configuration).createParser(this.resolveSemanticElement()));
 					initializeDirectEditManager(theRequest);
 					return;
 				} else if (configuration instanceof org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration) {
@@ -530,10 +534,8 @@ def initializeDirectEditManager (GenCommonBase it)'''
 							org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if ((request instanceof org.eclipse.gef.requests.DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							org.eclipse.gef.requests.DirectEditRequest editRequest = (org.eclipse.gef.requests.DirectEditRequest) request;
-							performDirectEdit(editRequest.getLocation());
-						} else {
+						}
+						else {
 							performDirectEdit();
 						}
 					}

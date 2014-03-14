@@ -34,16 +34,17 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.DesignFunctionPrototypeImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.DesignFunctionPrototypeImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class DesignFunctionPrototypeImpl extends FunctionPrototypeImpl implements DesignFunctionPrototype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DesignFunctionPrototypeImpl() {
@@ -73,33 +74,37 @@ public class DesignFunctionPrototypeImpl extends FunctionPrototypeImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case FunctionmodelingPackage.DESIGN_FUNCTION_PROTOTYPE__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
+		switch(featureID) {
+		case FunctionmodelingPackage.DESIGN_FUNCTION_PROTOTYPE__TYPE:
+			if(resolve)
+				return getType();
+			return basicGetType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.DESIGN_FUNCTION_PROTOTYPE__TYPE:
-				return basicGetType() != null;
+		switch(featureID) {
+		case FunctionmodelingPackage.DESIGN_FUNCTION_PROTOTYPE__TYPE:
+			return basicGetType() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -140,6 +145,7 @@ public class DesignFunctionPrototypeImpl extends FunctionPrototypeImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DesignFunctionType getType() {

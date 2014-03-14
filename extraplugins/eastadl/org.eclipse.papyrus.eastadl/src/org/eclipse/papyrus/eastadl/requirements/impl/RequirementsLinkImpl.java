@@ -34,19 +34,21 @@ import org.eclipse.papyrus.eastadl.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RequirementsLinkImpl#isIsBidirectional <em>Is Bidirectional</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RequirementsLinkImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RequirementsLinkImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RequirementsLinkImpl#isIsBidirectional <em>Is Bidirectional</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RequirementsLinkImpl#getSource <em>Source</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RequirementsLinkImpl#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class RequirementsLinkImpl extends RequirementsRelationshipImpl implements RequirementsLink {
+
 	/**
 	 * The default value of the '{@link #isIsBidirectional() <em>Is Bidirectional</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isIsBidirectional()
 	 * @generated
 	 * @ordered
@@ -57,6 +59,7 @@ public class RequirementsLinkImpl extends RequirementsRelationshipImpl implement
 	 * The cached value of the '{@link #isIsBidirectional() <em>Is Bidirectional</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isIsBidirectional()
 	 * @generated
 	 * @ordered
@@ -67,6 +70,7 @@ public class RequirementsLinkImpl extends RequirementsRelationshipImpl implement
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -77,6 +81,7 @@ public class RequirementsLinkImpl extends RequirementsRelationshipImpl implement
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -86,6 +91,7 @@ public class RequirementsLinkImpl extends RequirementsRelationshipImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RequirementsLinkImpl() {
@@ -95,17 +101,18 @@ public class RequirementsLinkImpl extends RequirementsRelationshipImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case RequirementsPackage.REQUIREMENTS_LINK__IS_BIDIRECTIONAL:
-				return isIsBidirectional();
-			case RequirementsPackage.REQUIREMENTS_LINK__SOURCE:
-				return getSource();
-			case RequirementsPackage.REQUIREMENTS_LINK__TARGET:
-				return getTarget();
+		switch(featureID) {
+		case RequirementsPackage.REQUIREMENTS_LINK__IS_BIDIRECTIONAL:
+			return isIsBidirectional();
+		case RequirementsPackage.REQUIREMENTS_LINK__SOURCE:
+			return getSource();
+		case RequirementsPackage.REQUIREMENTS_LINK__TARGET:
+			return getTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -113,17 +120,18 @@ public class RequirementsLinkImpl extends RequirementsRelationshipImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case RequirementsPackage.REQUIREMENTS_LINK__IS_BIDIRECTIONAL:
-				return isBidirectional != IS_BIDIRECTIONAL_EDEFAULT;
-			case RequirementsPackage.REQUIREMENTS_LINK__SOURCE:
-				return source != null && !source.isEmpty();
-			case RequirementsPackage.REQUIREMENTS_LINK__TARGET:
-				return target != null && !target.isEmpty();
+		switch(featureID) {
+		case RequirementsPackage.REQUIREMENTS_LINK__IS_BIDIRECTIONAL:
+			return isBidirectional != IS_BIDIRECTIONAL_EDEFAULT;
+		case RequirementsPackage.REQUIREMENTS_LINK__SOURCE:
+			return source != null && !source.isEmpty();
+		case RequirementsPackage.REQUIREMENTS_LINK__TARGET:
+			return target != null && !target.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -131,23 +139,24 @@ public class RequirementsLinkImpl extends RequirementsRelationshipImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case RequirementsPackage.REQUIREMENTS_LINK__IS_BIDIRECTIONAL:
-				setIsBidirectional((Boolean)newValue);
-				return;
-			case RequirementsPackage.REQUIREMENTS_LINK__SOURCE:
-				getSource().clear();
-				getSource().addAll((Collection<? extends Requirement>)newValue);
-				return;
-			case RequirementsPackage.REQUIREMENTS_LINK__TARGET:
-				getTarget().clear();
-				getTarget().addAll((Collection<? extends Requirement>)newValue);
-				return;
+		switch(featureID) {
+		case RequirementsPackage.REQUIREMENTS_LINK__IS_BIDIRECTIONAL:
+			setIsBidirectional((Boolean)newValue);
+			return;
+		case RequirementsPackage.REQUIREMENTS_LINK__SOURCE:
+			getSource().clear();
+			getSource().addAll((Collection<? extends Requirement>)newValue);
+			return;
+		case RequirementsPackage.REQUIREMENTS_LINK__TARGET:
+			getTarget().clear();
+			getTarget().addAll((Collection<? extends Requirement>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -155,6 +164,7 @@ public class RequirementsLinkImpl extends RequirementsRelationshipImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,20 +175,21 @@ public class RequirementsLinkImpl extends RequirementsRelationshipImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case RequirementsPackage.REQUIREMENTS_LINK__IS_BIDIRECTIONAL:
-				setIsBidirectional(IS_BIDIRECTIONAL_EDEFAULT);
-				return;
-			case RequirementsPackage.REQUIREMENTS_LINK__SOURCE:
-				getSource().clear();
-				return;
-			case RequirementsPackage.REQUIREMENTS_LINK__TARGET:
-				getTarget().clear();
-				return;
+		switch(featureID) {
+		case RequirementsPackage.REQUIREMENTS_LINK__IS_BIDIRECTIONAL:
+			setIsBidirectional(IS_BIDIRECTIONAL_EDEFAULT);
+			return;
+		case RequirementsPackage.REQUIREMENTS_LINK__SOURCE:
+			getSource().clear();
+			return;
+		case RequirementsPackage.REQUIREMENTS_LINK__TARGET:
+			getTarget().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -186,10 +197,11 @@ public class RequirementsLinkImpl extends RequirementsRelationshipImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Requirement> getSource() {
-		if (source == null) {
+		if(source == null) {
 			source = new EObjectResolvingEList<Requirement>(Requirement.class, this, RequirementsPackage.REQUIREMENTS_LINK__SOURCE);
 		}
 		return source;
@@ -198,10 +210,11 @@ public class RequirementsLinkImpl extends RequirementsRelationshipImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Requirement> getTarget() {
-		if (target == null) {
+		if(target == null) {
 			target = new EObjectResolvingEList<Requirement>(Requirement.class, this, RequirementsPackage.REQUIREMENTS_LINK__TARGET);
 		}
 		return target;
@@ -210,6 +223,7 @@ public class RequirementsLinkImpl extends RequirementsRelationshipImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isIsBidirectional() {
@@ -219,23 +233,26 @@ public class RequirementsLinkImpl extends RequirementsRelationshipImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIsBidirectional(boolean newIsBidirectional) {
 		boolean oldIsBidirectional = isBidirectional;
 		isBidirectional = newIsBidirectional;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENTS_LINK__IS_BIDIRECTIONAL, oldIsBidirectional, isBidirectional));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (isBidirectional: ");

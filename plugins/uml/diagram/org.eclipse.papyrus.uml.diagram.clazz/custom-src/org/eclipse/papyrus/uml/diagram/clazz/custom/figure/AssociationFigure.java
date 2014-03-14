@@ -54,6 +54,12 @@ public class AssociationFigure extends UMLEdgeFigure {
 	/** The role target label. */
 	private WrappingLabel fRoleTargetLabel;
 
+	/** Source decoration type */
+	private int sourceType;
+
+	/** Target decoration type */
+	private int targetType;
+
 	/**
 	 * Instantiates a new association figure.
 	 */
@@ -536,7 +542,16 @@ public class AssociationFigure extends UMLEdgeFigure {
 	 *        the type of end of the association {@link AssociationFigure#navigable}
 	 */
 	public void setEnd(int sourceType, int targetType) {
+		this.sourceType = sourceType;
+		this.targetType = targetType;
 		this.setSourceDecoration(getDecoration(sourceType));
 		this.setTargetDecoration(getDecoration(targetType));
+	}
+
+	@Override
+	public void resetStyle() {
+		super.resetStyle();
+		setSourceDecoration(getDecoration(sourceType));
+		setTargetDecoration(getDecoration(targetType));
 	}
 }

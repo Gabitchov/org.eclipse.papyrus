@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EFactory;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each
  * non-abstract class of the model. <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.eastadl.variability.VariabilityPackage
  * @generated
  */
@@ -28,6 +29,7 @@ public interface VariabilityFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	VariabilityFactory eINSTANCE = org.eclipse.papyrus.eastadl.variability.impl.VariabilityFactoryImpl.init();
@@ -36,6 +38,7 @@ public interface VariabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Configurable Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Configurable Container</em>'.
 	 * @generated
 	 */
@@ -45,6 +48,7 @@ public interface VariabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Configuration Decision</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Configuration Decision</em>'.
 	 * @generated
 	 */
@@ -54,6 +58,7 @@ public interface VariabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Configuration Decision Folder</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Configuration Decision Folder</em>'.
 	 * @generated
 	 */
@@ -63,6 +68,7 @@ public interface VariabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Container Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Container Configuration</em>'.
 	 * @generated
 	 */
@@ -72,6 +78,7 @@ public interface VariabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Feature Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Feature Configuration</em>'.
 	 * @generated
 	 */
@@ -81,6 +88,7 @@ public interface VariabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Vehicle Level Binding</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Vehicle Level Binding</em>'.
 	 * @generated
 	 */
@@ -90,6 +98,7 @@ public interface VariabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Internal Binding</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Internal Binding</em>'.
 	 * @generated
 	 */
@@ -99,6 +108,7 @@ public interface VariabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Private Content</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Private Content</em>'.
 	 * @generated
 	 */
@@ -108,6 +118,7 @@ public interface VariabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Reuse Meta Information</em>'.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Reuse Meta Information</em>'.
 	 * @generated
 	 */
@@ -117,6 +128,7 @@ public interface VariabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Selection Criterion</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Selection Criterion</em>'.
 	 * @generated
 	 */
@@ -126,6 +138,7 @@ public interface VariabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Variability</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Variability</em>'.
 	 * @generated
 	 */
@@ -135,6 +148,7 @@ public interface VariabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Variable Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Variable Element</em>'.
 	 * @generated
 	 */
@@ -144,6 +158,7 @@ public interface VariabilityFactory extends EFactory {
 	 * Returns a new object of class '<em>Variation Group</em>'.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Variation Group</em>'.
 	 * @generated
 	 */
@@ -152,6 +167,7 @@ public interface VariabilityFactory extends EFactory {
 	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

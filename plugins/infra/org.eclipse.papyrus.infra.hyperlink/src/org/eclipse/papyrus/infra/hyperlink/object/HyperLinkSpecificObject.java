@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,9 +23,9 @@ import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService
 
 /**
  * References a specific object in a View (Diagram/Table/...)
- * 
+ *
  * @author Camille
- * 
+ *
  */
 public class HyperLinkSpecificObject extends HyperLinkObject {
 
@@ -51,7 +51,7 @@ public class HyperLinkSpecificObject extends HyperLinkObject {
 
 	@Override
 	public boolean needsOpenCommand() {
-		return targetElement != null;
+		return false;
 	}
 
 	@Override

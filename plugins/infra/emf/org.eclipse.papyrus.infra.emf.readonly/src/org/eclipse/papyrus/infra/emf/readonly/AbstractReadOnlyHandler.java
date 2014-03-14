@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 Atos
+ * Copyright (c) 2013, 2014 Atos Origin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,44 +9,21 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
+ *  Christian W. Damus (CEA) - bug 429826
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 
-import com.google.common.base.Optional;
-
-public abstract class AbstractReadOnlyHandler implements IReadOnlyHandler {
-
-	private EditingDomain editingDomain;
+/**
+ * @deprecated Use the {@link org.eclipse.papyrus.infra.core.resource.AbstractReadOnlyHandler} class, instead.
+ */
+@Deprecated
+public abstract class AbstractReadOnlyHandler extends org.eclipse.papyrus.infra.core.resource.AbstractReadOnlyHandler {
 
 	public AbstractReadOnlyHandler(EditingDomain editingDomain) {
-		this.editingDomain = editingDomain;
+		super(editingDomain);
 	}
-
-	public EditingDomain getEditingDomain() {
-		return editingDomain;
-	}
-
-	public Optional<Boolean> isReadOnly(EObject eObject) {
-		Resource res = eObject.eResource();
-		if (res != null && res.getURI() != null) {
-			return anyReadOnly(new URI[] {res.getURI()});
-		}
-		return Optional.absent();
-	}
-
-	public Optional<Boolean> makeWritable(EObject eObject) {
-		Resource res = eObject.eResource();
-		if (res != null && res.getURI() != null) {
-			return makeWritable(new URI[] {res.getURI()});
-		}
-		return Optional.absent();
-	}
-
 }

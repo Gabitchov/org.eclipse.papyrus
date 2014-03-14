@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,8 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.navigation;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
@@ -48,17 +46,7 @@ public class DiagramNavigableElement implements NavigableElement {
 			if(pageManager.isOpen(targetDiagram)) {
 				pageManager.selectPage(targetDiagram);
 			} else {
-				TransactionalEditingDomain domain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(targetDiagram);
-
-				RecordingCommand command = new RecordingCommand(domain, "Open diagram") {
-
-					@Override
-					protected void doExecute() {
-						pageManager.openPage(targetDiagram);
-					}
-				};
-
-				domain.getCommandStack().execute(command);
+				pageManager.openPage(targetDiagram);
 			}
 
 			return true;

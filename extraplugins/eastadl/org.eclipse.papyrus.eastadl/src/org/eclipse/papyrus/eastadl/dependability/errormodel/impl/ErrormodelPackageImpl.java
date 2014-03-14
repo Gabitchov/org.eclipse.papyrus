@@ -97,6 +97,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPackage {
@@ -104,6 +105,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass errorBehaviorEClass = null;
@@ -111,6 +113,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass anomalyEClass = null;
@@ -118,6 +121,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass internalFaultPrototypeEClass = null;
@@ -125,6 +129,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass errorModelTypeEClass = null;
@@ -132,6 +137,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass faultFailurePropagationLinkEClass = null;
@@ -139,6 +145,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass faultFailurePortEClass = null;
@@ -146,6 +153,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass errorModelPrototypeEClass = null;
@@ -153,6 +161,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass processFaultPrototypeEClass = null;
@@ -160,6 +169,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass failureOutPortEClass = null;
@@ -167,6 +177,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass faultInPortEClass = null;
@@ -174,6 +185,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum errorBehaviorKindEEnum = null;
@@ -181,6 +193,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -188,16 +201,18 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link ErrormodelPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link ErrormodelPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static ErrormodelPackage init() {
-		if (isInited) return (ErrormodelPackage)EPackage.Registry.INSTANCE.getEPackage(ErrormodelPackage.eNS_URI);
+		if(isInited)
+			return (ErrormodelPackage)EPackage.Registry.INSTANCE.getEPackage(ErrormodelPackage.eNS_URI);
 
 		// Obtain or create and register package
 		ErrormodelPackageImpl theErrormodelPackage = (ErrormodelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ErrormodelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ErrormodelPackageImpl());
@@ -299,7 +314,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 		// Mark meta-data to indicate it can't be changed
 		theErrormodelPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ErrormodelPackage.eNS_URI, theErrormodelPackage);
 		return theErrormodelPackage;
@@ -308,6 +323,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -315,19 +331,19 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.dependability.errormodel.ErrormodelPackage#eNS_URI
 	 * @see #init()
@@ -338,14 +354,16 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -419,6 +437,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAnomaly() {
@@ -428,6 +447,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAnomaly_GenericDescription() {
@@ -437,6 +457,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAnomaly_Base_Property() {
@@ -446,6 +467,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAnomaly_Type() {
@@ -455,6 +477,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getErrorBehavior() {
@@ -464,6 +487,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorBehavior_Base_Behavior() {
@@ -473,6 +497,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorBehavior_ExternalFailure() {
@@ -482,6 +507,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorBehavior_ExternalFault() {
@@ -491,6 +517,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getErrorBehavior_FailureLogic() {
@@ -500,6 +527,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorBehavior_InternalFault() {
@@ -509,6 +537,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorBehavior_Owner() {
@@ -518,6 +547,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorBehavior_ProcessFault() {
@@ -527,6 +557,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getErrorBehavior_Type() {
@@ -536,6 +567,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getErrorBehaviorKind() {
@@ -545,6 +577,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ErrormodelFactory getErrormodelFactory() {
@@ -554,6 +587,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getErrorModelPrototype() {
@@ -563,6 +597,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelPrototype_Base_Property() {
@@ -572,6 +607,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelPrototype_FunctionTarget() {
@@ -581,6 +617,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelPrototype_HwTarget() {
@@ -590,6 +627,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelPrototype_FunctionTarget_path() {
@@ -599,6 +637,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelPrototype_HwTarget_path() {
@@ -608,6 +647,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelPrototype_Target() {
@@ -617,6 +657,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelPrototype_Type() {
@@ -626,6 +667,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getErrorModelType() {
@@ -635,6 +677,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelType_Base_Class() {
@@ -644,6 +687,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelType_ErrorBehaviorDescription() {
@@ -653,6 +697,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelType_ExternalFault() {
@@ -662,6 +707,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelType_Failure() {
@@ -671,6 +717,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelType_FaultFailureConnector() {
@@ -680,6 +727,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getErrorModelType_GenericDescription() {
@@ -689,6 +737,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelType_HwTarget() {
@@ -698,6 +747,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelType_InternalFault() {
@@ -707,6 +757,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelType_Part() {
@@ -716,6 +767,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelType_ProcessFault() {
@@ -725,6 +777,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getErrorModelType_Target() {
@@ -734,6 +787,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFailureOutPort() {
@@ -743,6 +797,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFaultFailurePort() {
@@ -752,6 +807,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFaultFailurePort_Base_Port() {
@@ -761,6 +817,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFaultFailurePort_FunctionTarget() {
@@ -770,6 +827,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFaultFailurePort_HwTarget() {
@@ -779,6 +837,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFaultFailurePort_FunctionTarget_path() {
@@ -788,6 +847,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFaultFailurePort_HwTarget_path() {
@@ -797,6 +857,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFaultFailurePropagationLink() {
@@ -806,6 +867,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFaultFailurePropagationLink_Base_Connector() {
@@ -815,6 +877,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFaultFailurePropagationLink_FromPort() {
@@ -824,6 +887,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFaultFailurePropagationLink_FromPort_path() {
@@ -833,6 +897,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFaultFailurePropagationLink_ToPort_path() {
@@ -842,6 +907,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFaultFailurePropagationLink_ImmediatePropagation() {
@@ -851,6 +917,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFaultFailurePropagationLink_ToPort() {
@@ -860,6 +927,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFaultInPort() {
@@ -869,6 +937,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getInternalFaultPrototype() {
@@ -878,6 +947,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getInternalFaultPrototype_Base_Class() {
@@ -887,6 +957,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getInternalFaultPrototype_Base_Event() {
@@ -896,6 +967,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getProcessFaultPrototype() {
@@ -905,6 +977,7 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProcessFaultPrototype_Base_Event() {
@@ -912,14 +985,16 @@ public class ErrormodelPackageImpl extends EPackageImpl implements ErrormodelPac
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package

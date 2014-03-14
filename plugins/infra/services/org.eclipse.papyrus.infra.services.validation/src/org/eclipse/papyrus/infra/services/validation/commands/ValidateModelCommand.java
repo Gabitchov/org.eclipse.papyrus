@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 
 
@@ -37,7 +36,7 @@ public class ValidateModelCommand extends AbstractValidateCommand {
 	 * @param selectedElement
 	 */
 	public ValidateModelCommand(EObject selectedElement,IPapyrusDiagnostician diagnostician) {
-		super("Validate model", TransactionUtil.getEditingDomain(selectedElement), getTopOwner(selectedElement), diagnostician);
+		super(Messages.ValidateModelCommand_ValidateModel, TransactionUtil.getEditingDomain(selectedElement), getTopOwner(selectedElement), diagnostician);
 	}
 
 

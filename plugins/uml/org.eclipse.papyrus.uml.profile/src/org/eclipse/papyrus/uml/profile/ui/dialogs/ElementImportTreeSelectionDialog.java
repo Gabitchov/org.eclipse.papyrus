@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008, 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -74,61 +74,61 @@ import org.eclipse.uml2.uml.util.UMLSwitch;
 public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog {
 
 	private final Class<E> elementType;
-	
+
 	protected List<Package> packages;
-	
+
 	protected final EnumSet<ImportAction> allowedActions;
 
 	protected boolean subSelection = false;
 
 	private Set<E> initialSelections = new java.util.HashSet<E>();
-	
+
 	private Map<E, ImportSpec<E>> importSpecs = new java.util.HashMap<E, ImportSpec<E>>();
-	
+
 	/**
-	 * 
+	 *
 	 */
 	protected List<ImportSpec<E>> elementsToImport = new ArrayList<ImportSpec<E>>();
 
 	/**
-	 * 
+	 *
 	 */
 	protected CheckboxTreeViewer elementTree;
 
 	/**
-	 * 
+	 *
 	 */
 	protected static final Image IMG_PACKAGE = ImageManager.IMG_PACKAGE;
 
 	/**
-	 * 
+	 *
 	 */
 	protected static final Image IMG_CLASS = ImageManager.IMG_CLASS;
 
 	/**
-	 * 
+	 *
 	 */
 	protected static final Image IMG_DATATYPE = ImageManager.IMG_DATATYPE;
 
 	/**
-	 * 
+	 *
 	 */
 	protected static final Image IMG_ENUM = ImageManager.IMG_ENUMERATION;
 
 	/**
-	 * 
+	 *
 	 */
 	protected static final Image IMG_PRIMITIVE = ImageManager.IMG_PRIMITIVETYPE;
 
 	protected static final Image IMG_PROFILE = ImageManager.IMG_PROFILE;
 
 	/**
-	 * 
+	 *
 	 */
 	protected static final Image IMG_ASSOCIATION = ImageManager.IMG_ASSOCIATION;
 
 	/**
-	 * 
+	 *
 	 */
 	protected static final Image IMG_INSTANCESPEC = ImageManager.IMG_INSTANCESPEC;
 
@@ -179,7 +179,7 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 	 */
 	public ElementImportTreeSelectionDialog(Shell parent, Set<ImportAction> allowedActions, Class<E> elementType, Collection<? extends Package> models) {
 		super(parent);
-		
+
 		this.allowedActions = EnumSet.copyOf(allowedActions);
 		this.elementType = elementType;
 		this.packages = new java.util.ArrayList<Package>(models);
@@ -190,7 +190,7 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 		super.configureShell(newShell);
 		newShell.setText("Select the elements to import");
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -210,40 +210,38 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 		tree.addListener(SWT.Selection, new Listener() {
 
 			public void handleEvent(Event event) {
-				if (event.detail == SWT.CHECK) {
+				if(event.detail == SWT.CHECK) {
 					handleCheckStateChanged(getImportSpec(event.item));
 				}
 			}
 		});
-		
+
 		elementTree = new CheckboxTreeViewer(tree);
-		
+
 		// create tree column for element
 		TreeViewerColumn col = new TreeViewerColumn(elementTree, SWT.NONE);
 		col.getColumn().setText("Import");
 		col.getColumn().setWidth(300);
 		col.getColumn().setResizable(true);
 		col.setLabelProvider(new CellLabelProvider() {
-			
+
 			@Override
 			public void update(ViewerCell cell) {
-				ImportSpec<?> importSpec = (ImportSpec<?>) cell
-					.getElement();
+				ImportSpec<?> importSpec = (ImportSpec<?>)cell.getElement();
 				cell.setImage(getElementImage(importSpec.getElement()));
 				cell.setText(getElementText(importSpec.getElement()));
 			}
-			
+
 			@Override
 			public String getToolTipText(Object element) {
-				ImportSpec<?> importSpec = (ImportSpec<?>) element;
+				ImportSpec<?> importSpec = (ImportSpec<?>)element;
 
-				return ((EObject) importSpec.getElement()).eResource().getURI()
-					.toString();
+				return ((EObject)importSpec.getElement()).eResource().getURI().toString();
 			}
 		});
 		ColumnViewerToolTipSupport.enableFor(elementTree);
-		
-		if (allowedActions.size() > 1) {
+
+		if(allowedActions.size() > 1) {
 			tree.setHeaderVisible(true);
 			col.getColumn().setWidth(220);
 
@@ -253,68 +251,70 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 			col.getColumn().setWidth(80);
 			col.getColumn().setResizable(true);
 			col.setLabelProvider(new CellLabelProvider() {
-				
+
 				@Override
 				public void update(ViewerCell cell) {
-					ImportSpec<?> importSpec = (ImportSpec<?>) cell
-						.getElement();
+					ImportSpec<?> importSpec = (ImportSpec<?>)cell.getElement();
 					cell.setText(getDisplayName(importSpec.getAction()));
 				}
 			});
 			col.setEditingSupport(new ImportActionEditingSupport(elementTree));
 		}
-		
+
 		elementTree.setContentProvider(new ElementTreeContentProvider());
 		elementTree.setInput(packages);
 		elementTree.expandAll();
 
 		// post a selection of the initially selected elements
 		tree.getDisplay().asyncExec(new Runnable() {
-			
+
 			public void run() {
-				for (E next : initialSelections) {
+				for(E next : initialSelections) {
 					ImportSpec<E> importSpec = getImportSpec(next);
-					if (importSpec != null) {
+					if(importSpec != null) {
 						elementTree.setChecked(importSpec, true);
 						handleCheckStateChanged(importSpec);
 					}
 				}
 			}
 		});
-		
+
 		return comp;
 	}
-	
+
 	protected void handleCheckStateChanged(ImportSpec<E> importSpec) {
-		if (!elementTree.getChecked(importSpec)) {
+		if(!elementTree.getChecked(importSpec)) {
 			removeResult(importSpec);
 
 		} else {
 			addResult(importSpec);
 		}
 	}
-	
+
 	protected void setInitialSelection(E element) {
 		initialSelections.add(element);
 	}
-	
+
 	protected String getDisplayName(ImportAction importAction) {
 		String result;
-		
-		switch (importAction) {
-			case IMPORT:
-				result = "Import";
-				break;
-			case APPLY:
-				result = "Apply";
-				break;
-			case COPY:
-				result = "Copy";
-				break;
-			default:
-				result = "<none>";
+
+		switch(importAction) {
+		case IMPORT:
+			result = "Import";
+			break;
+		case APPLY:
+			result = "Apply";
+			break;
+		case COPY:
+			result = "Copy";
+			break;
+		case LOAD:
+			result = "Load";
+			break;
+		default:
+			result = "<none>";
 		}
-		
+
 		return result;
 	}
 
@@ -325,10 +325,10 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 	 */
 	@SuppressWarnings("unchecked")
 	protected void addChildSelection(ImportSpec<E> item) {
-		ITreeContentProvider provider = (ITreeContentProvider) elementTree.getContentProvider();
-		for (Object next : provider.getChildren(item)) {
+		ITreeContentProvider provider = (ITreeContentProvider)elementTree.getContentProvider();
+		for(Object next : provider.getChildren(item)) {
 			elementTree.setChecked(next, true);
-			addResult((ImportSpec<E>) next);
+			addResult((ImportSpec<E>)next);
 		}
 	}
 
@@ -339,59 +339,68 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 	 */
 	@SuppressWarnings("unchecked")
 	protected void remChildSelection(ImportSpec<E> item) {
-		ITreeContentProvider provider = (ITreeContentProvider) elementTree.getContentProvider();
-		for (Object next : provider.getChildren(item)) {
+		ITreeContentProvider provider = (ITreeContentProvider)elementTree.getContentProvider();
+		for(Object next : provider.getChildren(item)) {
 			elementTree.setChecked(next, false);
-			removeResult((ImportSpec<E>) next);
+			removeResult((ImportSpec<E>)next);
 		}
 	}
 
 	protected String getElementText(Element element) {
 		String result = null;
-		
-		if (element instanceof NamedElement) {
-			result = ((NamedElement) element).getName();
+
+		if(element instanceof NamedElement) {
+			result = ((NamedElement)element).getName();
 		}
-		
+
 		return (result == null) ? "" : result;
 	}
-	
+
 	protected Image getElementImage(Element element) {
 		return new UMLSwitch<Image>() {
+
+			@Override
 			public Image casePackage(Package object) {
 				return IMG_PACKAGE;
 			}
-			
+
+			@Override
 			public Image caseProfile(Profile object) {
 				return IMG_PROFILE;
 			}
-			
+
+			@Override
 			public Image caseAssociation(Association object) {
 				return IMG_ASSOCIATION;
 			}
-			
+
+			@Override
 			public Image caseEnumeration(Enumeration object) {
 				return IMG_ENUM;
 			}
-			
+
+			@Override
 			public Image casePrimitiveType(PrimitiveType object) {
 				return IMG_PRIMITIVE;
 			}
-			
+
+			@Override
 			public Image caseDataType(DataType object) {
 				return IMG_DATATYPE;
 			}
-			
+
+			@Override
 			public Image caseClass(org.eclipse.uml2.uml.Class object) {
 				return IMG_CLASS;
 			}
-			
+
+			@Override
 			public Image caseInstanceSpecification(InstanceSpecification object) {
 				return IMG_INSTANCESPEC;
 			}
 		}.doSwitch(element);
 	}
-	
+
 	/**
 	 * Returns the elements to import.
 	 * 
@@ -403,47 +412,47 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 
 	protected Collection<? extends Element> getChildren(Package package_) {
 		Collection<Element> result = new java.util.ArrayList<Element>();
-		
+
 		Iterator<PackageableElement> elemIter = package_.getPackagedElements().iterator();
-		while (elemIter.hasNext()) {
+		while(elemIter.hasNext()) {
 			Element elem = elemIter.next();
-			if (elem instanceof NamedElement) {
+			if(elem instanceof NamedElement) {
 				result.add(elem);
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 	protected ImportSpec<E> createImportSpec(Element element) {
 		@SuppressWarnings("unchecked")
-		ImportSpec<E> result = new ImportSpec<E>((E) element);
-		if (elementType.isInstance(element) && !allowedActions.isEmpty()) {
+		ImportSpec<E> result = new ImportSpec<E>((E)element);
+		if(elementType.isInstance(element) && !allowedActions.isEmpty()) {
 			result.setAction(allowedActions.iterator().next());
 		}
 		return result;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	protected ImportSpec<E> getImportSpec(Element element) {
 		ImportSpec<E> result = importSpecs.get(element);
-		if (result == null) {
+		if(result == null) {
 			result = createImportSpec(element);
-			importSpecs.put((E) element, result);
+			importSpecs.put((E)element, result);
 		}
 		return result;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	protected ImportSpec<E> getImportSpec(Widget item) {
-		return (ImportSpec<E>) item.getData();
+		return (ImportSpec<E>)item.getData();
 	}
-	
+
 	protected <T extends E> Iterator<T> getAllElementsOfType(final Class<T> type) {
 		return filter(EcoreUtil.getAllContents(packages), type);
 
 	}
-	
+
 	private <T> Iterator<T> filter(final Iterator<?> iterator, final Class<T> type) {
 		return new Iterator<T>() {
 
@@ -452,10 +461,10 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 			private T next;
 
 			public boolean hasNext() {
-				if (next == null) {
-					while (delegate.hasNext()) {
+				if(next == null) {
+					while(delegate.hasNext()) {
 						Object next = delegate.next();
-						if (type.isInstance(next)) {
+						if(type.isInstance(next)) {
 							this.next = type.cast(next);
 							break;
 						}
@@ -466,7 +475,7 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 			}
 
 			public T next() {
-				if (!hasNext()) {
+				if(!hasNext()) {
 					throw new NoSuchElementException();
 				}
 
@@ -480,34 +489,34 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 			}
 		};
 	}
-	
+
 	protected <T extends E> Iterator<T> getRootElementsOfType(final Class<T> type) {
 		return filter(packages.iterator(), type);
 	}
 
 	protected void selectAll(ImportAction action) {
 		Iterator<E> iter;
-		
+
 		// if we propagate selections to children, then we need to cover the
 		// entire tree.  Otherwise, we process only the root packages because
 		// the nested packages are imported/copied recursively
-		if ((action == ImportAction.NONE) || subSelection) {
+		if((action == ImportAction.NONE) || subSelection) {
 			iter = getAllElementsOfType(elementType);
 		} else {
 			// first, clear selection of any nested packages
 			selectAll(ImportAction.NONE);
 			iter = getRootElementsOfType(elementType);
 		}
-		
-		while (iter.hasNext()) {
+
+		while(iter.hasNext()) {
 			ImportSpec<E> importSpec = getImportSpec(iter.next());
-			if (action == ImportAction.NONE) {
-				if (elementTree.getChecked(importSpec)) {
+			if(action == ImportAction.NONE) {
+				if(elementTree.getChecked(importSpec)) {
 					elementTree.setChecked(importSpec, false);
 					removeResult(importSpec);
 				}
 			} else {
-				if (!elementTree.getChecked(importSpec)) {
+				if(!elementTree.getChecked(importSpec)) {
 					elementTree.setChecked(importSpec, true);
 					addResult(importSpec);
 				}
@@ -516,50 +525,52 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 			elementTree.update(importSpec, null);
 		}
 	}
-	
+
 	protected void addResult(ImportSpec<E> importSpec) {
-		if (!elementsToImport.contains(importSpec)) {
+		if(!elementsToImport.contains(importSpec)) {
 			elementsToImport.add(importSpec);
 		}
-		if (subSelection) {
+		if(subSelection) {
 			addChildSelection(importSpec);
 		}
 	}
 
 	protected void removeResult(ImportSpec<E> importSpec) {
 		// bug fix when list is already initialized, it can have several instance of the same element
-		while (elementsToImport.contains(importSpec)) {
+		while(elementsToImport.contains(importSpec)) {
 			elementsToImport.remove(importSpec);
 		}
-		if (subSelection) {
+		if(subSelection) {
 			remChildSelection(importSpec);
 		}
 	}
-	
+
 	//
 	// Nested types
 	//
-	
+
 	public static class ImportSpec<E extends Element> {
+
 		private final E element;
+
 		private ImportAction action = ImportAction.NONE;
-		
+
 		protected ImportSpec(E element) {
 			this.element = element;
 		}
-		
+
 		public E getElement() {
 			return element;
 		}
-		
+
 		public ImportAction getAction() {
 			return action;
 		}
-		
+
 		public void setAction(ImportAction action) {
 			this.action = (action == null) ? ImportAction.NONE : action;
 		}
-		
+
 		@Override
 		public String toString() {
 			return String.format("<%s> %s", action, element);
@@ -573,6 +584,8 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 	public static enum ImportAction {
 		/** Do not import the element. */
 		NONE,
+		/** Loads the resource */
+		LOAD,
 		/** Import the element or package. */
 		IMPORT,
 		/** Apply the profile (only applicable to profiles). */
@@ -580,119 +593,119 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 		/** Copy the element or package. */
 		COPY;
 	}
-	
+
 	private class ElementTreeContentProvider implements ITreeContentProvider {
+
 		public Object[] getElements(Object inputElement) {
 			List<ImportSpec<E>> result = new java.util.ArrayList<ImportSpec<E>>(packages.size());
-			
-			for (Package next : packages) {
+
+			for(Package next : packages) {
 				result.add(getImportSpec(next));
 			}
-			
+
 			return result.toArray();
 		}
-		
+
 		public Object[] getChildren(Object parentElement) {
 			List<ImportSpec<E>> result = new java.util.ArrayList<ImportSpec<E>>();
-			
-			Element parent = ((ImportSpec<?>) parentElement).getElement();
-			if (parent instanceof Package) {
-				for (Element next : ElementImportTreeSelectionDialog.this
-					.getChildren((Package) parent)) {
-					
+
+			Element parent = ((ImportSpec<?>)parentElement).getElement();
+			if(parent instanceof Package) {
+				for(Element next : ElementImportTreeSelectionDialog.this.getChildren((Package)parent)) {
+
 					result.add(getImportSpec(next));
 				}
 			}
-			
+
 			return result.toArray();
 		}
-		
+
 		public boolean hasChildren(Object element) {
-			Element parent = ((ImportSpec<?>) element).getElement();
+			Element parent = ((ImportSpec<?>)element).getElement();
 			return parent instanceof Package;
 		}
-		
+
 		public Object getParent(Object element) {
 			ImportSpec<?> result = null;
-			
-			ImportSpec<?> importSpec = (ImportSpec<?>) element;
-			Element parent = ((Element) importSpec.getElement()).getOwner();
-			
-			if ((parent != null) && (importSpecs.containsKey(parent))) {
+
+			ImportSpec<?> importSpec = (ImportSpec<?>)element;
+			Element parent = ((Element)importSpec.getElement()).getOwner();
+
+			if((parent != null) && (importSpecs.containsKey(parent))) {
 				result = importSpecs.get(parent);
 			}
-			
+
 			return result;
 		}
-		
+
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			// pass
 		}
-		
+
 		public void dispose() {
 			// pass
 		}
 	}
-	
+
 	private class ImportActionEditingSupport extends EditingSupport {
+
 		private ComboBoxViewerCellEditor editor;
-		
+
 		public ImportActionEditingSupport(ColumnViewer viewer) {
 			super(viewer);
 		}
 
 		@Override
 		protected CellEditor getCellEditor(Object element) {
-			if (editor == null) {
-				editor = new ComboBoxViewerCellEditor((Tree) getViewer().getControl());
+			if(editor == null) {
+				editor = new ComboBoxViewerCellEditor((Tree)getViewer().getControl(), SWT.BORDER);
 				editor.setLabelProvider(new LabelProvider() {
+
 					@Override
 					public String getText(Object element) {
-						return getDisplayName((ImportAction) element);
+						return getDisplayName((ImportAction)element);
 					}
 				});
-				editor.setContentProvider(new ArrayContentProvider());
+				editor.setContentProvider(ArrayContentProvider.getInstance());
 				editor.setInput(allowedActions);
 			}
-			
+
 			return editor;
 		}
 
 		@Override
 		protected boolean canEdit(Object element) {
 			// can't import elements of the wrong type
-			ImportSpec<?> spec = (ImportSpec<?>) element;
+			ImportSpec<?> spec = (ImportSpec<?>)element;
 			return elementType.isInstance(spec.getElement());
 		}
 
 		@Override
 		protected Object getValue(Object element) {
-			ImportSpec<?> spec = (ImportSpec<?>) element;
-			
-			return elementType.isInstance(spec.getElement())
-				? spec.getAction()
-				: ImportAction.NONE;
+			ImportSpec<?> spec = (ImportSpec<?>)element;
+
+			return elementType.isInstance(spec.getElement()) ? spec.getAction() : ImportAction.NONE;
 		}
 
 		@Override
 		protected void setValue(final Object element, Object value) {
 			@SuppressWarnings("unchecked")
-			ImportSpec<E> importSpec = (ImportSpec<E>) element;
-			importSpec.setAction((ImportAction) value);
-			
+			ImportSpec<E> importSpec = (ImportSpec<E>)element;
+			importSpec.setAction((ImportAction)value);
+
 			// if the user is setting the import action, he wants it imported
-			if (!elementTree.getChecked(importSpec)) {
+			if(!elementTree.getChecked(importSpec)) {
 				elementTree.setChecked(importSpec, true);
 				addResult(importSpec);
 			}
-			
+
 			editor.getControl().getDisplay().asyncExec(new Runnable() {
-				
+
 				public void run() {
 					elementTree.update(element, null);
 				}
 			});
 		}
-		
+
 	}
 }

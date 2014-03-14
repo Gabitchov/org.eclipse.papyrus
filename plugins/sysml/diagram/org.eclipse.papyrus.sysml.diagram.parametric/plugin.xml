@@ -699,7 +699,7 @@
 
 	<!-- Diagram specific advices -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+	<metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
 		<!-- specific advices (pop up on creation) -->		
 		<adviceBinding id="org.eclipse.papyrus.sysml.service.types.helper.ConstraintParameterEditHelperAdvice" 
 			class="org.eclipse.papyrus.sysml.service.types.helper.ConstraintParameterEditHelperAdvice" 
@@ -717,7 +717,7 @@
 </extension>
 
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-   <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+   <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
       <specializationType
             id="org.eclipse.papyrus.uml.diagram.parametric.ContextLink"
             name="ContextLink"
@@ -726,7 +726,7 @@
             <param name="semanticHint" value="8500"/>
       </specializationType>
    </metamodel>
-   <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+   <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
       <specializationType
             id="org.eclipse.papyrus.uml.diagram.parametric.ContextLinkAppliedStereotype"
             name="ContextLinkAppliedStereotype"

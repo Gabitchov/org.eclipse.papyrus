@@ -21,17 +21,17 @@ import org.eclipse.papyrus.eastadl.structure.functionmodeling.LocalDeviceManager
 
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Local Device Manager</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Local Device Manager</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class LocalDeviceManagerImpl extends DesignFunctionTypeImpl implements LocalDeviceManager {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected LocalDeviceManagerImpl() {
@@ -40,6 +40,7 @@ public class LocalDeviceManagerImpl extends DesignFunctionTypeImpl implements Lo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -64,7 +65,7 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 	 */
 	public String getEditString(IAdaptable element, int flags) {
 		if(element instanceof IAdaptable) {
-			final Property property = ((Property)((IAdaptable)element).getAdapter(EObject.class));
+			final Property property = ((Property)EMFHelper.getEObject(element));
 			final View view=((View)((IAdaptable)element).getAdapter(View.class));
 			final EObject stereotypeApplication=((View)view.eContainer()).getElement();
 			final Stereotype stereotype=UMLUtil.getStereotype(stereotypeApplication);
@@ -93,7 +94,7 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 	 */
 	public ICommand getParseCommand(IAdaptable element, final String newString, int flags) {
 		if(element instanceof IAdaptable) {
-			final Property property = ((Property)((IAdaptable)element).getAdapter(EObject.class));
+			final Property property = ((Property)(EMFHelper.getEObject(element)));
 			final View view=((View)((IAdaptable)element).getAdapter(View.class));
 			final EObject stereotypeApplication=((View)view.eContainer()).getElement();
 			final Stereotype stereotype=UMLUtil.getStereotype(stereotypeApplication);
@@ -140,7 +141,7 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 	public String getPrintString(IAdaptable element, int flags) {
 
 		if(element instanceof IAdaptable) {
-			final Property property = ((Property)((IAdaptable)element).getAdapter(EObject.class));
+			final Property property = ((Property)(EMFHelper.getEObject(element)));
 			final View view=((View)((IAdaptable)element).getAdapter(View.class));
 			final EObject stereotypeApplication=((View)view.eContainer()).getElement();
 			final Stereotype stereotype=UMLUtil.getStereotype(stereotypeApplication);

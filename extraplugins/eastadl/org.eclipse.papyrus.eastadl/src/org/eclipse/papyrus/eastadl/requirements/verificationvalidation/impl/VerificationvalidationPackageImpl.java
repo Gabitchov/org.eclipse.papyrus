@@ -94,6 +94,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class VerificationvalidationPackageImpl extends EPackageImpl implements VerificationvalidationPackage {
@@ -101,6 +102,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass vvStimuliEClass = null;
@@ -108,6 +110,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass vvIntendedOutcomeEClass = null;
@@ -115,6 +118,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass vvTargetEClass = null;
@@ -122,6 +126,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass vvLogEClass = null;
@@ -129,6 +134,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass verificationValidationEClass = null;
@@ -136,6 +142,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass verifyEClass = null;
@@ -143,6 +150,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass vvActualOutcomeEClass = null;
@@ -150,6 +158,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass vvCaseEClass = null;
@@ -157,6 +166,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass vvProcedureEClass = null;
@@ -164,6 +174,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -171,16 +182,18 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link VerificationvalidationPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link VerificationvalidationPackage#eINSTANCE} when that field is accessed. Clients should not invoke it
+	 * directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static VerificationvalidationPackage init() {
-		if (isInited) return (VerificationvalidationPackage)EPackage.Registry.INSTANCE.getEPackage(VerificationvalidationPackage.eNS_URI);
+		if(isInited)
+			return (VerificationvalidationPackage)EPackage.Registry.INSTANCE.getEPackage(VerificationvalidationPackage.eNS_URI);
 
 		// Obtain or create and register package
 		VerificationvalidationPackageImpl theVerificationvalidationPackage = (VerificationvalidationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof VerificationvalidationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new VerificationvalidationPackageImpl());
@@ -282,7 +295,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 		// Mark meta-data to indicate it can't be changed
 		theVerificationvalidationPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(VerificationvalidationPackage.eNS_URI, theVerificationvalidationPackage);
 		return theVerificationvalidationPackage;
@@ -291,6 +304,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVVStimuli() {
@@ -300,6 +314,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVStimuli_Base_Class() {
@@ -309,6 +324,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVVIntendedOutcome() {
@@ -318,6 +334,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVIntendedOutcome_Base_Class() {
@@ -327,6 +344,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVVActualOutcome() {
@@ -336,6 +354,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVActualOutcome_Base_Class() {
@@ -345,6 +364,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVActualOutcome_IntendedOutcome() {
@@ -354,6 +374,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVVCase() {
@@ -363,6 +384,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVCase_Base_Class() {
@@ -372,6 +394,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVCase_VvCase() {
@@ -381,6 +404,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVCase_AbstractVVCase() {
@@ -390,6 +414,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVCase_VvTarget() {
@@ -399,6 +424,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVCase_VvSubject() {
@@ -408,6 +434,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVCase_VvLog() {
@@ -417,6 +444,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVCase_VvProcedure() {
@@ -426,6 +454,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVVTarget() {
@@ -435,6 +464,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVTarget_Base_Class() {
@@ -444,6 +474,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVTarget_Element() {
@@ -453,6 +484,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVVLog() {
@@ -462,6 +494,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getVVLog_Date() {
@@ -471,6 +504,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVLog_VvActualOutcome() {
@@ -480,6 +514,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVLog_Base_Class() {
@@ -489,6 +524,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVLog_PerformedVVProcedure() {
@@ -498,6 +534,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVVProcedure() {
@@ -507,6 +544,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVProcedure_Base_Class() {
@@ -516,6 +554,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVProcedure_AbstractVVProcedure() {
@@ -525,6 +564,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVProcedure_ConcreteVVProcedure() {
@@ -534,6 +574,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVProcedure_VvIntendedOutcome() {
@@ -543,6 +584,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVVProcedure_VvStimuli() {
@@ -552,6 +594,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -559,19 +602,19 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.requirements.verificationvalidation.VerificationvalidationPackage#eNS_URI
 	 * @see #init()
@@ -582,14 +625,16 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -645,6 +690,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVerificationValidation() {
@@ -654,6 +700,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVerificationValidation_Base_Class() {
@@ -663,6 +710,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVerificationValidation_Base_Package() {
@@ -672,6 +720,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVerificationValidation_Verify() {
@@ -681,6 +730,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVerificationValidation_VvCase() {
@@ -690,6 +740,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVerificationValidation_VvTarget() {
@@ -699,6 +750,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VerificationvalidationFactory getVerificationvalidationFactory() {
@@ -708,6 +760,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVerify() {
@@ -717,6 +770,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVerify_VerifiedByCase() {
@@ -726,6 +780,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVerify_VerifiedByProcedure() {
@@ -735,6 +790,7 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVerify_VerifiedRequirement() {
@@ -742,14 +798,16 @@ public class VerificationvalidationPackageImpl extends EPackageImpl implements V
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package

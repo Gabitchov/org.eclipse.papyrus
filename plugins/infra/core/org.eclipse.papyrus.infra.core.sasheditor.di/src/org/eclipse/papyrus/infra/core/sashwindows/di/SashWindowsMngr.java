@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getPageList <em>Page List</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getSashModel <em>Sash Model</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getPageList <em>Page List</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getSashModel <em>Sash Model</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,22 +34,28 @@ public interface SashWindowsMngr extends EObject {
 	 * If the meaning of the '<em>Page List</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Page List</em>' containment reference.
 	 * @see #setPageList(PageList)
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getSashWindowsMngr_PageList()
-	 * @model containment="true" required="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
+	@Deprecated
 	PageList getPageList();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getPageList <em>Page List</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getPageList <em>Page List</em>}' containment
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Page List</em>' containment reference.
+	 *
+	 * @param value
+	 *        the new value of the '<em>Page List</em>' containment reference.
 	 * @see #getPageList()
 	 * @generated
 	 */
+	@Deprecated
 	void setPageList(PageList value);
 
 	/**
@@ -59,6 +65,7 @@ public interface SashWindowsMngr extends EObject {
 	 * If the meaning of the '<em>Sash Model</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Sash Model</em>' containment reference.
 	 * @see #setSashModel(SashModel)
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getSashWindowsMngr_SashModel()
@@ -68,10 +75,13 @@ public interface SashWindowsMngr extends EObject {
 	SashModel getSashModel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getSashModel <em>Sash Model</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getSashModel <em>Sash Model</em>}' containment
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sash Model</em>' containment reference.
+	 *
+	 * @param value
+	 *        the new value of the '<em>Sash Model</em>' containment reference.
 	 * @see #getSashModel()
 	 * @generated
 	 */

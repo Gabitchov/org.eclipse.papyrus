@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,8 +22,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.junit.utils.TestMode;
 import org.eclipse.pde.internal.core.feature.Feature;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
@@ -113,6 +115,8 @@ public class BundlesTests {
 	 */
 	@Test
 	public void importPackage() {
+		Assume.assumeTrue("Usage of importPackage is discouraged", TestMode.isStrict()); //$NON-NLS-1$
+
 		testManifestProperty(BundleTestsUtils.BUNDLE_IMPORT_PACKAGE, "", true, false); //$NON-NLS-1$
 	}
 
@@ -121,6 +125,8 @@ public class BundlesTests {
 	 */
 	@Test
 	public void reexportDependencies() {
+		Assume.assumeTrue("Usage of reexported dependencies is discouraged", TestMode.isStrict());
+
 		StringBuffer message = new StringBuffer();
 		int nb = 0;
 		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
@@ -139,18 +145,18 @@ public class BundlesTests {
 					if(bundle.contains(";")) { //$NON-NLS-1$
 						localMessage.append(NLS.bind("\n  - {0}", bundle.substring(0, bundle.indexOf(";")))); //$NON-NLS-1$ //$NON-NLS-2$
 					} else {
-						localMessage.append(NLS.bind("\n  - {0}", bundle)); //$NON-NLS-1$ 
+						localMessage.append(NLS.bind("\n  - {0}", bundle)); //$NON-NLS-1$
 					}
 				}
 			}
 			if(localMessage.length() != 0) {
 				message.append(localMessage);
-				message.append("\n");//$NON-NLS-1$ 
+				message.append("\n");//$NON-NLS-1$
 			}
 		}
 		StringBuffer errorMessage = new StringBuffer();
 		errorMessage.append(nb);
-		errorMessage.append(" problems!");//$NON-NLS-1$ 
+		errorMessage.append(" problems!");//$NON-NLS-1$
 		errorMessage.append(message);
 		Assert.assertTrue(errorMessage.toString(), nb == 0);
 	}
@@ -416,6 +422,8 @@ public class BundlesTests {
 	 */
 	@Test
 	public void documentationFileTest() {
+		Assume.assumeTrue("It is a good practice to add a plugin.pdoc file to each plug-in", TestMode.isStrict());
+
 		String message = null;
 		int nb = 0;
 		for(final Bundle bundle : BundleTestsUtils.getPapyrusBundles()) {
@@ -439,8 +447,8 @@ public class BundlesTests {
 		StringBuffer errorMessage = new StringBuffer();
 		StringBuffer warningMessage = new StringBuffer();
 		final Collection<String> possibleIds = new ArrayList<String>();
-		possibleIds.add("ID");//$NON-NLS-1$ 
-		possibleIds.add("PLUGIN_ID");//$NON-NLS-1$ 
+		possibleIds.add("ID");//$NON-NLS-1$
+		possibleIds.add("PLUGIN_ID");//$NON-NLS-1$
 		int nbError = 0;
 		int nbWarning = 0;
 		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
@@ -480,10 +488,10 @@ public class BundlesTests {
 		finalErrorMessage.append(nbError);
 		finalErrorMessage.append(" problems! ");//$NON-NLS-1$
 		finalErrorMessage.append(errorMessage);
-		Assert.assertTrue(finalErrorMessage.toString(), nbError == 0); //$NON-NLS-1$
+		Assert.assertTrue(finalErrorMessage.toString(), nbError == 0);
 
 		// Do not fail on warnings
-		//Assert.assertTrue(nbWarning + "warning!" + warningMessage, nbWarning == 0);//$NON-NLS-1$ 
+		//Assert.assertTrue(nbWarning + "warning!" + warningMessage, nbWarning == 0);//$NON-NLS-1$
 	}
 
 }

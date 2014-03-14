@@ -21,7 +21,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface,
  org.eclipse.core.expressions,
  org.eclipse.swt,
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.4.0"
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.uml.nattable,
  org.eclipse.papyrus.uml.nattable.config,
  org.eclipse.papyrus.uml.nattable.dataprovider,

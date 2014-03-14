@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_T_05gJ7tEeOJ2JaKXBO95w" name="referencing">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_T_05gZ7tEeOJ2JaKXBO95w">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_fmHKsJ7uEeODBa-4Ow1JoA" name="core">
+    <packagedElement xmi:type="uml:Class" xmi:id="_VTe5wJ7tEeOJ2JaKXBO95w" name="Person">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_YbzVkJ7tEeOJ2JaKXBO95w" name="lastName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_drSSMJ7tEeOJ2JaKXBO95w" name="firstName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_fnNMUJ7tEeOJ2JaKXBO95w" name="ssn">
+        <type xmi:type="uml:PrimitiveType" href="referenced.uml#_H1GCAJ7tEeOJ2JaKXBO95w"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_0LAnkJ7tEeOJ2JaKXBO95w" name="registered">
+        <type xmi:type="uml:PrimitiveType" href="referenced.uml#_J86qIJ7tEeOJ2JaKXBO95w"/>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

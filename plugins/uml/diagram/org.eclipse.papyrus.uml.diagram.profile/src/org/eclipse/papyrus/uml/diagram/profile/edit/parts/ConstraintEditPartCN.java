@@ -147,8 +147,8 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 			((ConstraintNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof ConstraintBondyEditPartCN) {
-			((ConstraintBondyEditPartCN)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
+		if(childEditPart instanceof ConstraintBodyEditPartCN) {
+			((ConstraintBodyEditPartCN)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
 		return false;
@@ -161,7 +161,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 		if(childEditPart instanceof ConstraintNameEditPartCN) {
 			return true;
 		}
-		if(childEditPart instanceof ConstraintBondyEditPartCN) {
+		if(childEditPart instanceof ConstraintBodyEditPartCN) {
 			return true;
 		}
 		return false;

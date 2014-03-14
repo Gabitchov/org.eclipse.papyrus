@@ -1,7 +1,7 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL 
+ * Copyright (c) 2009 CEA LIST & LIFL
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,6 +15,8 @@
 package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
 
 import java.util.List;
+
+import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
 
 
 /**
@@ -40,7 +42,9 @@ public interface IPageMngr {
 	 *        The object identifying the page to add. This object will be passed to the {@link IPageModelFactory#createIPageModel(EObject)}. This
 	 *        identifier is stored in the sash model.
 	 *        It should be a reference on a EMF object identifying the page.
+	 * @deprecated The pages are now computed dynamically
 	 */
+	@Deprecated
 	public void addPage(Object pageIdentifier);
 
 	/**
@@ -49,7 +53,10 @@ public interface IPageMngr {
 	 * 
 	 * @param pageIdentifier
 	 *        The object identifying the page
+	 * 
+	 * @deprecated The pages are now computed dynamically. Use {@link IPageManager#closeAllOpenedPages(Object)} instead
 	 */
+	@Deprecated
 	public void removePage(Object pageIdentifier);
 
 	/**
