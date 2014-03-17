@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="custom"
-    nsURI="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom" nsPrefix="custom">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="custom" nsURI="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom"
+    nsPrefix="custom">
   <eClassifiers xsi:type="ecore:EClass" name="Customization" eSuperTypes="../../org.eclipse.papyrus.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//FacetSet">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The customization model element is the root of a customization model. A customization is applied to only one ePackage and contains EClassCustomizations."/>
@@ -14,6 +13,8 @@
         <details key="documentation" value="When Customization::mustBeloadedByDefault is true, the customization will be automatically loaded in the customizable model browsers."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rank" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="1000"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EClassCustomization" eSuperTypes="../../org.eclipse.papyrus.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//Facet">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

@@ -15,6 +15,8 @@ package org.eclipse.papyrus.infra.emf;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -157,22 +159,26 @@ public class Activator extends AbstractUIPlugin {
 			//no possibility to get default customization
 
 			List<Customization> registryAllCustomizations = customCatalog.getRegisteredCustomizations();
-			
-
+			ArrayList<Customization> orderedCustomizationList= new ArrayList<Customization>();
 			for(Customization customization : registryAllCustomizations) {
 				String settingKey = getSettingKey(customization);
 
 				boolean isActive = false;
 				if(settings.get(settingKey) == null) { //Never customized
 					isActive = customization.isMustBeLoadedByDefault(); //Loaded by default
+					
 				} else {
 					isActive = settings.getBoolean(settingKey);
 				}
 
 				if(isActive) {
-					customizationManager.getManagedCustomizations().add(customization);
+						orderedCustomizationList.add(customization);
+					
 				}
 			}
+			
+			Collections.sort(orderedCustomizationList, new CustomizationComparator());
+			customizationManager.getManagedCustomizations().addAll(orderedCustomizationList);
 
 
 
