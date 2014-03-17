@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -106,6 +107,9 @@ public class InstanceSpecificationSlotCompartmentEditPart
 			if (type == UMLElementTypes.Slot_3030) {
 				return this;
 			}
+			return getParent().getTargetEditPart(request);
+		}
+		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			return getParent().getTargetEditPart(request);
 		}
 		return super.getTargetEditPart(request);

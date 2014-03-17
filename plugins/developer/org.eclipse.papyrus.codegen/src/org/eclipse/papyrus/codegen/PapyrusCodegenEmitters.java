@@ -13,9 +13,8 @@
 package org.eclipse.papyrus.codegen;
 
 import org.eclipse.gmf.codegen.xtend.ui.handlers.CodegenEmittersWithXtend2;
-import org.eclipse.gmf.codegen.xtend.ui.handlers.GeneratorTextEmitter;
 import org.eclipse.gmf.common.UnexpectedBehaviourException;
-import org.eclipse.gmf.internal.common.codegen.TextEmitter;
+import org.eclipse.gmf.internal.common.codegen.JavaClassEmitter;
 
 @SuppressWarnings("restriction")
 public class PapyrusCodegenEmitters extends CodegenEmittersWithXtend2 {
@@ -25,17 +24,17 @@ public class PapyrusCodegenEmitters extends CodegenEmittersWithXtend2 {
 	}
 
 	@Override
-	public GeneratorTextEmitter getModelingAssistantProviderEmitter() throws UnexpectedBehaviourException {
+	public JavaClassEmitter getModelingAssistantProviderEmitter() throws UnexpectedBehaviourException {
 		return null;
 	}
 
 	@Override
-	public TextEmitter getNodeEditPartModelingAssistantProviderEmitter() {
+	public JavaClassEmitter getNodeEditPartModelingAssistantProviderEmitter() {
 		return null;
 	}
 
 	@Override
-	public GeneratorTextEmitter getDeleteElementActionEmitter() {
+	public JavaClassEmitter getDeleteElementActionEmitter() {
 		return null;
 	}
 }

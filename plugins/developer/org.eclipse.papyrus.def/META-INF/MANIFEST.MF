@@ -1,5 +1,5 @@
-Bundle-Activator: org.eclipse.gmf.codegen.util.DefaultActivator
 Manifest-Version: 1.0
+Bundle-Activator: org.eclipse.gmf.codegen.util.DefaultActivator
 Bundle-ClassPath: bin/, .
 Bundle-Vendor: %providerName
 Bundle-Version: 1.0.0.qualifier

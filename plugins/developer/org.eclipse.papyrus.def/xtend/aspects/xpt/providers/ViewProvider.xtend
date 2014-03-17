@@ -291,7 +291,7 @@ import xpt.editor.VisualIDRegistry
 				«createEdgeMethod(next)»
 			«ENDFOR»
 		
-			«IF ! nodesForTopLevel.empty»
+			«IF ! topLevelNodes.empty»
 				«generatedMemberComment»
 				protected void stampShortcut(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.gmf.runtime.notation.Node target) {
 					if (!«VisualIDRegistry::modelID(it)».equals(«xptVisualIDRegistry.getModelIDMethodCall(it)»(containerView))) {
@@ -300,7 +300,7 @@ import xpt.editor.VisualIDRegistry
 				}
 			«ENDIF»
 		
-			«IF links.map[l|l.labels].flatten.notEmpty || nodesForTopLevel.map[n|n.labels].flatten.notEmpty || nodesForInnerLevel.map[n|n.labels].flatten.notEmpty»
+			«IF links.map[l|l.labels].flatten.notEmpty || topLevelNodes.map[n|n.labels].flatten.notEmpty || childNodes.map[n|n.labels].flatten.notEmpty»
 				«generatedMemberComment»
 				protected org.eclipse.gmf.runtime.notation.Node createLabel(org.eclipse.gmf.runtime.notation.View owner, String hint) {
 					org.eclipse.gmf.runtime.notation.DecorationNode rv = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDecorationNode();

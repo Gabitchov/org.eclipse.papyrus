@@ -31,8 +31,8 @@ import xpt.diagram.Utils_qvto
 
 	@Inject MetaModel xptMetaModel;
 	
-		override CreateNodeCommand(TypeModelFacet it) '''
-		«copyright(ownerGenNode(it).diagram.editorGen)»
+		override CreateNodeCommand(GenNode it) '''
+		«copyright(it.diagram.editorGen)»
 		package «packageName(it)»;
 		
 		
@@ -56,7 +56,7 @@ import xpt.diagram.Utils_qvto
 		}
 	'''
 	
-	override _constructor(TypeModelFacet it) '''
+	override _constructor(GenNode it) '''
 		«generatedMemberComment()»
 		public «className(it)»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.gmf.runtime.notation.Diagram diagram) {
 			super(req.getLabel(), null, req);
@@ -119,27 +119,27 @@ import xpt.diagram.Utils_qvto
 //	'''
 
 	//	[AbstractElement] Modified for Abstract domain element
-	override doExecuteWithResultMethod(TypeModelFacet it) '''
+	override doExecuteWithResultMethod(GenNode it) '''
 		«generatedMemberComment()»
 		protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
 		«««	[AbstractElement] START	
  				
- 		«IF it.metaClass.ecoreClass.abstract != true»
+ 		«IF it.modelFacet.metaClass.ecoreClass.abstract != true»
 		««« [AbstractElement] END
-			«IF it.isPhantomElement()»
-				«phantomElementCreation(it, ownerGenNode(it), 'newElement')»
+			«IF it.modelFacet.isPhantomElement()»
+				«phantomElementCreation(it.modelFacet, it, 'newElement')»
 			«ELSE»
-				«normalElementCreation(it, ownerGenNode(it), 'newElement')»
+				«normalElementCreation(it.modelFacet, it, 'newElement')»
 			«ENDIF»
 			«extraLineBreak»
-			«initialize(it, ownerGenNode(it), 'newElement')»
+			«initialize(it.modelFacet, it, 'newElement')»
 			«IF true/*FIXME boolean needsExternalConfiguration*/»
 				«extraLineBreak»
 				doConfigure(newElement, monitor, info);
 				«extraLineBreak»
 			«ENDIF»
 				((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).setNewElement(«xptMetaModel.
-				DowncastToEObject(it.metaClass, 'newElement')»);
+				DowncastToEObject(it.modelFacet.metaClass, 'newElement')»);
 				return org.eclipse.gmf.runtime.common.core.command.CommandResult.newOKCommandResult(newElement);
 			}
 		«««  [AbstractElement] START	

@@ -22,7 +22,9 @@ import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -137,6 +139,24 @@ public class ModelPackageableElementCompartmentEditPartTN
 			}
 			if (type == UMLElementTypes.InformationItem_3040) {
 				return this;
+			}
+			return getParent().getTargetEditPart(request);
+		}
+		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
+			if (RequestConstants.REQ_CONNECTION_END.equals(request.getType())) {
+				for (Object type : ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes()) {
+					if (type instanceof IElementType) {
+						IElementType elementType = (IElementType) type;
+						if (elementType.equals(UMLElementTypes.Association_4001) || elementType.equals(UMLElementTypes.Generalization_4002) || elementType.equals(UMLElementTypes.InterfaceRealization_4003)
+								|| elementType.equals(UMLElementTypes.Substitution_4004) || elementType.equals(UMLElementTypes.Realization_4005) || elementType.equals(UMLElementTypes.Abstraction_4006) || elementType.equals(UMLElementTypes.Usage_4007)
+								|| elementType.equals(UMLElementTypes.Dependency_4008) || elementType.equals(UMLElementTypes.ElementImport_4009) || elementType.equals(UMLElementTypes.PackageImport_4010) || elementType.equals(UMLElementTypes.PackageMerge_4011)
+								|| elementType.equals(UMLElementTypes.CommentAnnotatedElement_4013) || elementType.equals(UMLElementTypes.ConstraintConstrainedElement_4014) || elementType.equals(UMLElementTypes.TemplateBinding_4015)
+								|| elementType.equals(UMLElementTypes.AssociationClass_4017) || elementType.equals(UMLElementTypes.Dependency_4018) || elementType.equals(UMLElementTypes.Association_4019)
+								|| elementType.equals(UMLElementTypes.TimeObservationEvent_4024) || elementType.equals(UMLElementTypes.DurationObservationEvent_4025) || elementType.equals(UMLElementTypes.InformationFlow_4026)
+								|| elementType.equals(UMLElementTypes.ConstraintContext_8500))
+							return super.getTargetEditPart(request);
+					}
+				}
 			}
 			return getParent().getTargetEditPart(request);
 		}

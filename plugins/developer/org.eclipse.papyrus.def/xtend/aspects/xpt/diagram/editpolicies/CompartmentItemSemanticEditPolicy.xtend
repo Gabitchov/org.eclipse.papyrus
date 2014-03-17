@@ -16,7 +16,7 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import metamodel.MetaModel
 import org.eclipse.emf.common.util.EList
-import org.eclipse.gmf.codegen.gmfgen.GenChildNodeBase
+import org.eclipse.gmf.codegen.gmfgen.GenChildNode
 import org.eclipse.gmf.codegen.gmfgen.GenCompartment
 import org.eclipse.gmf.codegen.gmfgen.GenNode
 import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet
@@ -40,7 +40,7 @@ import xpt.Common
 		
 		«_constructor(it)»
 	
-		«xptChildContainerCreateCommand.childContainerCreateCommand(it, it.childNodes)»
+		«xptChildContainerCreateCommand.childContainerCreateCommand( it.childNodes)»
 		
 		«additions(it)»
 		
@@ -58,7 +58,7 @@ import xpt.Common
 		}
 	'''
 
-def getChildNodeReference (EList<GenChildNodeBase> it) '''
+def getChildNodeReference (EList<GenChildNode> it) '''
 	«IF !(it.isEmpty)»
 	«generatedMemberComment»
 	private static Set<EReference> compartmentReferences;

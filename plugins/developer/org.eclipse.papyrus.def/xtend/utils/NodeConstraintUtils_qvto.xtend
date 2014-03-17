@@ -12,42 +12,38 @@
  */
 package utils
 
-
 import com.google.inject.Singleton
 import org.eclipse.gmf.codegen.gmfgen.GenNode
 import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet
 import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint
-import org.eclipse.gmf.codegen.gmfgen.GenMultiFacetedNode
 
 @Singleton class NodeConstraintUtils_qvto {
 
 	def boolean hasNodeCreationConstraint(GenNode it) {
-		return it.eResource.allContents.filter(typeof(GenNodeConstraint)).filter[v|v.genNode.contains(it) && v.genConstraint != null].size != 0
+		return it.eResource.allContents.filter(typeof(GenNodeConstraint)).filter[v|
+			v.genNode.contains(it) && v.genConstraint != null].size != 0
 	}
 
 	def GenNodeConstraint getNodeCreationConstraint(GenNode it) {
 
-		if(hasNodeCreationConstraint(it)) {
-			return it.eResource.allContents.filter(typeof(GenNodeConstraint)).filter[v|v.genNode.contains(it) && v.genConstraint != null].head
+		if (hasNodeCreationConstraint(it)) {
+			return it.eResource.allContents.filter(typeof(GenNodeConstraint)).filter[v|
+				v.genNode.contains(it) && v.genConstraint != null].head
 		} else {
 			return null;
 		}
 	}
 
 	def GenNode getOwningGenNode(TypeModelFacet it) {
-		if (! it.eResource.allContents.filter(typeof(GenNode)).filter[v|v.modelFacet == it].empty)
-		{
-			return it.eResource.allContents.filter(typeof(GenNode)).filter[v|v.modelFacet == it].head
-		}else{
-			return it.eResource.allContents.filter(typeof(GenMultiFacetedNode)).filter[v|v.additionalModelFacets.contains(it)].head
-		}
+
+		return it.eResource.allContents.filter(typeof(GenNode)).filter[v|v.modelFacet == it].head
 	}
 
 	def String getNodeCreationConstraintBody(GenNode it) {
 		var nodeConstraint = getNodeCreationConstraint(it);
 
-		if(hasNodeCreationConstraint(it)) {
-			if((nodeConstraint.genConstraint != null) && (nodeConstraint.genConstraint.body != null)) {
+		if (hasNodeCreationConstraint(it)) {
+			if ((nodeConstraint.genConstraint != null) && (nodeConstraint.genConstraint.body != null)) {
 				return nodeConstraint.genConstraint.body;
 			}
 		}

@@ -17,13 +17,12 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import java.util.List
 import org.eclipse.gmf.codegen.gmfgen.FeatureLinkModelFacet
-import org.eclipse.gmf.codegen.gmfgen.GenChildNodeBase
+import org.eclipse.gmf.codegen.gmfgen.GenChildNode
 import org.eclipse.gmf.codegen.gmfgen.GenNode
 import org.eclipse.gmf.codegen.gmfgen.TypeLinkModelFacet
 import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService
 import utils.UtilsItemSemanticEditPolicy
 import xpt.Common
-import xpt.diagram.editpolicies.Utils_qvto
 import xpt.editor.VisualIDRegistry
 
 /**
@@ -34,7 +33,7 @@ import xpt.editor.VisualIDRegistry
 @Singleton class NodeItemSemanticEditPolicy extends xpt.diagram.editpolicies.NodeItemSemanticEditPolicy {
 	
 	@Inject extension Common;
-	@Inject extension Utils_qvto;
+	@Inject extension xpt.diagram.editpolicies.Utils_qvto;
 	@Inject extension UtilsItemSemanticEditPolicy
 	
 	
@@ -54,7 +53,7 @@ import xpt.editor.VisualIDRegistry
 	
 		«xptBaseItemSemanticEditPolicy.defaultConstructor(it)»
 	
-		«xptChildContainerCreateCommand.childContainerCreateCommand(it, it.childNodes)»
+		«xptChildContainerCreateCommand.childContainerCreateCommand(it.childNodes)»
 	
 	«««	Papyrus REM : 
 	«««	Test to know how the delete of this EditPart is done : we used the DeleteService or the "Traditional method"
@@ -84,7 +83,7 @@ protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.
 	«««	«destroyEdges('view')»
 	org.eclipse.emf.ecore.EAnnotation annotation = view.getEAnnotation("Shortcut");«nonNLS»
 	if (annotation == null) {
-		// there are indirectly referenced children, need extra commands: «it.childNodes.union(compartments.map(c | c.childNodes).flatten).exists[GenChildNodeBase gcn | !isDirectlyOwned(gcn, it)]»
+		// there are indirectly referenced children, need extra commands: «it.childNodes.union(compartments.map(c | c.childNodes).flatten).exists[GenChildNode gcn | !isDirectlyOwned(gcn, it)]»
 	«IF hasChildrenOrCompartments(it)»
 			addDestroyChildNodesCommand(cmd);
 	«ENDIF»

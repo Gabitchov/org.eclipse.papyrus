@@ -31,7 +31,7 @@ import metamodel.MetaModel
 	@Inject extension MetaModel;
 
  
- 	override CharSequence childContainerCreateCommand(GenContainerBase container, Iterable<? extends GenNode> nodes) '''
+ 	override CharSequence childContainerCreateCommand(Iterable<? extends GenNode> nodes) '''
 	«IF ! nodes.empty»
 
 	«generatedMemberComment()»
