@@ -59,7 +59,7 @@ public class BlocksFactoryImpl extends EFactoryImpl implements BlocksFactory {
 	 */
 	public static BlocksFactory init() {
 		try {
-			BlocksFactory theBlocksFactory = (BlocksFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks");
+			BlocksFactory theBlocksFactory = (BlocksFactory)EPackage.Registry.INSTANCE.getEFactory(BlocksPackage.eNS_URI);
 			if(theBlocksFactory != null) {
 				return theBlocksFactory;
 			}

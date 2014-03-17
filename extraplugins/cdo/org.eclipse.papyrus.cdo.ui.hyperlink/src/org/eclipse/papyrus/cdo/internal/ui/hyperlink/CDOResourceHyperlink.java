@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2013 CEA LIST and others.
+ * Copyright (c) 2009, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - adapted for CDO repository resource hyperlinks
+ *  Christian W. Damus (CEA) - adapt to source-incompatible API change in CDO Luna M6
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.hyperlink;
@@ -106,7 +107,7 @@ public class CDOResourceHyperlink extends HyperLinkObject {
 		new EresourceSwitch<Void>() {
 
 			@Override
-			public Void caseCDOFileResource(CDOFileResource<?> object) {
+			public <IO> Void caseCDOFileResource(CDOFileResource<IO> object) {
 				CDOEditorUtil.openEditor(page, object);
 				return null;
 			}

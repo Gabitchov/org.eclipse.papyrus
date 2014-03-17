@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.tests.uml.diagram.feature" label="Tests UML Diagram Feature (Incubation)" provider-name="Eclipse Modeling Project" version="1.0.0.qualifier">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2011 CEA LIST
+      Copyright (c) 2011, 2014 CEA LIST and others
 All rights reserved.   This program and the accompanying materials
 are made available under the terms of the Eclipse Public License
 v1.0
@@ -60,8 +60,6 @@ Java and all Java-based trademarks are trademarks of Sun Microsystems, Inc. in t
 
    <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.usecase.tests" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.pkg.tests" install-size="0" unpack="false" version="0.0.0"/>
-
    <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.deployment.tests" install-size="0" unpack="false" version="0.0.0"/>
 
    <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.component.tests" install-size="0" unpack="false" version="0.0.0"/>
@@ -71,5 +69,7 @@ Java and all Java-based trademarks are trademarks of Sun Microsystems, Inc. in t
    <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.sequence.tests" install-size="0" unpack="false" version="0.0.0"/>
    
    <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.composite.tests" install-size="0" unpack="false" version="0.0.0"/> 
+
+   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.wizards.tests" install-size="0" unpack="false" version="0.0.0"/>
         
 </feature>

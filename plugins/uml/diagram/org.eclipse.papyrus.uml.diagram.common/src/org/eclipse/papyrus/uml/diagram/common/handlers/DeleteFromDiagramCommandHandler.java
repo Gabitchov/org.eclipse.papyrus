@@ -36,6 +36,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.widgets.Display;
 
@@ -122,7 +123,7 @@ public class DeleteFromDiagramCommandHandler extends GraphicalCommandHandler imp
 	 * Copied from {@link DeleteFromDiagramAction}
 	 */
 	protected boolean isCanonical(EditPart ep) {
-		EObject eObject = (EObject)ep.getAdapter(EObject.class);
+		EObject eObject = EMFHelper.getEObject(ep);
 		EditPart parent = ep.getParent();
 		if(eObject != null && parent != null) { // sanity checks
 			CanonicalEditPolicy cep = (CanonicalEditPolicy)parent.getEditPolicy(EditPolicyRoles.CANONICAL_ROLE);

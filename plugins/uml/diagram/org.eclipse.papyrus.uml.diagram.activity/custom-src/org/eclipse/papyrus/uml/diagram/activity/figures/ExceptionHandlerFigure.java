@@ -18,9 +18,9 @@ import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.notation.MeasurementUnit;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure;
 import org.eclipse.swt.graphics.LineAttributes;
 import org.eclipse.uml2.uml.ExceptionHandler;
 
@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.ExceptionHandler;
  * @author arthur daussy
  * 
  */
-public class ExceptionHandlerFigure extends PolylineConnectionEx {
+public class ExceptionHandlerFigure extends PapyrusEdgeFigure {
 
 	/**
 	 * Since the Activity diagram is using Pixel unit we can use this as constant
@@ -43,6 +43,12 @@ public class ExceptionHandlerFigure extends PolylineConnectionEx {
 	public ExceptionHandlerFigure() {
 		setTargetDecoration(createTargetDecoration());
 		setLineAttributes(new LineAttributes(2));
+	}
+
+	@Override
+	public void resetStyle() {
+		super.resetStyle();
+		setTargetDecoration(createTargetDecoration());
 	}
 
 	/**

@@ -98,12 +98,14 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class VariabilityPackageImpl extends EPackageImpl implements VariabilityPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -111,16 +113,18 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link VariabilityPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link VariabilityPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static VariabilityPackage init() {
-		if (isInited) return (VariabilityPackage)EPackage.Registry.INSTANCE.getEPackage(VariabilityPackage.eNS_URI);
+		if(isInited)
+			return (VariabilityPackage)EPackage.Registry.INSTANCE.getEPackage(VariabilityPackage.eNS_URI);
 
 		// Obtain or create and register package
 		VariabilityPackageImpl theVariabilityPackage = (VariabilityPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof VariabilityPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new VariabilityPackageImpl());
@@ -222,7 +226,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 		// Mark meta-data to indicate it can't be changed
 		theVariabilityPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(VariabilityPackage.eNS_URI, theVariabilityPackage);
 		return theVariabilityPackage;
@@ -230,12 +234,14 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass variationGroupEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass reuseMetaInformationEClass = null;
@@ -243,6 +249,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass variabilityEClass = null;
@@ -250,6 +257,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass featureConfigurationEClass = null;
@@ -257,6 +265,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass vehicleLevelBindingEClass = null;
@@ -264,6 +273,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass configurationDecisionEClass = null;
@@ -271,6 +281,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass selectionCriterionEClass = null;
@@ -278,6 +289,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass configurationDecisionFolderEClass = null;
@@ -285,6 +297,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass containerConfigurationEClass = null;
@@ -292,6 +305,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass privateContentEClass = null;
@@ -299,6 +313,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass configurableContainerEClass = null;
@@ -306,6 +321,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass internalBindingEClass = null;
@@ -313,6 +329,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass configurationDecisionModelEClass = null;
@@ -320,6 +337,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass configurationDecisionModelEntryEClass = null;
@@ -327,31 +345,33 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass variableElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.variability.VariabilityPackage#eNS_URI
 	 * @see #init()
@@ -362,13 +382,15 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -450,6 +472,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getConfigurableContainer() {
@@ -459,6 +482,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getConfigurableContainer_ConfigurableElement() {
@@ -468,6 +492,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getConfigurableContainer_InternalBinding() {
@@ -477,6 +502,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getConfigurableContainer_PublicFeatureModel() {
@@ -486,6 +512,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getConfigurableContainer_VariationGroup() {
@@ -495,6 +522,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getConfigurableContainer_Base_Class() {
@@ -504,6 +532,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getConfigurableContainer_Base_Package() {
@@ -513,6 +542,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getConfigurationDecision() {
@@ -522,6 +552,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getConfigurationDecision_Criterion() {
@@ -531,6 +562,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getConfigurationDecision_Effect() {
@@ -540,6 +572,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getConfigurationDecision_IsEquivalence() {
@@ -549,6 +582,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getConfigurationDecision_SelectionCriterion() {
@@ -558,6 +592,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getConfigurationDecision_Target() {
@@ -567,6 +602,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getConfigurationDecisionFolder() {
@@ -576,6 +612,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getConfigurationDecisionFolder_ChildEntry() {
@@ -585,6 +622,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getConfigurationDecisionModel() {
@@ -594,6 +632,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getConfigurationDecisionModel_Base_Package() {
@@ -603,6 +642,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getConfigurationDecisionModel_Base_Class() {
@@ -612,6 +652,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getConfigurationDecisionModel_RootEntry() {
@@ -621,6 +662,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getConfigurationDecisionModelEntry() {
@@ -630,6 +672,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getConfigurationDecisionModelEntry_IsActive() {
@@ -639,6 +682,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getConfigurationDecisionModelEntry_Base_Class() {
@@ -648,6 +692,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getContainerConfiguration() {
@@ -657,6 +702,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getContainerConfiguration_ConfiguredContainer() {
@@ -666,6 +712,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFeatureConfiguration() {
@@ -675,6 +722,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureConfiguration_ConfiguredFeatureModel() {
@@ -684,6 +732,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVehicleLevelBinding() {
@@ -693,6 +742,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVehicleLevelBinding_SourceVehicleFeatureModel() {
@@ -702,6 +752,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVehicleLevelBinding_TargetFeatureModel() {
@@ -711,6 +762,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getInternalBinding() {
@@ -720,6 +772,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPrivateContent() {
@@ -729,6 +782,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPrivateContent_Base_Class() {
@@ -738,6 +792,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPrivateContent_PrivateElement() {
@@ -746,6 +801,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getReuseMetaInformation() {
@@ -754,6 +810,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getReuseMetaInformation_Information() {
@@ -762,6 +819,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getReuseMetaInformation_IsReusable() {
@@ -771,6 +829,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getReuseMetaInformation_Base_Class() {
@@ -780,6 +839,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSelectionCriterion() {
@@ -789,6 +849,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSelectionCriterion_Source() {
@@ -798,6 +859,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSelectionCriterion_Base_Class() {
@@ -807,6 +869,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVariability() {
@@ -816,6 +879,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariability_Base_Class() {
@@ -825,6 +889,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariability_Base_Package() {
@@ -834,6 +899,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariability_ConfigurableContainer() {
@@ -843,6 +909,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariability_Configuration() {
@@ -852,6 +919,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariability_DecisionModel() {
@@ -861,6 +929,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariability_ProductFeatureModel() {
@@ -870,6 +939,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariability_VariableElement() {
@@ -878,6 +948,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VariabilityFactory getVariabilityFactory() {
@@ -887,6 +958,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVariableElement() {
@@ -896,6 +968,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariableElement_ActualBindingTime() {
@@ -905,6 +978,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariableElement_OptionalElement() {
@@ -914,6 +988,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariableElement_Base_Class() {
@@ -923,6 +998,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariableElement_RequiredBindingTime() {
@@ -932,6 +1008,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariableElement_ReuseMetaInformation() {
@@ -940,6 +1017,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVariationGroup() {
@@ -948,6 +1026,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getVariationGroup_Constraint() {
@@ -956,6 +1035,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getVariationGroup_Kind() {
@@ -965,6 +1045,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariationGroup_Base_Class() {
@@ -973,6 +1054,7 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVariationGroup_VariableElement() {
@@ -980,13 +1062,15 @@ public class VariabilityPackageImpl extends EPackageImpl implements VariabilityP
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package

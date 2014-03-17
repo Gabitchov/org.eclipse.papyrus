@@ -13,7 +13,7 @@
                namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML">
          </package>
          <package
-               namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML">
+               namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
          </package>     
          <constraints
                categories="org.eclipse.papyrus.qompass.designer.validation.constraints">

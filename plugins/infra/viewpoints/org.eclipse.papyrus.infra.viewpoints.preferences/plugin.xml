@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+            class="org.eclipse.papyrus.infra.viewpoints.preferences.ViewpointsPreferencePage"
+            id="org.eclipse.papyrus.infra.viewpoints.preferences.ViewpointsPreferencePage"
+            name="Viewpoints Configuration">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.papyrus.infra.viewpoints.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+
+</plugin>

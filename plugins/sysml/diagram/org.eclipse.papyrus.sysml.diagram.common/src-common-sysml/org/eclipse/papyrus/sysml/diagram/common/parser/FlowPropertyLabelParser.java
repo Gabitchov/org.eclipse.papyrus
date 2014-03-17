@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
@@ -53,7 +54,7 @@ public class FlowPropertyLabelParser extends PropertyLabelParser {
 
 		String result = super.getPrintString(element, flags);
 
-		EObject eObject = (EObject)element.getAdapter(EObject.class);
+		EObject eObject = EMFHelper.getEObject(element);
 		if((eObject != null) && (eObject instanceof Property)) {
 
 			Property property = (Property)eObject;

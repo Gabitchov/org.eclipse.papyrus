@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.emf.facet.efacet.metamodel" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="This API break has been allowed by the modeling PMC. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376577" id="924844039">
+            <message_arguments>
+                <message_argument value="0.2.0"/>
+                <message_argument value="0.2.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/emf/facet/efacet/metamodel/v0_2_0/efacet/EFacetPackage.java" type="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage">
+        <filter comment="This an allowed (by modeling PMC) API break. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376576" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage"/>
+                <message_argument value="FACET__EXTENDED_FACETS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="This an allowed (by modeling PMC) API break. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376576" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage"/>
+                <message_argument value="getFacet_ExtendedFacets()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="This an allowed (by modeling PMC) API break. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376576" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage"/>
+                <message_argument value="FACET__EXTENDED_FACET"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/emf/facet/efacet/metamodel/v0_2_0/efacet/Facet.java" type="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet">
+        <filter comment="This is an allowed (by modeling PMC) API break. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376576" id="405901410">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet"/>
+                <message_argument value="setExtendedFacet(Facet)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/emf/facet/efacet/metamodel/v0_2_0/efacet/query/QueryPackage.java" type="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage$Literals">
+        <filter comment="API break allowed by the modeling PMC. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376577)" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage.Literals"/>
+                <message_argument value="EOBJECT_LITERAL_QUERY"/>
+            </message_arguments>
+        </filter>
+        <filter comment="API break allowed by the modeling PMC. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376577)" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage.Literals"/>
+                <message_argument value="EOBJECT_LITERAL_QUERY__ELEMENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="API break allowed by the modeling PMC. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376577)" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage.Literals"/>
+                <message_argument value="FLOAT_LITERAL_QUERY"/>
+            </message_arguments>
+        </filter>
+        <filter comment="API break allowed by the modeling PMC. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376577)" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage.Literals"/>
+                <message_argument value="FLOAT_LITERAL_QUERY__VALUE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="API break allowed by the modeling PMC. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376577)" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage.Literals"/>
+                <message_argument value="INTEGER_LITERAL_QUERY"/>
+            </message_arguments>
+        </filter>
+        <filter comment="API break allowed by the modeling PMC. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376577)" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage.Literals"/>
+                <message_argument value="INTEGER_LITERAL_QUERY__VALUE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="API break allowed by the modeling PMC. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376577)" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage.Literals"/>
+                <message_argument value="OPERATION_CALL_QUERY"/>
+            </message_arguments>
+        </filter>
+        <filter comment="API break allowed by the modeling PMC. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376577)" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage.Literals"/>
+                <message_argument value="OPERATION_CALL_QUERY__ARGUMENTS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="API break allowed by the modeling PMC. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376577)" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage.Literals"/>
+                <message_argument value="OPERATION_CALL_QUERY__OPERATION"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

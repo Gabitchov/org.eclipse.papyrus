@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,6 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *  Vincent Lorenzo(CEA LIST) vincent.lorenzo@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;

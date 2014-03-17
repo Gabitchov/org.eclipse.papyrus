@@ -23,8 +23,11 @@ import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
@@ -67,13 +70,17 @@ import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteObjectPo
 import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnContainmentFeatureContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnElementTypeIdContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnPostActionIdsProvider;
+import org.eclipse.papyrus.infra.nattable.properties.provider.ContextFeatureContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowContainmentFeatureContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowElementTypeIdContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowPostActionIdsProvider;
 import org.eclipse.papyrus.infra.nattable.properties.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
+import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
@@ -143,6 +150,9 @@ public class NatTableModelElement extends EMFModelElement {
 		tableModelManager = new NattableModelManager(getEditedTable());
 		this.observableValues = new HashMap<String, IObservable>();
 		this.interestingFeatures = new ArrayList<EStructuralFeature>();
+		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_Prototype());
+		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_Owner());
+		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_Context());
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_InvertAxis());
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_LocalColumnHeaderAxisConfiguration());
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_LocalRowHeaderAxisConfiguration());
@@ -505,7 +515,10 @@ public class NatTableModelElement extends EMFModelElement {
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		IStaticContentProvider provider = null;
-		if(Constants.ROW_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
+		if(Constants.TABLE_CONTEXT.equals(propertyPath)) {
+			Table table = getEditedTable();
+			provider = new ContextFeatureContentProvider(table, getRoot(table.getContext()));
+		} else if(Constants.ROW_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
 			provider = new RowContainmentFeatureContentProvider(getEditedTable());
 		} else if(Constants.COLUMN_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
 			provider = new ColumnContainmentFeatureContentProvider(getEditedTable());
@@ -558,4 +571,39 @@ public class NatTableModelElement extends EMFModelElement {
 		return super.isOrdered(propertyPath);
 	}
 
+	@Override
+	public ILabelProvider getLabelProvider(String propertyPath) {
+		if (propertyPath.endsWith("prototype")) {
+			return new ILabelProvider() {
+				public void addListener(ILabelProviderListener listener) { }
+				public void removeListener(ILabelProviderListener listener) { }
+				public void dispose() { }
+				public boolean isLabelProperty(Object element, String property) { return false; }
+				public Image getImage(Object element) {
+					ViewPrototype proto = ViewPrototype.get((PapyrusView)element);
+					return proto.getIcon();
+				}
+				public String getText(Object element) {
+					ViewPrototype proto = ViewPrototype.get((PapyrusView)element);
+					return proto.getQualifiedName();
+				}
+			};
+		}
+		return super.getLabelProvider(propertyPath);
+	}
+	
+	/**
+	 * Gets the root EObject from the given one
+	 * @param obj An object
+	 * @return The root object which is an ancestor of the given one
+	 */
+	private EObject getRoot(EObject obj) {
+		EObject current = obj;
+		EObject parent = obj.eContainer();
+		while (parent != null) {
+			current = parent;
+			parent = parent.eContainer();
+		}
+		return current;
+	}
 }

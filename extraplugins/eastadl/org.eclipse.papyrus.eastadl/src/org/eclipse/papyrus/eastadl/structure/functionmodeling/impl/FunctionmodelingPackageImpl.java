@@ -109,6 +109,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class FunctionmodelingPackageImpl extends EPackageImpl implements FunctionmodelingPackage {
@@ -116,6 +117,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass functionTypeEClass = null;
@@ -123,12 +125,14 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass functionPortEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -136,16 +140,18 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link FunctionmodelingPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link FunctionmodelingPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static FunctionmodelingPackage init() {
-		if (isInited) return (FunctionmodelingPackage)EPackage.Registry.INSTANCE.getEPackage(FunctionmodelingPackage.eNS_URI);
+		if(isInited)
+			return (FunctionmodelingPackage)EPackage.Registry.INSTANCE.getEPackage(FunctionmodelingPackage.eNS_URI);
 
 		// Obtain or create and register package
 		FunctionmodelingPackageImpl theFunctionmodelingPackage = (FunctionmodelingPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FunctionmodelingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FunctionmodelingPackageImpl());
@@ -247,7 +253,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 		// Mark meta-data to indicate it can't be changed
 		theFunctionmodelingPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(FunctionmodelingPackage.eNS_URI, theFunctionmodelingPackage);
 		return theFunctionmodelingPackage;
@@ -256,6 +262,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass functionConnectorEClass = null;
@@ -263,6 +270,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass analysisFunctionPrototypeEClass = null;
@@ -270,6 +278,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass functionFlowPortEClass = null;
@@ -277,6 +286,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass functionClientServerPortEClass = null;
@@ -284,6 +294,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass functionClientServerInterfaceEClass = null;
@@ -291,6 +302,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass operationEClass = null;
@@ -298,6 +310,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass portGroupEClass = null;
@@ -305,6 +318,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass basicSoftwareFunctionTypeEClass = null;
@@ -312,6 +326,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass hardwareFunctionTypeEClass = null;
@@ -319,6 +334,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass functionAllocationEClass = null;
@@ -326,6 +342,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass allocationEClass = null;
@@ -333,6 +350,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass functionPowerPortEClass = null;
@@ -340,6 +358,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum eaDirectionKindEEnum = null;
@@ -347,6 +366,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum clientServerKindEEnum = null;
@@ -354,6 +374,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass functionPrototypeEClass = null;
@@ -361,12 +382,14 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass allocateableElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass localDeviceManagerEClass = null;
@@ -374,6 +397,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass designFunctionTypeEClass = null;
@@ -381,12 +405,14 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass designFunctionPrototypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass functionalDeviceEClass = null;
@@ -394,31 +420,33 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass analysisFunctionTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPackage#eNS_URI
 	 * @see #init()
@@ -429,13 +457,15 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -526,6 +556,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAllocateableElement() {
@@ -535,6 +566,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAllocation() {
@@ -544,6 +576,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAllocation_Base_Class() {
@@ -553,6 +586,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAllocation_Base_Package() {
@@ -562,6 +596,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAllocation_FunctionAllocation() {
@@ -571,6 +606,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAnalysisFunctionPrototype() {
@@ -580,6 +616,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAnalysisFunctionPrototype_Type() {
@@ -589,6 +626,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAnalysisFunctionType() {
@@ -598,6 +636,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAnalysisFunctionType_Part() {
@@ -607,6 +646,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getBasicSoftwareFunctionType() {
@@ -616,6 +656,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getClientServerKind() {
@@ -625,6 +666,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getEADirectionKind() {
@@ -634,6 +676,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getDesignFunctionPrototype() {
@@ -643,6 +686,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDesignFunctionPrototype_Type() {
@@ -652,6 +696,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getDesignFunctionType() {
@@ -661,6 +706,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDesignFunctionType_Part() {
@@ -669,6 +715,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFunctionalDevice() {
@@ -678,6 +725,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFunctionAllocation() {
@@ -687,6 +735,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionAllocation_AllocatedElement() {
@@ -696,6 +745,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionAllocation_Base_Dependency() {
@@ -705,6 +755,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionAllocation_AllocatedElement_path() {
@@ -714,6 +765,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionAllocation_Target_path() {
@@ -723,6 +775,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionAllocation_Target() {
@@ -732,6 +785,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFunctionClientServerInterface() {
@@ -741,6 +795,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionClientServerInterface_Base_Interface() {
@@ -750,6 +805,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionClientServerInterface_Operation() {
@@ -759,6 +815,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFunctionClientServerPort() {
@@ -768,6 +825,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFunctionClientServerPort_ClientServerType() {
@@ -777,6 +835,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionClientServerPort_Type() {
@@ -786,6 +845,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionClientServerPort_Base_Port() {
@@ -795,6 +855,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFunctionConnector() {
@@ -804,6 +865,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionConnector_Port() {
@@ -813,6 +875,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionConnector_Base_Connector() {
@@ -822,6 +885,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionConnector_Port1_path() {
@@ -831,6 +895,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionConnector_Port2_path() {
@@ -840,6 +905,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFunctionFlowPort() {
@@ -849,6 +915,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionFlowPort_Type() {
@@ -857,6 +924,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionmodelingFactory getFunctionmodelingFactory() {
@@ -866,6 +934,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFunctionPort() {
@@ -875,6 +944,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFunctionPowerPort() {
@@ -884,6 +954,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionPowerPort_Base_Port() {
@@ -893,6 +964,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionPowerPort_Type() {
@@ -902,6 +974,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFunctionPrototype() {
@@ -911,6 +984,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionPrototype_Base_Property() {
@@ -920,6 +994,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFunctionType() {
@@ -929,6 +1004,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionType_Connector() {
@@ -938,6 +1014,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFunctionType_IsElementary() {
@@ -947,6 +1024,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionType_Port() {
@@ -956,6 +1034,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFunctionType_PortGroup() {
@@ -965,6 +1044,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getHardwareFunctionType() {
@@ -974,6 +1054,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwareFunctionType_HardwareComponent() {
@@ -982,6 +1063,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getLocalDeviceManager() {
@@ -991,6 +1073,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getOperation() {
@@ -1000,6 +1083,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getOperation_Base_Operation() {
@@ -1009,6 +1093,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getOperation_Argument() {
@@ -1018,6 +1103,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getOperation_Return() {
@@ -1027,6 +1113,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPortGroup() {
@@ -1036,6 +1123,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPortGroup_Port() {
@@ -1045,6 +1133,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPortGroup_Base_Class() {
@@ -1054,6 +1143,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPortGroup_Base_Port() {
@@ -1063,6 +1153,7 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPortGroup_PortGroup() {
@@ -1070,13 +1161,15 @@ public class FunctionmodelingPackageImpl extends EPackageImpl implements Functio
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package

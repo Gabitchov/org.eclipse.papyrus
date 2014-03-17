@@ -518,7 +518,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
       <?gmfgen generated="true"?>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Profile_1000"
                name="%metatype.name.Profile_1000"
@@ -528,7 +528,7 @@
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Dependency_2014"
                name="%metatype.name.Dependency_2014"
@@ -538,7 +538,7 @@
             <param name="semanticHint" value="2014"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Association_2015"
                name="%metatype.name.Association_2015"
@@ -548,7 +548,7 @@
             <param name="semanticHint" value="2015"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Stereotype_1026"
                name="%metatype.name.Stereotype_1026"
@@ -558,7 +558,7 @@
             <param name="semanticHint" value="1026"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.profile.Metaclass_1031"
                name="%metatype.name.Class_1031"
@@ -567,7 +567,7 @@
             <param name="semanticHint" value="1031"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Comment_1002"
                name="%metatype.name.Comment_1002"
@@ -577,7 +577,7 @@
             <param name="semanticHint" value="1002"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Constraint_1014"
                name="%metatype.name.Constraint_1014"
@@ -587,7 +587,7 @@
             <param name="semanticHint" value="1014"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Model_2005"
                name="%metatype.name.Model_2005"
@@ -597,7 +597,7 @@
             <param name="semanticHint" value="2005"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Profile_1030"
                name="%metatype.name.Profile_1030"
@@ -607,7 +607,7 @@
             <param name="semanticHint" value="1030"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Package_1004"
                name="%metatype.name.Package_2007"
@@ -617,7 +617,7 @@
             <param name="semanticHint" value="2007"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Enumeration_2006"
                name="%metatype.name.Enumeration_2006"
@@ -627,7 +627,7 @@
             <param name="semanticHint" value="2006"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.profile.PrimitiveType_2009"
                name="%metatype.name.PrimitiveType_2009"
@@ -636,7 +636,7 @@
             <param name="semanticHint" value="2009"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.DataType_2010"
                name="%metatype.name.DataType_2010"
@@ -656,7 +656,7 @@
             <param name="semanticHint" value="2016"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.PrimitiveType_3026"
                name="%metatype.name.PrimitiveType_3026"
@@ -666,7 +666,7 @@
             <param name="semanticHint" value="3026"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.DataTypeOperation_3019"
                name="%metatype.name.Operation_3019"
@@ -676,7 +676,7 @@
             <param name="semanticHint" value="3019"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.EnumerationLiteral_1037"
                name="%metatype.name.EnumerationLiteral_1037"
@@ -686,7 +686,7 @@
             <param name="semanticHint" value="1037"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.DataTypeProperty_3018"
                name="%metatype.name.Property_3018"
@@ -696,7 +696,7 @@
             <param name="semanticHint" value="3018"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.ClassProperty_3002"
                name="%metatype.name.Property_3002"
@@ -706,7 +706,7 @@
             <param name="semanticHint" value="3002"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.ClassOperation_3020"
                name="%metatype.name.Operation_3020"
@@ -716,7 +716,7 @@
             <param name="semanticHint" value="3020"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Stereotype_1023"
                name="%metatype.name.Stereotype_1023"
@@ -726,7 +726,7 @@
             <param name="semanticHint" value="1023"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Metaclass_3028"
                name="%metatype.name.Class_3028"
@@ -736,7 +736,7 @@
             <param name="semanticHint" value="3028"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.CommentCN_1007"
                name="%metatype.name.Comment_1007"
@@ -746,7 +746,7 @@
             <param name="semanticHint" value="1007"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.profile.Model_1027"
                name="%metatype.name.Model_1027"
@@ -755,7 +755,7 @@
             <param name="semanticHint" value="1027"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.profile.Profile_1024"
                name="%metatype.name.Profile_1024"
@@ -764,7 +764,7 @@
             <param name="semanticHint" value="1024"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.PackageCN_1012"
                name="%metatype.name.Package_1012"
@@ -774,7 +774,7 @@
             <param name="semanticHint" value="1012"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Constraint_1028"
                name="%metatype.name.Constraint_1028"
@@ -784,7 +784,7 @@
             <param name="semanticHint" value="1028"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.profile.Enumeration_3025"
                name="%metatype.name.Enumeration_3025"
@@ -793,7 +793,7 @@
             <param name="semanticHint" value="3025"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.profile.DataType_3027"
                name="%metatype.name.DataType_3027"
@@ -802,7 +802,7 @@
             <param name="semanticHint" value="3027"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Extension_1013"
                name="%metatype.name.Extension_1013"
@@ -812,7 +812,7 @@
             <param name="semanticHint" value="1013"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.profile.Association_4001"
                name="%metatype.name.Association_4001"
@@ -821,7 +821,7 @@
             <param name="semanticHint" value="4001"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.ProfileApplication_1045"
                name="%metatype.name.ProfileApplication_1045"
@@ -831,7 +831,7 @@
             <param name="semanticHint" value="1045"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.profile.Association_4019"
                name="%metatype.name.Association_4019"
@@ -840,7 +840,7 @@
             <param name="semanticHint" value="4019"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.Generalization_4002"
                name="%metatype.name.Generalization_4002"
@@ -850,7 +850,7 @@
             <param name="semanticHint" value="4002"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.profile.Dependency_4008"
                name="%metatype.name.Dependency_4008"
@@ -859,7 +859,7 @@
             <param name="semanticHint" value="4008"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.profile.Dependency_4018"
                name="%metatype.name.Dependency_4018"
@@ -868,7 +868,7 @@
             <param name="semanticHint" value="4018"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.ElementImport_1064"
                name="%metatype.name.ElementImport_1064"
@@ -878,7 +878,7 @@
             <param name="semanticHint" value="1064"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.profile.PackageImport_1065"
                name="%metatype.name.PackageImport_1065"
@@ -888,7 +888,7 @@
             <param name="semanticHint" value="1065"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.profile.CommentAnnotatedElement_1022"
                name="%metatype.name.CommentAnnotatedElement_1022"
@@ -897,7 +897,7 @@
             <param name="semanticHint" value="1022"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.profile.ConstraintConstrainedElement_4014"
                name="%metatype.name.ConstraintConstrainedElement_4014"
@@ -906,7 +906,7 @@
             <param name="semanticHint" value="4014"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.profile.ConstraintContext_8500"
                name="%metatype.name.ConstraintContext_8500"
@@ -994,51 +994,6 @@
          sequence="F5"/>
    </extension>
 
-<extension
-		point="org.eclipse.ui.menus">
-	
-	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
-		<command commandId="org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramCommand"
-			icon="icons/obj16/Diagram_Profile.gif"
-			label="Create a new Profile Diagram"
-			style="push"
-			tooltip="Create a new Profile Diagram">
-			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLProfile"/>
-			</visibleWhen> 
-		</command>
-	</toolbar>
-	</menuContribution>
-      
-	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-	<menu id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams"
-		label="Diagrams">
-		<command commandId="org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramCommand"
-			icon="icons/obj16/Diagram_Profile.gif"
-			label="Create a new Profile Diagram"
-			style="push"
-			tooltip="Create a new Profile Diagram">
-			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLProfile"/>
-			</visibleWhen>                 
-		</command>
-	</menu>
-	</menuContribution>
-
-	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
-		<command commandId="org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramCommand"
-			icon="icons/obj16/Diagram_Profile.gif"
-			label="Create a new Profile Diagram"
-			style="push"
-			tooltip="Create a new Profile Diagram">
-			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLProfile"/>
-			</visibleWhen>
-		</command>
-	</menuContribution>
-	
-</extension>
 
    <extension point="org.eclipse.ui.menus" id="context-menus">
       <?gmfgen generated="true"?>
@@ -1289,21 +1244,6 @@
          id="org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramCommand"
          name="New PapyII Profile Diagram( Papyrus II)">
    </command>
-</extension>
-<extension
-	point="org.eclipse.ui.handlers">
-	<handler
-		class="org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramWithNavigationHandler"
-		commandId="org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramCommand">
-		<activeWhen>
-		<with
-			variable="activeEditorId">
-			<equals
-				value="org.eclipse.papyrus.infra.core.papyrusEditor">
-			</equals>
-		</with>
-		</activeWhen>
-	</handler>
 </extension>
 
 <extension

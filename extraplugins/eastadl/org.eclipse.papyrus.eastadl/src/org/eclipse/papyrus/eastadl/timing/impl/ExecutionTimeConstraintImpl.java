@@ -33,20 +33,23 @@ import org.eclipse.papyrus.eastadl.timing.TimingPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.impl.ExecutionTimeConstraintImpl#getVariation <em>Variation</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.impl.ExecutionTimeConstraintImpl#getTargetDesignFunctionType <em>Target Design Function Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.impl.ExecutionTimeConstraintImpl#getTargetDesignFunction <em>Target Design Function</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.impl.ExecutionTimeConstraintImpl#getTargetDesignFunctionPrototype <em>Target Design Function Prototype</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.impl.ExecutionTimeConstraintImpl#getVariation <em>Variation</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.impl.ExecutionTimeConstraintImpl#getTargetDesignFunctionType <em>Target Design Function Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.impl.ExecutionTimeConstraintImpl#getTargetDesignFunction <em>Target Design Function</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.impl.ExecutionTimeConstraintImpl#getTargetDesignFunctionPrototype <em>Target Design Function
+ * Prototype</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements ExecutionTimeConstraint {
+
 	/**
 	 * The cached value of the '{@link #getVariation() <em>Variation</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getVariation()
 	 * @generated
 	 * @ordered
@@ -57,6 +60,7 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	 * The cached value of the '{@link #getTargetDesignFunctionType() <em>Target Design Function Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTargetDesignFunctionType()
 	 * @generated
 	 * @ordered
@@ -67,6 +71,7 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	 * The cached value of the '{@link #getTargetDesignFunction() <em>Target Design Function</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTargetDesignFunction()
 	 * @generated
 	 * @ordered
@@ -77,6 +82,7 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	 * The cached value of the '{@link #getTargetDesignFunctionPrototype() <em>Target Design Function Prototype</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTargetDesignFunctionPrototype()
 	 * @generated
 	 * @ordered
@@ -86,6 +92,7 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ExecutionTimeConstraintImpl() {
@@ -95,6 +102,7 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DesignFunctionType basicGetTargetDesignFunctionType() {
@@ -104,6 +112,7 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration basicGetVariation() {
@@ -113,23 +122,28 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__VARIATION:
-				if (resolve) return getVariation();
-				return basicGetVariation();
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_TYPE:
-				if (resolve) return getTargetDesignFunctionType();
-				return basicGetTargetDesignFunctionType();
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION:
-				if (resolve) return getTargetDesignFunction();
-				return basicGetTargetDesignFunction();
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_PROTOTYPE:
-				if (resolve) return getTargetDesignFunctionPrototype();
-				return basicGetTargetDesignFunctionPrototype();
+		switch(featureID) {
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__VARIATION:
+			if(resolve)
+				return getVariation();
+			return basicGetVariation();
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_TYPE:
+			if(resolve)
+				return getTargetDesignFunctionType();
+			return basicGetTargetDesignFunctionType();
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION:
+			if(resolve)
+				return getTargetDesignFunction();
+			return basicGetTargetDesignFunction();
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_PROTOTYPE:
+			if(resolve)
+				return getTargetDesignFunctionPrototype();
+			return basicGetTargetDesignFunctionPrototype();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -137,19 +151,20 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__VARIATION:
-				return variation != null;
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_TYPE:
-				return targetDesignFunctionType != null;
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION:
-				return targetDesignFunction != null;
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_PROTOTYPE:
-				return targetDesignFunctionPrototype != null;
+		switch(featureID) {
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__VARIATION:
+			return variation != null;
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_TYPE:
+			return targetDesignFunctionType != null;
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION:
+			return targetDesignFunction != null;
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_PROTOTYPE:
+			return targetDesignFunctionPrototype != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -157,23 +172,24 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__VARIATION:
-				setVariation((TimeDuration)newValue);
-				return;
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_TYPE:
-				setTargetDesignFunctionType((DesignFunctionType)newValue);
-				return;
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION:
-				setTargetDesignFunction((DesignFunctionType)newValue);
-				return;
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_PROTOTYPE:
-				setTargetDesignFunctionPrototype((DesignFunctionPrototype)newValue);
-				return;
+		switch(featureID) {
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__VARIATION:
+			setVariation((TimeDuration)newValue);
+			return;
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_TYPE:
+			setTargetDesignFunctionType((DesignFunctionType)newValue);
+			return;
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION:
+			setTargetDesignFunction((DesignFunctionType)newValue);
+			return;
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_PROTOTYPE:
+			setTargetDesignFunctionPrototype((DesignFunctionPrototype)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -181,6 +197,7 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -191,23 +208,24 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__VARIATION:
-				setVariation((TimeDuration)null);
-				return;
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_TYPE:
-				setTargetDesignFunctionType((DesignFunctionType)null);
-				return;
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION:
-				setTargetDesignFunction((DesignFunctionType)null);
-				return;
-			case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_PROTOTYPE:
-				setTargetDesignFunctionPrototype((DesignFunctionPrototype)null);
-				return;
+		switch(featureID) {
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__VARIATION:
+			setVariation((TimeDuration)null);
+			return;
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_TYPE:
+			setTargetDesignFunctionType((DesignFunctionType)null);
+			return;
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION:
+			setTargetDesignFunction((DesignFunctionType)null);
+			return;
+		case TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_PROTOTYPE:
+			setTargetDesignFunctionPrototype((DesignFunctionPrototype)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -215,14 +233,15 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DesignFunctionType getTargetDesignFunctionType() {
-		if (targetDesignFunctionType != null && targetDesignFunctionType.eIsProxy()) {
+		if(targetDesignFunctionType != null && targetDesignFunctionType.eIsProxy()) {
 			InternalEObject oldTargetDesignFunctionType = (InternalEObject)targetDesignFunctionType;
 			targetDesignFunctionType = (DesignFunctionType)eResolveProxy(oldTargetDesignFunctionType);
-			if (targetDesignFunctionType != oldTargetDesignFunctionType) {
-				if (eNotificationRequired())
+			if(targetDesignFunctionType != oldTargetDesignFunctionType) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_TYPE, oldTargetDesignFunctionType, targetDesignFunctionType));
 			}
 		}
@@ -232,14 +251,15 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration getVariation() {
-		if (variation != null && variation.eIsProxy()) {
+		if(variation != null && variation.eIsProxy()) {
 			InternalEObject oldVariation = (InternalEObject)variation;
 			variation = (TimeDuration)eResolveProxy(oldVariation);
-			if (variation != oldVariation) {
-				if (eNotificationRequired())
+			if(variation != oldVariation) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingPackage.EXECUTION_TIME_CONSTRAINT__VARIATION, oldVariation, variation));
 			}
 		}
@@ -249,26 +269,28 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetDesignFunctionType(DesignFunctionType newTargetDesignFunctionType) {
 		DesignFunctionType oldTargetDesignFunctionType = targetDesignFunctionType;
 		targetDesignFunctionType = newTargetDesignFunctionType;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_TYPE, oldTargetDesignFunctionType, targetDesignFunctionType));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DesignFunctionType getTargetDesignFunction() {
-		if (targetDesignFunction != null && targetDesignFunction.eIsProxy()) {
+		if(targetDesignFunction != null && targetDesignFunction.eIsProxy()) {
 			InternalEObject oldTargetDesignFunction = (InternalEObject)targetDesignFunction;
 			targetDesignFunction = (DesignFunctionType)eResolveProxy(oldTargetDesignFunction);
-			if (targetDesignFunction != oldTargetDesignFunction) {
-				if (eNotificationRequired())
+			if(targetDesignFunction != oldTargetDesignFunction) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION, oldTargetDesignFunction, targetDesignFunction));
 			}
 		}
@@ -278,6 +300,7 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DesignFunctionType basicGetTargetDesignFunction() {
@@ -287,26 +310,28 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetDesignFunction(DesignFunctionType newTargetDesignFunction) {
 		DesignFunctionType oldTargetDesignFunction = targetDesignFunction;
 		targetDesignFunction = newTargetDesignFunction;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION, oldTargetDesignFunction, targetDesignFunction));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DesignFunctionPrototype getTargetDesignFunctionPrototype() {
-		if (targetDesignFunctionPrototype != null && targetDesignFunctionPrototype.eIsProxy()) {
+		if(targetDesignFunctionPrototype != null && targetDesignFunctionPrototype.eIsProxy()) {
 			InternalEObject oldTargetDesignFunctionPrototype = (InternalEObject)targetDesignFunctionPrototype;
 			targetDesignFunctionPrototype = (DesignFunctionPrototype)eResolveProxy(oldTargetDesignFunctionPrototype);
-			if (targetDesignFunctionPrototype != oldTargetDesignFunctionPrototype) {
-				if (eNotificationRequired())
+			if(targetDesignFunctionPrototype != oldTargetDesignFunctionPrototype) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_PROTOTYPE, oldTargetDesignFunctionPrototype, targetDesignFunctionPrototype));
 			}
 		}
@@ -316,6 +341,7 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DesignFunctionPrototype basicGetTargetDesignFunctionPrototype() {
@@ -325,24 +351,26 @@ public class ExecutionTimeConstraintImpl extends TimingConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetDesignFunctionPrototype(DesignFunctionPrototype newTargetDesignFunctionPrototype) {
 		DesignFunctionPrototype oldTargetDesignFunctionPrototype = targetDesignFunctionPrototype;
 		targetDesignFunctionPrototype = newTargetDesignFunctionPrototype;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingPackage.EXECUTION_TIME_CONSTRAINT__TARGET_DESIGN_FUNCTION_PROTOTYPE, oldTargetDesignFunctionPrototype, targetDesignFunctionPrototype));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setVariation(TimeDuration newVariation) {
 		TimeDuration oldVariation = variation;
 		variation = newVariation;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingPackage.EXECUTION_TIME_CONSTRAINT__VARIATION, oldVariation, variation));
 	}
 

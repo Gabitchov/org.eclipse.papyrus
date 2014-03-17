@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.emf.resource.DependencyManagementHelper;
 import org.eclipse.papyrus.junit.utils.ModelUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.junit.utils.classification.NotImplemented;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.eclipse.papyrus.uml.tools.tests.Activator;
 import org.eclipse.uml2.uml.Model;
@@ -37,9 +38,9 @@ import org.osgi.framework.Bundle;
 
 /**
  * Test case for DependencyManagementHelper
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class DependencyManagementTest extends AbstractEditorTest {
 
@@ -106,11 +107,10 @@ public class DependencyManagementTest extends AbstractEditorTest {
 	}
 
 	//Switch from two different versions of a profile
-	//Problem: !!Stereotypes are not references!! They are instances. After the switch, the new 
+	//Problem: !!Stereotypes are not references!! They are instances. After the switch, the new
 	//profile is correctly applied, but the applied Stereotypes are the ones from the initial Profile
-	//
-	//Current state: FAILS
 	@Test
+	@NotImplemented("Bug 408491 is not yet implemented")
 	public void testSwitchProfilesWithStereotypes() throws Exception {
 		IProject project = ProjectUtils.createProject("dependencyManagement.switchProfiles");
 		PapyrusProjectUtils.copyPapyrusModel(project, getBundle(), getSourcePath(), "profiles/model");
@@ -143,7 +143,7 @@ public class DependencyManagementTest extends AbstractEditorTest {
 
 		});
 
-		//After the transformation, stereotypes from the target profile must be applied 
+		//After the transformation, stereotypes from the target profile must be applied
 		checkAppliedProfileAndStereotypes(modelSet, rootModel, targetProfileURI);
 
 		//Save, reload, and check again

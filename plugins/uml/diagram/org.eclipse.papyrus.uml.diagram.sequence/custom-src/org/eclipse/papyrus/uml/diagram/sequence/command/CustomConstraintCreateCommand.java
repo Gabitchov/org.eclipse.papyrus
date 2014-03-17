@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.command;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintCreateCommand;
 import org.eclipse.uml2.uml.Lifeline;
@@ -33,8 +34,8 @@ public class CustomConstraintCreateCommand extends ConstraintCreateCommand {
 	 * @param req
 	 * @param eObject
 	 */
-	public CustomConstraintCreateCommand(CreateElementRequest req, EObject eObject) {
-		super(req, eObject);
+	public CustomConstraintCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		super(req, eObject, diagram);
 		this.eObject = eObject;
 	}
 
@@ -43,8 +44,8 @@ public class CustomConstraintCreateCommand extends ConstraintCreateCommand {
 	 * 
 	 * @param req
 	 */
-	public CustomConstraintCreateCommand(CreateElementRequest req) {
-		super(req);
+	public CustomConstraintCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 	}
 
 	protected EObject getElementToEdit() {

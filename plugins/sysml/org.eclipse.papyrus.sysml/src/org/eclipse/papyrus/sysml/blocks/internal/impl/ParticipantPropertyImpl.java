@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.ParticipantProperty;
 import org.eclipse.uml2.uml.Property;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Property;
  * 
  * @generated
  */
-public class ParticipantPropertyImpl extends EObjectImpl implements ParticipantProperty {
+public class ParticipantPropertyImpl extends MinimalEObjectImpl.Container implements ParticipantProperty {
 
 	/**
 	 * The cached value of the '{@link #getBase_Property() <em>Base Property</em>}' reference.

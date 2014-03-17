@@ -22,13 +22,16 @@ import org.eclipse.papyrus.eastadl.infrastructure.datatypes.EADatatypePrototype;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Feature</b></em>'. <!--
  * end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * A Feature represents a characteristic or trait of some object of consideration. The actual object of consideration depends on the particular purpose of the feature's containing feature model.
+ * A Feature represents a characteristic or trait of some object of consideration. The actual object of consideration depends on the particular
+ * purpose of the feature's containing feature model.
  * 
- * Example 1: The core technical feature model on vehicle level defines the technical properties of the complete-system, i.e. vehicle. So its object of consideration is the vehicle as a whole and therefore its features represent characteristics or traits of the vehicle as a whole.
+ * Example 1: The core technical feature model on vehicle level defines the technical properties of the complete-system, i.e. vehicle. So its object
+ * of consideration is the vehicle as a whole and therefore its features represent characteristics or traits of the vehicle as a whole.
  * 
- * Example 2: The public feature model of some function F in the FDA defines the features of this particular software function. So its object of consideration is function F and therefore its features represent characteristics or traits of this function F.
+ * Example 2: The public feature model of some function F in the FDA defines the features of this particular software function. So its object of
+ * consideration is function F and therefore its features represent characteristics or traits of this function F.
  * 
  * 
  * Semantics:
@@ -38,19 +41,19 @@ import org.eclipse.papyrus.eastadl.infrastructure.datatypes.EADatatypePrototype;
  * Extension:
  * Class
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getBase_Class <em>Base Class</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getCardinality <em>Cardinality</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getRequiredBindingTime <em>Required Binding Time</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getActualBindingTime <em>Actual Binding Time</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getFeatureParameter <em>Feature Parameter</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getChildNode <em>Child Node</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getCardinality <em>Cardinality</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getRequiredBindingTime <em>Required Binding Time</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getActualBindingTime <em>Actual Binding Time</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getFeatureParameter <em>Feature Parameter</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getChildNode <em>Child Node</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.featuremodeling.FeaturemodelingPackage#getFeature()
  * @model
  * @generated
@@ -61,10 +64,10 @@ public interface Feature extends FeatureTreeNode {
 	 * Returns the value of the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Class</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
 	 * @see org.eclipse.papyrus.eastadl.structure.featuremodeling.FeaturemodelingPackage#getFeature_Base_Class()
@@ -77,7 +80,9 @@ public interface Feature extends FeatureTreeNode {
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base Class</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Base Class</em>' reference.
 	 * @see #getBase_Class()
 	 * @generated
 	 */
@@ -87,8 +92,7 @@ public interface Feature extends FeatureTreeNode {
 	 * Returns the value of the '<em><b>Actual Binding Time</b></em>' reference. <!-- begin-user-doc
 	 * -->
 	 * <p>
-	 * If the meaning of the '<em>Actual Binding Time</em>' reference isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>Actual Binding Time</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc --> <!-- begin-model-doc --> The actual binding time, independent of the
 	 * required binding time. <!-- end-model-doc -->
@@ -104,8 +108,7 @@ public interface Feature extends FeatureTreeNode {
 	/**
 	 * Returns the value of the '<em><b>Cardinality</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Cardinality</em>' attribute isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Cardinality</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc --> <!-- begin-model-doc --> The Cardinality describes for a feature its
 	 * cardinality. In the context of a feature group it describes the variability behavior of the
@@ -131,10 +134,10 @@ public interface Feature extends FeatureTreeNode {
 	 * The list contents are of type {@link org.eclipse.papyrus.eastadl.structure.featuremodeling.FeatureTreeNode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Child Node</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Child Node</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Child Node</em>' reference list.
 	 * @see org.eclipse.papyrus.eastadl.structure.featuremodeling.FeaturemodelingPackage#getFeature_ChildNode()
 	 * @model ordered="false"
@@ -146,10 +149,10 @@ public interface Feature extends FeatureTreeNode {
 	 * Returns the value of the '<em><b>Feature Parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Feature Parameter</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Feature Parameter</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Feature Parameter</em>' reference.
 	 * @see #setFeatureParameter(EADatatypePrototype)
 	 * @see org.eclipse.papyrus.eastadl.structure.featuremodeling.FeaturemodelingPackage#getFeature_FeatureParameter()
@@ -159,10 +162,13 @@ public interface Feature extends FeatureTreeNode {
 	EADatatypePrototype getFeatureParameter();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getFeatureParameter <em>Feature Parameter</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getFeatureParameter <em>Feature Parameter</em>}'
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature Parameter</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Feature Parameter</em>' reference.
 	 * @see #getFeatureParameter()
 	 * @generated
 	 */
@@ -184,9 +190,12 @@ public interface Feature extends FeatureTreeNode {
 	BindingTime getRequiredBindingTime();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getActualBindingTime <em>Actual Binding Time</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getActualBindingTime <em>Actual Binding Time</em>}'
+	 * reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Actual Binding Time</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Actual Binding Time</em>' reference.
 	 * @see #getActualBindingTime()
 	 * @generated
 	 */
@@ -195,16 +204,21 @@ public interface Feature extends FeatureTreeNode {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getCardinality <em>Cardinality</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Cardinality</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Cardinality</em>' attribute.
 	 * @see #getCardinality()
 	 * @generated
 	 */
 	void setCardinality(String value);
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getRequiredBindingTime <em>Required Binding Time</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.structure.featuremodeling.Feature#getRequiredBindingTime
+	 * <em>Required Binding Time</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Required Binding Time</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Required Binding Time</em>' reference.
 	 * @see #getRequiredBindingTime()
 	 * @generated
 	 */

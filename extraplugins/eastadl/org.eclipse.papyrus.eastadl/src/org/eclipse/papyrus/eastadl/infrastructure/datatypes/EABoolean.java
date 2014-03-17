@@ -20,8 +20,8 @@ package org.eclipse.papyrus.eastadl.infrastructure.datatypes;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>EA Boolean</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.infrastructure.datatypes.DatatypesPackage#getEABoolean()
  * @model
  * @generated

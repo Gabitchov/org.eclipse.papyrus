@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.infra.viewpoints.iso42010;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.papyrus.infra.viewpoints.iso42010.Activator
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.papyrus.infra.viewpoints.iso42010,
+ org.eclipse.papyrus.infra.viewpoints.iso42010.impl,
+ org.eclipse.papyrus.infra.viewpoints.iso42010.util
+Bundle-ActivationPolicy: lazy

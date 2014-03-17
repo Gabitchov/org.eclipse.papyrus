@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Profile xmi:id="_TZ_nULU5EduiKqCzJMWbGw" name="SysML" URI="http://www.eclipse.org/papyrus/0.7.0/SysML">
     <ownedComment xmi:id="_S2RekKGvEdyj2Ya50HPlXg" annotatedElement="_TZ_nULU5EduiKqCzJMWbGw">
       <body>OMG SysML V1.1 formal/2008-11-02</body>
@@ -8,7 +8,7 @@
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
     <packageImport xmi:id="_BssfwKG1Edyj2Ya50HPlXg">
-      <importedPackage xmi:type="uml:Profile" href="pathmap://UML_PROFILES/StandardL2.profile.uml#_0"/>
+      <importedPackage xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
     </packageImport>
     <packageImport xmi:id="_xyrS0EdKEeGJHdQius5NZA">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
@@ -570,7 +570,7 @@
       </ownedComment>
       <packagedElement xmi:type="uml:Stereotype" xmi:id="_LPnzYLXoEduHWpAaWjM62w" name="DeriveReqt">
         <generalization xmi:id="_lr5SAKG1Edyj2Ya50HPlXg">
-          <general xmi:type="uml:Stereotype" href="pathmap://UML_PROFILES/StandardL2.profile.uml#Trace"/>
+          <general xmi:type="uml:Stereotype" href="pathmap://UML_PROFILES/Standard.profile.uml#Trace"/>
         </generalization>
         <icon xmi:id="__AeBoJaqEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/DeriveReqt.gif">
           <eAnnotations xmi:id="__kO2AJaqEd2oqf5htPjXnA" source="image_papyrus">
@@ -580,7 +580,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Stereotype" xmi:id="_Lop-cLXoEduHWpAaWjM62w" name="Verify">
         <generalization xmi:id="_mRzbcKG1Edyj2Ya50HPlXg">
-          <general xmi:type="uml:Stereotype" href="pathmap://UML_PROFILES/StandardL2.profile.uml#Trace"/>
+          <general xmi:type="uml:Stereotype" href="pathmap://UML_PROFILES/Standard.profile.uml#Trace"/>
         </generalization>
         <icon xmi:id="_Kcv3sJarEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Verify.gif">
           <eAnnotations xmi:id="_LGnUEJarEd2oqf5htPjXnA" source="image_papyrus">
@@ -590,7 +590,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Stereotype" xmi:id="_L8HF8LXoEduHWpAaWjM62w" name="Copy">
         <generalization xmi:id="_m3h-sKG1Edyj2Ya50HPlXg">
-          <general xmi:type="uml:Stereotype" href="pathmap://UML_PROFILES/StandardL2.profile.uml#Trace"/>
+          <general xmi:type="uml:Stereotype" href="pathmap://UML_PROFILES/Standard.profile.uml#Trace"/>
         </generalization>
         <icon xmi:id="_6oq68JaqEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Copy.gif">
           <eAnnotations xmi:id="_7LYmcJaqEd2oqf5htPjXnA" source="image_papyrus">
@@ -600,7 +600,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Stereotype" xmi:id="_Mqyw4LXoEduHWpAaWjM62w" name="Satisfy">
         <generalization xmi:id="_qvChAMq5Ed2earfX6q16xg">
-          <general xmi:type="uml:Stereotype" href="pathmap://UML_PROFILES/StandardL2.profile.uml#Trace"/>
+          <general xmi:type="uml:Stereotype" href="pathmap://UML_PROFILES/Standard.profile.uml#Trace"/>
         </generalization>
         <icon xmi:id="_Fsqz4JarEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif">
           <eAnnotations xmi:id="_GTQSwJarEd2oqf5htPjXnA" source="image_papyrus">

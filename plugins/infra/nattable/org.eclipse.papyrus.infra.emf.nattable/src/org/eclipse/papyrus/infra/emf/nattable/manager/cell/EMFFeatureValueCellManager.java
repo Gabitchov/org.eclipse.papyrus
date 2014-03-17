@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
@@ -40,6 +41,9 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem;
 import org.eclipse.papyrus.infra.nattable.paste.IValueSetter;
 import org.eclipse.papyrus.infra.nattable.paste.ReferenceValueSetter;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
@@ -162,7 +166,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	@Override
 	public Command getSetValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
 		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, null);
-		return getSetValueCommand(domain, (EObject)objects.get(0), (EStructuralFeature)objects.get(1), newValue);
+		return getSetValueCommand(domain, (EObject)objects.get(0), (EStructuralFeature)objects.get(1), newValue, columnElement, rowElement, tableManager);
 	}
 
 	/**
@@ -178,63 +182,79 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 * @return
 	 *         the command to set the value
 	 */
-	protected Command getSetValueCommand(final TransactionalEditingDomain domain, final EObject elementToEdit, final EStructuralFeature featureToEdit, final Object newValue) {
-		//426731: [Table 2] Opening then closing cells editors without modifiyng values execute a command in the stack
-		//https://bugs.eclipse.org/bugs/show_bug.cgi?id=426731
-		//1. we verify that the new valu eis not the same thjan the current value
-		final Object currentValue = elementToEdit.eGet(featureToEdit);
-		if(newValue == null && currentValue == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		if(newValue != null && newValue.equals(currentValue)) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		//2. if not we do the job
-		final AbstractEditCommandRequest request = new SetRequest(domain, elementToEdit, featureToEdit, newValue);
-		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToEdit);
-		final ICommand cmd = provider.getEditCommand(request);
-		ICommand returnedCommand = cmd;
-		if(cmd.canExecute() && featureToEdit instanceof EReference) {
-			boolean shouldOpenDialog = false;
-			final EReference editedReference = (EReference)featureToEdit;
-
-			//we are editing a containment feature
-			if(editedReference.isContainment()) {
-				if(newValue instanceof Collection<?>) {
-					if(!editedReference.isMany()) {
-						return UnexecutableCommand.INSTANCE;
-					} else {
-						final Collection<?> currentValues = new ArrayList<Object>((Collection<?>)elementToEdit.eGet(editedReference));
-						final Collection<?> addedValues = new ArrayList<Object>((Collection<?>)newValue);
-						addedValues.removeAll((Collection<?>)currentValues);
-						//we need to test the added values
-						final Iterator<?> iter = ((Collection<?>)addedValues).iterator();
-						while(iter.hasNext() && !shouldOpenDialog) {
-							final Object current = iter.next();
-							if(current instanceof EObject) {
-								if(elementToEdit == current) {
-									//an element can be owned by itself
-									return UnexecutableCommand.INSTANCE;
-								} else {
-									shouldOpenDialog = ((EObject)current).eContainer() != elementToEdit;
-								}
-							}
-						}
-					}
-				} else if(elementToEdit == newValue) {
-					//an element can be owned by itself
-					return UnexecutableCommand.INSTANCE;
-				} else if(newValue instanceof EObject) {
-					shouldOpenDialog = ((EObject)newValue).eContainer() != elementToEdit;
+	protected Command getSetValueCommand(final TransactionalEditingDomain domain, final EObject elementToEdit, final EStructuralFeature featureToEdit, final Object newValue, final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+		final CompositeCommand result = new CompositeCommand("Set Value Command"); //$NON-NLS-1$
+		
+		//we need to destroy associated cell problem, if any.
+		final Cell cell = tableManager.getCell(columnElement, rowElement);
+		StringResolutionProblem stringPb = null;//we assume that there is only one string resolution problem for a cell
+		if(cell != null && cell.getProblems().size() > 0) {
+			for(final Problem current : cell.getProblems()) {
+				if(current instanceof StringResolutionProblem) {
+					stringPb = (StringResolutionProblem)current;
+					break;
 				}
-
-				if(shouldOpenDialog) {
-					returnedCommand = getOpenConfirmChangeContainmentDialogCommand(domain, returnedCommand, editedReference.isMany());
-				}
-
 			}
 		}
-		return new GMFtoEMFCommandWrapper(returnedCommand);
+		if(stringPb != null) {
+			final DestroyElementRequest destroyRequest = new DestroyElementRequest(domain, stringPb, false);
+			final IElementEditService commandProvider2 = ElementEditServiceUtils.getCommandProvider(stringPb);
+			result.add(commandProvider2.getEditCommand(destroyRequest));
+		}
+		
+		//426731: [Table 2] Opening then closing cells editors without modifying values execute a command in the stack
+		//https://bugs.eclipse.org/bugs/show_bug.cgi?id=426731
+		//1. we verify that the new value is not the same as the current value
+		final Object currentValue = elementToEdit.eGet(featureToEdit);
+		if((newValue == null && currentValue != null) || (newValue != null && !newValue.equals(currentValue))) {
+    		//2. if not we do the job
+    		final AbstractEditCommandRequest request = new SetRequest(domain, elementToEdit, featureToEdit, newValue);
+    		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToEdit);
+    		final ICommand cmd = provider.getEditCommand(request);
+    		ICommand returnedCommand = cmd;
+    		if(cmd.canExecute() && featureToEdit instanceof EReference) {
+    			boolean shouldOpenDialog = false;
+    			final EReference editedReference = (EReference)featureToEdit;
+    
+    			//we are editing a containment feature
+    			if(editedReference.isContainment()) {
+    				if(newValue instanceof Collection<?>) {
+    					if(!editedReference.isMany()) {
+    						return UnexecutableCommand.INSTANCE;
+    					} else {
+    						final Collection<?> currentValues = new ArrayList<Object>((Collection<?>)elementToEdit.eGet(editedReference));
+    						final Collection<?> addedValues = new ArrayList<Object>((Collection<?>)newValue);
+    						addedValues.removeAll((Collection<?>)currentValues);
+    						//we need to test the added values
+    						final Iterator<?> iter = ((Collection<?>)addedValues).iterator();
+    						while(iter.hasNext() && !shouldOpenDialog) {
+    							final Object current = iter.next();
+    							if(current instanceof EObject) {
+    								if(elementToEdit == current) {
+    									//an element can be owned by itself
+    									return UnexecutableCommand.INSTANCE;
+    								} else {
+    									shouldOpenDialog = ((EObject)current).eContainer() != elementToEdit;
+    								}
+    							}
+    						}
+    					}
+    				} else if(elementToEdit == newValue) {
+    					//an element cannot be owned by itself
+    					return UnexecutableCommand.INSTANCE;
+    				} else if(newValue instanceof EObject) {
+    					shouldOpenDialog = ((EObject)newValue).eContainer() != elementToEdit;
+    				}
+    
+    				if(shouldOpenDialog) {
+    					returnedCommand = getOpenConfirmChangeContainmentDialogCommand(domain, returnedCommand, editedReference.isMany());
+    				}
+    
+    			}
+    		}
+    		result.add(returnedCommand);
+		}
+		return result.isEmpty() ? null : new GMFtoEMFCommandWrapper(result);
 	}
 
 
@@ -281,18 +301,32 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 		ConvertedValueContainer<?> solvedValue = valueSolver.deduceValueFromString(editedFeature, newValue);
 		final CompositeCommand cmd = new CompositeCommand("Set Value As String Command"); //$NON-NLS-1$
 		Object convertedValue = solvedValue.getConvertedValue();
-		Command setValueCommand = getSetValueCommand(domain, editedObject, editedFeature, convertedValue);
+		Command setValueCommand = getSetValueCommand(domain, editedObject, editedFeature, convertedValue, columnElement, rowElement, tableManager);
 		if(setValueCommand != null) {
 			cmd.add(new EMFtoGMFCommandWrapper(setValueCommand));
 		}
 		final Command createProblemCommand = getCreateStringResolutionProblemCommand(domain, tableManager, columnElement, rowElement, newValue, solvedValue);
 		if(createProblemCommand != null) {
 			cmd.add(new EMFtoGMFCommandWrapper(createProblemCommand));
+		} else {
+			//we need to destroy associated cell problem 
+			final Cell cell = tableManager.getCell(columnElement, rowElement);
+			StringResolutionProblem stringPb = null;//we assume that there is only one string resolution problem for a cell
+			if(cell != null && cell.getProblems().size() > 0) {
+				for(final Problem current : cell.getProblems()) {
+					if(current instanceof StringResolutionProblem) {
+						stringPb = (StringResolutionProblem)current;
+						break;
+					}
+				}
+			}
+			if(stringPb != null) {
+				final DestroyElementRequest destroyRequest = new DestroyElementRequest(domain, stringPb, false);
+				final IElementEditService commandProvider2 = ElementEditServiceUtils.getCommandProvider(stringPb);
+				cmd.add(commandProvider2.getEditCommand(destroyRequest));
+			}
 		}
-		if(cmd.isEmpty()) {
-			return null;
-		}
-		return new GMFtoEMFCommandWrapper(cmd);
+		return cmd.isEmpty() ? null : new GMFtoEMFCommandWrapper(cmd);
 	}
 
 

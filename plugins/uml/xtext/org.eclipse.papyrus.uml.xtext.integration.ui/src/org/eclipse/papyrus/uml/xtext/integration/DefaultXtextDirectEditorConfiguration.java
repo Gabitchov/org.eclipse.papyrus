@@ -28,7 +28,6 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
@@ -36,8 +35,9 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
-import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
-import org.eclipse.papyrus.infra.services.validation.commands.ValidateSubtreeCommand;
+import org.eclipse.papyrus.infra.services.validation.commands.AbstractValidateCommand;
+import org.eclipse.papyrus.infra.services.validation.commands.AsyncValidateSubtreeCommand;
+import org.eclipse.papyrus.uml.service.validation.UMLDiagnostician;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProviderWithInit;
@@ -67,9 +67,9 @@ import com.google.inject.name.Names;
  */
 public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirectEditorConfiguration implements ICustomDirectEditorConfiguration {
 
-	public static final String ANNOTATION_SOURCE = "expression_source";
+	public static final String ANNOTATION_SOURCE = "expression_source"; //$NON-NLS-1$
 
-	public static final String ANNOTATION_DETAIL = "expression";
+	public static final String ANNOTATION_DETAIL = "expression"; //$NON-NLS-1$
 
 	/**
 	 * returns the UI Injector for the Xtext language
@@ -111,21 +111,6 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 	}
 	
 	public DirectEditManager createDirectEditManager(final ITextAwareEditPart host) {
-		IContextElementProvider provider;
-		if (objectToEdit != null) {
-			provider = getContextProvider();
-		}
-		else {
-			provider = new IContextElementProvider() {
-
-				public EObject getContextObject() {
-					if(host instanceof IGraphicalEditPart) {
-						return ((IGraphicalEditPart)host).resolveSemanticElement();
-					}
-					return null;
-				}
-			};
-		}
 		return new XtextDirectEditManager(host, getInjector(), getStyle(), this);
 	}
 
@@ -163,7 +148,9 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 				} else {
 					result.add(createInvalidStringCommand(newString, semanticObject));
 				}
-				result.add(new ValidateSubtreeCommand(semanticObject, new EcoreDiagnostician()));
+				AbstractValidateCommand validationCommand = new AsyncValidateSubtreeCommand(semanticObject, new UMLDiagnostician());
+				validationCommand.disableUIFeedback();
+				result.add(validationCommand);
 				return result;
 			}
 
@@ -201,7 +188,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 		if(semanticElement instanceof Element) {
 			registerInvalidStringAdapter(semanticElement);
 			final Element element = (Element)semanticElement;
-			return new AbstractTransactionalCommand(TransactionUtil.getEditingDomain(semanticElement), "", Collections.emptyList()) {
+			return new AbstractTransactionalCommand(TransactionUtil.getEditingDomain(semanticElement), "", Collections.emptyList()) { //$NON-NLS-1$
 
 				@Override
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 Cedric Dumoulin.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -35,43 +35,44 @@ import org.junit.Test;
 
 /**
  * @author dumoulin
- *
+ * 
  */
 public class TransactionalDiContentProvider2Test extends AbstractDiContentProviderTest {
 
 	protected TransactionalEditingDomain editingDomain;
+
 	/*
-	 * 
+	 *
 	 */
 	@Before
 	public void setUp() throws Exception {
 
-		editingDomain = 
-				TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain();
-		
-		
+		editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain();
+
+
 		// Register the default resource factory -- only needed for stand-alone!
-		editingDomain.getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put(
-				Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+		editingDomain.getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 
 
 		final Resource resource = editingDomain.createResource("temp.di");
 
 		IPageModelFactory pageModelFactory = new FakePageModelFactory();
 		final SashModel diSashModel = DiUtils.createDefaultSashModel();
-		
+
 		// Add model to ResourceSet
 		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+
+			@Override
 			protected void doExecute() {
 				resource.getContents().add(diSashModel);
 			}
 		});
-		
-		
+
+
 		diContentProvider = new DiContentProvider(diSashModel, pageModelFactory);
-		
-		
-		
+
+
+
 		contentProvider = new TransactionalDiContentProvider(diContentProvider, editingDomain);
 		// Create model query
 		modelQuery = new SashModelQuery(diSashModel);
@@ -87,15 +88,18 @@ public class TransactionalDiContentProvider2Test extends AbstractDiContentProvid
 	public void tearDown() throws Exception {
 		editingDomain.dispose();
 	}
+
 	/**
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.AbstractDiContentProviderTest#createModel(org.eclipse.papyrus.infra.core.sasheditor.di.sashmodel.query.IQueryTerm)
-	 *
+	 * 
 	 * @param query
-	 * @throws QueryException 
+	 * @throws QueryException
 	 */
 	@Override
 	protected void createModel(final IQueryExp query) throws QueryException {
 		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+
+			@Override
 			protected void doExecute() {
 				try {
 					modelQuery.createModel(query);
@@ -105,52 +109,62 @@ public class TransactionalDiContentProvider2Test extends AbstractDiContentProvid
 				}
 			}
 		});
-		
+
 	}
 
 	/**
 	 * Test undo/Redo moving a page inside the same folder
-	 * @throws QueryException 
+	 * 
+	 * @throws QueryException
 	 */
 	@Test
 	public void testUndoRedoMovePageInsideFolder() throws QueryException {
-		
+
 		// Create a folder with several page
-		IQueryExp query1 = folder("f1", page("p1"), page("p2"), page("p3") );
+		IQueryExp query1 = folder("f1", page("p1"), page("p2"), page("p3"));
 		createModel(query1);
 		// Check creation
 		modelQuery.assertConform(query1);
-		
+
 		// get models (from diModels, and factory for sashModel)
 		Map<String, Object> modelElements = modelQuery.queryModel(query1);
-		SashContainerModels sashModels = new SashContainerModels(diContentProvider, modelElements);
+		final SashContainerModels sashModels = new SashContainerModels(diContentProvider, modelElements);
 
 		// do action : move a page
-		contentProvider.movePage(sashModels.getFolder("f1"), 1, 0);
-		
+		//Fix test after refactoring in Bug 429239: by default, the contentProvider actions are transactional, but not undoable
+		//Create a recording command to force it to be undoable
+		RecordingCommand movePageCommand = new RecordingCommand(editingDomain, "Move page") {
+
+			@Override
+			protected void doExecute() {
+				contentProvider.movePage(sashModels.getFolder("f1"), 1, 0);
+			}
+		};
+		editingDomain.getCommandStack().execute(movePageCommand);
+		//End of fix for Bug 429239
+
 		// check result
-		IQueryExp query2 = folder("f1", page("p2"), page("p1"), page("p3") );
+		IQueryExp query2 = folder("f1", page("p2"), page("p1"), page("p3"));
 		modelQuery.assertConform(query2);
 
 		// do action : undo
-		editingDomain.getCommandStack().undo();		
+		editingDomain.getCommandStack().undo();
 		// check result
 		modelQuery.assertConform(query1);
 
 		// do action : redo
-		editingDomain.getCommandStack().redo();		
+		editingDomain.getCommandStack().redo();
 		// check result
 		modelQuery.assertConform(query2);
 
 		// do action : undo
-		editingDomain.getCommandStack().undo();		
+		editingDomain.getCommandStack().undo();
 		// check result
 		modelQuery.assertConform(query1);
 
 		// do action : redo
-		editingDomain.getCommandStack().redo();		
+		editingDomain.getCommandStack().redo();
 		// check result
 		modelQuery.assertConform(query2);
-
-}
+	}
 }

@@ -31,25 +31,29 @@ import org.eclipse.uml2.uml.Event;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.dependability.errormodel.impl.ProcessFaultPrototypeImpl#getBase_Event <em>Base Event</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.dependability.errormodel.impl.ProcessFaultPrototypeImpl#getBase_Event <em>Base Event</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ProcessFaultPrototypeImpl extends AnomalyImpl implements ProcessFaultPrototype {
+
 	/**
 	 * The cached value of the '{@link #getBase_Event() <em>Base Event</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Event()
 	 * @generated
 	 * @ordered
 	 */
 	protected Event base_Event;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProcessFaultPrototypeImpl() {
@@ -59,14 +63,16 @@ public class ProcessFaultPrototypeImpl extends AnomalyImpl implements ProcessFau
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ErrormodelPackage.PROCESS_FAULT_PROTOTYPE__BASE_EVENT:
-				if (resolve) return getBase_Event();
-				return basicGetBase_Event();
+		switch(featureID) {
+		case ErrormodelPackage.PROCESS_FAULT_PROTOTYPE__BASE_EVENT:
+			if(resolve)
+				return getBase_Event();
+			return basicGetBase_Event();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -74,13 +80,14 @@ public class ProcessFaultPrototypeImpl extends AnomalyImpl implements ProcessFau
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ErrormodelPackage.PROCESS_FAULT_PROTOTYPE__BASE_EVENT:
-				return base_Event != null;
+		switch(featureID) {
+		case ErrormodelPackage.PROCESS_FAULT_PROTOTYPE__BASE_EVENT:
+			return base_Event != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -88,14 +95,15 @@ public class ProcessFaultPrototypeImpl extends AnomalyImpl implements ProcessFau
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ErrormodelPackage.PROCESS_FAULT_PROTOTYPE__BASE_EVENT:
-				setBase_Event((Event)newValue);
-				return;
+		switch(featureID) {
+		case ErrormodelPackage.PROCESS_FAULT_PROTOTYPE__BASE_EVENT:
+			setBase_Event((Event)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -103,6 +111,7 @@ public class ProcessFaultPrototypeImpl extends AnomalyImpl implements ProcessFau
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,14 +122,15 @@ public class ProcessFaultPrototypeImpl extends AnomalyImpl implements ProcessFau
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Event getBase_Event() {
-		if (base_Event != null && base_Event.eIsProxy()) {
+		if(base_Event != null && base_Event.eIsProxy()) {
 			InternalEObject oldBase_Event = (InternalEObject)base_Event;
 			base_Event = (Event)eResolveProxy(oldBase_Event);
-			if (base_Event != oldBase_Event) {
-				if (eNotificationRequired())
+			if(base_Event != oldBase_Event) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ErrormodelPackage.PROCESS_FAULT_PROTOTYPE__BASE_EVENT, oldBase_Event, base_Event));
 			}
 		}
@@ -130,6 +140,7 @@ public class ProcessFaultPrototypeImpl extends AnomalyImpl implements ProcessFau
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Event basicGetBase_Event() {
@@ -139,26 +150,28 @@ public class ProcessFaultPrototypeImpl extends AnomalyImpl implements ProcessFau
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Event(Event newBase_Event) {
 		Event oldBase_Event = base_Event;
 		base_Event = newBase_Event;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ErrormodelPackage.PROCESS_FAULT_PROTOTYPE__BASE_EVENT, oldBase_Event, base_Event));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ErrormodelPackage.PROCESS_FAULT_PROTOTYPE__BASE_EVENT:
-				setBase_Event((Event)null);
-				return;
+		switch(featureID) {
+		case ErrormodelPackage.PROCESS_FAULT_PROTOTYPE__BASE_EVENT:
+			setBase_Event((Event)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}

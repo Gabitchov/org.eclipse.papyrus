@@ -27,13 +27,15 @@ import org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPa
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class FunctionPortImpl extends EAElementImpl implements FunctionPort {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FunctionPortImpl() {
@@ -43,6 +45,7 @@ public abstract class FunctionPortImpl extends EAElementImpl implements Function
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

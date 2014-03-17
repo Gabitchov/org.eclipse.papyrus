@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8' ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>checking_BREE</title>
+	</head>
+	<body>
+		<p>One of the requirements for the simultaneous release is "All plug-ins must correctly list their Bundle Required Execution Environment (BREE)".</p>
+		<p>To satisfy this requirement, we check conformance thusly:</p>
+		<ul>
+			<li>Checkout all EMF Facet plug-ins in the workspace</li>
+			<li>In the 
+				<b>Problems</b> view, open the view menu and select 
+				<b>Configure Contents...</b>, and create a new configuration with:
+				<ul>
+					<li>Scope = on any element</li>
+					<li>Severity = Error, Warning, Info</li>
+					<li>Text contains = "execution environment"</li>
+					<li>Types: check all</li>
+				</ul>
+			</li>
+			<li>Rebuild the whole workspace, and check that the 
+				<b>Problems</b> view is empty
+			</li>
+			<li>Search the workspace in plain text for "JavaSE" in files named "Manifest.MF" : the search should return no results</li>
+		</ul>
+		<p><font size="-2">
+			Copyright &#169; 2012 Mia-Software.
+			All rights reserved. This program and the accompanying materials
+			are made available under the terms of the Eclipse Public License v1.0
+			which accompanies this distribution, and is available at
+
+			<a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.
+</font>
+		</p>
+	</body>
+</html>

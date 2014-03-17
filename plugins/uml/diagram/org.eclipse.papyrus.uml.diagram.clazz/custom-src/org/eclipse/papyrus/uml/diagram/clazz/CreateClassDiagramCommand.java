@@ -26,7 +26,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class CreateClassDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
-
+	
 	@Override
 	protected String getDefaultDiagramName() {
 		return "ClassDiagram";
@@ -48,3 +48,4 @@ public class CreateClassDiagramCommand extends AbstractPapyrusGmfCreateDiagramCo
 		return org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
 }
+

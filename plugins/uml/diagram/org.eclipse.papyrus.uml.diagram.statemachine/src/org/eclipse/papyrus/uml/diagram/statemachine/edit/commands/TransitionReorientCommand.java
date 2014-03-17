@@ -71,7 +71,7 @@ public class TransitionReorientCommand extends EditElementCommand {
 			return false;
 		}
 		// TODO: avoid modifications here. Not done due to many required changes
-		if (!EMFCustomTransitionRetargetContainerCommand.isValid(newEnd, target)) {
+		if(!EMFCustomTransitionRetargetContainerCommand.isValid(newEnd, target)) {
 			return false;
 		}
 		Region container = (Region)getLink().eContainer();
@@ -90,7 +90,7 @@ public class TransitionReorientCommand extends EditElementCommand {
 			return false;
 		}
 		// TODO: avoid modifications here. Not done due to many required changes
-		if (!EMFCustomTransitionRetargetContainerCommand.isValid(source, newEnd)) {
+		if(!EMFCustomTransitionRetargetContainerCommand.isValid(source, newEnd)) {
 			return false;
 		}
 		Region container = (Region)getLink().eContainer();

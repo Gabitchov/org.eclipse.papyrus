@@ -18,12 +18,12 @@ package org.eclipse.papyrus.eastadl.interchange;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>RIF Export Area</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * Contains (clones of) requirement specific data to be exported in RIF format.
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.interchange.InterchangePackage#getRIFExportArea()
  * @model
  * @generated

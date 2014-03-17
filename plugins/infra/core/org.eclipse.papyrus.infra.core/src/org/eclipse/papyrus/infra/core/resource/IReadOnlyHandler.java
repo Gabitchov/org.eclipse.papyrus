@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 Atos Origin, CEA, and others.
+ * Copyright (c) 2011, 2014 Atos Origin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
- *  Christian W. Damus (CEA)
+ *  Christian W. Damus (CEA) - bug 429826
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -20,6 +20,14 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 import com.google.common.base.Optional;
 
+/**
+ * A pluggable handler determining whether a resource is "read only" (not writable).  Implementations
+ * of this interface, if they do not implement {@link IReadOnlyHandler2}, implicitly determine
+ * read-only-ness according to the {@linkplain ReadOnlyAxis#PERMISSION permission axis}.
+ * 
+ * @see IReadOnlyHandler2
+ * @see ReadOnlyAxis#PERMISSION
+ */
 public interface IReadOnlyHandler {
 
 	/**
@@ -28,8 +36,6 @@ public interface IReadOnlyHandler {
 	 * 
 	 * @param uris
 	 *            the URIs about which read-only-ness is to be determined
-	 * @param editingDomain
-	 *            the domain in the context of which editing is being done
 	 * 
 	 * @return {@link Optional#absent() absent} if I do not know whether any of
 	 *         the URIs is read-only or a {@link Optional#isPresent() present}
@@ -45,8 +51,6 @@ public interface IReadOnlyHandler {
 	 * @param uris
 	 *            the URIs of resources to make writable (not all are
 	 *            necessarily read-only)
-	 * @param editingDomain
-	 *            the domain in the context of which editing is being done
 	 * 
 	 * @return {@link Optional#absent() absent} if I do not know how to make
 	 *         these resources writable and the next provider should be given a
@@ -63,8 +67,6 @@ public interface IReadOnlyHandler {
 	 * 
 	 * @param eObject
 	 *            an element in some model resource
-	 * @param editingDomain
-	 *            the contextual editing domain
 	 * 
 	 * @return {@link Optional#absent() absent} if I do not know whether the
 	 *         {@code eObject} is read-only or a {@link Optional#isPresent()
@@ -79,8 +81,6 @@ public interface IReadOnlyHandler {
 	 * @param eObject
 	 *            a {@linkplain #isReadOnly(EObject, EditingDomain) read-only}
 	 *            element in some model resource
-	 * @param editingDomain
-	 *            the domain in the context of which editing is being done
 	 * 
 	 * @return {@link Optional#absent() absent} if I do not know how to make
 	 *         this object writable and the next provider should be given a

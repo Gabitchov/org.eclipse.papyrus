@@ -133,17 +133,17 @@ public class ConverterRegistry {
 					throw new RuntimeException("List conversion not implemented for this type of configuration. " + queryConfiguration.eClass().getName());
 				}
 				Object executionResult = null;
-				try {
-					executionResult = QueryUtil.evaluateBooleanQuery(context, queryConfiguration);
-				} catch (Exception e) {
-					Activator.log.error(e);
-				}
-				int upperBound = ((ModiscoQueryConfiguration)queryConfiguration).getQuery().getUpperBound();
-				if(upperBound == 1) {
-					return Arrays.asList(executionResult);
-				} else {
+//				try {
+//					executionResult = QueryUtil.evaluateBooleanQuery(context, queryConfiguration);
+//				} catch (Exception e) {
+//					Activator.log.error(e);
+//				}
+//				int upperBound = ((ModiscoQueryConfiguration)queryConfiguration).getQuery().getUpperBound();
+//				if(upperBound == 1) {
+//					return Arrays.asList(executionResult);
+//				} else {
 					return (List<?>)executionResult;
-				}
+//				}
 			};
 
 			/**

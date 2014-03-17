@@ -5,6 +5,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.PseudostateExitPointCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Pseudostate;
@@ -14,8 +15,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 
 public class CustomPseudostateExitPointCreateCommand extends PseudostateExitPointCreateCommand {
 
-	public CustomPseudostateExitPointCreateCommand(CreateElementRequest req) {
-		super(req);
+	public CustomPseudostateExitPointCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 		// TODO Auto-generated constructor stub
 	}
 

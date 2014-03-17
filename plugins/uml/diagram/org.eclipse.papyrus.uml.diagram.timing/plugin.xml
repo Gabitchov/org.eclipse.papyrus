@@ -785,7 +785,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
       <?gmfgen generated="true"?>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.Package_1"
                name="%metatype.name.Package_1"
@@ -795,7 +795,7 @@
             <param name="semanticHint" value="1"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.Interaction_2"
                name="%metatype.name.Interaction_2"
@@ -805,7 +805,7 @@
             <param name="semanticHint" value="2"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.timing.Lifeline_19"
                name="%metatype.name.Lifeline_19"
@@ -815,7 +815,7 @@
             <param name="semanticHint" value="19"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.timing.Lifeline_20"
                name="%metatype.name.Lifeline_20"
@@ -825,7 +825,7 @@
             <param name="semanticHint" value="20"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.FullStateInvariant_11"
                name="%metatype.name.StateInvariant_11"
@@ -835,7 +835,7 @@
             <param name="semanticHint" value="11"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.timing.CompactStateInvariant_28"
                name="%metatype.name.StateInvariant_28"
@@ -845,7 +845,7 @@
             <param name="semanticHint" value="28"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.OccurrenceSpecification_12"
                name="%metatype.name.OccurrenceSpecification_12"
@@ -855,7 +855,7 @@
             <param name="semanticHint" value="12"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.MessageOccurrenceSpecification_13"
                name="%metatype.name.MessageOccurrenceSpecification_13"
@@ -879,7 +879,7 @@
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
          <param name="semanticHint" value="39"/>
       </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.TimeConstraint_15"
                name="%metatype.name.TimeConstraint_15"
@@ -889,7 +889,7 @@
             <param name="semanticHint" value="15"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.TimeObservation_16"
                name="%metatype.name.TimeObservation_16"
@@ -899,7 +899,7 @@
             <param name="semanticHint" value="16"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.DurationConstraint_18"
                name="%metatype.name.DurationConstraint_18"
@@ -909,7 +909,7 @@
             <param name="semanticHint" value="18"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.DurationObservation_17"
                name="%metatype.name.DurationObservation_17"
@@ -919,7 +919,7 @@
             <param name="semanticHint" value="17"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.GeneralOrdering_67"
                name="%metatype.name.GeneralOrdering_67"
@@ -950,7 +950,7 @@
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
          <param name="semanticHint" value="26"/>
       </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.DestructionOccurrenceSpecification_27"
                name="%metatype.name.DestructionOccurrenceSpecification_27"
@@ -960,7 +960,7 @@
             <param name="semanticHint" value="27"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.Lifeline_40"
                name="%metatype.name.Lifeline_40"
@@ -970,7 +970,7 @@
             <param name="semanticHint" value="40"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.Gate_69"
                name="%metatype.name.Gate_69"
@@ -980,7 +980,7 @@
             <param name="semanticHint" value="69"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.timing.MessageSync_3"
                name="%metatype.name.Message_3"
@@ -990,7 +990,7 @@
             <param name="semanticHint" value="3"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.timing.MessageAsync_4"
                name="%metatype.name.Message_4"
@@ -1000,7 +1000,7 @@
             <param name="semanticHint" value="4"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.timing.MessageReply_41"
                name="%metatype.name.Message_41"
@@ -1010,7 +1010,7 @@
             <param name="semanticHint" value="41"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.timing.MessageCreate_44"
                name="%metatype.name.Message_44"
@@ -1020,7 +1020,7 @@
             <param name="semanticHint" value="44"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.timing.MessageDelete_47"
                name="%metatype.name.Message_47"
@@ -1030,7 +1030,7 @@
             <param name="semanticHint" value="47"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.timing.MessageLost_50"
                name="%metatype.name.Message_50"
@@ -1040,7 +1040,7 @@
             <param name="semanticHint" value="50"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.timing.MessageFound_53"
                name="%metatype.name.Message_53"
@@ -1226,13 +1226,6 @@
          sequence="F5"/>
    </extension>
 
-   <extension point="org.eclipse.ui.menus" id="context-menus">
-      <?gmfgen generated="true"?>
-      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
-      </menuContribution>
-      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
-      </menuContribution -->
-   </extension>
 
 
 
@@ -1268,17 +1261,6 @@
             name="Toggle Time Ruler Visibility"/>
     </extension>
 
-    <extension point="org.eclipse.ui.handlers">
-        <handler
-            class="org.eclipse.papyrus.uml.diagram.timing.custom.CreateTimingDiagramWithNavigationHandler"
-            commandId="org.eclipse.papyrus.uml.diagram.timing.CreateTimingDiagramCommand">
-            <activeWhen>
-                <with variable="activeEditorId">
-                    <equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
-                </with>
-            </activeWhen>
-        </handler>
-    </extension>
 
     <extension
         point="org.eclipse.ui.bindings"
@@ -1310,50 +1292,8 @@
 
     <extension point="org.eclipse.ui.menus">
 
-        <menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-            <menu
-                id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams"
-                label="Diagrams">
-                <command
-                    commandId="org.eclipse.papyrus.uml.diagram.timing.CreateTimingDiagramCommand"
-                    icon="icons/obj16/Diagram_Timing.gif"
-                    label="Create a new Timing Diagram"
-                    style="push"
-                    tooltip="Create a new Timing Diagram">
-                    <visibleWhen>
-                        <reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
-                    </visibleWhen>
-                </command>
-            </menu>
-        </menuContribution>
 
-        <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-            <toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
-                <command
-                    commandId="org.eclipse.papyrus.uml.diagram.timing.CreateTimingDiagramCommand"
-                    icon="icons/obj16/Diagram_Timing.gif"
-                    label="Create a new Timing Diagram"
-                    style="push"
-                    tooltip="Create a new Timing Diagram">
-                    <visibleWhen>
-                        <reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
-                    </visibleWhen>
-                </command>
-            </toolbar>
-        </menuContribution>
 
-        <menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
-            <command
-                commandId="org.eclipse.papyrus.uml.diagram.timing.CreateTimingDiagramCommand"
-                icon="icons/obj16/Diagram_Timing.gif"
-                label="Create a new Timing Diagram"
-                style="push"
-                tooltip="Create a new Timing Diagram">
-                <visibleWhen>
-                    <reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
-                </visibleWhen>
-            </command>
-        </menuContribution>
         <menuContribution locationURI="popup:popup:org.eclipse.ui.popup.any?after=additions">
             <command
                 commandId="org.eclipse.papyrus.uml.diagram.timing.custom.switchLifeline"

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<!--
+    Copyright (c) 2011 Mia-Software.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+   
+    Contributors:
+        Nicolas Guyomar (Mia-Software) - Bug 333652 Extension point offering the possibility to declare an EPackage browser
+        Gregoire Dupe (Mia-Software) - Bug 366804 - [Restructuring] Table widget upgrade
+        Grégoire Dupé (Mia-Software) - Bug 388422 - [Table] Queries for InstanciationMethod needs to have 2 parameters
+ -->
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.eclipse.papyrus.emf.facet.common.ui.internal.preference.pages.EmfFacetRootPreferencePage"
+            id="org.eclipse.papyrus.emf.facet.common.ui.preference.pages.EmfFacetRootPreferencePage"
+            name="%page.name">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="org.eclipse.papyrus.emf.facet.common.ui.views"
+            name="%category.name">
+      </category>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.papyrus.emf.facet.common.ui.wizardsCategory"
+            name="%category.name">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <menu
+               id="org.eclipse.papyrus.emf.facet.common.ui.menu.examples"
+               label="%emf.facet.examples">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </menu>
+      </menuContribution>
+   </extension>
+</plugin>

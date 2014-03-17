@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module StateMachine('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[module StateMachine('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
 [import org::eclipse::papyrus::qompass::designer::core::acceleo::EnumService/]
 [import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]

@@ -28,13 +28,12 @@ import org.eclipse.swt.graphics.Font;
  */
 public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 
-	protected static final String CONSTRAINT_VALUE_SPECIFICATION_LISTENER = "Constraint_valueSpecification_Listener";
+	protected static final String CONSTRAINT_VALUE_SPECIFICATION_LISTENER = "Constraint_valueSpecification_Listener"; //$NON-NLS-1$
 
 	public AbstractConstraintEditPart(View view) {
 		super(view);
-		// TODO Auto-generated constructor stub
 	}
-
+	  
 	/**
 	 * this methods add listeners on targets and sources
 	 */

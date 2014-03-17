@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.command.PropertyPartCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
 
@@ -38,7 +39,7 @@ public class PropertyPartCompartmentItemSemanticEditPolicyCN extends org.eclipse
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.Property_3070 == req.getElementType()) {
-			return getGEFWrapper(new PropertyPartCreateCommand(req));
+			return getGEFWrapper(new PropertyPartCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

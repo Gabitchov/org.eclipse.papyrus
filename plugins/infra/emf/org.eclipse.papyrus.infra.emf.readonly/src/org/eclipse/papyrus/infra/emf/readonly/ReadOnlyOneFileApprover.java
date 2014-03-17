@@ -10,6 +10,7 @@
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
+ *  Christian W. Damus (CEA) - bug 429826
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -38,8 +39,9 @@ import org.eclipse.emf.workspace.EMFCommandOperation;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
-import org.eclipse.gmf.runtime.common.core.internal.command.ICommandWithSettableResult;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
 import org.eclipse.papyrus.infra.onefile.utils.OneFileUtils;
@@ -98,8 +100,9 @@ public class ReadOnlyOneFileApprover implements IOperationApprover2 {
 		EditingDomain editingDomain = getEditingDomain(operation);
 
 		URI[] filesToCheckForLockArray = filesToCheckForLock.toArray(new URI[filesToCheckForLock.size()]);
-		if(ReadOnlyManager.getReadOnlyHandler(editingDomain).anyReadOnly(filesToCheckForLockArray).get()) {
-			Optional<Boolean> ok = ReadOnlyManager.getReadOnlyHandler(editingDomain).makeWritable(filesToCheckForLockArray);
+		IReadOnlyHandler2 roHandler = ReadOnlyManager.getReadOnlyHandler(editingDomain);
+		if(roHandler.anyReadOnly(ReadOnlyAxis.anyAxis(), filesToCheckForLockArray).get()) {
+			Optional<Boolean> ok = roHandler.makeWritable(ReadOnlyAxis.anyAxis(), filesToCheckForLockArray);
 			if(!ok.get()) {
 				return Status.CANCEL_STATUS;
 			}
@@ -115,7 +118,7 @@ public class ReadOnlyOneFileApprover implements IOperationApprover2 {
 		}
 
 		if (editingDomain == null && command instanceof ICompositeCommand) {
-			Iterator it = ((ICompositeCommand)command).iterator();
+			Iterator<?> it = ((ICompositeCommand)command).iterator();
 			while (editingDomain == null && it.hasNext()) {
 				IUndoableOperation c = (IUndoableOperation)it.next();
 				editingDomain = getEditingDomain(c);
@@ -134,9 +137,10 @@ public class ReadOnlyOneFileApprover implements IOperationApprover2 {
 	 *        IStatus of the CommandResult that will be set on the
 	 *        command
 	 */
+	@SuppressWarnings("restriction")
 	protected void setCommandResult(ICommand command, IStatus status) {
-		if(command instanceof ICommandWithSettableResult) {
-			((ICommandWithSettableResult)command).internalSetResult(new CommandResult(status));
+		if(command instanceof org.eclipse.gmf.runtime.common.core.internal.command.ICommandWithSettableResult) {
+			((org.eclipse.gmf.runtime.common.core.internal.command.ICommandWithSettableResult)command).internalSetResult(new CommandResult(status));
 		}
 	}
 
@@ -147,7 +151,9 @@ public class ReadOnlyOneFileApprover implements IOperationApprover2 {
 	
 	protected Set<IFile> getAffectedFiles(IUndoableOperation operation, Set<IFile> result) {
 		if(operation instanceof ICommand) {
-			result = appendFiles(result, ((ICommand)operation).getAffectedFiles());
+			@SuppressWarnings("unchecked")
+			Collection<IFile> files = ((ICommand)operation).getAffectedFiles();
+			result = appendFiles(result, files);
 		} else if(operation instanceof GMFtoEMFCommandWrapper) {
 			result = getAffectedFiles(((GMFtoEMFCommandWrapper)operation).getGMFCommand(), result);
 		} else if(operation instanceof EMFCommandOperation) {

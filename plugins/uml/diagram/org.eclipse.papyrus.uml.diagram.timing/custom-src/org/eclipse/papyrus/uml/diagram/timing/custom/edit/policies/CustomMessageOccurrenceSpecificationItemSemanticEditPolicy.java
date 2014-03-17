@@ -15,6 +15,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CustomMessageCreateCommand;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CustomMessageReorientCommand;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.MessageUtils;
@@ -41,10 +42,10 @@ public class CustomMessageOccurrenceSpecificationItemSemanticEditPolicy extends 
 	protected Command getCreateCommand(final CreateElementRequest req) {
 		final IElementType elementType = req.getElementType();
 		if(UMLElementTypes.TimeConstraint_15 == elementType) {
-			return getGEFWrapper(new TimeConstraintCreateCommand(req));
+			return getGEFWrapper(new TimeConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.TimeObservation_16 == elementType) {
-			return getGEFWrapper(new TimeObservationCreateCommand(req));
+			return getGEFWrapper(new TimeObservationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

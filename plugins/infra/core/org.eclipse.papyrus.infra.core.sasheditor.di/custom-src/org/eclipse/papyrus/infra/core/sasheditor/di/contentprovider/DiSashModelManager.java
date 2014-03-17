@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 Cedric Dumoulin.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,6 +27,8 @@ import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.DiC
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.ICurrentFolderAndPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageManagerImpl;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.TransactionalDiContentProvider;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.TransactionalPageManagerImpl;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
@@ -35,9 +37,9 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 /**
  * Class used as main entry point to access a sash model build on EMF / di
  * This class allows to get facade objects on the diSashModel.
- * 
+ *
  * @author cedric dumoulin
- * 
+ *
  */
 public class DiSashModelManager {
 
@@ -67,9 +69,9 @@ public class DiSashModelManager {
 
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param pageModelFactory
 	 * @param diResource
 	 * @param currentFolderAndPageMngr
@@ -100,13 +102,13 @@ public class DiSashModelManager {
 		transDiContentProvider = new TransactionalDiContentProvider(getDiContentProvider(), editingDomain);
 
 		// Create the TransactionalPageMngrImpl
-		pageMngr = new PageManagerImpl(sashWindowMngr, contentChangedEventProvider, currentFolderAndPageMngr);
+		pageMngr = new TransactionalPageManagerImpl(sashWindowMngr, contentChangedEventProvider, currentFolderAndPageMngr);
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param pageModelFactory
 	 * @param diResource
 	 * @param currentFolderAndPageMngr
@@ -120,17 +122,18 @@ public class DiSashModelManager {
 			// Create a default model and attach it to resource.
 			sashWindowMngr = createDefaultSashModel();
 
-			// Create a command
-			RecordingCommand cmd = new RecordingCommand(editingDomain) {
+			try {
+				TransactionHelper.run(editingDomain, new Runnable() {
 
-				@Override
-				protected void doExecute() {
-					diResource.getContents().add(sashWindowMngr);
-				}
-			};
-			// Execute command
-			editingDomain.getCommandStack().execute(cmd);
+					@Override
+					public void run() {
+						diResource.getContents().add(sashWindowMngr);
 
+					};
+				});
+			} catch (Exception ex) {
+				Activator.log.error(ex);
+			}
 		}
 
 		contentProvider = new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory, getContentChangedEventProvider());
@@ -138,12 +141,12 @@ public class DiSashModelManager {
 		transDiContentProvider = new TransactionalDiContentProvider(getDiContentProvider(), editingDomain);
 
 		// Create the TransactionalPageMngrImpl
-		pageMngr = new PageManagerImpl(sashWindowMngr, getContentChangedEventProvider());
+		pageMngr = new TransactionalPageManagerImpl(sashWindowMngr, getContentChangedEventProvider());
 
 	}
 
 	/**
-	 * 
+	 *
 	 * @param currentFolderAndPageMngr
 	 */
 	public void setCurrentFolderAndPageMngr(ICurrentFolderAndPageMngr currentFolderAndPageMngr) {
@@ -152,7 +155,7 @@ public class DiSashModelManager {
 
 	/**
 	 * Set the CurrentFolderAndPageManager as an instance of {@link CurrentFolderAndPageManager}
-	 * 
+	 *
 	 * @param currentFolderAndPageMngr
 	 */
 	public void setCurrentFolderAndPageMngr(ISashWindowsContainer sashWindowsContainer) {
@@ -160,24 +163,24 @@ public class DiSashModelManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
 	 * Only create a {@link IPageMngr} impl. Do not create the DiContentProvider as there is no factory provided.
 	 * Internal use.
-	 * 
+	 *
 	 * @param pageModelFactory
 	 * @param diResource
 	 */
 	//	private DiSashModelManager(final Resource diResource, TransactionalEditingDomain editingDomain, ICurrentFolderAndPageMngr currentFolderAndPageMngr) {
 	//		this(null, diResource, editingDomain, currentFolderAndPageMngr);
-	//	
+	//
 	//	}
 
 
 	/**
 	 * Get the internal EMF implementation.
 	 * Intended to be used by tests.
-	 * 
+	 *
 	 * @return the sashWindowMngr
 	 */
 	protected SashWindowsMngr getDiSashWindowsMngr() {
@@ -189,7 +192,7 @@ public class DiSashModelManager {
 	 * Return the internal implementation of ContentProvider.
 	 * Create if if needed.
 	 * This method should not be subclassed
-	 * 
+	 *
 	 * @return the contentProvider
 	 */
 	protected DiContentProvider getDiContentProvider() {
@@ -200,7 +203,7 @@ public class DiSashModelManager {
 	 * Return the internal implementation of ContentProvider.
 	 * Create if if needed.
 	 * This method should not be subclassed
-	 * 
+	 *
 	 * @return the contentProvider
 	 */
 	protected TransactionalDiContentProvider getTransactionalDiContentProvider() {
@@ -211,7 +214,7 @@ public class DiSashModelManager {
 	 * Return the internal implementation of PageMngr.
 	 * Create if if needed.
 	 * This method should not be subclassed
-	 * 
+	 *
 	 * @return the PageMngrImpl
 	 */
 	protected final PageManagerImpl getPageManagerImpl() {
@@ -222,7 +225,7 @@ public class DiSashModelManager {
 	 * Return the internal implementation of ContentChangedEventProvider.
 	 * Create if if needed.
 	 * This method should not be subclassed
-	 * 
+	 *
 	 * @return the PageMngrImpl
 	 */
 	protected final ContentChangedEventProvider getContentChangedEventProvider() {
@@ -235,7 +238,7 @@ public class DiSashModelManager {
 
 	/**
 	 * Get the IPageMngr providing basic methods to manage Pages in the sash model.
-	 * 
+	 *
 	 * @return
 	 */
 	public IPageMngr getIPageMngr() {
@@ -244,7 +247,7 @@ public class DiSashModelManager {
 
 	/**
 	 * Get the IPageManager providing basic methods to manage Pages in the sash model.
-	 * 
+	 *
 	 * @return
 	 */
 	public IPageManager getIPageManager() {
@@ -254,7 +257,7 @@ public class DiSashModelManager {
 	/**
 	 * Get the ContentProvider used by the SashWindows system.
 	 * This class can also be used to accurately manage the sash model.
-	 * 
+	 *
 	 * @return
 	 */
 	public ISashWindowsContentProvider getISashWindowsContentProvider() {
@@ -265,7 +268,7 @@ public class DiSashModelManager {
 
 	/**
 	 * Get the ContentChangedProvider for the SashModel
-	 * 
+	 *
 	 * @return
 	 */
 	public IContentChangedProvider getSashModelContentChangedProvider() {
@@ -274,7 +277,7 @@ public class DiSashModelManager {
 
 	/**
 	 * Create a default model with one window and one folder.
-	 * 
+	 *
 	 * @param diResource
 	 * @return
 	 */
@@ -284,7 +287,7 @@ public class DiSashModelManager {
 
 	/**
 	 * Lookup for the SashModel object in the resource
-	 * 
+	 *
 	 * @param diResource
 	 * @return
 	 */
@@ -296,7 +299,7 @@ public class DiSashModelManager {
 	/**
 	 * Create an instance of IPageMngr acting on the provided resource.
 	 * This instance is suitable to add, remove, close or open diagrams.
-	 * 
+	 *
 	 * @param diResource
 	 * @return The non transactional version of the IPageMngr
 	 */

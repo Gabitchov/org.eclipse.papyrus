@@ -99,14 +99,14 @@ public class PropertyEditors {
 	// need implements this functionality is editors
 	/**
 	 * Editor for the Type Integer.
-	 * 
+	 *
 	 * @param property
 	 *        : the property to edit
 	 * @param oldValue
 	 *        : the property value to modify (can be null)
-	 * 
+	 *
 	 * @return String : null if nothing is written
-	 * 
+	 *
 	 */
 	public static String IntegerEditor(Property property, Object oldValue) {
 		String value = null;
@@ -124,14 +124,14 @@ public class PropertyEditors {
 
 	/**
 	 * Editor for the Type Integer.
-	 * 
+	 *
 	 * @param property
 	 *        : the property to edit
 	 * @param oldValue
 	 *        : the property value to modify (can be null)
-	 * 
+	 *
 	 * @return String : null if nothing is written
-	 * 
+	 *
 	 */
 	public static String RealEditor(Property property, Object oldValue) {
 		String value = null;
@@ -148,7 +148,7 @@ public class PropertyEditors {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param property
 	 *        (the property to edit)
 	 * @param oldValue
@@ -159,7 +159,7 @@ public class PropertyEditors {
 		String initialValue = null;
 		if(oldValue != null) {
 			initialValue = oldValue.toString();
-		} else if(property.isSetDefault()) {
+		} else if(property.getDefaultValue() != null) {
 			initialValue = property.getDefault();
 		}
 		return initialValue;
@@ -167,14 +167,14 @@ public class PropertyEditors {
 
 	/**
 	 * Editor for the Type UnlimitedNatural.
-	 * 
+	 *
 	 * @param property
 	 *        : the property to edit
 	 * @param oldValue
 	 *        : the property value to modify (can be null)
-	 * 
+	 *
 	 * @return String : null if nothing is written
-	 * 
+	 *
 	 */
 	public static String UnlimitedNaturalEditor(Property property, Object oldValue) {
 		String value = null;
@@ -194,12 +194,12 @@ public class PropertyEditors {
 
 	/**
 	 * Editor for the Type String.
-	 * 
+	 *
 	 * @param property
 	 *        : the property to edit
 	 * @param oldValue
 	 *        : the property value to modify (can be null)
-	 * 
+	 *
 	 * @return String : null if nothing written
 	 */
 	public static String StringEditor(Property property, Object oldValue) {
@@ -222,7 +222,7 @@ public class PropertyEditors {
 
 	/**
 	 * Editor for the type DataType
-	 * 
+	 *
 	 * @param property
 	 *        : the property to edit
 	 * @param oldValue
@@ -234,7 +234,7 @@ public class PropertyEditors {
 		String initialValue = null;
 		if(oldValue != null) { // we are modifying an existing value
 			initialValue = oldValue.toString();
-		} else if(property.isSetDefault()) {
+		} else if(property.getDefaultValue() != null) {
 			initialValue = property.getDefault();
 		}
 
@@ -253,14 +253,14 @@ public class PropertyEditors {
 
 	/**
 	 * Editor for the Type Boolean.
-	 * 
+	 *
 	 * @param property
 	 *        : the property to edit
 	 * @param oldValue
 	 *        : the property value to modify (can be null)
-	 * 
+	 *
 	 * @return boolean : null if nothing is selected
-	 * 
+	 *
 	 */
 	public static String BooleanEditor(Property property, Object oldValue) {
 		String[] listOfChoice;
@@ -287,14 +287,14 @@ public class PropertyEditors {
 
 	/**
 	 * Editor for the Type EnumerationLiteral.
-	 * 
+	 *
 	 * @param property
 	 *        : the property to edit
 	 * @param oldValue
 	 *        : the property value to modify (can be null)
-	 * 
+	 *
 	 * @return EnumerationLiteral : null if nothing is selected
-	 * 
+	 *
 	 */
 	public static String EnumerationEditor(Property property, Object oldValue) {
 		EList<EnumerationLiteral> literals = ((Enumeration)property.getType()).getOwnedLiterals();
@@ -329,7 +329,7 @@ public class PropertyEditors {
 
 	/**
 	 * Editor for the type Class, when the property is composite
-	 * 
+	 *
 	 * @param property
 	 * @param oldValue
 	 * @return
@@ -342,7 +342,7 @@ public class PropertyEditors {
 
 	/**
 	 * Editor for the type DataType
-	 * 
+	 *
 	 * @param property
 	 * @param oldValue
 	 * @param appliedProfiles
@@ -411,7 +411,7 @@ public class PropertyEditors {
 
 	/**
 	 * Editor for the type Metaclass
-	 * 
+	 *
 	 * @param property
 	 * @param oldValue
 	 * @param appliedProfiles

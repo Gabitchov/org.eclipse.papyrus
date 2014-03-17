@@ -8,7 +8,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package class="org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage" genModel="Model/StyleSheets.genmodel" uri="http://www.eclipse.org/papyrus/infra/gmfdiag/css"/>
    </extension>
-
+	<!-- TODO: EMF-FACET update queries
    <extension point="org.eclipse.emf.facet.infra.facet.registration">
       <facetset file="Model/StyleSheets.facetSet"/>
    </extension>
@@ -20,4 +20,5 @@
             file="Model/StyleSheets.uiCustom"
             loadByDefault="false"/>
    </extension>
+   -->
 </plugin>

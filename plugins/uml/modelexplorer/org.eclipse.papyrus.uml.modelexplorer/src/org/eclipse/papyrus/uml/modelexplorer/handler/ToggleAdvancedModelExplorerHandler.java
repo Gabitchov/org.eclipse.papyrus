@@ -19,9 +19,10 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
-import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.swt.widgets.Event;
@@ -54,25 +55,30 @@ public class ToggleAdvancedModelExplorerHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		//State state = event.getCommand().getState("org.eclipse.papyrus.uml.modelexplorer.customization.advanced.state");
-
-
-		CustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
+		ICustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
 		if(customizationManager != null) {
 			if(event.getTrigger() instanceof Event) {
 				if(((Event)event.getTrigger()).widget instanceof ToolItem) {
 					ToolItem item = (ToolItem)((Event)event.getTrigger()).widget;
+					ICustomizationCatalogManager customCatalog = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(customizationManager.getResourceSet());
+					Customization simpleUMLCustomization = null;
 
-					MetamodelView simpleUMLCustomization = CustomizationsCatalog.getInstance().getCustomization(SIMPLE_UML_CUSTOMIZATION);
+					//look for SIMPLE UML Customization
+					for(Customization customization : customCatalog.getRegisteredCustomizations()) {
+						if(SIMPLE_UML_CUSTOMIZATION.equals(customization.getName())){
+							simpleUMLCustomization=	customization;
+						}
+					}
+
 					if(simpleUMLCustomization != null) {
 						if(item.getSelection()) {
 
 							//Advanced view
-							List<MetamodelView> registeredCustomizations = new LinkedList<MetamodelView>(customizationManager.getRegisteredCustomizations());
+							List<Customization> registeredCustomizations = new LinkedList<Customization>(customizationManager.getManagedCustomizations());
 							if(registeredCustomizations.remove(simpleUMLCustomization)) {
-								customizationManager.clearCustomizations();
-								for(MetamodelView customization : registeredCustomizations) {
-									customizationManager.registerCustomization(customization);
+								customizationManager.getManagedCustomizations().clear();
+								for(Customization customization : registeredCustomizations) {
+									customizationManager.getManagedCustomizations().add(customization);
 								}
 							} else {
 								//No change
@@ -81,14 +87,13 @@ public class ToggleAdvancedModelExplorerHandler extends AbstractHandler {
 
 						} else {
 							//Simple view
-							if(customizationManager.getRegisteredCustomizations().contains(simpleUMLCustomization)) {
+							if(customizationManager.getManagedCustomizations().contains(simpleUMLCustomization)) {
 								return null; //No change
 							}
 
-							customizationManager.registerCustomization(simpleUMLCustomization);
+							customizationManager.getManagedCustomizations().add(0,simpleUMLCustomization);
 						}
 
-						customizationManager.loadCustomizations();
 						//Save the current state of the customizations
 						org.eclipse.papyrus.infra.emf.Activator.getDefault().saveCustomizationManagerState();
 					}

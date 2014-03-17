@@ -36,7 +36,7 @@ public class ShortCutDiagramCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private EClass eClass = null;
+	private Diagram diagram = null;
 
 	/**
 	 * @generated
@@ -46,24 +46,25 @@ public class ShortCutDiagramCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ShortCutDiagramCreateCommand(CreateElementRequest req, EObject eObject) {
+	public ShortCutDiagramCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static ShortCutDiagramCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new ShortCutDiagramCreateCommand(req, eObject);
+	public static ShortCutDiagramCreateCommand create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new ShortCutDiagramCreateCommand(req, eObject, diagram);
 	}
 
 	/**
 	 * @generated
 	 */
-	public ShortCutDiagramCreateCommand(CreateElementRequest req) {
+	public ShortCutDiagramCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_-3u4cJW3EeOfoK3RwHm3pQ" name="bug323802">
-  <packagedElement xmi:type="uml:Class" xmi:id="_C3c2UJW4EeOfoK3RwHm3pQ" clientDependency="_f_HJAJW4EeOfoK3RwHm3pQ" name="A"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_ExBnEJW4EeOfoK3RwHm3pQ" name="B"/>
-  <packagedElement xmi:type="uml:Dependency" xmi:id="_f_HJAJW4EeOfoK3RwHm3pQ" name="A-->B" client="_C3c2UJW4EeOfoK3RwHm3pQ" supplier="_ExBnEJW4EeOfoK3RwHm3pQ"/>
+  <packageImport xmi:id="_ycYPAKkTEeOizeYRjNFxJg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_C3c2UJW4EeOfoK3RwHm3pQ" name="A" useCase="_0S-V8KYuEeO-ZNuEJamMWA"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_0S-V8KYuEeO-ZNuEJamMWA" name="DoIt" subject="_C3c2UJW4EeOfoK3RwHm3pQ"/>
 </uml:Model>

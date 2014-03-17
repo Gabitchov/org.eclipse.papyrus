@@ -59,8 +59,6 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.timing" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.pkg" install-size="0" unpack="false" version="0.0.0"/>
-
    <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.interactionoverview" install-size="0" unpack="false" version="0.0.0"/>
 
    <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.symbols" install-size="0" unpack="false" version="0.0.0"/>

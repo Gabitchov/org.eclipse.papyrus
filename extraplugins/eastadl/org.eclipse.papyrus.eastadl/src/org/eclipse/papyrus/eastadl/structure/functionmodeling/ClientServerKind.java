@@ -32,9 +32,10 @@ import org.eclipse.emf.common.util.Enumerator;
  * Semantics:
  * The ClientServerKind is an enumeration with the two literals "client" and "server".
  * 
- * Extension: 
+ * Extension:
  * Enumeration, no extension.
  * <!-- end-model-doc -->
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPackage#getClientServerKind()
  * @model
  * @generated
@@ -44,6 +45,7 @@ public enum ClientServerKind implements Enumerator {
 	 * The '<em><b>Client</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #CLIENT_VALUE
 	 * @generated
 	 * @ordered
@@ -54,6 +56,7 @@ public enum ClientServerKind implements Enumerator {
 	 * The '<em><b>Server</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #SERVER_VALUE
 	 * @generated
 	 * @ordered
@@ -64,10 +67,10 @@ public enum ClientServerKind implements Enumerator {
 	 * The '<em><b>Client</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Client</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Client</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #CLIENT
 	 * @model name="client"
 	 * @generated
@@ -79,10 +82,10 @@ public enum ClientServerKind implements Enumerator {
 	 * The '<em><b>Server</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Server</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Server</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #SERVER
 	 * @model name="server"
 	 * @generated
@@ -94,18 +97,16 @@ public enum ClientServerKind implements Enumerator {
 	 * An array of all the '<em><b>Client Server Kind</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final ClientServerKind[] VALUES_ARRAY =
-		new ClientServerKind[] {
-			CLIENT,
-			SERVER,
-		};
+	private static final ClientServerKind[] VALUES_ARRAY = new ClientServerKind[]{ CLIENT, SERVER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Client Server Kind</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<ClientServerKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -114,12 +115,15 @@ public enum ClientServerKind implements Enumerator {
 	 * Returns the '<em><b>Client Server Kind</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ClientServerKind get(int value) {
-		switch (value) {
-			case CLIENT_VALUE: return CLIENT;
-			case SERVER_VALUE: return SERVER;
+		switch(value) {
+		case CLIENT_VALUE:
+			return CLIENT;
+		case SERVER_VALUE:
+			return SERVER;
 		}
 		return null;
 	}
@@ -128,12 +132,13 @@ public enum ClientServerKind implements Enumerator {
 	 * Returns the '<em><b>Client Server Kind</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ClientServerKind get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ClientServerKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if(result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -144,12 +149,13 @@ public enum ClientServerKind implements Enumerator {
 	 * Returns the '<em><b>Client Server Kind</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ClientServerKind getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ClientServerKind result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if(result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -159,6 +165,7 @@ public enum ClientServerKind implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
@@ -166,6 +173,7 @@ public enum ClientServerKind implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
@@ -173,6 +181,7 @@ public enum ClientServerKind implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
@@ -181,6 +190,7 @@ public enum ClientServerKind implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private ClientServerKind(int value, String name, String literal) {
@@ -192,39 +202,43 @@ public enum ClientServerKind implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
 		return literal;
 	}
-	
+
 } //ClientServerKind

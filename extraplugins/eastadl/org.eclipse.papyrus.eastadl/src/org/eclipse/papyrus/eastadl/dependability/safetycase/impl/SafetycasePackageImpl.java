@@ -91,6 +91,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePackage {
@@ -98,6 +99,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass safetyCaseEClass = null;
@@ -105,6 +107,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass groundEClass = null;
@@ -112,6 +115,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass warrantEClass = null;
@@ -119,6 +123,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass claimEClass = null;
@@ -126,6 +131,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum lifecycleStageKindEEnum = null;
@@ -133,6 +139,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -140,16 +147,18 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link SafetycasePackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link SafetycasePackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static SafetycasePackage init() {
-		if (isInited) return (SafetycasePackage)EPackage.Registry.INSTANCE.getEPackage(SafetycasePackage.eNS_URI);
+		if(isInited)
+			return (SafetycasePackage)EPackage.Registry.INSTANCE.getEPackage(SafetycasePackage.eNS_URI);
 
 		// Obtain or create and register package
 		SafetycasePackageImpl theSafetycasePackage = (SafetycasePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SafetycasePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SafetycasePackageImpl());
@@ -251,7 +260,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 		// Mark meta-data to indicate it can't be changed
 		theSafetycasePackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(SafetycasePackage.eNS_URI, theSafetycasePackage);
 		return theSafetycasePackage;
@@ -260,6 +269,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -267,19 +277,19 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.dependability.safetycase.SafetycasePackage#eNS_URI
 	 * @see #init()
@@ -290,14 +300,16 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -336,6 +348,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getClaim() {
@@ -345,6 +358,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClaim_Evidence() {
@@ -354,6 +368,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClaim_GoalDecompositionStrategy() {
@@ -363,6 +378,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClaim_Base_Class() {
@@ -372,6 +388,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClaim_Justification() {
@@ -381,6 +398,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClaim_SafetyRequirement() {
@@ -390,6 +408,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClaim_SupportedArgument() {
@@ -399,6 +418,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getGround() {
@@ -408,6 +428,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGround_Justification() {
@@ -417,6 +438,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGround_SafetyEvidence() {
@@ -426,6 +448,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGround_Base_Class() {
@@ -435,6 +458,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getLifecycleStageKind() {
@@ -444,6 +468,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSafetyCase() {
@@ -453,6 +478,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSafetyCase_Claim() {
@@ -462,6 +488,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSafetyCase_Base_Class() {
@@ -471,6 +498,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getSafetyCase_Context() {
@@ -480,6 +508,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSafetyCase_Ground() {
@@ -489,6 +518,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSafetyCase_SafetyCase() {
@@ -498,6 +528,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getSafetyCase_Stage() {
@@ -507,6 +538,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSafetyCase_Warrant() {
@@ -516,6 +548,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SafetycaseFactory getSafetycaseFactory() {
@@ -525,6 +558,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getWarrant() {
@@ -534,6 +568,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWarrant_DecomposedGoal() {
@@ -543,6 +578,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWarrant_Evidence() {
@@ -552,6 +588,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWarrant_Base_Class() {
@@ -561,6 +598,7 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWarrant_Justification() {
@@ -568,14 +606,16 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -642,15 +682,12 @@ public class SafetycasePackageImpl extends EPackageImpl implements SafetycasePac
 	 * Initializes the annotations for <b>duplicates</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void createDuplicatesAnnotations() {
-		String source = "duplicates";										
-		addAnnotation
-		  (claimEClass, 
-		   source, 
-		   new String[] {
-		   });	
+		String source = "duplicates";
+		addAnnotation(claimEClass, source, new String[]{});
 	}
 
 } //SafetycasePackageImpl

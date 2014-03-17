@@ -29,9 +29,10 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- begin-model-doc -->
  * LogicalBusKind is an enumeration type representing different kinds of busses.
  * 
- * Extension: 
+ * Extension:
  * Enumeration, no extension.
  * <!-- end-model-doc -->
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwaremodelingPackage#getLogicalBusKind()
  * @model
  * @generated
@@ -41,6 +42,7 @@ public enum LogicalBusKind implements Enumerator {
 	 * The '<em><b>Time Triggered</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #TIME_TRIGGERED_VALUE
 	 * @generated
 	 * @ordered
@@ -51,6 +53,7 @@ public enum LogicalBusKind implements Enumerator {
 	 * The '<em><b>Event Triggered</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #EVENT_TRIGGERED_VALUE
 	 * @generated
 	 * @ordered
@@ -61,6 +64,7 @@ public enum LogicalBusKind implements Enumerator {
 	 * The '<em><b>Timeand Event Triggered</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #TIMEAND_EVENT_TRIGGERED_VALUE
 	 * @generated
 	 * @ordered
@@ -71,6 +75,7 @@ public enum LogicalBusKind implements Enumerator {
 	 * The '<em><b>Other</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #OTHER_VALUE
 	 * @generated
 	 * @ordered
@@ -84,6 +89,7 @@ public enum LogicalBusKind implements Enumerator {
 	 * <!-- begin-model-doc -->
 	 * Bus is time-triggered
 	 * <!-- end-model-doc -->
+	 * 
 	 * @see #TIME_TRIGGERED
 	 * @model name="TimeTriggered"
 	 * @generated
@@ -98,6 +104,7 @@ public enum LogicalBusKind implements Enumerator {
 	 * <!-- begin-model-doc -->
 	 * Bus is event-triggered
 	 * <!-- end-model-doc -->
+	 * 
 	 * @see #EVENT_TRIGGERED
 	 * @model name="EventTriggered"
 	 * @generated
@@ -112,6 +119,7 @@ public enum LogicalBusKind implements Enumerator {
 	 * <!-- begin-model-doc -->
 	 * Bus is both time and event-triggered
 	 * <!-- end-model-doc -->
+	 * 
 	 * @see #TIMEAND_EVENT_TRIGGERED
 	 * @model name="TimeandEventTriggered"
 	 * @generated
@@ -126,6 +134,7 @@ public enum LogicalBusKind implements Enumerator {
 	 * <!-- begin-model-doc -->
 	 * Another type of bus communication
 	 * <!-- end-model-doc -->
+	 * 
 	 * @see #OTHER
 	 * @model name="other"
 	 * @generated
@@ -137,20 +146,16 @@ public enum LogicalBusKind implements Enumerator {
 	 * An array of all the '<em><b>Logical Bus Kind</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final LogicalBusKind[] VALUES_ARRAY =
-		new LogicalBusKind[] {
-			TIME_TRIGGERED,
-			EVENT_TRIGGERED,
-			TIMEAND_EVENT_TRIGGERED,
-			OTHER,
-		};
+	private static final LogicalBusKind[] VALUES_ARRAY = new LogicalBusKind[]{ TIME_TRIGGERED, EVENT_TRIGGERED, TIMEAND_EVENT_TRIGGERED, OTHER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Logical Bus Kind</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<LogicalBusKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -159,14 +164,19 @@ public enum LogicalBusKind implements Enumerator {
 	 * Returns the '<em><b>Logical Bus Kind</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static LogicalBusKind get(int value) {
-		switch (value) {
-			case TIME_TRIGGERED_VALUE: return TIME_TRIGGERED;
-			case EVENT_TRIGGERED_VALUE: return EVENT_TRIGGERED;
-			case TIMEAND_EVENT_TRIGGERED_VALUE: return TIMEAND_EVENT_TRIGGERED;
-			case OTHER_VALUE: return OTHER;
+		switch(value) {
+		case TIME_TRIGGERED_VALUE:
+			return TIME_TRIGGERED;
+		case EVENT_TRIGGERED_VALUE:
+			return EVENT_TRIGGERED;
+		case TIMEAND_EVENT_TRIGGERED_VALUE:
+			return TIMEAND_EVENT_TRIGGERED;
+		case OTHER_VALUE:
+			return OTHER;
 		}
 		return null;
 	}
@@ -175,12 +185,13 @@ public enum LogicalBusKind implements Enumerator {
 	 * Returns the '<em><b>Logical Bus Kind</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static LogicalBusKind get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			LogicalBusKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if(result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -191,12 +202,13 @@ public enum LogicalBusKind implements Enumerator {
 	 * Returns the '<em><b>Logical Bus Kind</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static LogicalBusKind getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			LogicalBusKind result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if(result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -206,6 +218,7 @@ public enum LogicalBusKind implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
@@ -213,6 +226,7 @@ public enum LogicalBusKind implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
@@ -220,6 +234,7 @@ public enum LogicalBusKind implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
@@ -228,6 +243,7 @@ public enum LogicalBusKind implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private LogicalBusKind(int value, String name, String literal) {
@@ -239,39 +255,43 @@ public enum LogicalBusKind implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
 		return literal;
 	}
-	
+
 } //LogicalBusKind

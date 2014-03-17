@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.wizards;
 
@@ -40,8 +42,11 @@ import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.providers.ModelImportNodeLabelProvider;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -73,12 +78,15 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 
 	private Text pathText;
 
+	private Button stripSashModelContent;
+
 	public ModelReferencesPage(EventBus bus, boolean isImport) {
 		super("references", Messages.ModelReferencesPage_3, null, bus, isImport ? IMPORT_MESSAGE : EXPORT_MESSAGE); //$NON-NLS-1$
 
 		this.isImport = isImport;
 	}
 
+	@Override
 	public void createControl(Composite parent) {
 		initializeDialogUnits(parent);
 
@@ -98,8 +106,25 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 		pathText = new Text(result, SWT.BORDER | SWT.MULTI | SWT.WRAP | SWT.READ_ONLY);
 		pathText.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).hint(SWT.DEFAULT, convertHeightInCharsToPixels(3)).create());
 
+		if(isImport) {
+			stripSashModelContent = new Button(result, SWT.CHECK);
+			stripSashModelContent.setText(Messages.ModelReferencesPage_2);
+			stripSashModelContent.setToolTipText(Messages.ModelReferencesPage_6);
+
+			stripSashModelContent.addSelectionListener(new SelectionAdapter() {
+
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					if(getConfiguration() != null) {
+						getConfiguration().setStripSashModelContent(stripSashModelContent.getSelection());
+					}
+				}
+			});
+		}
+
 		modelsTree.addSelectionChangedListener(new ISelectionChangedListener() {
 
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				IStructuredSelection sel = (IStructuredSelection)event.getSelection();
 				if(!sel.isEmpty()) {
@@ -113,9 +138,11 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 		((ICheckable)modelsTree).addCheckStateListener(contents);
 		((ICheckable)modelsTree).addCheckStateListener(new ICheckStateListener() {
 
+			@Override
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				Display.getCurrent().asyncExec(new Runnable() {
 
+					@Override
 					public void run() {
 						validatePage();
 					}
@@ -147,6 +174,17 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 		if(configuration != null) {
 			// initialize the checkboxes
 			initializeCheckedNodes();
+
+			// determine enablement of strip-sash-model option
+			if(stripSashModelContent != null) {
+				stripSashModelContent.setSelection(true);
+				stripSashModelContent.setEnabled(configuration.hasSashModelContent());
+
+				this.importConfig.setStripSashModelContent(true);
+			}
+		} else if(stripSashModelContent != null) {
+			stripSashModelContent.setSelection(true);
+			stripSashModelContent.setEnabled(false);
 		}
 
 		validatePage();
@@ -252,6 +290,7 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 
 		private Viewer viewer;
 
+		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			nodes.clear();
 			elements = null;
@@ -261,6 +300,7 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 			this.viewer = viewer;
 		}
 
+		@Override
 		public Object[] getElements(Object inputElement) {
 			Object[] result = elements;
 
@@ -283,25 +323,30 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 			return result;
 		}
 
+		@Override
 		public boolean hasChildren(Object element) {
 			IModelTransferNode importNode = ((TreeNode)element).getElement();
 
 			return !(importNode.getDependencies().isEmpty() && importNode.getDependents().isEmpty());
 		}
 
+		@Override
 		public Object getParent(Object element) {
 			return ((TreeNode)element).getParent();
 		}
 
+		@Override
 		public Object[] getChildren(Object parentElement) {
 			return ((TreeNode)parentElement).getChildren();
 		}
 
+		@Override
 		public void dispose() {
 			nodes.clear();
 			elements = null;
 		}
 
+		@Override
 		public void checkStateChanged(CheckStateChangedEvent event) {
 			ITreeNode node = (ITreeNode)event.getElement();
 			IModelTransferNode model = node.getElement();
@@ -345,14 +390,17 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 				nodes.put(element, this);
 			}
 
+			@Override
 			public IModelTransferNode getElement() {
 				return element;
 			}
 
+			@Override
 			public boolean isDependent() {
 				return (getParent() != null) && dependent;
 			}
 
+			@Override
 			public boolean isDependency() {
 				return (getParent() != null) && !dependent;
 			}
@@ -396,6 +444,7 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 					// initialize check state of new children from configuration
 					Display.getCurrent().asyncExec(new Runnable() {
 
+						@Override
 						public void run() {
 							if(config != null) {
 								Collection<IModelTransferNode> imported = config.getModelsToTransfer();

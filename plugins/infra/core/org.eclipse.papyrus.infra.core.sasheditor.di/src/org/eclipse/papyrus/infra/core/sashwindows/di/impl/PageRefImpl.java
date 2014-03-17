@@ -31,7 +31,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageRefImpl#getParent <em>Parent</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PageRefImpl extends EObjectImpl implements PageRef {
@@ -40,7 +40,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	 * The cached value of the '{@link #getEmfPageIdentifier() <em>Emf Page Identifier</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getEmfPageIdentifier()
 	 * @generated
 	 * @ordered
@@ -51,7 +51,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	 * The default value of the '{@link #getPageIdentifier() <em>Page Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getPageIdentifier()
 	 * @generated
 	 * @ordered
@@ -62,7 +62,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	 * The default value of the '{@link #getObjectPageIdentifier() <em>Object Page Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getObjectPageIdentifier()
 	 * @generated
 	 * @ordered
@@ -73,7 +73,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	 * The cached value of the '{@link #getObjectPageIdentifier() <em>Object Page Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getObjectPageIdentifier()
 	 * @generated
 	 * @ordered
@@ -83,7 +83,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected PageRefImpl() {
@@ -93,7 +93,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -104,9 +104,10 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public EObject getEmfPageIdentifier() {
 		if(emfPageIdentifier != null && emfPageIdentifier.eIsProxy()) {
 			InternalEObject oldEmfPageIdentifier = (InternalEObject)emfPageIdentifier;
@@ -123,7 +124,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public EObject basicGetEmfPageIdentifier() {
@@ -133,9 +134,10 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public void setEmfPageIdentifier(EObject newEmfPageIdentifier) {
 		EObject oldEmfPageIdentifier = emfPageIdentifier;
 		emfPageIdentifier = newEmfPageIdentifier;
@@ -147,9 +149,10 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public Object getPageIdentifier() {
 		Object res = getEmfPageIdentifier();
 
@@ -163,9 +166,10 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public boolean isForIdentifier(Object pageIdentifier) {
 		//Avoid npe when there is an invalid "availablePage". See Bug 398712: Multiple issues with the PageManager
 		if(getPageIdentifier() == null) {
@@ -177,7 +181,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -195,7 +199,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -210,7 +214,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -225,7 +229,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -249,7 +253,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -274,7 +278,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -299,7 +303,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -320,7 +324,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -339,9 +343,10 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public void setPageIdentifier(Object newPageIdentifier) {
 
 		if(newPageIdentifier instanceof EObject) {
@@ -362,9 +367,10 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public Object getObjectPageIdentifier() {
 		return objectPageIdentifier;
 	}
@@ -372,9 +378,10 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public void setObjectPageIdentifier(Object newObjectPageIdentifier) {
 		Object oldObjectPageIdentifier = objectPageIdentifier;
 		objectPageIdentifier = newObjectPageIdentifier;
@@ -386,9 +393,10 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public TabFolder getParent() {
 		if(eContainerFeatureID() != DiPackage.PAGE_REF__PARENT) {
 			return null;
@@ -399,7 +407,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public NotificationChain basicSetParent(TabFolder newParent, NotificationChain msgs) {
@@ -410,9 +418,10 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public void setParent(TabFolder newParent) {
 		if(newParent != eInternalContainer() || (eContainerFeatureID() != DiPackage.PAGE_REF__PARENT && newParent != null)) {
 			if(EcoreUtil.isAncestor(this, newParent)) {

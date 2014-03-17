@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.InteractionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.uml2.uml.BehavioredClassifier;
@@ -37,8 +38,8 @@ public class CustomInteractionCreateCommand extends InteractionCreateCommand {
 	 * @param req
 	 * @param eObject
 	 */
-	public CustomInteractionCreateCommand(CreateElementRequest req, EObject eObject) {
-		super(req, eObject);
+	public CustomInteractionCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		super(req, eObject, diagram);
 	}
 
 	/**
@@ -46,8 +47,8 @@ public class CustomInteractionCreateCommand extends InteractionCreateCommand {
 	 * 
 	 * @param req
 	 */
-	public CustomInteractionCreateCommand(CreateElementRequest req) {
-		super(req);
+	public CustomInteractionCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 	}
 
 	/**

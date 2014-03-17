@@ -45,6 +45,7 @@ import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.TypedElement;
@@ -280,12 +281,12 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 
 			final Set<View> linkSet = domain2NotationMap.get(linkToShow);
 			
-			CompositeCommand compositeCommand = new CompositeCommand("Restor All Related Links");
+			CompositeCommand compositeCommand = new CompositeCommand("Restore All Related Links");
 			for (View sourceView : sourceViewList) {
 					for (View targetView : targetViewList) {
 						if (canDisplayExistingLinkBetweenViews((Connector) linkToShow, sourceView, targetView)){
 							
-							if (connectorUtils.canDisplayExistingConnectorBetweenViewsAccordingToPartWithPort((Connector) linkToShow, sourceView, targetView)){
+							if (connectorUtils.canDisplayExistingConnectorBetweenViewsAccordingToNestedPaths((Connector) linkToShow, sourceView, targetView)){
 								boolean alreadyDisplayed = false;
 								if (linkSet != null){
 									for (View viewLink : linkSet) {	
@@ -342,9 +343,8 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 	 */
 	
 	@Override 
-	public boolean canDisplayExistingLinkBetweenViews(final Connector connector, final View sourceView, final View targetView) {
-		ConnectorUtils connectorUtils = new ConnectorUtils();	
-		return connectorUtils.canDisplayExistingConnectorBetweenViewsAccordingToNestedPaths(connector, sourceView, targetView);
+	public boolean canDisplayExistingLinkBetweenViews(final Element element, final View sourceView, final View targetView) {
+		return (element instanceof Connector) && ConnectorUtils.canDisplayExistingConnectorBetweenViewsAccordingToNestedPaths((Connector) element, sourceView, targetView);
 	}
 	
 	/**

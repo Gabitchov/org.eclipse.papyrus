@@ -15,7 +15,7 @@
          class="org.eclipse.uml2.uml.validation.DelegatingConstraintProvider"
          mode="Batch">
       <package
-            namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML">
+            namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
       </package>
       
       <!-- Put the UML metamodel constraints into this category. -->
@@ -47,7 +47,8 @@
          point="org.eclipse.papyrus.infra.core.model">
       <model
             classname="org.eclipse.papyrus.uml.tools.model.ExtendedUmlModel"
-            description="Model for UML">
+            description="Model for UML"
+            fileExtension="uml">
          <modelSnippet
                classname="org.eclipse.papyrus.uml.tools.model.UmlSnippet"
                description="Complete the UML model.">

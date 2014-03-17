@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011, 2014 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,6 +26,7 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.uml.tools.commands.ApplyProfileCommand;
@@ -34,9 +35,9 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
 /**
- * 
+ *
  * An IObservableList for Profile application
- * 
+ *
  * @author Camille Letavernier
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -51,9 +52,9 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 	private AbstractStereotypeListener listener;
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param umlSource
 	 *        The Package on which the profiles are applied or unapplied
 	 * @param domain
@@ -130,7 +131,7 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 	public Object getObserved() {
 		return umlSource;
 	}
-	
+
 	@Override
 	public synchronized void dispose() {
 		super.dispose();
@@ -179,8 +180,8 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 			//(n+1).canExecute()
 			//(n+1).execute()
 
-			//Problem : this is the StrictCompoundCommand's behavior. However, in the 
-			//StrictCompoundCommand implementation, the execute() is called outside of 
+			//Problem : this is the StrictCompoundCommand's behavior. However, in the
+			//StrictCompoundCommand implementation, the execute() is called outside of
 			//the current CommandStack, which is forbidden
 		};
 
@@ -216,7 +217,7 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 			return false;
 		}
 
-		Profile profile = (Profile)o;
+		Profile profile = EMFHelper.reloadIntoContext((Profile)o, umlSource);
 		Command command = new ApplyProfileCommand(umlSource, profile, (TransactionalEditingDomain)domain);
 
 		commands.add(command);
@@ -250,7 +251,15 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 		//We only apply the profiles that are not applied yet (To avoid removing them when undo is called)
 		c.removeAll(wrappedList);
 
-		Command command = new ApplyProfileCommand(umlSource, c, (TransactionalEditingDomain)domain);
+		Collection<Profile> profiles = new LinkedList<Profile>();
+		for(Object element : c) {
+			if(element instanceof Profile) {
+				profiles.add(EMFHelper.reloadIntoContext((Profile)element, umlSource));
+			} else {
+				throw new IllegalArgumentException("The new value should only contain profiles");
+			}
+		}
+		Command command = new ApplyProfileCommand(umlSource, profiles, (TransactionalEditingDomain)domain);
 
 		commands.add(command);
 

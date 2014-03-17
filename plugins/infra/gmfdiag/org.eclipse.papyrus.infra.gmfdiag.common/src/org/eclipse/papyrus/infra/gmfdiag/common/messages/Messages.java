@@ -1,4 +1,4 @@
-/*
+/****************************************
  * Copyright (c) 2013, 2014 CEA and others.
  * 
  * All rights reserved. This program and the accompanying materials

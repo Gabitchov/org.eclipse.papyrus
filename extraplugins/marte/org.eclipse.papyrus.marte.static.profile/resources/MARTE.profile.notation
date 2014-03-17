@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <notation:Diagram xmi:id="_winU0Ji4Ed-m0Oaexd_lJA" type="PapyrusUMLProfileDiagram" name="NewDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_xCDp4Ji4Ed-m0Oaexd_lJA" type="2007" fontHeight="8" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xCDp4pi4Ed-m0Oaexd_lJA" source="ShadowFigure">
@@ -16,7 +16,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xCDp6pi4Ed-m0Oaexd_lJA"/>
       </children>
       <element xmi:type="uml:Package" href="MARTE.profile.uml#_u8y4wAPMEdyuUt-4qHuVvQ"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xCDp4Zi4Ed-m0Oaexd_lJA" x="25" y="25"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xCDp4Zi4Ed-m0Oaexd_lJA" x="42" y="66"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_sd7DALG0Ed-tmN4hwNCxXQ" type="1026" fontHeight="8" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sd7DArG0Ed-tmN4hwNCxXQ" source="ShadowFigure">
@@ -40,7 +40,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sd7DELG0Ed-tmN4hwNCxXQ"/>
       </children>
       <element xmi:type="uml:Stereotype" href="MARTE.profile.uml#_XYaMIBKYEdyGYuetzx6T5A"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sd7DAbG0Ed-tmN4hwNCxXQ" x="275" width="304" height="198"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sd7DAbG0Ed-tmN4hwNCxXQ" x="292" y="41" width="304" height="198"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_8b-bILG0Ed-tmN4hwNCxXQ" type="1026" fontHeight="8" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8b-bIrG0Ed-tmN4hwNCxXQ" source="ShadowFigure">
@@ -64,7 +64,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8b-bMLG0Ed-tmN4hwNCxXQ"/>
       </children>
       <element xmi:type="uml:Stereotype" href="MARTE.profile.uml#_eXMtwBKZEdyGYuetzx6T5A"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8b-bIbG0Ed-tmN4hwNCxXQ" x="878" y="-8" width="266" height="206"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8b-bIbG0Ed-tmN4hwNCxXQ" x="895" y="33" width="266" height="206"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_uFzKULG1Ed-tmN4hwNCxXQ" type="1026" fontHeight="8" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uFzKUrG1Ed-tmN4hwNCxXQ" source="ShadowFigure">
@@ -88,7 +88,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uFzKYLG1Ed-tmN4hwNCxXQ"/>
       </children>
       <element xmi:type="uml:Stereotype" href="MARTE.profile.uml#_noixsBD2EdyybZnLxHsjyA"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uFzKUbG1Ed-tmN4hwNCxXQ" x="15" y="355"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uFzKUbG1Ed-tmN4hwNCxXQ" x="32" y="396"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_uyLvMLG1Ed-tmN4hwNCxXQ" type="1026" fontHeight="8" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uyLvMrG1Ed-tmN4hwNCxXQ" source="ShadowFigure">
@@ -112,7 +112,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uyLvQLG1Ed-tmN4hwNCxXQ"/>
       </children>
       <element xmi:type="uml:Stereotype" href="MARTE.profile.uml#_xRmWoBD2EdyybZnLxHsjyA"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uyLvMbG1Ed-tmN4hwNCxXQ" x="210" y="355"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uyLvMbG1Ed-tmN4hwNCxXQ" x="227" y="396"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_wC6-ULG1Ed-tmN4hwNCxXQ" type="1026" fontHeight="8" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_wC6-UrG1Ed-tmN4hwNCxXQ" source="ShadowFigure">
@@ -136,7 +136,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wC6-YLG1Ed-tmN4hwNCxXQ"/>
       </children>
       <element xmi:type="uml:Stereotype" href="MARTE.profile.uml#_llNagBBSEdyt6tGzWCpUVA"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wC6-UbG1Ed-tmN4hwNCxXQ" x="125" y="175"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wC6-UbG1Ed-tmN4hwNCxXQ" x="142" y="216"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_4O8kkLG1Ed-tmN4hwNCxXQ" type="1026" fontHeight="8" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_4O8kkrG1Ed-tmN4hwNCxXQ" source="ShadowFigure">
@@ -160,7 +160,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4O8koLG1Ed-tmN4hwNCxXQ"/>
       </children>
       <element xmi:type="uml:Stereotype" href="MARTE.profile.uml#_i_gjkBBSEdyt6tGzWCpUVA"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4O8kkbG1Ed-tmN4hwNCxXQ" x="1210" y="135"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4O8kkbG1Ed-tmN4hwNCxXQ" x="1227" y="176"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_8fiQALG1Ed-tmN4hwNCxXQ" type="1031" fontHeight="8" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8fiQArG1Ed-tmN4hwNCxXQ" source="ShadowFigure">
@@ -174,7 +174,7 @@
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_8fiQCLG1Ed-tmN4hwNCxXQ" type="1084"/>
       <element xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Event"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8fiQAbG1Ed-tmN4hwNCxXQ" x="1210"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8fiQAbG1Ed-tmN4hwNCxXQ" x="1227" y="41"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_8vZusGqWEeC2YbiYAwBrzg" type="1026" fontName="Segoe UI" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8vi4oGqWEeC2YbiYAwBrzg" source="ShadowFigure">
@@ -202,7 +202,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8vi4rmqWEeC2YbiYAwBrzg"/>
       </children>
       <element xmi:type="uml:Stereotype" href="MARTE.profile.uml#_HYVowA-NEdyLh7muGbCqMw"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8vZusWqWEeC2YbiYAwBrzg" x="740" y="315"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8vZusWqWEeC2YbiYAwBrzg" x="757" y="356"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_winU0Zi4Ed-m0Oaexd_lJA"/>
     <element xmi:type="uml:Profile" href="MARTE.profile.uml#_zaC5cAPHEdyeNfbOYuD9pg"/>
@@ -407,7 +407,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jjFEqvfhEd-f4r3MXmUB9g"/>
       </children>
       <element xmi:type="uml:Profile" href="MARTE.profile.uml#_jg_Z8PfhEd-f4r3MXmUB9g"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jjFEoffhEd-f4r3MXmUB9g" x="150" y="120" width="846" height="346"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jjFEoffhEd-f4r3MXmUB9g" x="150" y="120" width="846" height="378"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_iSm7QffhEd-f4r3MXmUB9g"/>
     <element xmi:type="uml:Profile" href="MARTE.profile.uml#_CHiIYA-LEdyNj8xzjk-DoA"/>

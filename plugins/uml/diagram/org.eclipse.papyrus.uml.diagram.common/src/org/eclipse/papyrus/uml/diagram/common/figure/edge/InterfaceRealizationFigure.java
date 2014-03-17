@@ -34,4 +34,14 @@ public class InterfaceRealizationFigure extends DashedEdgeFigure {
 		this.setLineStyle(Graphics.LINE_CUSTOM); // line drawing style
 
 	}
+
+	@Override
+	public void resetStyle() {
+		super.resetStyle();
+		PolygonDecoration dec = new PolygonDecoration();
+		dec.setScale(15, 5);
+		dec.setBackgroundColor(ColorConstants.white);
+		dec.setLineWidth(1);
+		setTargetDecoration(dec); // arrow at target endpoint
+	}
 }

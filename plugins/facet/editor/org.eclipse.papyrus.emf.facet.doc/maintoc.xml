@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<!--
+Copyright (c) 2011 Mia-Software.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+    Gregoire Dupe (Mia-Software) - Bug 337584 - Documentation set up
+    Nicolas Bros (Mia-Software) - Bug 375789 - Documentation
+-->
+<toc label="EMF Facet Documentation">
+   <topic label="User Guide">
+      <anchor id="user.anchor.1"/>
+      <anchor id="user.anchor.2"/>
+      <anchor id="user.anchor.3"/>
+      <anchor id="user.anchor.4"/>
+      <anchor id="user.anchor.5"/>
+      <anchor id="user.anchor.6"/>
+      <anchor id="user.anchor.7"/>
+      <anchor id="user.anchor.8"/>
+      <anchor id="user.anchor.9"/>
+      <topic label="Deprecated Components">
+         <anchor id="user.deprecated.anchor.1"/>
+         <anchor id="user.deprecated.anchor.2"/>
+         <anchor id="user.deprecated.anchor.3"/>
+      </topic>
+   </topic>
+   
+   <topic label="Developer Guide">
+      <anchor id="dev.anchor.1"/>
+      <anchor id="dev.anchor.2"/>
+      <anchor id="dev.anchor.3"/>
+      <anchor id="dev.anchor.4"/>
+      <anchor id="dev.anchor.5"/>
+      <anchor id="dev.anchor.6"/>
+      <anchor id="dev.anchor.7"/>
+      <anchor id="dev.anchor.8"/>
+      <anchor id="dev.anchor.9"/>
+      <topic href="javadoc/index.html" label="API Reference"/>
+      <topic label="Deprecated Components">
+         <anchor id="dev.deprecated.anchor.1"/>
+         <anchor id="dev.deprecated.anchor.2"/>
+         <anchor id="dev.deprecated.anchor.3"/>
+      </topic>
+   </topic>
+
+   <topic label="Project Documents">
+      <topic href="mediawiki/new_and_noteworthy.html" label="New and Noteworthy"/>
+      <topic label="API use report">
+      	<anchor id="api_report"/>
+      </topic>
+      <topic label="Simultaneous Release Tracker Required Documents">
+         <topic href="mediawiki/API_Policy.html" label="API Policy"/>
+         <topic href="mediawiki/capabilities.html" label="Capabilities"/>
+         <topic href="mediawiki/checking_BREE.html" label="Checking the Bundle-RequiredExecutionEnvironment"/>
+         <topic href="mediawiki/ramp_down.html" label="Ramp Down Policy"/>
+         <topic href="mediawiki/retention_policy.html" label="Retention Policy"/>
+         <topic href="mediawiki/running_tests.html" label="Running Tests"/>
+         <anchor id="releaseDocuments.anchor.1"/>
+      </topic>
+   </topic>
+</toc>

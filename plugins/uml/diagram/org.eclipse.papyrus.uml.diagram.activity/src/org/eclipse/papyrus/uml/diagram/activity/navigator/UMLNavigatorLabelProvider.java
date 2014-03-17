@@ -86,199 +86,199 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	public Image getImage(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case ActivityDiagramEditPart.VISUAL_ID:
-			return getImage("Navigator?Diagram?http://www.eclipse.org/uml2/4.0.0/UML?Package", UMLElementTypes.Package_1000); //$NON-NLS-1$
+			return getImage("Navigator?Diagram?http://www.eclipse.org/uml2/5.0.0/UML?Package", UMLElementTypes.Package_1000); //$NON-NLS-1$
 		case ActivityEditPart.VISUAL_ID:
-			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/4.0.0/UML?Activity", UMLElementTypes.Activity_2001); //$NON-NLS-1$
+			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/5.0.0/UML?Activity", UMLElementTypes.Activity_2001); //$NON-NLS-1$
 		case ParameterEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Parameter", UMLElementTypes.Parameter_3001); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?Parameter", UMLElementTypes.Parameter_3001); //$NON-NLS-1$
 		case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Constraint", UMLElementTypes.Constraint_3002); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?Constraint", UMLElementTypes.Constraint_3002); //$NON-NLS-1$
 		case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Constraint", UMLElementTypes.Constraint_3003); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?Constraint", UMLElementTypes.Constraint_3003); //$NON-NLS-1$
 		case InitialNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InitialNode", UMLElementTypes.InitialNode_3004); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InitialNode", UMLElementTypes.InitialNode_3004); //$NON-NLS-1$
 		case ActivityFinalNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ActivityFinalNode", UMLElementTypes.ActivityFinalNode_3005); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ActivityFinalNode", UMLElementTypes.ActivityFinalNode_3005); //$NON-NLS-1$
 		case FlowFinalNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?FlowFinalNode", UMLElementTypes.FlowFinalNode_3006); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?FlowFinalNode", UMLElementTypes.FlowFinalNode_3006); //$NON-NLS-1$
 		case OpaqueActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?OpaqueAction", UMLElementTypes.OpaqueAction_3007); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?OpaqueAction", UMLElementTypes.OpaqueAction_3007); //$NON-NLS-1$
 		case CallBehaviorActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?CallBehaviorAction", UMLElementTypes.CallBehaviorAction_3008); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?CallBehaviorAction", UMLElementTypes.CallBehaviorAction_3008); //$NON-NLS-1$
 		case CallOperationActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?CallOperationAction", UMLElementTypes.CallOperationAction_3010); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?CallOperationAction", UMLElementTypes.CallOperationAction_3010); //$NON-NLS-1$
 		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Constraint", UMLElementTypes.Constraint_3011); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?Constraint", UMLElementTypes.Constraint_3011); //$NON-NLS-1$
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Constraint", UMLElementTypes.Constraint_3012); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?Constraint", UMLElementTypes.Constraint_3012); //$NON-NLS-1$
 		case InputPinInOpaqueActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3013); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3013); //$NON-NLS-1$
 		case OutputPinInOpaqueActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3014); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3014); //$NON-NLS-1$
 		case ValuePinInOpaqueActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3015); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3015); //$NON-NLS-1$
 		case ActionInputPinInOpaqueActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3016); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3016); //$NON-NLS-1$
 		case ValuePinInCallBeActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3017); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3017); //$NON-NLS-1$
 		case ActionInputPinInCallBeActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3018); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3018); //$NON-NLS-1$
 		case InputPinInCallBeActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3019); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3019); //$NON-NLS-1$
 		case OutputPinInCallBeActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3020); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3020); //$NON-NLS-1$
 		case ActionInputPinInCallOpActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3021); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3021); //$NON-NLS-1$
 		case ValuePinInCallOpActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3022); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3022); //$NON-NLS-1$
 		case InputPinInCallOpActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3023); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3023); //$NON-NLS-1$
 		case OutputPinInCallOpActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3024); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3024); //$NON-NLS-1$
 		case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3025); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3025); //$NON-NLS-1$
 		case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3026); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3026); //$NON-NLS-1$
 		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3027); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3027); //$NON-NLS-1$
 		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?IntervalConstraint", UMLElementTypes.IntervalConstraint_3032); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?IntervalConstraint", UMLElementTypes.IntervalConstraint_3032); //$NON-NLS-1$
 		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?IntervalConstraint", UMLElementTypes.IntervalConstraint_3033); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?IntervalConstraint", UMLElementTypes.IntervalConstraint_3033); //$NON-NLS-1$
 		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3034); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3034); //$NON-NLS-1$
 		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3035); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3035); //$NON-NLS-1$
 		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3036); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3036); //$NON-NLS-1$
 		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3037); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3037); //$NON-NLS-1$
 		case DecisionNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?DecisionNode", UMLElementTypes.DecisionNode_3038); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?DecisionNode", UMLElementTypes.DecisionNode_3038); //$NON-NLS-1$
 		case MergeNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?MergeNode", UMLElementTypes.MergeNode_3039); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?MergeNode", UMLElementTypes.MergeNode_3039); //$NON-NLS-1$
 		case ForkNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ForkNode", UMLElementTypes.ForkNode_3040); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ForkNode", UMLElementTypes.ForkNode_3040); //$NON-NLS-1$
 		case JoinNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?JoinNode", UMLElementTypes.JoinNode_3041); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?JoinNode", UMLElementTypes.JoinNode_3041); //$NON-NLS-1$
 		case SendObjectActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?SendObjectAction", UMLElementTypes.SendObjectAction_3042); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?SendObjectAction", UMLElementTypes.SendObjectAction_3042); //$NON-NLS-1$
 		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3046); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3046); //$NON-NLS-1$
 		case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3047); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3047); //$NON-NLS-1$
 		case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3048); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3048); //$NON-NLS-1$
 		case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3049); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3049); //$NON-NLS-1$
 		case ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3050); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3050); //$NON-NLS-1$
 		case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3051); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3051); //$NON-NLS-1$
 		case SendSignalActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?SendSignalAction", UMLElementTypes.SendSignalAction_3052); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?SendSignalAction", UMLElementTypes.SendSignalAction_3052); //$NON-NLS-1$
 		case ActionInputPinInSendSigActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3053); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3053); //$NON-NLS-1$
 		case ValuePinInSendSigActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3054); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3054); //$NON-NLS-1$
 		case InputPinInSendSigActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3055); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3055); //$NON-NLS-1$
 		case ActivityParameterNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ActivityParameterNode", UMLElementTypes.ActivityParameterNode_3059); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ActivityParameterNode", UMLElementTypes.ActivityParameterNode_3059); //$NON-NLS-1$
 		case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3060); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3060); //$NON-NLS-1$
 		case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3061); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3061); //$NON-NLS-1$
 		case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3062); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3062); //$NON-NLS-1$
 		case AcceptEventActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?AcceptEventAction", UMLElementTypes.AcceptEventAction_3063); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?AcceptEventAction", UMLElementTypes.AcceptEventAction_3063); //$NON-NLS-1$
 		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3064); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3064); //$NON-NLS-1$
 		case StructuredActivityNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?StructuredActivityNode", UMLElementTypes.StructuredActivityNode_3065); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?StructuredActivityNode", UMLElementTypes.StructuredActivityNode_3065); //$NON-NLS-1$
 		case ActivityPartitionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ActivityPartition", UMLElementTypes.ActivityPartition_3067); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ActivityPartition", UMLElementTypes.ActivityPartition_3067); //$NON-NLS-1$
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InterruptibleActivityRegion", UMLElementTypes.InterruptibleActivityRegion_3068); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InterruptibleActivityRegion", UMLElementTypes.InterruptibleActivityRegion_3068); //$NON-NLS-1$
 		case ConditionalNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ConditionalNode", UMLElementTypes.ConditionalNode_3069); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ConditionalNode", UMLElementTypes.ConditionalNode_3069); //$NON-NLS-1$
 		case ExpansionRegionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ExpansionRegion", UMLElementTypes.ExpansionRegion_3070); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ExpansionRegion", UMLElementTypes.ExpansionRegion_3070); //$NON-NLS-1$
 		case LoopNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?LoopNode", UMLElementTypes.LoopNode_3071); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?LoopNode", UMLElementTypes.LoopNode_3071); //$NON-NLS-1$
 		case SequenceNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?SequenceNode", UMLElementTypes.SequenceNode_3073); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?SequenceNode", UMLElementTypes.SequenceNode_3073); //$NON-NLS-1$
 		case ExpansionNodeAsInEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ExpansionNode", UMLElementTypes.ExpansionNode_3074); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ExpansionNode", UMLElementTypes.ExpansionNode_3074); //$NON-NLS-1$
 		case ExpansionNodeAsOutEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ExpansionNode", UMLElementTypes.ExpansionNode_3075); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ExpansionNode", UMLElementTypes.ExpansionNode_3075); //$NON-NLS-1$
 		case ValueSpecificationActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ValueSpecificationAction", UMLElementTypes.ValueSpecificationAction_3076); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ValueSpecificationAction", UMLElementTypes.ValueSpecificationAction_3076); //$NON-NLS-1$
 		case OutputPinInValSpecActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3077); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3077); //$NON-NLS-1$
 		case DataStoreNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?DataStoreNode", UMLElementTypes.DataStoreNode_3078); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?DataStoreNode", UMLElementTypes.DataStoreNode_3078); //$NON-NLS-1$
 		case CommentEditPartCN.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Comment", UMLElementTypes.Comment_3080); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?Comment", UMLElementTypes.Comment_3080); //$NON-NLS-1$
 		case ReadSelfActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ReadSelfAction", UMLElementTypes.ReadSelfAction_3081); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ReadSelfAction", UMLElementTypes.ReadSelfAction_3081); //$NON-NLS-1$
 		case ActivityEditPartCN.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Activity", UMLElementTypes.Activity_3083); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?Activity", UMLElementTypes.Activity_3083); //$NON-NLS-1$
 		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3084); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3084); //$NON-NLS-1$
 		case ShapeNamedElementEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?NamedElement", UMLElementTypes.NamedElement_3085); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?NamedElement", UMLElementTypes.NamedElement_3085); //$NON-NLS-1$
 		case CreateObjectActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?CreateObjectAction", UMLElementTypes.CreateObjectAction_3086); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?CreateObjectAction", UMLElementTypes.CreateObjectAction_3086); //$NON-NLS-1$
 		case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3087); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3087); //$NON-NLS-1$
 		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ReadStructuralFeatureAction", UMLElementTypes.ReadStructuralFeatureAction_3088); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ReadStructuralFeatureAction", UMLElementTypes.ReadStructuralFeatureAction_3088); //$NON-NLS-1$
 		case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3089); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3089); //$NON-NLS-1$
 		case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3090); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3090); //$NON-NLS-1$
 		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?AddStructuralFeatureValueAction", UMLElementTypes.AddStructuralFeatureValueAction_3091); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?AddStructuralFeatureValueAction", UMLElementTypes.AddStructuralFeatureValueAction_3091); //$NON-NLS-1$
 		case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3092); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3092); //$NON-NLS-1$
 		case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3093); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3093); //$NON-NLS-1$
 		case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3094); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3094); //$NON-NLS-1$
 		case DestroyObjectActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?DestroyObjectAction", UMLElementTypes.DestroyObjectAction_3095); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?DestroyObjectAction", UMLElementTypes.DestroyObjectAction_3095); //$NON-NLS-1$
 		case InputPinInDestroyObjectActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3096); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3096); //$NON-NLS-1$
 		case ReadVariableActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ReadVariableAction", UMLElementTypes.ReadVariableAction_3097); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ReadVariableAction", UMLElementTypes.ReadVariableAction_3097); //$NON-NLS-1$
 		case OutputPinInReadVariableActionAsResultEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3098); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3098); //$NON-NLS-1$
 		case AddVariableValueActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?AddVariableValueAction", UMLElementTypes.AddVariableValueAction_3099); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?AddVariableValueAction", UMLElementTypes.AddVariableValueAction_3099); //$NON-NLS-1$
 		case InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3100); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3100); //$NON-NLS-1$
 		case InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3101); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3101); //$NON-NLS-1$
 		case BroadcastSignalActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?BroadcastSignalAction", UMLElementTypes.BroadcastSignalAction_3102); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?BroadcastSignalAction", UMLElementTypes.BroadcastSignalAction_3102); //$NON-NLS-1$
 		case InputPinInBroadcastSignalActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InputPin", UMLElementTypes.InputPin_3103); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InputPin", UMLElementTypes.InputPin_3103); //$NON-NLS-1$
 		case CentralBufferNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?CentralBufferNode", UMLElementTypes.CentralBufferNode_3104); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?CentralBufferNode", UMLElementTypes.CentralBufferNode_3104); //$NON-NLS-1$
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Action?localPrecondition", UMLElementTypes.ActionLocalPrecondition_4001); //$NON-NLS-1$
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/5.0.0/UML?Action?localPrecondition", UMLElementTypes.ActionLocalPrecondition_4001); //$NON-NLS-1$
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Action?localPostcondition", UMLElementTypes.ActionLocalPostcondition_4002); //$NON-NLS-1$
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/5.0.0/UML?Action?localPostcondition", UMLElementTypes.ActionLocalPostcondition_4002); //$NON-NLS-1$
 		case ObjectFlowEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?ObjectFlow", UMLElementTypes.ObjectFlow_4003); //$NON-NLS-1$
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/5.0.0/UML?ObjectFlow", UMLElementTypes.ObjectFlow_4003); //$NON-NLS-1$
 		case ControlFlowEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?ControlFlow", UMLElementTypes.ControlFlow_4004); //$NON-NLS-1$
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/5.0.0/UML?ControlFlow", UMLElementTypes.ControlFlow_4004); //$NON-NLS-1$
 		case ExceptionHandlerEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?ExceptionHandler", UMLElementTypes.ExceptionHandler_4005); //$NON-NLS-1$
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/5.0.0/UML?ExceptionHandler", UMLElementTypes.ExceptionHandler_4005); //$NON-NLS-1$
 		case CommentLinkEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Comment?annotatedElement", UMLElementTypes.CommentAnnotatedElement_4006); //$NON-NLS-1$
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/5.0.0/UML?Comment?annotatedElement", UMLElementTypes.CommentAnnotatedElement_4006); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}

@@ -39,21 +39,23 @@ import org.eclipse.uml2.uml.Behavior;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl#getBase_Behavior <em>Base Behavior</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl#getPath <em>Path</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl#getRepresentation <em>Representation</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl#getMode <em>Mode</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl#getFunction <em>Function</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl#getBase_Behavior <em>Base Behavior</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl#getPath <em>Path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl#getRepresentation <em>Representation</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl#getMode <em>Mode</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionBehaviorImpl#getFunction <em>Function</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavior {
+
 	/**
 	 * The cached value of the '{@link #getBase_Behavior() <em>Base Behavior</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Behavior()
 	 * @generated
 	 * @ordered
@@ -64,6 +66,7 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	 * The default value of the '{@link #getPath() <em>Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPath()
 	 * @generated
 	 * @ordered
@@ -74,6 +77,7 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	 * The cached value of the '{@link #getPath() <em>Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPath()
 	 * @generated
 	 * @ordered
@@ -84,6 +88,7 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	 * The default value of the '{@link #getRepresentation() <em>Representation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRepresentation()
 	 * @generated
 	 * @ordered
@@ -94,6 +99,7 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	 * The cached value of the '{@link #getRepresentation() <em>Representation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRepresentation()
 	 * @generated
 	 * @ordered
@@ -104,6 +110,7 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	 * The cached value of the '{@link #getMode() <em>Mode</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMode()
 	 * @generated
 	 * @ordered
@@ -114,6 +121,7 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	 * The cached value of the '{@link #getFunction() <em>Function</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFunction()
 	 * @generated
 	 * @ordered
@@ -123,6 +131,7 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FunctionBehaviorImpl() {
@@ -132,6 +141,7 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionType basicGetFunction() {
@@ -141,23 +151,26 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case BehaviorPackage.FUNCTION_BEHAVIOR__BASE_BEHAVIOR:
-				if (resolve) return getBase_Behavior();
-				return basicGetBase_Behavior();
-			case BehaviorPackage.FUNCTION_BEHAVIOR__PATH:
-				return getPath();
-			case BehaviorPackage.FUNCTION_BEHAVIOR__REPRESENTATION:
-				return getRepresentation();
-			case BehaviorPackage.FUNCTION_BEHAVIOR__MODE:
-				return getMode();
-			case BehaviorPackage.FUNCTION_BEHAVIOR__FUNCTION:
-				if (resolve) return getFunction();
-				return basicGetFunction();
+		switch(featureID) {
+		case BehaviorPackage.FUNCTION_BEHAVIOR__BASE_BEHAVIOR:
+			if(resolve)
+				return getBase_Behavior();
+			return basicGetBase_Behavior();
+		case BehaviorPackage.FUNCTION_BEHAVIOR__PATH:
+			return getPath();
+		case BehaviorPackage.FUNCTION_BEHAVIOR__REPRESENTATION:
+			return getRepresentation();
+		case BehaviorPackage.FUNCTION_BEHAVIOR__MODE:
+			return getMode();
+		case BehaviorPackage.FUNCTION_BEHAVIOR__FUNCTION:
+			if(resolve)
+				return getFunction();
+			return basicGetFunction();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -165,21 +178,22 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case BehaviorPackage.FUNCTION_BEHAVIOR__BASE_BEHAVIOR:
-				return base_Behavior != null;
-			case BehaviorPackage.FUNCTION_BEHAVIOR__PATH:
-				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
-			case BehaviorPackage.FUNCTION_BEHAVIOR__REPRESENTATION:
-				return representation != REPRESENTATION_EDEFAULT;
-			case BehaviorPackage.FUNCTION_BEHAVIOR__MODE:
-				return mode != null && !mode.isEmpty();
-			case BehaviorPackage.FUNCTION_BEHAVIOR__FUNCTION:
-				return function != null;
+		switch(featureID) {
+		case BehaviorPackage.FUNCTION_BEHAVIOR__BASE_BEHAVIOR:
+			return base_Behavior != null;
+		case BehaviorPackage.FUNCTION_BEHAVIOR__PATH:
+			return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
+		case BehaviorPackage.FUNCTION_BEHAVIOR__REPRESENTATION:
+			return representation != REPRESENTATION_EDEFAULT;
+		case BehaviorPackage.FUNCTION_BEHAVIOR__MODE:
+			return mode != null && !mode.isEmpty();
+		case BehaviorPackage.FUNCTION_BEHAVIOR__FUNCTION:
+			return function != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -187,28 +201,29 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case BehaviorPackage.FUNCTION_BEHAVIOR__BASE_BEHAVIOR:
-				setBase_Behavior((Behavior)newValue);
-				return;
-			case BehaviorPackage.FUNCTION_BEHAVIOR__PATH:
-				setPath((String)newValue);
-				return;
-			case BehaviorPackage.FUNCTION_BEHAVIOR__REPRESENTATION:
-				setRepresentation((FunctionBehaviorKind)newValue);
-				return;
-			case BehaviorPackage.FUNCTION_BEHAVIOR__MODE:
-				getMode().clear();
-				getMode().addAll((Collection<? extends Mode>)newValue);
-				return;
-			case BehaviorPackage.FUNCTION_BEHAVIOR__FUNCTION:
-				setFunction((FunctionType)newValue);
-				return;
+		switch(featureID) {
+		case BehaviorPackage.FUNCTION_BEHAVIOR__BASE_BEHAVIOR:
+			setBase_Behavior((Behavior)newValue);
+			return;
+		case BehaviorPackage.FUNCTION_BEHAVIOR__PATH:
+			setPath((String)newValue);
+			return;
+		case BehaviorPackage.FUNCTION_BEHAVIOR__REPRESENTATION:
+			setRepresentation((FunctionBehaviorKind)newValue);
+			return;
+		case BehaviorPackage.FUNCTION_BEHAVIOR__MODE:
+			getMode().clear();
+			getMode().addAll((Collection<? extends Mode>)newValue);
+			return;
+		case BehaviorPackage.FUNCTION_BEHAVIOR__FUNCTION:
+			setFunction((FunctionType)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -216,6 +231,7 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -226,14 +242,15 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Behavior getBase_Behavior() {
-		if (base_Behavior != null && base_Behavior.eIsProxy()) {
+		if(base_Behavior != null && base_Behavior.eIsProxy()) {
 			InternalEObject oldBase_Behavior = (InternalEObject)base_Behavior;
 			base_Behavior = (Behavior)eResolveProxy(oldBase_Behavior);
-			if (base_Behavior != oldBase_Behavior) {
-				if (eNotificationRequired())
+			if(base_Behavior != oldBase_Behavior) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BehaviorPackage.FUNCTION_BEHAVIOR__BASE_BEHAVIOR, oldBase_Behavior, base_Behavior));
 			}
 		}
@@ -243,6 +260,7 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Behavior basicGetBase_Behavior() {
@@ -252,38 +270,40 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Behavior(Behavior newBase_Behavior) {
 		Behavior oldBase_Behavior = base_Behavior;
 		base_Behavior = newBase_Behavior;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BehaviorPackage.FUNCTION_BEHAVIOR__BASE_BEHAVIOR, oldBase_Behavior, base_Behavior));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case BehaviorPackage.FUNCTION_BEHAVIOR__BASE_BEHAVIOR:
-				setBase_Behavior((Behavior)null);
-				return;
-			case BehaviorPackage.FUNCTION_BEHAVIOR__PATH:
-				setPath(PATH_EDEFAULT);
-				return;
-			case BehaviorPackage.FUNCTION_BEHAVIOR__REPRESENTATION:
-				setRepresentation(REPRESENTATION_EDEFAULT);
-				return;
-			case BehaviorPackage.FUNCTION_BEHAVIOR__MODE:
-				getMode().clear();
-				return;
-			case BehaviorPackage.FUNCTION_BEHAVIOR__FUNCTION:
-				setFunction((FunctionType)null);
-				return;
+		switch(featureID) {
+		case BehaviorPackage.FUNCTION_BEHAVIOR__BASE_BEHAVIOR:
+			setBase_Behavior((Behavior)null);
+			return;
+		case BehaviorPackage.FUNCTION_BEHAVIOR__PATH:
+			setPath(PATH_EDEFAULT);
+			return;
+		case BehaviorPackage.FUNCTION_BEHAVIOR__REPRESENTATION:
+			setRepresentation(REPRESENTATION_EDEFAULT);
+			return;
+		case BehaviorPackage.FUNCTION_BEHAVIOR__MODE:
+			getMode().clear();
+			return;
+		case BehaviorPackage.FUNCTION_BEHAVIOR__FUNCTION:
+			setFunction((FunctionType)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -291,14 +311,15 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionType getFunction() {
-		if (function != null && function.eIsProxy()) {
+		if(function != null && function.eIsProxy()) {
 			InternalEObject oldFunction = (InternalEObject)function;
 			function = (FunctionType)eResolveProxy(oldFunction);
-			if (function != oldFunction) {
-				if (eNotificationRequired())
+			if(function != oldFunction) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BehaviorPackage.FUNCTION_BEHAVIOR__FUNCTION, oldFunction, function));
 			}
 		}
@@ -308,10 +329,11 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Mode> getMode() {
-		if (mode == null) {
+		if(mode == null) {
 			mode = new EObjectResolvingEList<Mode>(Mode.class, this, BehaviorPackage.FUNCTION_BEHAVIOR__MODE);
 		}
 		return mode;
@@ -320,6 +342,7 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getPath() {
@@ -329,6 +352,7 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionBehaviorKind getRepresentation() {
@@ -338,47 +362,52 @@ public class FunctionBehaviorImpl extends ContextImpl implements FunctionBehavio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setFunction(FunctionType newFunction) {
 		FunctionType oldFunction = function;
 		function = newFunction;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BehaviorPackage.FUNCTION_BEHAVIOR__FUNCTION, oldFunction, function));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPath(String newPath) {
 		String oldPath = path;
 		path = newPath;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BehaviorPackage.FUNCTION_BEHAVIOR__PATH, oldPath, path));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRepresentation(FunctionBehaviorKind newRepresentation) {
 		FunctionBehaviorKind oldRepresentation = representation;
 		representation = newRepresentation == null ? REPRESENTATION_EDEFAULT : newRepresentation;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BehaviorPackage.FUNCTION_BEHAVIOR__REPRESENTATION, oldRepresentation, representation));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (path: ");

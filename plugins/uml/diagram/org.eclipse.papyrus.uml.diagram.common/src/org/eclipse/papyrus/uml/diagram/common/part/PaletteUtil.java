@@ -440,28 +440,40 @@ public class PaletteUtil {
 			IProvider provider = papyrusProviderDesc.getProvider();
 			if(provider instanceof IProfileDependantPaletteProvider) {
 				Diagram diagram = ((DiagramEditorWithFlyOutPalette)part).getDiagram();
-				EObject element = diagram.getElement();
-				if(element instanceof Element) {
-					org.eclipse.uml2.uml.Package package_ = ((Element)element).getNearestPackage();
-					List<Profile> appliedProfiles = package_.getAllAppliedProfiles();
-					List<String> appliedProfilesNames = new ArrayList<String>();
-					for(Profile profile : appliedProfiles) {
-						appliedProfilesNames.add(profile.getQualifiedName());
-					}
-					// not null also
-					Collection<String> requiredProfiles = ((IProfileDependantPaletteProvider)provider).getRequiredProfiles();
-					for(String requiredProfileName : requiredProfiles) {
-						if(!appliedProfilesNames.contains(requiredProfileName)) {
-							return false;
-						}
-					}
-				}
-				return true;
+				return areRequiredProfileApplied(diagram, (IProfileDependantPaletteProvider)provider);
 			}
 		}
 		// by default, returns true if the descriptor is not a local descriptor,
 		// as they do not use
 		// profile
+		return true;
+	}
+	
+	/**
+	 * returns <code>true</code> if the descriptor have all necessary profiles
+	 * @param diagram The diagram being provided palette elements
+	 * @param provider The profile-dependent palette provider
+	 * @return <code>true</code> if all required profile are present
+	 */
+	public static boolean areRequiredProfileApplied(Diagram diagram, IProfileDependantPaletteProvider provider) {
+		EObject element = diagram.getElement();
+		if(element instanceof Element) {
+			org.eclipse.uml2.uml.Package package_ = ((Element)element).getNearestPackage();
+			if (package_ == null)
+				return false;
+			List<Profile> appliedProfiles = package_.getAllAppliedProfiles();
+			List<String> appliedProfilesNames = new ArrayList<String>();
+			for(Profile profile : appliedProfiles) {
+				appliedProfilesNames.add(profile.getQualifiedName());
+			}
+			// not null also
+			Collection<String> requiredProfiles = ((IProfileDependantPaletteProvider)provider).getRequiredProfiles();
+			for(String requiredProfileName : requiredProfiles) {
+				if(!appliedProfilesNames.contains(requiredProfileName)) {
+					return false;
+				}
+			}
+		}
 		return true;
 	}
 

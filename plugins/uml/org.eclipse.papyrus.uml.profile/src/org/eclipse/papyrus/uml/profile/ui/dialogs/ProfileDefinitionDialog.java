@@ -50,7 +50,7 @@ import org.eclipse.uml2.uml.Profile;
 public class ProfileDefinitionDialog extends TitleAreaDialog {
 
 	/** path to the banner image */
-	public final static String PROFILE_DEFINITION = ImageManager.IMAGE_PATH + "wizban/NewDefinition.gif";
+	public final static String PROFILE_DEFINITION = ImageManager.IMAGE_PATH + "wizban/NewDefinition.gif"; //$NON-NLS-1$
 
 	/** Text area that displays previous version of the profile definition */
 	protected Text oldVersionText;
@@ -255,14 +255,16 @@ public class ProfileDefinitionDialog extends TitleAreaDialog {
 	 */
 	private Composite createSaveConstraintAera(Composite composite) {
 		Group group = new Group(composite, SWT.CENTER);
-		group.setText("Constraint");
+		group.setText("Constraints"); //$NON-NLS-1$
 		GridLayout layout = new GridLayout();
 		group.setLayout(layout);
 
 		// new copyright area
-		constraintCheck=new Button(group, SWT.CHECK);
+		constraintCheck = new Button(group, SWT.CHECK);
+		// Enable button by default, see bug #411256
+		constraintCheck.setSelection(true);
 		// should look 
-		constraintCheck.setText("Save OCL constraints into the definition");////$NON-NLS-N$
+		constraintCheck.setText("Save OCL constraints into the definition");	//$NON-NLS-1$
 		GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, true);
 		gd.heightHint = 60;
 		constraintCheck.setLayoutData(gd);
@@ -276,7 +278,7 @@ public class ProfileDefinitionDialog extends TitleAreaDialog {
 	 */
 	private Composite createCopyrightArea(Composite composite) {
 		Group group = new Group(composite, SWT.CENTER);
-		group.setText("Copyright");
+		group.setText("Copyright"); //$NON-NLS-1$
 		GridLayout layout = new GridLayout();
 		group.setLayout(layout);
 

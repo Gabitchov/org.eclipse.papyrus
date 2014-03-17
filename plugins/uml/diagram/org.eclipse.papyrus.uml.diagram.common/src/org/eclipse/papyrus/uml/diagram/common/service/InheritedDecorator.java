@@ -52,7 +52,7 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- *
+ * 
  * The decorator to represent inherited element This decorator adds a small
  * image ( the generalization icon) next to the UML Element which are inherited.
  * 3 positions are defined for the decoration :
@@ -62,8 +62,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  * <li>else if the element is in a compartment list : {@link PositionConstants#EAST} and margin =-1</li>
  * <li>else {@link PositionConstants#SOUTH_EAST} and margin = -1</li>
  * </ul>
- * 
- * @deprecated Replaced with the generic {@link org.eclipse.papyrus.infra.gmfdiag.common.decoration.ExternalReferenceMarker}
+ *
+ * @deprecated Replaced with the generic org.eclipse.papyrus.infra.gmfdiag.common.decoration.ExternalReferenceMarker
  */
 @Deprecated
 public class InheritedDecorator implements IDecorator {
@@ -86,7 +86,7 @@ public class InheritedDecorator implements IDecorator {
 	/**
 	 * Creates a new <code>AbstractDecorator</code> for the decorator target
 	 * passed in.
-	 *
+	 * 
 	 * @param decoratorTarget
 	 *        the object to be decorated
 	 */
@@ -96,7 +96,7 @@ public class InheritedDecorator implements IDecorator {
 
 	/**
 	 * Gets the object to be decorated.
-	 *
+	 * 
 	 * @return Returns the object to be decorated
 	 */
 	protected IDecoratorTarget getDecoratorTarget() {
@@ -132,7 +132,7 @@ public class InheritedDecorator implements IDecorator {
 	 * getDecoratorTargetClassifier Utility method to determine if the
 	 * decoratorTarget is a supported type for this decorator and return the
 	 * associated Classifier element.
-	 *
+	 * 
 	 * @param decoratorTarget
 	 *        IDecoratorTarget to check and return valid Classifier target.
 	 * @return node Node if IDecoratorTarget can be supported, null otherwise.
@@ -205,7 +205,7 @@ public class InheritedDecorator implements IDecorator {
 
 	/**
 	 * Returns a figure corresponding to this image
-	 *
+	 * 
 	 * @param image
 	 *        a image
 	 * @return a figure corresponding to this image
@@ -220,7 +220,7 @@ public class InheritedDecorator implements IDecorator {
 
 	/**
 	 * Returns the direction to set the decorator for the node
-	 *
+	 * 
 	 * @param node
 	 *        the node
 	 * @return the direction to set the decorator for the node direction can be
@@ -264,7 +264,7 @@ public class InheritedDecorator implements IDecorator {
 
 	/**
 	 * Tests if the compartment is a compartment list
-	 *
+	 * 
 	 * @param node
 	 *        the node on which we want add an Overlay
 	 * @return <code>true</code> if the compartment is managed by an {@link XYLayoutEditPolicy}
@@ -288,7 +288,7 @@ public class InheritedDecorator implements IDecorator {
 
 	/**
 	 * Tests if the node is an inherited element
-	 *
+	 * 
 	 * @param node
 	 *        a node
 	 * @return <code>true</code> if the node is an inherited element <code>false</code> if not
@@ -325,7 +325,7 @@ public class InheritedDecorator implements IDecorator {
 	/**
 	 * getDescriptionStyle Accessor to retrieve the description style from a
 	 * Node.
-	 *
+	 * 
 	 * @param node
 	 *        Node to retrieve the description style from.
 	 * @return DescriptionStyle style object
@@ -340,9 +340,9 @@ public class InheritedDecorator implements IDecorator {
 	private NotificationListener notificationListener = new NotificationListener() {
 
 		/**
-		 *
+		 * 
 		 * @see org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener#notifyChanged(org.eclipse.emf.common.notify.Notification)
-		 *
+		 * 
 		 * @param notification
 		 */
 		@Override
@@ -427,7 +427,7 @@ public class InheritedDecorator implements IDecorator {
 
 	/**
 	 * Tests if the element can be inherited
-	 *
+	 * 
 	 * @param semanticElement
 	 *        the element to test
 	 * @return <code>true</code> if the element can be inherited

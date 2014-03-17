@@ -14,14 +14,13 @@
 package org.eclipse.papyrus.sysml.requirements.internal.impl;
 
 import java.util.Iterator;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
@@ -46,7 +45,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * 
  * @generated
  */
-public class TestCaseImpl extends EObjectImpl implements TestCase {
+public class TestCaseImpl extends MinimalEObjectImpl.Container implements TestCase {
 
 	/**
 	 * The cached value of the '{@link #getBase_Behavior() <em>Base Behavior</em>}' reference.

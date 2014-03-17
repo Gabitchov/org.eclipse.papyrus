@@ -22,7 +22,6 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.preference.PreferenceDialog;
-import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 
@@ -30,7 +29,7 @@ import org.eclipse.ui.dialogs.PreferencesUtil;
 public class SelectAndValidateSubtreeCommand extends AbstractValidateCommand {
 
 	public SelectAndValidateSubtreeCommand(EObject selectedElement, IPapyrusDiagnostician diagnostician) {
-		super("Validate subtree", TransactionUtil.getEditingDomain(selectedElement), selectedElement, diagnostician);
+		super(Messages.ValidateSubtreeCommand_ValidateSubtree, TransactionUtil.getEditingDomain(selectedElement), selectedElement, diagnostician);
 	}
 
 	/**
@@ -39,8 +38,8 @@ public class SelectAndValidateSubtreeCommand extends AbstractValidateCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		String idRootPage = "org.eclipse.emf.validation.ui.rootPage";
-		String idConstraints = "org.eclipse.emf.validation.constraintsPrefs";
+		String idRootPage = "org.eclipse.emf.validation.ui.rootPage"; //$NON-NLS-1$
+		String idConstraints = "org.eclipse.emf.validation.constraintsPrefs"; //$NON-NLS-1$
 		String filter[] = {
 			idRootPage,
 			idConstraints

@@ -20,7 +20,7 @@ package org.eclipse.papyrus.eastadl.structure.functionmodeling;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Analysis Function Prototype</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * The AnalysisFunctionPrototype represents references to the occurrence of the AnalysisFunctionType that types it when it acts as a part.
  * 
@@ -34,27 +34,28 @@ package org.eclipse.papyrus.eastadl.structure.functionmodeling;
  * Extension:
  * UML Property, specialization of SysML::BlockProperty
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.AnalysisFunctionPrototype#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.AnalysisFunctionPrototype#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPackage#getAnalysisFunctionPrototype()
  * @model
  * @generated
  */
 public interface AnalysisFunctionPrototype extends FunctionPrototype {
+
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Type</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPackage#getAnalysisFunctionPrototype_Type()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"

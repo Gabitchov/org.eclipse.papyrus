@@ -75,6 +75,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
+import org.eclipse.uml2.uml.UseCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -141,8 +142,8 @@ public class ReadOnlyObjectEditAdviceTest {
 	 */
 	@Test
 	public void testSetCommand_referenceOppositeAdd() {
-		Dependency dep = classA.getClientDependency("A-->D"); //$NON-NLS-1$
-		ICommand command = getEditCommand(dep, new SetRequest(dep, UMLPackage.Literals.DEPENDENCY__CLIENT, classB)); //$NON-NLS-1$
+		UseCase doIt = classA.getUseCase("DoIt"); //$NON-NLS-1$
+		ICommand command = getEditCommand(doIt, new SetRequest(doIt, UMLPackage.Literals.USE_CASE__SUBJECT, classB)); //$NON-NLS-1$
 		assertExecutability(command);
 	}
 
@@ -151,20 +152,19 @@ public class ReadOnlyObjectEditAdviceTest {
 	 */
 	@Test
 	public void testSetCommand_referenceOppositeRemove() {
-		final Dependency dep = classA.getClientDependency("A-->D"); //$NON-NLS-1$
+		final UseCase doIt = classA.getUseCase("DoIt"); //$NON-NLS-1$
 
 		// By-pass edit-helpers to set up the dependency
 		executeUnprotected(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				dep.getClients().clear();
-				dep.getClients().add(classB); // the read-only object
+				doIt.getSubjects().clear();
+				doIt.getSubjects().add(classB); // the read-only object
 			}
 		});
 
-		Type classD = writablePackage.getOwnedType("D"); //$NON-NLS-1$
-		ICommand command = getEditCommand(dep, new SetRequest(dep, UMLPackage.Literals.DEPENDENCY__CLIENT, ImmutableList.of(classD))); //$NON-NLS-1$
+		ICommand command = getEditCommand(doIt, new SetRequest(doIt, UMLPackage.Literals.USE_CASE__SUBJECT, ImmutableList.of(classA))); //$NON-NLS-1$
 		assertExecutability(command);
 	}
 
@@ -233,18 +233,18 @@ public class ReadOnlyObjectEditAdviceTest {
 
 	@Test
 	public void testDestroyReferenceCommand_referencedOpposite() {
-		final Dependency dep = classA.getClientDependency("A-->D"); //$NON-NLS-1$
+		final UseCase doIt = classA.getUseCase("DoIt"); //$NON-NLS-1$
 
 		// By-pass edit-helpers to set up the relationship
 		executeUnprotected(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				dep.getClients().add(classB);
+				doIt.getSubjects().add(classB);
 			}
 		});
 
-		ICommand command = getEditCommand(writablePackage, new DestroyReferenceRequest(dep, UMLPackage.Literals.DEPENDENCY__CLIENT, classB, false)); //$NON-NLS-1$
+		ICommand command = getEditCommand(doIt, new DestroyReferenceRequest(doIt, UMLPackage.Literals.USE_CASE__SUBJECT, classB, false)); //$NON-NLS-1$
 		assertExecutability(command);
 	}
 

@@ -20,7 +20,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.AssociationClassHelper;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.AssociationClassLinkCreateCommand;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Type;
@@ -28,32 +30,13 @@ import org.eclipse.uml2.uml.Type;
 /**
  * custom class to create an association
  */
-public class CAssociationClassCreateCommand extends org.eclipse.papyrus.uml.diagram.clazz.edit.commands.AssociationClassLinkCreateCommand {
+public class CAssociationClassCreateCommand extends AssociationClassLinkCreateCommand {
 
-	// code copy from the super class!
-	protected Package deduceContainer(EObject source, EObject target) {
-		// Find container element for the new link.
-		// Climb up by containment hierarchy starting from the source
-		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null; element = element.eContainer()) {
-			if(element instanceof Package) {
-				return (Package)element;
-			}
-		}
-		return null;
-	}
-
-	protected Package container;
-
-	protected EObject source;
-
-	protected EObject target;
-
-	public CAssociationClassCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	private final Diagram diagram;
+	
+	public CAssociationClassCreateCommand(CreateRelationshipRequest request, EObject source, EObject target, Diagram diagram) {
 		super(request, source, target);
-		this.source = source;
-		this.target = target;
-		container = deduceContainer(source, target);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -65,7 +48,7 @@ public class CAssociationClassCreateCommand extends org.eclipse.papyrus.uml.diag
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if(source instanceof Type && target instanceof Type && container instanceof Package) {
-			AssociationClass newElement = (AssociationClass)AssociationClassHelper.createAssociationClass(getEditingDomain(), (Type)source, (Type)target, (Package)container);
+			AssociationClass newElement = (AssociationClass)AssociationClassHelper.createAssociationClass(getEditingDomain(), (Type)source, (Type)target, (Package)container, diagram);
 			((CreateElementRequest)getRequest()).setNewElement(newElement);
 			return CommandResult.newOKCommandResult(newElement);
 		}

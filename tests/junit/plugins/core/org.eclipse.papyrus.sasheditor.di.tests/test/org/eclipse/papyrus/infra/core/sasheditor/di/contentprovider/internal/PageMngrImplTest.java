@@ -1,7 +1,7 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL 
+ * Copyright (c) 2009 CEA LIST & LIFL
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory;
 import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractPanel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.impl.TabFolderImpl;
@@ -31,6 +32,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.swt.SWT;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 
 
 /**
@@ -67,6 +69,12 @@ public class PageMngrImplTest extends TestCase {
 		super.setUp();
 
 		SashWindowsMngr diSashModel = DiUtils.createDefaultSashWindowsMngr();
+
+		//Fix bug to match refactoring in Bug 429239. The current implementation computes allPages() dynamically,
+		//and doesn't support addPage() and removePage() anymore
+		//Because this test is used in a different context, where allPages() cannot be computed dynamically,
+		//we need to create a specific setup
+		diSashModel.setPageList(DiFactory.eINSTANCE.createPageList());
 		ContentChangedEventProvider eventProvider = new ContentChangedEventProvider(diSashModel);
 		pageMngr = new PageMngrImpl(diSashModel, eventProvider);
 
@@ -136,6 +144,7 @@ public class PageMngrImplTest extends TestCase {
 	 * Test method for
 	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#addPage(org.eclipse.emf.ecore.EObject)}.
 	 */
+	@Ignore("This test is deprecated (Bug 429239)")
 	public void testAddPage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -375,6 +384,7 @@ public class PageMngrImplTest extends TestCase {
 	 * Test method for
 	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#removePage(org.eclipse.emf.ecore.EObject)}.
 	 */
+	@Ignore("This test is deprecated (Bug 429239)")
 	public void testRemovePage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -434,7 +444,7 @@ public class PageMngrImplTest extends TestCase {
 		contentProvider.getContentChangedEventProvider().addListener(changeListener);
 
 		// Create 3 editors, move one in another table
-		// Then remove the moved one.		
+		// Then remove the moved one.
 
 		// Add identifiers
 		// Use Object as identifiers.

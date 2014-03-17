@@ -8,6 +8,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ArtifactCreateCommandACN;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 
@@ -44,14 +45,11 @@ public class ArtifactCompositeCompartmentItemSemanticEditPolicy extends UMLBaseI
 			}
 		}
 		if(UMLElementTypes.Artifact_28 == baseElementType) {
-
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ArtifactCreateCommandACN(req));
-
+			return getGEFWrapper(new ArtifactCreateCommandACN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

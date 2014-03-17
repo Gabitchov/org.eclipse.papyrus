@@ -56,7 +56,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	 */
 	public static RequirementsFactory init() {
 		try {
-			RequirementsFactory theRequirementsFactory = (RequirementsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements");
+			RequirementsFactory theRequirementsFactory = (RequirementsFactory)EPackage.Registry.INSTANCE.getEFactory(RequirementsPackage.eNS_URI);
 			if(theRequirementsFactory != null) {
 				return theRequirementsFactory;
 			}

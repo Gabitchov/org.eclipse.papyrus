@@ -11,9 +11,12 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *  Christian W. Damus (CEA) - Support object-level read/write controls (CDO)
  *  Christian W. Damus (CEA) - bug 323802
+ *  Christian W. Damus (CEA) - bug 429826
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
+
+import static org.eclipse.papyrus.infra.core.utils.TransactionHelper.isInteractive;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -22,6 +25,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -29,17 +33,17 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.impl.InternalTransaction;
 import org.eclipse.emf.transaction.impl.TransactionChangeRecorder;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
-import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.IRollbackStatus;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.resource.RollbackStatus;
+import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
 import org.eclipse.papyrus.infra.onefile.utils.OneFileUtils;
@@ -53,14 +57,11 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 
 	@Override
 	public boolean isReadOnly(Resource resource) {
-		if(resource != null && resource.getURI() != null) {
-			return ReadOnlyManager.getReadOnlyHandler(this).anyReadOnly(new URI[]{ resource.getURI() }).get();
-		}
-		return false;
+		return isReadOnly(ReadOnlyAxis.anyAxis(), resource);
 	}
 
 	public boolean isReadOnly(EObject eObject) {
-		return ReadOnlyManager.getReadOnlyHandler(this).isReadOnly(eObject).get();
+		return isReadOnly(ReadOnlyAxis.anyAxis(), eObject);
 	}
 	
 	@Override
@@ -92,8 +93,12 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 		InternalTransaction tx = getActiveTransaction();
 
 		// If there's no transaction, then there will be nothing to roll back.  And if it's unprotected, let the client do whatever.
-		// And, of course, don't interfere with rollback!
-		if((tx != null) && !tx.isRollingBack() && !Boolean.TRUE.equals(tx.getOptions().get(Transaction.OPTION_UNPROTECTED))) {
+		// And, of course, don't interfere with rollback!  Finally, if we're already going to roll back, don't bother
+		if((tx != null) && !tx.isRollingBack() //
+			&& !Boolean.TRUE.equals(tx.getOptions().get(Transaction.OPTION_UNPROTECTED)) //
+			&& !willRollBack(tx)) {
+			
+			final Set<ReadOnlyAxis> axes = TransactionHelper.getReadOnlyAxisOption(tx);
 			boolean readOnly;
 
 			// Check for Resource first because CDO resources *are* EObjects
@@ -103,10 +108,12 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 					// We must be able to modify read-only resources in order to load them
 					return;
 				}
-				readOnly = isReadOnly(resource) && !makeWritable(resource);
+				// If it's not an interactive transaction, don't try to make the resource writable because that would prompt the user
+				readOnly = isReadOnly(axes, resource) && !(isInteractive(tx) && makeWritable(axes, resource));
 			} else if(object instanceof EObject) {
 				EObject eObject = (EObject)object;
-				readOnly = isReadOnly(eObject) && !makeWritable(eObject);
+				// If it's not an interactive transaction, don't try to make the object writable because that would prompt the user
+				readOnly = isReadOnly(axes, eObject) && !(isInteractive(tx) && makeWritable(axes, eObject));
 			} else {
 				// If it's not an EMF-managed object, we don't care
 				readOnly = false;
@@ -120,35 +127,42 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 		}
 	}
 	
-	protected boolean makeWritable(Resource resource) {
-		URI[] uris = getCompositeModelURIs(resource.getURI());
-		IReadOnlyHandler handler = ReadOnlyManager.getReadOnlyHandler(this);
-
-		if(handler instanceof IReadOnlyHandler2) {
-			if(!((IReadOnlyHandler2)handler).canMakeWritable(uris).or(false)) {
-				return false;
-			}
+	private boolean willRollBack(Transaction tx) {
+		IStatus status = tx.getStatus();
+		return (status != null) && (status.getSeverity() >= IStatus.ERROR);
+	}
+	
+	protected boolean isReadOnly(Set<ReadOnlyAxis> axes, Resource resource) {
+		if((resource != null) && (resource.getURI() != null)) {
+			return ReadOnlyManager.getReadOnlyHandler(this).anyReadOnly(axes, new URI[]{ resource.getURI() }).get();
 		}
-
-		return handler.makeWritable(uris).get();
+		return false;
 	}
 
-	protected boolean makeWritable(EObject object) {
+	protected boolean isReadOnly(Set<ReadOnlyAxis> axes, EObject eObject) {
+		return ReadOnlyManager.getReadOnlyHandler(this).isReadOnly(axes, eObject).get();
+	}
+	
+	protected boolean makeWritable(Set<ReadOnlyAxis> axes, Resource resource) {
+		URI[] uris = getCompositeModelURIs(resource.getURI());
+		IReadOnlyHandler2 handler = ReadOnlyManager.getReadOnlyHandler(this);
+
+		if(!handler.canMakeWritable(axes, uris).or(false)) {
+			return false;
+		}
+
+		return handler.makeWritable(axes, uris).get();
+	}
+
+	protected boolean makeWritable(Set<ReadOnlyAxis> axes, EObject object) {
 		boolean result;
 
-		URI uri = EcoreUtil.getURI(object);
+		IReadOnlyHandler2 handler = ReadOnlyManager.getReadOnlyHandler(this);
 
-		// If it's a workspace resource, we don't have to worry about object-level read-only state
-		if(uri.isPlatformResource()) {
-			result = makeWritable(object.eResource());
+		if(!handler.canMakeWritable(axes, object).or(false)) {
+			result = false;
 		} else {
-			IReadOnlyHandler handler = ReadOnlyManager.getReadOnlyHandler(this);
-
-			if((handler instanceof IReadOnlyHandler2) && !((IReadOnlyHandler2)handler).canMakeWritable(object).or(false)) {
-				result = false;
-			} else {
-				result = handler.makeWritable(object).get();
-			}
+			result = handler.makeWritable(axes, object).get();
 		}
 
 		return result;

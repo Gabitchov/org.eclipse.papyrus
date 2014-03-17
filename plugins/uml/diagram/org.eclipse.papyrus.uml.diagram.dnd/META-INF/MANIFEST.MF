@@ -9,9 +9,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
  org.eclipse.papyrus.uml.tools;bundle-version="1.0.0",
  org.eclipse.papyrus.uml.diagram.clazz;bundle-version="1.0.0",
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
- org.eclipse.papyrus.uml.diagram.composite;bundle-version="1.0.0"
+ org.eclipse.papyrus.uml.diagram.composite;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.uml.diagram.dnd,
  org.eclipse.papyrus.uml.diagram.dnd.strategy.instancespecification,
  org.eclipse.papyrus.uml.diagram.dnd.strategy.instancespecification.command,

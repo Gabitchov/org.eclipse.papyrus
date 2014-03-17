@@ -8,16 +8,24 @@
    </extension>
  <extension id="papyrus.table.menuspapyrus.table.menu" name="Papyrus Table Menus" point="org.eclipse.ui.menus">
       <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
-         <menu icon="icons/table.gif" id="org.eclipse.papyrus.infra.nattable.popupmenu.createnattable" label="New Table (New version)" mnemonic="&amp;T" tooltip="The Papyrus Table Menu">
+         <menu icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/NewTable.gif" id="org.eclipse.papyrus.infra.nattable.popupmenu.createnattable" label="New Table" mnemonic="&amp;T" tooltip="The Papyrus Table Menu">
+            <dynamic
+                  class="org.eclipse.papyrus.infra.nattable.common.handlers.DynamicTablesMenuContribution"
+                  id="org.eclipse.papyrus.infra.nattable.common.handlers.DynamicTablesMenuContribution">
+            </dynamic>
          </menu>
       </menuContribution>
       <menuContribution allPopups="false" locationURI="menu:org.eclipse.papyrus.ui.menu?after=org.eclipse.papyrus.uml.diagram.ui.menu.diagrams">
          <menu
-               icon="icons/table.gif"
+               icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/NewTable.gif"
                id="org.eclipse.papyrus.infra.nattable.menu.createnattable"
-               label="New Table (New version)"
+               label="New Table"
                mnemonic="&amp;T"
                tooltip="The Papyrus Table Menu">
+            <dynamic
+                  class="org.eclipse.papyrus.infra.nattable.common.handlers.DynamicTablesMenuContribution"
+                  id="org.eclipse.papyrus.infra.nattable.common.handlers.DynamicTablesMenuContribution">
+            </dynamic>
          </menu>
       </menuContribution>
       
@@ -125,9 +133,9 @@
  <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
          <!--metamodel
-            nsURI="http://www.eclipse.org/uml2/4.0.0/UML"-->
+            nsURI="http://www.eclipse.org/uml2/5.0.0/UML"-->
       <metamodel
-            nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+            nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <adviceBinding
                class="org.eclipse.papyrus.infra.nattable.common.helper.advice.NatTableDuplicateEditHelperAdvice"
                id="org.eclipse.papyrus.infra.nattable.common.helper.advice.NatTableDuplicateEditHelperAdvice"
@@ -151,5 +159,71 @@
          commandId="org.eclipse.papyrus.infra.nattable.createFromCatalog.command"
          icon="icons/tableCatalog.png">
    </image>
+</extension>
+<extension
+      point="org.eclipse.core.runtime.adapters">
+   <factory
+         adaptableType="org.eclipse.papyrus.infra.nattable.model.nattable.Table"
+         class="org.eclipse.papyrus.infra.nattable.common.adapter.NattableAdapterFactory">
+      <adapter
+            type="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable">
+      </adapter>
+   </factory>
+</extension>
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="toolbar:org.eclipse.ui.main.toolbar">
+      <toolbar
+            id="org.eclipse.papyrus.infra.viewpoints.policy.toolbar">
+         <command
+               commandId="org.eclipse.papyrus.infra.viewpoints.policy.toolbar.tables.command"
+               icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/NewTable.gif"
+               id="org.eclipse.papyrus.infra.viewpoints.policy.toolbar.tables.command"
+               label="Create a new table ..."
+               style="pulldown"
+               tooltip="Create a new table ...">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </toolbar>
+   </menuContribution>
+   <menuContribution
+         allPopups="false"
+         locationURI="menu:org.eclipse.papyrus.infra.viewpoints.policy.toolbar.tables.command">
+      <dynamic
+            class="org.eclipse.papyrus.infra.nattable.common.handlers.DynamicTablesMenuContribution"
+            id="org.eclipse.papyrus.infra.nattable.common.handlers.DynamicTablesMenuContribution">
+      </dynamic>
+   </menuContribution>
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.infra.viewpoints.policy.commands"
+         defaultHandler="org.eclipse.papyrus.infra.viewpoints.policy.DynamicCommandHandler"
+         id="org.eclipse.papyrus.infra.viewpoints.policy.toolbar.tables.command"
+         name="Create Dynamic Table Command">
+   </command>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.viewpoints.policy.viewType">
+   <helper
+         class="org.eclipse.papyrus.infra.nattable.common.helper.TableCommandHelper">
+   </helper>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.viewpoints.policy.viewType">
+   <helper
+         class="org.eclipse.papyrus.infra.nattable.common.helper.SyncTableCommandHelper">
+   </helper>
 </extension>
 </plugin>

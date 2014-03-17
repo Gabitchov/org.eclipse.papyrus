@@ -35,7 +35,6 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ui.actions.ActionRegistry;
@@ -97,15 +96,15 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * implementation allows to register editors and context separately. An editor
  * should specify which context it need to run. This multi diagram editor allows
  * to show editor side by side in one or more sash windows.
- *
+ * 
  * The real implementation for the generic type T of SashMultiPageEditorPart is
  * actually di2.Diagram
- *
+ * 
  * @author cedric dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>
  *         Refactoring.
- *
+ * 
  *         TODO : remove GMF dependency !
  */
 public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IGotoMarker {
@@ -149,9 +148,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		/**
 		 * This method is called when the editor input is changed from the
 		 * ISaveAndDirtyService.
-		 *
+		 * 
 		 * @see org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener#editorInputChanged(org.eclipse.ui.part.FileEditorInput)
-		 *
+		 * 
 		 * @param fileEditorInput
 		 */
 		@Override
@@ -163,9 +162,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		/**
 		 * The isDirty flag has changed, reflect its new value
-		 *
+		 * 
 		 * @see org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener#isDirtyChanged()
-		 *
+		 * 
 		 */
 		@Override
 		public void isDirtyChanged() {
@@ -268,7 +267,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Get the contentOutlineRegistry. Create it if needed.
-	 *
+	 * 
 	 * @return the contentOutlineRegistry
 	 */
 	protected ContentOutlineRegistry getContentOutlineRegistry() {
@@ -288,7 +287,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Returns the service registry associated to the editor.
-	 *
+	 * 
 	 * @return the servicesRegistry The registry.
 	 */
 	@Override
@@ -301,7 +300,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Create the ServicesRegistry.
-	 *
+	 * 
 	 * @return
 	 */
 	private ServicesRegistry createServicesRegistry() {
@@ -320,7 +319,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	/**
 	 * Do nothing as we create the provider before any calls to this method.
 	 * Should not be called by subclasses.
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor#createPageProvider()
 	 */
 	@Override
@@ -330,14 +329,14 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Create the pageContentProvider.
-	 *
+	 * 
 	 * Removed since 0.10.0
-	 *
+	 * 
 	 * @param pageFactory
 	 * @param diResource
 	 *        Resource used to load/save the SashModel.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	//	protected ISashWindowsContentProvider createPageProvider(IPageModelFactory pageFactory, Resource diResource, TransactionalEditingDomain editingDomain) {
 	//
@@ -352,7 +351,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * Get The {@link IPageMngr} used to add, open, remove or close a diagram in
 	 * the SashWindow. This method is available as soon as the {@link CoreMultiDiagramEditor#init(IEditorSite, IEditorInput)} method is
 	 * called.
-	 *
+	 * 
 	 * @return
 	 */
 	protected IPageManager getIPageManager() throws IllegalStateException {
@@ -365,7 +364,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Get the ActionBarContributorRegistry. Creates it if necessary.
-	 *
+	 * 
 	 * @return
 	 */
 	protected ActionBarContributorRegistry getActionBarContributorRegistry() {
@@ -389,7 +388,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Create the ActionBarContributorRegistry.
-	 *
+	 * 
 	 * @return
 	 */
 	private ActionBarContributorRegistry createActionBarContributorRegistry() {
@@ -397,10 +396,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	}
 
 	/**
-	 *
-	 *
+	 * 
+	 * 
 	 * @param adapter
-	 *
+	 * 
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
@@ -683,14 +682,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 				if(pageManager.isOpen(pageIdentifier)) {
 					pageManager.selectPage(pageIdentifier);
 				} else {
-					transactionalEditingDomain.getCommandStack().execute(new RecordingCommand(transactionalEditingDomain, "Open page") {
-
-						@Override
-						protected void doExecute() {
-							pageManager.openPage(pageIdentifier);
-						}
-					});
-
+					pageManager.openPage(pageIdentifier);
 				}
 			}
 		}
@@ -748,9 +740,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Overrides getPropertySheetPage.
-	 *
+	 * 
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor#getPropertySheetPage()
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
@@ -761,7 +753,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor#dispose()
-	 *
+	 * 
 	 */
 	@Override
 	public void dispose() {
@@ -828,9 +820,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Overrides doSave.
-	 *
+	 * 
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * @see org.eclipse.ui.part.EditorPart#doSave(org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
@@ -854,9 +846,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Overrides doSaveAs.
-	 *
+	 * 
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * @see org.eclipse.ui.part.EditorPart#doSaveAs()
 	 */
 	@Override
@@ -867,9 +859,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Overrides isSaveAsAllowed.
-	 *
+	 * 
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * @see org.eclipse.ui.part.EditorPart#isSaveAsAllowed()
 	 */
 	@Override
@@ -879,9 +871,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Overrides getContributorId.
-	 *
+	 * 
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * @see org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor#getContributorId()
 	 */
 	@Override
@@ -896,9 +888,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Overrides getDiagram.
-	 *
+	 * 
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart#getDiagram()
 	 */
 	//	public org.eclipse.gmf.runtime.notation.Diagram getDiagram() {
@@ -935,9 +927,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Overrides getDiagramGraphicalViewer.
-	 *
+	 * 
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart#getDiagramGraphicalViewer()
 	 */
 	//	public IDiagramGraphicalViewer getDiagramGraphicalViewer() {
@@ -951,9 +943,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Overrides getEditingDomain.
-	 *
+	 * 
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * @see org.eclipse.emf.edit.domain.IEditingDomainProvider#getEditingDomain()
 	 */
 	public EditingDomain getEditingDomain() {
@@ -962,7 +954,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Throws an UnsupportedOperationException.
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor#getDiagramEditDomain()
 	 */
 	//	public DiagramEditDomain getDiagramEditDomain() {
@@ -973,9 +965,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	/**
 	 * Change the editor input.<BR>
 	 * <U>Note</U>: that method should be called within the UI-Thread.
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor#setEditorInput(org.eclipse.ui.IEditorInput)
-	 *
+	 * 
 	 * @param newInput
 	 *        The new input
 	 * @deprecated Not used anymore

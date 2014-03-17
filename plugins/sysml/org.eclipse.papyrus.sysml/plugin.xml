@@ -14,14 +14,89 @@
     <package 
        uri = "http://www.eclipse.org/papyrus/0.7.0/SysML" 
        class = "org.eclipse.papyrus.sysml.SysmlPackage"
-       genModel = "model/sysml.genmodel" /> 
+       genModel = "model/SysML.profile.genmodel" /> 
   </extension>
 
-  <extension point="org.eclipse.emf.ecore.extension_parser">
-    <parser 
-       type="SysML" 
-       class="org.eclipse.papyrus.sysml.util.SysmlResourceFactoryImpl" />
-  </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SysML.profile -->
+      <package
+            uri="http://www.eclipse.org/papyrus/0.7.0/SysML/ModelElements"
+            class="org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage"
+            genModel="model/SysML.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SysML.profile -->
+      <package
+            uri="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks"
+            class="org.eclipse.papyrus.sysml.blocks.BlocksPackage"
+            genModel="model/SysML.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SysML.profile -->
+      <package
+            uri="http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows"
+            class="org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage"
+            genModel="model/SysML.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SysML.profile -->
+      <package
+            uri="http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints"
+            class="org.eclipse.papyrus.sysml.constraints.ConstraintsPackage"
+            genModel="model/SysML.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SysML.profile -->
+      <package
+            uri="http://www.eclipse.org/papyrus/0.7.0/SysML/Activities"
+            class="org.eclipse.papyrus.sysml.activities.ActivitiesPackage"
+            genModel="model/SysML.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SysML.profile -->
+      <package
+            uri="http://www.eclipse.org/papyrus/0.7.0/SysML/Allocations"
+            class="org.eclipse.papyrus.sysml.allocations.AllocationsPackage"
+            genModel="model/SysML.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SysML.profile -->
+      <package
+            uri="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements"
+            class="org.eclipse.papyrus.sysml.requirements.RequirementsPackage"
+            genModel="model/SysML.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SysML.profile -->
+      <package
+            uri="http://www.eclipse.org/papyrus/0.7.0/SysML/Interactions"
+            class="org.eclipse.papyrus.sysml.interactions.InteractionsPackage"
+            genModel="model/SysML.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SysML.profile -->
+      <package
+            uri="http://www.eclipse.org/papyrus/0.7.0/SysML/StateMachines"
+            class="org.eclipse.papyrus.sysml.statemachines.StatemachinesPackage"
+            genModel="model/SysML.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SysML.profile -->
+      <package
+            uri="http://www.eclipse.org/papyrus/0.7.0/SysML/UseCases"
+            class="org.eclipse.papyrus.sysml.usecases.UsecasesPackage"
+            genModel="model/SysML.profile.genmodel"/>
+   </extension>
+
   
   <extension
         point="org.eclipse.uml2.uml.generated_package">
@@ -29,19 +104,7 @@
    			uri="http://www.eclipse.org/papyrus/0.7.0/SysML" 
    			location="pathmap://SysML_PROFILES/SysML.profile.uml#_TZ_nULU5EduiKqCzJMWbGw"/> 
   </extension>  
-  
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://www.eclipse.org/papyrus/0.7.0/SysML/ModelElements" 
-       class = "org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage"
-       genModel = "model/sysml.genmodel" /> 
-  </extension>
 
-  <extension point="org.eclipse.emf.ecore.extension_parser">
-    <parser 
-       type="ModelElements" 
-       class="org.eclipse.papyrus.sysml.modelelements.util.ModelelementsResourceFactoryImpl" />
-  </extension>
   
   <extension
         point="org.eclipse.uml2.uml.generated_package">
@@ -49,19 +112,6 @@
    			uri="http://www.eclipse.org/papyrus/0.7.0/SysML/ModelElements" 
    			location="pathmap://SysML_PROFILES/SysML.profile.uml#_Gx8MgLX7EduFmqQsrNB9lw"/> 
   </extension>  
-
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks" 
-       class = "org.eclipse.papyrus.sysml.blocks.BlocksPackage"
-       genModel = "model/sysml.genmodel" /> 
-  </extension>
-
-  <extension point="org.eclipse.emf.ecore.extension_parser">
-    <parser 
-       type="Blocks" 
-       class="org.eclipse.papyrus.sysml.blocks.util.BlocksResourceFactoryImpl" />
-  </extension>
   
   <extension
         point="org.eclipse.uml2.uml.generated_package">
@@ -69,19 +119,6 @@
    			uri="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks" 
    			location="pathmap://SysML_PROFILES/SysML.profile.uml#_fSw28LX7EduFmqQsrNB9lw"/> 
   </extension>    
-
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows" 
-       class = "org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage"
-       genModel = "model/sysml.genmodel" /> 
-  </extension>
-
-  <extension point="org.eclipse.emf.ecore.extension_parser">
-    <parser 
-       type="PortAndFlows" 
-       class="org.eclipse.papyrus.sysml.portandflows.util.PortandflowsResourceFactoryImpl" />
-  </extension>
   
   <extension
         point="org.eclipse.uml2.uml.generated_package">
@@ -90,19 +127,6 @@
    			location="pathmap://SysML_PROFILES/SysML.profile.uml#_rpx28LX7EduFmqQsrNB9lw"/> 
   </extension>      
 
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints" 
-       class = "org.eclipse.papyrus.sysml.constraints.ConstraintsPackage"
-       genModel = "model/sysml.genmodel" /> 
-  </extension>
-
-  <extension point="org.eclipse.emf.ecore.extension_parser">
-    <parser 
-       type="Constraints" 
-       class="org.eclipse.papyrus.sysml.constraints.util.ConstraintsResourceFactoryImpl" />
-  </extension>
-  
   <extension
         point="org.eclipse.uml2.uml.generated_package">
         <profile 
@@ -110,19 +134,6 @@
    			location="pathmap://SysML_PROFILES/SysML.profile.uml#_5WYJ0LX7EduFmqQsrNB9lw"/> 
   </extension>        
 
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://www.eclipse.org/papyrus/0.7.0/SysML/Activities" 
-       class = "org.eclipse.papyrus.sysml.activities.ActivitiesPackage"
-       genModel = "model/sysml.genmodel" /> 
-  </extension>
-
-  <extension point="org.eclipse.emf.ecore.extension_parser">
-    <parser 
-       type="Activities" 
-       class="org.eclipse.papyrus.sysml.activities.util.ActivitiesResourceFactoryImpl" />
-  </extension>
-  
   <extension
         point="org.eclipse.uml2.uml.generated_package">
         <profile 
@@ -130,19 +141,6 @@
    			location="pathmap://SysML_PROFILES/SysML.profile.uml#_C2zXMLX8EduFmqQsrNB9lw"/> 
   </extension>       
 
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://www.eclipse.org/papyrus/0.7.0/SysML/Allocations" 
-       class = "org.eclipse.papyrus.sysml.allocations.AllocationsPackage"
-       genModel = "model/sysml.genmodel" /> 
-  </extension>
-
-  <extension point="org.eclipse.emf.ecore.extension_parser">
-    <parser 
-       type="Allocations" 
-       class="org.eclipse.papyrus.sysml.allocations.util.AllocationsResourceFactoryImpl" />
-  </extension>
-  
   <extension
         point="org.eclipse.uml2.uml.generated_package">
         <profile 
@@ -150,39 +148,13 @@
    			location="pathmap://SysML_PROFILES/SysML.profile.uml#_NxdG4LX8EduFmqQsrNB9lw"/> 
   </extension>     
 
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" 
-       class = "org.eclipse.papyrus.sysml.requirements.RequirementsPackage"
-       genModel = "model/sysml.genmodel" /> 
-  </extension>
-
-  <extension point="org.eclipse.emf.ecore.extension_parser">
-    <parser 
-       type="Requirements" 
-       class="org.eclipse.papyrus.sysml.requirements.util.RequirementsResourceFactoryImpl" />
-  </extension>
-  
   <extension
         point="org.eclipse.uml2.uml.generated_package">
         <profile 
    			uri="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" 
    			location="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/> 
   </extension>     
-
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://www.eclipse.org/papyrus/0.7.0/SysML/Interactions" 
-       class = "org.eclipse.papyrus.sysml.interactions.InteractionsPackage"
-       genModel = "model/sysml.genmodel" /> 
-  </extension>
-
-  <extension point="org.eclipse.emf.ecore.extension_parser">
-    <parser 
-       type="Interactions" 
-       class="org.eclipse.papyrus.sysml.interactions.util.InteractionsResourceFactoryImpl" />
-  </extension>
-  
+    
   <extension
         point="org.eclipse.uml2.uml.generated_package">
         <profile 
@@ -190,47 +162,19 @@
    			location="pathmap://SysML_PROFILES/SysML.profile.uml#_meOioLX8EduFmqQsrNB9lw"/> 
   </extension> 
 
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://www.eclipse.org/papyrus/0.7.0/SysML/StateMachines" 
-       class = "org.eclipse.papyrus.sysml.statemachines.StatemachinesPackage"
-       genModel = "model/sysml.genmodel" /> 
-  </extension>
-
-  <extension point="org.eclipse.emf.ecore.extension_parser">
-    <parser 
-       type="StateMachines" 
-       class="org.eclipse.papyrus.sysml.statemachines.util.StatemachinesResourceFactoryImpl" />
-  </extension>
-
   <extension
         point="org.eclipse.uml2.uml.generated_package">
         <profile 
    			uri="http://www.eclipse.org/papyrus/0.7.0/SysML/StateMachines" 
    			location="pathmap://SysML_PROFILES/SysML.profile.uml#_nAF5kLX8EduFmqQsrNB9lw"/> 
-  </extension> 
-
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://www.eclipse.org/papyrus/0.7.0/SysML/UseCases" 
-       class = "org.eclipse.papyrus.sysml.usecases.UsecasesPackage"
-       genModel = "model/sysml.genmodel" /> 
   </extension>
-
-  <extension point="org.eclipse.emf.ecore.extension_parser">
-    <parser 
-       type="UseCases" 
-       class="org.eclipse.papyrus.sysml.usecases.util.UsecasesResourceFactoryImpl" />
-  </extension>
-    
   <extension
         point="org.eclipse.uml2.uml.generated_package">
-        <profile 
-   			uri="http://www.eclipse.org/papyrus/0.7.0/SysML/UseCases" 
-   			location="pathmap://SysML_PROFILES/SysML.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/> 
+     <profile
+           uri="http://www.eclipse.org/papyrus/0.7.0/SysML/UseCases"
+           location="pathmap://SysML_PROFILES/SysML.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/>
   </extension> 
-      
-   <extension
+  <extension
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
             source="pathmap://SysML_LIBRARIES/"
@@ -240,24 +184,23 @@
             target="platform:/plugin/org.eclipse.papyrus.sysml/model/"/>
    </extension>
    <extension
-         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
-      <profile
-            description="UML profile for SysML (from OMG SysML V1.1 formal/2008-11-02)"
-            iconpath="icons/SysMLProfile.gif"
-            name="SysML"
-            path="pathmap://SysML_PROFILES/SysML.profile.uml"
-            provider="CEA LIST">
-      </profile>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
-      <library
-            description="UML profile for SysML (from OMG SysML V1.1 formal/2008-11-02)"
-            iconpath="icons/SysMLLibrary.gif"
-            name="SysMLPrimitiveTypes"
-            path="pathmap://SysML_LIBRARIES/SysMLPrimitiveTypes.uml"
-            provider="CEA LIST">
-      </library>
-   </extension>
-
+        point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+     <profile
+           description="UML profile for SysML (from OMG SysML V1.1 formal/2008-11-02)"
+           iconpath="icons/SysMLProfile.gif"
+           name="SysML"
+           path="pathmap://SysML_PROFILES/SysML.profile.uml"
+           provider="CEA LIST">
+     </profile>
+  </extension>
+  <extension
+        point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+     <library
+           description="UML profile for SysML (from OMG SysML V1.1 formal/2008-11-02)"
+           iconpath="icons/SysMLLibrary.gif"
+           name="SysMLPrimitiveTypes"
+           path="pathmap://SysML_LIBRARIES/SysMLPrimitiveTypes.uml"
+           provider="CEA LIST">
+     </library>
+  </extension>    
 </plugin>

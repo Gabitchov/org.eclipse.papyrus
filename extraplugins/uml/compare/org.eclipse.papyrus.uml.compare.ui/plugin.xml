@@ -49,7 +49,7 @@
             class="org.eclipse.papyrus.uml.compare.ui.provider.PapyrusCompareAdapterFactory"
             ranking="11"
             supportedTypes="org.eclipse.emf.edit.provider.IItemLabelProvider"
-            uri="http://www.eclipse.org/uml2/4.0.0/UML">
+            uri="http://www.eclipse.org/uml2/5.0.0/UML">
       </factory>
    </extension>
 

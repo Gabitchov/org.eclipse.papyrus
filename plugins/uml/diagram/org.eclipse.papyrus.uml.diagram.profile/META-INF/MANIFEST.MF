@@ -78,13 +78,12 @@ Require-Bundle: org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.0.
  org.eclipse.emf.ecore.edit,
  org.eclipse.ocl.ecore,
  org.eclipse.emf.validation,
- org.eclipse.gef
+ org.eclipse.gef,
+ org.eclipse.papyrus.infra.viewpoints.configuration;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.profile.part.UMLDiag
- ramEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.profile;singleton
- :=true
-
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramEditorPlugin
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.profile; singleton:=true

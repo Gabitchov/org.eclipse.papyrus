@@ -15,33 +15,45 @@ package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
-import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
-import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
-public class IsDiagramContainer extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Boolean> {
+public class IsDiagramContainer extends AbstractEditorContainerQuery implements IJavaQuery2<EObject, Boolean> {
 
 	/**
 	 * Return true if the element is a Diagram Container
 	 */
-	public Boolean evaluate(final EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
-		if(roots == null) {
-			return false;
-		}
 
-		while(roots.hasNext()) {
-			EObject root = roots.next();
-			if(root instanceof Diagram) {
-				if(EcoreUtil.equals(((Diagram)root).getElement(), context)) {
-					return true;
+	public Boolean evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
+		ParameterValue parameterValue= (ParameterValue)parameterValues.getParameterValueByName("eStructuralFeature");
+		EStructuralFeature eStructuralFeature=(EStructuralFeature)parameterValue.getValue();
+		if((eStructuralFeature instanceof FacetReference)&&("diagrams".equals((eStructuralFeature).getName()))){
+
+			Iterator<EObject> roots = NavigatorUtils.getNotationRoots(source);
+			if(roots == null) {
+				return false;
+			}
+
+			while(roots.hasNext()) {
+				EObject root = roots.next();
+				if(root instanceof Diagram) {
+					if (EcoreUtil.equals(DiagramUtils.getOwner((Diagram) root), source)) {
+						return true;
+					}
 				}
 			}
+			return false;
 		}
-		return false;
+		return true;
 	}
 }

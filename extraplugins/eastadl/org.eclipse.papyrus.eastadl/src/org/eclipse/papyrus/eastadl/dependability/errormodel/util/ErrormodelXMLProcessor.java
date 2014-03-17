@@ -27,6 +27,7 @@ import org.eclipse.papyrus.eastadl.dependability.errormodel.ErrormodelPackage;
  * This class contains helper methods to serialize and deserialize XML documents
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ErrormodelXMLProcessor extends XMLProcessor {
@@ -35,22 +36,24 @@ public class ErrormodelXMLProcessor extends XMLProcessor {
 	 * Public constructor to instantiate the helper.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ErrormodelXMLProcessor() {
 		super((EPackage.Registry.INSTANCE));
 		ErrormodelPackage.eINSTANCE.eClass();
 	}
-	
+
 	/**
 	 * Register for "*" and "xml" file extensions the ErrormodelResourceFactoryImpl factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
+		if(registrations == null) {
 			super.getRegistrations();
 			registrations.put(XML_EXTENSION, new ErrormodelResourceFactoryImpl());
 			registrations.put(STAR_EXTENSION, new ErrormodelResourceFactoryImpl());

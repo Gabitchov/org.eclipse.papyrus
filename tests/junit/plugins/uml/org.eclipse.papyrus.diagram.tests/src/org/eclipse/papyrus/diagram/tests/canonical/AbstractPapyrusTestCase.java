@@ -14,37 +14,52 @@
 package org.eclipse.papyrus.diagram.tests.canonical;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 
 import junit.framework.TestCase;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
+import org.eclipse.papyrus.uml.tools.model.UmlModel;
+import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -209,6 +224,10 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	 */
 	protected abstract String getFileName();
 
+	protected String[] getRequiredProfiles() {
+		return new String[0];
+	}
+
 	/**
 	 * Project creation.
 	 */
@@ -262,7 +281,35 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 				} catch (ServiceException ex) {
 					//Ignore exceptions
 				}
-				// diResourceSet.createsModels(file);
+
+				// Apply the required profiles
+				ArrayList<IFile> modifiedFiles = new ArrayList<IFile>();
+				modifiedFiles.add(file);
+				ICommand commandProfiles = new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), "Apply profiles", modifiedFiles) {
+					@Override
+					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+						UmlModel resModel = UmlUtils.getUmlModel(diResourceSet);
+						EObject obj;
+						try {
+							obj = resModel.lookupRoot();
+						} catch (NotFoundException e) {
+							return CommandResult.newErrorCommandResult(e);
+						}
+						if (obj instanceof Model) {
+							Model model = (Model) obj;
+							for (String uri : getRequiredProfiles()) {
+								EPackage definition = EPackage.Registry.INSTANCE.getEPackage(uri);
+								if (definition != null) {
+									Profile profile = UMLUtil.getProfile(definition, model);
+									model.applyProfile(profile);
+								}
+							}
+						}
+						return CommandResult.newOKCommandResult();
+					}
+				};
+				commandProfiles.execute(new NullProgressMonitor(), null);
+
 				ICreationCommand command = getDiagramCommandCreation();
 				command.createDiagram(diResourceSet, null, "DiagramToTest");
 				diResourceSet.save(new NullProgressMonitor());

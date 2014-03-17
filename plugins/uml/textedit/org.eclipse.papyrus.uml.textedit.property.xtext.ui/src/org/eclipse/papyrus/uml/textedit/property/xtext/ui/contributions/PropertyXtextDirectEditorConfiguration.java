@@ -201,7 +201,7 @@ public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEd
 			DestroyElementRequest destroyDefaultValueRequest = new DestroyElementRequest(property.getDefaultValue(), false);
 			ICommand destroyDefaultValueCommand = provider.getEditCommand(destroyDefaultValueRequest);
 			updateCommand.add(destroyDefaultValueCommand);
-		} else {
+		} else if (newDefault != null) {
 			SetRequest setDefaultValueRequest = new SetRequest(property, UMLPackage.eINSTANCE.getProperty_Default(), newDefault);
 			ICommand setDefaultValueCommand = provider.getEditCommand(setDefaultValueRequest);
 			updateCommand.add(setDefaultValueCommand);

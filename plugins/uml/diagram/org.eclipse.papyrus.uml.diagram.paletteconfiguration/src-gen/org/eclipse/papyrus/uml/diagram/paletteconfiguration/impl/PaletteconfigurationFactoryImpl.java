@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.*;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.IconDescriptor;
@@ -38,7 +39,7 @@ public class PaletteconfigurationFactoryImpl extends EFactoryImpl implements Pal
 	 */
 	public static PaletteconfigurationFactory init() {
 		try {
-			PaletteconfigurationFactory thePaletteconfigurationFactory = (PaletteconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"); 
+			PaletteconfigurationFactory thePaletteconfigurationFactory = (PaletteconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory(PaletteconfigurationPackage.eNS_URI);
 			if (thePaletteconfigurationFactory != null) {
 				return thePaletteconfigurationFactory;
 			}

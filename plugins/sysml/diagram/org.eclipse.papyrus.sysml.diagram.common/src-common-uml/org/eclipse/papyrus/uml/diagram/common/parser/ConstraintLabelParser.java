@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -62,7 +63,7 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 
 		String editString = "";
 
-		EObject eObject = (EObject)element.getAdapter(EObject.class);
+		EObject eObject =EMFHelper.getEObject(element);
 		if((eObject != null) && (eObject instanceof Constraint)) {
 			Constraint semElement = (Constraint)eObject;
 
@@ -97,7 +98,7 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 		}
 
 		String result = "";
-		EObject eObject = (EObject)element.getAdapter(EObject.class);
+		EObject eObject = EMFHelper.getEObject(element);
 
 		if((eObject != null) && (eObject instanceof Constraint)) {
 
@@ -135,7 +136,7 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 		ICommand command = UnexecutableCommand.INSTANCE;
 		SetRequest updateRequest = null;
 
-		Constraint constraint = (Constraint)element.getAdapter(EObject.class);
+		Constraint constraint = (Constraint)EMFHelper.getEObject(element);
 		if(constraint == null) {
 			return UnexecutableCommand.INSTANCE;
 		}

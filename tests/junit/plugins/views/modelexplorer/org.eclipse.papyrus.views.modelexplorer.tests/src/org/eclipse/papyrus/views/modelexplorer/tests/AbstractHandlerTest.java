@@ -38,6 +38,7 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPage;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
@@ -296,9 +297,7 @@ public abstract class AbstractHandlerTest {
 
 				// store the root of the model
 				Object[] visibleElement = commonViewer.getVisibleExpandedElements();
-				if(visibleElement[0] instanceof IAdaptable) {
-					modelRoot = (EObject)((IAdaptable)visibleElement[0]).getAdapter(EObject.class);
-				}
+					modelRoot = EMFHelper.getEObject(visibleElement[0]);
 
 				setStatus(Status.OK_STATUS);
 			}

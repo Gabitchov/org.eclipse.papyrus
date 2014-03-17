@@ -87,6 +87,7 @@ import org.eclipse.papyrus.sysml.SysmlPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
@@ -94,6 +95,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass eventFunctionFlowPortEClass = null;
@@ -101,6 +103,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass eventFunctionClientServerPortEClass = null;
@@ -108,6 +111,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass eventFunctionEClass = null;
@@ -115,6 +119,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum eventFunctionClientServerPortKindEEnum = null;
@@ -122,6 +127,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -129,16 +135,18 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link EventsPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link EventsPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead,
+	 * they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static EventsPackage init() {
-		if (isInited) return (EventsPackage)EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI);
+		if(isInited)
+			return (EventsPackage)EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI);
 
 		// Obtain or create and register package
 		EventsPackageImpl theEventsPackage = (EventsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new EventsPackageImpl());
@@ -240,7 +248,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		// Mark meta-data to indicate it can't be changed
 		theEventsPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(EventsPackage.eNS_URI, theEventsPackage);
 		return theEventsPackage;
@@ -249,6 +257,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -256,19 +265,19 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.timing.events.EventsPackage#eNS_URI
 	 * @see #init()
@@ -279,14 +288,16 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -311,6 +322,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEventFunction() {
@@ -320,6 +332,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEventFunction_Function() {
@@ -329,6 +342,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEventFunction_FunctionType() {
@@ -338,6 +352,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEventFunction_Function_path() {
@@ -347,6 +362,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEventFunctionClientServerPort() {
@@ -356,6 +372,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getEventFunctionClientServerPort_EventKind() {
@@ -365,6 +382,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEventFunctionClientServerPort_Port() {
@@ -374,6 +392,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEventFunctionClientServerPort_Port_path() {
@@ -383,6 +402,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getEventFunctionClientServerPortKind() {
@@ -392,6 +412,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEventFunctionFlowPort() {
@@ -401,6 +422,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEventFunctionFlowPort_Port() {
@@ -410,6 +432,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEventFunctionFlowPort_Port_path() {
@@ -419,6 +442,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EventsFactory getEventsFactory() {
@@ -426,14 +450,16 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package

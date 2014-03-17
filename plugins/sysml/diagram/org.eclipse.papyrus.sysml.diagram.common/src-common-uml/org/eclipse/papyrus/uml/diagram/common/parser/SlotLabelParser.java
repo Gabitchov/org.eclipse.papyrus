@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -63,7 +64,7 @@ public class SlotLabelParser implements ISemanticParser {
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		String result = "";
-		EObject eObject = (EObject)element.getAdapter(EObject.class);
+		EObject eObject =EMFHelper.getEObject(element);
 
 		if(eObject instanceof Slot) {
 			Slot slot = (Slot)eObject;

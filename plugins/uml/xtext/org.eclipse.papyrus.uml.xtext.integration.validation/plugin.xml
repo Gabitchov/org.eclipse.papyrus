@@ -10,7 +10,7 @@
       <constraintProvider
             cache="false">
          <package
-               namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML">
+               namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
          </package>
          <constraints
                categories="org.eclipse.papyrus.uml.xtext.integration.validation">

@@ -18,7 +18,7 @@
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesPackage"
-            genModel="Model/Preferences.genmodel"
+            genModel="model/Preferences.genmodel"
             uri="http://www.eclipse.org/papryus/properties/preferences">
       </package>
    </extension>
@@ -42,7 +42,7 @@
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.views.properties.root.RootPackage"
-            genModel="Model/PropertiesRoot.genmodel"
+            genModel="model/PropertiesRoot.genmodel"
             uri="http://www.eclipse.org/papyrus/properties/root">
       </package>
    </extension>

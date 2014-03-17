@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.requirements;
 
-import org.eclipse.uml2.uml.profile.l2.Trace;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Satisfy</b></em>'. <!-- end-user-doc -->
@@ -23,6 +22,6 @@ import org.eclipse.uml2.uml.profile.l2.Trace;
  * @model
  * @generated
  */
-public interface Satisfy extends Trace {
+public interface Satisfy extends org.eclipse.uml2.uml.profile.standard.Trace {
 
 } // Satisfy

@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.sysml.blocks.BindingConnector;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
@@ -29,14 +28,6 @@ import org.eclipse.papyrus.sysml.blocks.ParticipantProperty;
 import org.eclipse.papyrus.sysml.blocks.PropertySpecificType;
 import org.eclipse.papyrus.sysml.blocks.Unit;
 import org.eclipse.papyrus.sysml.blocks.ValueType;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Connector;
-import org.eclipse.uml2.uml.ConnectorEnd;
-import org.eclipse.uml2.uml.DataType;
-import org.eclipse.uml2.uml.InstanceSpecification;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
@@ -63,106 +54,6 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected BlocksSwitch<Adapter> modelSwitch = new BlocksSwitch<Adapter>() {
-
-
-		@Override
-		public Adapter caseClassStereotypedByBlock(Class class_) {
-			if(isBlockFromClass(class_)) {
-				return createBlockAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter casePropertyStereotypedByDistributedProperty(Property property_) {
-			if(isDistributedPropertyFromProperty(property_)) {
-				return createDistributedPropertyAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseInstanceSpecificationStereotypedByDimension(InstanceSpecification instanceSpecification_) {
-			if(isDimensionFromInstanceSpecification(instanceSpecification_)) {
-				return createDimensionAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseInstanceSpecificationStereotypedByUnit(InstanceSpecification instanceSpecification_) {
-			if(isUnitFromInstanceSpecification(instanceSpecification_)) {
-				return createUnitAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseDataTypeStereotypedByValueType(DataType dataType_) {
-			if(isValueTypeFromDataType(dataType_)) {
-				return createValueTypeAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseConnectorEndStereotypedByNestedConnectorEnd(ConnectorEnd connectorEnd_) {
-			if(isNestedConnectorEndFromConnectorEnd(connectorEnd_)) {
-				return createNestedConnectorEndAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter casePropertyStereotypedByParticipantProperty(Property property_) {
-			if(isParticipantPropertyFromProperty(property_)) {
-				return createParticipantPropertyAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter casePropertyStereotypedByConnectorProperty(Property property_) {
-			if(isConnectorPropertyFromProperty(property_)) {
-				return createConnectorPropertyAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseConnectorStereotypedByBindingConnector(Connector connector_) {
-			if(isBindingConnectorFromConnector(connector_)) {
-				return createBindingConnectorAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseClassifierStereotypedByPropertySpecificType(Classifier classifier_) {
-			if(isPropertySpecificTypeFromClassifier(classifier_)) {
-				return createPropertySpecificTypeAdapter();
-			}
-			return null;
-		}
-
 
 		@Override
 		public Adapter caseBlock(Block object) {
@@ -417,12 +308,11 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if(object == modelPackage || object == UMLPackage.eINSTANCE) {
+		if(object == modelPackage) {
 			return true;
 		}
 		if(object instanceof EObject) {
-			EPackage ePackage = ((EObject)object).eClass().getEPackage();
-			return ePackage != null && (ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE);
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}

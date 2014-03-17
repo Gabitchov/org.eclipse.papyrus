@@ -17,17 +17,11 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.ItemFlow;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
-import org.eclipse.uml2.uml.InformationFlow;
-import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
@@ -54,46 +48,6 @@ public class PortandflowsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected PortandflowsSwitch<Adapter> modelSwitch = new PortandflowsSwitch<Adapter>() {
-
-
-		@Override
-		public Adapter casePortStereotypedByFlowPort(Port port_) {
-			if(isFlowPortFromPort(port_)) {
-				return createFlowPortAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter casePropertyStereotypedByFlowProperty(Property property_) {
-			if(isFlowPropertyFromProperty(property_)) {
-				return createFlowPropertyAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseInterfaceStereotypedByFlowSpecification(Interface interface_) {
-			if(isFlowSpecificationFromInterface(interface_)) {
-				return createFlowSpecificationAdapter();
-			}
-			return null;
-		}
-
-
-
-		@Override
-		public Adapter caseInformationFlowStereotypedByItemFlow(InformationFlow informationFlow_) {
-			if(isItemFlowFromInformationFlow(informationFlow_)) {
-				return createItemFlowAdapter();
-			}
-			return null;
-		}
-
 
 		@Override
 		public Adapter caseFlowPort(FlowPort object) {
@@ -232,12 +186,11 @@ public class PortandflowsAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if(object == modelPackage || object == UMLPackage.eINSTANCE) {
+		if(object == modelPackage) {
 			return true;
 		}
 		if(object instanceof EObject) {
-			EPackage ePackage = ((EObject)object).eClass().getEPackage();
-			return ePackage != null && (ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE);
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}

@@ -788,7 +788,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		addEParameter(op, this.getJavaObject(), "pageIdentifier", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(sashWindowsMngrEClass, SashWindowsMngr.class, "SashWindowsMngr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSashWindowsMngr_PageList(), this.getPageList(), null, "pageList", null, 1, 1, SashWindowsMngr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSashWindowsMngr_PageList(), this.getPageList(), null, "pageList", null, 0, 1, SashWindowsMngr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSashWindowsMngr_SashModel(), this.getSashModel(), null, "sashModel", null, 1, 1, SashWindowsMngr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Initialize data types
@@ -812,12 +812,12 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 * @generated
 	 */
 	protected void createResourceXMIAnnotations() {
-		String source = "resource=XMI";		
+		String source = "resource=XMI";	
 		addAnnotation
 		  (this, 
 		   source, 
 		   new String[] {
-		   });											
+		   });
 	}
 
 } //DiPackageImpl

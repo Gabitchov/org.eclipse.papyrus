@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.wizards;
 
@@ -57,6 +59,7 @@ public class ModelImportWizard extends Wizard implements IWorkbenchWizard {
 		super();
 	}
 
+	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.selection = selection;
 
@@ -91,6 +94,7 @@ public class ModelImportWizard extends Wizard implements IWorkbenchWizard {
 		// has been presented
 		Display.getCurrent().asyncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				for(IPapyrusFile next : getSelection()) {
 					importConfig.addModelToTransfer(URI.createPlatformResourceURI(next.getMainFile().getFullPath().toString(), true));
@@ -135,7 +139,7 @@ public class ModelImportWizard extends Wizard implements IWorkbenchWizard {
 		Diagnostic problems = importer.importModels(mappingsPage.getSelectedMapping());
 
 		if(problems.getSeverity() > Diagnostic.INFO) {
-			StatusManager.getManager().handle(BasicDiagnostic.toIStatus(problems), StatusManager.SHOW);
+			StatusManager.getManager().handle(BasicDiagnostic.toIStatus(problems), StatusManager.BLOCK);
 		}
 
 		return result;

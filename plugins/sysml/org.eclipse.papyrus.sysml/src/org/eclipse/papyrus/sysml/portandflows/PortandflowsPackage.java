@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sysml.portandflows;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -95,6 +96,15 @@ public interface PortandflowsPackage extends EPackage {
 		EAttribute FLOW_PORT__DIRECTION = eINSTANCE.getFlowPort_Direction();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Icon</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EOperation FLOW_PORT___GET_ICON = eINSTANCE.getFlowPort__GetIcon();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowPropertyImpl <em>Flow Property</em>}'
 		 * class.
 		 * <!-- begin-user-doc --> <!--
@@ -121,6 +131,15 @@ public interface PortandflowsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FLOW_PROPERTY__DIRECTION = eINSTANCE.getFlowProperty_Direction();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Icon</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EOperation FLOW_PROPERTY___GET_ICON = eINSTANCE.getFlowProperty__GetIcon();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowSpecificationImpl
@@ -271,6 +290,26 @@ public interface PortandflowsPackage extends EPackage {
 	int FLOW_PORT_FEATURE_COUNT = 4;
 
 	/**
+	 * The operation id for the '<em>Get Icon</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW_PORT___GET_ICON = 0;
+
+	/**
+	 * The number of operations of the '<em>Flow Port</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW_PORT_OPERATION_COUNT = 1;
+
+	/**
 	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowPropertyImpl
 	 * <em>Flow Property</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
@@ -309,6 +348,26 @@ public interface PortandflowsPackage extends EPackage {
 	int FLOW_PROPERTY_FEATURE_COUNT = 2;
 
 	/**
+	 * The operation id for the '<em>Get Icon</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW_PROPERTY___GET_ICON = 0;
+
+	/**
+	 * The number of operations of the '<em>Flow Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW_PROPERTY_OPERATION_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowSpecificationImpl <em>Flow Specification</em>}'
 	 * class.
 	 * <!-- begin-user-doc --> <!--
@@ -337,6 +396,16 @@ public interface PortandflowsPackage extends EPackage {
 	 * @ordered
 	 */
 	int FLOW_SPECIFICATION_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Flow Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW_SPECIFICATION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.ItemFlowImpl <em>Item Flow</em>}' class.
@@ -374,6 +443,16 @@ public interface PortandflowsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_FLOW_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Item Flow</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.portandflows.FlowDirection
@@ -429,6 +508,17 @@ public interface PortandflowsPackage extends EPackage {
 	EAttribute getFlowPort_Direction();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#getIcon() <em>Get Icon</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the '<em>Get Icon</em>' operation.
+	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort#getIcon()
+	 * @generated
+	 */
+	EOperation getFlowPort__GetIcon();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isAtomic <em>Is Atomic</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -482,6 +572,17 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFlowProperty_Direction();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getIcon() <em>Get Icon</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the '<em>Get Icon</em>' operation.
+	 * @see org.eclipse.papyrus.sysml.portandflows.FlowProperty#getIcon()
+	 * @generated
+	 */
+	EOperation getFlowProperty__GetIcon();
 
 	/**
 	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification

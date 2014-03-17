@@ -1,17 +1,27 @@
 /**
- * 
+ *
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.model;
 
+import java.util.Collections;
+
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
+import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
+import org.eclipse.papyrus.infra.core.resource.IEMFModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenableWithContainer;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 /**
  * @author dumoulin
- * 
+ *
  */
-public class NotationModel extends AbstractBaseModel implements IModel {
+public class NotationModel extends EMFLogicalModel implements IModel {
 
 	/**
 	 * File extension used for notation.
@@ -24,9 +34,9 @@ public class NotationModel extends AbstractBaseModel implements IModel {
 	public static final String MODEL_ID = "org.eclipse.papyrus.infra.core.resource.notation.NotationModel"; //$NON-NLS-1$
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 */
 	public NotationModel() {
 
@@ -34,9 +44,9 @@ public class NotationModel extends AbstractBaseModel implements IModel {
 
 	/**
 	 * Get the file extension used for this model.
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getModelFileExtension()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -46,9 +56,9 @@ public class NotationModel extends AbstractBaseModel implements IModel {
 
 	/**
 	 * Get the identifier used to register this model.
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getIdentifier()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -58,11 +68,49 @@ public class NotationModel extends AbstractBaseModel implements IModel {
 
 	/**
 	 * Add a new initialized {@link Diagram} to the model.
-	 * 
+	 *
 	 * @param newDiagram
 	 *        The diagram to add.
 	 */
 	public void addDiagram(Diagram newDiagram) {
 		getResource().getContents().add(newDiagram);
+	}
+
+	/**
+	 * Notation resources are controlled if their base element is controlled
+	 */
+	@Override
+	public boolean isControlled(Resource resource) {
+		for(EObject rootElement : resource.getContents()) {
+			IOpenable openable = (IOpenableWithContainer)Platform.getAdapterManager().getAdapter(rootElement, IOpenable.class);
+			if(openable instanceof IOpenableWithContainer) {
+				EObject container = EMFHelper.getEObject(((IOpenableWithContainer)openable).getContainer());
+				if(container != null) {
+					IModel iModel = modelSet.getModelFor(container);
+					if(iModel instanceof IEMFModel) {
+						if(((IEMFModel)iModel).isControlled(container.eResource())) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public void handle(Resource resource) {
+		super.handle(resource);
+		if(resource == null) {
+			return;
+		}
+
+		if(!isRelatedResource(resource)) {
+			URI notationURI = resource.getURI().trimFileExtension().appendFileExtension(NOTATION_FILE_EXTENSION);
+			if(getResourceSet().getURIConverter().exists(notationURI, Collections.emptyMap())) {
+				getResourceSet().getResource(notationURI, true);
+			}
+		}
 	}
 }

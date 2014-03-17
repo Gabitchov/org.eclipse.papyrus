@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.properties.sections.AdvancedPropertySe
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
@@ -92,7 +93,7 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 			if(view != null) {
 				return view.getElement();
 			}
-			EObject elem = (EObject)((IAdaptable)selected).getAdapter(EObject.class);
+			EObject elem = EMFHelper.getEObject(selected);
 			return elem;
 		}
 		return selected;

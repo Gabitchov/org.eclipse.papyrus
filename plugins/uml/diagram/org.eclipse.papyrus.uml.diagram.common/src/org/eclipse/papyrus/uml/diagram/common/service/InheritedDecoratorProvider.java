@@ -22,10 +22,10 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.gmf.runtime.notation.Node;
 
 /**
- *
+ * 
  * Provide the decorator for the Inheritance
- *
- * @deprecated Replaced with the generic {@link org.eclipse.papyrus.infra.gmfdiag.common.decoration.ExternalReferenceMarker}
+ * 
+ * @deprecated Replaced with the generic org.eclipse.papyrus.infra.gmfdiag.common.decoration.ExternalReferenceMarker
  */
 @Deprecated
 public class InheritedDecoratorProvider extends AbstractProvider implements IDecoratorProvider {
@@ -34,9 +34,9 @@ public class InheritedDecoratorProvider extends AbstractProvider implements IDec
 	public static final String GENERALIZATION = "Generalization"; //$NON-NLS-1$
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider#createDecorators(org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget)
-	 *
+	 * 
 	 * @param decoratorTarget
 	 */
 	@Override
@@ -49,7 +49,7 @@ public class InheritedDecoratorProvider extends AbstractProvider implements IDec
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * org.eclipse.gmf.runtime.common.core.internal.service.IProvider#provides
 	 * (org.eclipse.gmf.runtime.common.core.service.IOperation)

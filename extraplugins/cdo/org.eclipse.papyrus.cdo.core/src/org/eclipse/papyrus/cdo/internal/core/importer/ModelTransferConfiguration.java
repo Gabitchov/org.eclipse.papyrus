@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer;
 
@@ -35,6 +37,7 @@ import org.eclipse.papyrus.cdo.core.importer.IModelTransferOperation;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferOperation.Context;
 import org.eclipse.papyrus.cdo.internal.core.Activator;
 import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
+import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -51,6 +54,8 @@ public class ModelTransferConfiguration implements IModelTransferConfiguration {
 	private Map<URI, Resource> resources = Maps.newHashMap();
 
 	private ResourceSet resourceSet;
+
+	private boolean stripSashModelContent;
 
 	private final boolean ownResourceSet;
 
@@ -88,6 +93,7 @@ public class ModelTransferConfiguration implements IModelTransferConfiguration {
 		return direction;
 	}
 
+	@Override
 	public void dispose() {
 		if(resourceSet != null) {
 			if(ownResourceSet) {
@@ -114,18 +120,22 @@ public class ModelTransferConfiguration implements IModelTransferConfiguration {
 		listeners.clear();
 	}
 
+	@Override
 	public ResourceSet getResourceSet() {
 		return resourceSet;
 	}
 
+	@Override
 	public Context getOperationContext() {
 		return operationContext;
 	}
 
+	@Override
 	public Collection<IModelTransferNode> getModelsToTransfer() {
 		return Collections.unmodifiableSet(modelsToImport);
 	}
 
+	@Override
 	public IModelTransferNode addModelToTransfer(URI resourceURI) {
 		IModelTransferNode result = getNode(resourceURI);
 
@@ -150,6 +160,7 @@ public class ModelTransferConfiguration implements IModelTransferConfiguration {
 
 				Diagnostic problems = getOperationContext().run(new IModelTransferOperation() {
 
+					@Override
 					public Diagnostic run(IProgressMonitor monitor) {
 						SubMonitor sub = SubMonitor.convert(monitor, Messages.ModelTransferConfiguration_0, dependentsProviders.size());
 
@@ -197,18 +208,21 @@ public class ModelTransferConfiguration implements IModelTransferConfiguration {
 		return result;
 	}
 
+	@Override
 	public void removeModelToTransfer(IModelTransferNode node) {
 		if(modelsToImport.remove(node)) {
 			fireModelsToImportChanged();
 		}
 	}
 
+	@Override
 	public void addModelDependentsProvider(IModelDependentsProvider provider) {
 		if(!dependentsProviders.contains(provider)) {
 			dependentsProviders.add(provider);
 		}
 	}
 
+	@Override
 	public Diagnostic validate() {
 		BasicDiagnostic result = new BasicDiagnostic();
 
@@ -276,10 +290,12 @@ public class ModelTransferConfiguration implements IModelTransferConfiguration {
 		return result.build();
 	}
 
+	@Override
 	public void addModelTransferListener(IModelTransferListener listener) {
 		listeners.addIfAbsent(listener);
 	}
 
+	@Override
 	public void removeModelTransferListener(IModelTransferListener listener) {
 		listeners.remove(listener);
 	}
@@ -318,6 +334,34 @@ public class ModelTransferConfiguration implements IModelTransferConfiguration {
 
 	boolean hasResource(URI uri) {
 		return resources.containsKey(uri);
+	}
+
+	@Override
+	public boolean hasSashModelContent() {
+		boolean result = false;
+
+		ResourceSet rset = getResourceSet();
+		if(rset != null) {
+			for(IModelTransferNode next : importNodes.values()) {
+				Resource primary = rset.getResource(next.getPrimaryResourceURI(), false);
+				if((primary != null) && (DiUtils.lookupSashWindowsMngr(primary) != null)) {
+					result = true;
+					break;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean isStripSashModelContent() {
+		return stripSashModelContent;
+	}
+
+	@Override
+	public void setStripSashModelContent(boolean stripSashModelContent) {
+		this.stripSashModelContent = stripSashModelContent;
 	}
 
 	//

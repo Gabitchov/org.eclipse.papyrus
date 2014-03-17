@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
@@ -46,7 +47,7 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 			createdEdge = super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 		} else {
 
-			EObject domainElement = (EObject)semanticAdapter.getAdapter(EObject.class);
+			EObject domainElement = EMFHelper.getEObject(semanticAdapter);
 
 			String domainElementGraphicalType = semanticHint;
 			if(domainElementGraphicalType == null) {
@@ -197,7 +198,7 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 		String containerGraphicalType = containerView.getType();
 
 		// Get the type of the domain element
-		EObject domainElement = (EObject)semanticAdapter.getAdapter(EObject.class);
+		EObject domainElement = EMFHelper.getEObject(semanticAdapter);
 
 		if(semanticHint != null) {
 			// Look for a possible graphicalType replacement

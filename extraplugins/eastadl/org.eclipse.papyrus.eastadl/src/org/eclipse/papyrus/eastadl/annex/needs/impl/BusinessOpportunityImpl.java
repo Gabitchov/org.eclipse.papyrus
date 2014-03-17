@@ -48,20 +48,22 @@ import org.eclipse.uml2.uml.PackageableElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.BusinessOpportunityImpl#getBase_Class <em>Base Class</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.BusinessOpportunityImpl#getProblemStatement <em>Problem Statement</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.BusinessOpportunityImpl#getProductPositioning <em>Product Positioning</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.BusinessOpportunityImpl#getBusinessOpportunity <em>Business Opportunity</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.BusinessOpportunityImpl#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.BusinessOpportunityImpl#getProblemStatement <em>Problem Statement</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.BusinessOpportunityImpl#getProductPositioning <em>Product Positioning</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.BusinessOpportunityImpl#getBusinessOpportunity <em>Business Opportunity</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class BusinessOpportunityImpl extends TraceableSpecificationImpl implements BusinessOpportunity {
+
 	/**
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Class()
 	 * @generated
 	 * @ordered
@@ -72,6 +74,7 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	 * The cached value of the '{@link #getProblemStatement() <em>Problem Statement</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getProblemStatement()
 	 * @generated
 	 * @ordered
@@ -82,6 +85,7 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	 * The cached value of the '{@link #getProductPositioning() <em>Product Positioning</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getProductPositioning()
 	 * @generated
 	 * @ordered
@@ -92,6 +96,7 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	 * The default value of the '{@link #getBusinessOpportunity() <em>Business Opportunity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBusinessOpportunity()
 	 * @generated
 	 * @ordered
@@ -102,6 +107,7 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	 * The cached value of the '{@link #getBusinessOpportunity() <em>Business Opportunity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBusinessOpportunity()
 	 * @generated
 	 * @ordered
@@ -111,6 +117,7 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected BusinessOpportunityImpl() {
@@ -120,20 +127,22 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case NeedsPackage.BUSINESS_OPPORTUNITY__BASE_CLASS:
-				if (resolve) return getBase_Class();
-				return basicGetBase_Class();
-			case NeedsPackage.BUSINESS_OPPORTUNITY__PROBLEM_STATEMENT:
-				return getProblemStatement();
-			case NeedsPackage.BUSINESS_OPPORTUNITY__PRODUCT_POSITIONING:
-				return getProductPositioning();
-			case NeedsPackage.BUSINESS_OPPORTUNITY__BUSINESS_OPPORTUNITY:
-				return getBusinessOpportunity();
+		switch(featureID) {
+		case NeedsPackage.BUSINESS_OPPORTUNITY__BASE_CLASS:
+			if(resolve)
+				return getBase_Class();
+			return basicGetBase_Class();
+		case NeedsPackage.BUSINESS_OPPORTUNITY__PROBLEM_STATEMENT:
+			return getProblemStatement();
+		case NeedsPackage.BUSINESS_OPPORTUNITY__PRODUCT_POSITIONING:
+			return getProductPositioning();
+		case NeedsPackage.BUSINESS_OPPORTUNITY__BUSINESS_OPPORTUNITY:
+			return getBusinessOpportunity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -141,19 +150,20 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case NeedsPackage.BUSINESS_OPPORTUNITY__BASE_CLASS:
-				return base_Class != null;
-			case NeedsPackage.BUSINESS_OPPORTUNITY__PROBLEM_STATEMENT:
-				return problemStatement != null && !problemStatement.isEmpty();
-			case NeedsPackage.BUSINESS_OPPORTUNITY__PRODUCT_POSITIONING:
-				return productPositioning != null && !productPositioning.isEmpty();
-			case NeedsPackage.BUSINESS_OPPORTUNITY__BUSINESS_OPPORTUNITY:
-				return BUSINESS_OPPORTUNITY_EDEFAULT == null ? businessOpportunity != null : !BUSINESS_OPPORTUNITY_EDEFAULT.equals(businessOpportunity);
+		switch(featureID) {
+		case NeedsPackage.BUSINESS_OPPORTUNITY__BASE_CLASS:
+			return base_Class != null;
+		case NeedsPackage.BUSINESS_OPPORTUNITY__PROBLEM_STATEMENT:
+			return problemStatement != null && !problemStatement.isEmpty();
+		case NeedsPackage.BUSINESS_OPPORTUNITY__PRODUCT_POSITIONING:
+			return productPositioning != null && !productPositioning.isEmpty();
+		case NeedsPackage.BUSINESS_OPPORTUNITY__BUSINESS_OPPORTUNITY:
+			return BUSINESS_OPPORTUNITY_EDEFAULT == null ? businessOpportunity != null : !BUSINESS_OPPORTUNITY_EDEFAULT.equals(businessOpportunity);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -161,26 +171,27 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case NeedsPackage.BUSINESS_OPPORTUNITY__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
-				return;
-			case NeedsPackage.BUSINESS_OPPORTUNITY__PROBLEM_STATEMENT:
-				getProblemStatement().clear();
-				getProblemStatement().addAll((Collection<? extends ProblemStatement>)newValue);
-				return;
-			case NeedsPackage.BUSINESS_OPPORTUNITY__PRODUCT_POSITIONING:
-				getProductPositioning().clear();
-				getProductPositioning().addAll((Collection<? extends ProductPositioning>)newValue);
-				return;
-			case NeedsPackage.BUSINESS_OPPORTUNITY__BUSINESS_OPPORTUNITY:
-				setBusinessOpportunity((String)newValue);
-				return;
+		switch(featureID) {
+		case NeedsPackage.BUSINESS_OPPORTUNITY__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)newValue);
+			return;
+		case NeedsPackage.BUSINESS_OPPORTUNITY__PROBLEM_STATEMENT:
+			getProblemStatement().clear();
+			getProblemStatement().addAll((Collection<? extends ProblemStatement>)newValue);
+			return;
+		case NeedsPackage.BUSINESS_OPPORTUNITY__PRODUCT_POSITIONING:
+			getProductPositioning().clear();
+			getProductPositioning().addAll((Collection<? extends ProductPositioning>)newValue);
+			return;
+		case NeedsPackage.BUSINESS_OPPORTUNITY__BUSINESS_OPPORTUNITY:
+			setBusinessOpportunity((String)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -188,6 +199,7 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -198,14 +210,15 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
+		if(base_Class != null && base_Class.eIsProxy()) {
 			InternalEObject oldBase_Class = (InternalEObject)base_Class;
 			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
-			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+			if(base_Class != oldBase_Class) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NeedsPackage.BUSINESS_OPPORTUNITY__BASE_CLASS, oldBase_Class, base_Class));
 			}
 		}
@@ -215,6 +228,7 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class basicGetBase_Class() {
@@ -224,35 +238,37 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NeedsPackage.BUSINESS_OPPORTUNITY__BASE_CLASS, oldBase_Class, base_Class));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case NeedsPackage.BUSINESS_OPPORTUNITY__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)null);
-				return;
-			case NeedsPackage.BUSINESS_OPPORTUNITY__PROBLEM_STATEMENT:
-				getProblemStatement().clear();
-				return;
-			case NeedsPackage.BUSINESS_OPPORTUNITY__PRODUCT_POSITIONING:
-				getProductPositioning().clear();
-				return;
-			case NeedsPackage.BUSINESS_OPPORTUNITY__BUSINESS_OPPORTUNITY:
-				setBusinessOpportunity(BUSINESS_OPPORTUNITY_EDEFAULT);
-				return;
+		switch(featureID) {
+		case NeedsPackage.BUSINESS_OPPORTUNITY__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)null);
+			return;
+		case NeedsPackage.BUSINESS_OPPORTUNITY__PROBLEM_STATEMENT:
+			getProblemStatement().clear();
+			return;
+		case NeedsPackage.BUSINESS_OPPORTUNITY__PRODUCT_POSITIONING:
+			getProductPositioning().clear();
+			return;
+		case NeedsPackage.BUSINESS_OPPORTUNITY__BUSINESS_OPPORTUNITY:
+			setBusinessOpportunity(BUSINESS_OPPORTUNITY_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -260,6 +276,7 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getBusinessOpportunity() {
@@ -269,10 +286,11 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ProblemStatement> getProblemStatement() {
-		if (problemStatement == null) {
+		if(problemStatement == null) {
 			problemStatement = new EObjectResolvingEList<ProblemStatement>(ProblemStatement.class, this, NeedsPackage.BUSINESS_OPPORTUNITY__PROBLEM_STATEMENT);
 		}
 		return problemStatement;
@@ -281,10 +299,11 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ProductPositioning> getProductPositioning() {
-		if (productPositioning == null) {
+		if(productPositioning == null) {
 			productPositioning = new EObjectResolvingEList<ProductPositioning>(ProductPositioning.class, this, NeedsPackage.BUSINESS_OPPORTUNITY__PRODUCT_POSITIONING);
 		}
 		return productPositioning;
@@ -293,23 +312,26 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBusinessOpportunity(String newBusinessOpportunity) {
 		String oldBusinessOpportunity = businessOpportunity;
 		businessOpportunity = newBusinessOpportunity;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NeedsPackage.BUSINESS_OPPORTUNITY__BUSINESS_OPPORTUNITY, oldBusinessOpportunity, businessOpportunity));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (businessOpportunity: ");
@@ -327,7 +349,7 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	@Override
 	public void setBase_PackageableElement(PackageableElement value) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -351,13 +373,13 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	@Override
 	public void setBase_NamedElement(NamedElement value) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setName(String value) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -429,7 +451,7 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	@Override
 	public void eSet(EStructuralFeature feature, Object newValue) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -441,12 +463,11 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	@Override
 	public void eUnset(EStructuralFeature feature) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public Object eInvoke(EOperation operation, EList<?> arguments)
-			throws InvocationTargetException {
+	public Object eInvoke(EOperation operation, EList<?> arguments) throws InvocationTargetException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -466,13 +487,13 @@ public class BusinessOpportunityImpl extends TraceableSpecificationImpl implemen
 	@Override
 	public void eSetDeliver(boolean deliver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void eNotify(Notification notification) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 } //BusinessOpportunityImpl

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.uml2.uml.Element;
@@ -70,8 +71,7 @@ public abstract class AbstractViewActionDelegate implements IViewActionDelegate 
 			while(it.hasNext()) {
 				Object o = (Object)it.next();
 				if (o instanceof IAdaptable) {
-					EObject eObject = (EObject) ((IAdaptable) o)
-							.getAdapter(EObject.class);
+					EObject eObject =EMFHelper.getEObject(o);
 					if (eObject != null) {
 						setSelectedElement(eObject);
 					}

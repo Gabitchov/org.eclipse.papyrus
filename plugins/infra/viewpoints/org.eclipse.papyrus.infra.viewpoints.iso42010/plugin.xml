@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated iso42010 -->
+      <package
+            uri="http://www.eclipse.org/papyrus/infra/viewpoints/iso42010"
+            class="org.eclipse.papyrus.infra.viewpoints.iso42010.Iso42010Package"
+            genModel="model/iso42010.genmodel"/>
+   </extension>
+
+</plugin>

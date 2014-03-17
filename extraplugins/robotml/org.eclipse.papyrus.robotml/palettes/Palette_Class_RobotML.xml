@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <paletteDefinition>
 	<content>
-		<drawer iconpath="/icons/drawer.gif" id="Drawer__1323777360776"
+		<drawer iconpath="/icons/drawer.gif" id="org.eclipse.papyrus.robotml.diagram.clazz"
 			name="RobotML">
 			<aspectTool description="Create a new Robotic System" id="clazz.tool.system"
 				name="System" refToolId="clazz.tool.class"

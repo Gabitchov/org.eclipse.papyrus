@@ -2,22 +2,22 @@
 <query:ModelQuerySet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="TextEditorQuery">
   <associatedMetamodels href="http://www.eclipse.org/Papyrus/Text/0.10.0/texteditormodel#/"/>
   <associatedMetamodels href="http://www.eclipse.org/emf/2002/Ecore#/"/>
-  <associatedMetamodels href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
-  <associatedMetamodels href="http://www.eclipse.org/uml2/4.0.0/Types#/"/>
+  <associatedMetamodels href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+  <associatedMetamodels href="http://www.eclipse.org/uml2/5.0.0/Types#/"/>
   <queries xsi:type="query:JavaModelQuery" name="IsTextEditorContainer" description="Returns true if the element contains a text editor" implementationClassName="org.eclipse.papyrus.texteditor.modelexplorer.queries.IsTextEditorContainer">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+    <scope href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery" name="GetContainedTextEditors" description="Get the collection of all contained text editors" upperBound="-1" implementationClassName="org.eclipse.papyrus.texteditor.modelexplorer.queries.GetContainedTextEditors">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/Papyrus/Text/0.10.0/texteditormodel#//TextEditorModel"/>
-    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+    <scope href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery" name="GetTextEditorIcon" description="Return the path to the icon of the corresponding text editor" implementationClassName="org.eclipse.papyrus.texteditor.modelexplorer.queries.GetTextEditorIcon">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
     <scope href="http://www.eclipse.org/Papyrus/Text/0.10.0/texteditormodel#//TextEditorModel"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery" name="GetTextEditorName" description="Return the name for the text editor" implementationClassName="org.eclipse.papyrus.texteditor.modelexplorer.queries.GetTextEditorName">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
     <scope href="http://www.eclipse.org/Papyrus/Text/0.10.0/texteditormodel#//TextEditorModel"/>
   </queries>
 </query:ModelQuerySet>

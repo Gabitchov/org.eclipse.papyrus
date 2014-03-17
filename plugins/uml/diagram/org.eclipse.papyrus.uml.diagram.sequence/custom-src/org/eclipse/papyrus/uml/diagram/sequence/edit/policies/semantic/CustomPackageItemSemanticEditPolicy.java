@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomInteractionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.PackageItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -30,7 +31,7 @@ public class CustomPackageItemSemanticEditPolicy extends PackageItemSemanticEdit
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.Interaction_2001 == req.getElementType()) {
-			return getGEFWrapper(new CustomInteractionCreateCommand(req));
+			return getGEFWrapper(new CustomInteractionCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

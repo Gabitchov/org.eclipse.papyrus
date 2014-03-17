@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.requirements;
 
-import org.eclipse.uml2.uml.profile.l2.Trace;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Derive Reqt</b></em>'. <!-- end-user-doc -->
@@ -23,5 +22,5 @@ import org.eclipse.uml2.uml.profile.l2.Trace;
  * @model
  * @generated
  */
-public interface DeriveReqt extends Trace {
+public interface DeriveReqt extends org.eclipse.uml2.uml.profile.standard.Trace {
 } // DeriveReqt

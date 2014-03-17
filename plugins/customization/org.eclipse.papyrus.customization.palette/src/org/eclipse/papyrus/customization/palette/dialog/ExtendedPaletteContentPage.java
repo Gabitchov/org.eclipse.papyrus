@@ -32,11 +32,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
-import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
@@ -64,6 +59,16 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManagerFactory;
+import org.eclipse.papyrus.emf.facet.custom.core.internal.CustomizationCatalogManager;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedLabelProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
@@ -242,7 +247,8 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	private Resource resourceToEdit;
 
 	/** customization manager for the content provider */
-	private CustomizationManager manager = new CustomizationManager();
+	//TODO: EMFFACET: pb of ResourceSET
+	private ICustomizationManager manager =  ICustomizationManagerFactory.DEFAULT.getOrCreateICustomizationManager(new ResourceSetImpl());
 
 
 	/**
@@ -502,14 +508,14 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 				if(!(objectToTransfer instanceof IAdaptable)) {
 					return;
 				}
-				final EObject eobjectToTransfer = (EObject)((IAdaptable)objectToTransfer).getAdapter(EObject.class);
+				final EObject eobjectToTransfer = EMFHelper.getEObject(objectToTransfer);
 
 				Object targetObject = ((TreeItem)event.item).getData();
 				if(!(targetObject instanceof IAdaptable)) {
 					return;
 				}
 
-				final EObject targetEObject = (EObject)((IAdaptable)targetObject).getAdapter(EObject.class);
+				final EObject targetEObject =EMFHelper.getEObject(targetObject);
 				if(targetEObject == null) {
 					return;
 				}
@@ -657,7 +663,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		if(!(objectToTransfer instanceof IAdaptable)) {
 			return;
 		}
-		final EObject eobjectToTransfer = (EObject)((IAdaptable)objectToTransfer).getAdapter(EObject.class);
+		final EObject eobjectToTransfer = EMFHelper.getEObject(objectToTransfer);
 		// handle only first selected element
 		if(item == null) {
 			// adding to the root, should only be a drawer
@@ -670,7 +676,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 				event.detail = DND.DROP_NONE;
 				return;
 			}
-			final EObject targetEObject = (EObject)((IAdaptable)targetObject).getAdapter(EObject.class);
+			final EObject targetEObject = EMFHelper.getEObject(targetObject);
 			if(targetEObject == null) {
 				event.detail = DND.DROP_NONE;
 				return;
@@ -836,7 +842,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 				while(it.hasNext()) {
 					Object o = it.next();
 					if(o instanceof IAdaptable) {
-						EObject eobject = (EObject)((IAdaptable)o).getAdapter(EObject.class);
+						EObject eobject = EMFHelper.getEObject(o);
 						if(eobject instanceof Configuration) {
 							PaletteConfigurationUtils.removeConfiguration((Configuration)eobject);
 						}
@@ -954,7 +960,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			} else {
 				Object object = selection.getFirstElement();
 				if(object instanceof IAdaptable) {
-					EObject eobject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
+					EObject eobject = EMFHelper.getEObject(object);
 					if(eobject instanceof Configuration) {
 						return (Configuration)eobject;
 					}
@@ -1673,7 +1679,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	 * @see org.eclipse.gef.ui.palette.customize.PaletteLabelProvider </P>
 	 * 
 	 */
-	public class ExtendedPaletteLabelProvider extends CustomizableModelLabelProvider {
+	public class ExtendedPaletteLabelProvider extends CustomizedLabelProvider{
 
 		/**
 		 * Constructor.
@@ -1722,18 +1728,20 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	/**
 	 * Content Provider for the palette preview
 	 */
-	public class ExtendedPaletteContentProvider extends CustomizableModelContentProvider {
+	public class ExtendedPaletteContentProvider extends CustomizedTreeContentProvider {
 
 		/**
 		 * Constructor.
 		 */
 		public ExtendedPaletteContentProvider() {
 			super(manager);
-			MetamodelView paletteCustomization = CustomizationsCatalog.getInstance().getCustomization("PaletteConfiguration");
-			if(paletteCustomization != null) {
-				manager.setShowTypeOfLinks(false);
-				manager.registerCustomization(paletteCustomization);
-				manager.loadCustomizations();
+			//TODO: EMFFACET refactor this code
+			CustomizationCatalogManager catalogManager=(CustomizationCatalogManager)ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(new ResourceSetImpl());
+			List<Customization> paletteCustomizations =catalogManager.getCustomizationsByName("PaletteConfiguration");
+			if(paletteCustomizations.size()>0) {
+//				manager.setShowTypeOfLinks(false);
+//				manager.registerCustomization(paletteCustomization);
+//				manager.loadCustomizations();
 			}
 		}
 

@@ -16,7 +16,6 @@ package org.eclipse.papyrus.sysml.requirements.internal.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.Verify;
-import org.eclipse.uml2.uml.profile.l2.internal.impl.TraceImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Verify</b></em>'. <!-- end-user-doc -->
@@ -25,7 +24,7 @@ import org.eclipse.uml2.uml.profile.l2.internal.impl.TraceImpl;
  * 
  * @generated
  */
-public class VerifyImpl extends TraceImpl implements Verify {
+public class VerifyImpl extends org.eclipse.uml2.uml.profile.standard.internal.impl.TraceImpl implements Verify {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

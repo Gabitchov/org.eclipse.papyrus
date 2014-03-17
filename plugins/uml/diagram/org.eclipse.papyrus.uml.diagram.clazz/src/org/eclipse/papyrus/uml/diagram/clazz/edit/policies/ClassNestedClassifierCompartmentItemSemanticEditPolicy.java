@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.NestedClassForClassCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.NestedDataTypeForClassCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.NestedEnumerationForClassCreateCommand;
@@ -61,37 +62,37 @@ public class ClassNestedClassifierCompartmentItemSemanticEditPolicy extends UMLB
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new NestedClassForClassCreateCommand(req));
+			return getGEFWrapper(new NestedClassForClassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Interface_3036 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new NestedInterfaceForClassCreateCommand(req));
+			return getGEFWrapper(new NestedInterfaceForClassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Enumeration_3052 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new NestedEnumerationForClassCreateCommand(req));
+			return getGEFWrapper(new NestedEnumerationForClassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.PrimitiveType_3047 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new NestedPrimitiveTypeForClassCreateCommand(req));
+			return getGEFWrapper(new NestedPrimitiveTypeForClassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.DataType_3044 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new NestedDataTypeForClassCreateCommand(req));
+			return getGEFWrapper(new NestedDataTypeForClassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Signal_3050 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new NestedSignalForClassCreateCommand(req));
+			return getGEFWrapper(new NestedSignalForClassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}
