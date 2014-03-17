@@ -1,15 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+/*
+ * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Boutheina Bannour (CEA LIST) boutheina.bannour@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.policies;
 
 import org.eclipse.gef.commands.Command;
@@ -35,4 +34,5 @@ public class ContextLinkItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return getGEFWrapper(new DestroyReferenceCommand(req));
 	}
+
 }

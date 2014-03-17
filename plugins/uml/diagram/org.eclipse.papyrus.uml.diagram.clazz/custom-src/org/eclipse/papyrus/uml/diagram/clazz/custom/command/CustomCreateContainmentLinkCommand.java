@@ -51,37 +51,38 @@ public class CustomCreateContainmentLinkCommand extends CommonDeferredCreateConn
 	public CustomCreateContainmentLinkCommand(TransactionalEditingDomain editingDomain, EObject element, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ICommand command) {
 		super(editingDomain, element, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint, command);
 		sourceView = null;
-		targetView = (View)targetViewAdapter.getAdapter(View.class);
+		targetView = (View) targetViewAdapter.getAdapter(View.class);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public CustomCreateContainmentLinkCommand(TransactionalEditingDomain editingDomain, String semanticHint, View source, IAdaptable sourceCircleViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, ICommand command) {
+	public CustomCreateContainmentLinkCommand(TransactionalEditingDomain editingDomain, String semanticHint, View source, IAdaptable sourceCircleViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint,
+			ConnectionViewDescriptor viewDescriptor, ICommand command) {
 		super(editingDomain, semanticHint, sourceCircleViewAdapter, targetViewAdapter, viewer, preferencesHint, viewDescriptor, command);
 		sourceView = source;
-		targetView = (View)targetViewAdapter.getAdapter(View.class);
+		targetView = (View) targetViewAdapter.getAdapter(View.class);
 	}
 
 	@Override
 	public boolean canExecute() {
 		// check for proper edit parts, e.g. ClassEditPart, not child
-		if(sourceView == null && targetView == null) {
+		if (sourceView == null && targetView == null) {
 			return false;
 		}
-		if(sourceView != null) {
-			if(sourceView.getElement() == null || false == sourceView.getElement() instanceof Element) {
+		if (sourceView != null) {
+			if (sourceView.getElement() == null || false == sourceView.getElement() instanceof Element) {
 				return false;
 			}
 		}
-		if(targetView != null) {
-			if(targetView.getElement() == null || false == targetView.getElement() instanceof Element) {
+		if (targetView != null) {
+			if (targetView.getElement() == null || false == targetView.getElement() instanceof Element) {
 				return false;
 			}
 		}
 		Element source = getSourceElement();
 		Element target = getTargetElement();
-		if(source != null && target != null) {
+		if (source != null && target != null) {
 			return !containsLoop(source, target);
 		}
 		return true;
@@ -91,29 +92,29 @@ public class CustomCreateContainmentLinkCommand extends CommonDeferredCreateConn
 	 * {@inheritDoc}
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
+		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
-		Map epRegistry = viewer.getEditPartRegistry();
-		IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry.get(targetViewAdapter.getAdapter(View.class));
+		Map<?, ?> epRegistry = viewer.getEditPartRegistry();
+		IGraphicalEditPart targetEP = (IGraphicalEditPart) epRegistry.get(targetViewAdapter.getAdapter(View.class));
 		IGraphicalEditPart sourceContainmentCircleEP = getSourceContainmentCircleEP(epRegistry);
-		if(sourceContainmentCircleEP == null) {
+		if (sourceContainmentCircleEP == null) {
 			return null;
 		}
-		View targetView = (View)targetViewAdapter.getAdapter(View.class);
-		View sourceView = (View)sourceContainmentCircleEP.getParent().getAdapter(View.class);
-		PackageableElement targetElement = (PackageableElement)targetView.getElement();
-		PackageableElement sourceElement = (PackageableElement)sourceView.getElement();
+		View targetView = (View) targetViewAdapter.getAdapter(View.class);
+		View sourceView = (View) sourceContainmentCircleEP.getParent().getAdapter(View.class);
+		PackageableElement targetElement = (PackageableElement) targetView.getElement();
+		PackageableElement sourceElement = (PackageableElement) sourceView.getElement();
 		EditPart sourceEP = sourceContainmentCircleEP.getParent();
-		//only top level classes can serve as a source
-		//		if(sourceEP instanceof ClassEdiart) {
-		if(sourceElement instanceof org.eclipse.uml2.uml.Class) {
-			org.eclipse.uml2.uml.Class container = (org.eclipse.uml2.uml.Class)sourceElement;
-			container.getNestedClassifiers().add((Classifier)targetElement);
-			//		} else if(sourceEP instanceof PackageEditPart && !(sourceEP instanceof ModelEditPart)) {
-		} else if(sourceElement instanceof org.eclipse.uml2.uml.Package) {
-			org.eclipse.uml2.uml.Package container = (org.eclipse.uml2.uml.Package)sourceElement;
-			container.getPackagedElements().add((PackageableElement)targetElement);
+		// only top level classes can serve as a source
+		// if(sourceEP instanceof ClassEdiart) {
+		if (sourceElement instanceof org.eclipse.uml2.uml.Class) {
+			org.eclipse.uml2.uml.Class container = (org.eclipse.uml2.uml.Class) sourceElement;
+			container.getNestedClassifiers().add((Classifier) targetElement);
+			// } else if(sourceEP instanceof PackageEditPart && !(sourceEP instanceof ModelEditPart)) {
+		} else if (sourceElement instanceof org.eclipse.uml2.uml.Package) {
+			org.eclipse.uml2.uml.Package container = (org.eclipse.uml2.uml.Package) sourceElement;
+			container.getPackagedElements().add((PackageableElement) targetElement);
 		} else {
 			throw new ExecutionException("Invalid source " + sourceEP);
 		}
@@ -121,28 +122,24 @@ public class CustomCreateContainmentLinkCommand extends CommonDeferredCreateConn
 	}
 
 	private boolean containsLoop(Element sourceElement, Element targetElement) {
-		if(sourceElement.equals(targetElement)) {
+		if (sourceElement.equals(targetElement)) {
 			return true;
 		}
 		return EcoreUtil.isAncestor(targetElement, sourceElement);
 	}
 
-	private boolean isDuplicateLink(Element sourceElement, Element targetElement) {
-		return sourceElement.getOwnedElements().contains(targetElement);
-	}
-
-	private IGraphicalEditPart getSourceContainmentCircleEP(Map epRegistry) {
-		if(command != null) {
-			return (IGraphicalEditPart)epRegistry.get(command.getCommandResult().getReturnValue());
+	private IGraphicalEditPart getSourceContainmentCircleEP(Map<?, ?> epRegistry) {
+		if (command != null) {
+			return (IGraphicalEditPart) epRegistry.get(command.getCommandResult().getReturnValue());
 		}
-		return (IGraphicalEditPart)epRegistry.get(sourceViewAdapter.getAdapter(View.class));
+		return (IGraphicalEditPart) epRegistry.get(sourceViewAdapter.getAdapter(View.class));
 	}
 
 	private Element getSourceElement() {
-		return (Element)sourceView.getElement();
+		return (Element) sourceView.getElement();
 	}
 
 	private Element getTargetElement() {
-		return (Element)targetView.getElement();
+		return (Element) targetView.getElement();
 	}
 }

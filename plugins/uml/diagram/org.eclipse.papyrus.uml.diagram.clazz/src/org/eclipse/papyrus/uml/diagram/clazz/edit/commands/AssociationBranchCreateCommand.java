@@ -1,14 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.commands;
 
@@ -62,20 +61,20 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(source == null && target == null) {
+		if (source == null && target == null) {
 			return false;
 		}
-		if(source != null && false == source instanceof Type) {
+		if (source != null && false == source instanceof Type) {
 			return false;
 		}
-		if(target != null && false == target instanceof Type) {
+		if (target != null && false == target instanceof Type) {
 			return false;
 		}
-		if(getSource() == null) {
+		if (getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		if(getContainer() == null) {
+		if (getContainer() == null) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateAssociation_4019(getContainer(), getSource(), getTarget());
@@ -85,24 +84,26 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
+		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
+
 		throw new UnsupportedOperationException();
+
 	}
 
 	/**
 	 * @generated
 	 */
 	protected void doConfigure(Association newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
 		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if(configureCommand != null && configureCommand.canExecute()) {
+		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -118,14 +119,14 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Type getSource() {
-		return (Type)source;
+		return (Type) source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Type getTarget() {
-		return (Type)target;
+		return (Type) target;
 	}
 
 	/**
@@ -138,18 +139,18 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * Default approach is to traverse ancestors of the source to find instance of container.
 	 * Modify with appropriate logic.
-	 * 
 	 * @generated
 	 */
 	protected Package deduceContainer(EObject source, EObject target) {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null; element = element.eContainer()) {
-			if(element instanceof Package) {
-				return (Package)element;
+		for (EObject element = source; element != null; element = element.eContainer()) {
+			if (element instanceof Package) {
+				return (Package) element;
 			}
 		}
 		return null;
 	}
+
 }

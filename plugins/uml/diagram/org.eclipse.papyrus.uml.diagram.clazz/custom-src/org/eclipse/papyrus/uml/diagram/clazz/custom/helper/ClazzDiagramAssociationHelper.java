@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.PropertyCommandForAssociation;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
@@ -53,17 +53,17 @@ public class ClazzDiagramAssociationHelper {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//LookForElement.getCommandStack().execute(new ICommandProxy(c));
+		// LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() != null);
 		assert (c.getCommandResult().getReturnValue() != null);
-		Property targetProperty = (Property)c.getCommandResult().getReturnValue();
+		Property targetProperty = (Property) c.getCommandResult().getReturnValue();
 		targetProperty.setType(target);
 		targetProperty.setName(targetString);
 		targetProperty.setLower(1);
 		targetProperty.setUpper(1);
-		//put the property in the class
-		if(source instanceof StructuredClassifier) {
-			((StructuredClassifier)source).getOwnedAttributes().add(targetProperty);
+		// put the property in the class
+		if (source instanceof StructuredClassifier) {
+			((StructuredClassifier) source).getOwnedAttributes().add(targetProperty);
 		}
 		
 		// create source property
@@ -77,25 +77,25 @@ public class ClazzDiagramAssociationHelper {
 		}
 		assert (c.getCommandResult() != null);
 		assert (c.getCommandResult().getReturnValue() != null);
-		Property sourceProperty = (Property)c.getCommandResult().getReturnValue();
+		Property sourceProperty = (Property) c.getCommandResult().getReturnValue();
 		sourceProperty.setType(source);
 		sourceProperty.setName(sourceString);
 		sourceProperty.setLower(1);
 		sourceProperty.setUpper(1);
 		List<Property> memberEnds = association.getMemberEnds();
-		if((memberEnds.indexOf((sourceProperty)) >= 0)) {
+		if ((memberEnds.indexOf((sourceProperty)) >= 0)) {
 			association.getMemberEnds().move(0, (sourceProperty));
 		} else {
 			association.getMemberEnds().add(0, (sourceProperty));
 		}
-		if((memberEnds.indexOf((targetProperty)) >= 0)) {
+		if ((memberEnds.indexOf((targetProperty)) >= 0)) {
 			association.getMemberEnds().move(1, (targetProperty));
 		} else {
 			association.getMemberEnds().add(1, (targetProperty));
 		}
 		container.getPackagedElements().add(association);
 		ElementInitializers.getInstance().init_Association_4001(association);
-		String associationName = NamedElementHelper.EINSTANCE.getNewUMLElementName(container, sourceString + "_" + targetString + "_"); //$NON-NLS-1$ //$NON-NLS-2$
+		String associationName = NamedElementUtil.getDefaultNameWithIncrementFromBase(sourceString + "_" + targetString + "_", container.eContents());//$NON-NLS-1$ //$NON-NLS-2$
 		association.setName(associationName);
 		return association;
 	}

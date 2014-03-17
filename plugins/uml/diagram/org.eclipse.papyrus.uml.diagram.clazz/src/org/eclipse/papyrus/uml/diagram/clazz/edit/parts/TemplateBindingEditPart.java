@@ -1,14 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
@@ -28,7 +27,9 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 /**
  * @generated
  */
-public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class TemplateBindingEditPart extends UMLConnectionNodeEditPart
+		implements ITreeBranchEditPart
+{
 
 	/**
 	 * @generated
@@ -56,12 +57,14 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof BindingSubstitutionEditPart) {
-			((BindingSubstitutionEditPart)childEditPart).setLabel(getPrimaryShape().getBindingSubstitutionFigure());
+		if (childEditPart instanceof BindingSubstitutionEditPart) {
+			((BindingSubstitutionEditPart) childEditPart).setLabel(
+					getPrimaryShape().getBindingSubstitutionFigure());
 			return true;
 		}
-		if(childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
-			((AppliedStereotypeTemplateBindingEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
+			((AppliedStereotypeTemplateBindingEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -71,7 +74,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -81,10 +84,10 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof BindingSubstitutionEditPart) {
+		if (childEditPart instanceof BindingSubstitutionEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
+		if (childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
 			return true;
 		}
 		return false;
@@ -94,7 +97,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -116,6 +119,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 * @generated
 	 */
 	public TemplateBindingFigure getPrimaryShape() {
-		return (TemplateBindingFigure)getFigure();
+		return (TemplateBindingFigure) getFigure();
 	}
+
 }

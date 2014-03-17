@@ -16,20 +16,19 @@ package org.eclipse.papyrus.sysml.diagram.requirement.factory;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.CustomRequirementNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.factory.CustomUMLeditPartFactory;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.factory.CustomUMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 
 /**
  * this is custom editpart factory to create our own editpart
  */
-public class CustomRequirementUMLEditPartFactory extends CustomUMLeditPartFactory {
+public class CustomRequirementUMLEditPartFactory extends CustomUMLEditPartFactory {
 
 	public EditPart createEditPart(EditPart context, Object model) {
-		if(model instanceof View) {
-			View view = (View)model;
-			switch(UMLVisualIDRegistry.getVisualID(view)) {
+		if (model instanceof View) {
+			View view = (View) model;
+			switch (UMLVisualIDRegistry.getVisualID(view)) {
 			// redefined classes to modify the method createNodePlate
 			case ClassNameEditPart.VISUAL_ID:
 				return new CustomRequirementNameEditPart(view);

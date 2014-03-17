@@ -12,7 +12,7 @@
  */
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
@@ -27,11 +27,11 @@ public class ISRoleTargetDisplayEditPolicy extends InstanceSpecificationRoleDisp
 
 	@Override
 	public InstanceSpecification getEnd() {
-		return (InstanceSpecification)((GraphicalEditPart)((ConnectionEditPart)getHost().getParent()).getSource()).resolveSemanticElement();
+		return (InstanceSpecification) ((GraphicalEditPart) ((ConnectionEditPart) getHost().getParent()).getSource()).resolveSemanticElement();
 	}
 
 	@Override
-	protected Property getprefvalue(ArrayList<Property> array) {
+	protected Property getprefvalue(List<Property> array) {
 		return array.get(1);
 	}
 }

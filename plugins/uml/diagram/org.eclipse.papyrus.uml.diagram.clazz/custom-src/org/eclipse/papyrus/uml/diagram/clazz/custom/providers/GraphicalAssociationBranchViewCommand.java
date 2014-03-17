@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.C
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.CustomMultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.uml2.uml.Property;
@@ -37,8 +37,9 @@ public class GraphicalAssociationBranchViewCommand extends CommonDeferredCreateC
 	/**
 	 * {@inheritDoc}
 	 */
-	public GraphicalAssociationBranchViewCommand(TransactionalEditingDomain editingDomain, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, Object associationEndWrapper) {
-		super(editingDomain, ((IHintedType)UMLElementTypes.Association_4019).getSemanticHint(), sourceViewAdapter, targetViewAdapter, viewer, preferencesHint, viewDescriptor, null);
+	public GraphicalAssociationBranchViewCommand(TransactionalEditingDomain editingDomain, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor,
+			Object associationEndWrapper) {
+		super(editingDomain, ((IHintedType) UMLElementTypes.Association_4019).getSemanticHint(), sourceViewAdapter, targetViewAdapter, viewer, preferencesHint, viewDescriptor, null);
 		this.associationEndWrapper = associationEndWrapper;
 	}
 
@@ -48,17 +49,17 @@ public class GraphicalAssociationBranchViewCommand extends CommonDeferredCreateC
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		CommandResult commandResult = null;
 		commandResult = super.doExecuteWithResult(progressMonitor, info);
-		View view = ((View)(viewDescriptor.getAdapter(View.class)));
-		MultiAssociationHelper.createSemanticBranchStyles(view);
+		View view = ((View) (viewDescriptor.getAdapter(View.class)));
+		CustomMultiAssociationHelper.createSemanticBranchStyles(view);
 		EObject associationEnd = null;
-		if(associationEndWrapper instanceof CreateElementRequest) {
-			associationEnd = ((CreateElementRequest)associationEndWrapper).getNewElement();
+		if (associationEndWrapper instanceof CreateElementRequest) {
+			associationEnd = ((CreateElementRequest) associationEndWrapper).getNewElement();
 		}
-		if(associationEndWrapper instanceof Property) {
-			associationEnd = (Property)associationEndWrapper;
+		if (associationEndWrapper instanceof Property) {
+			associationEnd = (Property) associationEndWrapper;
 		}
-		if(associationEnd != null && associationEnd instanceof Property) {
-			MultiAssociationHelper.setSemanticBranchEnd(view, (Property)associationEnd);
+		if (associationEnd != null && associationEnd instanceof Property) {
+			CustomMultiAssociationHelper.setSemanticBranchEnd(view, (Property) associationEnd);
 		}
 		return commandResult;
 	}
