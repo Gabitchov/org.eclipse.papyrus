@@ -35,10 +35,7 @@ public abstract class CmdHandler extends AbstractHandler {
 				.getSelectionService().getSelection();
 
 		if(selection != null) {
-			Object selectedObject = EMFHelper.getEObject(selection.getFirstElement());
-			if (selectedObject instanceof EObject) {
-				selectedEObject = (EObject) selectedObject;
-			}
+			selectedEObject = EMFHelper.getEObject(selection.getFirstElement());
 		}
 	}
 
