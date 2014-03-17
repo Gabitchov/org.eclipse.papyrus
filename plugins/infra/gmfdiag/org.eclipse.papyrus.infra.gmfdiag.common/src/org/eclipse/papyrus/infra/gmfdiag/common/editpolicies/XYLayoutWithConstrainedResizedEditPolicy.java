@@ -136,7 +136,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 		final List<?> children = request.getEditParts();
 		final int direction = request.getResizeDirection();
 		boolean isConstrainedResize = request.isConstrainedResize();
-		boolean forceLocation = isConstrainedResize && (direction == PositionConstants.WEST || direction == PositionConstants.NORTH || direction == PositionConstants.NORTH_WEST);
+		boolean forceLocation = isConstrainedResize ;//&& (direction == PositionConstants.WEST || direction == PositionConstants.NORTH || direction == PositionConstants.NORTH_WEST );//|| direction == PositionConstants.NORTH_EAST || direction == PositionConstants.SOUTH_WEST);
 		for(int i = 0; i < children.size(); i++) {
 			child = (IGraphicalEditPart)children.get(i);
 			resize.add(createChangeConstraintCommand(request, child, translateToModelConstraint(getConstraintFor(request, child))));
