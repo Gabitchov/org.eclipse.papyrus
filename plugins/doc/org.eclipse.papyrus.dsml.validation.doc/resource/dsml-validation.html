@@ -19,7 +19,9 @@ From the model explorer, click right --> new child--> Create a new Constraint<br
 <p>Before editing a constraint, it is important to specify the context of a constraint; it can be for instance a stereotype or an operation (in fact, it can be any meta-model element that inherits from namespace).<br/></p>
 
 <h3 id="How_to_2">How to</h3><p>
-Since Eclipse Luna, Papyrus automatically selects the context-link-tool after creation of a constraint. It will also already set the newly created constraint as one end of the context-link relationship. The user needs to select the owning context which can be any meta-model elements that is a sub-class of namespace. This tool is available in the Relationships folder of the the palette, as shown in the following figure:<br/></p><pre><img border="0" src="DiagramContextLink.png"/><br/> 
+Since Eclipse Luna, Papyrus automatically selects the context-link-tool after creation of a constraint. It will also already set the newly created constraint as one end of the context-link relationship. The user needs to select the owning context such as a stereotype, class or operation (must subclass namespace on meta-model level).<br/>
+If you want to create this link later, select the associated tool manually. It can be found in the relationships drawer of the the palette, as shown in the following figure:<br/></p><pre><img border="0" src="DiagramContextLink.png"/><br/> 
+
 </pre><p>Figure 4: Context link creation in a the profile diagram<br/>
 <br/>
 From the property view, the context can be specified:<br/></p><pre><img border="0" src="propertyviewContextlink.png"/><br/> 

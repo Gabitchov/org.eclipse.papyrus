@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <toc label="Write and validate (OCL) constraints of a profile" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
-   <topic href="resource/dsml-validation.html" label="Write and validate constraints of a profile">
+   <topic href="resource/dsml-validation.html" label="Write and validate (OCL) constraints of a profile">
       <link toc="resource/dsml-validation-toc.xml"/>
       <anchor id="Write and validate (OCL) constraints of a profile"/>
    </topic>	
