@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Ansgar Radermacher (CEA LIST)  - Initial API and implementation
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.dnd.strategy.constraint;
 
@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.TransactionalDropStrategy;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.uml.diagram.dnd.Activator;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -96,12 +97,13 @@ public class ClassifierToConstraintDropStrategy extends TransactionalDropStrateg
 		}
 
 		Object sourceElement = sourceElements.get(0);
+		if(sourceElement instanceof Classifier){
 
 		SetRequest setClassifiersRequest = new SetRequest(semanticElement, constraintContext_feature, sourceElement);
 		SetValueCommand setClassifiersCommand = new SetValueCommand(setClassifiersRequest);
 
 		cc.add(setClassifiersCommand);
-
+		}
 		return cc.canExecute() ? new ICommandProxy(cc.reduce()) : null;
 	}
 }
