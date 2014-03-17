@@ -25,13 +25,16 @@ import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
 
 /**
  * Utilities for the management of configuration-related data on views and diagrams
+ * 
  * @author Laurent Wouters
  */
 public class DiagramUtils {
-	
+
 	/**
 	 * Gets the diagram associated to the given edit part
-	 * @param part The edit part
+	 * 
+	 * @param part
+	 *            The edit part
 	 * @return The diagram associated to the edit part, or <code>null</code> if none is found
 	 */
 	public static Diagram getDiagramFrom(EditPart part) {
@@ -39,22 +42,33 @@ public class DiagramUtils {
 		while (current != null) {
 			Object model = current.getModel();
 			if (model instanceof Diagram)
-				return (Diagram)model;
-			current = current.getParent();
+				return (Diagram) model;
+			if (current.getParent() != null) {
+				current = current.getParent();
+			} else {
+				// No more parent, assume this is a RenderedDiagramRootEditPart
+				if (current.getChildren().size() == 0)
+					return null;
+				current = (EditPart) current.getChildren().get(0);
+				model = current.getModel();
+				return (model instanceof Diagram) ? (Diagram) model : null;
+			}
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Gets the owner of a diagram as it will appear in the model explorer.
 	 * In the case where the diagram does not yet have a defined owner, the diagram's root element will be returned instead.
-	 * @param diagram A diagram
+	 * 
+	 * @param diagram
+	 *            A diagram
 	 * @return The diagram's owner
 	 */
 	public static EObject getOwner(Diagram diagram) {
 		Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
 		if (style != null) {
-			PapyrusViewStyle pvs = (PapyrusViewStyle)style;
+			PapyrusViewStyle pvs = (PapyrusViewStyle) style;
 			EObject value = pvs.getOwner();
 			if (value != null)
 				return value;
@@ -62,32 +76,37 @@ public class DiagramUtils {
 		// This is the legacy fallback for old diagrams
 		return diagram.getElement();
 	}
-	
+
 	/**
 	 * Sets the owner of a diagram as it will appear in the model explorer
-	 * @param diagram A diagram
-	 * @param owner The new diagram's owner
+	 * 
+	 * @param diagram
+	 *            A diagram
+	 * @param owner
+	 *            The new diagram's owner
 	 */
 	public static void setOwner(Diagram diagram, EObject owner) {
 		Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
 		if (style != null) {
-			PapyrusViewStyle pvs = (PapyrusViewStyle)style;
+			PapyrusViewStyle pvs = (PapyrusViewStyle) style;
 			pvs.setOwner(owner);
 		} else {
-			PapyrusViewStyle pvs = (PapyrusViewStyle)diagram.createStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
+			PapyrusViewStyle pvs = (PapyrusViewStyle) diagram.createStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
 			pvs.setOwner(owner);
 		}
 	}
-	
+
 	/**
 	 * Gets the prototype of a diagram
-	 * @param diagram A diagram
+	 * 
+	 * @param diagram
+	 *            A diagram
 	 * @return The diagram's prototype
 	 */
 	public static ViewPrototype getPrototype(Diagram diagram) {
 		Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
 		if (style != null) {
-			PapyrusViewStyle pvs = (PapyrusViewStyle)style;
+			PapyrusViewStyle pvs = (PapyrusViewStyle) style;
 			PapyrusView config = pvs.getConfiguration();
 			if (config != null) {
 				if (PolicyChecker.getCurrent().isInViewpoint(config))
@@ -105,19 +124,22 @@ public class DiagramUtils {
 		}
 		return ViewPrototype.get(diagram.getType(), diagram.getElement(), diagram.getElement());
 	}
-	
+
 	/**
 	 * Sets the prototype of a diagram
-	 * @param diagram A diagram
-	 * @param configuration The new diagram's prototype
+	 * 
+	 * @param diagram
+	 *            A diagram
+	 * @param configuration
+	 *            The new diagram's prototype
 	 */
 	public static void setPrototype(Diagram diagram, ViewPrototype prototype) {
 		Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
 		if (style != null) {
-			PapyrusViewStyle pvs = (PapyrusViewStyle)style;
+			PapyrusViewStyle pvs = (PapyrusViewStyle) style;
 			pvs.setConfiguration(prototype.getConfiguration());
 		} else {
-			PapyrusViewStyle pvs = (PapyrusViewStyle)diagram.createStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
+			PapyrusViewStyle pvs = (PapyrusViewStyle) diagram.createStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
 			pvs.setConfiguration(prototype.getConfiguration());
 		}
 	}
