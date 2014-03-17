@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
@@ -38,8 +37,6 @@ public class CustomEditPartFactory extends UMLEditPartFactory {
 				return new ConnectorMultiplicitySourceEditPart(view);
 			case ConnectorMultiplicityTargetEditPart.VISUAL_ID:
 				return new ConnectorMultiplicityTargetEditPart(view);
-			case ConstraintEditPart.VISUAL_ID:
-				return new CustomConstraintEditPart(view);
 			case ConstraintEditPartCN.VISUAL_ID:
 				return new CustomConstraintEditPartCN(view);
 

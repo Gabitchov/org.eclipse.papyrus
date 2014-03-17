@@ -27,22 +27,15 @@ import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.TransactionalDropStrategy;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.uml.diagram.dnd.Activator;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * A strategy to drop a Classifier on an InstanceSpecification. The instance
- * specification will be typed by the dropped classifiers, and a dialog will
- * be opened for the user to select the slots to create in the
- * InstanceSpecification.
- * 
- * The slots will correspond to the classifier's property.
- * 
- * @author Camille Letavernier
- * 
+ * A strategy to drop a name-space on a constraint. The constraint
+ * context will be updated by the dropped name-space. 
  */
-public class ClassifierToConstraintDropStrategy extends TransactionalDropStrategy {
+public class NamespaceToConstraintDropStrategy extends TransactionalDropStrategy {
 
 	protected static final EStructuralFeature constraintContext_feature = UMLPackage.eINSTANCE.getConstraint_Context();
 
@@ -51,7 +44,7 @@ public class ClassifierToConstraintDropStrategy extends TransactionalDropStrateg
 	}
 
 	public String getID() {
-		return Activator.PLUGIN_ID + ".constraintContext";
+		return Activator.PLUGIN_ID + ".constraintContext"; //$NON-NLS-1$
 	}
 
 	public String getCategoryID() {
@@ -59,7 +52,7 @@ public class ClassifierToConstraintDropStrategy extends TransactionalDropStrateg
 	}
 
 	public String getCategoryLabel() {
-		return "Sets the dropped classifier as context of the target constraint.";
+		return "Sets the dropped namespace as context of the target constraint.";
 	}
 	
 	public String getDescription() {
@@ -97,12 +90,12 @@ public class ClassifierToConstraintDropStrategy extends TransactionalDropStrateg
 		}
 
 		Object sourceElement = sourceElements.get(0);
-		if(sourceElement instanceof Classifier){
+		if(sourceElement instanceof Namespace) {
 
-		SetRequest setClassifiersRequest = new SetRequest(semanticElement, constraintContext_feature, sourceElement);
-		SetValueCommand setClassifiersCommand = new SetValueCommand(setClassifiersRequest);
+			SetRequest setContextRequest = new SetRequest(semanticElement, constraintContext_feature, sourceElement);
+			SetValueCommand setContextCommand = new SetValueCommand(setContextRequest);
 
-		cc.add(setClassifiersCommand);
+			cc.add(setContextCommand);
 		}
 		return cc.canExecute() ? new ICommandProxy(cc.reduce()) : null;
 	}
