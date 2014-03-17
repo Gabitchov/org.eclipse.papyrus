@@ -4,14 +4,18 @@ package org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes;
@@ -31,7 +35,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes;
  */
 public class WorkspaceThemesImpl extends EModelElementImpl implements WorkspaceThemes {
 	/**
-	 * The cached value of the '{@link #getThemes() <em>Themes</em>}' reference list.
+	 * The cached value of the '{@link #getThemes() <em>Themes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getThemes()
@@ -66,9 +70,23 @@ public class WorkspaceThemesImpl extends EModelElementImpl implements WorkspaceT
 	 */
 	public EList<Theme> getThemes() {
 		if (themes == null) {
-			themes = new EObjectResolvingEList<Theme>(Theme.class, this, StylesheetsPackage.WORKSPACE_THEMES__THEMES);
+			themes = new EObjectContainmentEList<Theme>(Theme.class, this, StylesheetsPackage.WORKSPACE_THEMES__THEMES);
 		}
 		return themes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case StylesheetsPackage.WORKSPACE_THEMES__THEMES:
+				return ((InternalEList<?>)getThemes()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

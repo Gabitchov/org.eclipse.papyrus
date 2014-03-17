@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EModelElement;
  */
 public interface WorkspaceThemes extends EModelElement {
 	/**
-	 * Returns the value of the '<em><b>Themes</b></em>' reference list.
+	 * Returns the value of the '<em><b>Themes</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -32,9 +32,9 @@ public interface WorkspaceThemes extends EModelElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Themes</em>' reference list.
+	 * @return the value of the '<em>Themes</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getWorkspaceThemes_Themes()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Theme> getThemes();

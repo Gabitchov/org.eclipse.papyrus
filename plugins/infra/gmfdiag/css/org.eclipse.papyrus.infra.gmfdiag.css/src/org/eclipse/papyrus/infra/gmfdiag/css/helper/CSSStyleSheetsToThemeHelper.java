@@ -23,8 +23,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes;
 
 
@@ -46,25 +48,65 @@ public class CSSStyleSheetsToThemeHelper {
 	}
 
 	/**
+	 * Define a theme from selected files.
+	 * <p>
+	 * FIXME User could select several CSS files to create a theme
+	 * <P>
+	 * 
 	 * @param file
 	 */
 	public void defineCSSStyleSheetFileAsTheme(IFile file) {
 
+		// Get themes preference file
 		Resource themeFile = findThemeFile();
 
+		// Get workspace themes
 		WorkspaceThemes workspaceThemes = (WorkspaceThemes)EcoreUtil.getObjectByType(themeFile.getContents(), StylesheetsPackage.eINSTANCE.getWorkspaceThemes());
 
+		// Create a workspace themes root 
 		if(workspaceThemes == null) {
 			workspaceThemes = StylesheetsFactory.eINSTANCE.createWorkspaceThemes();
 			themeFile.getContents().add(workspaceThemes);
 		}
 
+		// Create a theme from selected CSS file
+		Theme theme = createThemeFromSelection(file);
+
+		// Add created theme 
+		workspaceThemes.getThemes().add(theme);
+
+		// Save theme preference file
 		try {
 			themeFile.save(Collections.EMPTY_MAP);
 		} catch (IOException e) {
 			Activator.log.error(e);
 		}
 
+	}
+
+
+	/**
+	 * Created a style sheets theme from project selection.
+	 * 
+	 * @param file
+	 * @return
+	 */
+	private Theme createThemeFromSelection(IFile file) {
+
+		// Factory to create necessary elements
+		StylesheetsFactory styleSheetsFactory = StylesheetsFactory.eINSTANCE;
+
+		// Create new theme
+		Theme newTheme = styleSheetsFactory.createTheme();
+		newTheme.setLabel("Pipo");
+
+		//Style sheets to add in theme
+		StyleSheetReference styleSheetsReference = styleSheetsFactory.createStyleSheetReference();
+		styleSheetsReference.setPath(URI.createFileURI(file.getLocation().toOSString()).toFileString());
+
+		newTheme.getStylesheets().add(styleSheetsReference);
+
+		return newTheme;
 	}
 
 	/**

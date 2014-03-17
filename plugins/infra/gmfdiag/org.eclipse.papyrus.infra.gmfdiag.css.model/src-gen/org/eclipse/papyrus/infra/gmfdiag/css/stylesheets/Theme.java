@@ -104,7 +104,7 @@ public interface Theme extends EObject {
 	void setIcon(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Stylesheets</b></em>' reference list.
+	 * Returns the value of the '<em><b>Stylesheets</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -112,9 +112,9 @@ public interface Theme extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Stylesheets</em>' reference list.
+	 * @return the value of the '<em>Stylesheets</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getTheme_Stylesheets()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<StyleSheet> getStylesheets();

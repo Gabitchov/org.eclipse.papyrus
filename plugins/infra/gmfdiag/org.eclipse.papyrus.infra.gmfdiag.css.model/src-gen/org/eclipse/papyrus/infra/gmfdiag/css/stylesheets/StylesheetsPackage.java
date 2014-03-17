@@ -198,7 +198,7 @@ public interface StylesheetsPackage extends EPackage {
 	int WORKSPACE_THEMES__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Themes</b></em>' reference list.
+	 * The feature id for the '<em><b>Themes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -253,7 +253,7 @@ public interface StylesheetsPackage extends EPackage {
 	int THEME__ICON = 2;
 
 	/**
-	 * The feature id for the '<em><b>Stylesheets</b></em>' reference list.
+	 * The feature id for the '<em><b>Stylesheets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -366,10 +366,10 @@ public interface StylesheetsPackage extends EPackage {
 	EClass getWorkspaceThemes();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes#getThemes <em>Themes</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes#getThemes <em>Themes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Themes</em>'.
+	 * @return the meta object for the containment reference list '<em>Themes</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes#getThemes()
 	 * @see #getWorkspaceThemes()
 	 * @generated
@@ -420,10 +420,10 @@ public interface StylesheetsPackage extends EPackage {
 	EAttribute getTheme_Icon();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getStylesheets <em>Stylesheets</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getStylesheets <em>Stylesheets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Stylesheets</em>'.
+	 * @return the meta object for the containment reference list '<em>Stylesheets</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getStylesheets()
 	 * @see #getTheme()
 	 * @generated
@@ -535,7 +535,7 @@ public interface StylesheetsPackage extends EPackage {
 		EClass WORKSPACE_THEMES = eINSTANCE.getWorkspaceThemes();
 
 		/**
-		 * The meta object literal for the '<em><b>Themes</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Themes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -577,7 +577,7 @@ public interface StylesheetsPackage extends EPackage {
 		EAttribute THEME__ICON = eINSTANCE.getTheme_Icon();
 
 		/**
-		 * The meta object literal for the '<em><b>Stylesheets</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Stylesheets</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
