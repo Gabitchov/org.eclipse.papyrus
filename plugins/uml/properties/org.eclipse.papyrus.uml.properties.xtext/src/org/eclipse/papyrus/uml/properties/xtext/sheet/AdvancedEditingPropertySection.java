@@ -51,6 +51,10 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
+/**
+ * Attention: class has been deactivated, since the additional tab is redundant with the
+ * body editor in the standard UML property tab.
+ */
 public class AdvancedEditingPropertySection extends
 		AbstractModelerPropertySection implements IContextElementProvider {
 

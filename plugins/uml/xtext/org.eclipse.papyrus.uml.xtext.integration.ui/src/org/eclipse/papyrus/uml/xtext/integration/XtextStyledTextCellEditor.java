@@ -131,7 +131,13 @@ public class XtextStyledTextCellEditor extends StyledTextCellEditor {
 			public void handleEvent(Event event) {
 				if (event.character == '\u001b' // ESC
 						&& !completionProposalAdapter.delayedIsPopupOpen()) {
-					XtextStyledTextCellEditor.this.fireCancelEditor();
+					// use undoable instead of isDirty, since the latter is always true after doSetValue is called.
+					if (xtextAdapter.sourceviewer.getUndoManager().undoable()) {
+						XtextStyledTextCellEditor.this.fireApplyEditorValue();
+					}
+					else {
+						XtextStyledTextCellEditor.this.fireCancelEditor();
+					}
 				}
 			}
 		};
@@ -181,7 +187,7 @@ public class XtextStyledTextCellEditor extends StyledTextCellEditor {
 		return true;
 	}
 
-	// in gtk, we need this flag to let one focus lost event pass. See
+	// in GTK, we need this flag to let one focus lost event pass. See
 	// focusLost() for details.
 	boolean ignoreNextFocusLost = false;
 	
