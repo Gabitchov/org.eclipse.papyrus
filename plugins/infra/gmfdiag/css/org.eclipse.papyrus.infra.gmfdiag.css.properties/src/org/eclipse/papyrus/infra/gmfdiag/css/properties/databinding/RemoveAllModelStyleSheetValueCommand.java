@@ -7,32 +7,37 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Mickaël Adam (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
  *****************************************************************************/
-
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding;
 
-import org.eclipse.emf.ecore.EObject;
+import java.util.Collection;
+
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 
-public class AddModelStyleSheetCommand extends RecordingCommand {
+
+public class RemoveAllModelStyleSheetValueCommand extends RecordingCommand {
+
+	private Collection<?> values;
 
 	private Resource resource;
 
-	private EObject object;
-
-	public AddModelStyleSheetCommand(TransactionalEditingDomain domain, Resource resource, EObject object) {
+	public RemoveAllModelStyleSheetValueCommand(TransactionalEditingDomain domain, Resource resource, Collection<?> values) {
 		super(domain);
 		this.resource = resource;
-		this.object = object;
+		this.values = values;
 	}
 
+	@Override
 	public void doExecute() {
-		//add ModelSteelSheet
-		resource.getContents().add(object);
-
+		for(Object value : values) {
+			if(value instanceof StyleSheetReference) {
+				resource.getContents().remove((StyleSheetReference)value);
+			}
+		}
 	}
 
 }
