@@ -132,14 +132,6 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 		super(view);
 	}
 
-	@Override
-	public void performRequest(Request req) {
-	    if(req.getType() == RequestConstants.REQ_DIRECT_EDIT) {
-	       System.err.println("Request: got direct edit"); //$NON-NLS-1$
-	    }
-	    super.performRequest(req);
-	}
-
 	/**
 	 * @generated
 	 */
