@@ -8,6 +8,8 @@
    <extension-point id="notationTypesMapping" name="notationTypesMapping" schema="schema/notationTypesMapping.exsd"/>
    <extension-point id="svgPostProcessors" name="svgPostProcessors" schema="schema/svgPostProcessors.exsd"/>
    <extension-point id="pasteCommandProvider" name="pasteCommandProvider" schema="schema/pasteCommandProvider.exsd"/>
+   <extension-point id="pasteStrategy" name="pasteStrategy" schema="schema/pasteStrategy.exsd"/>
+   <extension-point id="copyStrategy" name="copyStrategy" schema="schema/copyStrategy.exsd"/>
 
 <extension
       point="org.eclipse.ui.handlers">
@@ -55,6 +57,12 @@
          id="org.eclipse.papyrus.infra.gmfdiag.common.connectionTools"
          name="Connection Tools">
    </page>
+   <page
+         category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+         class="org.eclipse.papyrus.infra.gmfdiag.common.preferences.PastePreferencesPage"
+         id="org.eclipse.papyrus.infra.gmfdiag.paste.preferences"
+         name="Paste">
+   </page> 
 </extension>
 <extension
       point="org.eclipse.core.runtime.preferences">

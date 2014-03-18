@@ -49,6 +49,7 @@ import org.eclipse.ui.PlatformUI;
  * 
  * </pre>
  */
+@Deprecated // use org.eclipse.papyrus.infra.gmfdiag.modelexplorer.handlers.AbstractEMFCommandHandler
 public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 
 	/**

@@ -78,30 +78,30 @@ public abstract class AbstractHandlerTest {
 	protected static final String FILE_NAME = "model"; //$NON-NLS-1$
 
 	/** the name of the project used to test the handler */
-	private static final String PROJECT_NAME = "Project Handler Test"; //$NON-NLS-1$
+	protected static final String PROJECT_NAME = "Project Handler Test"; //$NON-NLS-1$
 
 	/** the id of the model explorer */
 	public static final String viewId = "org.eclipse.papyrus.views.modelexplorer.modelexplorer"; //$NON-NLS-1$
 
 	/** the root of the model */
-	private EObject modelRoot;
+	protected EObject modelRoot;
 
-	private ModelExplorerView modelExplorerView;
+	protected ModelExplorerView modelExplorerView;
 
 	protected Command testedCommand;
 
-	private CommonViewer commonViewer;
+	protected CommonViewer commonViewer;
 
-	private ISelectionService selectionService;
+	protected ISelectionService selectionService;
 
-	private final String commandId;
+	protected final String commandId;
 
-	private CoreMultiDiagramEditor editor;
+	protected CoreMultiDiagramEditor editor;
 
 	/**
 	 * the bundle to use to get the model to test
 	 */
-	private final Bundle bundle;
+	protected final Bundle bundle;
 
 	/**
 	 * 
