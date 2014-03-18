@@ -63,7 +63,7 @@ import com.google.common.base.Optional;
 
 /**
  * This class is used to manage a set of {@link IModel}.
- * 
+ *
  * <h2>>Usage</h2>
  * <ul>
  * <li>First, register associated model. A loader can be used.</li>
@@ -71,16 +71,16 @@ import com.google.common.base.Optional;
  * <li>Then, it is possible to get associated models</li>
  * <li>Finally, call save()</li>
  * </ul>
- * 
+ *
  * Please note that indirectly referenced models are loaded on demand. If a
  * model contains a cross reference towards another model (e.g. an import in
  * case of UML) the referenced resource does not appear initially in the set.
  * However, it is added once the referenced model is resolved.
- * 
+ *
  * TODO Modify ModelSetSnippet in order to inform them of model addition.
- * 
+ *
  * @author cedric dumoulin
- * 
+ *
  */
 public class ModelSet extends ResourceSetImpl {
 
@@ -126,9 +126,9 @@ public class ModelSet extends ResourceSetImpl {
 
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 */
 	public ModelSet() {
 		registerModel(additional);
@@ -147,7 +147,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * Register the specified model under its associated key. The key is defined
 	 * in the model itself. It is usually the model type from
 	 * (ModelPackage.eCONTENT_TYPE).
-	 * 
+	 *
 	 * @param model
 	 *        the model
 	 */
@@ -167,7 +167,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Get a model by its key. TODO throw an exception if not found.
-	 * 
+	 *
 	 * @param key
 	 *        the key
 	 * @return the model
@@ -178,7 +178,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Get a model by its key. TODO throw an exception if not found.
-	 * 
+	 *
 	 * @param key
 	 *        the key
 	 * @return the model
@@ -201,6 +201,10 @@ public class ModelSet extends ResourceSetImpl {
 
 	@Override
 	public Resource getResource(URI uri, boolean loadOnDemand) {
+		if(uri.hasFragment()) {
+			Activator.log.warn("Invalid Resource URI: resource URIs cannot contain a fragment"); //$NON-NLS-1$
+			uri = uri.trimFragment(); //Fix and continue
+		}
 		Resource r = null;
 		try {
 			r = super.getResource(uri, loadOnDemand);
@@ -250,7 +254,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * @deprecated please use {@link #getAssociatedResource(EObject, String, boolean)} instead
-	 * 
+	 *
 	 * @param modelElement
 	 * @param associatedResourceExtension
 	 * @return
@@ -262,7 +266,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * @deprecated please use {@link #getAssociatedResource(Resource, String, boolean)} instead
-	 * 
+	 *
 	 * @param modelResource
 	 * @param associatedResourceExtension
 	 * @return
@@ -274,7 +278,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Retrieve and load the associated resource which have the given extension.
-	 * 
+	 *
 	 * @param modelElement
 	 * @param associatedResourceExtension
 	 * @param loadOnDemand
@@ -290,7 +294,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Retrieve and load the associated resource which have the given extension.
-	 * 
+	 *
 	 * @param modelResource
 	 * @param associatedResourceExtension
 	 * @param loadOnDemand
@@ -309,7 +313,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * This method is called by getResource, createResource and demandLoad before returning
 	 * the resource to the caller so we can set options on the resource.
-	 * 
+	 *
 	 * @param r
 	 *        , can be null
 	 * @return the same resource for convenience
@@ -337,7 +341,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Create the transactional editing domain.
-	 * 
+	 *
 	 * @return the transactional editing domain
 	 */
 	public synchronized TransactionalEditingDomain getTransactionalEditingDomain() {
@@ -353,7 +357,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * @return the filenameWithoutExtension
-	 * 
+	 *
 	 * @deprecated Use the {@link #getURIWithoutExtension()} API, instead.
 	 */
 	@Deprecated
@@ -398,11 +402,11 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Create all the associated models. This creates the models, regardless if
 	 * they already exist.
-	 * 
+	 *
 	 * @param newFile
 	 *        The file from which path is extracted to create the new
 	 *        resources
-	 * 
+	 *
 	 * @deprecated Use the {@link #createModels(URI)} API, instead.
 	 */
 	@Deprecated
@@ -413,7 +417,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Create all the associated models. This creates the models, regardless if
 	 * they already exist.
-	 * 
+	 *
 	 * @param newFile
 	 *        The file from which path is extracted to create the new
 	 *        resources
@@ -435,9 +439,9 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Create the model specified by the identifiers. Other models are
 	 * untouched, unless they are sharing something with specified models.
-	 * 
+	 *
 	 * This creates the models, regardless if they already exist.
-	 * 
+	 *
 	 * @param newFile
 	 *        The file from which path is extracted to create the new
 	 *        resources
@@ -459,7 +463,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Load only the specified model. ModelSetSnippets are not called. Model is
 	 * loaded using the ModelSet Path.
-	 * 
+	 *
 	 * @param modelIdentifier
 	 *        the model identifier
 	 * @param file
@@ -479,7 +483,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Import only the specified model. ModelSetSnippets are not called.
-	 * 
+	 *
 	 * @param modelIdentifier
 	 *        the model identifier
 	 * @param file
@@ -500,7 +504,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Load all the associated models from a handle on one of the associated
 	 * file.
-	 * 
+	 *
 	 * @param file
 	 *        The file to load (no matter the extension)
 	 * @deprecated Use the {@link #loadModels(URI)} API, instead.
@@ -517,7 +521,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Load all the associated models from a URI identifying one of the associated
 	 * files.
-	 * 
+	 *
 	 * @param uri
 	 *        The URI to load (no matter the extension)
 	 */
@@ -556,7 +560,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Returns the models to be loaded, in order according to their dependencies
-	 * 
+	 *
 	 * @return the models to be loaded, in order according to their dependencies
 	 */
 	protected List<IModel> getOrderedModelsForLoading() {
@@ -567,14 +571,14 @@ public class ModelSet extends ResourceSetImpl {
 	 * Import specified models into the ModelSet. The models are imported using
 	 * the specified IFile. After import, the models are associated with the
 	 * ModelSet Path.
-	 * 
+	 *
 	 * @param modelIdentifiers
 	 *        The model to import from the specified IFile.
 	 * @param file
 	 *        The IFile used to import the model.
 	 * @throws ModelException
 	 *         If an error occur during import.
-	 * 
+	 *
 	 * @deprecated Use the {@link #importModels(ModelIdentifiers, URI)} API, instead
 	 */
 	@Deprecated
@@ -587,7 +591,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * Import specified models into the ModelSet. The models are imported using
 	 * the specified IFile. After import, the models are associated with the
 	 * ModelSet Path.
-	 * 
+	 *
 	 * @param modelIdentifiers
 	 *        The model to import from the specified IFile.
 	 * @param file
@@ -614,14 +618,14 @@ public class ModelSet extends ResourceSetImpl {
 	 * Import only the specified model. ModelSetSnippets are not called. An
 	 * import can be performed after model are loaded. Normally, it should not
 	 * be done before a model is loaded.
-	 * 
+	 *
 	 * @param modelIdentifier
 	 *        the model identifier
 	 * @param file
 	 *        the file
 	 * @throws ModelException
 	 * @returns The loaded model.
-	 * 
+	 *
 	 * @deprecated Use the {@link #importModel(String, URI)} API, instead.
 	 */
 	@Deprecated
@@ -634,7 +638,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * Import only the specified model. ModelSetSnippets are not called. An
 	 * import can be performed after model are loaded. Normally, it should not
 	 * be done before a model is loaded.
-	 * 
+	 *
 	 * @param modelIdentifier
 	 *        the model identifier
 	 * @param file
@@ -667,7 +671,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Save the resources.
-	 * 
+	 *
 	 * @param monitor
 	 *        The monitor.
 	 * @throws IOException
@@ -802,12 +806,12 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Finds the file corresponding to the specified URI, using a URI converter
 	 * if necessary (and provided) to normalize it.
-	 * 
+	 *
 	 * @param uri
 	 *        a URI
 	 * @param converter
 	 *        an optional URI converter (may be <code>null</code>)
-	 * 
+	 *
 	 * @return the file, if available in the workspace
 	 */
 	protected IFile getFile(URI uri) {
@@ -861,12 +865,12 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * The resources are already loaded, but we want to save them under another
 	 * name.
-	 * 
+	 *
 	 * @param path
 	 *        the path
 	 * @throws IOException
 	 *         Signals that an I/O exception has occurred.
-	 * 
+	 *
 	 * @deprecated Use the {@link #saveAs(URI)} API, instead.
 	 */
 	@Deprecated
@@ -877,7 +881,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * The resources are already loaded, but we want to save them under another
 	 * name.
-	 * 
+	 *
 	 * @param path
 	 *        the path
 	 * @throws IOException
@@ -955,7 +959,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Obtains my internal API adapter.
-	 * 
+	 *
 	 * @return my internal API adapter
 	 */
 	public Internal getInternal() {
@@ -980,7 +984,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Add a {@link IModelSetSnippet}. A snippet allows to add code that will
 	 * perform additional operations on the ModelSet.
-	 * 
+	 *
 	 * @param snippet
 	 *        The snippet to add.
 	 */
@@ -990,11 +994,11 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * A list of {@link IModelSetSnippet}.
-	 * 
+	 *
 	 * Used by Models to maintain their list of Snippets.
-	 * 
+	 *
 	 * @author cedric dumoulin
-	 * 
+	 *
 	 */
 	public class ModelSetSnippetList extends ArrayList<IModelSetSnippet> {
 
@@ -1003,7 +1007,7 @@ public class ModelSet extends ResourceSetImpl {
 
 		/**
 		 * Call the start method on all registered snippets.
-		 * 
+		 *
 		 * @param modelsManager
 		 *        The model that is starting
 		 */
@@ -1015,7 +1019,7 @@ public class ModelSet extends ResourceSetImpl {
 
 		/**
 		 * Call the start method on all registered snippets.
-		 * 
+		 *
 		 * @param modelsManager
 		 *        The model that is stopping
 		 */
@@ -1034,10 +1038,10 @@ public class ModelSet extends ResourceSetImpl {
 
 		/**
 		 * Sets the {@link ModelSet}'s primary resource URI.
-		 * 
+		 *
 		 * @param uri
 		 *        the URI
-		 * 
+		 *
 		 * @see ModelSet#createModels(URI)
 		 * @see ModelSet#saveAs(URI)
 		 */
@@ -1046,7 +1050,7 @@ public class ModelSet extends ResourceSetImpl {
 		/**
 		 * Register a model with the option to force it (in case a more specific
 		 * implementation of the model is already registered).
-		 * 
+		 *
 		 * @param model
 		 *        a model to register
 		 * @param force
@@ -1056,7 +1060,7 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param target
 	 */
 	public void saveCopy(IPath targetPathWithoutExtension) {
@@ -1167,7 +1171,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Returns the IModel which handles the specified element, if any
-	 * 
+	 *
 	 * @param container
 	 * @return
 	 */

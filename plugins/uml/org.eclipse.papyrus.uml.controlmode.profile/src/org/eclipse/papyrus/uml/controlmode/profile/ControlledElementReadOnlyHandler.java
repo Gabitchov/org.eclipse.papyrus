@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013, 2014 Atos, CEA, and others.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,7 @@
  * Contributors:
  *  Arthur Daussy (Atos) arthur.daussy@atos.net - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 429826
+ *  Camille Letavernier (CEA LIST) - Bug 430118
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.controlmode.profile;
@@ -33,11 +34,12 @@ import com.google.common.base.Optional;
 
 /**
  * Read only handler that will prevent model fragment to be modified it the root element is not a package
- * This restriction is because of the UML2 implementation which delete stereotype applications if the current model can not find the corresponding profile
- * application.  This handler is discretion-based.
- * 
+ * This restriction is because of the UML2 implementation which delete stereotype applications if the current model can not find the corresponding
+ * profile
+ * application. This handler is discretion-based.
+ *
  * @author adaussy
- * 
+ *
  */
 public class ControlledElementReadOnlyHandler extends AbstractReadOnlyHandler {
 
@@ -53,7 +55,7 @@ public class ControlledElementReadOnlyHandler extends AbstractReadOnlyHandler {
 		if(resourceSet != null) {
 			for(URI uri : uris) {
 				if(UmlModel.UML_FILE_EXTENSION.equals(uri.fileExtension())) {
-					Resource resource = resourceSet.getResource(uri, false);
+					Resource resource = resourceSet.getResource(uri.trimFragment(), false);
 					if(resource != null) {
 						if(!resource.getContents().isEmpty()) {
 							//A sub model can only be writable if the root element is package or if the root is contained by another loaded resource
