@@ -45,7 +45,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPo
  */
 public class CustomContainmentCreationEditPolicy extends PapyrusCreationEditPolicy {
 
-	private static List<Integer> ourCanHaveContainmentLinks = Arrays.asList(new Integer[]{ NestedClassForClassEditPart.VISUAL_ID, ClassEditPartCN.VISUAL_ID, PackageEditPartCN.VISUAL_ID, ModelEditPartCN.VISUAL_ID, ModelEditPartTN.VISUAL_ID, ClassEditPart.VISUAL_ID, PackageEditPart.VISUAL_ID });
+	private static List<Integer> ourCanHaveContainmentLinks = Arrays.asList(new Integer[] { NestedClassForClassEditPart.VISUAL_ID, ClassEditPartCN.VISUAL_ID, PackageEditPartCN.VISUAL_ID, ModelEditPartCN.VISUAL_ID, ModelEditPartTN.VISUAL_ID,
+			ClassEditPart.VISUAL_ID, PackageEditPart.VISUAL_ID });
 
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy#getReparentCommand(org.eclipse.gef.requests.ChangeBoundsRequest)
@@ -55,35 +56,35 @@ public class CustomContainmentCreationEditPolicy extends PapyrusCreationEditPoli
 	 */
 	@Override
 	protected Command getReparentCommand(ChangeBoundsRequest request) {
-		Iterator editParts = request.getEditParts().iterator();
-		View container = (View)getHost().getAdapter(View.class);
+		Iterator<?> editParts = request.getEditParts().iterator();
+		View container = (View) getHost().getAdapter(View.class);
 		EObject context = container == null ? null : ViewUtil.resolveSemanticElement(container);
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
-		while(editParts.hasNext()) {
-			EditPart ep = (EditPart)editParts.next();
-			if(ep instanceof LabelEditPart) {
+		while (editParts.hasNext()) {
+			EditPart ep = (EditPart) editParts.next();
+			if (ep instanceof LabelEditPart) {
 				continue;
 			}
-			if(ep instanceof GroupEditPart) {
-				cc.compose(getReparentGroupCommand((GroupEditPart)ep));
+			if (ep instanceof GroupEditPart) {
+				cc.compose(getReparentGroupCommand((GroupEditPart) ep));
 			}
-			View view = (View)ep.getAdapter(View.class);
-			if(view == null) {
+			View view = (View) ep.getAdapter(View.class);
+			if (view == null) {
 				continue;
 			}
 			EObject semantic = ViewUtil.resolveSemanticElement(view);
-			if(semantic == null) {
-				cc.compose(getReparentViewCommand((IGraphicalEditPart)ep));
-			} else if(context != null && hasContainmentLink(view)) {
-				View hostView = (View)getHost().getModel();
-				View movedView = (View)ep.getModel();
-				Command customCommand = new ContainmentDragDropHelper(((IGraphicalEditPart)ep).getEditingDomain()).getDropWithContainmentCommand(hostView, movedView);
-				if(customCommand != null) {
+			if (semantic == null) {
+				cc.compose(getReparentViewCommand((IGraphicalEditPart) ep));
+			} else if (context != null && hasContainmentLink(view)) {
+				View hostView = (View) getHost().getModel();
+				View movedView = (View) ep.getModel();
+				Command customCommand = new ContainmentDragDropHelper(((IGraphicalEditPart) ep).getEditingDomain()).getDropWithContainmentCommand(hostView, movedView);
+				if (customCommand != null) {
 					return customCommand;
 				}
 			}
-			if(semantic != null && context != null && shouldReparent(semantic, context)) {
-				cc.compose(getReparentCommand((IGraphicalEditPart)ep));
+			if (semantic != null && context != null && shouldReparent(semantic, context)) {
+				cc.compose(getReparentCommand((IGraphicalEditPart) ep));
 			}
 		}
 		return cc.isEmpty() ? null : new ICommandProxy(cc.reduce());

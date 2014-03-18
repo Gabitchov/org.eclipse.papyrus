@@ -47,7 +47,8 @@ public class CustomDeferredCreateConnectionViewCommand extends CommonDeferredCre
 	/**
 	 * {@inheritDoc}
 	 */
-	public CustomDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, ICommand command) {
+	public CustomDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint,
+			ConnectionViewDescriptor viewDescriptor, ICommand command) {
 		super(editingDomain, semanticHint, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint, viewDescriptor, command);
 	}
 
@@ -56,10 +57,10 @@ public class CustomDeferredCreateConnectionViewCommand extends CommonDeferredCre
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		CommandResult commandResult = null;
-		if(command != null && command instanceof AssociationClassViewCreateCommand) {
-			Map epRegistry = viewer.getEditPartRegistry();
-			IGraphicalEditPart sourceEP = (IGraphicalEditPart)epRegistry.get(sourceViewAdapter.getAdapter(View.class));
-			IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry.get(((AssociationClassViewCreateCommand)command).getNode());
+		if (command != null && command instanceof AssociationClassViewCreateCommand) {
+			Map<?, ?> epRegistry = viewer.getEditPartRegistry();
+			IGraphicalEditPart sourceEP = (IGraphicalEditPart) epRegistry.get(sourceViewAdapter.getAdapter(View.class));
+			IGraphicalEditPart targetEP = (IGraphicalEditPart) epRegistry.get(((AssociationClassViewCreateCommand) command).getNode());
 			commandResult = super.doExecuteWithResult(progressMonitor, info, sourceEP, targetEP);
 		} else {
 			commandResult = super.doExecuteWithResult(progressMonitor, info);

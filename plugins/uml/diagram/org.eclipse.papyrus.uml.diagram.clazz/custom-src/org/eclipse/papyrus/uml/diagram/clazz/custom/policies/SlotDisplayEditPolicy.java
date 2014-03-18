@@ -18,10 +18,10 @@ import java.util.Iterator;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
 /**
  * It is used to refresh the label the slot
  */
-public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
+public class SlotDisplayEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
 
 	public static String SLOT_DISPLAY = "SLOT_DISPLAY";
 
@@ -49,7 +49,7 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 	 * @return the view controlled by the host edit part
 	 */
 	protected View getView() {
-		return (View)getHost().getModel();
+		return (View) getHost().getModel();
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 	 * @return the element linked to the edit policy
 	 */
 	protected Element initSemanticElement() {
-		return (Element)getView().getElement();
+		return (Element) getView().getElement();
 	}
 
 	/**
@@ -67,8 +67,8 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 	 * @return the diagram event broker
 	 */
 	protected DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(theEditingDomain != null) {
+		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		if (theEditingDomain != null) {
 			return DiagramEventBroker.getInstance(theEditingDomain);
 		}
 		return null;
@@ -81,19 +81,19 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 	public void activate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if(view == null) {
+		if (view == null) {
 			return;
 		}
 		hostSemanticElement = initSemanticElement();
-		if(hostSemanticElement != null) {
+		if (hostSemanticElement != null) {
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
-			if(hostSemanticElement != null) {
-				Slot slot = (Slot)hostSemanticElement;
+			if (hostSemanticElement != null) {
+				Slot slot = (Slot) hostSemanticElement;
 				Iterator<ValueSpecification> iterator = slot.getValues().iterator();
-				while(iterator.hasNext()) {
-					ValueSpecification valueSpecification = (ValueSpecification)iterator.next();
+				while (iterator.hasNext()) {
+					ValueSpecification valueSpecification = (ValueSpecification) iterator.next();
 					getDiagramEventBroker().addNotificationListener(valueSpecification, this);
 				}
 			}
@@ -110,16 +110,16 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if(view == null) {
+		if (view == null) {
 			return;
 		}
 		getDiagramEventBroker().removeNotificationListener(view, this);
 		getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
-		if(hostSemanticElement != null) {
-			Slot slot = (Slot)hostSemanticElement;
+		if (hostSemanticElement != null) {
+			Slot slot = (Slot) hostSemanticElement;
 			Iterator<ValueSpecification> iterator = slot.getValues().iterator();
-			while(iterator.hasNext()) {
-				ValueSpecification valueSpecification = (ValueSpecification)iterator.next();
+			while (iterator.hasNext()) {
+				ValueSpecification valueSpecification = (ValueSpecification) iterator.next();
 				getDiagramEventBroker().removeNotificationListener(valueSpecification, this);
 			}
 		}
@@ -132,13 +132,13 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 	}
 
 	public void notifyChanged(Notification notification) {
-		if(notification.getEventType() == Notification.ADD) {
-			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getSlot_Value())) {
-				getDiagramEventBroker().addNotificationListener(((EObject)notification.getNewValue()), this);
+		if (notification.getEventType() == Notification.ADD) {
+			if (notification.getFeature().equals(UMLPackage.eINSTANCE.getSlot_Value())) {
+				getDiagramEventBroker().addNotificationListener(((EObject) notification.getNewValue()), this);
 			}
-		} else if(notification.getEventType() == Notification.REMOVE) {
-			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getSlot_Value())) {
-				getDiagramEventBroker().removeNotificationListener(((EObject)notification.getOldValue()), this);
+		} else if (notification.getEventType() == Notification.REMOVE) {
+			if (notification.getFeature().equals(UMLPackage.eINSTANCE.getSlot_Value())) {
+				getDiagramEventBroker().removeNotificationListener(((EObject) notification.getOldValue()), this);
 			}
 		}
 		refreshDisplay();

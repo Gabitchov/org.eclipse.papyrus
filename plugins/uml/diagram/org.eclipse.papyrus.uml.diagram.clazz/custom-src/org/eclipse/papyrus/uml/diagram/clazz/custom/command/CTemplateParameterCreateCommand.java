@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.uml.diagram.clazz.custom.command;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -41,11 +42,11 @@ public class CTemplateParameterCreateCommand extends TemplateParameterCreateComm
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		TemplateParameter newElement = UMLFactory.eINSTANCE.createTemplateParameter();
-		TemplateSignature owner = (TemplateSignature)getElementToEdit();
+		TemplateSignature owner = (TemplateSignature) getElementToEdit();
 		owner.getOwnedParameters().add(newElement);
-		TemplateSignature childHolder = (TemplateSignature)getElementToEdit();
+		TemplateSignature childHolder = (TemplateSignature) getElementToEdit();
 		childHolder.getParameters().add(newElement);
-		ArrayList<EClass> eclassnotWanted = new ArrayList<EClass>();
+		List<EClass> eclassnotWanted = new ArrayList<EClass>();
 		eclassnotWanted.add(UMLPackage.eINSTANCE.getClassifier());
 		eclassnotWanted.add(UMLPackage.eINSTANCE.getOperation());
 		eclassnotWanted.add(UMLPackage.eINSTANCE.getConnectableElement());
@@ -55,7 +56,7 @@ public class CTemplateParameterCreateCommand extends TemplateParameterCreateComm
 		newElement.setParameteredElement(configurationDialog.getParameterableElement());
 		newElement.setDefault(configurationDialog.getDefaultparameterableElement());
 		doConfigure(newElement, monitor, info);
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 }

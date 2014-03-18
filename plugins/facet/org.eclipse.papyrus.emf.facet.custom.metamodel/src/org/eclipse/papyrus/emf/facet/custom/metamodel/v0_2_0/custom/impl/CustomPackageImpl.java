@@ -157,6 +157,15 @@ public class CustomPackageImpl extends EPackageImpl implements CustomPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getCustomization_Rank() {
+		return (EAttribute)customizationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEClassCustomization() {
 		return eClassCustomizationEClass;
 	}
@@ -254,6 +263,7 @@ public class CustomPackageImpl extends EPackageImpl implements CustomPackage {
 		// Create classes and their features
 		customizationEClass = createEClass(CUSTOMIZATION);
 		createEAttribute(customizationEClass, CUSTOMIZATION__MUST_BE_LOADED_BY_DEFAULT);
+		createEAttribute(customizationEClass, CUSTOMIZATION__RANK);
 
 		eClassCustomizationEClass = createEClass(ECLASS_CUSTOMIZATION);
 
@@ -308,6 +318,7 @@ public class CustomPackageImpl extends EPackageImpl implements CustomPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(customizationEClass, Customization.class, "Customization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCustomization_MustBeLoadedByDefault(), ecorePackage.getEBoolean(), "mustBeLoadedByDefault", "false", 1, 1, Customization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCustomization_Rank(), ecorePackage.getEInt(), "rank", "1000", 0, 1, Customization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eClassCustomizationEClass, EClassCustomization.class, "EClassCustomization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

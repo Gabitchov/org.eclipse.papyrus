@@ -178,13 +178,22 @@ public interface CustomPackage extends EPackage {
 	int CUSTOMIZATION__MUST_BE_LOADED_BY_DEFAULT = EFacetPackage.FACET_SET_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Rank</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOMIZATION__RANK = EFacetPackage.FACET_SET_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Customization</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CUSTOMIZATION_FEATURE_COUNT = EFacetPackage.FACET_SET_FEATURE_COUNT + 1;
+	int CUSTOMIZATION_FEATURE_COUNT = EFacetPackage.FACET_SET_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.EClassCustomizationImpl <em>EClass Customization</em>}' class.
@@ -319,7 +328,6 @@ public interface CustomPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int ECLASS_CUSTOMIZATION__EXTENDED_FACETS = EFacetPackage.FACET__EXTENDED_FACETS;
 
@@ -465,7 +473,6 @@ public interface CustomPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int FACET_CUSTOMIZATION__EXTENDED_FACETS = EFacetPackage.FACET__EXTENDED_FACETS;
 
@@ -593,6 +600,17 @@ public interface CustomPackage extends EPackage {
 	EAttribute getCustomization_MustBeLoadedByDefault();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization#getRank <em>Rank</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Rank</em>'.
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization#getRank()
+	 * @see #getCustomization()
+	 * @generated
+	 */
+	EAttribute getCustomization_Rank();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization <em>EClass Customization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -715,6 +733,14 @@ public interface CustomPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CUSTOMIZATION__MUST_BE_LOADED_BY_DEFAULT = eINSTANCE.getCustomization_MustBeLoadedByDefault();
+
+		/**
+		 * The meta object literal for the '<em><b>Rank</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CUSTOMIZATION__RANK = eINSTANCE.getCustomization_Rank();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.EClassCustomizationImpl <em>EClass Customization</em>}' class.

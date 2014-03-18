@@ -28,6 +28,7 @@ import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customizatio
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomizationImpl#isMustBeLoadedByDefault <em>Must Be Loaded By Default</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomizationImpl#getRank <em>Rank</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,6 +54,26 @@ public class CustomizationImpl extends FacetSetImpl implements Customization {
 	 * @ordered
 	 */
 	protected boolean mustBeLoadedByDefault = MUST_BE_LOADED_BY_DEFAULT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRank() <em>Rank</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRank()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int RANK_EDEFAULT = 1000;
+
+	/**
+	 * The cached value of the '{@link #getRank() <em>Rank</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRank()
+	 * @generated
+	 * @ordered
+	 */
+	protected int rank = RANK_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -99,11 +120,34 @@ public class CustomizationImpl extends FacetSetImpl implements Customization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getRank() {
+		return rank;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRank(int newRank) {
+		int oldRank = rank;
+		rank = newRank;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CustomPackage.CUSTOMIZATION__RANK, oldRank, rank));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case CustomPackage.CUSTOMIZATION__MUST_BE_LOADED_BY_DEFAULT:
 				return isMustBeLoadedByDefault();
+			case CustomPackage.CUSTOMIZATION__RANK:
+				return getRank();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,6 +162,9 @@ public class CustomizationImpl extends FacetSetImpl implements Customization {
 		switch (featureID) {
 			case CustomPackage.CUSTOMIZATION__MUST_BE_LOADED_BY_DEFAULT:
 				setMustBeLoadedByDefault((Boolean)newValue);
+				return;
+			case CustomPackage.CUSTOMIZATION__RANK:
+				setRank((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -134,6 +181,9 @@ public class CustomizationImpl extends FacetSetImpl implements Customization {
 			case CustomPackage.CUSTOMIZATION__MUST_BE_LOADED_BY_DEFAULT:
 				setMustBeLoadedByDefault(MUST_BE_LOADED_BY_DEFAULT_EDEFAULT);
 				return;
+			case CustomPackage.CUSTOMIZATION__RANK:
+				setRank(RANK_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -148,6 +198,8 @@ public class CustomizationImpl extends FacetSetImpl implements Customization {
 		switch (featureID) {
 			case CustomPackage.CUSTOMIZATION__MUST_BE_LOADED_BY_DEFAULT:
 				return mustBeLoadedByDefault != MUST_BE_LOADED_BY_DEFAULT_EDEFAULT;
+			case CustomPackage.CUSTOMIZATION__RANK:
+				return rank != RANK_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -164,6 +216,8 @@ public class CustomizationImpl extends FacetSetImpl implements Customization {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (mustBeLoadedByDefault: ");
 		result.append(mustBeLoadedByDefault);
+		result.append(", rank: ");
+		result.append(rank);
 		result.append(')');
 		return result.toString();
 	}

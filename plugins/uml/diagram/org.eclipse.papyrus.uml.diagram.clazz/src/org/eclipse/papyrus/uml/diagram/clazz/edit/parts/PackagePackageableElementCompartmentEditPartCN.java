@@ -1,14 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
@@ -16,11 +15,18 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.Request;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AbstractPackageableElementCompartmentEditPart;
@@ -29,6 +35,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomContainmentCr
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.PackagePackageableElementCompartmentItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.uml.diagram.clazz.part.Messages;
+import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
@@ -36,7 +43,10 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPo
 /**
  * @generated
  */
-public class PackagePackageableElementCompartmentEditPartCN extends AbstractPackageableElementCompartmentEditPart {
+public class PackagePackageableElementCompartmentEditPartCN
+		extends
+		AbstractPackageableElementCompartmentEditPart
+{
 
 	/**
 	 * @generated
@@ -68,6 +78,7 @@ public class PackagePackageableElementCompartmentEditPartCN extends AbstractPack
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.clazz.edit.policies.PackagePackageableElementCompartmentCanonicalEditPolicyCN());
+
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());
@@ -78,7 +89,7 @@ public class PackagePackageableElementCompartmentEditPartCN extends AbstractPack
 	 * @generated
 	 */
 	protected void setRatio(Double ratio) {
-		if(getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
+		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
 		}
 	}
@@ -86,9 +97,81 @@ public class PackagePackageableElementCompartmentEditPartCN extends AbstractPack
 	/**
 	 * @generated
 	 */
+	public EditPart getTargetEditPart(Request request) {
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
+			if (type == UMLElementTypes.InstanceSpecification_3020) {
+				return this;
+			}
+			if (type == UMLElementTypes.Component_3021) {
+				return this;
+			}
+			if (type == UMLElementTypes.Signal_3022) {
+				return this;
+			}
+			if (type == UMLElementTypes.Interface_3023) {
+				return this;
+			}
+			if (type == UMLElementTypes.Model_3024) {
+				return this;
+			}
+			if (type == UMLElementTypes.Enumeration_3025) {
+				return this;
+			}
+			if (type == UMLElementTypes.Package_3009) {
+				return this;
+			}
+			if (type == UMLElementTypes.Class_3010) {
+				return this;
+			}
+			if (type == UMLElementTypes.PrimitiveType_3026) {
+				return this;
+			}
+			if (type == UMLElementTypes.DataType_3027) {
+				return this;
+			}
+			if (type == UMLElementTypes.Comment_3028) {
+				return this;
+			}
+			if (type == UMLElementTypes.Constraint_3029) {
+				return this;
+			}
+			if (type == UMLElementTypes.InformationItem_3040) {
+				return this;
+			}
+			return getParent().getTargetEditPart(request);
+		}
+		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
+			if (RequestConstants.REQ_CONNECTION_END.equals(request.getType())) {
+				for (Object type : ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes()) {
+					if (type instanceof IElementType) {
+						IElementType elementType = (IElementType) type;
+						if (elementType.equals(UMLElementTypes.Association_4001) || elementType.equals(UMLElementTypes.Generalization_4002) || elementType.equals(UMLElementTypes.InterfaceRealization_4003)
+								|| elementType.equals(UMLElementTypes.Substitution_4004) || elementType.equals(UMLElementTypes.Realization_4005) || elementType.equals(UMLElementTypes.Abstraction_4006) || elementType.equals(UMLElementTypes.Usage_4007)
+								|| elementType.equals(UMLElementTypes.Dependency_4008) || elementType.equals(UMLElementTypes.ElementImport_4009) || elementType.equals(UMLElementTypes.PackageImport_4010) || elementType.equals(UMLElementTypes.PackageMerge_4011)
+								|| elementType.equals(UMLElementTypes.CommentAnnotatedElement_4013) || elementType.equals(UMLElementTypes.ConstraintConstrainedElement_4014) || elementType.equals(UMLElementTypes.TemplateBinding_4015)
+								|| elementType.equals(UMLElementTypes.AssociationClass_4017) || elementType.equals(UMLElementTypes.Dependency_4018) || elementType.equals(UMLElementTypes.Association_4019)
+								|| elementType.equals(UMLElementTypes.TimeObservationEvent_4024) || elementType.equals(UMLElementTypes.DurationObservationEvent_4025) || elementType.equals(UMLElementTypes.InformationFlow_4026)
+								|| elementType.equals(UMLElementTypes.ConstraintContext_8500))
+							return super.getTargetEditPart(request);
+					}
+				}
+			}
+			return getParent().getTargetEditPart(request);
+		}
+		return super.getTargetEditPart(request);
+	}
+
+	/**
+	 * @generated
+	 */
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if(NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
+				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);
@@ -98,13 +181,16 @@ public class PackagePackageableElementCompartmentEditPartCN extends AbstractPack
 	 * @generated
 	 */
 	protected void refreshBounds() {
-		int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
-		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+		int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
 		Dimension size = new Dimension(width, height);
-		int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+		((GraphicalEditPart) getParent()).setLayoutConstraint(
+				this,
+				getFigure(),
+				new Rectangle(loc, size));
 	}
 
 	/**

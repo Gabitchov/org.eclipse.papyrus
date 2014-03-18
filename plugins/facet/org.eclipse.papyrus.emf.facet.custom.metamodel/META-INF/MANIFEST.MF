@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
- org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="1.0.0";visibility:=reexport,
+ org.eclipse.papyrus.emf.facet.efacet.metamodel;visibility:=reexport;bundle-version="1.0.0",
  org.eclipse.papyrus.emf.facet.util.emf.catalog;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.emf.facet.custom.metamodel.custompt,
  org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom,
@@ -13,12 +13,12 @@ Export-Package: org.eclipse.papyrus.emf.facet.custom.metamodel.custompt,
  org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query,
  org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.util;x-internal:=true
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.custom.metamodel;si
- ngleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.custom.metamodel;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

@@ -28,6 +28,7 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization#isMustBeLoadedByDefault <em>Must Be Loaded By Default</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization#getRank <em>Rank</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,5 +62,32 @@ public interface Customization extends FacetSet {
 	 * @generated
 	 */
 	void setMustBeLoadedByDefault(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Rank</b></em>' attribute.
+	 * The default value is <code>"1000"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Rank</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Rank</em>' attribute.
+	 * @see #setRank(int)
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getCustomization_Rank()
+	 * @model default="1000"
+	 * @generated
+	 */
+	int getRank();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization#getRank <em>Rank</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Rank</em>' attribute.
+	 * @see #getRank()
+	 * @generated
+	 */
+	void setRank(int value);
 
 } // Customization

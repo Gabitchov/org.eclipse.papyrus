@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 ATOS ORIGIN.
+ * Copyright (c) 2009, 2014 ATOS ORIGIN, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -7,6 +7,8 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Atos Origin - Initial API and implementation
+ * Christian W. Damus (CEA) - bug 386118 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.sheet;
@@ -93,9 +95,13 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 			if(view != null) {
 				return view.getElement();
 			}
-			EObject elem = EMFHelper.getEObject(selected);
+		}
+		
+		EObject elem = EMFHelper.getEObject(selected);
+		if(elem != null) {
 			return elem;
 		}
+		
 		return selected;
 	}
 

@@ -31,7 +31,7 @@ public class AssociationEndSourceEditPart extends AssociationTargetNameEditPart 
 	 * Instantiates a new association end source edit part.
 	 * 
 	 * @param view
-	 *        the view
+	 *            the view
 	 */
 	public AssociationEndSourceEditPart(View view) {
 		super(view);
@@ -40,7 +40,7 @@ public class AssociationEndSourceEditPart extends AssociationTargetNameEditPart 
 
 	@Override
 	protected void handleNotificationEvent(Notification event) {
-		if(UMLPackage.Literals.FEATURE__IS_STATIC.equals(event.getFeature())) {
+		if (UMLPackage.Literals.FEATURE__IS_STATIC.equals(event.getFeature())) {
 			refreshUnderline();
 		}
 		super.handleNotificationEvent(event);
@@ -55,8 +55,8 @@ public class AssociationEndSourceEditPart extends AssociationTargetNameEditPart 
 		return AssociationEndTargetLabelHelper.getInstance().getUMLElement(this);
 	}
 
-	public Object getAdapter(Class key) {
-		if(key == IPropertySource.class) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class key) {
+		if (key == IPropertySource.class) {
 			return resolveSemanticElement();
 		}
 		return super.getAdapter(key);

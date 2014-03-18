@@ -60,31 +60,31 @@ public class NestedClazzCompartmentCreationEditPolicy extends PapyrusCreationEdi
 	 */
 	protected ICommand getReparentCommand(IGraphicalEditPart gep) {
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
-		View container = (View)getHost().getModel();
+		View container = (View) getHost().getModel();
 		EObject context = ViewUtil.resolveSemanticElement(container);
-		View view = (View)gep.getModel();
+		View view = (View) gep.getModel();
 		EObject element = ViewUtil.resolveSemanticElement(view);
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		// graphical Deletion
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 		cc.compose(new CommandProxy(gep.getCommand(deleteViewRequest)));
 		// semantic reparent
-		if(element != null) {
+		if (element != null) {
 			Command moveSemanticCmd = getHost().getCommand(new EditCommandRequestWrapper(new MoveRequest(editingDomain, context, element)));
-			if(moveSemanticCmd == null) {
+			if (moveSemanticCmd == null) {
 				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 			}
 			cc.compose(new CommandProxy(moveSemanticCmd));
 		}
 		// drop of the object
 		IAdaptable elementAdapter = new EObjectAdapter(element);
-		int nodeVISUALID = UMLVisualIDRegistry.getNodeVisualID(((View)getHost().getModel()), element);
-		//If -1 then the node can node be create
-		if(nodeVISUALID == -1) {
+		int nodeVISUALID = UMLVisualIDRegistry.getNodeVisualID(((View) getHost().getModel()), element);
+		// If -1 then the node can node be create
+		if (nodeVISUALID == -1) {
 			cc.compose(UnexecutableCommand.INSTANCE);
 		} else {
-			ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)UMLElementTypes.getElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, ((GraphicalEditPart)getHost()).getDiagramPreferencesHint());
-			CreateCommand createCommand = new CreateUniqueViewCommand(editingDomain, descriptor, ((View)(getHost().getModel())));
+			ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) UMLElementTypes.getElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, ((GraphicalEditPart) getHost()).getDiagramPreferencesHint());
+			CreateCommand createCommand = new CreateUniqueViewCommand(editingDomain, descriptor, ((View) (getHost().getModel())));
 			cc.compose(createCommand);
 		}
 		return cc;
@@ -92,12 +92,12 @@ public class NestedClazzCompartmentCreationEditPolicy extends PapyrusCreationEdi
 
 	@Override
 	protected Command getCreateCommand(CreateViewRequest request) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);
-		Iterator descriptors = request.getViewDescriptors().iterator();
-		while(descriptors.hasNext()) {
-			CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor)descriptors.next();
-			CreateCommand createCommand = new CreateUniqueViewCommand(editingDomain, descriptor, (View)(getHost().getModel()));
+		Iterator<? extends org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor> descriptors = request.getViewDescriptors().iterator();
+		while (descriptors.hasNext()) {
+			CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor) descriptors.next();
+			CreateCommand createCommand = new CreateUniqueViewCommand(editingDomain, descriptor, (View) (getHost().getModel()));
 			createCommand.setLabel("custoCreateCommand");
 			cc.compose(createCommand);
 		}

@@ -1,14 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.commands;
 
@@ -58,13 +57,13 @@ public class AssociationClassLinkReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(false == getElementToEdit() instanceof AssociationClass) {
+		if (false == getElementToEdit() instanceof AssociationClass) {
 			return false;
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -74,17 +73,19 @@ public class AssociationClassLinkReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if(!(oldEnd instanceof Type && newEnd instanceof Type)) {
+		if (!(oldEnd instanceof Type && newEnd instanceof Type)) {
 			return false;
 		}
-		if(getLink().getEndTypes().size() != 1) {
+		if (getLink().getEndTypes()
+				.size() != 1) {
 			return false;
 		}
-		Type target = (Type)getLink().getEndTypes().get(0);
-		if(!(getLink().eContainer() instanceof Package)) {
+		Type target = (Type) getLink().getEndTypes()
+				.get(0);
+		if (!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package)getLink().eContainer();
+		Package container = (Package) getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistAssociationClass_4017(container, getLink(), getNewSource(), target);
 	}
 
@@ -92,31 +93,35 @@ public class AssociationClassLinkReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof Type && newEnd instanceof Type)) {
+		if (!(oldEnd instanceof Type && newEnd instanceof Type)) {
 			return false;
 		}
-		if(getLink().getEndTypes().size() != 1) {
+		if (getLink().getEndTypes()
+				.size() != 1) {
 			return false;
 		}
-		Type source = (Type)getLink().getEndTypes().get(0);
-		if(!(getLink().eContainer() instanceof Package)) {
+		Type source = (Type) getLink().getEndTypes()
+				.get(0);
+		if (!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package)getLink().eContainer();
+		Package container = (Package) getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistAssociationClass_4017(container, getLink(), source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
+	protected CommandResult doExecuteWithResult(
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
+		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -140,34 +145,34 @@ public class AssociationClassLinkReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected AssociationClass getLink() {
-		return (AssociationClass)getElementToEdit();
+		return (AssociationClass) getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Type getOldSource() {
-		return (Type)oldEnd;
+		return (Type) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Type getNewSource() {
-		return (Type)newEnd;
+		return (Type) newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Type getOldTarget() {
-		return (Type)oldEnd;
+		return (Type) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Type getNewTarget() {
-		return (Type)newEnd;
+		return (Type) newEnd;
 	}
 }

@@ -46,35 +46,32 @@ public class CustomPackageReparentCreationEditPolicy extends PapyrusCreationEdit
 	 * return a command to reparent both the semantic and view elements.
 	 * 
 	 * @param request
-	 *        the request
+	 *            the request
 	 * @return command
 	 */
 	protected Command getReparentCommand(ChangeBoundsRequest request) {
-		Iterator editParts = request.getEditParts().iterator();
-		View container = (View)getHost().getAdapter(View.class);
+		Iterator<?> editParts = request.getEditParts().iterator();
+		View container = (View) getHost().getAdapter(View.class);
 		EObject context = container == null ? null : ViewUtil.resolveSemanticElement(container);
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		int index = 0;
-		while(editParts.hasNext()) {
-			EditPart ep = (EditPart)editParts.next();
-			View view = (View)ep.getAdapter(View.class);
-			EObject semantic = ViewUtil.resolveSemanticElement(view);
-			if(ep instanceof LabelEditPart) {
+
+		while (editParts.hasNext()) {
+			EditPart ep = (EditPart) editParts.next();
+			if (ep instanceof LabelEditPart) {
 				continue;
 			}
-			if(ep instanceof GroupEditPart) {
-				cc.compose(getReparentGroupCommand((GroupEditPart)ep));
+			if (ep instanceof GroupEditPart) {
+				cc.compose(getReparentGroupCommand((GroupEditPart) ep));
 			}
-			if(ep instanceof PackageEditPart || ep instanceof CModelEditPart || ep instanceof PackageEditPartCN || ep instanceof ModelEditPartCN) {
-				if(context != null) {
-					cc.compose(getReparentCommand((IGraphicalEditPart)ep));
+			if (ep instanceof PackageEditPart || ep instanceof CModelEditPart || ep instanceof PackageEditPartCN || ep instanceof ModelEditPartCN) {
+				if (context != null) {
+					cc.compose(getReparentCommand((IGraphicalEditPart) ep));
 				}
 			} else {
-				//if ( context != null && shouldReparent(semantic, context)){
+				// if ( context != null && shouldReparent(semantic, context)){
 				ChangeBoundsRequest req = new ChangeBoundsRequest();
 				req.setEditParts(ep);
-				return super.getReparentCommand((ChangeBoundsRequest)req);
+				return super.getReparentCommand((ChangeBoundsRequest) req);
 				// }
 			}
 		}
@@ -82,34 +79,34 @@ public class CustomPackageReparentCreationEditPolicy extends PapyrusCreationEdit
 	}
 
 	protected ICommand getReparentCommand(IGraphicalEditPart gep) {
-		//1.******************************************** Variables initialization
+		// 1.******************************************** Variables initialization
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
-		View container = (View)getHost().getModel();
+		View container = (View) getHost().getModel();
 		EObject context = ViewUtil.resolveSemanticElement(container);
-		View view = (View)gep.getModel();
+		View view = (View) gep.getModel();
 		EObject element = ViewUtil.resolveSemanticElement(view);
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		EditPart modelRootEditPart = null;
 		EditPart rootEditPart = gep.getRoot();
-		Iterator<EditPart> rootEditPartIterator = rootEditPart.getChildren().iterator();
-		while(rootEditPartIterator.hasNext()) {
-			EditPart editPart = (EditPart)rootEditPartIterator.next();
-			if(editPart instanceof ModelEditPart) {
+		Iterator<?> rootEditPartIterator = rootEditPart.getChildren().iterator();
+		while (rootEditPartIterator.hasNext()) {
+			EditPart editPart = (EditPart) rootEditPartIterator.next();
+			if (editPart instanceof ModelEditPart) {
 				modelRootEditPart = editPart;
 			}
 		}
-		org.eclipse.uml2.uml.Package modelElementRoot = (org.eclipse.uml2.uml.Package)((View)modelRootEditPart.getModel()).getElement();
-		//2.********************************** Move the semantic element with his graphical view
+		org.eclipse.uml2.uml.Package modelElementRoot = (org.eclipse.uml2.uml.Package) ((View) modelRootEditPart.getModel()).getElement();
+		// 2.********************************** Move the semantic element with his graphical view
 		// Copied Code :semantic
-		if(element != null) {
+		if (element != null) {
 			Command moveSemanticCmd = getHost().getCommand(new EditCommandRequestWrapper(new MoveRequest(editingDomain, context, element)));
 			// Added code
 			// if the element is a Package and if it is contained by an other package which is not a Model, we return an UnexecutableCommand to execute a specific Drop command
-			if(element instanceof org.eclipse.uml2.uml.Package && ((Element)element).getOwner() instanceof org.eclipse.uml2.uml.Package && !(((Element)element).getOwner().equals(modelElementRoot))) {
+			if (element instanceof org.eclipse.uml2.uml.Package && ((Element) element).getOwner() instanceof org.eclipse.uml2.uml.Package && !(((Element) element).getOwner().equals(modelElementRoot))) {
 				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 			}
 			// Copied Code :semantic
-			if(moveSemanticCmd == null) {
+			if (moveSemanticCmd == null) {
 				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 			}
 			cc.compose(new CommandProxy(moveSemanticCmd));

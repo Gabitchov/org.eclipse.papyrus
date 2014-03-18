@@ -15,10 +15,10 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -29,7 +29,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * It is used to refresh the label of all parameter element
  */
-public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
+public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
 
 	public static String TEMPLATE_PARAMETER_DISPLAY = "TEMPLATE_PARAMETER_DISPLAY";
 
@@ -45,7 +45,7 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 	 * @return the view controlled by the host edit part
 	 */
 	protected View getView() {
-		return (View)getHost().getModel();
+		return (View) getHost().getModel();
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 	 * @return the element linked to the edit policy
 	 */
 	protected Element initSemanticElement() {
-		return (Element)getView().getElement();
+		return (Element) getView().getElement();
 	}
 
 	/**
@@ -63,8 +63,8 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 	 * @return the diagram event broker
 	 */
 	protected DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(theEditingDomain != null) {
+		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		if (theEditingDomain != null) {
 			return DiagramEventBroker.getInstance(theEditingDomain);
 		}
 		return null;
@@ -77,19 +77,19 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 	public void activate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if(view == null) {
+		if (view == null) {
 			return;
 		}
 		hostSemanticElement = initSemanticElement();
-		if(hostSemanticElement != null) {
+		if (hostSemanticElement != null) {
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
-			if(((TemplateParameter)hostSemanticElement).getParameteredElement() != null) {
-				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getParameteredElement(), this);
+			if (((TemplateParameter) hostSemanticElement).getParameteredElement() != null) {
+				getDiagramEventBroker().addNotificationListener(((TemplateParameter) hostSemanticElement).getParameteredElement(), this);
 			}
-			if(((TemplateParameter)hostSemanticElement).getDefault() != null) {
-				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getDefault(), this);
+			if (((TemplateParameter) hostSemanticElement).getDefault() != null) {
+				getDiagramEventBroker().addNotificationListener(((TemplateParameter) hostSemanticElement).getDefault(), this);
 			}
 			refreshDisplay();
 		} else {
@@ -104,19 +104,20 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if(view == null) {
+		if (view == null) {
 			return;
 		}
 		// remove notification on element and view
 		getDiagramEventBroker().removeNotificationListener(view, this);
-		if(hostSemanticElement != null) {
+		if (hostSemanticElement != null) {
 			getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
-		}
-		if(((TemplateParameter)hostSemanticElement).getParameteredElement() != null) {
-			getDiagramEventBroker().removeNotificationListener(((TemplateParameter)hostSemanticElement).getParameteredElement(), this);
-		}
-		if(((TemplateParameter)hostSemanticElement).getDefault() != null) {
-			getDiagramEventBroker().removeNotificationListener(((TemplateParameter)hostSemanticElement).getDefault(), this);
+
+			if (((TemplateParameter) hostSemanticElement).getParameteredElement() != null) {
+				getDiagramEventBroker().removeNotificationListener(((TemplateParameter) hostSemanticElement).getParameteredElement(), this);
+			}
+			if (((TemplateParameter) hostSemanticElement).getDefault() != null) {
+				getDiagramEventBroker().removeNotificationListener(((TemplateParameter) hostSemanticElement).getDefault(), this);
+			}
 		}
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
@@ -127,13 +128,13 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 	}
 
 	public void notifyChanged(Notification notification) {
-		if(notification.getEventType() == Notification.SET) {
-			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_ParameteredElement())) {
-				//add a listener
-				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getParameteredElement(), this);
+		if (notification.getEventType() == Notification.SET) {
+			if (notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_ParameteredElement())) {
+				// add a listener
+				getDiagramEventBroker().addNotificationListener(((TemplateParameter) hostSemanticElement).getParameteredElement(), this);
 			}
-			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_Default())) {
-				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getDefault(), this);
+			if (notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_Default())) {
+				getDiagramEventBroker().addNotificationListener(((TemplateParameter) hostSemanticElement).getDefault(), this);
 			}
 		}
 		refreshDisplay();

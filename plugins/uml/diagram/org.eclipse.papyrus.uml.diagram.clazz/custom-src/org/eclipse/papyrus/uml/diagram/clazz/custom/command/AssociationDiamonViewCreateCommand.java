@@ -13,23 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.command;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -43,15 +35,9 @@ import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
  * 
  * @author Patrick Tessier
  */
-public class AssociationDiamonViewCreateCommand extends AbstractTransactionalCommand {
-
-	private static View node;
+public class AssociationDiamonViewCreateCommand extends AbstractCustomCommand {
 
 	private View containerView;
-
-	private EObject element;
-
-	private EObject eobject;
 
 	private Point location;
 
@@ -61,23 +47,21 @@ public class AssociationDiamonViewCreateCommand extends AbstractTransactionalCom
 
 	private SemanticAdapter semanticApdater;
 
-	private EditPartViewer viewer;
-
 	/**
 	 * constructor
 	 * 
 	 * @param createConnectionViewAndElementRequest
-	 *        the request that is used to obtained the associationclass
+	 *            the request that is used to obtained the associationclass
 	 * @param domain
-	 *        the current edit domain
+	 *            the current edit domain
 	 * @param container
-	 *        the container view
+	 *            the container view
 	 * @param viewer
-	 *        the viewer
+	 *            the viewer
 	 * @param preferencesHint
-	 *        the preference hint of the diagram
+	 *            the preference hint of the diagram
 	 * @param point
-	 *        the location of the future association node
+	 *            the location of the future association node
 	 */
 	public AssociationDiamonViewCreateCommand(TransactionalEditingDomain domain, View container, EditPartViewer viewer, PreferencesHint preferencesHint, Point point, SemanticAdapter semanticAdapter) {
 		super(domain, "AssociationDiamonViewCreateCommand", null); //$NON-NLS-1$
@@ -101,40 +85,18 @@ public class AssociationDiamonViewCreateCommand extends AbstractTransactionalCom
 		// ((IHintedType) UMLElementTypes.Dependency_2014)
 		// .getSemanticHint(), -1, true, preferenceHint);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		this.node = viewProvider.createAssociation_2015(((EObject)semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint);
+		setNode(viewProvider.createAssociation_2015(((EObject) semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint));
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
 		notationLocation.setX(location.x);
 		notationLocation.setY(location.y);
-		((Node)this.node).setLayoutConstraint(notationLocation);
-		semanticApdater.setView(this.node);
-		return CommandResult.newOKCommandResult(semanticApdater);
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public List getAffectedFiles() {
-		if(viewer != null) {
-			EditPart editpart = viewer.getRootEditPart().getContents();
-			if(editpart instanceof IGraphicalEditPart) {
-				View view = (View)((IGraphicalEditPart)editpart).getModel();
-				if(view != null) {
-					IFile f = WorkspaceSynchronizer.getFile(view.eResource());
-					return f != null ? Collections.singletonList(f) : Collections.EMPTY_LIST;
-				}
-			}
+		if (getNode() instanceof Node)
+		{
+			((Node) getNode()).setLayoutConstraint(notationLocation);
 		}
-		return super.getAffectedFiles();
-	}
 
-	/**
-	 * used to obtain the created node
-	 * 
-	 * @return the created node
-	 */
-	public View getNode() {
-		return node;
+		semanticApdater.setView(getNode());
+
+		return CommandResult.newOKCommandResult(semanticApdater);
 	}
 }
