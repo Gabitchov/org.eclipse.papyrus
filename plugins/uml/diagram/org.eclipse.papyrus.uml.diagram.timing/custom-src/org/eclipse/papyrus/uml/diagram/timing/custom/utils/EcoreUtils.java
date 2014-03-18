@@ -1,10 +1,15 @@
 /*******************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 426732
+ *  
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.timing.custom.utils;
 
@@ -20,6 +25,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 public final class EcoreUtils {
 
@@ -37,7 +43,7 @@ public final class EcoreUtils {
 	 *        the replacement object
 	 */
 	public static void replaceEObjectInstance(final EObject original, final EObject replacement) {
-		final Collection<Setting> settings = EcoreUtil.UsageCrossReferencer.find(original, original.eResource().getResourceSet());
+		final Collection<Setting> settings = EMFHelper.getUsages(original);
 
 		final Set<EStructuralFeature> referencingFeatures = new HashSet<EStructuralFeature>();
 		for(final Setting setting : settings) {
