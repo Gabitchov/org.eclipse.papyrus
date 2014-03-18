@@ -32,7 +32,14 @@ import org.eclipse.ui.handlers.HandlerUtil;
  */
 public class CSSFileHandler extends AbstractHandler implements IHandler {
 
-	CSSStyleSheetsToThemeHelper cssHelper = new CSSStyleSheetsToThemeHelper();
+	/** ID of command to edit existing theme. */
+	private static final String THEME_EDIT_COMMAND_ID = "org.eclipse.papyrus.infra.gmfdiag.css.theme.edit"; //$NON-NLS-1$
+
+	/** ID of command to define theme. */
+	private static final String THEME_DEFINE_COMMAND_ID = "org.eclipse.papyrus.infra.gmfdiag.css.theme.define"; //$NON-NLS-1$
+
+	/** */
+	private CSSStyleSheetsToThemeHelper cssHelper = new CSSStyleSheetsToThemeHelper();
 
 	/**
 	 * Default constructor.
@@ -52,6 +59,7 @@ public class CSSFileHandler extends AbstractHandler implements IHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
+
 		// Get current selection
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 
@@ -64,6 +72,18 @@ public class CSSFileHandler extends AbstractHandler implements IHandler {
 				cssHelper.defineCSSStyleSheetFileAsTheme((IFile)selectedObject);
 
 			}
+		}
+
+
+		// Get executed command ID
+		String commandID = event.getCommand().getId();
+
+		if(THEME_DEFINE_COMMAND_ID.equals(commandID)) {
+
+			// TODO Open a specific dialog to define theme according to selection
+
+		} else if(THEME_EDIT_COMMAND_ID.equals(commandID)) {
+			// TODO Open a specific dialog to edit existing theme  according to selection
 		}
 
 		return null;

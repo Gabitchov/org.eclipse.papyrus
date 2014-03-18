@@ -86,9 +86,9 @@
     <menuContribution
           allPopups="false"
           locationURI="popup:org.eclipse.ui.popup.any?after=additions">
-       <command
-             commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme"
-             style="push">
+       <menu
+             id="org.eclipse.papyrus.infra.gmfdiag.css.theme.menu.category"
+             label="CSS Theme">
           <visibleWhen
                 checkEnabled="true">
              <with
@@ -98,21 +98,38 @@
                 </equals>
              </with>
           </visibleWhen>
+       </menu>
+    </menuContribution>
+    <menuContribution
+          allPopups="false"
+          locationURI="popup:org.eclipse.papyrus.infra.gmfdiag.css.theme.menu.category">
+       <command
+             commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme.define"
+             style="push">
+       </command>
+       <command
+             commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme.edit"
+             style="push">
        </command>
     </menuContribution>
  </extension>
  <extension
        point="org.eclipse.ui.commands">
     <command
-          id="org.eclipse.papyrus.infra.gmfdiag.css.theme"
+          categoryId="org.eclipse.papyrus.infra.gmfdiag.css.theme.category"
+          id="org.eclipse.papyrus.infra.gmfdiag.css.theme.define"
           name="Define theme">
+    </command>
+    <command
+          id="org.eclipse.papyrus.infra.gmfdiag.css.theme.edit"
+          name="Edit theme">
     </command>
  </extension>
  <extension
        point="org.eclipse.ui.handlers">
     <handler
           class="org.eclipse.papyrus.infra.gmfdiag.css.handler.CSSFileHandler"
-          commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme">
+          commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme.define">
        <enabledWhen>
           <with
                 variable="selection">
@@ -126,6 +143,24 @@
                 </adapt>
              </iterate>
           </with></enabledWhen>
+    </handler>
+    <handler
+          class="org.eclipse.papyrus.infra.gmfdiag.css.handler.CSSFileHandler"
+          commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme.edit">
+       <enabledWhen>
+          <with
+                variable="selection">
+             <iterate>
+                <adapt
+                      type="org.eclipse.core.resources.IResource">
+                   <test
+                         property="org.eclipse.core.resources.extension"
+                         value="css">
+                   </test>
+                </adapt>
+             </iterate>
+          </with>
+       </enabledWhen>
     </handler>
  </extension>
 </plugin>
