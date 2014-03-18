@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +8,12 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Mickaël Adam (ALL4TEC) mickael.adam@all4tec.net - add ModelStyleSheet support
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.modelelement;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -19,6 +22,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.creation.StyleSheetFactory;
@@ -35,6 +39,7 @@ import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.creation.StringEditionFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
+import org.eclipse.swt.widgets.Display;
 
 
 public class CSSModelElement extends CustomStyleModelElement {
@@ -71,17 +76,31 @@ public class CSSModelElement extends CustomStyleModelElement {
 		}
 		if(CSSStyles.CSS_MODEL_STYLESHEETS_KEY.equals(propertyPath)) {
 			final Resource notationResource = source.eResource();
-			
+
 			Object vObject = EcoreUtil.getObjectByType(notationResource.getContents(), StylesheetsPackage.Literals.MODEL_STYLE_SHEETS);
-			
+
 			ModelStyleSheets vSource = null;
-			if(vObject instanceof ModelStyleSheets){
-				vSource = (ModelStyleSheets) vObject;
+			if(vObject instanceof ModelStyleSheets) {
+				vSource = (ModelStyleSheets)vObject;
 			} else {
 				vSource = StylesheetsFactory.eINSTANCE.createModelStyleSheets();
 			}
-			ModelStyleSheetObservableList modelStyleSheetObservableList = new ModelStyleSheetObservableList(notationResource, vSource.getStylesheets(), domain, vSource, StylesheetsPackage.Literals.MODEL_STYLE_SHEETS__STYLESHEETS);
-//			modelStyleSheetObservableList.initialiseModelStyleSheets();
+			ModelStyleSheetObservableList modelStyleSheetObservableList = new ModelStyleSheetObservableList((View)source, notationResource, vSource.getStylesheets(), domain, vSource, StylesheetsPackage.Literals.MODEL_STYLE_SHEETS__STYLESHEETS);
+			modelStyleSheetObservableList.addChangeListener(new IChangeListener() {
+
+				@Override
+				public void handleChange(ChangeEvent event) {
+					Display.getDefault().syncExec(new Runnable() {
+
+						public void run() {
+							((CSSDiagram)source).getEngine().resetCache();
+							DiagramHelper.setNeedsRefresh();
+							DiagramHelper.refreshDiagrams();
+						}
+					});
+				}
+			});
+			//			modelStyleSheetObservableList.initialiseModelStyleSheets();
 			return modelStyleSheetObservableList;
 		}
 		return super.doGetObservable(propertyPath);
@@ -125,6 +144,5 @@ public class CSSModelElement extends CustomStyleModelElement {
 
 		return null;
 	}
-	
+
 }
-	
