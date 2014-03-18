@@ -1365,7 +1365,12 @@
             id="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand"
             language="uml"
             label="UML Class Diagram">
-      </creationCommand>      
+      </creationCommand>
+      <editorDiagram
+            actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
+            factoryClass="org.eclipse.papyrus.uml.diagram.clazz.PackageDiagramEditorFactory"
+            icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/Diagram_Package.gif">
+      </editorDiagram>      
    </extension>
    <!--extension
          point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
