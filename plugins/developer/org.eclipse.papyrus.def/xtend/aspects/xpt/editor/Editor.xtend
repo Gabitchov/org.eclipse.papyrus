@@ -408,7 +408,8 @@ override initializeGraphicalViewer (GenEditorView it)'''
 
 					@Override
 					protected Object getJavaObject(org.eclipse.swt.dnd.TransferData data) {
-						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+						// It is usual for the transfer data not to be set because it is available locally
+						return LocalSelectionTransfer.getTransfer().getSelection();
 					}
 
 					@Override
