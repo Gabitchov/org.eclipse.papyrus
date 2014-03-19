@@ -823,4 +823,12 @@ public class PropertyForSignalEditPart extends
 		return new PropertyFigure();
 	}
 
+	/**
+	 * @generated
+	 */
+	@Override
+	public boolean isSelectable() {
+		return getFigure().isShowing();
+	}
+
 }

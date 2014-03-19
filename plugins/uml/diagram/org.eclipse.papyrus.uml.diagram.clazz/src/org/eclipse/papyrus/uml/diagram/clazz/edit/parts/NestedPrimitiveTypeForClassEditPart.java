@@ -820,4 +820,12 @@ public class NestedPrimitiveTypeForClassEditPart extends
 		return new WrappingLabel();
 	}
 
+	/**
+	 * @generated
+	 */
+	@Override
+	public boolean isSelectable() {
+		return getFigure().isShowing();
+	}
+
 }

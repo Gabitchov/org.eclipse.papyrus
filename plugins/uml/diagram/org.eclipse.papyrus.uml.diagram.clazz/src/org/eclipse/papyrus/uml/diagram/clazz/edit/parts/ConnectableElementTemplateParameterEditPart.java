@@ -819,4 +819,12 @@ public class ConnectableElementTemplateParameterEditPart extends CompartmentEdit
 		return new TemplateParameterFigure();
 	}
 
+	/**
+	 * @generated
+	 */
+	@Override
+	public boolean isSelectable() {
+		return getFigure().isShowing();
+	}
+
 }

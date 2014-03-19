@@ -835,4 +835,12 @@ public class EnumerationLiteralEditPart extends
 		return new LiteralEnumerationFigure();
 	}
 
+	/**
+	 * @generated
+	 */
+	@Override
+	public boolean isSelectable() {
+		return getFigure().isShowing();
+	}
+
 }

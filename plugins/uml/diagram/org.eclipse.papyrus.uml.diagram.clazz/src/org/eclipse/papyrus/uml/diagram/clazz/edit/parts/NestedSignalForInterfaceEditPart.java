@@ -817,4 +817,12 @@ public class NestedSignalForInterfaceEditPart extends
 		return new WrappingLabel();
 	}
 
+	/**
+	 * @generated
+	 */
+	@Override
+	public boolean isSelectable() {
+		return getFigure().isShowing();
+	}
+
 }

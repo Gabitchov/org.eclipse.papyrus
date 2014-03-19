@@ -835,4 +835,12 @@ public class ReceptionEditPart extends
 		return new ReceptionFigure();
 	}
 
+	/**
+	 * @generated
+	 */
+	@Override
+	public boolean isSelectable() {
+		return getFigure().isShowing();
+	}
+
 }

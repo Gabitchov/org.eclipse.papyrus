@@ -820,4 +820,12 @@ public class TemplateParameterEditPart extends
 		return new TemplateParameterFigure();
 	}
 
+	/**
+	 * @generated
+	 */
+	@Override
+	public boolean isSelectable() {
+		return getFigure().isShowing();
+	}
+
 }

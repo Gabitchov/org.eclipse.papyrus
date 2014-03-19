@@ -819,4 +819,12 @@ public class NestedEnumerationForComponentEditPart extends
 		return new WrappingLabel();
 	}
 
+	/**
+	 * @generated
+	 */
+	@Override
+	public boolean isSelectable() {
+		return getFigure().isShowing();
+	}
+
 }

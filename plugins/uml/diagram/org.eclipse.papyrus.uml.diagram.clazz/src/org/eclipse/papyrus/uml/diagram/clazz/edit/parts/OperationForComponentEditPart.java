@@ -823,4 +823,12 @@ public class OperationForComponentEditPart extends
 		return new OperationFigure();
 	}
 
+	/**
+	 * @generated
+	 */
+	@Override
+	public boolean isSelectable() {
+		return getFigure().isShowing();
+	}
+
 }

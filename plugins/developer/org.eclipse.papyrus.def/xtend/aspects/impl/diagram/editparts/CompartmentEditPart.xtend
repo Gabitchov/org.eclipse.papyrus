@@ -21,7 +21,7 @@ import xpt.diagram.editparts.Common
 //DOCUMENTATION: PapyrusGenCode
 //Overload only the creation of editPolicies in order to add the paste edit policy
 @Singleton class CompartmentEditPart extends impl.diagram.editparts.CompartmentEditPart {
-
+	@Inject extension xpt.Common;
 	@Inject Common xptEditpartsCommon;
 
 
@@ -39,6 +39,14 @@ import xpt.diagram.editparts.Common
 		«ENDIF»
 		«xptEditpartsCommon.installCanonicalEditPolicy(it)»
 		«xptEditpartsCommon.behaviour(it)»
+	'''
+	
+		override getTargetEditPartMethod(GenCompartment it) '''
+		«generatedMemberComment»
+		public org.eclipse.gef.EditPart getTargetEditPart(org.eclipse.gef.Request request) {
+
+			return super.getTargetEditPart(request);
+		}
 	'''
 
 }

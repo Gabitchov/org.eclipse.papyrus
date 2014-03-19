@@ -19,14 +19,10 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
@@ -35,7 +31,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.NestedClazzCompartm
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ComponentNestedClassifierCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.Messages;
-import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 
@@ -104,32 +99,7 @@ public class ComponentNestedClassifierCompartmentEditPart
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
-		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (type == UMLElementTypes.Class_3004) {
-				return this;
-			}
-			if (type == UMLElementTypes.Interface_3037) {
-				return this;
-			}
-			if (type == UMLElementTypes.Enumeration_3053) {
-				return this;
-			}
-			if (type == UMLElementTypes.PrimitiveType_3046) {
-				return this;
-			}
-			if (type == UMLElementTypes.DataType_3045) {
-				return this;
-			}
-			if (type == UMLElementTypes.Signal_3051) {
-				return this;
-			}
-			return getParent().getTargetEditPart(request);
-		}
-		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
-			return getParent().getTargetEditPart(request);
-		}
+
 		return super.getTargetEditPart(request);
 	}
 

@@ -834,4 +834,12 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart
 		return new ReceptionFigure();
 	}
 
+	/**
+	 * @generated
+	 */
+	@Override
+	public boolean isSelectable() {
+		return getFigure().isShowing();
+	}
+
 }
