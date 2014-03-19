@@ -115,12 +115,15 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 	 * @param editPart
 	 */
 	public void setSourceEditPart(final EditPart editPart) {
-		// lock current edit part, otherwise updateTargetUnderMouse (called by handleButtonDown) would update the edit part 
-		lockTargetEditPart(editPart);
-		setViewer(editPart.getViewer());
-		handleButtonDown(1);
-		unlockTargetEditPart();
-		handleButtonUp(1);
+		// only activate in single click mode
+		if (!ConnectionToolPreferences.instance.isInSingleClickMode()) {
+			// lock current edit part, otherwise updateTargetUnderMouse (called by handleButtonDown) would update the edit part 
+			lockTargetEditPart(editPart);
+			setViewer(editPart.getViewer());
+			handleButtonDown(1);
+			unlockTargetEditPart();
+			handleButtonUp(1);
+		}
 	}
 	
 	protected boolean handleButtonUpTwoClicks(int button) {
