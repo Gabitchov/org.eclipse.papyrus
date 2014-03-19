@@ -300,7 +300,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @param req
 	 *        the req
 	 * @return the creates the command
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		IElementType requestElementType = req.getElementType();
