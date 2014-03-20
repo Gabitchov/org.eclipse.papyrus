@@ -35,7 +35,8 @@ public class RemoveAllModelStyleSheetValueCommand extends RecordingCommand {
 	public void doExecute() {
 		for(Object value : values) {
 			if(value instanceof StyleSheetReference) {
-				resource.getContents().remove((StyleSheetReference)value);
+				StyleSheetReference styleSheet = (StyleSheetReference)value;
+				resource.getContents().remove(styleSheet);
 			}
 		}
 	}

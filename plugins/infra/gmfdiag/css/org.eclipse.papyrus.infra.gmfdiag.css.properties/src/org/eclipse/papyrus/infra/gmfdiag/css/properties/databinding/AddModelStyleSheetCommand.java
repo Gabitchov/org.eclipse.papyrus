@@ -32,7 +32,5 @@ public class AddModelStyleSheetCommand extends RecordingCommand {
 	public void doExecute() {
 		//add ModelSteelSheet
 		resource.getContents().add(object);
-
 	}
-
 }
