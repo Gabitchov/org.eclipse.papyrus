@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contributions;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -28,23 +29,48 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
+import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.uml.alf.alf.BOOLEAN_LITERAL;
 import org.eclipse.papyrus.uml.alf.alf.INTEGER_LITERAL;
 import org.eclipse.papyrus.uml.alf.alf.NameExpression;
 import org.eclipse.papyrus.uml.alf.alf.STRING_LITERAL;
 import org.eclipse.papyrus.uml.profile.structure.AppliedStereotypeProperty;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypePropertyEditorUtil;
-import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.StringConstants;
+import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.StringConstants;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.internal.AppliedStereotypePropertyActivator;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
+import org.eclipse.papyrus.uml.xtext.integration.XtextFakeResourceContext;
+import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
+import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
+import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProviderWithInit;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.util.CancelIndicator;
+import org.eclipse.xtext.util.StringInputStream;
 
 import com.google.inject.Injector;
 
 public class StereotypePropertyEditorConfigurationContribution extends DefaultXtextDirectEditorConfiguration {
 
+	public static AppliedStereotypeProperty getAppliedStereoProperty() {
+		return statocAppliedStereotypeProperty;
+	}
+	
+	protected static AppliedStereotypeProperty statocAppliedStereotypeProperty;
+	
+	@Override
+	public Object preEditAction(Object objectToEdit) {
+		if (objectToEdit instanceof AppliedStereotypeProperty) {
+			statocAppliedStereotypeProperty = (AppliedStereotypeProperty) objectToEdit;
+		}
+		
+		return super.preEditAction(objectToEdit);
+	}
 	@Override
 	public Injector getInjector() {
 		return AppliedStereotypePropertyActivator
@@ -55,40 +81,46 @@ public class StereotypePropertyEditorConfigurationContribution extends DefaultXt
 
 	@Override
 	protected ICommand getParseCommand(EObject umlObject, EObject xtextObject) {
+		umlObject = (EObject) objectToEdit;			// replace with objectToEdit (umlObject is selected property, not stereotype application)
 		CompositeCommand command = new CompositeCommand(""); //$NON-NLS-1$
 		final AppliedStereotypeProperty appliedStereotypeProperty = (AppliedStereotypeProperty) umlObject;
 		Object[] result = AppliedStereotypePropertyEditorUtil.getPossibleElements(appliedStereotypeProperty);
-		// ref element stereotype application
-		if (appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals(StringConstants.STEREOTYPE)) {
-			command.add(reconcileRefToStereotypeApp(appliedStereotypeProperty, xtextObject, result));
+		Type type = appliedStereotypeProperty.getStereotypeProperty().getType();
+		
+		ICommand specificCommand = null;
+		//int
+		if(type.getName().equals(StringConstants.INTEGER)) {
+			specificCommand = reconcileInteger(appliedStereotypeProperty, xtextObject);
 		}
-
-		// int
-		if (appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals(StringConstants.INTEGER)) {
-			command.add(reconcileInteger(appliedStereotypeProperty, xtextObject));
+		//boolean
+		else if(type.getName().equals(StringConstants.BOOLEAN)) {
+			specificCommand = reconcileBoolean(appliedStereotypeProperty, xtextObject);
 		}
-		// boolean
-		if (appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals(StringConstants.BOOLEAN)) {
-			command.add(reconcileBoolean(appliedStereotypeProperty, xtextObject));
+		//string
+		else if(type.getName().equals(StringConstants.STRING)) {
+			specificCommand = reconcileString(appliedStereotypeProperty, xtextObject);
 		}
-		// string
-		if (appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals(StringConstants.STRING)) {
-			command.add(reconcileString(appliedStereotypeProperty, xtextObject));
+		//ref element stereotype application
+		else if(type.eClass().getName().equals("Stereotype")) { //$NON-NLS-1$
+			specificCommand = reconcileRefToStereotypeApp(appliedStereotypeProperty, xtextObject, result);
 		}
-		// dataType
-		if (appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals(StringConstants.DATA_TYPE)) {
-			command.add(reconcileString(appliedStereotypeProperty, xtextObject));
+		//dataType
+		else if(type.eClass().getName().equals(StringConstants.DATA_TYPE)) {
+			specificCommand = reconcileString(appliedStereotypeProperty, xtextObject);
 		}
-		// primitiveType
-		if (appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals(StringConstants.PRIMITIVE_TYPE)) {
-			command.add(reconcileString(appliedStereotypeProperty, xtextObject));
+		//primitiveType
+		else if(type.eClass().getName().equals(StringConstants.PRIMITIVE_TYPE)) {
+			specificCommand = reconcileString(appliedStereotypeProperty, xtextObject);
 		}
-		if (appliedStereotypeProperty.getStereotypeProperty().getType() instanceof Enumeration) {
-			command.add(reconcileEnumerationLiteral(appliedStereotypeProperty, xtextObject, result));
+		else if(type instanceof Enumeration) {
+			specificCommand = reconcileEnumerationLiteral(appliedStereotypeProperty, xtextObject, result);
 		}
-		// ref element
-		if (appliedStereotypeProperty.getStereotypeProperty().getType() instanceof Element) {
-			command.add(reconcileRefToElement(appliedStereotypeProperty, xtextObject, result));
+		//ref element
+		else if(type instanceof Element) {
+			specificCommand = reconcileRefToElement(appliedStereotypeProperty, xtextObject, result);
+		}
+		if (specificCommand != null) {
+			command.add(specificCommand);
 		}
 		return command;
 	}
@@ -184,15 +216,16 @@ public class StereotypePropertyEditorConfigurationContribution extends DefaultXt
 	protected ICommand reconcileRefToStereotypeApp(final AppliedStereotypeProperty appliedStereotypeProperty,
 			EObject xtextObject, Object[] result) {
 		ArrayList<NameExpression> eObjects = getAllElementRef(xtextObject);
-
+		
+			
 		// cardinality 1
 		if (appliedStereotypeProperty.getStereotypeProperty().getUpper() == 1) {
 			if (eObjects.size() == 0) {
 				return createUpdateCommand(appliedStereotypeProperty, null);
 			} else {
 				NameExpression nameExpression = eObjects.get(0);
-				EObject foundStereotypeApplication = AppliedStereotypePropertyEditorUtil.getApplicationStereotypeFor(
-						nameExpression, result);
+				EObject foundStereotypeApplication =
+						AppliedStereotypePropertyEditorUtil.getApplicationStereotypeFor(appliedStereotypeProperty, nameExpression);	
 				return createUpdateCommand(appliedStereotypeProperty, foundStereotypeApplication);
 			}
 
@@ -207,8 +240,8 @@ public class StereotypePropertyEditorConfigurationContribution extends DefaultXt
 				Iterator<NameExpression> iterator = eObjects.iterator();
 				while (iterator.hasNext()) {
 					NameExpression nameExpression = iterator.next();
-					EObject foundStereotypeApplication = AppliedStereotypePropertyEditorUtil
-							.getApplicationStereotypeFor(nameExpression, result);
+					EObject foundStereotypeApplication =
+							AppliedStereotypePropertyEditorUtil.getApplicationStereotypeFor(appliedStereotypeProperty, nameExpression);
 					if (foundStereotypeApplication != null) {
 						stereotypeApplicationList.add(foundStereotypeApplication);
 					}
@@ -390,7 +423,7 @@ public class StereotypePropertyEditorConfigurationContribution extends DefaultXt
 
 	protected ICommand createUpdateCommand(final AppliedStereotypeProperty appliedStereotypeProperty, final Object value) {
 		AbstractTransactionalCommand setValueCommand = new AbstractTransactionalCommand(
-				TransactionUtil.getEditingDomain(appliedStereotypeProperty), "", Collections.EMPTY_LIST) { //$NON-NLS-1$
+				TransactionUtil.getEditingDomain(appliedStereotypeProperty.getStereotypeProperty()), "", Collections.EMPTY_LIST) { //$NON-NLS-1$
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
@@ -416,7 +449,7 @@ public class StereotypePropertyEditorConfigurationContribution extends DefaultXt
 
 		return result;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -434,4 +467,59 @@ public class StereotypePropertyEditorConfigurationContribution extends DefaultXt
 		return "<UNDEFINED>"; //$NON-NLS-1$
 	}
 
+	@Override
+	public IParser createParser(final EObject semanticObject) {
+		
+		return new IParser() {
+
+			public String getEditString(IAdaptable element, int flags) {
+				return getTextToEdit(objectToEdit);
+			}
+
+			public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
+				CompositeCommand result = new CompositeCommand("validation"); //$NON-NLS-1$
+				IContextElementProvider provider = getContextProvider();
+
+				XtextFakeResourceContext context = new XtextFakeResourceContext(getInjector());
+				context.getFakeResource().eAdapters().add(new ContextElementAdapter(provider));
+				try {
+					context.getFakeResource().load(new StringInputStream(newString), Collections.EMPTY_MAP);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				if (provider instanceof IContextElementProviderWithInit) {
+					((IContextElementProviderWithInit) provider).initResource(context.getFakeResource());
+				}
+				EcoreUtil2.resolveLazyCrossReferences(context.getFakeResource(), CancelIndicator.NullImpl);
+				if(!context.getFakeResource().getParseResult().hasSyntaxErrors() && context.getFakeResource().getErrors().size() == 0) {
+					EObject xtextObject = context.getFakeResource().getParseResult().getRootASTElement();
+					result.add(StereotypePropertyEditorConfigurationContribution.this.getParseCommand(semanticObject, xtextObject));
+				} else {
+					result.add(createInvalidStringCommand(newString, semanticObject));
+				}
+				// ValidateSubtreeCommand validationCommand = new ValidateSubtreeCommand(semanticObject, new UMLDiagnostician());
+				// validationCommand.disableUIFeedback();
+//					result.add(validationCommand);
+				return result;
+			}
+
+			public String getPrintString(IAdaptable element, int flags) {
+				return getTextToEdit(objectToEdit);
+			}
+
+			public boolean isAffectingEvent(Object event, int flags) {
+				return false;
+			}
+
+			public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
+				// Not used
+				return null;
+			}
+
+			public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
+				// Not used
+				return null;
+			}
+		};
+	}
 }

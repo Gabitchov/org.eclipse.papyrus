@@ -754,19 +754,16 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 	
 	/**
 	 * Constraint:
-	 *     (property=[Property|ID] value=ExpressionValueRule)
+	 *     value=ExpressionValueRule
 	 */
 	protected void sequence_AppliedStereotypePropertyRule(EObject context, AppliedStereotypePropertyRule semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, AppliedStereotypePropertyPackage.Literals.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AppliedStereotypePropertyPackage.Literals.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY));
 			if(transientValues.isValueTransient(semanticObject, AppliedStereotypePropertyPackage.Literals.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AppliedStereotypePropertyPackage.Literals.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getAppliedStereotypePropertyRuleAccess().getPropertyPropertyIDTerminalRuleCall_0_0_1(), semanticObject.getProperty());
-		feeder.accept(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionValueRuleParserRuleCall_1_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionValueRuleParserRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

@@ -66,22 +66,13 @@ public interface AppliedStereotypePropertyPackage extends EPackage
   int APPLIED_STEREOTYPE_PROPERTY_RULE = 0;
 
   /**
-   * The feature id for the '<em><b>Property</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY = 0;
-
-  /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE = 1;
+  int APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE = 0;
 
   /**
    * The number of structural features of the '<em>Rule</em>' class.
@@ -90,7 +81,7 @@ public interface AppliedStereotypePropertyPackage extends EPackage
    * @generated
    * @ordered
    */
-  int APPLIED_STEREOTYPE_PROPERTY_RULE_FEATURE_COUNT = 2;
+  int APPLIED_STEREOTYPE_PROPERTY_RULE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl.ExpressionValueRuleImpl <em>Expression Value Rule</em>}' class.
@@ -130,17 +121,6 @@ public interface AppliedStereotypePropertyPackage extends EPackage
    * @generated
    */
   EClass getAppliedStereotypePropertyRule();
-
-  /**
-   * Returns the meta object for the reference '{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule#getProperty <em>Property</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Property</em>'.
-   * @see org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule#getProperty()
-   * @see #getAppliedStereotypePropertyRule()
-   * @generated
-   */
-  EReference getAppliedStereotypePropertyRule_Property();
 
   /**
    * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule#getValue <em>Value</em>}'.
@@ -206,14 +186,6 @@ public interface AppliedStereotypePropertyPackage extends EPackage
      * @generated
      */
     EClass APPLIED_STEREOTYPE_PROPERTY_RULE = eINSTANCE.getAppliedStereotypePropertyRule();
-
-    /**
-     * The meta object literal for the '<em><b>Property</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY = eINSTANCE.getAppliedStereotypePropertyRule_Property();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.

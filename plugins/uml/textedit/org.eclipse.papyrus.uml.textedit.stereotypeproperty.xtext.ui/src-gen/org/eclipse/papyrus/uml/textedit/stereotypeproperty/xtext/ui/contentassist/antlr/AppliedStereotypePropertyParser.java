@@ -73,7 +73,6 @@ public class AppliedStereotypePropertyParser extends AbstractContentAssistParser
 					put(grammarAccess.getForAllOrExistsOrOneOperatorAccess().getAlternatives(), "rule__ForAllOrExistsOrOneOperator__Alternatives");
 					put(grammarAccess.getAnnotationKindAccess().getAlternatives(), "rule__AnnotationKind__Alternatives");
 					put(grammarAccess.getAssignmentOperatorAccess().getAlternatives(), "rule__AssignmentOperator__Alternatives");
-					put(grammarAccess.getAppliedStereotypePropertyRuleAccess().getGroup(), "rule__AppliedStereotypePropertyRule__Group__0");
 					put(grammarAccess.getExpressionValueRuleAccess().getGroup(), "rule__ExpressionValueRule__Group__0");
 					put(grammarAccess.getTestAccess().getGroup(), "rule__Test__Group__0");
 					put(grammarAccess.getTestAccess().getGroup_0(), "rule__Test__Group_0__0");
@@ -202,8 +201,7 @@ public class AppliedStereotypePropertyParser extends AbstractContentAssistParser
 					put(grammarAccess.getVariableDeclarationCompletionAccess().getGroup(), "rule__VariableDeclarationCompletion__Group__0");
 					put(grammarAccess.getVariableDeclarationCompletionAccess().getGroup_0(), "rule__VariableDeclarationCompletion__Group_0__0");
 					put(grammarAccess.getAssignmentCompletionAccess().getGroup(), "rule__AssignmentCompletion__Group__0");
-					put(grammarAccess.getAppliedStereotypePropertyRuleAccess().getPropertyAssignment_0(), "rule__AppliedStereotypePropertyRule__PropertyAssignment_0");
-					put(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueAssignment_1(), "rule__AppliedStereotypePropertyRule__ValueAssignment_1");
+					put(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueAssignment(), "rule__AppliedStereotypePropertyRule__ValueAssignment");
 					put(grammarAccess.getExpressionValueRuleAccess().getExpressionAssignment_1(), "rule__ExpressionValueRule__ExpressionAssignment_1");
 					put(grammarAccess.getTestAccess().getExpressionAssignment_0_1(), "rule__Test__ExpressionAssignment_0_1");
 					put(grammarAccess.getTestAccess().getAssignExpressionAssignment_1_1(), "rule__Test__AssignExpressionAssignment_1_1");

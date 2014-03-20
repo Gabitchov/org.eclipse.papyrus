@@ -72,9 +72,9 @@ ruleAppliedStereotypePropertyRule
     }
 	:
 (
-{ before(grammarAccess.getAppliedStereotypePropertyRuleAccess().getGroup()); }
-(rule__AppliedStereotypePropertyRule__Group__0)
-{ after(grammarAccess.getAppliedStereotypePropertyRuleAccess().getGroup()); }
+{ before(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueAssignment()); }
+(rule__AppliedStereotypePropertyRule__ValueAssignment)
+{ after(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueAssignment()); }
 )
 
 ;
@@ -4290,67 +4290,6 @@ rule__AssignmentOperator__Alternatives
 finally {
 	restoreStackSize(stackSize);
 }
-
-
-
-rule__AppliedStereotypePropertyRule__Group__0
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__AppliedStereotypePropertyRule__Group__0__Impl
-	rule__AppliedStereotypePropertyRule__Group__1
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__AppliedStereotypePropertyRule__Group__0__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getAppliedStereotypePropertyRuleAccess().getPropertyAssignment_0()); }
-(rule__AppliedStereotypePropertyRule__PropertyAssignment_0)
-{ after(grammarAccess.getAppliedStereotypePropertyRuleAccess().getPropertyAssignment_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__AppliedStereotypePropertyRule__Group__1
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__AppliedStereotypePropertyRule__Group__1__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__AppliedStereotypePropertyRule__Group__1__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueAssignment_1()); }
-(rule__AppliedStereotypePropertyRule__ValueAssignment_1)
-{ after(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueAssignment_1()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
 
 
 
@@ -15751,33 +15690,14 @@ finally {
 
 
 
-rule__AppliedStereotypePropertyRule__PropertyAssignment_0
+rule__AppliedStereotypePropertyRule__ValueAssignment
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getAppliedStereotypePropertyRuleAccess().getPropertyPropertyCrossReference_0_0()); }
-(
-{ before(grammarAccess.getAppliedStereotypePropertyRuleAccess().getPropertyPropertyIDTerminalRuleCall_0_0_1()); }
-	RULE_ID{ after(grammarAccess.getAppliedStereotypePropertyRuleAccess().getPropertyPropertyIDTerminalRuleCall_0_0_1()); }
-)
-{ after(grammarAccess.getAppliedStereotypePropertyRuleAccess().getPropertyPropertyCrossReference_0_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__AppliedStereotypePropertyRule__ValueAssignment_1
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionValueRuleParserRuleCall_1_0()); }
-	ruleExpressionValueRule{ after(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionValueRuleParserRuleCall_1_0()); }
+{ before(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionValueRuleParserRuleCall_0()); }
+	ruleExpressionValueRule{ after(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionValueRuleParserRuleCall_0()); }
 )
 
 ;
@@ -18810,8 +18730,6 @@ finally {
 }
 
 
-RULE_INTEGER_VALUE : (('0'|'1'..'9' ('_'? '0'..'9')*)|('0b'|'0B') '0'..'1' ('_'? '0'..'1')*|('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F') ('_'? ('0'..'9'|'a'..'f'|'A'..'F'))*|'0' '_'? '0'..'7' ('_'? '0'..'7')*);
-
 RULE_ID : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'\'' ( options {greedy=false;} : . )*'\'');
 
 RULE_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
@@ -18821,6 +18739,8 @@ RULE_ML_COMMENT : '/*' ~('@') ( options {greedy=false;} : . )*'*/';
 RULE_SL_COMMENT : '//' ~(('\n'|'\r'|'@'))* ('\r'? '\n')?;
 
 RULE_INT : ('0'..'9')+;
+
+RULE_INTEGER_VALUE : (('0'|'1'..'9' ('_'? '0'..'9')*)|('0b'|'0B') '0'..'1' ('_'? '0'..'1')*|('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F') ('_'? ('0'..'9'|'a'..'f'|'A'..'F'))*|'0' '_'? '0'..'7' ('_'? '0'..'7')*);
 
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 

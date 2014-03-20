@@ -10,7 +10,7 @@ generate appliedStereotypeProperty "http://www.eclipse.org/papyrus/uml/textedit/
 
 AppliedStereotypePropertyRule :
 
-	property = [uml::Property] (value = ExpressionValueRule) ; 
+	value = ExpressionValueRule; 
 	
 ExpressionValueRule :
 	'=' expression = SequenceElement ;
