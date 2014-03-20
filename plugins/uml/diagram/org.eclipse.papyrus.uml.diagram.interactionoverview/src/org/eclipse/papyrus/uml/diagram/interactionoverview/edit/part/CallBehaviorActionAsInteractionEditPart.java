@@ -10,6 +10,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 323802
+ *   Christian W. Damus (CEA) - bug 429422
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part;
@@ -176,6 +177,8 @@ public class CallBehaviorActionAsInteractionEditPart extends NamedElementEditPar
 	 */
 	protected IFigure primaryShape;
 
+	private boolean isRefreshingSnapshotFigure;
+	
 	/**
 	 * @generated
 	 */
@@ -946,26 +949,34 @@ public class CallBehaviorActionAsInteractionEditPart extends NamedElementEditPar
 	public void refresh() {
 		super.refresh();
 		if(((InteractionWithSnapshotFigure)primaryShape).getImageFigure() != null && isValidFromRefresh()) {
-			if(((InteractionWithSnapshotFigure)primaryShape).getImageFigure().getImage() == null) {
+			if(!isRefreshingSnapshotFigure) {
+				isRefreshingSnapshotFigure = true;
 
 				try {
+					if(((InteractionWithSnapshotFigure)primaryShape).getImageFigure().getImage() == null) {
 
-					final CreateSnapshotForInteractionFromRefreshCommand command = CreateSnapshotForInteractionFromRefreshCommand.create((View)getModel(), (GraphicalEditPart)getParent());
-					//use to avoid to put it in the command stack
-					try {
-						GMFUnsafe.write(getEditingDomain(), command);
-					} catch (final Exception e) {
-						Activator.log.error(e);
+						try {
+
+							final CreateSnapshotForInteractionFromRefreshCommand command = CreateSnapshotForInteractionFromRefreshCommand.create((View)getModel(), (GraphicalEditPart)getParent());
+							//use to avoid to put it in the command stack
+							try {
+								GMFUnsafe.write(getEditingDomain(), command);
+							} catch (final Exception e) {
+								Activator.log.error(e);
+							}
+
+						} catch (final Exception e) {
+							Activator.log.error(e);
+						}
 					}
+					if(!((InteractionWithSnapshotFigure)primaryShape).isImageSizeFitsImageFigure()) {
 
-				} catch (final Exception e) {
-					Activator.log.error(e);
+						final Rectangle bounds = new Rectangle(0, 0, primaryShape.getBounds().width, primaryShape.getBounds().height - 15);
+						((InteractionWithSnapshotFigure)primaryShape).updateSnapshot(bounds);
+					}
+				} finally {
+					isRefreshingSnapshotFigure = false;
 				}
-			}
-			if(!((InteractionWithSnapshotFigure)primaryShape).isImageSizeFitsImageFigure()) {
-
-				final Rectangle bounds = new Rectangle(0, 0, primaryShape.getBounds().width, primaryShape.getBounds().height - 15);
-				((InteractionWithSnapshotFigure)primaryShape).updateSnapshot(bounds);
 			}
 		}
 	}
