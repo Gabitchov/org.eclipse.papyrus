@@ -36,6 +36,7 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentPro
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.papyrus.commands.util.OperationUtils;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -259,7 +260,7 @@ public class InteractionOverviewDiagramEditor extends UmlGmfDiagramEditor implem
 	@Override
 	public boolean isDirty() {
 		final IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
-		return savedOperation != op;
+		return savedOperation != op && OperationUtils.anyDirtyingAfter(getOperationHistory().getUndoHistory(getUndoContext()), savedOperation);
 	}
 
 	/**

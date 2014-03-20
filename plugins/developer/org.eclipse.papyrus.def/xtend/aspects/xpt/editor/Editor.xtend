@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2006, 2010, 2013 Borland Software Corporation and others
+ * Copyright (c) 2006, 2014 Borland Software Corporation, CEA, and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *    Alexander Shatalin (Borland) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Emilien Perico (Atos Origin) - add code to refactor some classes
+ *    Christian W. Damus (CEA) - bug 430648
  */
 package aspects.xpt.editor
 
@@ -368,7 +369,7 @@ def isDirty (GenEditorView it)'''
 «generatedMemberComment»
 	public boolean isDirty() {
 		org.eclipse.core.commands.operations.IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
-		return savedOperation != op;
+		return savedOperation != op && org.eclipse.papyrus.commands.util.OperationUtils.anyDirtyingAfter(getOperationHistory().getUndoHistory(getUndoContext()), savedOperation);
 	}
 '''
 

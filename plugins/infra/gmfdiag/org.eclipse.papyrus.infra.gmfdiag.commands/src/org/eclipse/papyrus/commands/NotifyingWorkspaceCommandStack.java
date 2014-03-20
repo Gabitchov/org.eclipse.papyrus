@@ -11,9 +11,13 @@
  *  Arthur Daussy (Atos) - 363826: [Model Explorer] Drag and drop and undo, incorrect behavior
  *  Christian W. Damus (CEA) - 404220: Add contexts for tracking objects changed by operations (CDO)
  *  Christian W. Damus (CEA) - bug 402525
+ *  Christian W. Damus (CEA) - bug 430648
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
+
+import static org.eclipse.papyrus.commands.util.OperationUtils.anyDirtying;
+import static org.eclipse.papyrus.commands.util.OperationUtils.anyDirtyingAfter;
 
 import java.util.Collection;
 import java.util.EventObject;
@@ -624,7 +628,7 @@ implements IWorkspaceCommandStack {
 			// return savedContext != null;
 			return super.isSaveNeeded();
 		}
-		return savedContext != null ? !nextUndoableOperation.hasContext(getSavedContext()) : true;
+		return savedContext != null ? !nextUndoableOperation.hasContext(getSavedContext()) && anyDirtyingAfter(history.getUndoHistory(getDefaultUndoContext()), history.getUndoOperation(savedContext)) : anyDirtying(history.getUndoHistory(getDefaultUndoContext()));
 	}
 
 	@Override

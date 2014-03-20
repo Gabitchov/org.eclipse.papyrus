@@ -15,6 +15,7 @@ Require-Bundle: org.eclipse.ui.workbench,
  org.eclipse.core.expressions;bundle-version="3.4.500",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor
 Export-Package: org.eclipse.papyrus.commands,
+ org.eclipse.papyrus.commands.util,
  org.eclipse.papyrus.commands.wrappers
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
