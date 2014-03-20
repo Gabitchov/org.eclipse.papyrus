@@ -11,7 +11,8 @@
    <extension
          point="org.eclipse.papyrus.infra.nattable.configuration">
       <configuration
-            file="resources/allocation.nattableconfiguration">
+            file="resources/allocation.nattableconfiguration"
+            type="PapyrusSysMLAllocationTable">
       </configuration>
    </extension>
    <extension

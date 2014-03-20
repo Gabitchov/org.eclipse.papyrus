@@ -40,15 +40,15 @@ import org.eclipse.gmf.runtime.notation.View;
 public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEditPolicy {
 
 	@Override
-	protected List createSelectionHandles() {
-		MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+	protected List<MoveHandle> createSelectionHandles() {
+		MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 		mh.setBorder(null);
 		return Collections.singletonList(mh);
 	}
 
 	@Override
 	protected Command getMoveCommand(ChangeBoundsRequest request) {
-		LabelEditPart editPart = (LabelEditPart)getHost();
+		LabelEditPart editPart = (LabelEditPart) getHost();
 		// FeedBack - Port + Delta
 		Rectangle updatedRect = new Rectangle();
 		PrecisionRectangle initialRect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
@@ -60,7 +60,7 @@ public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEdi
 		rect.translate(request.getMoveDelta());
 		rect.resize(request.getSizeDelta());
 		getHostFigure().translateToRelative(rect);
-		ICommand moveCommand = new SetBoundsCommand(editPart.getEditingDomain(), DiagramUIMessages.MoveLabelCommand_Label_Location, new EObjectAdapter((View)editPart.getModel()), updatedRect);
+		ICommand moveCommand = new SetBoundsCommand(editPart.getEditingDomain(), DiagramUIMessages.MoveLabelCommand_Label_Location, new EObjectAdapter((View) editPart.getModel()), updatedRect);
 		return new ICommandProxy(moveCommand);
 	}
 }

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
@@ -62,7 +63,7 @@ public abstract class AbstractPackageImportSource implements IPackageImportSourc
 				result = (Package)next;
 				break;
 			} else if(next instanceof IAdaptable) {
-				Object adapter = ((IAdaptable)next).getAdapter(EObject.class);
+				Object adapter = EMFHelper.getEObject(next);
 				if(adapter instanceof Package) {
 					result = (Package)adapter;
 				}

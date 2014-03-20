@@ -39,21 +39,23 @@ import org.eclipse.uml2.uml.Port;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.dependability.errormodel.impl.FaultFailurePortImpl#getBase_Port <em>Base Port</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.dependability.errormodel.impl.FaultFailurePortImpl#getFunctionTarget <em>Function Target</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.dependability.errormodel.impl.FaultFailurePortImpl#getHwTarget <em>Hw Target</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.dependability.errormodel.impl.FaultFailurePortImpl#getFunctionTarget_path <em>Function Target path</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.dependability.errormodel.impl.FaultFailurePortImpl#getHwTarget_path <em>Hw Target path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.dependability.errormodel.impl.FaultFailurePortImpl#getBase_Port <em>Base Port</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.dependability.errormodel.impl.FaultFailurePortImpl#getFunctionTarget <em>Function Target</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.dependability.errormodel.impl.FaultFailurePortImpl#getHwTarget <em>Hw Target</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.dependability.errormodel.impl.FaultFailurePortImpl#getFunctionTarget_path <em>Function Target path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.dependability.errormodel.impl.FaultFailurePortImpl#getHwTarget_path <em>Hw Target path</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultFailurePort {
+
 	/**
 	 * The cached value of the '{@link #getBase_Port() <em>Base Port</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Port()
 	 * @generated
 	 * @ordered
@@ -64,6 +66,7 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	 * The cached value of the '{@link #getFunctionTarget() <em>Function Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFunctionTarget()
 	 * @generated
 	 * @ordered
@@ -74,6 +77,7 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	 * The cached value of the '{@link #getHwTarget() <em>Hw Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getHwTarget()
 	 * @generated
 	 * @ordered
@@ -84,6 +88,7 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	 * The cached value of the '{@link #getFunctionTarget_path() <em>Function Target path</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFunctionTarget_path()
 	 * @generated
 	 * @ordered
@@ -94,6 +99,7 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	 * The cached value of the '{@link #getHwTarget_path() <em>Hw Target path</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getHwTarget_path()
 	 * @generated
 	 * @ordered
@@ -103,6 +109,7 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FaultFailurePortImpl() {
@@ -112,22 +119,24 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ErrormodelPackage.FAULT_FAILURE_PORT__BASE_PORT:
-				if (resolve) return getBase_Port();
-				return basicGetBase_Port();
-			case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET:
-				return getFunctionTarget();
-			case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET:
-				return getHwTarget();
-			case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET_PATH:
-				return getFunctionTarget_path();
-			case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET_PATH:
-				return getHwTarget_path();
+		switch(featureID) {
+		case ErrormodelPackage.FAULT_FAILURE_PORT__BASE_PORT:
+			if(resolve)
+				return getBase_Port();
+			return basicGetBase_Port();
+		case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET:
+			return getFunctionTarget();
+		case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET:
+			return getHwTarget();
+		case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET_PATH:
+			return getFunctionTarget_path();
+		case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET_PATH:
+			return getHwTarget_path();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -135,21 +144,22 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ErrormodelPackage.FAULT_FAILURE_PORT__BASE_PORT:
-				return base_Port != null;
-			case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET:
-				return functionTarget != null && !functionTarget.isEmpty();
-			case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET:
-				return hwTarget != null && !hwTarget.isEmpty();
-			case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET_PATH:
-				return functionTarget_path != null && !functionTarget_path.isEmpty();
-			case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET_PATH:
-				return hwTarget_path != null && !hwTarget_path.isEmpty();
+		switch(featureID) {
+		case ErrormodelPackage.FAULT_FAILURE_PORT__BASE_PORT:
+			return base_Port != null;
+		case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET:
+			return functionTarget != null && !functionTarget.isEmpty();
+		case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET:
+			return hwTarget != null && !hwTarget.isEmpty();
+		case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET_PATH:
+			return functionTarget_path != null && !functionTarget_path.isEmpty();
+		case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET_PATH:
+			return hwTarget_path != null && !hwTarget_path.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -157,31 +167,32 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ErrormodelPackage.FAULT_FAILURE_PORT__BASE_PORT:
-				setBase_Port((Port)newValue);
-				return;
-			case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET:
-				getFunctionTarget().clear();
-				getFunctionTarget().addAll((Collection<? extends FunctionPort>)newValue);
-				return;
-			case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET:
-				getHwTarget().clear();
-				getHwTarget().addAll((Collection<? extends HardwarePin>)newValue);
-				return;
-			case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET_PATH:
-				getFunctionTarget_path().clear();
-				getFunctionTarget_path().addAll((Collection<? extends FunctionPrototype>)newValue);
-				return;
-			case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET_PATH:
-				getHwTarget_path().clear();
-				getHwTarget_path().addAll((Collection<? extends HardwareComponentPrototype>)newValue);
-				return;
+		switch(featureID) {
+		case ErrormodelPackage.FAULT_FAILURE_PORT__BASE_PORT:
+			setBase_Port((Port)newValue);
+			return;
+		case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET:
+			getFunctionTarget().clear();
+			getFunctionTarget().addAll((Collection<? extends FunctionPort>)newValue);
+			return;
+		case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET:
+			getHwTarget().clear();
+			getHwTarget().addAll((Collection<? extends HardwarePin>)newValue);
+			return;
+		case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET_PATH:
+			getFunctionTarget_path().clear();
+			getFunctionTarget_path().addAll((Collection<? extends FunctionPrototype>)newValue);
+			return;
+		case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET_PATH:
+			getHwTarget_path().clear();
+			getHwTarget_path().addAll((Collection<? extends HardwareComponentPrototype>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -189,6 +200,7 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,14 +211,15 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Port getBase_Port() {
-		if (base_Port != null && base_Port.eIsProxy()) {
+		if(base_Port != null && base_Port.eIsProxy()) {
 			InternalEObject oldBase_Port = (InternalEObject)base_Port;
 			base_Port = (Port)eResolveProxy(oldBase_Port);
-			if (base_Port != oldBase_Port) {
-				if (eNotificationRequired())
+			if(base_Port != oldBase_Port) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ErrormodelPackage.FAULT_FAILURE_PORT__BASE_PORT, oldBase_Port, base_Port));
 			}
 		}
@@ -216,6 +229,7 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Port basicGetBase_Port() {
@@ -225,38 +239,40 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Port(Port newBase_Port) {
 		Port oldBase_Port = base_Port;
 		base_Port = newBase_Port;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ErrormodelPackage.FAULT_FAILURE_PORT__BASE_PORT, oldBase_Port, base_Port));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ErrormodelPackage.FAULT_FAILURE_PORT__BASE_PORT:
-				setBase_Port((Port)null);
-				return;
-			case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET:
-				getFunctionTarget().clear();
-				return;
-			case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET:
-				getHwTarget().clear();
-				return;
-			case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET_PATH:
-				getFunctionTarget_path().clear();
-				return;
-			case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET_PATH:
-				getHwTarget_path().clear();
-				return;
+		switch(featureID) {
+		case ErrormodelPackage.FAULT_FAILURE_PORT__BASE_PORT:
+			setBase_Port((Port)null);
+			return;
+		case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET:
+			getFunctionTarget().clear();
+			return;
+		case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET:
+			getHwTarget().clear();
+			return;
+		case ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET_PATH:
+			getFunctionTarget_path().clear();
+			return;
+		case ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET_PATH:
+			getHwTarget_path().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -264,10 +280,11 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<FunctionPort> getFunctionTarget() {
-		if (functionTarget == null) {
+		if(functionTarget == null) {
 			functionTarget = new EObjectResolvingEList<FunctionPort>(FunctionPort.class, this, ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET);
 		}
 		return functionTarget;
@@ -276,10 +293,11 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<HardwarePin> getHwTarget() {
-		if (hwTarget == null) {
+		if(hwTarget == null) {
 			hwTarget = new EObjectResolvingEList<HardwarePin>(HardwarePin.class, this, ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET);
 		}
 		return hwTarget;
@@ -288,10 +306,11 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<FunctionPrototype> getFunctionTarget_path() {
-		if (functionTarget_path == null) {
+		if(functionTarget_path == null) {
 			functionTarget_path = new EObjectResolvingEList<FunctionPrototype>(FunctionPrototype.class, this, ErrormodelPackage.FAULT_FAILURE_PORT__FUNCTION_TARGET_PATH);
 		}
 		return functionTarget_path;
@@ -300,10 +319,11 @@ public abstract class FaultFailurePortImpl extends AnomalyImpl implements FaultF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<HardwareComponentPrototype> getHwTarget_path() {
-		if (hwTarget_path == null) {
+		if(hwTarget_path == null) {
 			hwTarget_path = new EObjectResolvingEList<HardwareComponentPrototype>(HardwareComponentPrototype.class, this, ErrormodelPackage.FAULT_FAILURE_PORT__HW_TARGET_PATH);
 		}
 		return hwTarget_path;

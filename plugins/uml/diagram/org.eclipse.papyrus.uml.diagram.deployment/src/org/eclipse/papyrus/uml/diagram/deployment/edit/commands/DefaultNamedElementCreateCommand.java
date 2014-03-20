@@ -23,8 +23,12 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -34,7 +38,7 @@ public class DefaultNamedElementCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private EClass eClass = null;
+	private Diagram diagram = null;
 
 	/**
 	 * @generated
@@ -44,24 +48,25 @@ public class DefaultNamedElementCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public DefaultNamedElementCreateCommand(CreateElementRequest req, EObject eObject) {
+	public DefaultNamedElementCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static DefaultNamedElementCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new DefaultNamedElementCreateCommand(req, eObject);
+	public static DefaultNamedElementCreateCommand create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new DefaultNamedElementCreateCommand(req, eObject, diagram);
 	}
 
 	/**
 	 * @generated
 	 */
-	public DefaultNamedElementCreateCommand(CreateElementRequest req) {
+	public DefaultNamedElementCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -70,7 +75,6 @@ public class DefaultNamedElementCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -85,16 +89,15 @@ public class DefaultNamedElementCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
-		return true;
-
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getNamedElement());
+		return data.isPermitted();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		throw new UnsupportedOperationException("Unimplemented operation (abstract domain element).");
 	}
 
@@ -111,5 +114,4 @@ public class DefaultNamedElementCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

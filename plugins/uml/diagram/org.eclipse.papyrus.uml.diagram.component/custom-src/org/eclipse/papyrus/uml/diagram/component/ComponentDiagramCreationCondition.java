@@ -12,7 +12,6 @@ package org.eclipse.papyrus.uml.diagram.component;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
-import org.eclipse.uml2.uml.Component;
 
 /**
  * ComponentDiagramCreationCondition class allows to check if a Component diagram can be added to the
@@ -24,11 +23,7 @@ public class ComponentDiagramCreationCondition extends PerspectiveContextDepende
 	 * @return whether the diagram can be created.
 	 */
 	public boolean create(EObject selectedElement) {
-		if(super.create(selectedElement)) {
-			return selectedElement instanceof org.eclipse.uml2.uml.Package || selectedElement instanceof Component;
-		}
 		return false;
 	}
-
 
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,9 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   Christian W. Damus (CEA) - bug 429826
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.resource.tests;
 
@@ -36,6 +39,7 @@ import org.eclipse.papyrus.cdo.core.resource.PapyrusCDOResourceFactory;
 import org.eclipse.papyrus.cdo.core.tests.AbstractPapyrusCDOTest;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
@@ -85,15 +89,6 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 		fixture.unload();
 
 		assertThat(fixture.getResources(), equalTo(Collections.EMPTY_LIST));
-
-		fixture.loadModels(getTestResourceURI(MODEL_FILENAME));
-
-		CDOTransaction transaction = getTransaction(fixture);
-		assertThat(transaction.isDirty(), is(false));
-
-		Resource resource = fixture.getResource(getTestResourceURI(MODEL_FILENAME), false);
-		assertThat(resource, notNullValue());
-		assertThat(resource.isLoaded(), is(true));
 	}
 
 	@Test
@@ -114,7 +109,7 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 		CDOTransaction transaction = getTransaction(fixture);
 
 		Resource resource = transaction.getOrCreateResource(getResourcePath(MODEL_FILENAME));
-		assertThat(fixture.getReadOnlyHandler().anyReadOnly(new URI[]{ resource.getURI() }), is(Optional.of(false)));
+		assertThat(fixture.getReadOnlyHandler().anyReadOnly(ReadOnlyAxis.anyAxis(), new URI[]{ resource.getURI() }), is(Optional.of(false)));
 	}
 
 	@Test
@@ -200,6 +195,7 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 		} catch (ServiceMultiException e) {
 			if(Iterables.any(Iterables.transform(e.getExceptions(), new Function<Throwable, Throwable>() {
 
+				@Override
 				public Throwable apply(Throwable input) {
 					return input.getCause();
 				}

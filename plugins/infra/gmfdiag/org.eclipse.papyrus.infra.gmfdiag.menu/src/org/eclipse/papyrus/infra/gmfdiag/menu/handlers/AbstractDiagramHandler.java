@@ -21,8 +21,6 @@ import org.eclipse.ui.IWorkbenchPart;
 /**
  * Abstract class for the actions done on a diagram editor
  * 
- * @author vl222926
- * 
  */
 public abstract class AbstractDiagramHandler extends AbstractHandler {
 

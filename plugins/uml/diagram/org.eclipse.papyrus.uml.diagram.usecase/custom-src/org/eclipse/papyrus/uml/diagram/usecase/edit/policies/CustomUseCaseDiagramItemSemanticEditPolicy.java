@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.usecase.command.CustomSubjectClassifierCreateCommandTN;
@@ -106,7 +107,7 @@ public class CustomUseCaseDiagramItemSemanticEditPolicy extends UseCaseDiagramIt
 			else if(executableCommandCreation.size() > 1) {
 				return new ICommandProxy(new CustomSubjectClassifierCreateCommandTN(req, containerElement, executableHTypeCreation));
 			}
-			return getGEFWrapper(new SubjectClassifierCreateCommandTN(req));
+			return getGEFWrapper(new SubjectClassifierCreateCommandTN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

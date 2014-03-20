@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+Copyright (c) 2010 CEA LIST
+
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+     Nicolas Bros (Mia-Software) - initial API and implementation
+     Nicolas Bros (Mia-Software) - Bug 338437 - compositeEditors extension point cannot be used to register user types
+     Nicolas Guyomar (Mia-Software) - Bug 339899 - everything must be externalized before UI freeze
+-->
+
+<plugin>
+   <extension-point id="celleditors" name="%celleditors.extension-point.name" schema="schema/celleditors.exsd"/>
+   <extension-point id="commandFactories" name="%command.factories.extension-point.name" schema="schema/commandFactories.exsd"/>
+   <extension-point id="compositeEditorFactories" name="%compositeEditors.extension-point.name" schema="schema/compositeEditorFactories.exsd"/>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/papyrus/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor"
+            class="org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage"
+            genModel="model/celleditors.genmodel"/>
+   </extension>
+
+   <!-- so that model editors know they can open it -->
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            base-type="org.eclipse.emf.ecore.xmi"
+            file-extensions="modelCellEditors"
+            id="org.eclipse.papyrus.emf.facet.modelCellEditors.contenttype"
+            name="%celleditors.content-type.name"
+            priority="normal">
+      </content-type>
+   </extension>
+
+   <extension point="org.eclipse.papyrus.emf.facet.widgets.celleditors.celleditors">
+      <cellEditorsModel path="org.eclipse.papyrus.emf.facet.widgets.celleditors.core.modelcelleditors"/>
+   </extension>
+  
+   <extension point="org.eclipse.papyrus.emf.facet.widgets.celleditors.compositeEditorFactories">
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite.factories.CoreIResourceCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite.factories.CoreIFileCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite.factories.CoreIProjectCompositeFactory"/>
+   </extension>
+
+</plugin>

@@ -1,16 +1,41 @@
-<?xml version='1.0' encoding='utf-8' ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head><body><p>In order to validate constraints from a profile, first creation of constraint with specific annotations will be explained and then generation of validation will be explained.<br/>
+<?xml version='1.0' encoding='utf-8' ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head>
+<body><p>In order to validate constraints from a profile, first creation of constraints with specific annotations will be explained and then generation of validation will be explained.<br/>
 <img border="0" src="ConstraintCreationUseCase.png"/><br/> 
-Figure 1: Constraint creation<br/></p><h1 id="Create_a_constraint">Create a constraint</h1><p>In the context of the construction of a profile, it is possible to add constraints.<br/>
-A constraint is a condition or restriction expressed in a language for the purpose of declaring some of the semantics of an element.<br/></p><h3 id="How_to">How to</h3><p>In the context of a profile diagram you can create a constraint from the palette.<br/></p><pre><img border="0" src="diagramConstraintCreation.png"/> <br/>
+Figure 1: Constraint creation<br/></p>
+
+<h1 id="Create_a_constraint">Create a constraint</h1>
+<p>In the context of the construction of a profile (but also in any class diagram), it is possible to add constraints.<br/>
+
+A constraint is a condition or restriction expressed in a language for the purpose of declaring some of the semantics of an element.<br/></p>
+
+<h3 id="How_to">How to</h3><p>In the context of a profile diagram you can create a constraint from the palette.<br/>
+</p><pre><img border="0" src="diagramConstraintCreation.png"/> <br/>
 </pre><p>Figure 2: Constraint creation from the palette<br/>
 From the model explorer, click right --> new child--> Create a new Constraint<br/></p><pre> <img border="0" src="MEConstraintCreation.png"/><br/> 
-</pre><p>Figure 3: Constraint creation from the model explorer<br/></p><h2 id="Specify_the_context">Specify the context</h2><p>Before editing a constraint, it is important to specify the constraint; it can be a stereotype, an operation.<br/></p><h3 id="How_to_2">How to</h3><p>From the diagram, a context link can be added between the constraints and the context of the constraint:<br/></p><pre><img border="0" src="DiagramContextLink.png"/><br/> 
+</pre><p>Figure 3: Constraint creation from the model explorer<br/></p>
+
+<h2 id="Specify_the_context">Specify the context</h2>
+
+<p>Before editing a constraint, it is important to specify the context of a constraint; it can be for instance a stereotype or an operation (in fact, it can be any meta-model element that inherits from namespace).<br/></p>
+
+<h3 id="How_to_2">How to</h3><p>
+Since Eclipse Luna, Papyrus automatically selects the context-link-tool after creation of a constraint. It will also already set the newly created constraint as one end of the context-link relationship. The user needs to select the owning context such as a stereotype, class or operation (must subclass namespace on meta-model level).<br/>
+If you want to create this link later, select the associated tool manually. It can be found in the relationships drawer of the the palette, as shown in the following figure:<br/></p><pre><img border="0" src="DiagramContextLink.png"/><br/> 
+
 </pre><p>Figure 4: Context link creation in a the profile diagram<br/>
 <br/>
 From the property view, the context can be specified:<br/></p><pre><img border="0" src="propertyviewContextlink.png"/><br/> 
-</pre><p>Figure 5: specify context from the property view<br/></p><h2 id="Specify_the_language">Specify the language</h2><p>It is possible to precise the language of the constraint into Papyrus. The constraint body may be written into OCL, JAVA, or natural language.<br/> In order to make constraints usable by the Papyrus, constraint must be written in OCL or JAVA.<br/> </p><h3 id="How_to_3">How to</h3><p>By default if your try to edit a constraint, default language will be OCL.<br/>
-At the creation, after set the context, you can choose the editor for the constraint:<br/></p><pre><img border="0" src="constraintEdition.png"/><br/> 
+</pre><p>Figure 5: specify context from the property view<br/></p>
+
+<h2 id="Specify_the_language">Specify the language</h2>
+<p>
+It is possible to precise the language of the constraint into Papyrus. The constraint body may be written into OCL, JAVA, or natural language.<br/> In order to make constraints usable by the Papyrus, constraint must be written in OCL or JAVA.<br/> </p>
+
+<h3 id="How_to_3">How to</h3>
+<p>The default language for editing a constraint is OCL (controllable via the preferences).<br/>
+At the creation, after setting the context, you can choose the editor for the constraint:<br/></p><pre><img border="0" src="constraintEdition.png"/><br/> 
 </pre><p>Figure 6: choose the editor for the constraint<br/>
+Alternatively, the default editor for constraints (controllable via the preferences) will pop-up on the second click on a constraint or when using the keyboard shortcut F2.
 You can also specify the language in the property view:<br/> </p><ul><li>Select the field specification and choose create or edit the associated opaque expression:</li></ul><pre><img border="0" src="SpecificationCreation.png"/><br/> 
 </pre><p>Figure 7: creation of a specification for the constraint<br/>
 You can add the language, see following figure:<br/>

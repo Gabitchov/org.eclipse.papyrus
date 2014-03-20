@@ -11,9 +11,13 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.State;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -23,7 +27,7 @@ public class EntryStateBehaviorCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private EClass eClass = null;
+	private Diagram diagram = null;
 
 	/**
 	 * @generated
@@ -33,24 +37,25 @@ public class EntryStateBehaviorCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public EntryStateBehaviorCreateCommand(CreateElementRequest req, EObject eObject) {
+	public EntryStateBehaviorCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static EntryStateBehaviorCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new EntryStateBehaviorCreateCommand(req, eObject);
+	public static EntryStateBehaviorCreateCommand create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new EntryStateBehaviorCreateCommand(req, eObject, diagram);
 	}
 
 	/**
 	 * @generated
 	 */
-	public EntryStateBehaviorCreateCommand(CreateElementRequest req) {
+	public EntryStateBehaviorCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -77,7 +82,9 @@ public class EntryStateBehaviorCreateCommand extends EditElementCommand {
 		if(container.getEntry() != null) {
 			return false;
 		}
-		return true;
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getBehavior());
+		return data.isPermitted();
 	}
 
 	/**

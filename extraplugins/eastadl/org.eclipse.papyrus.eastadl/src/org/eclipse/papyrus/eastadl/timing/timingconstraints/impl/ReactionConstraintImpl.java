@@ -26,13 +26,15 @@ import org.eclipse.papyrus.eastadl.timing.timingconstraints.TimingconstraintsPac
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class ReactionConstraintImpl extends DelayConstraintImpl implements ReactionConstraint {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ReactionConstraintImpl() {
@@ -42,6 +44,7 @@ public class ReactionConstraintImpl extends DelayConstraintImpl implements React
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -32,7 +32,16 @@ public class EcoreDiagnostician extends Diagnostician implements IPapyrusDiagnos
 	protected AdapterFactory adapterFactory;
 	protected IProgressMonitor progressMonitor;
 	
+	/**
+	 * Create diagnostician with custom validator (that must subclass ECore validator)
+	 * @param validatorAdapter custom validator adapter
+	 */
+	public EcoreDiagnostician(EValidatorAdapter validatorAdapter) {
+		this.validatorAdapter = validatorAdapter;
+	}
+	
 	public EcoreDiagnostician() {
+		validatorAdapter = new EValidatorAdapter();		
 	}
 	
 	public void initialize (final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor) {
@@ -40,7 +49,7 @@ public class EcoreDiagnostician extends Diagnostician implements IPapyrusDiagnos
 		this.progressMonitor=progressMonitor;
 	}
 
-	protected EValidatorAdapter validatorAdapter = new EValidatorAdapter();
+	protected EValidatorAdapter validatorAdapter;
 
 	@Override
 	public String getObjectLabel(EObject eObject) {

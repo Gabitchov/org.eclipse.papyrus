@@ -99,7 +99,7 @@ public class ControlDiagramsCommand extends AbstractControlCommand {
 		if(notationResource == null) {
 			throw new ExecutionException("unable to retrieve old notation resource");
 		}
-		return NotationUtils.getAllDescendantDiagramsInResource(getRequest().getTargetObject(), notationResource);
+		return NotationUtils.getDiagrams(notationResource, getRequest().getTargetObject());
 	}
 
 	/**

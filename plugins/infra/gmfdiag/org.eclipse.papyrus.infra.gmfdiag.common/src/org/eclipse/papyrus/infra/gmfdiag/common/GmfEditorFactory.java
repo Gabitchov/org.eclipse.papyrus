@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
@@ -201,7 +202,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 		 * 
 		 */
 		public Image getTabIcon() {
-			ImageDescriptor imageDescriptor = getEditorDescriptor().getIcon();
+			ImageDescriptor imageDescriptor = DiagramUtils.getPrototype(diagram).getIconDescriptor();
 			if(imageDescriptor == null)
 				return null;
 

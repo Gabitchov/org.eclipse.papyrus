@@ -55,6 +55,12 @@ public abstract class MessageFigure extends UMLEdgeFigure {
 		setTargetDecoration(createTargetDecoration());
 	}
 
+	@Override
+	public void resetStyle() {
+		super.resetStyle();
+		setTargetDecoration(createTargetDecoration());
+	}
+
 	public void setLineWidth(int w) {
 		super.setLineWidth(w);
 		if(getSourceDecoration() instanceof Shape) {

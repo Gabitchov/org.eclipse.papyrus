@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.xtext.integration
 Require-Bundle: org.eclipse.gef;bundle-version="3.9.0",
  org.eclipse.core.runtime;bundle-version="3.9.0",
  org.eclipse.gmf.runtime.common.core;bundle-version="1.7.0",
@@ -10,19 +11,22 @@ Require-Bundle: org.eclipse.gef;bundle-version="3.9.0",
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="4.1.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0"
-Export-Package: org.eclipse.papyrus.uml.xtext.integration
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.service.validation;bundle-version="1.0.0"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: GMF Xtext Integration (Incubation)
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.xtext.integration.ui.Activat
  or
-Bundle-SymbolicName: org.eclipse.papyrus.uml.xtext.integration.ui;sing
- leton:=true
+Bundle-ManifestVersion: 2
 Import-Package: org.eclipse.papyrus.infra.services.validation,
  org.eclipse.papyrus.infra.services.validation.commands,
  org.eclipse.papyrus.uml.extensionpoints.profile,
  org.eclipse.papyrus.uml.extensionpoints.standard
+Bundle-SymbolicName: org.eclipse.papyrus.uml.xtext.integration.ui;sing
+ leton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

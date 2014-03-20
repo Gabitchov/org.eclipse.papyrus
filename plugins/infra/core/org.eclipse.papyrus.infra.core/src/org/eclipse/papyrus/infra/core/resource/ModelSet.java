@@ -1,7 +1,7 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2013 CEA LIST and others.
+ * Copyright (c) 2008, 2014 CEA LIST and others.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,7 @@
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
  *  Christian W. Damus (CEA) - Refactoring of Create Model Wizard (CDO)
  *  Christian W. Damus (CEA LIST) - Controlled resources in CDO repositories
+ *  Christian W. Damus (CEA) - bug 429826
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -48,6 +49,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -61,7 +63,7 @@ import com.google.common.base.Optional;
 
 /**
  * This class is used to manage a set of {@link IModel}.
- * 
+ *
  * <h2>>Usage</h2>
  * <ul>
  * <li>First, register associated model. A loader can be used.</li>
@@ -69,16 +71,16 @@ import com.google.common.base.Optional;
  * <li>Then, it is possible to get associated models</li>
  * <li>Finally, call save()</li>
  * </ul>
- * 
+ *
  * Please note that indirectly referenced models are loaded on demand. If a
  * model contains a cross reference towards another model (e.g. an import in
  * case of UML) the referenced resource does not appear initially in the set.
  * However, it is added once the referenced model is resolved.
- * 
+ *
  * TODO Modify ModelSetSnippet in order to inform them of model addition.
- * 
+ *
  * @author cedric dumoulin
- * 
+ *
  */
 public class ModelSet extends ResourceSetImpl {
 
@@ -107,7 +109,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	protected Adapter modificationTrackingAdapter;
 
-	protected IReadOnlyHandler roHandler;
+	protected IReadOnlyHandler2 roHandler;
 
 	/**
 	 * URI pointing to resource on which back end should be deleted on save
@@ -115,18 +117,18 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	protected Set<URI> toDeleteOnSave = new HashSet<URI>();
 
-	/** list of listeners of resources to know if the resource are loaded or not */  
+	/** list of listeners of resources to know if the resource are loaded or not */
 	protected ArrayList<IResourceLoadStateListener> resourceLoadStateListeners;
 
 	/** map of resource loaded in the resource set, with resource as the key and a boolean indicating if the resource is loaded or not has the valuer */
 	protected Map<Resource, Boolean> resourcesToLoadState = new HashMap<Resource, Boolean>();
 
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 */
 	public ModelSet() {
 		registerModel(additional);
@@ -136,6 +138,7 @@ public class ModelSet extends ResourceSetImpl {
 		getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 		getLoadOptions().put(XMIResource.OPTION_LAX_FEATURE_PROCESSING, Boolean.TRUE);
 		getLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+		getLoadOptions().put(XMLResource.OPTION_USE_PACKAGE_NS_URI_AS_LOCATION, Boolean.FALSE);
 
 		this.eAdapters.add(new ResourceAddRemoveTracker());
 	}
@@ -144,7 +147,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * Register the specified model under its associated key. The key is defined
 	 * in the model itself. It is usually the model type from
 	 * (ModelPackage.eCONTENT_TYPE).
-	 * 
+	 *
 	 * @param model
 	 *        the model
 	 */
@@ -164,7 +167,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Get a model by its key. TODO throw an exception if not found.
-	 * 
+	 *
 	 * @param key
 	 *        the key
 	 * @return the model
@@ -175,7 +178,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Get a model by its key. TODO throw an exception if not found.
-	 * 
+	 *
 	 * @param key
 	 *        the key
 	 * @return the model
@@ -198,6 +201,10 @@ public class ModelSet extends ResourceSetImpl {
 
 	@Override
 	public Resource getResource(URI uri, boolean loadOnDemand) {
+		if(uri.hasFragment()) {
+			Activator.log.warn("Invalid Resource URI: resource URIs cannot contain a fragment"); //$NON-NLS-1$
+			uri = uri.trimFragment(); //Fix and continue
+		}
 		Resource r = null;
 		try {
 			r = super.getResource(uri, loadOnDemand);
@@ -213,7 +220,8 @@ public class ModelSet extends ResourceSetImpl {
 				throw e;
 			}
 		}
-		return setResourceOptions(r);
+
+		return r != null && r.isLoaded() ? r : setResourceOptions(r);
 	}
 
 	@Override
@@ -246,7 +254,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * @deprecated please use {@link #getAssociatedResource(EObject, String, boolean)} instead
-	 * 
+	 *
 	 * @param modelElement
 	 * @param associatedResourceExtension
 	 * @return
@@ -258,7 +266,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * @deprecated please use {@link #getAssociatedResource(Resource, String, boolean)} instead
-	 * 
+	 *
 	 * @param modelResource
 	 * @param associatedResourceExtension
 	 * @return
@@ -270,7 +278,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Retrieve and load the associated resource which have the given extension.
-	 * 
+	 *
 	 * @param modelElement
 	 * @param associatedResourceExtension
 	 * @param loadOnDemand
@@ -286,7 +294,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Retrieve and load the associated resource which have the given extension.
-	 * 
+	 *
 	 * @param modelResource
 	 * @param associatedResourceExtension
 	 * @param loadOnDemand
@@ -305,12 +313,19 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * This method is called by getResource, createResource and demandLoad before returning
 	 * the resource to the caller so we can set options on the resource.
-	 * 
+	 *
 	 * @param r
 	 *        , can be null
 	 * @return the same resource for convenience
 	 */
 	protected Resource setResourceOptions(Resource r) {
+
+		for(IModel model : models.values()) {
+			if(model instanceof IEMFModel) {
+				((IEMFModel)model).handle(r);
+			}
+		}
+
 		if(r != null && isTrackingModification() && !r.isTrackingModification()) {
 			r.setTrackingModification(true);
 		}
@@ -326,7 +341,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Create the transactional editing domain.
-	 * 
+	 *
 	 * @return the transactional editing domain
 	 */
 	public synchronized TransactionalEditingDomain getTransactionalEditingDomain() {
@@ -342,7 +357,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * @return the filenameWithoutExtension
-	 * 
+	 *
 	 * @deprecated Use the {@link #getURIWithoutExtension()} API, instead.
 	 */
 	@Deprecated
@@ -387,11 +402,11 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Create all the associated models. This creates the models, regardless if
 	 * they already exist.
-	 * 
+	 *
 	 * @param newFile
 	 *        The file from which path is extracted to create the new
 	 *        resources
-	 * 
+	 *
 	 * @deprecated Use the {@link #createModels(URI)} API, instead.
 	 */
 	@Deprecated
@@ -402,7 +417,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Create all the associated models. This creates the models, regardless if
 	 * they already exist.
-	 * 
+	 *
 	 * @param newFile
 	 *        The file from which path is extracted to create the new
 	 *        resources
@@ -424,9 +439,9 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Create the model specified by the identifiers. Other models are
 	 * untouched, unless they are sharing something with specified models.
-	 * 
+	 *
 	 * This creates the models, regardless if they already exist.
-	 * 
+	 *
 	 * @param newFile
 	 *        The file from which path is extracted to create the new
 	 *        resources
@@ -448,7 +463,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Load only the specified model. ModelSetSnippets are not called. Model is
 	 * loaded using the ModelSet Path.
-	 * 
+	 *
 	 * @param modelIdentifier
 	 *        the model identifier
 	 * @param file
@@ -468,7 +483,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Import only the specified model. ModelSetSnippets are not called.
-	 * 
+	 *
 	 * @param modelIdentifier
 	 *        the model identifier
 	 * @param file
@@ -489,7 +504,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Load all the associated models from a handle on one of the associated
 	 * file.
-	 * 
+	 *
 	 * @param file
 	 *        The file to load (no matter the extension)
 	 * @deprecated Use the {@link #loadModels(URI)} API, instead.
@@ -506,7 +521,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Load all the associated models from a URI identifying one of the associated
 	 * files.
-	 * 
+	 *
 	 * @param uri
 	 *        The URI to load (no matter the extension)
 	 */
@@ -517,7 +532,7 @@ public class ModelSet extends ResourceSetImpl {
 
 		ModelMultiException exceptions = null;
 		List<IModel> orderedModelsForLoading = getOrderedModelsForLoading();
-		
+
 		// Walk all registered models
 		for(IModel model : orderedModelsForLoading) {
 			// Try to load each model. Catch exceptions in order to load other
@@ -544,8 +559,9 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * Returns the models to be loaded, in order according to their dependencies   
-	 * @return the models to be loaded, in order according to their dependencies   
+	 * Returns the models to be loaded, in order according to their dependencies
+	 *
+	 * @return the models to be loaded, in order according to their dependencies
 	 */
 	protected List<IModel> getOrderedModelsForLoading() {
 		return ModelUtils.getOrderedModelsForLoading(models);
@@ -555,14 +571,14 @@ public class ModelSet extends ResourceSetImpl {
 	 * Import specified models into the ModelSet. The models are imported using
 	 * the specified IFile. After import, the models are associated with the
 	 * ModelSet Path.
-	 * 
+	 *
 	 * @param modelIdentifiers
 	 *        The model to import from the specified IFile.
 	 * @param file
 	 *        The IFile used to import the model.
 	 * @throws ModelException
 	 *         If an error occur during import.
-	 * 
+	 *
 	 * @deprecated Use the {@link #importModels(ModelIdentifiers, URI)} API, instead
 	 */
 	@Deprecated
@@ -575,7 +591,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * Import specified models into the ModelSet. The models are imported using
 	 * the specified IFile. After import, the models are associated with the
 	 * ModelSet Path.
-	 * 
+	 *
 	 * @param modelIdentifiers
 	 *        The model to import from the specified IFile.
 	 * @param file
@@ -602,14 +618,14 @@ public class ModelSet extends ResourceSetImpl {
 	 * Import only the specified model. ModelSetSnippets are not called. An
 	 * import can be performed after model are loaded. Normally, it should not
 	 * be done before a model is loaded.
-	 * 
+	 *
 	 * @param modelIdentifier
 	 *        the model identifier
 	 * @param file
 	 *        the file
 	 * @throws ModelException
 	 * @returns The loaded model.
-	 * 
+	 *
 	 * @deprecated Use the {@link #importModel(String, URI)} API, instead.
 	 */
 	@Deprecated
@@ -622,7 +638,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * Import only the specified model. ModelSetSnippets are not called. An
 	 * import can be performed after model are loaded. Normally, it should not
 	 * be done before a model is loaded.
-	 * 
+	 *
 	 * @param modelIdentifier
 	 *        the model identifier
 	 * @param file
@@ -655,7 +671,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Save the resources.
-	 * 
+	 *
 	 * @param monitor
 	 *        The monitor.
 	 * @throws IOException
@@ -667,12 +683,13 @@ public class ModelSet extends ResourceSetImpl {
 		Collection<IModel> modelList = models.values();
 		monitor.beginTask("Saving resources", modelList.size());
 
-		if(isTrackingModification() && getReadOnlyHandler() != null) {
+		IReadOnlyHandler2 roHandler = getReadOnlyHandler();
+		if(isTrackingModification() && (roHandler != null)) {
 			Set<URI> roUris = new HashSet<URI>();
 			for(IModel model : modelList) {
 				Set<URI> uris = model.getModifiedURIs();
 				for(URI u : uris) {
-					Optional<Boolean> res = getReadOnlyHandler().anyReadOnly(new URI[]{ u });
+					Optional<Boolean> res = (roHandler.anyReadOnly(ReadOnlyAxis.permissionAxes(), new URI[]{ u }));
 					if(res.isPresent() && res.get()) {
 						roUris.add(u);
 					}
@@ -680,14 +697,14 @@ public class ModelSet extends ResourceSetImpl {
 			}
 
 			for(URI u : getResourcesToDeleteOnSave()) {
-				Optional<Boolean> res = getReadOnlyHandler().anyReadOnly(new URI[]{ u });
+				Optional<Boolean> res = roHandler.anyReadOnly(ReadOnlyAxis.permissionAxes(), new URI[]{ u });
 				if(res.isPresent() && res.get()) {
 					roUris.add(u);
 				}
 			}
 
 			if(!roUris.isEmpty()) {
-				Optional<Boolean> authorizeSave = getReadOnlyHandler().makeWritable(roUris.toArray(new URI[roUris.size()]));
+				Optional<Boolean> authorizeSave = roHandler.makeWritable(ReadOnlyAxis.permissionAxes(), roUris.toArray(new URI[roUris.size()]));
 
 				if(authorizeSave.isPresent() && !authorizeSave.get()) {
 					monitor.done();
@@ -701,12 +718,22 @@ public class ModelSet extends ResourceSetImpl {
 		try {
 			// Walk all registered models
 			for(IModel model : modelList) {
-				if(!(model instanceof AdditionalResourcesModel)) {
-					model.saveModel();
-					monitor.worked(1);
+				try {
+					if(!(model instanceof AdditionalResourcesModel)) {
+						model.saveModel();
+						monitor.worked(1);
+					}
+				} catch (Exception ex) {
+					//If an exception occurs, we should not prevent other models from being saved.
+					//This would probably make things even worse. Catch and log.
+					Activator.log.error(ex);
 				}
 			}
-			additional.saveModel();
+			try {
+				additional.saveModel();
+			} catch (Exception ex) {
+				Activator.log.error(ex);
+			}
 
 			//Delete resource back end to delete on save
 			handleResourcesToDelete();
@@ -728,19 +755,19 @@ public class ModelSet extends ResourceSetImpl {
 	protected void handleResourcesToDelete() {
 		Iterator<URI> uriIterator = getResourcesToDeleteOnSave().iterator();
 		while(uriIterator.hasNext()) {
-			URI uri = (URI)uriIterator.next();
-			
-			if (validateDeleteResource(uri)) {
-				if (deleteResource(uri)) {
+			URI uri = uriIterator.next();
+
+			if(validateDeleteResource(uri)) {
+				if(deleteResource(uri)) {
 					uriIterator.remove();
 				}
 			}
 		}
 	}
-	
+
 	protected boolean validateDeleteResource(URI uri) {
 		boolean result = true;
-		
+
 		Resource resource = getResource(uri, false);
 		if(resource != null) {
 			String warMessage = "The resource " + resource.getURI().lastSegment() + " was about to deleted but was still contained in the resource set. The will not be deleted";
@@ -748,19 +775,19 @@ public class ModelSet extends ResourceSetImpl {
 
 			result = false;
 		}
-		
+
 		return result;
 	}
-	
+
 	protected boolean deleteResource(URI uri) {
 		boolean result = false;
-		
+
 		try {
 			getURIConverter().delete(uri, null);
 			result = true;
 		} catch (IOException e) {
 			Activator.log.error(e);
-			
+
 			// hope it's a file that we can delete from the workspace!
 			IFile file = getFile(uri);
 			if(file != null && file.exists()) {
@@ -772,19 +799,19 @@ public class ModelSet extends ResourceSetImpl {
 				}
 			}
 		}
-		
+
 		return result;
 	}
 
 	/**
 	 * Finds the file corresponding to the specified URI, using a URI converter
 	 * if necessary (and provided) to normalize it.
-	 * 
+	 *
 	 * @param uri
 	 *        a URI
 	 * @param converter
 	 *        an optional URI converter (may be <code>null</code>)
-	 * 
+	 *
 	 * @return the file, if available in the workspace
 	 */
 	protected IFile getFile(URI uri) {
@@ -838,12 +865,12 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * The resources are already loaded, but we want to save them under another
 	 * name.
-	 * 
+	 *
 	 * @param path
 	 *        the path
 	 * @throws IOException
 	 *         Signals that an I/O exception has occurred.
-	 * 
+	 *
 	 * @deprecated Use the {@link #saveAs(URI)} API, instead.
 	 */
 	@Deprecated
@@ -854,7 +881,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * The resources are already loaded, but we want to save them under another
 	 * name.
-	 * 
+	 *
 	 * @param path
 	 *        the path
 	 * @throws IOException
@@ -862,13 +889,17 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	public void saveAs(URI uri) throws IOException {
 
+		EcoreUtil.resolveAll(this); //Save will not be consistent if we don't load all related resources first
+
 		// Get the file name, without extension.
-		uriWithoutExtension = uri.trimFileExtension();
+		URI newUriWithoutExtension = uri.trimFileExtension();
 
 		// Walk all registered models
 		for(IModel model : models.values()) {
-			model.setModelURI(uriWithoutExtension);
+			model.setModelURI(newUriWithoutExtension);
 		}
+
+		this.uriWithoutExtension = newUriWithoutExtension;
 
 		// Save with new paths
 		save(new NullProgressMonitor());
@@ -882,8 +913,8 @@ public class ModelSet extends ResourceSetImpl {
 		snippets.performDispose(this);
 		snippets.clear();
 
-		
-		// FIXME RS: handle the unload ordering as indicated in the model extension point  
+
+		// FIXME RS: handle the unload ordering as indicated in the model extension point
 		// Walk all registered models
 		for(IModel model : models.values()) {
 			if(!(model instanceof AdditionalResourcesModel)) {
@@ -913,12 +944,14 @@ public class ModelSet extends ResourceSetImpl {
 		}
 	}
 
-	public IReadOnlyHandler getReadOnlyHandler() {
+	public IReadOnlyHandler2 getReadOnlyHandler() {
 		if(roHandler == null) {
 			EditingDomain editingDomain = getTransactionalEditingDomain();
 			Object handler = PlatformHelper.getAdapter(editingDomain, IReadOnlyHandler.class);
-			if(handler instanceof IReadOnlyHandler) {
-				roHandler = (IReadOnlyHandler)handler;
+			if(handler instanceof IReadOnlyHandler2) {
+				roHandler = (IReadOnlyHandler2)handler;
+			} else if(handler instanceof IReadOnlyHandler) {
+				roHandler = AbstractReadOnlyHandler.adapt((IReadOnlyHandler)handler, editingDomain);
 			}
 		}
 		return roHandler;
@@ -926,16 +959,18 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Obtains my internal API adapter.
-	 * 
+	 *
 	 * @return my internal API adapter
 	 */
 	public Internal getInternal() {
 		return new Internal() {
 
+			@Override
 			public void setPrimaryModelResourceURI(URI uri) {
 				setURIWithoutExtension(uri.trimFileExtension());
 			}
 
+			@Override
 			public void registerModel(IModel model, boolean force) {
 				if(force) {
 					doRegisterModel(model);
@@ -949,7 +984,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Add a {@link IModelSetSnippet}. A snippet allows to add code that will
 	 * perform additional operations on the ModelSet.
-	 * 
+	 *
 	 * @param snippet
 	 *        The snippet to add.
 	 */
@@ -959,11 +994,11 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * A list of {@link IModelSetSnippet}.
-	 * 
+	 *
 	 * Used by Models to maintain their list of Snippets.
-	 * 
+	 *
 	 * @author cedric dumoulin
-	 * 
+	 *
 	 */
 	public class ModelSetSnippetList extends ArrayList<IModelSetSnippet> {
 
@@ -972,7 +1007,7 @@ public class ModelSet extends ResourceSetImpl {
 
 		/**
 		 * Call the start method on all registered snippets.
-		 * 
+		 *
 		 * @param modelsManager
 		 *        The model that is starting
 		 */
@@ -984,7 +1019,7 @@ public class ModelSet extends ResourceSetImpl {
 
 		/**
 		 * Call the start method on all registered snippets.
-		 * 
+		 *
 		 * @param modelsManager
 		 *        The model that is stopping
 		 */
@@ -1003,10 +1038,10 @@ public class ModelSet extends ResourceSetImpl {
 
 		/**
 		 * Sets the {@link ModelSet}'s primary resource URI.
-		 * 
+		 *
 		 * @param uri
 		 *        the URI
-		 * 
+		 *
 		 * @see ModelSet#createModels(URI)
 		 * @see ModelSet#saveAs(URI)
 		 */
@@ -1015,7 +1050,7 @@ public class ModelSet extends ResourceSetImpl {
 		/**
 		 * Register a model with the option to force it (in case a more specific
 		 * implementation of the model is already registered).
-		 * 
+		 *
 		 * @param model
 		 *        a model to register
 		 * @param force
@@ -1025,7 +1060,7 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param target
 	 */
 	public void saveCopy(IPath targetPathWithoutExtension) {
@@ -1045,36 +1080,37 @@ public class ModelSet extends ResourceSetImpl {
 			model.saveCopy(targetPathWithoutExtension, targetMap);
 		}
 	}
-	
+
 	public boolean addResourceLoadStateListener(IResourceLoadStateListener listener) {
 		return resourceLoadStateListeners.add(listener);
 	}
-	
+
 	public boolean removeResourceLoadStateListener(IResourceLoadStateListener listener) {
 		return resourceLoadStateListeners.remove(listener);
 	}
-	
+
 	public void notifyResourceLoadState(Resource resource, boolean newState) {
-		if(resourceLoadStateListeners !=null) {
+		if(resourceLoadStateListeners != null) {
 			for(IResourceLoadStateListener listener : resourceLoadStateListeners) {
 				try {
 					listener.notifyLoadStateChanged(resource, newState);
-				} catch(Throwable e) {
+				} catch (Throwable e) {
 					Activator.log.error(e);
 				}
 			}
 		}
 	}
-	
+
 	public boolean isUserModelResource(URI uri) {
 		return uri.isPlatformResource() || uri.isFile();
 	}
-	
+
 	public class ResourceAddRemoveTracker implements Adapter {
 
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void notifyChanged(Notification notification) {
 			// if notification = add, add many or remove/remove many resource(s) to list of resources, process..
 			if(RESOURCE_SET__RESOURCES == notification.getFeatureID(ResourceSet.class)) {
@@ -1083,33 +1119,34 @@ public class ModelSet extends ResourceSetImpl {
 					Object object = notification.getNewValue();
 					if(object instanceof Resource) {
 						resourcesToLoadState.put(((Resource)object), ((Resource)object).isLoaded());
-					} 
+					}
 					break;
 				case Notification.REMOVE:
 					object = notification.getNewValue();
 					if(object instanceof Resource) {
-						resourcesToLoadState.remove(((Resource)object));
-					} 
+						resourcesToLoadState.remove((object));
+					}
 					break;
 				case Notification.ADD_MANY:
-					
+
 					break;
-					
+
 				case Notification.REMOVE_MANY:
-					
+
 					break;
-					
-					default: 
-						// nothing to do
-						break;
+
+				default:
+					// nothing to do
+					break;
 				}
-				
+
 			}
 		}
 
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Notifier getTarget() {
 			return ModelSet.this;
 		}
@@ -1117,6 +1154,7 @@ public class ModelSet extends ResourceSetImpl {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void setTarget(Notifier newTarget) {
 			// nothing here
 		}
@@ -1124,9 +1162,25 @@ public class ModelSet extends ResourceSetImpl {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean isAdapterForType(Object type) {
 			return false;
 		}
-		
+
+	}
+
+	/**
+	 * Returns the IModel which handles the specified element, if any
+	 *
+	 * @param container
+	 * @return
+	 */
+	public IModel getModelFor(Object element) {
+		for(IModel model : models.values()) {
+			if(model.isModelFor(element)) {
+				return model;
+			}
+		}
+		return null;
 	}
 }

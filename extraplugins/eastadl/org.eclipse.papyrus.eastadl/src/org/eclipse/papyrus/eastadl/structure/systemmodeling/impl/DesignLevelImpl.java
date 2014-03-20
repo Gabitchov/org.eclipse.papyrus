@@ -38,21 +38,25 @@ import org.eclipse.papyrus.eastadl.structure.systemmodeling.SystemmodelingPackag
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.systemmodeling.impl.DesignLevelImpl#getBase_Class <em>Base Class</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.systemmodeling.impl.DesignLevelImpl#getBase_Package <em>Base Package</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.systemmodeling.impl.DesignLevelImpl#getFunctionalDesignArchitecture <em>Functional Design Architecture</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.systemmodeling.impl.DesignLevelImpl#getHardwareDesignArchitecture <em>Hardware Design Architecture</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.systemmodeling.impl.DesignLevelImpl#getAllocation <em>Allocation</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.systemmodeling.impl.DesignLevelImpl#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.systemmodeling.impl.DesignLevelImpl#getBase_Package <em>Base Package</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.systemmodeling.impl.DesignLevelImpl#getFunctionalDesignArchitecture <em>Functional Design
+ * Architecture</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.systemmodeling.impl.DesignLevelImpl#getHardwareDesignArchitecture <em>Hardware Design Architecture
+ * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.systemmodeling.impl.DesignLevelImpl#getAllocation <em>Allocation</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class DesignLevelImpl extends ContextImpl implements DesignLevel {
+
 	/**
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Class()
 	 * @generated
 	 * @ordered
@@ -63,6 +67,7 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	 * The cached value of the '{@link #getBase_Package() <em>Base Package</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Package()
 	 * @generated
 	 * @ordered
@@ -73,6 +78,7 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	 * The cached value of the '{@link #getFunctionalDesignArchitecture() <em>Functional Design Architecture</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFunctionalDesignArchitecture()
 	 * @generated
 	 * @ordered
@@ -83,6 +89,7 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	 * The cached value of the '{@link #getHardwareDesignArchitecture() <em>Hardware Design Architecture</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getHardwareDesignArchitecture()
 	 * @generated
 	 * @ordered
@@ -93,6 +100,7 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	 * The cached value of the '{@link #getAllocation() <em>Allocation</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAllocation()
 	 * @generated
 	 * @ordered
@@ -102,6 +110,7 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DesignLevelImpl() {
@@ -111,6 +120,7 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DesignFunctionPrototype basicGetFunctionalDesignArchitecture() {
@@ -120,6 +130,7 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public HardwareComponentPrototype basicGetHardwareDesignArchitecture() {
@@ -129,25 +140,30 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SystemmodelingPackage.DESIGN_LEVEL__BASE_CLASS:
-				if (resolve) return getBase_Class();
-				return basicGetBase_Class();
-			case SystemmodelingPackage.DESIGN_LEVEL__BASE_PACKAGE:
-				if (resolve) return getBase_Package();
-				return basicGetBase_Package();
-			case SystemmodelingPackage.DESIGN_LEVEL__FUNCTIONAL_DESIGN_ARCHITECTURE:
-				if (resolve) return getFunctionalDesignArchitecture();
-				return basicGetFunctionalDesignArchitecture();
-			case SystemmodelingPackage.DESIGN_LEVEL__HARDWARE_DESIGN_ARCHITECTURE:
-				if (resolve) return getHardwareDesignArchitecture();
-				return basicGetHardwareDesignArchitecture();
-			case SystemmodelingPackage.DESIGN_LEVEL__ALLOCATION:
-				return getAllocation();
+		switch(featureID) {
+		case SystemmodelingPackage.DESIGN_LEVEL__BASE_CLASS:
+			if(resolve)
+				return getBase_Class();
+			return basicGetBase_Class();
+		case SystemmodelingPackage.DESIGN_LEVEL__BASE_PACKAGE:
+			if(resolve)
+				return getBase_Package();
+			return basicGetBase_Package();
+		case SystemmodelingPackage.DESIGN_LEVEL__FUNCTIONAL_DESIGN_ARCHITECTURE:
+			if(resolve)
+				return getFunctionalDesignArchitecture();
+			return basicGetFunctionalDesignArchitecture();
+		case SystemmodelingPackage.DESIGN_LEVEL__HARDWARE_DESIGN_ARCHITECTURE:
+			if(resolve)
+				return getHardwareDesignArchitecture();
+			return basicGetHardwareDesignArchitecture();
+		case SystemmodelingPackage.DESIGN_LEVEL__ALLOCATION:
+			return getAllocation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -155,21 +171,22 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SystemmodelingPackage.DESIGN_LEVEL__BASE_CLASS:
-				return base_Class != null;
-			case SystemmodelingPackage.DESIGN_LEVEL__BASE_PACKAGE:
-				return base_Package != null;
-			case SystemmodelingPackage.DESIGN_LEVEL__FUNCTIONAL_DESIGN_ARCHITECTURE:
-				return functionalDesignArchitecture != null;
-			case SystemmodelingPackage.DESIGN_LEVEL__HARDWARE_DESIGN_ARCHITECTURE:
-				return hardwareDesignArchitecture != null;
-			case SystemmodelingPackage.DESIGN_LEVEL__ALLOCATION:
-				return allocation != null && !allocation.isEmpty();
+		switch(featureID) {
+		case SystemmodelingPackage.DESIGN_LEVEL__BASE_CLASS:
+			return base_Class != null;
+		case SystemmodelingPackage.DESIGN_LEVEL__BASE_PACKAGE:
+			return base_Package != null;
+		case SystemmodelingPackage.DESIGN_LEVEL__FUNCTIONAL_DESIGN_ARCHITECTURE:
+			return functionalDesignArchitecture != null;
+		case SystemmodelingPackage.DESIGN_LEVEL__HARDWARE_DESIGN_ARCHITECTURE:
+			return hardwareDesignArchitecture != null;
+		case SystemmodelingPackage.DESIGN_LEVEL__ALLOCATION:
+			return allocation != null && !allocation.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -177,28 +194,29 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SystemmodelingPackage.DESIGN_LEVEL__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
-				return;
-			case SystemmodelingPackage.DESIGN_LEVEL__BASE_PACKAGE:
-				setBase_Package((org.eclipse.uml2.uml.Package)newValue);
-				return;
-			case SystemmodelingPackage.DESIGN_LEVEL__FUNCTIONAL_DESIGN_ARCHITECTURE:
-				setFunctionalDesignArchitecture((DesignFunctionPrototype)newValue);
-				return;
-			case SystemmodelingPackage.DESIGN_LEVEL__HARDWARE_DESIGN_ARCHITECTURE:
-				setHardwareDesignArchitecture((HardwareComponentPrototype)newValue);
-				return;
-			case SystemmodelingPackage.DESIGN_LEVEL__ALLOCATION:
-				getAllocation().clear();
-				getAllocation().addAll((Collection<? extends Allocation>)newValue);
-				return;
+		switch(featureID) {
+		case SystemmodelingPackage.DESIGN_LEVEL__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)newValue);
+			return;
+		case SystemmodelingPackage.DESIGN_LEVEL__BASE_PACKAGE:
+			setBase_Package((org.eclipse.uml2.uml.Package)newValue);
+			return;
+		case SystemmodelingPackage.DESIGN_LEVEL__FUNCTIONAL_DESIGN_ARCHITECTURE:
+			setFunctionalDesignArchitecture((DesignFunctionPrototype)newValue);
+			return;
+		case SystemmodelingPackage.DESIGN_LEVEL__HARDWARE_DESIGN_ARCHITECTURE:
+			setHardwareDesignArchitecture((HardwareComponentPrototype)newValue);
+			return;
+		case SystemmodelingPackage.DESIGN_LEVEL__ALLOCATION:
+			getAllocation().clear();
+			getAllocation().addAll((Collection<? extends Allocation>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -206,6 +224,7 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -216,14 +235,15 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
+		if(base_Class != null && base_Class.eIsProxy()) {
 			InternalEObject oldBase_Class = (InternalEObject)base_Class;
 			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
-			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+			if(base_Class != oldBase_Class) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SystemmodelingPackage.DESIGN_LEVEL__BASE_CLASS, oldBase_Class, base_Class));
 			}
 		}
@@ -233,6 +253,7 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class basicGetBase_Class() {
@@ -242,26 +263,28 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SystemmodelingPackage.DESIGN_LEVEL__BASE_CLASS, oldBase_Class, base_Class));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Package getBase_Package() {
-		if (base_Package != null && base_Package.eIsProxy()) {
+		if(base_Package != null && base_Package.eIsProxy()) {
 			InternalEObject oldBase_Package = (InternalEObject)base_Package;
 			base_Package = (org.eclipse.uml2.uml.Package)eResolveProxy(oldBase_Package);
-			if (base_Package != oldBase_Package) {
-				if (eNotificationRequired())
+			if(base_Package != oldBase_Package) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SystemmodelingPackage.DESIGN_LEVEL__BASE_PACKAGE, oldBase_Package, base_Package));
 			}
 		}
@@ -271,6 +294,7 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Package basicGetBase_Package() {
@@ -280,38 +304,40 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Package(org.eclipse.uml2.uml.Package newBase_Package) {
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SystemmodelingPackage.DESIGN_LEVEL__BASE_PACKAGE, oldBase_Package, base_Package));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SystemmodelingPackage.DESIGN_LEVEL__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)null);
-				return;
-			case SystemmodelingPackage.DESIGN_LEVEL__BASE_PACKAGE:
-				setBase_Package((org.eclipse.uml2.uml.Package)null);
-				return;
-			case SystemmodelingPackage.DESIGN_LEVEL__FUNCTIONAL_DESIGN_ARCHITECTURE:
-				setFunctionalDesignArchitecture((DesignFunctionPrototype)null);
-				return;
-			case SystemmodelingPackage.DESIGN_LEVEL__HARDWARE_DESIGN_ARCHITECTURE:
-				setHardwareDesignArchitecture((HardwareComponentPrototype)null);
-				return;
-			case SystemmodelingPackage.DESIGN_LEVEL__ALLOCATION:
-				getAllocation().clear();
-				return;
+		switch(featureID) {
+		case SystemmodelingPackage.DESIGN_LEVEL__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)null);
+			return;
+		case SystemmodelingPackage.DESIGN_LEVEL__BASE_PACKAGE:
+			setBase_Package((org.eclipse.uml2.uml.Package)null);
+			return;
+		case SystemmodelingPackage.DESIGN_LEVEL__FUNCTIONAL_DESIGN_ARCHITECTURE:
+			setFunctionalDesignArchitecture((DesignFunctionPrototype)null);
+			return;
+		case SystemmodelingPackage.DESIGN_LEVEL__HARDWARE_DESIGN_ARCHITECTURE:
+			setHardwareDesignArchitecture((HardwareComponentPrototype)null);
+			return;
+		case SystemmodelingPackage.DESIGN_LEVEL__ALLOCATION:
+			getAllocation().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -319,10 +345,11 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Allocation> getAllocation() {
-		if (allocation == null) {
+		if(allocation == null) {
 			allocation = new EObjectResolvingEList<Allocation>(Allocation.class, this, SystemmodelingPackage.DESIGN_LEVEL__ALLOCATION);
 		}
 		return allocation;
@@ -331,14 +358,15 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DesignFunctionPrototype getFunctionalDesignArchitecture() {
-		if (functionalDesignArchitecture != null && functionalDesignArchitecture.eIsProxy()) {
+		if(functionalDesignArchitecture != null && functionalDesignArchitecture.eIsProxy()) {
 			InternalEObject oldFunctionalDesignArchitecture = (InternalEObject)functionalDesignArchitecture;
 			functionalDesignArchitecture = (DesignFunctionPrototype)eResolveProxy(oldFunctionalDesignArchitecture);
-			if (functionalDesignArchitecture != oldFunctionalDesignArchitecture) {
-				if (eNotificationRequired())
+			if(functionalDesignArchitecture != oldFunctionalDesignArchitecture) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SystemmodelingPackage.DESIGN_LEVEL__FUNCTIONAL_DESIGN_ARCHITECTURE, oldFunctionalDesignArchitecture, functionalDesignArchitecture));
 			}
 		}
@@ -348,14 +376,15 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public HardwareComponentPrototype getHardwareDesignArchitecture() {
-		if (hardwareDesignArchitecture != null && hardwareDesignArchitecture.eIsProxy()) {
+		if(hardwareDesignArchitecture != null && hardwareDesignArchitecture.eIsProxy()) {
 			InternalEObject oldHardwareDesignArchitecture = (InternalEObject)hardwareDesignArchitecture;
 			hardwareDesignArchitecture = (HardwareComponentPrototype)eResolveProxy(oldHardwareDesignArchitecture);
-			if (hardwareDesignArchitecture != oldHardwareDesignArchitecture) {
-				if (eNotificationRequired())
+			if(hardwareDesignArchitecture != oldHardwareDesignArchitecture) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SystemmodelingPackage.DESIGN_LEVEL__HARDWARE_DESIGN_ARCHITECTURE, oldHardwareDesignArchitecture, hardwareDesignArchitecture));
 			}
 		}
@@ -365,24 +394,26 @@ public class DesignLevelImpl extends ContextImpl implements DesignLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setFunctionalDesignArchitecture(DesignFunctionPrototype newFunctionalDesignArchitecture) {
 		DesignFunctionPrototype oldFunctionalDesignArchitecture = functionalDesignArchitecture;
 		functionalDesignArchitecture = newFunctionalDesignArchitecture;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SystemmodelingPackage.DESIGN_LEVEL__FUNCTIONAL_DESIGN_ARCHITECTURE, oldFunctionalDesignArchitecture, functionalDesignArchitecture));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setHardwareDesignArchitecture(HardwareComponentPrototype newHardwareDesignArchitecture) {
 		HardwareComponentPrototype oldHardwareDesignArchitecture = hardwareDesignArchitecture;
 		hardwareDesignArchitecture = newHardwareDesignArchitecture;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SystemmodelingPackage.DESIGN_LEVEL__HARDWARE_DESIGN_ARCHITECTURE, oldHardwareDesignArchitecture, hardwareDesignArchitecture));
 	}
 

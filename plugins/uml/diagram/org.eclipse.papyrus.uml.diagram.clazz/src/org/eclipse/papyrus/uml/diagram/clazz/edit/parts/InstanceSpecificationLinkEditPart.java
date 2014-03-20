@@ -1,14 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
@@ -26,7 +25,9 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.InstanceSpecification
 /**
  * @generated
  */
-public class InstanceSpecificationLinkEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+public class InstanceSpecificationLinkEditPart extends ConnectionEditPart
+		implements ITreeBranchEditPart
+{
 
 	/**
 	 * @generated
@@ -53,12 +54,14 @@ public class InstanceSpecificationLinkEditPart extends ConnectionEditPart implem
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof SourceISLinkLabelEditPart) {
-			((SourceISLinkLabelEditPart)childEditPart).setLabel(getPrimaryShape().getSourceLabel());
+		if (childEditPart instanceof SourceISLinkLabelEditPart) {
+			((SourceISLinkLabelEditPart) childEditPart).setLabel(
+					getPrimaryShape().getSourceLabel());
 			return true;
 		}
-		if(childEditPart instanceof TargetISLinkLabelEditPart) {
-			((TargetISLinkLabelEditPart)childEditPart).setLabel(getPrimaryShape().getTargetLabel());
+		if (childEditPart instanceof TargetISLinkLabelEditPart) {
+			((TargetISLinkLabelEditPart) childEditPart).setLabel(
+					getPrimaryShape().getTargetLabel());
 			return true;
 		}
 		return false;
@@ -68,7 +71,7 @@ public class InstanceSpecificationLinkEditPart extends ConnectionEditPart implem
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -78,10 +81,10 @@ public class InstanceSpecificationLinkEditPart extends ConnectionEditPart implem
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof SourceISLinkLabelEditPart) {
+		if (childEditPart instanceof SourceISLinkLabelEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof TargetISLinkLabelEditPart) {
+		if (childEditPart instanceof TargetISLinkLabelEditPart) {
 			return true;
 		}
 		return false;
@@ -91,7 +94,7 @@ public class InstanceSpecificationLinkEditPart extends ConnectionEditPart implem
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -113,6 +116,7 @@ public class InstanceSpecificationLinkEditPart extends ConnectionEditPart implem
 	 * @generated
 	 */
 	public InstanceSpecificationLinkFigure getPrimaryShape() {
-		return (InstanceSpecificationLinkFigure)getFigure();
+		return (InstanceSpecificationLinkFigure) getFigure();
 	}
+
 }

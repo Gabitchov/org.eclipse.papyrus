@@ -86,10 +86,12 @@ public class StyledTextXtextAdapter {
 	private XtextFakeResourceContext fakeResourceContext;
 	private final IXtextFakeContextResourcesProvider contextFakeResourceProvider;
 
-	private StyledText styledText;
+	protected StyledText styledText;
 
-	private ControlDecoration decoration;
+	protected ControlDecoration decoration;
 
+	protected CompletionProposalAdapter completionProposalAdapter;
+	
 	public StyledTextXtextAdapter(Injector injector, IXtextFakeContextResourcesProvider contextFakeResourceProvider) {
 		this.contextFakeResourceProvider = contextFakeResourceProvider;
 		injector.injectMembers(this);
@@ -128,7 +130,7 @@ public class StyledTextXtextAdapter {
 		styledText.setData(StyledTextXtextAdapter.class.getCanonicalName(), this);
 
 		final IContentAssistant contentAssistant = sourceviewer.getContentAssistant();
-		final CompletionProposalAdapter completionProposalAdapter = new CompletionProposalAdapter(styledText,
+		completionProposalAdapter = new CompletionProposalAdapter(styledText,
 				contentAssistant, KeyStroke.getInstance(SWT.CTRL, SWT.SPACE), null);
 
 		if ((styledText.getStyle() & SWT.SINGLE) != 0) {
@@ -158,6 +160,13 @@ public class StyledTextXtextAdapter {
 		createContentAssistDecoration(styledText);
 	}
 
+	/**
+	 * @return completion proposal adapter that has been created by @see adapt
+	 */
+	public CompletionProposalAdapter getCompletionProposalAdapter() {
+		return completionProposalAdapter;
+	}
+	
 	private void createContentAssistDecoration(StyledText styledText) {
 		decoration = new ControlDecoration(styledText, SWT.TOP | SWT.LEFT);
 		decoration.setShowHover(true);

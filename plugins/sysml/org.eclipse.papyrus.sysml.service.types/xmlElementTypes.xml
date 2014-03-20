@@ -5,7 +5,7 @@
 <!-- SysML ElementTypes declarations -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
-	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+	<metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
 	
 	<!-- Declaration of IElementTypes -->
 	
@@ -377,7 +377,7 @@
 <!-- Helper advice declarations -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
-	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+	<metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
 	
 	<!-- Helper advice for Property -->
 	<adviceBinding id="org.eclipse.papyrus.sysml.advice.ConstraintBlockPropertyHelperAdvice"

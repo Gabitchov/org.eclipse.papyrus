@@ -2,22 +2,22 @@
 <query:ModelQuerySet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="PapyrusTableQuery">
   <associatedMetamodels href="http://www.eclipse.org/Papyrus/Table/0.8.0/papyrustableinstance#/"/>
   <associatedMetamodels href="http://www.eclipse.org/emf/2002/Ecore#/"/>
-  <associatedMetamodels href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
-  <associatedMetamodels href="http://www.eclipse.org/uml2/4.0.0/Types#/"/>
+  <associatedMetamodels href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+  <associatedMetamodels href="http://www.eclipse.org/uml2/5.0.0/Types#/"/>
   <queries xsi:type="query:JavaModelQuery" name="IsTableContainer" description="Returns true if the element contains a Table" implementationClassName="org.eclipse.papyrus.infra.table.modelexplorer.queries.IsTableContainer">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+    <scope href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery" name="GetContainedTables" description="Get the collection of all contained tables" upperBound="-1" implementationClassName="org.eclipse.papyrus.infra.table.modelexplorer.queries.GetContainedTables">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/Papyrus/Table/0.8.0/papyrustableinstance#//PapyrusTableInstance"/>
-    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+    <scope href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery" name="GetTableIcon" description="Return the path to the icon of the corresponding table" implementationClassName="org.eclipse.papyrus.infra.table.modelexplorer.queries.GetTableIcon">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
     <scope href="http://www.eclipse.org/Papyrus/Table/0.8.0/papyrustableinstance#//PapyrusTableInstance"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery" name="GetTableName" description="Return the name for the table" implementationClassName="org.eclipse.papyrus.infra.table.modelexplorer.queries.GetTableName">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
     <scope href="http://www.eclipse.org/Papyrus/Table/0.8.0/papyrustableinstance#//PapyrusTableInstance"/>
   </queries>
 </query:ModelQuerySet>

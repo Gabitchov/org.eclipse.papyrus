@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 429826
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelrepair.ui.providers;
 
@@ -18,6 +20,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ViewerCell;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.swt.graphics.Image;
 
@@ -75,13 +78,8 @@ public class ResourceLabelProvider extends ColumnLabelProvider {
 		}
 
 		EditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(resourceSet);
-		Optional<Boolean> readOnly = ReadOnlyManager.getReadOnlyHandler(domain).anyReadOnly(new URI[]{ uri });
-		if(readOnly.isPresent()) {
-			return readOnly.get() ? "true" : "false";
-		} else {
-			return "false";
-		}
-
+		Optional<Boolean> readOnly = ReadOnlyManager.getReadOnlyHandler(domain).anyReadOnly(ReadOnlyAxis.anyAxis(), new URI[]{ uri });
+		return readOnly.or(false) ? "true" : "false";
 	}
 
 	public String getResourceText(Object element) {

@@ -24,7 +24,10 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.localizer.IObjectLocalizer;
 import org.eclipse.papyrus.infra.services.localizer.util.LocalizerUtil;
 import org.eclipse.swt.dnd.Transfer;
@@ -49,6 +52,10 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 		Request r = super.createTargetRequest();
 		if(r != null && r.getExtendedData() != null) {
 			r.getExtendedData().put(EVENT_DETAIL, getCurrentEvent().detail);
+			//430099: [Diagram] Snap to Grid for elements dropped from the ModelExplorer is ignored
+			//https://bugs.eclipse.org/bugs/show_bug.cgi?id=430099
+			boolean isSnapping = ((DiagramGraphicalViewer)getViewer()).getWorkspaceViewerPreferenceStore().getBoolean(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT);
+			r.getExtendedData().put(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT, isSnapping);
 		}
 		return r;
 	}
@@ -60,16 +67,16 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 		// get objects from transfer
 		TransferData data = getCurrentEvent().currentDataType;
 		ArrayList<URI> uris = new ArrayList<URI>(); // Array list to keep the
-													// order of the selection
+		// order of the selection
 
 		Object transferedObject = getJavaObject(data);
 		ArrayList<EObject> result = new ArrayList<EObject>();
-		
+
 		if(transferedObject instanceof IStructuredSelection) {
 			IStructuredSelection selection = (IStructuredSelection)transferedObject;
 			ResourceSet localSet = getTransactionalEditingDomain().getResourceSet();
 			IObjectLocalizer localizer = LocalizerUtil.getInstance(localSet);
-			
+
 			for(Iterator<?> it = selection.iterator(); it.hasNext();) {
 				Object nextSelectedObject = it.next();
 				// if (nextSelectedObject instanceof UMLNavigatorItem) {
@@ -77,10 +84,7 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 				// nextSelectedObject).getView();
 				// nextSelectedObject = view.getElement();
 				// } else
-				if(nextSelectedObject instanceof IAdaptable) {
-					IAdaptable adaptable = (IAdaptable)nextSelectedObject;
-					nextSelectedObject = adaptable.getAdapter(EObject.class);
-				}
+				nextSelectedObject = EMFHelper.getEObject(nextSelectedObject);
 				if(nextSelectedObject instanceof EObject) {
 					EObject local = localizer.getLocalEObject(localSet, (EObject)nextSelectedObject);
 					if(local != null) {

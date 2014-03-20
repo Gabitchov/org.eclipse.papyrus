@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 Atos.
+ * Copyright (c) 2012, 2014 Atos, CEA, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos) mathieu.velten@atos.net - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
@@ -212,7 +214,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 	protected void setValueEditorProperties(AbstractValueEditor editor, EObject stereotypeApplication, EStructuralFeature feature) {
 		editor.setLabel(feature.getName());
 
-		if(feature.isDerived() || !feature.isChangeable()) {
+		if(!isEditable(stereotypeApplication, feature)) {
 			editor.setReadOnly(true);
 		}
 
@@ -232,7 +234,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 			editor.setDirectCreation(((EReference)feature).isContainment());
 		}
 
-		if(feature.isDerived() || !feature.isChangeable()) {
+		if(!isEditable(stereotypeApplication, feature)) {
 			editor.setReadOnly(true);
 		}
 
@@ -242,6 +244,10 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 		editor.addCommitListener(observable);
 
 		observable.addListChangeListener(this);
+	}
+	
+	protected boolean isEditable(EObject object, EStructuralFeature feature) {
+		return !feature.isDerived() && feature.isChangeable() && !EMFHelper.isReadOnly(object);
 	}
 
 	public void setLayoutData(GridData data) {

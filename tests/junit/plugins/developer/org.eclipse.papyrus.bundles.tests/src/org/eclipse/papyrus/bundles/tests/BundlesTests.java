@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,6 +22,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.junit.utils.classification.NotImplemented;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.pde.internal.core.feature.Feature;
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,12 +31,12 @@ import org.osgi.framework.Bundle;
 
 /**
  * suppress restriction for org.eclipse.pde.internal.core.feature.Feature;
- * 
+ *
  * @author VL222926
  *
  */
 @SuppressWarnings("restriction")
-public class BundlesTests {
+public class BundlesTests extends AbstractPapyrusTest {
 
 	// Transform the version number to the regex format
 	// Adds .* (Valid version numbers are e.g. 0.10.1.qualifier)
@@ -111,6 +113,7 @@ public class BundlesTests {
 	/**
 	 * Tests that we don't use import package
 	 */
+	@NotImplemented("Usage of importPackage is discouraged")
 	@Test
 	public void importPackage() {
 		testManifestProperty(BundleTestsUtils.BUNDLE_IMPORT_PACKAGE, "", true, false); //$NON-NLS-1$
@@ -119,6 +122,7 @@ public class BundlesTests {
 	/**
 	 * This test verify that we doesn't re-export dependencies
 	 */
+	@NotImplemented("Usage of reexported dependencies is discouraged")
 	@Test
 	public void reexportDependencies() {
 		StringBuffer message = new StringBuffer();
@@ -139,25 +143,25 @@ public class BundlesTests {
 					if(bundle.contains(";")) { //$NON-NLS-1$
 						localMessage.append(NLS.bind("\n  - {0}", bundle.substring(0, bundle.indexOf(";")))); //$NON-NLS-1$ //$NON-NLS-2$
 					} else {
-						localMessage.append(NLS.bind("\n  - {0}", bundle)); //$NON-NLS-1$ 
+						localMessage.append(NLS.bind("\n  - {0}", bundle)); //$NON-NLS-1$
 					}
 				}
 			}
 			if(localMessage.length() != 0) {
 				message.append(localMessage);
-				message.append("\n");//$NON-NLS-1$ 
+				message.append("\n");//$NON-NLS-1$
 			}
 		}
 		StringBuffer errorMessage = new StringBuffer();
 		errorMessage.append(nb);
-		errorMessage.append(" problems!");//$NON-NLS-1$ 
+		errorMessage.append(" problems!");//$NON-NLS-1$
 		errorMessage.append(message);
 		Assert.assertTrue(errorMessage.toString(), nb == 0);
 	}
 
 	/**
 	 * Tests if a the value of a property in the Manifest is correct
-	 * 
+	 *
 	 * @param property
 	 *        the property to test
 	 * @param regex
@@ -196,7 +200,7 @@ public class BundlesTests {
 
 	/**
 	 * Tests if the file is owned by the bundle
-	 * 
+	 *
 	 * @param filepath
 	 *        the file path
 	 */
@@ -331,7 +335,7 @@ public class BundlesTests {
 		}
 
 		/**
-		 * 
+		 *
 		 * @param first
 		 * @param second
 		 * @return <ul>
@@ -359,7 +363,7 @@ public class BundlesTests {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param partialDependencyName
 	 *        the fullName or a part of the name of the plugin
 	 * @param wantedBundleVersionRegex
@@ -414,6 +418,7 @@ public class BundlesTests {
 	/**
 	 * This test verify that the plugin contains pdoc file
 	 */
+	@NotImplemented("Documentation file is not mandatory")
 	@Test
 	public void documentationFileTest() {
 		String message = null;
@@ -439,8 +444,8 @@ public class BundlesTests {
 		StringBuffer errorMessage = new StringBuffer();
 		StringBuffer warningMessage = new StringBuffer();
 		final Collection<String> possibleIds = new ArrayList<String>();
-		possibleIds.add("ID");//$NON-NLS-1$ 
-		possibleIds.add("PLUGIN_ID");//$NON-NLS-1$ 
+		possibleIds.add("ID");//$NON-NLS-1$
+		possibleIds.add("PLUGIN_ID");//$NON-NLS-1$
 		int nbError = 0;
 		int nbWarning = 0;
 		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
@@ -480,10 +485,10 @@ public class BundlesTests {
 		finalErrorMessage.append(nbError);
 		finalErrorMessage.append(" problems! ");//$NON-NLS-1$
 		finalErrorMessage.append(errorMessage);
-		Assert.assertTrue(finalErrorMessage.toString(), nbError == 0); //$NON-NLS-1$
+		Assert.assertTrue(finalErrorMessage.toString(), nbError == 0);
 
 		// Do not fail on warnings
-		//Assert.assertTrue(nbWarning + "warning!" + warningMessage, nbWarning == 0);//$NON-NLS-1$ 
+		//Assert.assertTrue(nbWarning + "warning!" + warningMessage, nbWarning == 0);//$NON-NLS-1$
 	}
 
 }

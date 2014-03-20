@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module EnumService('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[module EnumService('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
 [query public literal(arg1 : String, arg2 : String) : String
 	= invoke('org.eclipse.papyrus.qompass.designer.core.acceleo.EnumService',

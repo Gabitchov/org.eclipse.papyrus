@@ -44,6 +44,7 @@ public class ExtendedUmlModel extends UmlModel {
 						if(Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(extension) != null) {
 							resourceURI = getPlatformURI(r.getFullPath());
 							resource = getResourceSet().getResource(resourceURI, true);
+							configureResource(resource);
 							break;
 						}
 					}

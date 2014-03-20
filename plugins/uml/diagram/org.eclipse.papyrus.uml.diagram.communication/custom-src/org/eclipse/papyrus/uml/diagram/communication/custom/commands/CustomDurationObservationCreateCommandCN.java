@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.communication.edit.commands.DurationObservationCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.communication.providers.ElementInitializers;
 import org.eclipse.uml2.uml.DurationObservation;
@@ -38,8 +39,8 @@ public class CustomDurationObservationCreateCommandCN extends DurationObservatio
 	 * 
 	 * @param req
 	 */
-	public CustomDurationObservationCreateCommandCN(CreateElementRequest req) {
-		super(req);
+	public CustomDurationObservationCreateCommandCN(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 		// TODO Auto-generated constructor stub
 	}
 

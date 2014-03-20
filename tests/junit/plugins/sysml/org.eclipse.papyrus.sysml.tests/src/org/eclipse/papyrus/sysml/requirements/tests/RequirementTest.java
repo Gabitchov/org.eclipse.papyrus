@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,7 +27,7 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
@@ -45,14 +45,14 @@ import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
  * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getMaster() <em>Master</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class RequirementTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -61,7 +61,7 @@ public class RequirementTest extends TestCase {
 
 	/**
 	 * The fixture for this Requirement test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	protected Requirement fixture = null;
@@ -150,7 +150,7 @@ public class RequirementTest extends TestCase {
 	 * Constructs a new Requirement test case with the given name.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public RequirementTest(String name) {
@@ -160,7 +160,7 @@ public class RequirementTest extends TestCase {
 	/**
 	 * Returns the fixture for this Requirement test case. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected Requirement getFixture() {
@@ -170,7 +170,7 @@ public class RequirementTest extends TestCase {
 	/**
 	 * Sets the fixture for this Requirement test case. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void setFixture(Requirement fixture) {
@@ -179,7 +179,7 @@ public class RequirementTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated NOT
 	 */
@@ -305,13 +305,13 @@ public class RequirementTest extends TestCase {
 		rne1_s1.getClients().add(refiningNE1);
 		rne1_s1.getSuppliers().add(refined);
 		model.getPackagedElements().add(rne1_s1);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(rne1_s1, L2Package.eINSTANCE.getRefine());
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(rne1_s1, StandardPackage.eINSTANCE.getRefine());
 
 		Abstraction rne2_s1 = UMLFactory.eINSTANCE.createAbstraction();
 		rne2_s1.getClients().add(refiningNE2);
 		rne2_s1.getSuppliers().add(refined);
 		model.getPackagedElements().add(rne2_s1);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(rne2_s1, L2Package.eINSTANCE.getRefine());
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(rne2_s1, StandardPackage.eINSTANCE.getRefine());
 
 		// ////////////////////////////////////////////////////////////////////
 
@@ -334,13 +334,13 @@ public class RequirementTest extends TestCase {
 		t11.getClients().add(traced1);
 		t11.getSuppliers().add(trace);
 		model.getPackagedElements().add(t11);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(t11, L2Package.eINSTANCE.getTrace());
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(t11, StandardPackage.eINSTANCE.getTrace());
 
 		Abstraction t12 = UMLFactory.eINSTANCE.createAbstraction();
 		t12.getClients().add(traced2);
 		t12.getSuppliers().add(trace);
 		model.getPackagedElements().add(t12);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(t12, L2Package.eINSTANCE.getTrace());
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(t12, StandardPackage.eINSTANCE.getTrace());
 
 		// ////////////////////////////////////////////////////////////////////
 
@@ -387,7 +387,7 @@ public class RequirementTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
@@ -399,7 +399,7 @@ public class RequirementTest extends TestCase {
 	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getDerived()
 	 * <em>Derived</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getDerived()
 	 * @generated NOT
 	 */
@@ -428,7 +428,7 @@ public class RequirementTest extends TestCase {
 	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getDerivedFrom()
 	 * <em>Derived From</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getDerivedFrom()
 	 * @generated NOT
 	 */
@@ -456,7 +456,7 @@ public class RequirementTest extends TestCase {
 	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getMaster()
 	 * <em>Master</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getMaster()
 	 * @generated NOT
 	 */
@@ -476,7 +476,7 @@ public class RequirementTest extends TestCase {
 	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getRefinedBy()
 	 * <em>Refined By</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getRefinedBy()
 	 * @generated NOT
 	 */
@@ -499,7 +499,7 @@ public class RequirementTest extends TestCase {
 	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getSatisfiedBy()
 	 * <em>Satisfied By</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getSatisfiedBy()
 	 * @generated NOT
 	 */
@@ -522,7 +522,7 @@ public class RequirementTest extends TestCase {
 	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getTracedTo()
 	 * <em>Traced To</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getTracedTo()
 	 * @generated NOT
 	 */
@@ -568,7 +568,7 @@ public class RequirementTest extends TestCase {
 	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getVerifiedBy()
 	 * <em>Verified By</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getVerifiedBy()
 	 * @generated NOT
 	 */

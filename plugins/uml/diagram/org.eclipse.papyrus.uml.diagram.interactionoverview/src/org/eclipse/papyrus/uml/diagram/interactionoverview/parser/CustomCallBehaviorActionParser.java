@@ -18,6 +18,7 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.activity.parser.custom.CallBehaviorActionParser;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.Interaction;
@@ -31,7 +32,7 @@ public class CustomCallBehaviorActionParser extends CallBehaviorActionParser {
 
 	@Override
 	public String getPrintString(final IAdaptable element, final int flags) {
-		final Object obj = element.getAdapter(EObject.class);
+		final Object obj = EMFHelper.getEObject(element);
 		if(obj instanceof CallBehaviorAction) {
 			final CallBehaviorAction action = (CallBehaviorAction)obj;
 			String behaviorName = "";
@@ -48,7 +49,7 @@ public class CustomCallBehaviorActionParser extends CallBehaviorActionParser {
 
 	@Override
 	public String getEditString(final IAdaptable element, final int flags) {
-		final Object obj = element.getAdapter(EObject.class);
+		final Object obj = EMFHelper.getEObject(element);
 		if(obj instanceof CallBehaviorAction) {
 			final CallBehaviorAction action = (CallBehaviorAction)obj;
 			String behaviorName = "";
@@ -68,7 +69,7 @@ public class CustomCallBehaviorActionParser extends CallBehaviorActionParser {
 		if(newString == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		final EObject element = (EObject)adapter.getAdapter(EObject.class);
+		final EObject element = EMFHelper.getEObject(adapter);
 		final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(element);
 		if(editingDomain == null) {
 			return UnexecutableCommand.INSTANCE;

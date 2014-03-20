@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DurationObservationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
@@ -41,8 +42,8 @@ public class CustomDurationObservationCreateCommand extends DurationObservationC
 	 * @param req
 	 * @param eObject
 	 */
-	public CustomDurationObservationCreateCommand(CreateElementRequest req, EObject eObject) {
-		super(req, eObject);
+	public CustomDurationObservationCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		super(req, eObject, diagram);
 	}
 
 	/**
@@ -50,8 +51,8 @@ public class CustomDurationObservationCreateCommand extends DurationObservationC
 	 * 
 	 * @param req
 	 */
-	public CustomDurationObservationCreateCommand(CreateElementRequest req) {
-		super(req);
+	public CustomDurationObservationCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 	}
 
 	/**

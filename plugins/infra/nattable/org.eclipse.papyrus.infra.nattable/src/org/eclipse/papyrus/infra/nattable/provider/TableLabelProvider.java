@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,9 +13,6 @@ package org.eclipse.papyrus.infra.nattable.provider;
 
 import java.util.Collection;
 
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -43,11 +40,10 @@ public class TableLabelProvider extends EMFLabelProvider implements IFilteredLab
 		if(table instanceof IStructuredSelection) {
 			return super.getText((IStructuredSelection)table);
 		}
-		Object el = table;
-		if(table instanceof IAdaptable) {
-			el = ((IAdaptable)table).getAdapter(EObject.class);
-		}
-		if(el != null && el instanceof Table) {
+
+		Object el = EMFHelper.getEObject(table);
+
+		if(el instanceof Table) {
 			return ((Table)el).getName();
 		}
 		return ""; //$NON-NLS-1$
@@ -65,16 +61,23 @@ public class TableLabelProvider extends EMFLabelProvider implements IFilteredLab
 		if(table instanceof IStructuredSelection) {
 			return getImage(((IStructuredSelection)table));
 		}
-		if(table instanceof IAdaptable) {
-			table = ((IAdaptable)table).getAdapter(EObject.class);
-		}
+
+		table = EMFHelper.getEObject(table);
+
 		if(table instanceof Table) {
-			final String iconPath = ((Table)table).getTableConfiguration().getIconPath();
+			final String iconPath = getIcon((Table)table);
 			if(iconPath != null) {
 				return Activator.getDefault().getImage(iconPath);
 			}
 		}
 		return null;
+	}
+
+	protected String getIcon(Table table) {
+		if(table == null || table.getTableConfiguration() == null || table.getTableConfiguration().getIconPath() == null) {
+			return null;
+		}
+		return table.getTableConfiguration().getIconPath();
 	}
 
 	/**
@@ -84,19 +87,13 @@ public class TableLabelProvider extends EMFLabelProvider implements IFilteredLab
 	 * @param object
 	 * @return
 	 */
+	@Override
 	public boolean accept(Object object) {
 		if(object instanceof IStructuredSelection) {
 			return accept((IStructuredSelection)object);
 		}
-		Object el = object;
-		if(object instanceof IAdaptable) {
-			el = EMFHelper.getEObject(object);
-		}
-		if(el != null) {
-			return el instanceof Table;
-		}
 
-		return false;
+		return EMFHelper.getEObject(object) instanceof Table;
 	}
 
 	/**
@@ -127,14 +124,18 @@ public class TableLabelProvider extends EMFLabelProvider implements IFilteredLab
 	protected boolean hasCommonImage(Collection<?> objects) {
 		String iconPath = null;
 		for(Object current : objects) {
-			Assert.isTrue(current instanceof Table);
-			Table table = (Table)current;
-			String icon = table.getTableConfiguration().getIconPath();
-			Assert.isNotNull(icon);
+			if(!(current instanceof Table)) {
+				return false;
+			}
+
+			String icon = getIcon((Table)current);
+			if(icon == null && iconPath != null) {
+				return false;
+			}
+
 			if(iconPath == null) {
 				iconPath = icon;
-			}
-			if(!iconPath.equals(icon)) {
+			} else if(!iconPath.equals(icon)) {
 				return false;
 			}
 		}
@@ -148,10 +149,9 @@ public class TableLabelProvider extends EMFLabelProvider implements IFilteredLab
 	 * @param commonObject
 	 * @return
 	 */
+	@Override
 	protected Image getNonCommonIcon(final Object commonObject) {
 		return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(org.eclipse.papyrus.infra.nattable.Activator.PLUGIN_ID, "/icons/table.gif");
 	}
-
-
 
 }

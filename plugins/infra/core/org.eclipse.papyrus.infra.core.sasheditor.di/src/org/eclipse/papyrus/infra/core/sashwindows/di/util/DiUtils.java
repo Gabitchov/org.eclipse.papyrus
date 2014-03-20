@@ -1,7 +1,7 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL 
+ * Copyright (c) 2009 CEA LIST & LIFL
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,7 +18,6 @@ package org.eclipse.papyrus.infra.core.sashwindows.di.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiFactory;
-import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
@@ -72,10 +71,6 @@ public class DiUtils {
 		SashModel layout = createDefaultSashModel();
 
 		model.setSashModel(layout);
-
-		// PageList
-		PageList pageList = DiFactory.eINSTANCE.createPageList();
-		model.setPageList(pageList);
 		return model;
 	}
 
@@ -88,8 +83,9 @@ public class DiUtils {
 	static public SashWindowsMngr lookupSashWindowsMngr(Resource diResource) {
 
 		for(Object node : diResource.getContents()) {
-			if(node instanceof SashWindowsMngr)
+			if(node instanceof SashWindowsMngr) {
 				return (SashWindowsMngr)node;
+			}
 		}
 		return null;
 	}
@@ -104,9 +100,10 @@ public class DiUtils {
 	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
 	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
 	 *         instead ?
-	 *         
+	 *
 	 * @deprecated Should use IPageMngr instead.
 	 */
+	@Deprecated
 	static public PageRef getPageRef(Resource diResource, EObject eObject) {
 		SashWindowsMngr windowsMngr = lookupSashWindowsMngr(diResource);
 		if(windowsMngr != null && windowsMngr.getPageList() != null) {
@@ -133,9 +130,9 @@ public class DiUtils {
 	 *         instead ?
 	 * @deprecated Should use IPageMngr instead.
 	 */
+	@Deprecated
 	static public void addPageToPageList(Resource diResource, PageRef pageRef) throws SashEditorException {
-		SashWindowsMngr windowsMngr = lookupSashWindowsMngr(diResource);
-		addPageToPageList(windowsMngr, pageRef);
+		//Do nothing. The page list is not used anymore
 	}
 
 	/**
@@ -147,15 +144,12 @@ public class DiUtils {
 	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
 	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
 	 *         instead ?
-	 *         
+	 *
 	 * @deprecated Should use IPageMngr instead.
 	 */
+	@Deprecated
 	static public void addPageToPageList(SashWindowsMngr windowsMngr, PageRef pageRef) throws SashEditorException {
-		if(windowsMngr != null && windowsMngr.getPageList() != null) {
-			windowsMngr.getPageList().addPage(pageRef.getPageIdentifier());
-		} else {
-			throw new SashEditorException("Unable to add the page to the windows manager");
-		}
+		//Do nothing. The page list is not used anymore
 	}
 
 	/**
@@ -167,14 +161,16 @@ public class DiUtils {
 	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
 	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
 	 *         instead ?
-	 *         
+	 *
 	 * @deprecated Should use IPageMngr instead.
 	 */
+	@Deprecated
 	static public void addPageToTabFolder(SashWindowsMngr windowsMngr, PageRef pageRef) throws SashEditorException {
 
 		// Check parameters
-		if(pageRef == null || pageRef.getPageIdentifier() == null)
+		if(pageRef == null || pageRef.getPageIdentifier() == null) {
 			throw new SashEditorException("Unable to add the page to the tab folder: parameters are null");
+		}
 
 		SashModel sashModel = windowsMngr.getSashModel();
 		if(sashModel == null) {

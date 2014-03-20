@@ -38,21 +38,23 @@ import org.eclipse.uml2.uml.Constraint;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.impl.TimingConstraintImpl#getMode <em>Mode</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.impl.TimingConstraintImpl#getUpper <em>Upper</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.impl.TimingConstraintImpl#getLower <em>Lower</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.impl.TimingConstraintImpl#getBase_Class <em>Base Class</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.impl.TimingConstraintImpl#getBase_Constraint <em>Base Constraint</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.impl.TimingConstraintImpl#getMode <em>Mode</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.impl.TimingConstraintImpl#getUpper <em>Upper</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.impl.TimingConstraintImpl#getLower <em>Lower</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.impl.TimingConstraintImpl#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.impl.TimingConstraintImpl#getBase_Constraint <em>Base Constraint</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class TimingConstraintImpl extends EAElementImpl implements TimingConstraint {
+
 	/**
 	 * The cached value of the '{@link #getMode() <em>Mode</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMode()
 	 * @generated
 	 * @ordered
@@ -63,6 +65,7 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	 * The cached value of the '{@link #getUpper() <em>Upper</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getUpper()
 	 * @generated
 	 * @ordered
@@ -73,6 +76,7 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	 * The cached value of the '{@link #getLower() <em>Lower</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getLower()
 	 * @generated
 	 * @ordered
@@ -83,6 +87,7 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Class()
 	 * @generated
 	 * @ordered
@@ -93,6 +98,7 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	 * The cached value of the '{@link #getBase_Constraint() <em>Base Constraint</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Constraint()
 	 * @generated
 	 * @ordered
@@ -102,6 +108,7 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TimingConstraintImpl() {
@@ -111,6 +118,7 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration basicGetLower() {
@@ -120,6 +128,7 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration basicGetUpper() {
@@ -129,25 +138,30 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TimingPackage.TIMING_CONSTRAINT__MODE:
-				return getMode();
-			case TimingPackage.TIMING_CONSTRAINT__UPPER:
-				if (resolve) return getUpper();
-				return basicGetUpper();
-			case TimingPackage.TIMING_CONSTRAINT__LOWER:
-				if (resolve) return getLower();
-				return basicGetLower();
-			case TimingPackage.TIMING_CONSTRAINT__BASE_CLASS:
-				if (resolve) return getBase_Class();
-				return basicGetBase_Class();
-			case TimingPackage.TIMING_CONSTRAINT__BASE_CONSTRAINT:
-				if (resolve) return getBase_Constraint();
-				return basicGetBase_Constraint();
+		switch(featureID) {
+		case TimingPackage.TIMING_CONSTRAINT__MODE:
+			return getMode();
+		case TimingPackage.TIMING_CONSTRAINT__UPPER:
+			if(resolve)
+				return getUpper();
+			return basicGetUpper();
+		case TimingPackage.TIMING_CONSTRAINT__LOWER:
+			if(resolve)
+				return getLower();
+			return basicGetLower();
+		case TimingPackage.TIMING_CONSTRAINT__BASE_CLASS:
+			if(resolve)
+				return getBase_Class();
+			return basicGetBase_Class();
+		case TimingPackage.TIMING_CONSTRAINT__BASE_CONSTRAINT:
+			if(resolve)
+				return getBase_Constraint();
+			return basicGetBase_Constraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -155,21 +169,22 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TimingPackage.TIMING_CONSTRAINT__MODE:
-				return mode != null && !mode.isEmpty();
-			case TimingPackage.TIMING_CONSTRAINT__UPPER:
-				return upper != null;
-			case TimingPackage.TIMING_CONSTRAINT__LOWER:
-				return lower != null;
-			case TimingPackage.TIMING_CONSTRAINT__BASE_CLASS:
-				return base_Class != null;
-			case TimingPackage.TIMING_CONSTRAINT__BASE_CONSTRAINT:
-				return base_Constraint != null;
+		switch(featureID) {
+		case TimingPackage.TIMING_CONSTRAINT__MODE:
+			return mode != null && !mode.isEmpty();
+		case TimingPackage.TIMING_CONSTRAINT__UPPER:
+			return upper != null;
+		case TimingPackage.TIMING_CONSTRAINT__LOWER:
+			return lower != null;
+		case TimingPackage.TIMING_CONSTRAINT__BASE_CLASS:
+			return base_Class != null;
+		case TimingPackage.TIMING_CONSTRAINT__BASE_CONSTRAINT:
+			return base_Constraint != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -177,28 +192,29 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TimingPackage.TIMING_CONSTRAINT__MODE:
-				getMode().clear();
-				getMode().addAll((Collection<? extends Mode>)newValue);
-				return;
-			case TimingPackage.TIMING_CONSTRAINT__UPPER:
-				setUpper((TimeDuration)newValue);
-				return;
-			case TimingPackage.TIMING_CONSTRAINT__LOWER:
-				setLower((TimeDuration)newValue);
-				return;
-			case TimingPackage.TIMING_CONSTRAINT__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
-				return;
-			case TimingPackage.TIMING_CONSTRAINT__BASE_CONSTRAINT:
-				setBase_Constraint((Constraint)newValue);
-				return;
+		switch(featureID) {
+		case TimingPackage.TIMING_CONSTRAINT__MODE:
+			getMode().clear();
+			getMode().addAll((Collection<? extends Mode>)newValue);
+			return;
+		case TimingPackage.TIMING_CONSTRAINT__UPPER:
+			setUpper((TimeDuration)newValue);
+			return;
+		case TimingPackage.TIMING_CONSTRAINT__LOWER:
+			setLower((TimeDuration)newValue);
+			return;
+		case TimingPackage.TIMING_CONSTRAINT__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)newValue);
+			return;
+		case TimingPackage.TIMING_CONSTRAINT__BASE_CONSTRAINT:
+			setBase_Constraint((Constraint)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -206,6 +222,7 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -216,26 +233,27 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TimingPackage.TIMING_CONSTRAINT__MODE:
-				getMode().clear();
-				return;
-			case TimingPackage.TIMING_CONSTRAINT__UPPER:
-				setUpper((TimeDuration)null);
-				return;
-			case TimingPackage.TIMING_CONSTRAINT__LOWER:
-				setLower((TimeDuration)null);
-				return;
-			case TimingPackage.TIMING_CONSTRAINT__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)null);
-				return;
-			case TimingPackage.TIMING_CONSTRAINT__BASE_CONSTRAINT:
-				setBase_Constraint((Constraint)null);
-				return;
+		switch(featureID) {
+		case TimingPackage.TIMING_CONSTRAINT__MODE:
+			getMode().clear();
+			return;
+		case TimingPackage.TIMING_CONSTRAINT__UPPER:
+			setUpper((TimeDuration)null);
+			return;
+		case TimingPackage.TIMING_CONSTRAINT__LOWER:
+			setLower((TimeDuration)null);
+			return;
+		case TimingPackage.TIMING_CONSTRAINT__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)null);
+			return;
+		case TimingPackage.TIMING_CONSTRAINT__BASE_CONSTRAINT:
+			setBase_Constraint((Constraint)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -243,14 +261,15 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration getLower() {
-		if (lower != null && lower.eIsProxy()) {
+		if(lower != null && lower.eIsProxy()) {
 			InternalEObject oldLower = (InternalEObject)lower;
 			lower = (TimeDuration)eResolveProxy(oldLower);
-			if (lower != oldLower) {
-				if (eNotificationRequired())
+			if(lower != oldLower) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingPackage.TIMING_CONSTRAINT__LOWER, oldLower, lower));
 			}
 		}
@@ -260,10 +279,11 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Mode> getMode() {
-		if (mode == null) {
+		if(mode == null) {
 			mode = new EObjectResolvingEList<Mode>(Mode.class, this, TimingPackage.TIMING_CONSTRAINT__MODE);
 		}
 		return mode;
@@ -272,14 +292,15 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration getUpper() {
-		if (upper != null && upper.eIsProxy()) {
+		if(upper != null && upper.eIsProxy()) {
 			InternalEObject oldUpper = (InternalEObject)upper;
 			upper = (TimeDuration)eResolveProxy(oldUpper);
-			if (upper != oldUpper) {
-				if (eNotificationRequired())
+			if(upper != oldUpper) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingPackage.TIMING_CONSTRAINT__UPPER, oldUpper, upper));
 			}
 		}
@@ -289,26 +310,28 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLower(TimeDuration newLower) {
 		TimeDuration oldLower = lower;
 		lower = newLower;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingPackage.TIMING_CONSTRAINT__LOWER, oldLower, lower));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
+		if(base_Class != null && base_Class.eIsProxy()) {
 			InternalEObject oldBase_Class = (InternalEObject)base_Class;
 			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
-			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+			if(base_Class != oldBase_Class) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingPackage.TIMING_CONSTRAINT__BASE_CLASS, oldBase_Class, base_Class));
 			}
 		}
@@ -318,6 +341,7 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class basicGetBase_Class() {
@@ -327,26 +351,28 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingPackage.TIMING_CONSTRAINT__BASE_CLASS, oldBase_Class, base_Class));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Constraint getBase_Constraint() {
-		if (base_Constraint != null && base_Constraint.eIsProxy()) {
+		if(base_Constraint != null && base_Constraint.eIsProxy()) {
 			InternalEObject oldBase_Constraint = (InternalEObject)base_Constraint;
 			base_Constraint = (Constraint)eResolveProxy(oldBase_Constraint);
-			if (base_Constraint != oldBase_Constraint) {
-				if (eNotificationRequired())
+			if(base_Constraint != oldBase_Constraint) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingPackage.TIMING_CONSTRAINT__BASE_CONSTRAINT, oldBase_Constraint, base_Constraint));
 			}
 		}
@@ -356,6 +382,7 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Constraint basicGetBase_Constraint() {
@@ -365,24 +392,26 @@ public abstract class TimingConstraintImpl extends EAElementImpl implements Timi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Constraint(Constraint newBase_Constraint) {
 		Constraint oldBase_Constraint = base_Constraint;
 		base_Constraint = newBase_Constraint;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingPackage.TIMING_CONSTRAINT__BASE_CONSTRAINT, oldBase_Constraint, base_Constraint));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setUpper(TimeDuration newUpper) {
 		TimeDuration oldUpper = upper;
 		upper = newUpper;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingPackage.TIMING_CONSTRAINT__UPPER, oldUpper, upper));
 	}
 

@@ -15,6 +15,8 @@ package org.eclipse.papyrus.infra.emf;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,15 +27,15 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
-import org.eclipse.emf.facet.infra.browser.custom.TypeView;
-import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
-import org.eclipse.emf.facet.infra.facet.Facet;
-import org.eclipse.emf.facet.infra.facet.FacetSet;
-import org.eclipse.emf.facet.infra.facet.core.FacetSetCatalog;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManagerFactory;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -56,7 +58,9 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static LogHelper log;
 
-	private CustomizationManager fCustomizationManager;
+	private ICustomizationManager fCustomizationManager;
+	//temp resourceSet
+	private ResourceSet facetRecsourceSet= new ResourceSetImpl();
 
 	/**
 	 * The constructor
@@ -100,9 +104,9 @@ public class Activator extends AbstractUIPlugin {
 	 * 
 	 * @return the customization manager in charge to adapt element in modisco
 	 */
-	public CustomizationManager getCustomizationManager() {
+	public ICustomizationManager getCustomizationManager() {
 		if(this.fCustomizationManager == null) {
-			this.fCustomizationManager = new CustomizationManager();
+			this.fCustomizationManager = ICustomizationManagerFactory.DEFAULT.getOrCreateICustomizationManager(facetRecsourceSet);
 			init(this.fCustomizationManager);
 		}
 		return this.fCustomizationManager;
@@ -113,10 +117,11 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public void saveCustomizationManagerState() {
 		IDialogSettings dialogSettings = getBrowserCustomizationDialogSettings();
+		List<Customization> appliedCustomizations = getCustomizationManager().getManagedCustomizations();
 
-		List<MetamodelView> appliedCustomizations = getCustomizationManager().getRegisteredCustomizations();
+		final List<Customization> registeredCustomizations = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(getCustomizationManager().getResourceSet()).getRegisteredCustomizations();
 
-		for(MetamodelView customization : CustomizationsCatalog.getInstance().getRegistryCustomizations()) {
+		for(Customization customization : registeredCustomizations) {
 
 			boolean isApplied = appliedCustomizations.contains(customization);
 			String settingKey = getSettingKey(customization);
@@ -125,8 +130,10 @@ public class Activator extends AbstractUIPlugin {
 		}
 	}
 
-	private String getSettingKey(MetamodelView customization) {
-		return customization.getLocation();
+	private String getSettingKey(Customization customization) {
+		// do not exist anymore
+		return customization.eResource().getURI().toString();
+		//return "";
 	}
 
 	protected IDialogSettings getBrowserCustomizationDialogSettings() {
@@ -139,12 +146,8 @@ public class Activator extends AbstractUIPlugin {
 		return settings;
 	}
 
-	private void init(final CustomizationManager customizationManager) {
+	private void init(final ICustomizationManager customizationManager) {
 		// the appearance can be customized here:
-
-		customizationManager.setShowDerivedLinks(true);
-		//to hide the blue arrow overlay
-		customizationManager.setDecorateExternalResources(false);
 
 		IDialogSettings settings = getBrowserCustomizationDialogSettings();
 
@@ -152,29 +155,32 @@ public class Activator extends AbstractUIPlugin {
 
 			// load customizations defined as default through the customization
 			// extension
-			List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
-			List<MetamodelView> registryAllCustomizations = CustomizationsCatalog.getInstance().getRegistryCustomizations();
+			ICustomizationCatalogManager customCatalog = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(customizationManager.getResourceSet());
+			//no possibility to get default customization
 
-			List<MetamodelView> appliedCustomizations = new LinkedList<MetamodelView>();
-
-			for(MetamodelView customization : registryAllCustomizations) {
+			List<Customization> registryAllCustomizations = customCatalog.getRegisteredCustomizations();
+			ArrayList<Customization> orderedCustomizationList= new ArrayList<Customization>();
+			for(Customization customization : registryAllCustomizations) {
 				String settingKey = getSettingKey(customization);
 
 				boolean isActive = false;
 				if(settings.get(settingKey) == null) { //Never customized
-					isActive = registryDefaultCustomizations.contains(customization); //Loaded by default
+					isActive = customization.isMustBeLoadedByDefault(); //Loaded by default
+					
 				} else {
 					isActive = settings.getBoolean(settingKey);
 				}
 
 				if(isActive) {
-					customizationManager.registerCustomization(customization);
-					appliedCustomizations.add(customization);
+						orderedCustomizationList.add(customization);
+					
 				}
 			}
+			
+			Collections.sort(orderedCustomizationList, new CustomizationComparator());
+			customizationManager.getManagedCustomizations().addAll(orderedCustomizationList);
 
-			customizationManager.loadCustomizations();
-			loadFacetsForCustomizations(appliedCustomizations, customizationManager);
+
 
 		} catch (Throwable e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
@@ -190,18 +196,18 @@ public class Activator extends AbstractUIPlugin {
 	 * Restores the default Customization Manager configuration
 	 */
 	public void restoreDefaultCustomizationManager() {
-		CustomizationManager manager = getCustomizationManager();
+		ICustomizationManager manager = getCustomizationManager();
 
 		DialogSettings settings = (DialogSettings)getDialogSettings();
 		settings.removeSection(CUSTOMIZATION_MANAGER_SECTION);
 
-		List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
-
-		manager.clearCustomizations();
-		for(MetamodelView customization : registryDefaultCustomizations) {
-			manager.registerCustomization(customization);
-		}
-		manager.loadCustomizations();
+		//		List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
+		//
+		//		manager.clearCustomizations();
+		//		for(MetamodelView customization : registryDefaultCustomizations) {
+		//			manager.registerCustomization(customization);
+		//		}
+		//		manager.loadCustomizations();
 	}
 
 	/**
@@ -212,67 +218,67 @@ public class Activator extends AbstractUIPlugin {
 	 * @param customizationManager
 	 *        the Customization Manager
 	 */
-	protected void loadFacetsForCustomizations(final List<MetamodelView> customizations, final CustomizationManager customizationManager) {
-		final Set<Facet> referencedFacets = new HashSet<Facet>();
-		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton().getAllFacetSets();
+	//	protected void loadFacetsForCustomizations(final List<MetamodelView> customizations, final CustomizationManager customizationManager) {
+	//		final Set<Facet> referencedFacets = new HashSet<Facet>();
+	//		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton().getAllFacetSets();
+	//
+	//		for(MetamodelView customization : customizations) {
+	//			String metamodelURI = customization.getMetamodelURI();
+	//			// find customized FacetSet
+	//			FacetSet customizedFacetSet = null;
+	//			if(metamodelURI != null) {
+	//				for(FacetSet facetSet : facetSets) {
+	//					if(metamodelURI.equals(facetSet.getNsURI())) {
+	//						customizedFacetSet = facetSet;
+	//						break;
+	//					}
+	//				}
+	//			}
+	//			if(customizedFacetSet == null) {
+	//				continue;
+	//			}
+	//
+	//			// find customized Facets
+	//			EList<TypeView> types = customization.getTypes();
+	//			for(TypeView typeView : types) {
+	//				String metaclassName = typeView.getMetaclassName();
+	//				Facet facet = findFacetWithFullyQualifiedName(metaclassName, customizedFacetSet);
+	//				if(facet != null) {
+	//					referencedFacets.add(facet);
+	//				} else {
+	//					Activator.log.warn(String.format("Missing required facet \"%s\" in FacetSet \"%s\" for customization \"%s\"", metaclassName, customizedFacetSet.getName(), customization.getName()));
+	//				}
+	//			}
+	//
+	//			for(Facet referencedFacet : referencedFacets) {
+	//				customizationManager.loadFacet(referencedFacet);
+	//			}
+	//		}
+	//
+	//		//
+	//		// for modified facets
+	//		// customizationManager.getInstancesForMetaclasses().buildDerivationTree();
+	//		// customizationManager.getAppearanceConfiguration().touch();
+	//		// customizationManager.refreshDelayed(true);
+	//	}
 
-		for(MetamodelView customization : customizations) {
-			String metamodelURI = customization.getMetamodelURI();
-			// find customized FacetSet
-			FacetSet customizedFacetSet = null;
-			if(metamodelURI != null) {
-				for(FacetSet facetSet : facetSets) {
-					if(metamodelURI.equals(facetSet.getNsURI())) {
-						customizedFacetSet = facetSet;
-						break;
-					}
-				}
-			}
-			if(customizedFacetSet == null) {
-				continue;
-			}
-
-			// find customized Facets
-			EList<TypeView> types = customization.getTypes();
-			for(TypeView typeView : types) {
-				String metaclassName = typeView.getMetaclassName();
-				Facet facet = findFacetWithFullyQualifiedName(metaclassName, customizedFacetSet);
-				if(facet != null) {
-					referencedFacets.add(facet);
-				} else {
-					Activator.log.warn(String.format("Missing required facet \"%s\" in FacetSet \"%s\" for customization \"%s\"", metaclassName, customizedFacetSet.getName(), customization.getName()));
-				}
-			}
-
-			for(Facet referencedFacet : referencedFacets) {
-				customizationManager.loadFacet(referencedFacet);
-			}
-		}
-
-		//
-		// for modified facets
-		// customizationManager.getInstancesForMetaclasses().buildDerivationTree();
-		// customizationManager.getAppearanceConfiguration().touch();
-		// customizationManager.refreshDelayed(true);
-	}
-
-	/**
-	 * fin a facet from
-	 * 
-	 * @param metaclassName
-	 * @param customizedFacetSet
-	 * @return
-	 */
-	private Facet findFacetWithFullyQualifiedName(final String metaclassName, final FacetSet customizedFacetSet) {
-		EList<Facet> facets = customizedFacetSet.getFacets();
-		for(Facet facet : facets) {
-			String facetName = getMetaclassQualifiedName(facet);
-			if(metaclassName.equals(facetName)) {
-				return facet;
-			}
-		}
-		return null;
-	}
+	//	/**
+	//	 * fin a facet from
+	//	 * 
+	//	 * @param metaclassName
+	//	 * @param customizedFacetSet
+	//	 * @return
+	//	 */
+	//	private Facet findFacetWithFullyQualifiedName(final String metaclassName, final FacetSet customizedFacetSet) {
+	//		EList<Facet> facets = customizedFacetSet.getFacets();
+	//		for(Facet facet : facets) {
+	//			String facetName = getMetaclassQualifiedName(facet);
+	//			if(metaclassName.equals(facetName)) {
+	//				return facet;
+	//			}
+	//		}
+	//		return null;
+	//	}
 
 	/** @return the qualified name of the given metaclass */
 	public static String getMetaclassQualifiedName(final EClassifier eClass) {

@@ -13,11 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.portandflows.internal.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
@@ -38,7 +40,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * 
  * @generated
  */
-public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
+public class FlowPropertyImpl extends MinimalEObjectImpl.Container implements FlowProperty {
 
 	/**
 	 * The cached value of the '{@link #getBase_Property() <em>Base Property</em>}' reference.
@@ -121,6 +123,21 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 			return direction != DIRECTION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch(operationID) {
+		case PortandflowsPackage.FLOW_PROPERTY___GET_ICON:
+			return getIcon();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

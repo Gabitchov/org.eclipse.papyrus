@@ -50,11 +50,11 @@ public class MessageFoundCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public MessageFoundCreateCommand(final CreateRelationshipRequest request, final EObject source, final EObject target) {
+	public MessageFoundCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
-		this.container = deduceContainer(source, target);
+		container = deduceContainer(source, target);
 	}
 
 	/**
@@ -62,13 +62,13 @@ public class MessageFoundCreateCommand extends EditElementCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		if(this.source == null && this.target == null) {
+		if(source == null && target == null) {
 			return false;
 		}
-		if(this.source != null && false == this.source instanceof Element) {
+		if(source != null && false == source instanceof Element) {
 			return false;
 		}
-		if(this.target != null && false == this.target instanceof MessageEnd) {
+		if(target != null && false == target instanceof MessageEnd) {
 			return false;
 		}
 		if(getSource() == null) {
@@ -85,26 +85,24 @@ public class MessageFoundCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		throw new UnsupportedOperationException();
-
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(final Message newElement, final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-		final IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
-		final ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+	protected void doConfigure(Message newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
 		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
-		final ICommand configureCommand = elementType.getEditCommand(configureRequest);
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
 		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
@@ -114,7 +112,7 @@ public class MessageFoundCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	@Override
-	protected void setElementToEdit(final EObject element) {
+	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -122,21 +120,21 @@ public class MessageFoundCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Element getSource() {
-		return (Element)this.source;
+		return (Element)source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected MessageEnd getTarget() {
-		return (MessageEnd)this.target;
+		return (MessageEnd)target;
 	}
 
 	/**
 	 * @generated
 	 */
 	public Interaction getContainer() {
-		return this.container;
+		return container;
 	}
 
 	/**
@@ -145,7 +143,7 @@ public class MessageFoundCreateCommand extends EditElementCommand {
 	 * 
 	 * @generated
 	 */
-	protected Interaction deduceContainer(final EObject source, final EObject target) {
+	protected Interaction deduceContainer(EObject source, EObject target) {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
@@ -156,5 +154,4 @@ public class MessageFoundCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

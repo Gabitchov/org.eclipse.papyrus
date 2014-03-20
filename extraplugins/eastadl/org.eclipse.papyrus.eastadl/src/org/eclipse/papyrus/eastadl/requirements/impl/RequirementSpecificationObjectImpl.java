@@ -33,17 +33,20 @@ import org.eclipse.papyrus.eastadl.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RequirementSpecificationObjectImpl#getReferencingContainer <em>Referencing Container</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.RequirementSpecificationObjectImpl#getReferencingContainer <em>Referencing Container</em>}
+ * </li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class RequirementSpecificationObjectImpl extends TraceableSpecificationImpl implements RequirementSpecificationObject {
+
 	/**
 	 * The cached value of the '{@link #getReferencingContainer() <em>Referencing Container</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getReferencingContainer()
 	 * @generated
 	 * @ordered
@@ -53,6 +56,7 @@ public abstract class RequirementSpecificationObjectImpl extends TraceableSpecif
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RequirementSpecificationObjectImpl() {
@@ -62,6 +66,7 @@ public abstract class RequirementSpecificationObjectImpl extends TraceableSpecif
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,10 +77,11 @@ public abstract class RequirementSpecificationObjectImpl extends TraceableSpecif
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<RequirementsContainer> getReferencingContainer() {
-		if (referencingContainer == null) {
+		if(referencingContainer == null) {
 			referencingContainer = new EObjectResolvingEList<RequirementsContainer>(RequirementsContainer.class, this, RequirementsPackage.REQUIREMENT_SPECIFICATION_OBJECT__REFERENCING_CONTAINER);
 		}
 		return referencingContainer;
@@ -84,13 +90,14 @@ public abstract class RequirementSpecificationObjectImpl extends TraceableSpecif
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT_SPECIFICATION_OBJECT__REFERENCING_CONTAINER:
-				return getReferencingContainer();
+		switch(featureID) {
+		case RequirementsPackage.REQUIREMENT_SPECIFICATION_OBJECT__REFERENCING_CONTAINER:
+			return getReferencingContainer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -98,16 +105,17 @@ public abstract class RequirementSpecificationObjectImpl extends TraceableSpecif
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT_SPECIFICATION_OBJECT__REFERENCING_CONTAINER:
-				getReferencingContainer().clear();
-				getReferencingContainer().addAll((Collection<? extends RequirementsContainer>)newValue);
-				return;
+		switch(featureID) {
+		case RequirementsPackage.REQUIREMENT_SPECIFICATION_OBJECT__REFERENCING_CONTAINER:
+			getReferencingContainer().clear();
+			getReferencingContainer().addAll((Collection<? extends RequirementsContainer>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -115,14 +123,15 @@ public abstract class RequirementSpecificationObjectImpl extends TraceableSpecif
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT_SPECIFICATION_OBJECT__REFERENCING_CONTAINER:
-				getReferencingContainer().clear();
-				return;
+		switch(featureID) {
+		case RequirementsPackage.REQUIREMENT_SPECIFICATION_OBJECT__REFERENCING_CONTAINER:
+			getReferencingContainer().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -130,13 +139,14 @@ public abstract class RequirementSpecificationObjectImpl extends TraceableSpecif
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT_SPECIFICATION_OBJECT__REFERENCING_CONTAINER:
-				return referencingContainer != null && !referencingContainer.isEmpty();
+		switch(featureID) {
+		case RequirementsPackage.REQUIREMENT_SPECIFICATION_OBJECT__REFERENCING_CONTAINER:
+			return referencingContainer != null && !referencingContainer.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

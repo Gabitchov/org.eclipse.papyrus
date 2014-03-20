@@ -23,13 +23,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist.CompletionProposalUtils;
 import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.PopupXtextEditorHelper;
 import org.eclipse.papyrus.infra.widgets.providers.HierarchicToFlatContentProvider;
 import org.eclipse.papyrus.uml.profile.structure.AppliedStereotypeProperty;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule;
+import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.StringConstants;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
-import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
+import org.eclipse.papyrus.uml.xtext.integration.CompletionProposalUtils;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.xtext.Assignment;
@@ -69,7 +69,7 @@ public class AppliedStereotypePropertyProposalProvider extends AbstractAppliedSt
 					UMLContentProvider umlContentProvider = new UMLContentProvider(appliedStereotypeProperty.getStereotypeApplication(), foundStructuralFeature, appliedStereotypeProperty.getStereotype());
 					HierarchicToFlatContentProvider treeToFlatContentProvider = new HierarchicToFlatContentProvider(umlContentProvider);
 					Object[] result = treeToFlatContentProvider.getElements();
-					UMLLabelProvider umlLabelProvider = new UMLLabelProvider();
+					// UMLLabelProvider umlLabelProvider = new UMLLabelProvider();
 					for(int i = 0; i < result.length; i++) {
 						if(result[i] instanceof EObject && UMLUtil.getBaseElement((EObject)result[i]) != null) {
 							acceptor.accept(CompletionProposalUtils.createCompletionProposal(((NamedElement)UMLUtil.getBaseElement((EObject)result[i])), ((NamedElement)UMLUtil.getBaseElement((EObject)result[i])).getQualifiedName(), ((NamedElement)UMLUtil.getBaseElement((EObject)result[i])).getQualifiedName(), context));
@@ -100,15 +100,11 @@ public class AppliedStereotypePropertyProposalProvider extends AbstractAppliedSt
 
 	public void completeBooleanKeyWord(Keyword keyword, ContentAssistContext contentAssistContext, ICompletionProposalAcceptor acceptor, AppliedStereotypeProperty appliedStereotypeProperty) {
 
-		if(appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals("Boolean")) {
-			String TRUE = "true";
-			String FALSE = "false";
-			if(keyword.getValue().startsWith(TRUE) || (keyword.getValue().startsWith(FALSE))) {
+		if(appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals(StringConstants.BOOLEAN)) {
+			if(keyword.getValue().startsWith(StringConstants.TRUE) || (keyword.getValue().startsWith(StringConstants.FALSE))) {
 				addKeyWord(keyword, contentAssistContext, acceptor);
 			}
 		}
-
-
 	}
 
 
@@ -123,7 +119,7 @@ public class AppliedStereotypePropertyProposalProvider extends AbstractAppliedSt
 	@Override
 	public void completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext, ICompletionProposalAcceptor acceptor) {
 
-		if(!contentAssistContext.getPrefix().equals("") && !contentAssistContext.getPrefix().equals("=")) {
+		if(!contentAssistContext.getPrefix().equals(StringConstants.EMPTY) && !contentAssistContext.getPrefix().equals(StringConstants.EQUALS)) { 
 			if(keyword.getValue().startsWith(contentAssistContext.getPrefix()))
 				super.completeKeyword(keyword, contentAssistContext, acceptor);
 		} else {
@@ -134,18 +130,18 @@ public class AppliedStereotypePropertyProposalProvider extends AbstractAppliedSt
 				completeBooleanKeyWord(keyword, contentAssistContext, acceptor, appliedStereotypeProperty);
 				//collection
 				if(appliedStereotypeProperty.getStereotypeProperty().getUpper() == -1 || appliedStereotypeProperty.getStereotypeProperty().getUpper() > 1) {
-					if(keyword.getValue().startsWith("}") || keyword.getValue().startsWith("{") || keyword.getValue().startsWith(",") || keyword.getValue().startsWith("null") || keyword.getValue().startsWith(",")) {
+					if(keyword.getValue().startsWith(StringConstants.CURLY_CLOSE) || keyword.getValue().startsWith(StringConstants.CURLY_OPEN) || keyword.getValue().startsWith(StringConstants.COMMA) || keyword.getValue().startsWith(StringConstants.NULL) || keyword.getValue().startsWith(StringConstants.COMMA)) {
 						addKeyWord(keyword, contentAssistContext, acceptor);
 					}
 				}
 				if(appliedStereotypeProperty.getStereotypeProperty().getUpper() == 1) {
-					if(keyword.getValue().startsWith("null")) {
+					if(keyword.getValue().startsWith(StringConstants.NULL)) {
 						addKeyWord(keyword, contentAssistContext, acceptor);
 					}
 				}
 
-				if(appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals("PrimitiveType")) {
-					if(keyword.getValue().startsWith("\"")) {
+				if(appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals(StringConstants.PRIMITIVE_TYPE)) {
+					if(keyword.getValue().startsWith("\"")) { //$NON-NLS-1$
 						addKeyWord(keyword, contentAssistContext, acceptor);
 					}
 				}

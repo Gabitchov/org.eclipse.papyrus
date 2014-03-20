@@ -95,6 +95,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 * 
 	 * @generated
 	 */
+	@Override
 	public EList<Window> getWindows() {
 		if(windows == null) {
 			windows = new EObjectContainmentEList<Window>(Window.class, this, DiPackage.SASH_MODEL__WINDOWS);
@@ -108,6 +109,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 * 
 	 * @generated
 	 */
+	@Override
 	public TabFolder getCurrentSelection() {
 		if(currentSelection != null && currentSelection.eIsProxy()) {
 			InternalEObject oldCurrentSelection = (InternalEObject)currentSelection;
@@ -137,6 +139,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void setCurrentSelection(TabFolder newCurrentSelection) {
 		TabFolder oldCurrentSelection = currentSelection;
 		currentSelection = newCurrentSelection;
@@ -148,9 +151,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public void addPage(Object pageIdentifier) {
 		getCurrentSelection().addPage(pageIdentifier);
 	}
@@ -158,9 +162,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public void addPage(TabFolder folder, Object pageIdentifier) {
 		//		if(folder==null) {
 		//			// Use first folder
@@ -172,19 +177,20 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * Get the first folder in the model.
 	 * Return null if no folder exist.
-	 * 
+	 *
 	 * @return
 	 */
 	//	public TabFolder getFirstFolder() {
-	//		
+	//
 	//	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public void removePage(Object pageIdentifier) {
 		PageRef pageRef = lookupPage(pageIdentifier);
 		if(pageRef == null) {
@@ -200,9 +206,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public void removePageAndEmptyFolder(Object pageIdentifier) {
 		PageRef pageRef;
 
@@ -220,9 +227,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public void setCurrentSelectionSilently(TabFolder selection) {
 		currentSelection = selection;
 	}
@@ -230,9 +238,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public PageRef lookupPage(final Object pageIdentifier) {
 
 		// Create appropriate visitor.
@@ -240,9 +249,9 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 
 			/**
 			 * Iterate over windows
-			 * 
+			 *
 			 * @see org.eclipse.papyrus.infra.core.sashwindows.di.util.DiSwitch#caseSashModel(org.eclipse.papyrus.infra.core.sashwindows.di.SashModel)
-			 * 
+			 *
 			 * @param object
 			 * @return
 			 */
@@ -260,9 +269,9 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			}
 
 			/**
-			 * 
+			 *
 			 * @see org.eclipse.papyrus.infra.core.sashwindows.di.util.DiSwitch#caseWindow(org.eclipse.papyrus.infra.core.sashwindows.di.Window)
-			 * 
+			 *
 			 * @param object
 			 * @return
 			 */
@@ -285,9 +294,9 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 
 			/**
 			 * Iterate over children
-			 * 
+			 *
 			 * @see org.eclipse.papyrus.infra.core.sashwindows.di.util.DiSwitch#caseSashPanel(org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel)
-			 * 
+			 *
 			 * @param object
 			 * @return
 			 */
@@ -306,9 +315,9 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 
 			/**
 			 * Iterate over PageRef
-			 * 
+			 *
 			 * @see org.eclipse.papyrus.infra.core.sashwindows.di.util.DiSwitch#caseTabFolder(org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder)
-			 * 
+			 *
 			 * @param object
 			 * @return
 			 */
@@ -336,9 +345,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * TODO Add method to metamodel
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public TabFolder lookupFirstFolder() {
 
 		// Create appropriate visitor.
@@ -346,9 +356,9 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 
 			/**
 			 * Iterate over windows
-			 * 
+			 *
 			 * @see org.eclipse.papyrus.infra.core.sashwindows.di.util.DiSwitch#caseSashModel(org.eclipse.papyrus.infra.core.sashwindows.di.SashModel)
-			 * 
+			 *
 			 * @param object
 			 * @return
 			 */
@@ -366,9 +376,9 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			}
 
 			/**
-			 * 
+			 *
 			 * @see org.eclipse.papyrus.infra.core.sashwindows.di.util.DiSwitch#caseWindow(org.eclipse.papyrus.infra.core.sashwindows.di.Window)
-			 * 
+			 *
 			 * @param object
 			 * @return
 			 */
@@ -391,9 +401,9 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 
 			/**
 			 * Iterate over children
-			 * 
+			 *
 			 * @see org.eclipse.papyrus.infra.core.sashwindows.di.util.DiSwitch#caseSashPanel(org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel)
-			 * 
+			 *
 			 * @param object
 			 * @return
 			 */
@@ -412,9 +422,9 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 
 			/**
 			 * Iterate over PageRef
-			 * 
+			 *
 			 * @see org.eclipse.papyrus.infra.core.sashwindows.di.util.DiSwitch#caseTabFolder(org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder)
-			 * 
+			 *
 			 * @param object
 			 * @return
 			 */
@@ -435,9 +445,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * TODO Add method to metamodel
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public Window lookupFirstWindow() {
 
 		List<Window> list = getWindows();
@@ -451,9 +462,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public void movePage(TabFolder srcParentFolder, int srcIndex, TabFolder targetParentFolder, int targetIndex) {
 
 
@@ -492,9 +504,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public void insertFolder(TabFolder folderToInsert, TabFolder refFolder, int side) {
 
 		// Get the parent under which the sash will be inserted
@@ -526,9 +539,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public void movePage(TabFolder srcParentFolder, int srcIndex, TabFolder targetParentFolder) {
 
 		// Check if we move all pages of srcFolder
@@ -553,9 +567,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public void removeEmptyFolder(TabFolder folder) {
 
 		EList<PageRef> children = folder.getChildren();
@@ -582,9 +597,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public void removeAllPages() {
 
 		// Get a the first window and a folder.
@@ -600,9 +616,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
+	@Override
 	public void removeOtherPages(Object pageIdentifier) {
 		// Get a the first window and a folder.
 		// Clear the folder and set it as the root folder.

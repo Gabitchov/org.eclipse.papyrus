@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 	 * {@inheritDoc}
 	 */
 	public void activate() {
-		View view = (View)getHost().getModel();
+		View view = (View) getHost().getModel();
 		hostSemanticElement = view.getElement();
 		getDiagramEventBroker().addNotificationListener(view, this);
 		getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
@@ -67,7 +68,7 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 	 * {@inheritDoc}
 	 */
 	public void deactivate() {
-		View view = (View)getHost().getModel();
+		View view = (View) getHost().getModel();
 		getDiagramEventBroker().removeNotificationListener(view, this);
 		getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
 		// removes the reference to the semantic element
@@ -79,23 +80,27 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 	 * @param editPart
 	 * @return
 	 */
-	public ArrayList<GeneralizationSetEditPart> getAllSameSemanticGeneralizationSet(GeneralizationEditPart editPart) {
+	public Collection<GeneralizationSetEditPart> getAllSameSemanticGeneralizationSet(GeneralizationEditPart editPart) {
 		// look for all Generalization set connected to the source location that reference the same
 		// generalizationSet
-		ArrayList<GeneralizationSetEditPart> result = new ArrayList<GeneralizationSetEditPart>();
-		ArrayList linkList = new ArrayList();
-		linkList.addAll(editPart.getSourceConnections());
-		linkList.addAll(editPart.getTargetConnections());
+		List<GeneralizationSetEditPart> result = new ArrayList<GeneralizationSetEditPart>();
+		List<Object> linkList = new ArrayList<Object>();
+		for (Object object : editPart.getSourceConnections()) {
+			linkList.add(object);
+		}
+		for (Object object : editPart.getTargetConnections()) {
+			linkList.add(object);
+		}
 		// remove reconnected link
 		linkList.remove(getHost());
 		// get the link that refer the same model element
-		GeneralizationSetEditPart edgeToMove = null;
-		Iterator iterator = linkList.iterator();
-		while(iterator.hasNext()) {
+
+		Iterator<Object> iterator = linkList.iterator();
+		while (iterator.hasNext()) {
 			Object currentObject = iterator.next();
-			if(currentObject instanceof GeneralizationSetEditPart) {
-				if(((GeneralizationSetEditPart)getHost()).resolveSemanticElement().equals(((GeneralizationSetEditPart)currentObject).resolveSemanticElement())) {
-					result.add((GeneralizationSetEditPart)currentObject);
+			if (currentObject instanceof GeneralizationSetEditPart) {
+				if (((GeneralizationSetEditPart) getHost()).resolveSemanticElement().equals(((GeneralizationSetEditPart) currentObject).resolveSemanticElement())) {
+					result.add((GeneralizationSetEditPart) currentObject);
 				}
 			}
 		}
@@ -108,8 +113,8 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 	 * @return the diagram event broker
 	 */
 	private DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(theEditingDomain != null) {
+		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		if (theEditingDomain != null) {
 			return DiagramEventBroker.getInstance(theEditingDomain);
 		}
 		return null;
@@ -120,22 +125,26 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 	 * {@inheritedDoc}
 	 */
 	public void notifyChanged(Notification notification) {
-		if(getHost().getViewer() instanceof DiagramGraphicalViewer) {
-			if(getHost() instanceof GeneralizationSetEditPart) {
-				String elementID = EMFCoreUtil.getProxyID(((GeneralizationSetEditPart)getHost()).resolveSemanticElement());
-				List<EditPart> editpartList = ((DiagramGraphicalViewer)(getHost().getViewer())).findEditPartsForElement(elementID, GeneralizationSetEditPart.class);
-				if(editpartList.size() > 1 && editpartList.indexOf(getHost()) > 0) {
+		if (getHost().getViewer() instanceof DiagramGraphicalViewer) {
+			if (getHost() instanceof GeneralizationSetEditPart) {
+				String elementID = EMFCoreUtil.getProxyID(((GeneralizationSetEditPart) getHost()).resolveSemanticElement());
+				List<EditPart> editpartList = new ArrayList<EditPart>();
+				for (Object object : ((DiagramGraphicalViewer) (getHost().getViewer())).findEditPartsForElement(elementID, GeneralizationSetEditPart.class)) {
+					editpartList.add((EditPart) object);
+				}
+
+				if (editpartList.size() > 1 && editpartList.indexOf(getHost()) > 0) {
 					try {
-						((IGraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
+						((IGraphicalEditPart) getHost()).getEditingDomain().runExclusive(new Runnable() {
 
 							public void run() {
 								Display.getCurrent().asyncExec(new Runnable() {
 
 									public void run() {
-										for(int i = 0; i < getHost().getChildren().size(); i++) {
-											SetRequest setRequest = new SetRequest((View)((EditPart)getHost().getChildren().get(i)).getModel(), NotationPackage.eINSTANCE.getView_Visible(), false);
+										for (int i = 0; i < getHost().getChildren().size(); i++) {
+											SetRequest setRequest = new SetRequest((View) ((EditPart) getHost().getChildren().get(i)).getModel(), NotationPackage.eINSTANCE.getView_Visible(), false);
 											SetValueCommand setValueCommand = new SetValueCommand(setRequest);
-											((IGraphicalEditPart)getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(new ICommandProxy(setValueCommand));
+											((IGraphicalEditPart) getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(new ICommandProxy(setValueCommand));
 											// refresh();
 										}
 									}
@@ -148,29 +157,29 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 				}
 			}
 		}
-		if(notification.getNotifier() instanceof RelativeBendpoints) {
+		if (notification.getNotifier() instanceof RelativeBendpoints) {
 			try {
-				((IGraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
+				((IGraphicalEditPart) getHost()).getEditingDomain().runExclusive(new Runnable() {
 
 					public void run() {
 						Display.getCurrent().asyncExec(new Runnable() {
 
 							public void run() {
-								if(getAllSameSemanticGeneralizationSet(((GeneralizationEditPart)((GeneralizationSetEditPart)getHost()).getTarget())).size() != 0) {
+								if (getAllSameSemanticGeneralizationSet(((GeneralizationEditPart) ((GeneralizationSetEditPart) getHost()).getTarget())).size() != 0) {
 									ReconnectRequest reconnectRequest = new ReconnectRequest();
 									reconnectRequest.setType(GraphicalNodeEditPolicy.REQ_RECONNECT_TARGET);
-									reconnectRequest.setConnectionEditPart(((GeneralizationSetEditPart)getHost()));
-									reconnectRequest.setTargetEditPart(((GeneralizationSetEditPart)getHost()).getTarget());
-									Command command = ((GeneralizationSetEditPart)getHost()).getTarget().getCommand(reconnectRequest);
-									((GeneralizationSetEditPart)getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(command);
+									reconnectRequest.setConnectionEditPart(((GeneralizationSetEditPart) getHost()));
+									reconnectRequest.setTargetEditPart(((GeneralizationSetEditPart) getHost()).getTarget());
+									Command command = ((GeneralizationSetEditPart) getHost()).getTarget().getCommand(reconnectRequest);
+									((GeneralizationSetEditPart) getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(command);
 								}
-								if(getAllSameSemanticGeneralizationSet(((GeneralizationEditPart)((GeneralizationSetEditPart)getHost()).getSource())).size() != 0) {
+								if (getAllSameSemanticGeneralizationSet(((GeneralizationEditPart) ((GeneralizationSetEditPart) getHost()).getSource())).size() != 0) {
 									ReconnectRequest reconnectRequest = new ReconnectRequest();
 									reconnectRequest.setType(GraphicalNodeEditPolicy.REQ_RECONNECT_SOURCE);
-									reconnectRequest.setConnectionEditPart(((GeneralizationSetEditPart)getHost()));
-									reconnectRequest.setTargetEditPart(((GeneralizationSetEditPart)getHost()).getSource());
-									Command command = ((GeneralizationSetEditPart)getHost()).getSource().getCommand(reconnectRequest);
-									((GeneralizationSetEditPart)getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(command);
+									reconnectRequest.setConnectionEditPart(((GeneralizationSetEditPart) getHost()));
+									reconnectRequest.setTargetEditPart(((GeneralizationSetEditPart) getHost()).getSource());
+									Command command = ((GeneralizationSetEditPart) getHost()).getSource().getCommand(reconnectRequest);
+									((GeneralizationSetEditPart) getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(command);
 								}
 							}
 						});

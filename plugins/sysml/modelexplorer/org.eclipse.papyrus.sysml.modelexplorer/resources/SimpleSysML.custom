@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom:Customization xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:custom="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:efacet="http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet" xmlns:javaQuery="http://www.eclipse.org/papyrus/emf/facet/query/java/0.2.incubation/javaquery" name="SimpleSysML" documentation="Display SysML elements">
+  <eClassifiers xsi:type="custom:EClassCustomization" name="SysMLElement">
+    <extendedMetaclass href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
+    <facetOperations name="GetSysMLElementIcon">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom_primitive_types#//Image"/>
+      <eParameters name="eStructuralElement">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
+      </eParameters>
+      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.sysml.modelexplorer.query.GetImageQuery"/>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/image"/>
+    </facetOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="custom:EClassCustomization" name="NamedElement">
+    <extendedMetaclass href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+    <facetOperations name="GetSysMLElementLabel">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="eObject">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eParameters>
+      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.sysml.modelexplorer.query.GetLabelQuery"/>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+    </facetOperations>
+    <extendedFacets href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+  </eClassifiers>
+</custom:Customization>

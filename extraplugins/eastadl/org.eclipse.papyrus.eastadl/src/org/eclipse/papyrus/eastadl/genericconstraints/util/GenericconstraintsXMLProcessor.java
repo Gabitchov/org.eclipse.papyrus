@@ -27,6 +27,7 @@ import org.eclipse.papyrus.eastadl.genericconstraints.GenericconstraintsPackage;
  * This class contains helper methods to serialize and deserialize XML documents
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class GenericconstraintsXMLProcessor extends XMLProcessor {
@@ -35,22 +36,24 @@ public class GenericconstraintsXMLProcessor extends XMLProcessor {
 	 * Public constructor to instantiate the helper.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GenericconstraintsXMLProcessor() {
 		super((EPackage.Registry.INSTANCE));
 		GenericconstraintsPackage.eINSTANCE.eClass();
 	}
-	
+
 	/**
 	 * Register for "*" and "xml" file extensions the GenericconstraintsResourceFactoryImpl factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
+		if(registrations == null) {
 			super.getRegistrations();
 			registrations.put(XML_EXTENSION, new GenericconstraintsResourceFactoryImpl());
 			registrations.put(STAR_EXTENSION, new GenericconstraintsResourceFactoryImpl());

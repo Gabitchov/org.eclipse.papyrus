@@ -38,10 +38,12 @@ import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChang
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.palette.PaletteContainer;
+import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
@@ -58,10 +60,16 @@ import org.eclipse.gmf.runtime.common.ui.services.util.ActivityFilterProviderDes
 import org.eclipse.gmf.runtime.common.ui.util.ActivityUtil;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.ContributeToPaletteOperation;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
+import org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteService;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.SelectionToolEx;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.part.IPaletteDescription;
@@ -70,6 +78,7 @@ import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.uml.diagram.common.service.XMLPaletteProviderConfiguration.EditorDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.osgi.framework.Bundle;
+import org.w3c.dom.NodeList;
 
 /**
  * Service that contributes to the palette of a given editor with a given
@@ -279,14 +288,16 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		@Override
 		public IProvider getProvider() {
 			if(provider == null) {
-				IProvider newProvider = super.getProvider();
-				if(provider instanceof IPaletteProvider) {
-					IPaletteProvider defaultProvider = (IPaletteProvider)newProvider;
-					defaultProvider.setContributions(getElement());
+				super.getProvider();
+				if (provider instanceof DefaultPaletteProvider) {
+					IPaletteProvider filtering = new FilteringPaletteProvider((DefaultPaletteProvider) provider, new String[] { GROUP_STANDARD, SEPARATOR_STANDARD, TOOL_SELECTION });
+					filtering.setContributions(getElement());
+					provider = filtering;
+				} else if (provider instanceof IPaletteProvider) {
+					((IPaletteProvider)provider).setContributions(getElement());
 				}
-				return newProvider;
 			}
-			return super.getProvider();
+			return provider;
 		}
 	}
 
@@ -867,9 +878,27 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		} catch (Exception e) {
 			Activator.getDefault().logError("Error in PapyrusPaletteService::createPalette()", e); //$NON-NLS-1$
 		}
+		
+		Diagram diagram = ((DiagramEditor)editor).getDiagram();
+		for (Object o : root.getChildren()) {
+			if (o instanceof PaletteDrawer) {
+				PaletteDrawer drawer = (PaletteDrawer)o;
+				boolean isVisible = PolicyChecker.getCurrent().isInPalette(diagram, drawer.getId());
+				drawer.setVisible(isVisible);
+				if (isVisible) {
+					for (Object x : drawer.getChildren()) {
+						if (x instanceof PaletteEntry) {
+							PaletteEntry entry = (PaletteEntry)x;
+							entry.setVisible(PolicyChecker.getCurrent().isInPalette(diagram, entry.getId()));
+						}
+					}
+				}
+			}
+		}
 		return root;
 	}
-
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */

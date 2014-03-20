@@ -1381,6 +1381,12 @@
     <sections name="MultiplePackageMerge" sectionFile="ui/MultiplePackageMerge.xwt">
       <widget href="ui/MultiplePackageMerge.xwt#/"/>
     </sections>
+    <sections name="SingleSignalEvent" sectionFile="ui/SingleSignalEvent.xwt">
+      <widget href="ui/SingleSignalEvent.xwt#/"/>
+    </sections>
+    <sections name="MultipleSignalEvent" sectionFile="ui/SingleSignalEvent.xwt">
+      <widget href="ui/SingleSignalEvent.xwt#/"/>
+    </sections>
   </tabs>
   <tabs label="Comments" id="comments" category="org.eclipse.papyrus" image="" priority="20">
     <sections name="SingleElementAppliedComments" sectionFile="ui/SingleElementAppliedComments.xwt">
@@ -4202,6 +4208,18 @@
       </constraints>
     </constraints>
   </views>
+  <views name="SingleSignalEvent" sections="//@tabs.0/@sections.460">
+    <constraints xsi:type="constraints:SimpleConstraint" name="IsSingleSignalEvent">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="SignalEvent"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="MultipleSignalEvent" sections="//@tabs.0/@sections.461">
+    <constraints xsi:type="constraints:SimpleConstraint" name="IsMultipleSignalEvent">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="SignalEvent"/>
+    </constraints>
+  </views>
   <dataContexts name="UML" label="UML">
     <elements name="Comment" supertypes="//@dataContexts.0/@elements.1">
       <properties name="body" description="Specifies a string that is the comment."/>
@@ -4393,7 +4411,6 @@
       <properties name="datatype" type="Reference" description="The DataType that owns this Property."/>
       <properties name="isDerived" description="If isDerived is true, the value of the attribute is derived from information elsewhere.&#xD;&#xA;Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
       <properties name="isDerivedUnion" description="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it."/>
-      <properties name="default" description="Specifies a String that represents a value to be used when no argument is supplied for the Property.&#xD;&#xA;A String that is evaluated to give a default value for the Property when an object of the owning Classifier is instantiated."/>
       <properties name="aggregation" type="Enumeration" description="Specifies the kind of aggregation that applies to the Property."/>
       <properties name="isComposite" description="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.&#xD;&#xA;This is a derived value, indicating whether the aggregation of the Property is composite or not."/>
       <properties name="redefinedProperty" type="Reference" description="References the properties that are redefined by this property."/>

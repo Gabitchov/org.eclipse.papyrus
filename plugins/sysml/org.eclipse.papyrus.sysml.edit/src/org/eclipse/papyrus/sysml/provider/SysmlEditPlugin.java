@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
 
 /**
- * This is the central singleton for the Sysml edit plugin.
+ * This is the central singleton for the SysML edit plugin.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * 
@@ -50,7 +50,7 @@ public final class SysmlEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public SysmlEditPlugin() {
-		super(new ResourceLocator[]{ UMLEditPlugin.INSTANCE, EcoreEditPlugin.INSTANCE, });
+		super(new ResourceLocator[]{ EcoreEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, });
 	}
 
 	/**

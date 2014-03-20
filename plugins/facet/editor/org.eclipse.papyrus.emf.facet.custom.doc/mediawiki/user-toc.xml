@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc topic="mediawiki/user.html" label="user">
+	<topic href="mediawiki/user.html" label="Description"></topic>
+	<topic href="mediawiki/user.html#Customization_Metamodel" label="Customization Metamodel">
+		<topic href="mediawiki/user.html#customizations" label="customizations"></topic>
+		<topic href="mediawiki/user.html#customizable_features" label="customizable features"></topic>
+		<topic href="mediawiki/user.html#customization_override" label="customization override">
+			<topic href="mediawiki/user.html#customizing_an_EClass" label="customizing an EClass"></topic>
+			<topic href="mediawiki/user.html#customizing_a_Facet" label="customizing a Facet"></topic>
+		</topic>
+		<topic href="mediawiki/user.html#customizing_structural_features" label="customizing structural features"></topic>
+		<topic href="mediawiki/user.html#conditional_customization" label="conditional customization"></topic>
+		<topic href="mediawiki/user.html#customization_cases" label="customization cases"></topic>
+	</topic>
+	<topic href="mediawiki/user.html#Example" label="Example"></topic>
+	<topic href="mediawiki/user.html#Default_Customizations" label="Default Customizations">
+		<topic href="mediawiki/user.html#label" label="label"></topic>
+		<topic href="mediawiki/user.html#image" label="image"></topic>
+		<topic href="mediawiki/user.html#color" label="color"></topic>
+		<topic href="mediawiki/user.html#font" label="font"></topic>
+		<topic href="mediawiki/user.html#overlay" label="overlay"></topic>
+		<topic href="mediawiki/user.html#obtaining_customization_properties" label="obtaining customization properties"></topic>
+	</topic>
+	<topic href="mediawiki/user.html#Registration" label="Registration"></topic>
+	<topic href="mediawiki/user.html#Catalog" label="Catalog"></topic>
+	<topic href="mediawiki/user.html#Customization_Manager" label="Customization Manager"></topic>
+	<topic href="mediawiki/user.html#Customized_Providers" label="Customized Providers"></topic>
+</toc>

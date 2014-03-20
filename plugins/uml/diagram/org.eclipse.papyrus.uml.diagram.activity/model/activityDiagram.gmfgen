@@ -3743,7 +3743,7 @@
         <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.eclipse.uml2.uml.diagram.rulersAndGrid" name="Rulers And Grid" kind="RulersAndGrid"/>
       </preferencePages>
     </diagram>
-    <plugin iD="org.eclipse.papyrus.uml.diagram.activity" name="Papyrus activity editor Plugin" provider="Papyrus" version="0.10.0.qualifier">
+    <plugin iD="org.eclipse.papyrus.uml.diagram.activity" name="Papyrus activity editor Plugin" provider="Papyrus" version="1.0.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.papyrus.uml.diagram.common</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>

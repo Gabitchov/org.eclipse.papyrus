@@ -29,18 +29,20 @@ import org.eclipse.papyrus.eastadl.infrastructure.datatypes.EAFloat;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EAFloatImpl#getMin <em>Min</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EAFloatImpl#getMax <em>Max</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EAFloatImpl#getMin <em>Min</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EAFloatImpl#getMax <em>Max</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class EAFloatImpl extends RangeableDatatypeImpl implements EAFloat {
+
 	/**
 	 * The default value of the '{@link #getMin() <em>Min</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMin()
 	 * @generated
 	 * @ordered
@@ -51,6 +53,7 @@ public class EAFloatImpl extends RangeableDatatypeImpl implements EAFloat {
 	 * The cached value of the '{@link #getMin() <em>Min</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMin()
 	 * @generated
 	 * @ordered
@@ -61,6 +64,7 @@ public class EAFloatImpl extends RangeableDatatypeImpl implements EAFloat {
 	 * The default value of the '{@link #getMax() <em>Max</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMax()
 	 * @generated
 	 * @ordered
@@ -71,6 +75,7 @@ public class EAFloatImpl extends RangeableDatatypeImpl implements EAFloat {
 	 * The cached value of the '{@link #getMax() <em>Max</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMax()
 	 * @generated
 	 * @ordered
@@ -80,6 +85,7 @@ public class EAFloatImpl extends RangeableDatatypeImpl implements EAFloat {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EAFloatImpl() {
@@ -89,15 +95,16 @@ public class EAFloatImpl extends RangeableDatatypeImpl implements EAFloat {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DatatypesPackage.EA_FLOAT__MIN:
-				return getMin();
-			case DatatypesPackage.EA_FLOAT__MAX:
-				return getMax();
+		switch(featureID) {
+		case DatatypesPackage.EA_FLOAT__MIN:
+			return getMin();
+		case DatatypesPackage.EA_FLOAT__MAX:
+			return getMax();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -105,15 +112,16 @@ public class EAFloatImpl extends RangeableDatatypeImpl implements EAFloat {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DatatypesPackage.EA_FLOAT__MIN:
-				return MIN_EDEFAULT == null ? min != null : !MIN_EDEFAULT.equals(min);
-			case DatatypesPackage.EA_FLOAT__MAX:
-				return MAX_EDEFAULT == null ? max != null : !MAX_EDEFAULT.equals(max);
+		switch(featureID) {
+		case DatatypesPackage.EA_FLOAT__MIN:
+			return MIN_EDEFAULT == null ? min != null : !MIN_EDEFAULT.equals(min);
+		case DatatypesPackage.EA_FLOAT__MAX:
+			return MAX_EDEFAULT == null ? max != null : !MAX_EDEFAULT.equals(max);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -121,17 +129,18 @@ public class EAFloatImpl extends RangeableDatatypeImpl implements EAFloat {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DatatypesPackage.EA_FLOAT__MIN:
-				setMin((Float)newValue);
-				return;
-			case DatatypesPackage.EA_FLOAT__MAX:
-				setMax((Float)newValue);
-				return;
+		switch(featureID) {
+		case DatatypesPackage.EA_FLOAT__MIN:
+			setMin((Float)newValue);
+			return;
+		case DatatypesPackage.EA_FLOAT__MAX:
+			setMax((Float)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -139,6 +148,7 @@ public class EAFloatImpl extends RangeableDatatypeImpl implements EAFloat {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,17 +159,18 @@ public class EAFloatImpl extends RangeableDatatypeImpl implements EAFloat {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DatatypesPackage.EA_FLOAT__MIN:
-				setMin(MIN_EDEFAULT);
-				return;
-			case DatatypesPackage.EA_FLOAT__MAX:
-				setMax(MAX_EDEFAULT);
-				return;
+		switch(featureID) {
+		case DatatypesPackage.EA_FLOAT__MIN:
+			setMin(MIN_EDEFAULT);
+			return;
+		case DatatypesPackage.EA_FLOAT__MAX:
+			setMax(MAX_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -167,6 +178,7 @@ public class EAFloatImpl extends RangeableDatatypeImpl implements EAFloat {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Float getMax() {
@@ -176,6 +188,7 @@ public class EAFloatImpl extends RangeableDatatypeImpl implements EAFloat {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Float getMin() {
@@ -185,35 +198,39 @@ public class EAFloatImpl extends RangeableDatatypeImpl implements EAFloat {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setMax(Float newMax) {
 		Float oldMax = max;
 		max = newMax;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatatypesPackage.EA_FLOAT__MAX, oldMax, max));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setMin(Float newMin) {
 		Float oldMin = min;
 		min = newMin;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatatypesPackage.EA_FLOAT__MIN, oldMin, min));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (min: ");

@@ -18,6 +18,7 @@ package org.eclipse.papyrus.eastadl.behavior.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.papyrus.eastadl.behavior.*;
 import org.eclipse.papyrus.eastadl.behavior.Behavior;
 import org.eclipse.papyrus.eastadl.behavior.BehaviorPackage;
 import org.eclipse.papyrus.eastadl.behavior.FunctionBehavior;
@@ -36,6 +37,7 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.TraceableSpecificatio
  * each class of the model, starting with the actual class of the object and proceeding up the
  * inheritance hierarchy until a non-null result is returned, which is the result of the switch.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.eastadl.behavior.BehaviorPackage
  * @generated
  */
@@ -44,6 +46,7 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static BehaviorPackage modelPackage;
@@ -51,10 +54,11 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	/**
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BehaviorSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = BehaviorPackage.eINSTANCE;
 		}
 	}
@@ -63,6 +67,7 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @parameter ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
@@ -78,7 +83,9 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Behavior</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -93,7 +100,9 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Context</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -108,7 +117,9 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EA Packageable Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -123,7 +134,9 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Function Behavior</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -138,7 +151,9 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Function Trigger</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -153,7 +168,9 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Mode</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -168,7 +185,9 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Mode Group</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -183,7 +202,9 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EA Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -198,7 +219,9 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Traceable Specification</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -213,7 +236,7 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	 * terminate the switch, but this is the last case anyway. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -226,52 +249,73 @@ public class BehaviorSwitch<T> extends Switch<T> {
 	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-			case BehaviorPackage.FUNCTION_BEHAVIOR: {
-				FunctionBehavior functionBehavior = (FunctionBehavior)theEObject;
-				T result = caseFunctionBehavior(functionBehavior);
-				if (result == null) result = caseContext(functionBehavior);
-				if (result == null) result = caseEAElement(functionBehavior);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BehaviorPackage.MODE: {
-				Mode mode = (Mode)theEObject;
-				T result = caseMode(mode);
-				if (result == null) result = caseEAElement(mode);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BehaviorPackage.BEHAVIOR: {
-				Behavior behavior = (Behavior)theEObject;
-				T result = caseBehavior(behavior);
-				if (result == null) result = caseContext(behavior);
-				if (result == null) result = caseEAElement(behavior);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BehaviorPackage.FUNCTION_TRIGGER: {
-				FunctionTrigger functionTrigger = (FunctionTrigger)theEObject;
-				T result = caseFunctionTrigger(functionTrigger);
-				if (result == null) result = caseEAElement(functionTrigger);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BehaviorPackage.MODE_GROUP: {
-				ModeGroup modeGroup = (ModeGroup)theEObject;
-				T result = caseModeGroup(modeGroup);
-				if (result == null) result = caseTraceableSpecification(modeGroup);
-				if (result == null) result = caseEAPackageableElement(modeGroup);
-				if (result == null) result = caseEAElement(modeGroup);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		switch(classifierID) {
+		case BehaviorPackage.FUNCTION_BEHAVIOR:
+		{
+			FunctionBehavior functionBehavior = (FunctionBehavior)theEObject;
+			T result = caseFunctionBehavior(functionBehavior);
+			if(result == null)
+				result = caseContext(functionBehavior);
+			if(result == null)
+				result = caseEAElement(functionBehavior);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BehaviorPackage.MODE:
+		{
+			Mode mode = (Mode)theEObject;
+			T result = caseMode(mode);
+			if(result == null)
+				result = caseEAElement(mode);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BehaviorPackage.BEHAVIOR:
+		{
+			Behavior behavior = (Behavior)theEObject;
+			T result = caseBehavior(behavior);
+			if(result == null)
+				result = caseContext(behavior);
+			if(result == null)
+				result = caseEAElement(behavior);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BehaviorPackage.FUNCTION_TRIGGER:
+		{
+			FunctionTrigger functionTrigger = (FunctionTrigger)theEObject;
+			T result = caseFunctionTrigger(functionTrigger);
+			if(result == null)
+				result = caseEAElement(functionTrigger);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BehaviorPackage.MODE_GROUP:
+		{
+			ModeGroup modeGroup = (ModeGroup)theEObject;
+			T result = caseModeGroup(modeGroup);
+			if(result == null)
+				result = caseTraceableSpecification(modeGroup);
+			if(result == null)
+				result = caseEAPackageableElement(modeGroup);
+			if(result == null)
+				result = caseEAElement(modeGroup);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

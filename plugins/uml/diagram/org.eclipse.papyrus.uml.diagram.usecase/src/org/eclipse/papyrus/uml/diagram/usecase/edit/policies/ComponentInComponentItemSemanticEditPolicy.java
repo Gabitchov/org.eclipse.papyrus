@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.AbstractionCreateCommand;
@@ -117,7 +118,7 @@ public class ComponentInComponentItemSemanticEditPolicy extends UMLBaseItemSeman
 			if(isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget(), DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.ConstraintConstrainedElement_4012 == baseElementType) {
 			return null;
@@ -188,7 +189,7 @@ public class ComponentInComponentItemSemanticEditPolicy extends UMLBaseItemSeman
 			if(isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget(), DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.ConstraintConstrainedElement_4012 == baseElementType) {
 			if(isExtendedType) {

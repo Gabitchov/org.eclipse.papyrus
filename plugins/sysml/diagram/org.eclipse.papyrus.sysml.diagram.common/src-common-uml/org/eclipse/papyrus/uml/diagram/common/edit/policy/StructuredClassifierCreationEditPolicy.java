@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011-2012 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.edit.policy;
 
+import java.util.Collections;
 import java.util.Iterator;
 
 import org.eclipse.draw2d.IFigure;
@@ -22,6 +23,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
@@ -37,6 +39,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.commands.CreateViewCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.snap.NodeSnapHelper;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 
 /**
@@ -121,11 +124,23 @@ public class StructuredClassifierCreationEditPolicy extends CreationEditPolicy {
 		PortPositionLocator locator = new PortPositionLocator(getHostFigure(), PositionConstants.NONE);
 		Rectangle proposedBounds = new Rectangle(requestedLocation, new Dimension(20, 20));
 		Rectangle preferredBounds = locator.getPreferredLocation(proposedBounds);
-
+		
+		if(request.isSnapToEnabled()) { //request for snap port at the creation
+			//we find the best location with snap
+			Point wantedPoint = preferredBounds.getLocation();
+			getHostFigure().translateToAbsolute(wantedPoint);
+			Rectangle portBounds = new Rectangle(wantedPoint, new Dimension(20, 20));
+			NodeSnapHelper helper = new NodeSnapHelper((SnapToHelper)getHost().getAdapter(SnapToHelper.class), portBounds, false, false, true);
+			final ChangeBoundsRequest tmpRequest = new ChangeBoundsRequest("move"); //$NON-NLS-1$
+			tmpRequest.setEditParts(Collections.emptyList());
+			tmpRequest.setSnapToEnabled(true);
+			tmpRequest.setLocation(portBounds.getLocation());
+			helper.snapPoint(tmpRequest);
+			preferredBounds.translate(tmpRequest.getMoveDelta());
+		}
 		// Convert the calculated preferred bounds as relative to parent location
 		Rectangle creationBounds = preferredBounds.getTranslated(parentLoc.getNegated());
 		setBoundsCommand = new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, descriptor, creationBounds);
-
 		return setBoundsCommand;
 	}
 

@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.PropertySpecificType;
 import org.eclipse.uml2.uml.Classifier;
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.Classifier;
  * 
  * @generated
  */
-public class PropertySpecificTypeImpl extends EObjectImpl implements PropertySpecificType {
+public class PropertySpecificTypeImpl extends MinimalEObjectImpl.Container implements PropertySpecificType {
 
 	/**
 	 * The cached value of the '{@link #getBase_Classifier() <em>Base Classifier</em>}' reference.

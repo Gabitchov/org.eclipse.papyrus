@@ -13,35 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.activities.provider;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.regex.Pattern;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
-import org.eclipse.papyrus.sysml.activities.Overwrite;
-import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
-import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Overwrite} object.
@@ -50,24 +36,9 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * 
  * @generated
  */
-public class OverwriteItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class OverwriteItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
 {
-
-	/**
-	 * Pattern prefix of overwrite
-	 * 
-	 * @generated
-	 */
-	private static Pattern OVERWRITE_PREFIX_PATTERN = Pattern.compile("(overwrite, |<<overwrite>>|, overwrite)");
-
-	/**
-	 * Get the prefix pattern of OBJECT_NODE_PREFIX_PATTERN
-	 * 
-	 * @generated
-	 */
-
-	private static Pattern OBJECT_NODE_PREFIX_PATTERN = Pattern.compile("Object Node");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -89,39 +60,11 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(object instanceof Overwrite) {
-			if(itemPropertyDescriptors == null) {
-				super.getPropertyDescriptors(object);
+		if(itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-				addBase_ObjectNodePropertyDescriptor(object);
-			}
+			addBase_ObjectNodePropertyDescriptor(object);
 		}
-
-		/**
-		 * Handle ObjectNode stereotyped by Overwrite
-		 */
-		if(object instanceof org.eclipse.uml2.uml.ObjectNode) {
-			org.eclipse.uml2.uml.ObjectNode element = (org.eclipse.uml2.uml.ObjectNode)object;
-			/**
-			 * This is used to store all the property descriptors for a class stereotyped with a block.
-			 * Derived classes should add descriptors to this vector.
-			 */
-
-			List<IItemPropertyDescriptor> itemPropertyDescriptorsForobjectNode = new ArrayList<IItemPropertyDescriptor>();
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
-			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-
-			itemPropertyDescriptorsForobjectNode.addAll(propertyDescriptors);
-			Overwrite steApplication = UMLUtil.getStereotypeApplication(element, Overwrite.class);
-			if(steApplication != null) {
-
-				itemPropertyDescriptorsForobjectNode.add(createBase_ObjectNodePropertyDescriptorForObjectNode(steApplication));
-
-			}
-			return itemPropertyDescriptorsForobjectNode;
-
-		}
-
 		return itemPropertyDescriptors;
 	}
 
@@ -137,29 +80,6 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Object Node feature for the UML element ObjectNode.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected ItemPropertyDescriptorDecorator createBase_ObjectNodePropertyDescriptorForObjectNode(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Overwrite_base_ObjectNode_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_Overwrite_base_ObjectNode_feature", "_UI_Overwrite_type"),
-
-		ActivitiesPackage.Literals.OVERWRITE__BASE_OBJECT_NODE, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
-	}
-
-	/**
 	 * This returns Overwrite.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -168,12 +88,7 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 */
 	@Override
 	public Object getImage(Object object) {
-		Object composedImage = overlayImage(object, getResourceLocator().getImage("full/obj16/Overwrite"));
-		if(object instanceof NamedElement) {
-			ComposedImage aux = new ComposedImage(Collections.singletonList(composedImage));
-			return (Object)composeVisibilityImage(object, aux);
-		}
-		return composedImage;
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Overwrite"));
 	}
 
 	/**
@@ -185,27 +100,6 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 */
 	@Override
 	public String getText(Object object) {
-		/**
-		 * Handle Stereotype item and stereoted element
-		 */
-		Overwrite overwrite_ = null;
-
-		if(object instanceof org.eclipse.uml2.uml.ObjectNode) {
-			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.ObjectNode)object, Overwrite.class);
-			Stereotype ste = UMLUtil.getStereotype(steApplication);
-			if(ste != null) {
-				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
-				String result = ite.getText(object);
-				result = OVERWRITE_PREFIX_PATTERN.matcher(result).replaceFirst("");
-				return OBJECT_NODE_PREFIX_PATTERN.matcher(result).replaceFirst("Overwrite");
-			}
-
-		}
-
-		if(overwrite_ == null) {
-			overwrite_ = (Overwrite)object;
-		}
-
 		return getString("_UI_Overwrite_type");
 	}
 
@@ -220,25 +114,6 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		/**
-		 * Notify UML element
-		 */
-		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
-			/**
-			 * Handle ObjectNode stereotyped by Overwrite
-			 */
-
-			if(notification.getFeatureID(org.eclipse.uml2.uml.ObjectNode.class) != Notification.NO_FEATURE_ID) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
-				ite.notifyChanged(notification);
-				return;
-
-			}
-
-		}
-
 		super.notifyChanged(notification);
 	}
 
@@ -265,63 +140,6 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
-	}
-
-	/**
-	 * Override in order to handle has children for based class
-	 * 
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public Collection<?> getChildren(Object object) {
-		Collection<Object> result = (Collection<Object>)super.getChildren(object);
-		if(object instanceof EObject) {
-			EObject eObject = (EObject)object;
-			/**
-			 * Handle based elements type
-			 */
-			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
-				/**
-				 * Handle ObjectNode stereotyped by Overwrite
-				 */
-				if(UMLPackage.Literals.OBJECT_NODE.equals(eObject.eClass())) {
-					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
-					result.addAll((Collection<Object>)ite.getChildren(object));
-					return result;
-				}
-
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * Override in order to handle has children for based class
-	 * 
-	 * @generated
-	 */
-	@Override
-	public boolean hasChildren(Object object) {
-		if(object instanceof EObject) {
-			EObject eObject = (EObject)object;
-			/**
-			 * Handle based elements type
-			 */
-			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
-				/**
-				 * Handle ObjectNode stereotyped by Overwrite
-				 */
-				if(UMLPackage.Literals.OBJECT_NODE.equals(eObject.eClass())) {
-					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
-					return super.hasChildren(object) || ite.hasChildren(object);
-				}
-
-			}
-		}
-		return super.hasChildren(object);
 	}
 
 }

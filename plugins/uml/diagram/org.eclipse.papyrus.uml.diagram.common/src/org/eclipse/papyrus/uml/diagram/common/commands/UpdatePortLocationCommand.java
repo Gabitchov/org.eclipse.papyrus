@@ -168,6 +168,26 @@ public class UpdatePortLocationCommand extends AbstractTransactionalCommand {
 					//nothing to do
 					break;
 				}
+			}else if(resizeDirection==PositionConstants.SOUTH_WEST){
+				switch(borderItemSide) {
+				case PositionConstants.SOUTH:
+				case PositionConstants.NORTH:
+					borderItemBounds.setX(borderItemBounds.getX() - delta.x);
+					break;
+				default:
+					//nothing to do
+					break;
+				}
+			}else if(resizeDirection==PositionConstants.NORTH_EAST){
+				switch(borderItemSide) {
+				case PositionConstants.EAST:
+				case PositionConstants.WEST:
+					borderItemBounds.setY(borderItemBounds.getY() - delta.y);
+					break;
+				default:
+					//nothing to do
+					break;
+				}
 			}
 		}
 		return CommandResult.newOKCommandResult();

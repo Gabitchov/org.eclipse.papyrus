@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 
 /**
@@ -115,7 +116,7 @@ public class ShortcutDiagramParser implements IParser {
 	 * @return the diagram or null if it can't be found.
 	 */
 	protected Diagram doAdapt(IAdaptable element) {
-		Object obj = element.getAdapter(EObject.class);
+		Object obj =EMFHelper.getEObject(element);
 		if(obj instanceof Diagram) {
 			return (Diagram)obj;
 		}

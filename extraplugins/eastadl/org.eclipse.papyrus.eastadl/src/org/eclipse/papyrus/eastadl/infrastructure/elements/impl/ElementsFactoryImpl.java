@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.eastadl.infrastructure.elements.*;
 import org.eclipse.papyrus.eastadl.infrastructure.elements.Comment;
 import org.eclipse.papyrus.eastadl.infrastructure.elements.EAPackage;
 import org.eclipse.papyrus.eastadl.infrastructure.elements.ElementsFactory;
@@ -33,12 +34,15 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.Realization;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ElementsFactoryImpl extends EFactoryImpl implements ElementsFactory {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -51,16 +55,16 @@ public class ElementsFactoryImpl extends EFactoryImpl implements ElementsFactory
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ElementsFactory init() {
 		try {
 			ElementsFactory theElementsFactory = (ElementsFactory)EPackage.Registry.INSTANCE.getEFactory(ElementsPackage.eNS_URI);
-			if (theElementsFactory != null) {
+			if(theElementsFactory != null) {
 				return theElementsFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ElementsFactoryImpl();
@@ -70,6 +74,7 @@ public class ElementsFactoryImpl extends EFactoryImpl implements ElementsFactory
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ElementsFactoryImpl() {
@@ -79,24 +84,31 @@ public class ElementsFactoryImpl extends EFactoryImpl implements ElementsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case ElementsPackage.REALIZATION: return createRealization();
-			case ElementsPackage.MULTI_LEVEL_REFERENCE: return createMultiLevelReference();
-			case ElementsPackage.RATIONALE: return createRationale();
-			case ElementsPackage.EA_PACKAGE: return createEAPackage();
-			case ElementsPackage.COMMENT: return createComment();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch(eClass.getClassifierID()) {
+		case ElementsPackage.REALIZATION:
+			return createRealization();
+		case ElementsPackage.MULTI_LEVEL_REFERENCE:
+			return createMultiLevelReference();
+		case ElementsPackage.RATIONALE:
+			return createRationale();
+		case ElementsPackage.EA_PACKAGE:
+			return createEAPackage();
+		case ElementsPackage.COMMENT:
+			return createComment();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MultiLevelReference createMultiLevelReference() {
@@ -107,6 +119,7 @@ public class ElementsFactoryImpl extends EFactoryImpl implements ElementsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Rationale createRationale() {
@@ -117,6 +130,7 @@ public class ElementsFactoryImpl extends EFactoryImpl implements ElementsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAPackage createEAPackage() {
@@ -127,6 +141,7 @@ public class ElementsFactoryImpl extends EFactoryImpl implements ElementsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Comment createComment() {
@@ -137,6 +152,7 @@ public class ElementsFactoryImpl extends EFactoryImpl implements ElementsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Realization createRealization() {
@@ -147,6 +163,7 @@ public class ElementsFactoryImpl extends EFactoryImpl implements ElementsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ElementsPackage getElementsPackage() {

@@ -38,14 +38,15 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionAllocationImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionAllocationImpl#getAllocatedElement <em>Allocated Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionAllocationImpl#getBase_Dependency <em>Base Dependency</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionAllocationImpl#getAllocatedElement_path <em>Allocated Element path</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionAllocationImpl#getTarget_path <em>Target path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionAllocationImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionAllocationImpl#getAllocatedElement <em>Allocated Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionAllocationImpl#getBase_Dependency <em>Base Dependency</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionAllocationImpl#getAllocatedElement_path <em>Allocated Element path
+ * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionAllocationImpl#getTarget_path <em>Target path</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FunctionAllocationImpl extends EAElementImpl implements FunctionAllocation {
@@ -54,6 +55,7 @@ public class FunctionAllocationImpl extends EAElementImpl implements FunctionAll
 	 * The cached value of the '{@link #getBase_Dependency() <em>Base Dependency</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Dependency()
 	 * @generated
 	 * @ordered
@@ -64,6 +66,7 @@ public class FunctionAllocationImpl extends EAElementImpl implements FunctionAll
 	 * The cached value of the '{@link #getAllocatedElement_path() <em>Allocated Element path</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAllocatedElement_path()
 	 * @generated
 	 * @ordered
@@ -74,6 +77,7 @@ public class FunctionAllocationImpl extends EAElementImpl implements FunctionAll
 	 * The cached value of the '{@link #getTarget_path() <em>Target path</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTarget_path()
 	 * @generated
 	 * @ordered
@@ -82,6 +86,7 @@ public class FunctionAllocationImpl extends EAElementImpl implements FunctionAll
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FunctionAllocationImpl() {
@@ -108,14 +113,15 @@ public class FunctionAllocationImpl extends EAElementImpl implements FunctionAll
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Dependency getBase_Dependency() {
-		if (base_Dependency != null && base_Dependency.eIsProxy()) {
+		if(base_Dependency != null && base_Dependency.eIsProxy()) {
 			InternalEObject oldBase_Dependency = (InternalEObject)base_Dependency;
 			base_Dependency = (Dependency)eResolveProxy(oldBase_Dependency);
-			if (base_Dependency != oldBase_Dependency) {
-				if (eNotificationRequired())
+			if(base_Dependency != oldBase_Dependency) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionmodelingPackage.FUNCTION_ALLOCATION__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 			}
 		}
@@ -125,6 +131,7 @@ public class FunctionAllocationImpl extends EAElementImpl implements FunctionAll
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Dependency basicGetBase_Dependency() {
@@ -134,22 +141,24 @@ public class FunctionAllocationImpl extends EAElementImpl implements FunctionAll
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Dependency(Dependency newBase_Dependency) {
 		Dependency oldBase_Dependency = base_Dependency;
 		base_Dependency = newBase_Dependency;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FunctionmodelingPackage.FUNCTION_ALLOCATION__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AllocateableElement> getAllocatedElement_path() {
-		if (allocatedElement_path == null) {
+		if(allocatedElement_path == null) {
 			allocatedElement_path = new EObjectResolvingEList<AllocateableElement>(AllocateableElement.class, this, FunctionmodelingPackage.FUNCTION_ALLOCATION__ALLOCATED_ELEMENT_PATH);
 		}
 		return allocatedElement_path;
@@ -158,10 +167,11 @@ public class FunctionAllocationImpl extends EAElementImpl implements FunctionAll
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AllocationTarget> getTarget_path() {
-		if (target_path == null) {
+		if(target_path == null) {
 			target_path = new EObjectResolvingEList<AllocationTarget>(AllocationTarget.class, this, FunctionmodelingPackage.FUNCTION_ALLOCATION__TARGET_PATH);
 		}
 		return target_path;
@@ -186,74 +196,81 @@ public class FunctionAllocationImpl extends EAElementImpl implements FunctionAll
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__ALLOCATED_ELEMENT:
-				if (resolve) return getAllocatedElement();
-				return basicGetAllocatedElement();
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__BASE_DEPENDENCY:
-				if (resolve) return getBase_Dependency();
-				return basicGetBase_Dependency();
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__ALLOCATED_ELEMENT_PATH:
-				return getAllocatedElement_path();
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__TARGET_PATH:
-				return getTarget_path();
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__TARGET:
+			if(resolve)
+				return getTarget();
+			return basicGetTarget();
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__ALLOCATED_ELEMENT:
+			if(resolve)
+				return getAllocatedElement();
+			return basicGetAllocatedElement();
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__BASE_DEPENDENCY:
+			if(resolve)
+				return getBase_Dependency();
+			return basicGetBase_Dependency();
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__ALLOCATED_ELEMENT_PATH:
+			return getAllocatedElement_path();
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__TARGET_PATH:
+			return getTarget_path();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__TARGET:
-				return basicGetTarget() != null;
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__ALLOCATED_ELEMENT:
-				return basicGetAllocatedElement() != null;
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__BASE_DEPENDENCY:
-				return base_Dependency != null;
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__ALLOCATED_ELEMENT_PATH:
-				return allocatedElement_path != null && !allocatedElement_path.isEmpty();
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__TARGET_PATH:
-				return target_path != null && !target_path.isEmpty();
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__TARGET:
+			return basicGetTarget() != null;
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__ALLOCATED_ELEMENT:
+			return basicGetAllocatedElement() != null;
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__BASE_DEPENDENCY:
+			return base_Dependency != null;
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__ALLOCATED_ELEMENT_PATH:
+			return allocatedElement_path != null && !allocatedElement_path.isEmpty();
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__TARGET_PATH:
+			return target_path != null && !target_path.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__BASE_DEPENDENCY:
-				setBase_Dependency((Dependency)newValue);
-				return;
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__ALLOCATED_ELEMENT_PATH:
-				getAllocatedElement_path().clear();
-				getAllocatedElement_path().addAll((Collection<? extends AllocateableElement>)newValue);
-				return;
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__TARGET_PATH:
-				getTarget_path().clear();
-				getTarget_path().addAll((Collection<? extends AllocationTarget>)newValue);
-				return;
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__BASE_DEPENDENCY:
+			setBase_Dependency((Dependency)newValue);
+			return;
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__ALLOCATED_ELEMENT_PATH:
+			getAllocatedElement_path().clear();
+			getAllocatedElement_path().addAll((Collection<? extends AllocateableElement>)newValue);
+			return;
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__TARGET_PATH:
+			getTarget_path().clear();
+			getTarget_path().addAll((Collection<? extends AllocationTarget>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -263,26 +280,28 @@ public class FunctionAllocationImpl extends EAElementImpl implements FunctionAll
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__BASE_DEPENDENCY:
-				setBase_Dependency((Dependency)null);
-				return;
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__ALLOCATED_ELEMENT_PATH:
-				getAllocatedElement_path().clear();
-				return;
-			case FunctionmodelingPackage.FUNCTION_ALLOCATION__TARGET_PATH:
-				getTarget_path().clear();
-				return;
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__BASE_DEPENDENCY:
+			setBase_Dependency((Dependency)null);
+			return;
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__ALLOCATED_ELEMENT_PATH:
+			getAllocatedElement_path().clear();
+			return;
+		case FunctionmodelingPackage.FUNCTION_ALLOCATION__TARGET_PATH:
+			getTarget_path().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AllocateableElement getAllocatedElement() {
@@ -292,6 +311,7 @@ public class FunctionAllocationImpl extends EAElementImpl implements FunctionAll
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AllocationTarget getTarget() {

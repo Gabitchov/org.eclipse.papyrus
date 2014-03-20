@@ -34,12 +34,13 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionClientServerPortImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionClientServerPortImpl#getBase_Port <em>Base Port</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionClientServerPortImpl#getClientServerType <em>Client Server Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionClientServerPortImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionClientServerPortImpl#getBase_Port <em>Base Port</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionClientServerPortImpl#getClientServerType <em>Client Server Type
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FunctionClientServerPortImpl extends FunctionPortImpl implements FunctionClientServerPort {
@@ -48,6 +49,7 @@ public class FunctionClientServerPortImpl extends FunctionPortImpl implements Fu
 	 * The cached value of the '{@link #getBase_Port() <em>Base Port</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Port()
 	 * @generated
 	 * @ordered
@@ -58,6 +60,7 @@ public class FunctionClientServerPortImpl extends FunctionPortImpl implements Fu
 	 * The default value of the '{@link #getClientServerType() <em>Client Server Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getClientServerType()
 	 * @generated
 	 * @ordered
@@ -68,6 +71,7 @@ public class FunctionClientServerPortImpl extends FunctionPortImpl implements Fu
 	 * The cached value of the '{@link #getClientServerType() <em>Client Server Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getClientServerType()
 	 * @generated
 	 * @ordered
@@ -76,6 +80,7 @@ public class FunctionClientServerPortImpl extends FunctionPortImpl implements Fu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FunctionClientServerPortImpl() {
@@ -94,10 +99,10 @@ public class FunctionClientServerPortImpl extends FunctionPortImpl implements Fu
 		if(getBase_Port() != null) {
 			Type umlType = getBase_Port().getType();
 			if(umlType != null) {
-				adlInterface = (FunctionClientServerInterface)UMLUtil.getStereotypeApplication(umlType,FunctionClientServerInterface.class);
+				adlInterface = (FunctionClientServerInterface)UMLUtil.getStereotypeApplication(umlType, FunctionClientServerInterface.class);
 			}
-			
-		
+
+
 		}
 
 		return adlInterface;
@@ -106,14 +111,15 @@ public class FunctionClientServerPortImpl extends FunctionPortImpl implements Fu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Port getBase_Port() {
-		if (base_Port != null && base_Port.eIsProxy()) {
+		if(base_Port != null && base_Port.eIsProxy()) {
 			InternalEObject oldBase_Port = (InternalEObject)base_Port;
 			base_Port = (Port)eResolveProxy(oldBase_Port);
-			if (base_Port != oldBase_Port) {
-				if (eNotificationRequired())
+			if(base_Port != oldBase_Port) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__BASE_PORT, oldBase_Port, base_Port));
 			}
 		}
@@ -123,6 +129,7 @@ public class FunctionClientServerPortImpl extends FunctionPortImpl implements Fu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Port basicGetBase_Port() {
@@ -132,70 +139,77 @@ public class FunctionClientServerPortImpl extends FunctionPortImpl implements Fu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Port(Port newBase_Port) {
 		Port oldBase_Port = base_Port;
 		base_Port = newBase_Port;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__BASE_PORT, oldBase_Port, base_Port));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
-			case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__BASE_PORT:
-				if (resolve) return getBase_Port();
-				return basicGetBase_Port();
-			case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__CLIENT_SERVER_TYPE:
-				return getClientServerType();
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__TYPE:
+			if(resolve)
+				return getType();
+			return basicGetType();
+		case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__BASE_PORT:
+			if(resolve)
+				return getBase_Port();
+			return basicGetBase_Port();
+		case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__CLIENT_SERVER_TYPE:
+			return getClientServerType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__TYPE:
-				return basicGetType() != null;
-			case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__BASE_PORT:
-				return base_Port != null;
-			case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__CLIENT_SERVER_TYPE:
-				return clientServerType != CLIENT_SERVER_TYPE_EDEFAULT;
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__TYPE:
+			return basicGetType() != null;
+		case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__BASE_PORT:
+			return base_Port != null;
+		case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__CLIENT_SERVER_TYPE:
+			return clientServerType != CLIENT_SERVER_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__BASE_PORT:
-				setBase_Port((Port)newValue);
-				return;
-			case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__CLIENT_SERVER_TYPE:
-				setClientServerType((ClientServerKind)newValue);
-				return;
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__BASE_PORT:
+			setBase_Port((Port)newValue);
+			return;
+		case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__CLIENT_SERVER_TYPE:
+			setClientServerType((ClientServerKind)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -205,17 +219,18 @@ public class FunctionClientServerPortImpl extends FunctionPortImpl implements Fu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__BASE_PORT:
-				setBase_Port((Port)null);
-				return;
-			case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__CLIENT_SERVER_TYPE:
-				setClientServerType(CLIENT_SERVER_TYPE_EDEFAULT);
-				return;
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__BASE_PORT:
+			setBase_Port((Port)null);
+			return;
+		case FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__CLIENT_SERVER_TYPE:
+			setClientServerType(CLIENT_SERVER_TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -223,6 +238,7 @@ public class FunctionClientServerPortImpl extends FunctionPortImpl implements Fu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ClientServerKind getClientServerType() {
@@ -231,6 +247,7 @@ public class FunctionClientServerPortImpl extends FunctionPortImpl implements Fu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionClientServerInterface getType() {
@@ -241,23 +258,26 @@ public class FunctionClientServerPortImpl extends FunctionPortImpl implements Fu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setClientServerType(ClientServerKind newClientServerType) {
 		ClientServerKind oldClientServerType = clientServerType;
 		clientServerType = newClientServerType == null ? CLIENT_SERVER_TYPE_EDEFAULT : newClientServerType;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FunctionmodelingPackage.FUNCTION_CLIENT_SERVER_PORT__CLIENT_SERVER_TYPE, oldClientServerType, clientServerType));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (clientServerType: ");

@@ -13,10 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.kind;
 
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.papyrus.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.diagram.wizards.Messages;
 import org.eclipse.swt.graphics.Image;
 
@@ -33,13 +32,9 @@ public class DiagramKindLabelProvider implements ILabelProvider {
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
 	 */
 	public Image getImage(Object element) {
-		// TODO use ImageRegistry to store images
-		if(element instanceof CreationCommandDescriptor) {
-			ImageDescriptor image = ((CreationCommandDescriptor)element).getIcon();
-			// image is an optional attribute
-			if(image != null) {
-				return new Image(null, image.getImageData());
-			}
+		if(element instanceof ViewPrototype) {
+			ViewPrototype proto = (ViewPrototype)element;
+			return proto.getIcon();
 		}
 		return null;
 	}
@@ -48,8 +43,9 @@ public class DiagramKindLabelProvider implements ILabelProvider {
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
 	 */
 	public String getText(Object element) {
-		if(element instanceof CreationCommandDescriptor) {
-			return ((CreationCommandDescriptor)element).getLabel();
+		if(element instanceof ViewPrototype) {
+			ViewPrototype proto = (ViewPrototype)element;
+			return proto.getLabel();
 		}
 		return UNDEFINED_ELEMENT;
 	}

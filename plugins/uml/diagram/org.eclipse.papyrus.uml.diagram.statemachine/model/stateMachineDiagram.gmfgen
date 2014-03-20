@@ -2409,7 +2409,7 @@
         iD="org.eclipse.papyrus.uml.diagram.statemachine"
         name="PapyrusUMLStateMachineDiagram"
         provider="Papyrus"
-        version="0.10.0.qualifier"/>
+        version="1.0.0.qualifier"/>
     <editor
         iconPath="icons/UMLDiagramFile.gif"/>
     <navigator>

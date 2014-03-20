@@ -16,7 +16,7 @@ Export-Package: org.eclipse.papyrus.infra.extendedtypes.tests
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
+Bundle-Name: %fragmentName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.extendedtypes.tests.Activa

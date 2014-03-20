@@ -33,18 +33,20 @@ import org.eclipse.papyrus.eastadl.timing.timingconstraints.TimingconstraintsPac
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.EventConstraintImpl#getEvent <em>Event</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.EventConstraintImpl#getOffset <em>Offset</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.EventConstraintImpl#getEvent <em>Event</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.EventConstraintImpl#getOffset <em>Offset</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class EventConstraintImpl extends TimingConstraintImpl implements EventConstraint {
+
 	/**
 	 * The cached value of the '{@link #getEvent() <em>Event</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getEvent()
 	 * @generated
 	 * @ordered
@@ -55,6 +57,7 @@ public abstract class EventConstraintImpl extends TimingConstraintImpl implement
 	 * The cached value of the '{@link #getOffset() <em>Offset</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getOffset()
 	 * @generated
 	 * @ordered
@@ -64,6 +67,7 @@ public abstract class EventConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EventConstraintImpl() {
@@ -73,6 +77,7 @@ public abstract class EventConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Event basicGetEvent() {
@@ -82,6 +87,7 @@ public abstract class EventConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration basicGetOffset() {
@@ -91,17 +97,20 @@ public abstract class EventConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TimingconstraintsPackage.EVENT_CONSTRAINT__EVENT:
-				if (resolve) return getEvent();
-				return basicGetEvent();
-			case TimingconstraintsPackage.EVENT_CONSTRAINT__OFFSET:
-				if (resolve) return getOffset();
-				return basicGetOffset();
+		switch(featureID) {
+		case TimingconstraintsPackage.EVENT_CONSTRAINT__EVENT:
+			if(resolve)
+				return getEvent();
+			return basicGetEvent();
+		case TimingconstraintsPackage.EVENT_CONSTRAINT__OFFSET:
+			if(resolve)
+				return getOffset();
+			return basicGetOffset();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -109,15 +118,16 @@ public abstract class EventConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TimingconstraintsPackage.EVENT_CONSTRAINT__EVENT:
-				return event != null;
-			case TimingconstraintsPackage.EVENT_CONSTRAINT__OFFSET:
-				return offset != null;
+		switch(featureID) {
+		case TimingconstraintsPackage.EVENT_CONSTRAINT__EVENT:
+			return event != null;
+		case TimingconstraintsPackage.EVENT_CONSTRAINT__OFFSET:
+			return offset != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -125,17 +135,18 @@ public abstract class EventConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TimingconstraintsPackage.EVENT_CONSTRAINT__EVENT:
-				setEvent((Event)newValue);
-				return;
-			case TimingconstraintsPackage.EVENT_CONSTRAINT__OFFSET:
-				setOffset((TimeDuration)newValue);
-				return;
+		switch(featureID) {
+		case TimingconstraintsPackage.EVENT_CONSTRAINT__EVENT:
+			setEvent((Event)newValue);
+			return;
+		case TimingconstraintsPackage.EVENT_CONSTRAINT__OFFSET:
+			setOffset((TimeDuration)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -143,6 +154,7 @@ public abstract class EventConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,17 +165,18 @@ public abstract class EventConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TimingconstraintsPackage.EVENT_CONSTRAINT__EVENT:
-				setEvent((Event)null);
-				return;
-			case TimingconstraintsPackage.EVENT_CONSTRAINT__OFFSET:
-				setOffset((TimeDuration)null);
-				return;
+		switch(featureID) {
+		case TimingconstraintsPackage.EVENT_CONSTRAINT__EVENT:
+			setEvent((Event)null);
+			return;
+		case TimingconstraintsPackage.EVENT_CONSTRAINT__OFFSET:
+			setOffset((TimeDuration)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -171,14 +184,15 @@ public abstract class EventConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Event getEvent() {
-		if (event != null && event.eIsProxy()) {
+		if(event != null && event.eIsProxy()) {
 			InternalEObject oldEvent = (InternalEObject)event;
 			event = (Event)eResolveProxy(oldEvent);
-			if (event != oldEvent) {
-				if (eNotificationRequired())
+			if(event != oldEvent) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingconstraintsPackage.EVENT_CONSTRAINT__EVENT, oldEvent, event));
 			}
 		}
@@ -188,14 +202,15 @@ public abstract class EventConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration getOffset() {
-		if (offset != null && offset.eIsProxy()) {
+		if(offset != null && offset.eIsProxy()) {
 			InternalEObject oldOffset = (InternalEObject)offset;
 			offset = (TimeDuration)eResolveProxy(oldOffset);
-			if (offset != oldOffset) {
-				if (eNotificationRequired())
+			if(offset != oldOffset) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingconstraintsPackage.EVENT_CONSTRAINT__OFFSET, oldOffset, offset));
 			}
 		}
@@ -205,24 +220,26 @@ public abstract class EventConstraintImpl extends TimingConstraintImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setEvent(Event newEvent) {
 		Event oldEvent = event;
 		event = newEvent;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingconstraintsPackage.EVENT_CONSTRAINT__EVENT, oldEvent, event));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setOffset(TimeDuration newOffset) {
 		TimeDuration oldOffset = offset;
 		offset = newOffset;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingconstraintsPackage.EVENT_CONSTRAINT__OFFSET, oldOffset, offset));
 	}
 

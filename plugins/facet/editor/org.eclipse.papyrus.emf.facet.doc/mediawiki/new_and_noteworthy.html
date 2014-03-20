@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8' ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>new_and_noteworthy</title>
+	</head>
+	<body>
+		<h1 id="New_and_Noteworthy">New and Noteworthy</h1>
+		<h2 id="0.1">0.1</h2>
+		<p>EMF Facet 0.1 is the first release from EMF Facet, with the initial contribution coming from the MoDisco project.</p>
+		<h3 id="Table_Model_Editor">Table Model Editor</h3>
+		<p>There is a new table editor for models. </p>
+		<p>
+			<img align="middle" title="EMF Facet Table Editor" alt="EMF Facet Table Editor" border="1" src="../img/EMFFacet_NatTable_QueryColumn.png"/>
+		</p>
+		<p>It supports the following functionalities:</p>
+		<ul>
+			<li>The table can be opened from any selection of model elements. </li>
+			<li>The user can add and remove model elements from the table.</li>
+			<li>The table can display the results of queries in additional columns.</li>
+			<li>The user can edit values of the model elements attributes.</li>
+			<li>The user can set unary features (through a cell editor or drag &amp; drop).</li>
+			<li>The user can set n-ary features with a dialog.</li>
+			<li>The table can be used to delete model elements.</li>
+			<li>The table provide a full support of undo/redo.</li>
+			<li>An extension point allow to provide new cell editors for any EType.</li>
+			<li>The table is automatically refreshed the model is modified.</li>
+			<li>The user/integrator can declare types of tables, which can be constrained to a specific type of element.</li>
+			<li>The use can copy a selection as text to paste it into a spreadsheet, text editor, etc.</li>
+			<li>The cells and column headers can be customized through the generic EMF Facet customization mechanism inherited from MoDisco (with .uiCustom files): label, colors, icons, fonts, struckthrough, etc.</li>
+			<li>The tables can be saved to a file and re-opened later.</li>
+			<li>The tables can display Facet attributes and references in additional columns.</li>
+			<li>Columns can be hidden/shown selectively with a dialog.</li>
+		</ul>
+		<p>
+			<img align="middle" title="Customization of the table model editor" alt="Customization of the table model editor" border="1" src="../img/EMFFacet_NatTable_CustomizationExample.png"/>
+		</p>
+		<h3 id="Generic_EMF_serialization_mechanism">Generic EMF serialization mechanism</h3>
+		<p>EMF Facet now defines an extension point and registry to specify serializers for specific types, through a generic serializable EDataType (see ISerializationService).</p>
+		<h2 id="0.3">0.3</h2>
+		<ul>
+			<li>FacetSet and Customization editor.</li>
+		</ul>
+		<p><font size="-2">
+			Copyright &#169; 2012 Mia-Software.
+			All rights reserved. This program and the accompanying materials
+			are made available under the terms of the Eclipse Public License v1.0
+			which accompanies this distribution, and is available at
+
+			<a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.
+			Contibutors:
+				Grégoire Dupé - Bug 387470 - 
+			<a href="EFacet">EFacet</a>
+			<a href="Custom">Custom</a> Editors
+</font>
+		</p>
+	</body>
+</html>

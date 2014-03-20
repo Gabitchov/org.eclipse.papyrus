@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
+ *  Christian W. Damus (CEA) - bug 430077
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.creation;
@@ -98,10 +99,30 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 		ViewConstraintEngine constraintEngine = ConfigurationManager.getInstance().getConstraintEngine();
 		Set<View> views = constraintEngine.getViews(selection);
 		if(!views.isEmpty()) {
-			return doEdit(widget, source, views, getCreationDialogTitle());
+			CreationContext creationContext = getCreationContext(context);
+			creationContext.pushCreatedElement(source);
+			try {
+				return doEdit(widget, source, views, getCreationDialogTitle());
+			} finally {
+				creationContext.popCreatedElement(source);
+			}
 		}
 
 		return source;
+	}
+	
+	/**
+	 * Get the creation context for the specified {@code element} in which we are creating a new model element.
+	 * This default implementation simply returns the {@linkplain CreationContext#NULL null implementation}.
+	 * Subclasses should provide implementation suitable to their data model.
+	 * 
+	 * @param element
+	 *        an element in which context we are creating a new model element
+	 * 
+	 * @return the encapsulated creation context (never {@code null})
+	 */
+	protected CreationContext getCreationContext(Object element) {
+		return CreationContext.NULL;
 	}
 
 	/**

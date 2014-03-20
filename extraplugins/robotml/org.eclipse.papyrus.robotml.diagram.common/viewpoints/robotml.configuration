@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration:PapyrusConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" defaultStakeholder="#//@stakeholders.0" metamodel="http://www.eclipse.org/uml2/5.0.0/UML#/">
+  <stakeholders name="RobotML Modeler"/>
+  <viewpoints xsi:type="configuration:PapyrusViewpoint" name="Default Papyrus Viewpoint">
+    <modelKinds xsi:type="configuration:PapyrusDiagram" name="RobotML Architecture Definition Diagram" icon="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/diagrams/architecture/architecture.gif" profiles="http://Papyrus/RobotML/1#/" implementationID="CompositeStructure" categories="#//@categories.0" customPalette="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/diagrams/architecture/architecture.palette.xml" customStyle="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/css/style.css">
+      <modelRules element="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      <owningRules element="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      <childRules/>
+      <paletteRules permit="false" element="composite.group.*"/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" name="RobotML Component Definition Diagram" icon="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/diagrams/componentdef/componentdef.gif" profiles="http://Papyrus/RobotML/1#/" implementationID="CompositeStructure" categories="#//@categories.0" customPalette="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/diagrams/componentdef/componentdef.palette.xml" customStyle="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/css/style.css">
+      <modelRules element="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      <owningRules element="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      <childRules/>
+      <paletteRules permit="false" element="composite.group.*"/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" name="RobotML Datatype Definition Diagram" icon="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/diagrams/datatypedef/datatypeD.gif" profiles="http://Papyrus/RobotML/1#/" implementationID="PapyrusUMLClassDiagram" categories="#//@categories.0" customPalette="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/diagrams/datatypedef/datatypedef.palette.xml">
+      <modelRules element="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      <owningRules element="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      <childRules/>
+      <paletteRules permit="false" element="clazz.group.*"/>
+      <paletteRules permit="false" element="org.eclipse.papyrus.robotml.diagram.clazz"/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" name="RobotML Interface Definition Diagram" icon="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/diagrams/interfacedef/interfaceI.gif" profiles="http://Papyrus/RobotML/1#/" implementationID="PapyrusUMLClassDiagram" categories="#//@categories.0" customPalette="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/diagrams/interfacedef/interfacedef.palette.xml">
+      <modelRules element="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      <owningRules element="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      <childRules/>
+      <paletteRules permit="false" element="clazz.group.*"/>
+      <paletteRules permit="false" element="org.eclipse.papyrus.robotml.diagram.clazz"/>
+    </modelKinds>
+  </viewpoints>
+  <categories name="robotML"/>
+</configuration:PapyrusConfiguration>

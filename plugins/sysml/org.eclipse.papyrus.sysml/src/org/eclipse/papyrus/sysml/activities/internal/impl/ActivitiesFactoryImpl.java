@@ -57,7 +57,7 @@ public class ActivitiesFactoryImpl extends EFactoryImpl implements ActivitiesFac
 	 */
 	public static ActivitiesFactory init() {
 		try {
-			ActivitiesFactory theActivitiesFactory = (ActivitiesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Activities");
+			ActivitiesFactory theActivitiesFactory = (ActivitiesFactory)EPackage.Registry.INSTANCE.getEFactory(ActivitiesPackage.eNS_URI);
 			if(theActivitiesFactory != null) {
 				return theActivitiesFactory;
 			}

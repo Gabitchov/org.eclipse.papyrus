@@ -50,7 +50,7 @@ public class SysmlFactoryImpl extends EFactoryImpl implements SysmlFactory {
 	 */
 	public static SysmlFactory init() {
 		try {
-			SysmlFactory theSysmlFactory = (SysmlFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML");
+			SysmlFactory theSysmlFactory = (SysmlFactory)EPackage.Registry.INSTANCE.getEFactory(SysmlPackage.eNS_URI);
 			if(theSysmlFactory != null) {
 				return theSysmlFactory;
 			}

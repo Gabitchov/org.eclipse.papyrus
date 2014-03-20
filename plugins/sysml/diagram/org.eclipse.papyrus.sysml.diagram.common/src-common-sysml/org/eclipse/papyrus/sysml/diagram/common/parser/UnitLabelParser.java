@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.Dimension;
 import org.eclipse.papyrus.sysml.blocks.Unit;
@@ -56,7 +57,7 @@ public class UnitLabelParser extends NamedElementLabelParser {
 		}
 
 		String result = "";
-		EObject eObject = (EObject)element.getAdapter(EObject.class);
+		EObject eObject = EMFHelper.getEObject(element);
 
 		if((eObject != null) && (eObject instanceof InstanceSpecification)) {
 

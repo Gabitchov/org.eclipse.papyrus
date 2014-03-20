@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.infra.viewpoints.policy" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.papyrus.infra.viewpoints.policy" id="org.eclipse.papyrus.infra.viewpoints.policy.custom" name="Custom Viewpoints Policy"/>
+      </appinfo>
+      <documentation>
+         Definition of Papyrus viewpoints configuration.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="configuration" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="contribution" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="configuration">
+      <annotation>
+         <documentation>
+            Represents the definition of a custom viewpoints configuration
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="file" type="string" use="required">
+            <annotation>
+               <documentation>
+                  URI of a .configuration file containing the Papyrus viewpoints configuration to be applied
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="priority" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Priority of the policy between 0 (least) and 100 (most)
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="contribution">
+      <annotation>
+         <documentation>
+            Represents the contribution to an existing configuration
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="original" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The original configuration that is contributed to
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="file" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The configuration that is contributing
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+
+
+
+
+
+</schema>

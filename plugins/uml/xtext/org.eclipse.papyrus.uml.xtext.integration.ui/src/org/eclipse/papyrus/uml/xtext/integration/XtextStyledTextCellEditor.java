@@ -11,25 +11,24 @@
  */
 package org.eclipse.papyrus.uml.xtext.integration;
 
-import org.eclipse.jface.bindings.keys.KeyStroke;
 import org.eclipse.jface.text.ITextListener;
 import org.eclipse.jface.text.TextEvent;
-import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
-import org.eclipse.papyrus.uml.xtext.integration.core.IXtextFakeContextResourcesProvider;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
+import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProviderWithInit;
+import org.eclipse.papyrus.uml.xtext.integration.core.IXtextFakeContextResourcesProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.FocusAdapter;
-import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 
 import com.google.inject.Injector;
@@ -50,11 +49,16 @@ import com.google.inject.Injector;
  */
 public class XtextStyledTextCellEditor extends StyledTextCellEditor {
 
-	private Injector injector;
-	private StyledTextXtextAdapter xtextAdapter;
-	private IXtextFakeContextResourcesProvider contextFakeResourceProvider;
-	private IContextElementProvider provider;
-
+	public static final String GTK = "gtk"; //$NON-NLS-1$
+	
+	protected Injector injector;
+	protected StyledTextXtextAdapter xtextAdapter;
+	protected StyledText styledText;
+	
+	protected IXtextFakeContextResourcesProvider contextFakeResourceProvider;
+	protected IContextElementProvider provider;
+	protected Shell startingShell;
+	
 	public XtextStyledTextCellEditor(int style, Injector injector,
 			IXtextFakeContextResourcesProvider contextFakeResourceProvider) {
 		this(style, injector);
@@ -79,29 +83,29 @@ public class XtextStyledTextCellEditor extends StyledTextCellEditor {
 	 */
 	@Override
 	protected Control createControl(Composite parent) {
-		StyledText styledText = (StyledText) super.createControl(parent);
-		styledText.addFocusListener(new FocusAdapter() {
-			public void focusLost(FocusEvent e) {
-				XtextStyledTextCellEditor.this.focusLost();
-			}
-		});
+		styledText = (StyledText) super.createControl(parent);
+		// a focus lost listener is already registered by the super-class, so no need to do this
+
+		startingShell = styledText.getDisplay().getActiveShell();
 
 		// adapt to xtext
 		xtextAdapter = new StyledTextXtextAdapter(injector,
 				contextFakeResourceProvider == null ? IXtextFakeContextResourcesProvider.NULL_CONTEXT_PROVIDER
 						: contextFakeResourceProvider);
 		xtextAdapter.adapt(styledText);
+		// adapt has created a completion proposal adapter. Retrieve this instead of creating a new one.
+		completionProposalAdapter = xtextAdapter.getCompletionProposalAdapter();
+		
 		if (provider != null) {
 			xtextAdapter.getFakeResourceContext().getFakeResource().eAdapters()
 					.add(new ContextElementAdapter(provider));
+			if (provider instanceof IContextElementProviderWithInit) {
+				// update resource, if required by text editor
+				((IContextElementProviderWithInit) provider).initResource(
+						xtextAdapter.getFakeResourceContext().getFakeResource());
+			}
 		}
-
-		// configure content assist
-		final IContentAssistant contentAssistant = xtextAdapter.getContentAssistant();
-
-		completionProposalAdapter = new CompletionProposalAdapter(styledText, contentAssistant, KeyStroke.getInstance(
-				SWT.CTRL, SWT.SPACE), null);
-
+		
 		// This listener notifies the modification, when text is selected via
 		// proposal. A ModifyEvent is not thrown by the StyledText in this case.
 		xtextAdapter.getXtextSourceviewer().addTextListener(new ITextListener() {
@@ -123,14 +127,22 @@ public class XtextStyledTextCellEditor extends StyledTextCellEditor {
 				}
 			});
 		}
-		styledText.addListener(3005, new Listener() {
+		final Listener cancelListener = new Listener() {
 			public void handleEvent(Event event) {
 				if (event.character == '\u001b' // ESC
-						&& !completionProposalAdapter.isProposalPopupOpen()) {
-					XtextStyledTextCellEditor.this.fireCancelEditor();
+						&& !completionProposalAdapter.delayedIsPopupOpen()) {
+					// use undoable instead of isDirty, since the latter is always true after doSetValue is called.
+					if (xtextAdapter.sourceviewer.getUndoManager().undoable()) {
+						XtextStyledTextCellEditor.this.fireApplyEditorValue();
+					}
+					else {
+						XtextStyledTextCellEditor.this.fireCancelEditor();
+					}
 				}
 			}
-		});
+		};
+
+		styledText.addListener(3005, cancelListener);
 
 		return styledText;
 	}
@@ -145,7 +157,7 @@ public class XtextStyledTextCellEditor extends StyledTextCellEditor {
 	@Override
 	protected void doSetValue(Object value) {
 		super.doSetValue(value);
-		// Reset the undo manager to prevend deletion of complete text if the
+		// Reset the undo manager to prevent deletion of complete text if the
 		// user hits ctrl+z after cell editor opens
 		xtextAdapter.sourceviewer.getUndoManager().reset();
 	}
@@ -175,9 +187,10 @@ public class XtextStyledTextCellEditor extends StyledTextCellEditor {
 		return true;
 	}
 
-	// in gtk, we need this flag to let one focus lost event pass. See
+	// in GTK, we need this flag to let one focus lost event pass. See
 	// focusLost() for details.
-	private boolean ignoreNextFocusLost = false;
+	boolean ignoreNextFocusLost = false;
+	
 	protected CompletionProposalAdapter completionProposalAdapter;
 
 	/*
@@ -186,9 +199,21 @@ public class XtextStyledTextCellEditor extends StyledTextCellEditor {
 	 */
 	@Override
 	protected void focusLost() {
-		if (SWT.getPlatform().equals("gtk")) {
+		if (completionProposalAdapter == null) {
+			super.focusLost();
+			return;
+		}
+		if (SWT.getPlatform().equals(GTK)) {
 			if (ignoreNextFocusLost) {
 				ignoreNextFocusLost = false;
+				// styledText has lost focus, set it again.
+				Display.getDefault().asyncExec(new Runnable() {
+					
+					public void run() {
+						 styledText.setFocus();						
+					}
+				});
+
 				return;
 			}
 
@@ -198,8 +223,9 @@ public class XtextStyledTextCellEditor extends StyledTextCellEditor {
 			}
 		}
 
-		if (!completionProposalAdapter.isProposalPopupOpen())
+		if (!completionProposalAdapter.isProposalPopupOpen()) {
 			super.focusLost();
+		}
 	}
 
 	@Override

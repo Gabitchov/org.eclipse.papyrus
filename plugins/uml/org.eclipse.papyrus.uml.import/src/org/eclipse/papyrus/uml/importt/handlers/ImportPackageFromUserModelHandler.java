@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST.
- * 
+ * Copyright (c) 2011, 2014 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,8 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
- *  
+ *  Christian W. Damus (CEA) - bug 323802
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.importt.handlers;
 
@@ -17,7 +18,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.eclipse.emf.common.command.Command;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.uml.importt.ui.PackageImportDialog;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementImportTreeSelectionDialog.ImportSpec;
@@ -29,12 +30,8 @@ import org.eclipse.uml2.uml.Package;
 
 public class ImportPackageFromUserModelHandler extends AbstractImportHandler {
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected Command getCommand() {
+	protected ICommand getGMFCommand() {
 		return new ImportFromFileCommand();
 	}
 
@@ -45,7 +42,7 @@ public class ImportPackageFromUserModelHandler extends AbstractImportHandler {
 
 		/**
 		 * Creates a new ImportLibraryFromRepositoryCommand
-		 * 
+		 *
 		 * @param editingDomain
 		 *        editing domain that manages the changed objects
 		 * @param runnable
@@ -86,8 +83,11 @@ public class ImportPackageFromUserModelHandler extends AbstractImportHandler {
 								case COPY:
 									handleCopyPackage(selectedPackage);
 									break;
-								default:
+								case IMPORT:
 									handleImportPackage(selectedPackage);
+									break;
+								default:
+									handleLoadPackage(selectedPackage);
 									break;
 								}
 							}

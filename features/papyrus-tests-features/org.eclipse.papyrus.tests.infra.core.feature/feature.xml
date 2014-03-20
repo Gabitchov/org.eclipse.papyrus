@@ -14,6 +14,6 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
-   <plugin download-size="0" fragment="true" id="org.eclipse.papyrus.core.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" fragment="true" id="org.eclipse.papyrus.infra.core.tests" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

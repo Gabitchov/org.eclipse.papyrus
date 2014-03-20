@@ -248,33 +248,35 @@ public class PapyrusDragEditPartsTrackerEx extends DragEditPartsTrackerEx {
 			baseRectTopLeft.translate(moveDelta);
 			getSnapToHelper().snapPoint(request, PositionConstants.HORIZONTAL | PositionConstants.VERTICAL, new PrecisionRectangle[]{ baseRectTopLeft, jointRect }, topLeftCornerDelta);
 
-			//calculate the delta to anchor on the top right corner
-			final PrecisionPoint topRightCornerDelta = new PrecisionPoint(moveDelta);
-			final PrecisionRectangle baseRectTopRight = getSourceRectangle();
-			baseRectTopRight.setX(baseRectTopRight.x + baseRectTopRight.width);
-			baseRectTopRight.translate(moveDelta);
-			getSnapToHelper().snapPoint(request, PositionConstants.HORIZONTAL | PositionConstants.VERTICAL, new PrecisionRectangle[]{ baseRectTopRight, jointRect }, topRightCornerDelta);
+			//FIXME : add preferences and re-activate this part of the code
 
-			//calculate the delta to anchor on the bottom left corner
-			final PrecisionPoint bottomLeftCornerDelta = new PrecisionPoint(moveDelta);
-			final PrecisionRectangle baseRectBottomLeft = getSourceRectangle();
-			baseRectBottomLeft.setY(baseRectBottomLeft.y + baseRectBottomLeft.height);
-			baseRectBottomLeft.translate(moveDelta);
-			getSnapToHelper().snapPoint(request, PositionConstants.HORIZONTAL | PositionConstants.VERTICAL, new PrecisionRectangle[]{ baseRectBottomLeft, jointRect }, bottomLeftCornerDelta);
-
-			//calculate the delta to anchor on the bottom right corner
-			final PrecisionPoint bottomRightCornerDelta = new PrecisionPoint(moveDelta);
-			final PrecisionRectangle baseRectBottomRight = getSourceRectangle();
-			baseRectBottomRight.setX(baseRectBottomRight.x + baseRectBottomRight.width);
-			baseRectBottomRight.setY(baseRectBottomRight.y + baseRectBottomRight.height);
-			baseRectBottomRight.translate(moveDelta);
-			getSnapToHelper().snapPoint(request, PositionConstants.HORIZONTAL | PositionConstants.VERTICAL, new PrecisionRectangle[]{ baseRectBottomRight, jointRect }, bottomRightCornerDelta);
+			//			//calculate the delta to anchor on the top right corner
+			//			final PrecisionPoint topRightCornerDelta = new PrecisionPoint(moveDelta);
+			//			final PrecisionRectangle baseRectTopRight = getSourceRectangle();
+			//			baseRectTopRight.setX(baseRectTopRight.x + baseRectTopRight.width);
+			//			baseRectTopRight.translate(moveDelta);
+			//			getSnapToHelper().snapPoint(request, PositionConstants.HORIZONTAL | PositionConstants.VERTICAL, new PrecisionRectangle[]{ baseRectTopRight, jointRect }, topRightCornerDelta);
+			//
+			//			//calculate the delta to anchor on the bottom left corner
+			//			final PrecisionPoint bottomLeftCornerDelta = new PrecisionPoint(moveDelta);
+			//			final PrecisionRectangle baseRectBottomLeft = getSourceRectangle();
+			//			baseRectBottomLeft.setY(baseRectBottomLeft.y + baseRectBottomLeft.height);
+			//			baseRectBottomLeft.translate(moveDelta);
+			//			getSnapToHelper().snapPoint(request, PositionConstants.HORIZONTAL | PositionConstants.VERTICAL, new PrecisionRectangle[]{ baseRectBottomLeft, jointRect }, bottomLeftCornerDelta);
+			//
+			//			//calculate the delta to anchor on the bottom right corner
+			//			final PrecisionPoint bottomRightCornerDelta = new PrecisionPoint(moveDelta);
+			//			final PrecisionRectangle baseRectBottomRight = getSourceRectangle();
+			//			baseRectBottomRight.setX(baseRectBottomRight.x + baseRectBottomRight.width);
+			//			baseRectBottomRight.setY(baseRectBottomRight.y + baseRectBottomRight.height);
+			//			baseRectBottomRight.translate(moveDelta);
+			//			getSnapToHelper().snapPoint(request, PositionConstants.HORIZONTAL | PositionConstants.VERTICAL, new PrecisionRectangle[]{ baseRectBottomRight, jointRect }, bottomRightCornerDelta);
 
 			final Point ref = baseRectTopLeft.getTopLeft();
 			distVSPoints.put(distance(ref, topLeftCornerDelta), topLeftCornerDelta);
-			distVSPoints.put(distance(ref, topRightCornerDelta), topRightCornerDelta);
-			distVSPoints.put(distance(ref, bottomLeftCornerDelta), bottomLeftCornerDelta);
-			distVSPoints.put(distance(ref, bottomRightCornerDelta), bottomRightCornerDelta);
+			//			distVSPoints.put(distance(ref, topRightCornerDelta), topRightCornerDelta);
+			//			distVSPoints.put(distance(ref, bottomLeftCornerDelta), bottomLeftCornerDelta);
+			//			distVSPoints.put(distance(ref, bottomRightCornerDelta), bottomRightCornerDelta);
 		}
 		return distVSPoints;
 	}

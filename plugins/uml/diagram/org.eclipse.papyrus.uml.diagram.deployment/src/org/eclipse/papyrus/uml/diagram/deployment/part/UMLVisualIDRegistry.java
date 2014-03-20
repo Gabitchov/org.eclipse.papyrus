@@ -153,13 +153,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static int getDiagramVisualID(EObject domainElement) {
-		if(domainElement == null) {
-			return -1;
-		}
-		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package)domainElement)) {
-			return DeploymentDiagramEditPart.VISUAL_ID;
-		}
-		return -1;
+		return DeploymentDiagramEditPart.VISUAL_ID;
 	}
 
 	/**

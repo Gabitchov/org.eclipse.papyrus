@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Probability;
 import org.eclipse.uml2.uml.ActivityEdge;
@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * 
  * @generated
  */
-public class ProbabilityImpl extends EObjectImpl implements Probability {
+public class ProbabilityImpl extends MinimalEObjectImpl.Container implements Probability {
 
 	/**
 	 * The cached value of the '{@link #getBase_ActivityEdge() <em>Base Activity Edge</em>}' reference.

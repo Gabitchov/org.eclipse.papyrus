@@ -1,16 +1,22 @@
+/*****************************************************************************
+ * Copyright (c) 2013, 2014 CEA LIST and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.commands;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.Transaction;
-import org.eclipse.emf.transaction.impl.InternalTransaction;
-import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.PseudostateKind;
@@ -26,7 +32,7 @@ import org.eclipse.uml2.uml.Vertex;
  * @author ansgar
  * 
  */
-public class EMFCustomTransitionRetargetContainerCommand extends AbstractCommand {
+public class EMFCustomTransitionRetargetContainerCommand extends GMFUnsafe.UnsafeCommand {
 
 	protected Transition transition;
 
@@ -35,6 +41,8 @@ public class EMFCustomTransitionRetargetContainerCommand extends AbstractCommand
 	protected Region newRegion;
 
 	public EMFCustomTransitionRetargetContainerCommand(Transition transition) {
+		super(TransactionUtil.getEditingDomain(transition));
+		
 		this.transition = transition;
 	}
 
@@ -267,48 +275,24 @@ public class EMFCustomTransitionRetargetContainerCommand extends AbstractCommand
 		return null;
 	}
 
+	@Override
+	protected void doExecute() {
+		oldRegion = (Region)transition.getOwner();
+		changeContainer(transition);
+		newRegion = (Region)transition.getOwner();
+	}
 
-	public void execute() {
-		Map<String, Boolean> options = new HashMap<String, Boolean>();
-		options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-		try {
-			InternalTransaction it = ((InternalTransactionalEditingDomain)TransactionUtil.getEditingDomain(transition)).startTransaction(false, options);
-			oldRegion = (Region)transition.getOwner();
-			changeContainer(transition);
-			newRegion = (Region)transition.getOwner();
-			it.commit();
-		} catch (Exception e) {
-			UMLDiagramEditorPlugin.getInstance().logError(e.getMessage());
+	@Override
+	protected void doUndo() {
+		if(oldRegion != transition.getOwner()) {
+			oldRegion.getTransitions().add(transition); // will remove transition automatically from original region
 		}
 	}
 
 	@Override
-	public void undo() {
-		Map<String, Boolean> options = new HashMap<String, Boolean>();
-		options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-		try {
-			InternalTransaction it = ((InternalTransactionalEditingDomain)TransactionUtil.getEditingDomain(transition)).startTransaction(false, options);
-			if(oldRegion != transition.getOwner()) {
-				oldRegion.getTransitions().add(transition); // will remove transition automatically from original region
-			}
-			it.commit();
-		} catch (Exception e) {
-			UMLDiagramEditorPlugin.getInstance().logError(e.getMessage());
-		}
-	}
-
-
-	public void redo() {
-		Map<String, Boolean> options = new HashMap<String, Boolean>();
-		options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-		try {
-			InternalTransaction it = ((InternalTransactionalEditingDomain)TransactionUtil.getEditingDomain(transition)).startTransaction(false, options);
-			if(newRegion != transition.getOwner()) {
-				newRegion.getTransitions().add(transition); // will remove transition automatically from original region
-			}
-			it.commit();
-		} catch (Exception e) {
-			UMLDiagramEditorPlugin.getInstance().logError(e.getMessage());
+	protected void doRedo() {
+		if(newRegion != transition.getOwner()) {
+			newRegion.getTransitions().add(transition); // will remove transition automatically from original region
 		}
 	}
 

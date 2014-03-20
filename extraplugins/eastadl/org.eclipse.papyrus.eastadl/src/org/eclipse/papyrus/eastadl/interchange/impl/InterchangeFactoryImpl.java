@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.eastadl.interchange.*;
 import org.eclipse.papyrus.eastadl.interchange.InterchangeFactory;
 import org.eclipse.papyrus.eastadl.interchange.InterchangePackage;
 import org.eclipse.papyrus.eastadl.interchange.RIFExportArea;
@@ -28,12 +29,14 @@ import org.eclipse.papyrus.eastadl.interchange.RIFImportArea;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class InterchangeFactoryImpl extends EFactoryImpl implements InterchangeFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -45,16 +48,16 @@ public class InterchangeFactoryImpl extends EFactoryImpl implements InterchangeF
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static InterchangeFactory init() {
 		try {
 			InterchangeFactory theInterchangeFactory = (InterchangeFactory)EPackage.Registry.INSTANCE.getEFactory(InterchangePackage.eNS_URI);
-			if (theInterchangeFactory != null) {
+			if(theInterchangeFactory != null) {
 				return theInterchangeFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new InterchangeFactoryImpl();
@@ -63,6 +66,7 @@ public class InterchangeFactoryImpl extends EFactoryImpl implements InterchangeF
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InterchangeFactoryImpl() {
@@ -71,21 +75,25 @@ public class InterchangeFactoryImpl extends EFactoryImpl implements InterchangeF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case InterchangePackage.RIF_EXPORT_AREA: return createRIFExportArea();
-			case InterchangePackage.RIF_IMPORT_AREA: return createRIFImportArea();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch(eClass.getClassifierID()) {
+		case InterchangePackage.RIF_EXPORT_AREA:
+			return createRIFExportArea();
+		case InterchangePackage.RIF_IMPORT_AREA:
+			return createRIFImportArea();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RIFExportArea createRIFExportArea() {
@@ -96,6 +104,7 @@ public class InterchangeFactoryImpl extends EFactoryImpl implements InterchangeF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RIFImportArea createRIFImportArea() {
@@ -105,6 +114,7 @@ public class InterchangeFactoryImpl extends EFactoryImpl implements InterchangeF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InterchangePackage getInterchangePackage() {

@@ -3,7 +3,7 @@
 <plugin>
 <extension
       point="org.eclipse.ui.handlers">
-    <handler
+<!--    <handler
          class="org.eclipse.papyrus.uml.commands.handler.CopyHandler"
          commandId="org.eclipse.ui.edit.copy">
       <activeWhen>
@@ -16,7 +16,7 @@
             </with>
             <with
                   variable="selection">
-                  <!-- We add this test in order to refresh the Copy action in the menu edit -->
+                  <!- - We add this test in order to refresh the Copy action in the menu edit - ->
                <test
                      forcePluginActivation="true"
                      property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
@@ -47,7 +47,7 @@
              </with>
           </and>
        </activeWhen>
-    </handler>
+    </handler>-->
     <handler
           class="org.eclipse.papyrus.uml.commands.handler.RenameNamedElementHandler"
           commandId="org.eclipse.ui.edit.rename">
@@ -66,9 +66,9 @@
                          value="1">
                    </count>
                    <iterate>
-                      <adapt
-                            type="org.eclipse.uml2.uml.NamedElement">
-                      </adapt>
+                      <instanceof
+                            value="org.eclipse.emf.ecore.EObject">
+                      </instanceof>
                    </iterate>
                    <!-- we add these test to force the refresh of the Menu + to avoid handlers conflit   -->
                     <test

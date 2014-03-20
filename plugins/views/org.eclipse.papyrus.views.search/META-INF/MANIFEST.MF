@@ -25,6 +25,6 @@ Bundle-Vendor: %vendorName
 Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.views.search.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.views.search;singleton:=true
 Import-Package: org.eclipse.uml2.uml
+Bundle-SymbolicName: org.eclipse.papyrus.views.search;singleton:=true
 

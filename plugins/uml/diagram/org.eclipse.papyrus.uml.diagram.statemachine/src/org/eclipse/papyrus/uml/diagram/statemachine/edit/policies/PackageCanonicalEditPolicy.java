@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart;
@@ -74,255 +75,6 @@ public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	private Collection<UMLLinkDescriptor> collectAllLinks(View view, Map<EObject, View> domain2NotationMap) {
-		if(!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view))) {
-			return Collections.emptyList();
-		}
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case PackageEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getPackage_1000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case StateMachineEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getStateMachine_2000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case RegionEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getRegion_3000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case FinalStateEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getFinalState_5000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case StateEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getState_6000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case PseudostateInitialEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getPseudostate_8000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case PseudostateJoinEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getPseudostate_9000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case PseudostateForkEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getPseudostate_10000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case PseudostateChoiceEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getPseudostate_11000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case PseudostateJunctionEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getPseudostate_12000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case PseudostateShallowHistoryEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getPseudostate_13000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case PseudostateDeepHistoryEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getPseudostate_14000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case PseudostateTerminateEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getPseudostate_15000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case PseudostateEntryPointEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getPseudostate_16000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case PseudostateExitPointEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getPseudostate_17000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case ConnectionPointReferenceEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getConnectionPointReference_18000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case CommentEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getComment_666ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case ConstraintEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getConstraint_668ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case TransitionEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getTransition_7000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case GeneralizationEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getGeneralization_19000ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		}
-		for(Iterator children = view.getChildren().iterator(); children.hasNext();) {
-			result.addAll(collectAllLinks((View)children.next(), domain2NotationMap));
-		}
-		for(Iterator edges = view.getSourceEdges().iterator(); edges.hasNext();) {
-			result.addAll(collectAllLinks((View)edges.next(), domain2NotationMap));
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Collection<IAdaptable> createConnections(Collection<UMLLinkDescriptor> linkDescriptors, Map<EObject, View> domain2NotationMap) {
-		LinkedList<IAdaptable> adapters = new LinkedList<IAdaptable>();
-		for(UMLLinkDescriptor nextLinkDescriptor : linkDescriptors) {
-			EditPart sourceEditPart = getEditPart(nextLinkDescriptor.getSource(), domain2NotationMap);
-			EditPart targetEditPart = getEditPart(nextLinkDescriptor.getDestination(), domain2NotationMap);
-			if(sourceEditPart == null || targetEditPart == null) {
-				continue;
-			}
-			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(nextLinkDescriptor.getSemanticAdapter(), UMLVisualIDRegistry.getType(nextLinkDescriptor.getVisualID()), ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
-			CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(descriptor);
-			ccr.setType(RequestConstants.REQ_CONNECTION_START);
-			ccr.setSourceEditPart(sourceEditPart);
-			sourceEditPart.getCommand(ccr);
-			ccr.setTargetEditPart(targetEditPart);
-			ccr.setType(RequestConstants.REQ_CONNECTION_END);
-			Command cmd = targetEditPart.getCommand(ccr);
-			if(cmd != null && cmd.canExecute()) {
-				executeCommand(cmd);
-				IAdaptable viewAdapter = (IAdaptable)ccr.getNewObject();
-				if(viewAdapter != null) {
-					adapters.add(viewAdapter);
-				}
-			}
-		}
-		return adapters;
-	}
-
-	/**
-	 * @generated
-	 */
 	private Diagram getDiagram() {
 		return ((View)getHost().getModel()).getDiagram();
 	}
@@ -330,12 +82,56 @@ public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	private EditPart getEditPart(EObject domainModelElement, Map<EObject, View> domain2NotationMap) {
-		View view = (View)domain2NotationMap.get(domainModelElement);
+	private EditPart getSourceEditPart(UpdaterLinkDescriptor descriptor, Domain2Notation domain2NotationMap) {
+		return getEditPart(descriptor.getSource(), domain2NotationMap);
+	}
+
+	/**
+	 * @generated
+	 */
+	private EditPart getTargetEditPart(UpdaterLinkDescriptor descriptor, Domain2Notation domain2NotationMap) {
+		return getEditPart(descriptor.getDestination(), domain2NotationMap);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected final EditPart getHintedEditPart(EObject domainModelElement, Domain2Notation domain2NotationMap, int hintVisualId) {
+		View view = (View)domain2NotationMap.getHinted(domainModelElement, UMLVisualIDRegistry.getType(hintVisualId));
 		if(view != null) {
 			return (EditPart)getHost().getViewer().getEditPartRegistry().get(view);
 		}
 		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	@SuppressWarnings("serial")
+	protected static class Domain2Notation extends HashMap<EObject, View> {
+
+		/**
+		 * @generated
+		 */
+		public boolean containsDomainElement(EObject domainElement) {
+			return this.containsKey(domainElement);
+		}
+
+		/**
+		 * @generated
+		 */
+		public View getHinted(EObject domainEObject, String hint) {
+			return this.get(domainEObject);
+		}
+
+		/**
+		 * @generated
+		 */
+		public void putView(EObject domainElement, View view) {
+			if(!containsKey(view.getElement())) {
+				this.put(domainElement, view);
+			}
+		}
 	}
 
 	/**
@@ -377,7 +173,7 @@ public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private Collection<IAdaptable> refreshConnections() {
-		Map<EObject, View> domain2NotationMap = new HashMap<EObject, View>();
+		Domain2Notation domain2NotationMap = new Domain2Notation();
 		Collection<UMLLinkDescriptor> linkDescriptors = collectAllLinks(getDiagram(), domain2NotationMap);
 		Collection existingLinks = new LinkedList(getDiagram().getEdges());
 		for(Iterator linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
@@ -403,6 +199,226 @@ public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		deleteViews(existingLinks.iterator());
 		return createConnections(linkDescriptors, domain2NotationMap);
+	}
+
+	/**
+	 * @generated
+	 */
+	private Collection<UMLLinkDescriptor> collectAllLinks(View view, Domain2Notation domain2NotationMap) {
+		if(!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view))) {
+			return Collections.emptyList();
+		}
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		switch(UMLVisualIDRegistry.getVisualID(view)) {
+		case PackageEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getPackage_1000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case StateMachineEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getStateMachine_2000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case RegionEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getRegion_3000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case FinalStateEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getFinalState_5000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case StateEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getState_6000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case PseudostateInitialEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getPseudostate_8000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case PseudostateJoinEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getPseudostate_9000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case PseudostateForkEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getPseudostate_10000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case PseudostateChoiceEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getPseudostate_11000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case PseudostateJunctionEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getPseudostate_12000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case PseudostateShallowHistoryEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getPseudostate_13000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case PseudostateDeepHistoryEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getPseudostate_14000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case PseudostateTerminateEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getPseudostate_15000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case PseudostateEntryPointEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getPseudostate_16000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case PseudostateExitPointEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getPseudostate_17000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ConnectionPointReferenceEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getConnectionPointReference_18000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case CommentEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getComment_666ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ConstraintEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getConstraint_668ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case TransitionEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getTransition_7000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case GeneralizationEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getGeneralization_19000ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		}
+		for(Iterator children = view.getChildren().iterator(); children.hasNext();) {
+			result.addAll(collectAllLinks((View)children.next(), domain2NotationMap));
+		}
+		for(Iterator edges = view.getSourceEdges().iterator(); edges.hasNext();) {
+			result.addAll(collectAllLinks((View)edges.next(), domain2NotationMap));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Collection<IAdaptable> createConnections(Collection<UMLLinkDescriptor> linkDescriptors, Domain2Notation domain2NotationMap) {
+		LinkedList<IAdaptable> adapters = new LinkedList<IAdaptable>();
+		for(UMLLinkDescriptor nextLinkDescriptor : linkDescriptors) {
+			EditPart sourceEditPart = getSourceEditPart(nextLinkDescriptor, domain2NotationMap);
+			EditPart targetEditPart = getTargetEditPart(nextLinkDescriptor, domain2NotationMap);
+			if(sourceEditPart == null || targetEditPart == null) {
+				continue;
+			}
+			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(nextLinkDescriptor.getSemanticAdapter(), UMLVisualIDRegistry.getType(nextLinkDescriptor.getVisualID()), ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+			CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(descriptor);
+			ccr.setType(RequestConstants.REQ_CONNECTION_START);
+			ccr.setSourceEditPart(sourceEditPart);
+			sourceEditPart.getCommand(ccr);
+			ccr.setTargetEditPart(targetEditPart);
+			ccr.setType(RequestConstants.REQ_CONNECTION_END);
+			Command cmd = targetEditPart.getCommand(ccr);
+			if(cmd != null && cmd.canExecute()) {
+				executeCommand(cmd);
+				IAdaptable viewAdapter = (IAdaptable)ccr.getNewObject();
+				if(viewAdapter != null) {
+					adapters.add(viewAdapter);
+				}
+			}
+		}
+		return adapters;
+	}
+
+	/**
+	 * @generated
+	 */
+	private EditPart getEditPart(EObject domainModelElement, Domain2Notation domain2NotationMap) {
+		View view = (View)domain2NotationMap.get(domainModelElement);
+		if(view != null) {
+			return (EditPart)getHost().getViewer().getEditPartRegistry().get(view);
+		}
+		return null;
 	}
 
 	/**

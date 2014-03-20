@@ -93,12 +93,14 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class FeaturemodelingPackageImpl extends EPackageImpl implements FeaturemodelingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -106,16 +108,18 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link FeaturemodelingPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link FeaturemodelingPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static FeaturemodelingPackage init() {
-		if (isInited) return (FeaturemodelingPackage)EPackage.Registry.INSTANCE.getEPackage(FeaturemodelingPackage.eNS_URI);
+		if(isInited)
+			return (FeaturemodelingPackage)EPackage.Registry.INSTANCE.getEPackage(FeaturemodelingPackage.eNS_URI);
 
 		// Obtain or create and register package
 		FeaturemodelingPackageImpl theFeaturemodelingPackage = (FeaturemodelingPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FeaturemodelingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FeaturemodelingPackageImpl());
@@ -217,7 +221,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 		// Mark meta-data to indicate it can't be changed
 		theFeaturemodelingPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(FeaturemodelingPackage.eNS_URI, theFeaturemodelingPackage);
 		return theFeaturemodelingPackage;
@@ -225,48 +229,56 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass featureModelEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass featureLinkEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass featureEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass featureTreeNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass bindingTimeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass featureGroupEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass featureConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum bindingTimeKindEEnum = null;
@@ -274,31 +286,33 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum variabilityDependencyKindEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.structure.featuremodeling.FeaturemodelingPackage#eNS_URI
 	 * @see #init()
@@ -309,13 +323,15 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -366,6 +382,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getBindingTime() {
@@ -374,6 +391,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getBindingTime_Kind() {
@@ -383,6 +401,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getBindingTime_Base_Class() {
@@ -391,6 +410,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getBindingTimeKind() {
@@ -399,6 +419,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFeature() {
@@ -408,6 +429,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeature_Base_Class() {
@@ -416,6 +438,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeature_ActualBindingTime() {
@@ -424,6 +447,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFeature_Cardinality() {
@@ -433,6 +457,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeature_ChildNode() {
@@ -442,6 +467,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeature_FeatureParameter() {
@@ -450,6 +476,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeature_RequiredBindingTime() {
@@ -458,6 +485,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFeatureConstraint() {
@@ -466,6 +494,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFeatureConstraint_Criterion() {
@@ -475,6 +504,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureConstraint_Base_Class() {
@@ -484,6 +514,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureConstraint_Base_Constraint() {
@@ -492,6 +523,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFeatureGroup() {
@@ -501,6 +533,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureGroup_Base_Class() {
@@ -509,6 +542,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFeatureGroup_Cardinality() {
@@ -518,6 +552,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureGroup_ChildFeature() {
@@ -526,6 +561,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFeatureLink() {
@@ -535,6 +571,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFeatureLink_CustomType() {
@@ -544,6 +581,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureLink_Base_Dependency() {
@@ -552,6 +590,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureLink_End() {
@@ -561,6 +600,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureLink_Base_AssociationClass() {
@@ -569,6 +609,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFeatureLink_IsBidirectional() {
@@ -578,6 +619,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFeatureLink_Kind() {
@@ -586,6 +628,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureLink_Start() {
@@ -594,6 +637,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFeatureModel() {
@@ -603,6 +647,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureModel_Base_Package() {
@@ -612,6 +657,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureModel_Base_Class() {
@@ -621,6 +667,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureModel_FeatureConstraint() {
@@ -630,6 +677,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureModel_FeatureLink() {
@@ -639,6 +687,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureModel_RootFeature() {
@@ -647,6 +696,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FeaturemodelingFactory getFeaturemodelingFactory() {
@@ -655,6 +705,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFeatureTreeNode() {
@@ -664,6 +715,7 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getVariabilityDependencyKind() {
@@ -671,13 +723,15 @@ public class FeaturemodelingPackageImpl extends EPackageImpl implements Featurem
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package

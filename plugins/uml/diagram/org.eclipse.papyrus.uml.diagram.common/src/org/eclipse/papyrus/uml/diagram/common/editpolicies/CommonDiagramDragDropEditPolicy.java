@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,8 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - refactor common behavior between diagrams
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - add the line 	ViewServiceUtil.forceLoad();
+ *  Christian W. Damus (CEA) - bug 430726
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -350,16 +352,20 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	protected void createDeferredCommandWithCommandResult(EObject droppedObject, CompositeCommand cc, ICommandProxy specificDropCommandProxy) {
 		if(specificDropCommandProxy != null && specificDropCommandProxy.getICommand() != null && specificDropCommandProxy.getICommand().getCommandResult() != null && specificDropCommandProxy.getICommand().getCommandResult().getReturnValue() != null) {
 			Object object = specificDropCommandProxy.getICommand().getCommandResult().getReturnValue();
-			if(object instanceof Collection<?>) {
+			if(object instanceof CreateViewRequest.ViewDescriptor) {
+				cc.compose(createDeferredCreateCommand(droppedObject, (CreateViewRequest.ViewDescriptor)object));
+			} else if(object instanceof Collection<?>) {
 				for(Object o : (Collection<?>)object) {
 					if(o instanceof CreateViewRequest.ViewDescriptor) {
-						CreateViewRequest.ViewDescriptor viewDescritor = (CreateViewRequest.ViewDescriptor)o;
-						DeferredCreateCommand createCommand2 = new DeferredCreateCommand(getEditingDomain(), droppedObject, (IAdaptable)viewDescritor, getHost().getViewer());
-						cc.compose(createCommand2);
+						cc.compose(createDeferredCreateCommand(droppedObject, (CreateViewRequest.ViewDescriptor)o));
 					}
 				}
 			}
 		}
+	}
+
+	private DeferredCreateCommand createDeferredCreateCommand(EObject droppedObject, CreateViewRequest.ViewDescriptor viewDescriptor) {
+		return new DeferredCreateCommand(getEditingDomain(), droppedObject, (IAdaptable)viewDescriptor, getHost().getViewer());
 	}
 
 	/**

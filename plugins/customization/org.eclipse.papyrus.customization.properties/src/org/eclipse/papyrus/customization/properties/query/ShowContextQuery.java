@@ -11,10 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.query;
 
-import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
-import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
-import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.papyrus.customization.properties.editor.actions.ToggleDataContextAction;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 
 /**
@@ -22,9 +23,11 @@ import org.eclipse.papyrus.views.properties.contexts.Context;
  * 
  * @author Camille Letavernier
  */
-public class ShowContextQuery implements IJavaModelQuery<Context, Boolean> {
+public class ShowContextQuery implements IJavaQuery2<Context, Boolean> {
 
-	public Boolean evaluate(Context context, ParameterValueList parameters) throws ModelQueryExecutionException {
+
+	@Override
+	public Boolean evaluate(Context source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
 		Boolean result = ToggleDataContextAction.showDataContext;
 		return result;
 	}

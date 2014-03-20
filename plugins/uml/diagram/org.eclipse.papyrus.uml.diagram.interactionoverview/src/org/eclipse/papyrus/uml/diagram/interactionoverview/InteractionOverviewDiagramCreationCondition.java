@@ -24,9 +24,6 @@ public class InteractionOverviewDiagramCreationCondition extends PerspectiveCont
 	 */
 	@Override
 	public boolean create(final EObject selectedElement) {
-		if(super.create(selectedElement)) {
-			return selectedElement instanceof org.eclipse.uml2.uml.Package;
-		}
 		return false;
 	}
 

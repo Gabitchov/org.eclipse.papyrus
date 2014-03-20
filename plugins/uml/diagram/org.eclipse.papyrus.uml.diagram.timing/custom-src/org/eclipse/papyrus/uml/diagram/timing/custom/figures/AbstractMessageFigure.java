@@ -88,6 +88,13 @@ public abstract class AbstractMessageFigure extends UMLEdgeFigure {
 		}
 	}
 
+	@Override
+	public void resetStyle() {
+		super.resetStyle();
+		setSourceDecoration(createSourceDecoration());
+		setTargetDecoration(createTargetDecoration());
+	}
+
 	protected static IMapMode getMapMode() {
 		return MapModeTypes.IDENTITY_MM;
 	}

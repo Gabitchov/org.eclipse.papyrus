@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008, 2013 CEA LIST and others.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -29,13 +29,14 @@ import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.TransactionalDiSashModelMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -124,25 +125,8 @@ public class EditorUtils {
 	 * @param diResource
 	 * @return The non transactional implementation of IPageMngr
 	 */
-	public static IPageMngr getIPageMngr(Resource diResource) {
+	public static IPageManager getIPageMngr(Resource diResource) {
 		return DiSashModelMngr.createIPageMngr(diResource);
-	}
-
-	/**
-	 * Create an instance of IPageMngr acting on the provided resource. This
-	 * instance is suitable to add, remove, close or open diagrams.
-	 * 
-	 * @param diResource
-	 * @param editingDomain
-	 * 
-	 * @return The transactional implementation of IPageMngr
-	 * 
-	 * @deprecated The TransactionalIPageMngr is deprecated. You should use IPageManager instead.
-	 *             Transactions should be started by the IPageManager user when necessary.
-	 */
-	@Deprecated
-	public static IPageMngr getTransactionalIPageMngr(Resource diResource, TransactionalEditingDomain editingDomain) {
-		return TransactionalDiSashModelMngr.createIPageMngr(diResource, editingDomain);
 	}
 
 

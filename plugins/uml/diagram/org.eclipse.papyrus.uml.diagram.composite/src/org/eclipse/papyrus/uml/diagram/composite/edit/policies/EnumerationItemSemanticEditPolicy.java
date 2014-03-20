@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.AbstractionCreateCommand;
@@ -107,7 +108,7 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new EnumerationLiteralCreateCommandCLN(req));
+			return getGEFWrapper(new EnumerationLiteralCreateCommandCLN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

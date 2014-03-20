@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,12 +10,14 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
 
 import org.eclipse.gef.commands.CommandStack;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.papyrus.uml.profile.tree.ProfileElementTreeViewer;
 import org.eclipse.papyrus.uml.profile.tree.PropertyValueTreeViewer;
@@ -144,6 +146,8 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 */
 	public void setElement(Element element) {
 		this.element = element;
+		
+		updateEnablement();
 	}
 
 	/**
@@ -265,18 +269,30 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		data.bottom = new FormAttachment(100, -ITabbedPropertyConstants.VSPACE);
 
 		tree.setLayoutData(data);
+		
+		// initialize enablement of controls
+		updateEnablement();
+		
 		return this;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.ui.composites.ISectionComposite#refresh()
-	 */
-	/**
-	 * 
-	 */
 	public void refresh() {
+		updateEnablement();
+	}
+	
+	protected boolean isEditable() {
+		return (element != null) && !EMFHelper.isReadOnly(element);
+	}
+	
+	protected void updateEnablement() {
+		boolean isEditable = isEditable();
+		
+		if((addButton != null) && !addButton.isDisposed()) {
+			addButton.setEnabled(isEditable);
+			removeButton.setEnabled(isEditable);
+			upButton.setEnabled(isEditable);
+			downButton.setEnabled(isEditable);
+		}
 	}
 
 	//	/**

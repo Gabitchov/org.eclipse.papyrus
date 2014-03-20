@@ -21,14 +21,7 @@ public class TimingDiagramCreationCondition extends PerspectiveContextDependence
 	 */
 	@Override
 	public boolean create(final EObject selectedElement) {
-		return true;
-
-		// FIXME: condition?
-
-		// if (super.create(selectedElement)) {
-		// return selectedElement instanceof org.eclipse.uml2.uml.Package;
-		// }
-		// return false;
+		return false;
 	}
 
 }

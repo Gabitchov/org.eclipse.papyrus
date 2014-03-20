@@ -47,6 +47,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.command.VisualRefreshCommand;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
@@ -267,7 +268,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 					public void run() {
 						if(nattable != null && !nattable.isDisposed() && nattable.isVisible()) {
-							nattable.refresh();
+							nattable.doCommand(new VisualRefreshCommand());
 						}
 					}
 				});

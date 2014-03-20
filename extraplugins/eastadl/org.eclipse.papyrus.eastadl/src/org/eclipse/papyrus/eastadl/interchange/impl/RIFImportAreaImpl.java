@@ -25,13 +25,14 @@ import org.eclipse.papyrus.eastadl.interchange.RIFImportArea;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class RIFImportAreaImpl extends RIFAreaImpl implements RIFImportArea {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RIFImportAreaImpl() {
@@ -40,6 +41,7 @@ public class RIFImportAreaImpl extends RIFAreaImpl implements RIFImportArea {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

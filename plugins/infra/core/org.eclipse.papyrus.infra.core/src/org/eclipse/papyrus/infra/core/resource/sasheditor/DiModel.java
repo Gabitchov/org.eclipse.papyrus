@@ -1,19 +1,32 @@
-/**
- * 
- */
+/*****************************************************************************
+ * Copyright (c) 2011, 2014 LIFL, CEA LIST, and others.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 429242
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
+import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 
 /**
  * @author dumoulin
- * 
+ *
  */
-public class DiModel extends AbstractBaseModel implements IModel {
+public class DiModel extends AbstractModelWithSharedResource<EObject> implements IModel {
 
 	/**
 	 * File extension used for notation.
@@ -26,9 +39,22 @@ public class DiModel extends AbstractBaseModel implements IModel {
 	public static final String DI_FILE_EXTENSION = MODEL_FILE_EXTENSION;
 
 	/**
-	 * Model ID.
+	 * Sash Model ID.
+	 * 
+	 * @deprecated Use {@link SashModel#MODEL_ID} instead
 	 */
+	@Deprecated
 	public static final String MODEL_ID = "org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel"; //$NON-NLS-1$
+
+	/**
+	 * The ID of the DI Model
+	 */
+	public static final String DI_MODEL_ID = "org.eclipse.papyrus.infra.core.resource.DiModel"; //$NON-NLS-1$
+
+
+	public DiModel() {
+		super(ModelKind.master);
+	}
 
 	/**
 	 * Get the file extension used for this model.
@@ -39,7 +65,7 @@ public class DiModel extends AbstractBaseModel implements IModel {
 	 */
 	@Override
 	protected String getModelFileExtension() {
-		return MODEL_FILE_EXTENSION;
+		return DI_FILE_EXTENSION;
 	}
 
 	/**
@@ -51,8 +77,25 @@ public class DiModel extends AbstractBaseModel implements IModel {
 	 */
 	@Override
 	public String getIdentifier() {
-		return MODEL_FILE_EXTENSION;
+		return DI_MODEL_ID;
 	}
+
+	@Override
+	public void loadModel(URI uriWithoutExtension) {
+		// It is a common use case that this resource does not (and will not) exist
+		if(exists(uriWithoutExtension)) {
+			try {
+				super.loadModel(uriWithoutExtension);
+			} catch (Exception ex) {
+				createModel(uriWithoutExtension);
+			}
+		}
+		
+		if(resource == null) {
+			createModel(uriWithoutExtension);
+		}
+	}
+
 
 	@Override
 	protected Map<Object, Object> getSaveOptions() {
@@ -62,6 +105,11 @@ public class DiModel extends AbstractBaseModel implements IModel {
 		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.FALSE);
 
 		return saveOptions;
+	}
+
+	@Override
+	protected boolean isModelRoot(EObject object) {
+		return false; //DiModel is currently an empty model
 	}
 
 }

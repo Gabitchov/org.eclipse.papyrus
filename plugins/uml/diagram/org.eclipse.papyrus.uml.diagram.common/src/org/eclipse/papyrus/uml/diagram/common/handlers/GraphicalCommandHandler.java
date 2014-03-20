@@ -38,7 +38,9 @@ import org.eclipse.ui.handlers.HandlerUtil;
  * calculates the visibility and enablement based on command executability -
  * executes the command in Papyrus command stack
  * 
+ * @deprecated Since February 2014 use org.eclipse.papyrus.infra.gmfdiag.menu.handlers.AbstractGraphicalCommandHandler
  */
+@Deprecated
 public abstract class GraphicalCommandHandler extends AbstractHandler {
 
 	protected abstract Command getCommand();

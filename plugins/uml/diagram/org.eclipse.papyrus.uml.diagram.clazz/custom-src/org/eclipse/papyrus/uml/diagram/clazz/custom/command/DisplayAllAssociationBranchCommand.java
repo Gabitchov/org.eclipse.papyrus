@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.command;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.CustomMultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
@@ -41,7 +41,7 @@ public class DisplayAllAssociationBranchCommand implements IObjectActionDelegate
 	 * {@inheritDoc}
 	 */
 	public void run(IAction action) {
-		MultiAssociationHelper multiAssociationHelper = new MultiAssociationHelper(selectedElement.getEditingDomain());
+		CustomMultiAssociationHelper multiAssociationHelper = new CustomMultiAssociationHelper(selectedElement.getEditingDomain());
 		selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(multiAssociationHelper.displayAllBranchesCommand(selectedElement));
 	}
 
@@ -49,10 +49,10 @@ public class DisplayAllAssociationBranchCommand implements IObjectActionDelegate
 	 * {@inheritedDoc}
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
-		if(selection instanceof IStructuredSelection) {
-			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
-			if(selectedobject instanceof AssociationNodeEditPart) {
-				selectedElement = (AssociationNodeEditPart)selectedobject;
+		if (selection instanceof IStructuredSelection) {
+			Object selectedobject = ((IStructuredSelection) selection).getFirstElement();
+			if (selectedobject instanceof AssociationNodeEditPart) {
+				selectedElement = (AssociationNodeEditPart) selectedobject;
 			}
 		}
 	}

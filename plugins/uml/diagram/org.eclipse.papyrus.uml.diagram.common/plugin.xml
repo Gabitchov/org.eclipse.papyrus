@@ -249,6 +249,13 @@
 		properties="isUMLModel, isUMLProfile"
 		type="org.eclipse.jface.viewers.ISelection">
 	</propertyTester>
+ <propertyTester
+       class="org.eclipse.papyrus.uml.diagram.common.util.UMLModelTester"
+       id="org.eclipse.papyrus.UMLModelTester"
+       namespace="org.eclipse.papyrus.UMLModelTester"
+       properties="isUMLModel, isUMLProfile"
+       type="org.eclipse.ui.IWorkbenchPart">
+ </propertyTester>
 </extension>
 
 <!-- Reusable test definitions verifying:
@@ -259,33 +266,25 @@
 		point="org.eclipse.core.expressions.definitions">
 	
 	<definition id="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel">
-		<and>
-		
-		<with variable="activeEditorId">
-			<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
-		</with>
-
-		<with variable="selection">
-			<test property="org.eclipse.papyrus.UMLSelectionTester.isUMLModel" value="true"
-				forcePluginActivation="true"/>
-		</with>
-		
-		</and>
+    <with
+          variable="activePart">
+       <test
+             forcePluginActivation="true"
+             property="org.eclipse.papyrus.UMLModelTester.isUMLModel"
+             value="true">
+       </test>
+    </with>
 	</definition>
 	
 	<definition id="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLProfile">
-		<and>
-		
-		<with variable="activeEditorId">
-			<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
-		</with>
-
-		<with variable="selection">
-			<test property="org.eclipse.papyrus.UMLSelectionTester.isUMLProfile" value="true"
-				forcePluginActivation="true"/>
-		</with>
-		
-		</and>
+    <with
+          variable="activePart">
+       <test
+             forcePluginActivation="true"
+             property="org.eclipse.papyrus.UMLModelTester.isUMLProfile"
+             value="true">
+       </test>
+    </with>
 	</definition>	
 </extension>
 
@@ -442,22 +441,6 @@
 </extension>
 
 <extension
-      point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
-   <decoratorProvider
-         class="org.eclipse.papyrus.uml.diagram.common.service.InheritedDecoratorProvider">
-      <Priority
-            name="Lowest">
-      </Priority>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
-            id="NODE">
-      </object>
-      <context
-            decoratorTargets="NODE">
-      </context>
-   </decoratorProvider>
-</extension>
-<extension
       point="org.eclipse.ui.services">
    <sourceProvider
          provider="org.eclipse.papyrus.uml.diagram.common.providers.ActionStateSourceProvider">
@@ -608,5 +591,41 @@
             name="Lowest">
       </Priority>
    </editpolicyProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.pasteStrategy">
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.paste.StereotypePasteStrategy">
+   </strategy>
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.paste.DefaultPasteStrategy">
+   </strategy>
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.paste.RenamePasteStrategy">
+   </strategy>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.copyStrategy">
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.copy.AllContentCopyStrategy">
+   </strategy>
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.copy.RootOnlyCopyStrategy">
+   </strategy>
+</extension>
+<extension
+      point="org.eclipse.ui.preferencePages">
+   <page
+         category="org.eclipse.papyrus.infra.gmfdiag.paste.preferences"
+         class="org.eclipse.papyrus.uml.diagram.common.preferences.StereotypePasteStrategyPreferencePage"
+         id="org.eclipse.papyrus.uml.diagram.common.StereotypePasteStrategyPreferencePage"
+         name="Stereotype Strategy">
+   </page>
+</extension>
+<extension
+      point="org.eclipse.core.runtime.preferences">
+   <initializer
+         class="org.eclipse.papyrus.uml.diagram.common.preferences.StereotypePasteStrategyPreferenceInitializer">
+   </initializer>
 </extension>
 </plugin>

@@ -26,13 +26,15 @@ import org.eclipse.papyrus.eastadl.infrastructure.datatypes.RangeableDatatype;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class RangeableDatatypeImpl extends EADatatypeImpl implements RangeableDatatype {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RangeableDatatypeImpl() {
@@ -42,6 +44,7 @@ public abstract class RangeableDatatypeImpl extends EADatatypeImpl implements Ra
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

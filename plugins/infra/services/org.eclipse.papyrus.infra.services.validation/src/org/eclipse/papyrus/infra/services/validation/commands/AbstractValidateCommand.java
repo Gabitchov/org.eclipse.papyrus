@@ -21,6 +21,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -64,6 +65,8 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	
 	protected IPapyrusDiagnostician diagnostician;
 
+	protected boolean showUIfeedback;
+	
 	/**
 	 * Creates a new ValidationCommand
 	 *
@@ -93,9 +96,18 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 		super(domain, label, Collections.EMPTY_LIST);
 		this.domain = domain;
 		this.selectedElement = selectedElement;
-		this.diagnostician= diagnostician;
+		this.diagnostician = diagnostician;
+		this.showUIfeedback = true;	// default is true;
 	}
 
+	/**
+	 * don't use a progress monitor to show validation progress. This is quite useful
+	 * for diagnostics that are executed on a (shallow) subtree and do not take much time.
+	 */
+	public void disableUIFeedback() {
+		this.showUIfeedback = false;
+	}
+	
 	/**
 	 * @return The resource on which markers should be applied.
 	 */
@@ -141,20 +153,29 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 		try {
 			// runs the operation, and shows progress.
 			diagnostic = null;
-			new ProgressMonitorDialog(shell).run(true, true, runValidationWithProgress);
+			if (showUIfeedback) {
+				new ProgressMonitorDialog(shell).run(true, true, runValidationWithProgress);
+			}
+			else {
+				runValidationWithProgress.run(new NullProgressMonitor());
+			}
 			if(diagnostic != null) {
 				int markersToCreate = diagnostic.getChildren().size();
-				if((markersToCreate > 0) && PreferenceUtils.getAutoShowValidation()) {
+				if((markersToCreate > 0) && PreferenceUtils.getAutoShowValidation() && showUIfeedback) {
 					// activate model view, if activated in configuration
 					// IViewRegistry viewRegistry = PlatformUI.getWorkbench().getViewRegistry();
 					// IViewDescriptor desc = viewRegistry.find(modelValidationViewID);
 					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(modelValidationViewID);
 					// HandlerUtil.getActiveWorkbenchWindow(event).getActivePage().showView(modelValidationViewID);
-					
 				}
 				// don't fork this dialog, i.e. run it in the UI thread. This avoids that the diagrams are constantly refreshing *while*
 				// markers/decorations are changing. This greatly enhances update performance. See also bug 400593
-				new ProgressMonitorDialog(shell).run(false, true, createMarkersWithProgress);
+				if (showUIfeedback) {
+					new ProgressMonitorDialog(shell).run(false, true, createMarkersWithProgress);
+				}
+				else {
+					createMarkersWithProgress.run(new NullProgressMonitor());
+				}
 			}
 		} catch (Exception exception) {
 			EMFEditUIPlugin.INSTANCE.log(exception);
@@ -204,12 +225,12 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 				ValidationTool vt = new ValidationTool(validateElement, resource);
 				int markersToCreate = diagnostic.getChildren().size();
 
-				sub.beginTask("Delete existing markers", 1);
+				sub.beginTask(Messages.AbstractValidateCommand_DeleteExistingMarkers, 1);
 				flushDisplayEvents(shell.getDisplay());
 
 				vt.deleteSubMarkers(sub.newChild(1));
 
-				monitor.setTaskName("Create markers (total: " + markersToCreate + " markers) and refresh diagrams"); //$NON-NLS-1$
+				monitor.setTaskName(String.format(Messages.AbstractValidateCommand_CreateNMarkers, markersToCreate));
 				flushDisplayEvents(shell.getDisplay());
 
 				vt.createMarkers(diagnostic, sub.newChild(1));

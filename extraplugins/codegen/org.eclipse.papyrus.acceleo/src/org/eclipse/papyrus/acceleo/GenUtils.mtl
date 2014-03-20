@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module GenUtils('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[module GenUtils('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
 [query public getTemplateBindings(arg0 : Class) : TemplateBinding
 	= invoke('org.eclipse.papyrus.acceleo.GenUtils', 'getTemplateBindings(org.eclipse.uml2.uml.Class)', Sequence{arg0})

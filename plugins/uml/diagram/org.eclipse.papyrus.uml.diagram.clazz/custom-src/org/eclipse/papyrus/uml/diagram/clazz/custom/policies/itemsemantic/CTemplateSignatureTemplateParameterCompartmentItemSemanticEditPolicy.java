@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.policies.itemsemantic;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CClassifierTemplateParameterCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.COperationTemplateParameterCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CTemplateParameterCreateCommand;
@@ -34,13 +35,13 @@ public class CTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolic
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.ClassifierTemplateParameter_3031 == req.getElementType()) {
-			return getGEFWrapper(new CClassifierTemplateParameterCreateCommand(req));
+			return getGEFWrapper(new CClassifierTemplateParameterCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.OperationTemplateParameter_3035 == req.getElementType()) {
-			return getGEFWrapper(new COperationTemplateParameterCreateCommand(req));
+			return getGEFWrapper(new COperationTemplateParameterCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.TemplateParameter_3016 == req.getElementType()) {
-			return getGEFWrapper(new CTemplateParameterCreateCommand(req));
+			return getGEFWrapper(new CTemplateParameterCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

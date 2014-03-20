@@ -373,6 +373,16 @@ public interface BlocksPackage extends EPackage {
 	int BLOCK_FEATURE_COUNT = 2;
 
 	/**
+	 * The number of operations of the '<em>Block</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.internal.impl.DistributedPropertyImpl <em>Distributed Property</em>}'
 	 * class.
 	 * <!-- begin-user-doc --> <!--
@@ -403,6 +413,16 @@ public interface BlocksPackage extends EPackage {
 	int DISTRIBUTED_PROPERTY_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>Distributed Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int DISTRIBUTED_PROPERTY_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.internal.impl.DimensionImpl <em>Dimension</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -429,6 +449,16 @@ public interface BlocksPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIMENSION_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Dimension</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.internal.impl.UnitImpl <em>Unit</em>}' class.
@@ -466,6 +496,16 @@ public interface BlocksPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNIT_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Unit</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNIT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.blocks.internal.impl.ValueTypeImpl
@@ -515,6 +555,16 @@ public interface BlocksPackage extends EPackage {
 	int VALUE_TYPE_FEATURE_COUNT = 3;
 
 	/**
+	 * The number of operations of the '<em>Value Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_TYPE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.internal.impl.NestedConnectorEndImpl <em>Nested Connector End</em>}' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -551,6 +601,16 @@ public interface BlocksPackage extends EPackage {
 	 * @ordered
 	 */
 	int NESTED_CONNECTOR_END_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Nested Connector End</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_CONNECTOR_END_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.internal.impl.ParticipantPropertyImpl <em>Participant Property</em>}'
@@ -592,6 +652,16 @@ public interface BlocksPackage extends EPackage {
 	int PARTICIPANT_PROPERTY_FEATURE_COUNT = 2;
 
 	/**
+	 * The number of operations of the '<em>Participant Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PARTICIPANT_PROPERTY_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.internal.impl.ConnectorPropertyImpl <em>Connector Property</em>}' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -630,6 +700,16 @@ public interface BlocksPackage extends EPackage {
 	int CONNECTOR_PROPERTY_FEATURE_COUNT = 2;
 
 	/**
+	 * The number of operations of the '<em>Connector Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR_PROPERTY_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.internal.impl.BindingConnectorImpl <em>Binding Connector</em>}' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -657,6 +737,16 @@ public interface BlocksPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINDING_CONNECTOR_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Binding Connector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int BINDING_CONNECTOR_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.internal.impl.PropertySpecificTypeImpl <em>Property Specific Type</em>}'
@@ -687,6 +777,16 @@ public interface BlocksPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTY_SPECIFIC_TYPE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Property Specific Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_SPECIFIC_TYPE_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.blocks.BindingConnector

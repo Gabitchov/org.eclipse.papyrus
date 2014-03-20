@@ -19,7 +19,6 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.state.xtext;bundle-version="1.0
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.4.0",
  org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="1.0.0",
  org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
@@ -30,7 +29,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.state.xtext.ui.inte
  rnal.UmlStateActivator
+Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.state.xtext.ui;s
  ingleton:=true
-Import-Package: org.apache.log4j
 

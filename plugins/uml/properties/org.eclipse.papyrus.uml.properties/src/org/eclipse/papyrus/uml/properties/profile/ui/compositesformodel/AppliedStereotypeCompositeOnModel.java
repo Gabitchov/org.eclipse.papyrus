@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2014 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
@@ -287,6 +288,8 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 */
 	@Override
 	public void refresh() {
+		super.refresh();
+		
 		if(treeViewer.getTree() != null && !(treeViewer.getTree().isDisposed())) {
 			treeViewer.setInput(null);
 			treeViewer.refresh();
@@ -298,10 +301,12 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 				return;
 			}
 
+			boolean isEditable = isEditable();
+			
 			// If the property is Multivalued show Up - Down
 			if((rTO.getChildren() != null) && (rTO.getChildren().length > 1)) {
-				upButton.setEnabled(true);
-				downButton.setEnabled(true);
+				upButton.setEnabled(isEditable);
+				downButton.setEnabled(isEditable);
 			} else {
 				upButton.setEnabled(false);
 				downButton.setEnabled(false);
@@ -310,7 +315,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			if((rTO.getChildren() != null) && (rTO.getChildren().length == 0)) {
 				removeButton.setEnabled(false);
 			} else {
-				removeButton.setEnabled(true);
+				removeButton.setEnabled(isEditable);
 			}
 		}
 	}

@@ -63,6 +63,7 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
@@ -85,7 +86,7 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class PropertyPartNameEditPartCN extends PapyrusCompartmentEditPart implements ITextAwareEditPart {
+public class PropertyPartNameEditPartCN extends PapyrusCompartmentEditPart implements ITextAwareEditPart, IControlParserForDirectEdit {
 
 	/**
 	 * @generated
@@ -413,11 +414,9 @@ public class PropertyPartNameEditPartCN extends PapyrusCompartmentEditPart imple
 				Dialog dialog = null;
 				if(configuration instanceof ICustomDirectEditorConfiguration) {
 					setManager(((ICustomDirectEditorConfiguration)configuration).createDirectEditManager(this));
-					setParser(((ICustomDirectEditorConfiguration)configuration).createParser(this.resolveSemanticElement()));
 					initializeDirectEditManager(theRequest);
 					return;
-				} 
-				if(configuration instanceof IPopupEditorConfiguration) {
+				} else if(configuration instanceof IPopupEditorConfiguration) {
 					IPopupEditorHelper helper = ((IPopupEditorConfiguration)configuration).createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
@@ -565,6 +564,7 @@ public class PropertyPartNameEditPartCN extends PapyrusCompartmentEditPart imple
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * @generated
 	 */

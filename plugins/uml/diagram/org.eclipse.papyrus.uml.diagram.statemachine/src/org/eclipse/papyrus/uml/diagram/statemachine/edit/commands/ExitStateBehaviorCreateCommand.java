@@ -11,9 +11,13 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.State;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -23,7 +27,7 @@ public class ExitStateBehaviorCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private EClass eClass = null;
+	private Diagram diagram = null;
 
 	/**
 	 * @generated
@@ -33,24 +37,25 @@ public class ExitStateBehaviorCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ExitStateBehaviorCreateCommand(CreateElementRequest req, EObject eObject) {
+	public ExitStateBehaviorCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static ExitStateBehaviorCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new ExitStateBehaviorCreateCommand(req, eObject);
+	public static ExitStateBehaviorCreateCommand create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new ExitStateBehaviorCreateCommand(req, eObject, diagram);
 	}
 
 	/**
 	 * @generated
 	 */
-	public ExitStateBehaviorCreateCommand(CreateElementRequest req) {
+	public ExitStateBehaviorCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -77,7 +82,9 @@ public class ExitStateBehaviorCreateCommand extends EditElementCommand {
 		if(container.getExit() != null) {
 			return false;
 		}
-		return true;
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getBehavior());
+		return data.isPermitted();
 	}
 
 	/**

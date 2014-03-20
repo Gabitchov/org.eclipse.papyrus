@@ -7,13 +7,8 @@
 package org.eclipse.papyrus.infra.queries.core.configuration.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
-import org.eclipse.emf.facet.infra.query.edit.provider.QueryEditPlugin;
-
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
 
 /**
@@ -49,7 +44,7 @@ public final class ConfigurationEditPlugin extends EMFPlugin {
 		super
 		  (new ResourceLocator [] {
 		     EcoreEditPlugin.INSTANCE,
-		     QueryEditPlugin.INSTANCE,
+		   //  QueryEditPlugin.INSTANCE,
 		     UMLEditPlugin.INSTANCE,
 		   });
 	}

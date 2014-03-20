@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.command;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DurationConstraintInMessageCreateCommand;
 
 /**
@@ -28,8 +29,8 @@ public class CustomDurationConstraintInMessageCreateCommand extends DurationCons
 	 * @param req
 	 * @param eObject
 	 */
-	public CustomDurationConstraintInMessageCreateCommand(CreateElementRequest req, EObject eObject) {
-		super(req, eObject);
+	public CustomDurationConstraintInMessageCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		super(req, eObject, diagram);
 	}
 
 	/**
@@ -37,8 +38,8 @@ public class CustomDurationConstraintInMessageCreateCommand extends DurationCons
 	 * 
 	 * @param req
 	 */
-	public CustomDurationConstraintInMessageCreateCommand(CreateElementRequest req) {
-		super(req);
+	public CustomDurationConstraintInMessageCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 	}
 
 	/**

@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST.
- * 
+ * Copyright (c) 2011, 2014 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,8 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
- *  
+ *  Christian W. Damus (CEA) - bug 323802
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.importt.handlers;
 
@@ -18,10 +19,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.uml.extensionpoints.library.FilteredRegisteredLibrariesSelectionDialog;
@@ -37,24 +38,20 @@ import org.eclipse.uml2.uml.Package;
 
 public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected Command getCommand() {
+	protected ICommand getGMFCommand() {
 		return new ImportLibraryFromRepositoryCommand();
 	}
 
 	/**
 	 * Apply the result of the dialog, i.e. it adds package imports to libraries
-	 * 
+	 *
 	 * @param librariesToImport
 	 *        the array of Libraries to import
 	 */
 	protected void importLibraries(RegisteredLibrary[] librariesToImport) {
 		// retrieve the current resource set
-		ResourceSet resourceSet = Util.getResourceSet(getSelectedElement());
+		ResourceSet resourceSet = Util.createTemporaryResourceSet();
 
 		for(int i = 0; i < librariesToImport.length; i++) {
 			RegisteredLibrary currentLibrary = (librariesToImport[i]);
@@ -66,16 +63,18 @@ public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 			if(dialog.open() == Window.OK) {
 				Collection<ImportSpec<Package>> result = dialog.getResult();
 
-				for (ImportSpec<Package> resultElement : result) {
-					Package selectedPackage = resultElement
-						.getElement();
-					switch (resultElement.getAction()) {
-						case COPY :
-							handleCopyPackage(selectedPackage);
-							break;
-						default :
-							handleImportPackage(selectedPackage);
-							break;
+				for(ImportSpec<Package> resultElement : result) {
+					Package selectedPackage = resultElement.getElement();
+					switch(resultElement.getAction()) {
+					case COPY:
+						handleCopyPackage(selectedPackage);
+						break;
+					case IMPORT:
+						handleImportPackage(selectedPackage);
+						break;
+					default: //Load
+						handleLoadPackage(selectedPackage);
+						break;
 					}
 				}
 			}
@@ -87,7 +86,7 @@ public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 	 * <p>
 	 * It returns all registered libraries except the already imported ones.
 	 * </p>
-	 * 
+	 *
 	 * @return the array of available libraries for the currently selected package
 	 */
 	protected RegisteredLibrary[] getAvailableLibraries() {
@@ -108,7 +107,7 @@ public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 	 * <p>
 	 * It returns all already imported libraries.
 	 * </p>
-	 * 
+	 *
 	 * @return the array of already selected libraries for the currently selected package
 	 */
 	protected Collection<RegisteredLibrary> getImportedLibraries() {
@@ -132,7 +131,7 @@ public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 
 		/**
 		 * Creates a new ImportLibraryFromRepositoryCommand
-		 * 
+		 *
 		 * @param editingDomain
 		 *        editing domain that manages the changed objects
 		 * @param runnable

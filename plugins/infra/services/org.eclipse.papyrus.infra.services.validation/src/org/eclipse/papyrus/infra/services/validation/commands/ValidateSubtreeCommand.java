@@ -20,14 +20,21 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 
-
+/**
+ * Validate a sub-tree (in the sense of ecore containment hierarchy).
+ * 
+ */
 public class ValidateSubtreeCommand extends AbstractValidateCommand {
 
-	public ValidateSubtreeCommand(EObject selectedElement,IPapyrusDiagnostician diagnostician) {
-		super("Validate subtree", TransactionUtil.getEditingDomain(selectedElement), selectedElement, diagnostician);
+	/**
+	 * Constructor based on selected element and diagnostician
+	 * @param selectedElement the element from which on a subtree should be validated
+	 * @param diagnostician the diagnostician (e.g. UMLDiagnostician)
+	 */
+	public ValidateSubtreeCommand(EObject selectedElement, IPapyrusDiagnostician diagnostician) {
+		super(Messages.ValidateSubtreeCommand_ValidateSubtree, TransactionUtil.getEditingDomain(selectedElement), selectedElement, diagnostician);
 	}
 
 	/**

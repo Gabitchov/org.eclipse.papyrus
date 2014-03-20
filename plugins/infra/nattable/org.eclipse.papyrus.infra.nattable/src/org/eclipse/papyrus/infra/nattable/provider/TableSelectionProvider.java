@@ -84,7 +84,9 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 		this.selectionListener = new ILayerListener() {
 
 			public void handleLayerEvent(final ILayerEvent event) {
-				calculateAndStoreNewSelection(event);
+				if (event instanceof ISelectionEvent) {
+					calculateAndStoreNewSelection(event);
+				}
 			}
 		};
 		this.selectionLayer.addLayerListener(this.selectionListener);

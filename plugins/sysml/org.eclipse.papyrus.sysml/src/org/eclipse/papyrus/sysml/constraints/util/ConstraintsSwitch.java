@@ -20,10 +20,6 @@ import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -68,10 +64,7 @@ public class ConstraintsSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected boolean isSwitchFor(EPackage ePackage) {
-		/**
-		 * ePackage == UMLPackage.eINSTANCE in order to accept UML element
-		 */
-		return ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE;
+		return ePackage == modelPackage;
 	}
 
 	/**
@@ -140,64 +133,6 @@ public class ConstraintsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Tell if the Class is a ConstraintBlock implementation
-	 * 
-	 * @param Class
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isConstraintBlockFromClass(Class class_) {
-		if(UMLUtil.getStereotypeApplication(class_, ConstraintBlock.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>ConstraintBlock</em>' from Class object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>ConstraintBlock</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClassStereotypedByConstraintBlock(Class class_) {
-		return null;
-	}
-
-	/**
-	 * Tell if the Property is a ConstraintProperty implementation
-	 * 
-	 * @param Property
-	 * @return
-	 * @generated
-	 */
-	protected Boolean isConstraintPropertyFromProperty(Property property_) {
-		if(UMLUtil.getStereotypeApplication(property_, ConstraintProperty.class) != null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>ConstraintProperty</em>' from Property object. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>ConstraintProperty</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePropertyStereotypedByConstraintProperty(Property property_) {
-		return null;
-	}
-
-	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -207,83 +142,27 @@ public class ConstraintsSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		if(theEObject.eClass().getEPackage() == UMLPackage.eINSTANCE) {
-			switch(classifierID) {
-
-
-
-
-
-			case UMLPackage.CLASS:
-			{
-				Class umlElement = (Class)theEObject;
-				T result;
-
-				result = caseClassStereotypedByConstraintBlock(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-				return null;
-			}
-
-
-
-
-
-			case UMLPackage.PROPERTY:
-			{
-				Property umlElement = (Property)theEObject;
-				T result;
-
-				result = casePropertyStereotypedByConstraintProperty(umlElement);
-				if(result != null) {
-					return result;
-				}
-
-				return null;
-			}
-
-
-
-
-			default:
-				return defaultCase(theEObject);
-			}
-
-
-
-
-		} else {
-			switch(classifierID) {
-
-			case ConstraintsPackage.CONSTRAINT_BLOCK:
-			{
-				ConstraintBlock constraintBlock = (ConstraintBlock)theEObject;
-				T result = caseConstraintBlock(constraintBlock);
-
-				if(result == null)
-					result = caseBlock(constraintBlock);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-
-			case ConstraintsPackage.CONSTRAINT_PROPERTY:
-			{
-				ConstraintProperty constraintProperty = (ConstraintProperty)theEObject;
-				T result = caseConstraintProperty(constraintProperty);
-
-				if(result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-
-			default:
-				return defaultCase(theEObject);
-			}
+		switch(classifierID) {
+		case ConstraintsPackage.CONSTRAINT_BLOCK:
+		{
+			ConstraintBlock constraintBlock = (ConstraintBlock)theEObject;
+			T result = caseConstraintBlock(constraintBlock);
+			if(result == null)
+				result = caseBlock(constraintBlock);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ConstraintsPackage.CONSTRAINT_PROPERTY:
+		{
+			ConstraintProperty constraintProperty = (ConstraintProperty)theEObject;
+			T result = caseConstraintProperty(constraintProperty);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

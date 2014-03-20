@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.usecase.command.CreateAssociationSupplement;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Association;
@@ -51,12 +52,18 @@ public class AssociationCreateCommand extends EditElementCommand {
 	protected Package container;
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	public AssociationCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	protected Diagram diagram;
+
+	/**
+	 * @generated NOT
+	 */
+	public AssociationCreateCommand(CreateRelationshipRequest request, EObject source, EObject target, Diagram diagram) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
+		this.diagram = diagram;
 		container = deduceContainer(source, target);
 	}
 
@@ -90,7 +97,7 @@ public class AssociationCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		CreateAssociationSupplement cacs = new CreateAssociationSupplement(container, source, target);
+		CreateAssociationSupplement cacs = new CreateAssociationSupplement(container, source, target, diagram);
 		Association newElement = (Association)cacs.doDefaultElementCreation(getEditingDomain(), null);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
+<!--
+ Copyright (c) 2013, 2014 CEA and others.
+ 
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+   CEA - Initial API and implementation
+   Christian W. Damus (CEA) - bug 323802
+   
+-->
 <plugin>
 
     <!-- Diagram declaration -->
@@ -26,70 +39,8 @@
             categoryId="org.eclipse.papyrus.editor.category"/>
     </extension>
 
-    <extension point="org.eclipse.ui.handlers">
-        <handler
-            class="org.eclipse.papyrus.uml.diagram.interactionoverview.CreateInteractionOverviewDiagramWithNavigationHandler"
-            commandId="org.eclipse.papyrus.uml.diagram.interactionoverview.CreateCommand">
-            <activeWhen>
-                <with variable="activeEditorId">
-                    <equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
-                </with>
-            </activeWhen>
-        </handler>
-    </extension>
 
     <!-- Diagram creation command registration in menu and toolbar -->
-    <extension point="org.eclipse.ui.menus">
-
-        <menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-            <menu
-                id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams"
-                label="Diagrams">
-                <command
-                    commandId="org.eclipse.papyrus.uml.diagram.interactionoverview.CreateCommand"
-                    icon="icons/obj16/interactionOverviewDiagram.gif"
-                    label="Create a new Interaction Overview Diagram"
-                    style="push"
-                    tooltip="Create a new Interaction Overview Diagram">
-                    <visibleWhen>
-                        <reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
-                    </visibleWhen>
-
-                </command>
-            </menu>
-        </menuContribution>
-
-        <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-            <toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
-                <command
-                    commandId="org.eclipse.papyrus.uml.diagram.interactionoverview.CreateCommand"
-                    icon="icons/obj16/interactionOverviewDiagram.gif"
-                    label="Create a new Interaction Overview Diagram"
-                    style="push"
-                    tooltip="Create a new Interaction Overview Diagram">
-                    <visibleWhen>
-                        <reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
-                    </visibleWhen>
-
-                </command>
-            </toolbar>
-        </menuContribution>
-
-        <menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
-            <command
-                commandId="org.eclipse.papyrus.uml.diagram.interactionoverview.CreateCommand"
-                icon="icons/obj16/interactionOverviewDiagram.gif"
-                label="Create a new Interaction Overview Diagram"
-                style="push"
-                tooltip="Create a new Interaction Overview Diagram">
-                <visibleWhen>
-                    <reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
-                </visibleWhen>
-
-            </command>
-        </menuContribution>
-
-    </extension>
 
     <!-- Palette tool declaration (declares the real palette containment) -->
     <extension
@@ -777,7 +728,7 @@
    <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
       <metamodel
-            nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+            nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
                edithelperadvice="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionEditHelperAdvice"
                id="org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_5000"
@@ -816,6 +767,9 @@
          <advice
                ref="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionUseEditHelperAdvice">
          </advice>
+      </binding>
+      <binding context="org.eclipse.papyrus.uml.diagram.activity.TypeContext">
+         <advice ref="org.eclipse.papyrus.infra.emf.readOnlyAdvice"/>
       </binding>
    </extension>
     <extension

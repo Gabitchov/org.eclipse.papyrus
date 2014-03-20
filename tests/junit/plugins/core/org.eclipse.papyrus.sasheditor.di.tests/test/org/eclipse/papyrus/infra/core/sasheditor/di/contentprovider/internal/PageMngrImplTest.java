@@ -1,7 +1,7 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL 
+ * Copyright (c) 2009 CEA LIST & LIFL
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory;
 import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractPanel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.impl.TabFolderImpl;
@@ -58,7 +59,7 @@ public class PageMngrImplTest extends TestCase {
 
 	/**
 	 * @see junit.framework.TestCase#setUp()
-	 * 
+	 *
 	 * @throws java.lang.Exception
 	 */
 	@Override
@@ -67,6 +68,12 @@ public class PageMngrImplTest extends TestCase {
 		super.setUp();
 
 		SashWindowsMngr diSashModel = DiUtils.createDefaultSashWindowsMngr();
+
+		//Fix bug to match refactoring in Bug 429239. The current implementation computes allPages() dynamically,
+		//and doesn't support addPage() and removePage() anymore
+		//Because this test is used in a different context, where allPages() cannot be computed dynamically,
+		//we need to create a specific setup
+		diSashModel.setPageList(DiFactory.eINSTANCE.createPageList());
 		ContentChangedEventProvider eventProvider = new ContentChangedEventProvider(diSashModel);
 		pageMngr = new PageMngrImpl(diSashModel, eventProvider);
 
@@ -77,7 +84,7 @@ public class PageMngrImplTest extends TestCase {
 
 	/**
 	 * @see junit.framework.TestCase#tearDown()
-	 * 
+	 *
 	 * @throws java.lang.Exception
 	 */
 	@After
@@ -88,7 +95,7 @@ public class PageMngrImplTest extends TestCase {
 
 	/**
 	 * Lookup for a folder in the SashModel. Return the first folder found.
-	 * 
+	 *
 	 * @return
 	 */
 	private ITabFolderModel lookupFolderModel() {
@@ -108,7 +115,7 @@ public class PageMngrImplTest extends TestCase {
 	/**
 	 * Recursively search in sash models for a FolderModel.
 	 * Return the first encountered folder.
-	 * 
+	 *
 	 * @param panelModel
 	 * @return
 	 */
@@ -424,7 +431,7 @@ public class PageMngrImplTest extends TestCase {
 	 * Check if closing the last page in a second tabfolder work propoerly.
 	 * Create 3 editors, move one in a new folder, then remove the moved one.
 	 * The new folder should automatically be removed.
-	 * 
+	 *
 	 */
 	public void testCloseLastPageOfTabFolder() {
 		// A listener on change event.
@@ -434,7 +441,7 @@ public class PageMngrImplTest extends TestCase {
 		contentProvider.getContentChangedEventProvider().addListener(changeListener);
 
 		// Create 3 editors, move one in another table
-		// Then remove the moved one.		
+		// Then remove the moved one.
 
 		// Add identifiers
 		// Use Object as identifiers.

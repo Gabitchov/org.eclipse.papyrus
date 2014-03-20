@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
 
-import static org.eclipse.papyrus.uml.diagram.wizards.Activator.log;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -27,8 +25,9 @@ import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.commands.CreationCommandRegistry;
-import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.infra.viewpoints.configuration.Category;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.diagram.wizards.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.SettingsHelper;
 import org.eclipse.papyrus.uml.diagram.wizards.kind.DiagramKindContentProvider;
@@ -267,61 +266,21 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	/**
-	 * Gets the creation commands.
-	 * 
-	 * @return the creation command
-	 */
-	public List<ICreationCommand> getCreationCommands() {
-		CreationCommandDescriptor[] selected = getSelectedDiagramKindDescriptors();
-		List<ICreationCommand> commands = new ArrayList<ICreationCommand>();
-		for(int i = 0; i < selected.length; i++) {
-
-			ICreationCommand command;
-			try {
-				command = (selected[i]).getCommand();
-				commands.add(command);
-			} catch (Exception e) {
-				log.error(e);
-			}
-		}
-		return commands;
-	}
-
-	/**
-	 * Gets the creation commands.
-	 * 
-	 * @param categoryId
-	 *        the category id
-	 * @return the creation commands
-	 */
-	public List<ICreationCommand> getCreationCommands(String categoryId) {
-		List<CreationCommandDescriptor> selected = getSelectedCommandDescriptors(categoryId);
-		List<ICreationCommand> commands = new ArrayList<ICreationCommand>();
-		for(CreationCommandDescriptor next : selected) {
-			ICreationCommand command;
-			try {
-				command = next.getCommand();
-				commands.add(command);
-			} catch (Exception e) {
-				log.error(e);
-			}
-		}
-		return commands;
-	}
-
-	/**
 	 * Gets the selected command descriptors.
 	 * 
 	 * @param categoryId
 	 *        the category id
 	 * @return the selected command descriptors
 	 */
-	protected List<CreationCommandDescriptor> getSelectedCommandDescriptors(String categoryId) {
-		CreationCommandDescriptor[] selected = getSelectedDiagramKindDescriptors();
-		List<CreationCommandDescriptor> commands = new ArrayList<CreationCommandDescriptor>();
+	public List<ViewPrototype> getSelectedPrototypes(String categoryId) {
+		ViewPrototype[] selected = getSelectedPrototypes();
+		List<ViewPrototype> commands = new ArrayList<ViewPrototype>();
 		for(int i = 0; i < selected.length; i++) {
-			if(selected[i].getLanguage().equals(categoryId)) {
-				commands.add(selected[i]);
+			for (Category category : selected[i].getCategories()) {
+				if (category.getName().equals(categoryId)) {
+					commands.add(selected[i]);
+					break;
+				}
 			}
 		}
 		return commands;
@@ -380,7 +339,7 @@ public class SelectDiagramKindPage extends WizardPage {
 			}
 		});
 		diagramKindTableViewer = new CheckboxTableViewer(diagramKindTable);
-		diagramKindTableViewer.setContentProvider(new DiagramKindContentProvider(getCreationCommandRegistry()));
+		diagramKindTableViewer.setContentProvider(new DiagramKindContentProvider());
 		diagramKindTableViewer.setLabelProvider(createDiagramKindLabelProvider());
 	}
 
@@ -504,12 +463,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @return the selected diagram kinds
 	 */
 	public String[] getSelectedDiagramKinds(String categoryId) {
-		List<CreationCommandDescriptor> descriptors = getSelectedCommandDescriptors(categoryId);
-		String[] result = new String[descriptors.size()];
-		for(int i = 0; i < descriptors.size(); i++) {
-			result[i] = descriptors.get(i).getCommandId();
-		}
-		return result;
+		return new String[0];
 	}
 
 	/**
@@ -517,10 +471,10 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * 
 	 * @return the selected diagram kind descriptors
 	 */
-	protected CreationCommandDescriptor[] getSelectedDiagramKindDescriptors() {
+	protected ViewPrototype[] getSelectedPrototypes() {
 		Object[] checked = diagramKindTableViewer.getCheckedElements();
 		// as Object is not a subclass of String we cannot cast Object[] to String[]
-		CreationCommandDescriptor[] result = Arrays.asList(checked).toArray(new CreationCommandDescriptor[checked.length]);
+		ViewPrototype[] result = Arrays.asList(checked).toArray(new ViewPrototype[checked.length]);
 		return result;
 	}
 

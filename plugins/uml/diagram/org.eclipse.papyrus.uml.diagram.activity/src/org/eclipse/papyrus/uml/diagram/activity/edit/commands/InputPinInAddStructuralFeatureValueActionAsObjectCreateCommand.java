@@ -25,11 +25,16 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.StructuralFeatureAction;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -39,7 +44,7 @@ public class InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand exte
 	/**
 	 * @generated
 	 */
-	private EClass eClass = null;
+	private Diagram diagram = null;
 
 	/**
 	 * @generated
@@ -49,24 +54,25 @@ public class InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand exte
 	/**
 	 * @generated
 	 */
-	public InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand(CreateElementRequest req, EObject eObject) {
+	public InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
-		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand(req, eObject);
+	public static InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand(req, eObject, diagram);
 	}
 
 	/**
 	 * @generated
 	 */
-	public InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand(CreateElementRequest req) {
+	public InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
+		this.diagram = diagram;
 	}
 
 	/**
@@ -93,7 +99,9 @@ public class InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand exte
 		if(container.getObject() != null) {
 			return false;
 		}
-		return true;
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getInputPin());
+		return data.isPermitted();
 	}
 
 	/**
@@ -101,8 +109,19 @@ public class InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand exte
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		InputPin newElement = UMLFactory.eINSTANCE.createInputPin();
-		StructuralFeatureAction owner = (StructuralFeatureAction)getElementToEdit();
-		owner.setObject(newElement);
+		EObject target = getElementToEdit();
+		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		if(data.isPermitted()) {
+			if(data.isPathDefined()) {
+				if(!data.execute(target, newElement))
+					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
+			} else {
+				StructuralFeatureAction qualifiedTarget = (StructuralFeatureAction)target;
+				qualifiedTarget.setObject(newElement);
+			}
+		} else {
+			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
+		}
 		ElementInitializers.getInstance().init_InputPin_3092(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

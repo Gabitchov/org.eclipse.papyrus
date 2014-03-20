@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *      Christian W. Damus (CEA) - support read-only objects (CDO)
+ *      Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.edit.internal;
@@ -21,6 +22,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -120,7 +122,8 @@ public class ElementEditServiceProvider implements IElementEditServiceProvider {
 	}
 
 	private boolean isReadOnly(EObject object) {
-		return EMFHelper.isReadOnly(object);
+		EditingDomain domain = EMFHelper.resolveEditingDomain(object);
+		return EMFHelper.isReadOnly(object, domain) && !EMFHelper.canMakeWritable(object, domain);
 	}
 	
 	/**

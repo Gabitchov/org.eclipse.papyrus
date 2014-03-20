@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,25 +19,24 @@ import java.util.List;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.Messages;
 
 /**
  * this class is a listener in charge to manage double on element of the model explorer
- * 
+ *
  */
 public class DoubleClickListener implements IDoubleClickListener {
 
@@ -48,9 +47,9 @@ public class DoubleClickListener implements IDoubleClickListener {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.jface.viewers.IDoubleClickListener#doubleClick(org.eclipse.jface.viewers.DoubleClickEvent)
-	 * 
+	 *
 	 */
 	public void doubleClick(DoubleClickEvent event) {
 		ISelection selection = event.getSelection();
@@ -72,7 +71,7 @@ public class DoubleClickListener implements IDoubleClickListener {
 					Object currentObject = iter.next();
 					EObject diag = EMFHelper.getEObject(currentObject);
 
-					if(isPage(diag, pageManager)) {
+					if(isPage(diag, pageManager) && canOpenByPolicy(diag)) {
 						if(pageManager.isOpen(diag)) {
 							pageToSelect = diag;
 						} else {
@@ -82,19 +81,8 @@ public class DoubleClickListener implements IDoubleClickListener {
 				}
 
 				if(!pagesToOpen.isEmpty()) {
-					try {
-						TransactionalEditingDomain editingDomain = ServiceUtilsForSelection.getInstance().getTransactionalEditingDomain(selection);
-						editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Open pages") {
-
-							@Override
-							protected void doExecute() {
-								for(EObject page : pagesToOpen) {
-									pageManager.openPage(page);
-								}
-							}
-						});
-					} catch (ServiceException ex) {
-						Activator.log.error(ex);
+					for(EObject page : pagesToOpen) {
+						pageManager.openPage(page);
 					}
 				} else if(pageToSelect != null) {
 					pageManager.selectPage(pageToSelect);
@@ -104,6 +92,20 @@ public class DoubleClickListener implements IDoubleClickListener {
 		}
 	}
 
+	/**
+	 * Determines whether the current policy allows this object to be opened
+	 * @param selection The object to open
+	 * @return <code>true</code> if the object can be opened
+	 */
+	private boolean canOpenByPolicy(EObject selection) {
+		if (selection instanceof Diagram) {
+			Diagram diagram = (Diagram)selection;
+			ViewPrototype proto = DiagramUtils.getPrototype(diagram);
+			return (proto != ViewPrototype.UNAVAILABLE_VIEW && proto != ViewPrototype.UNAVAILABLE_DIAGRAM);
+		}
+		return true;
+	}
+	
 	protected boolean isPage(EObject element, IPageManager pageManager) {
 		if(pageManager.allPages().contains(element)) {
 			return true;

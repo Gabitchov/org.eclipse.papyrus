@@ -54,7 +54,7 @@ public class ModelelementsFactoryImpl extends EFactoryImpl implements Modeleleme
 	 */
 	public static ModelelementsFactory init() {
 		try {
-			ModelelementsFactory theModelelementsFactory = (ModelelementsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/ModelElements");
+			ModelelementsFactory theModelelementsFactory = (ModelelementsFactory)EPackage.Registry.INSTANCE.getEFactory(ModelelementsPackage.eNS_URI);
 			if(theModelelementsFactory != null) {
 				return theModelelementsFactory;
 			}

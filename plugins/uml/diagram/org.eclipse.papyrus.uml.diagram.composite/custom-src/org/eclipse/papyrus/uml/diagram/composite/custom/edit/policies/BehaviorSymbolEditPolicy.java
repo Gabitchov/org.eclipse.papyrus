@@ -1,27 +1,23 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
  *		Patrick Tessier (CEA LIST) - Initial API and implementation
+ *      Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.InternalTransaction;
-import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
@@ -32,12 +28,10 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.BehaviorPortLinkEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 /**
  * This editpolicy listen the notation node of the PortEditpart, when it is removed the notation representation of the symbol is removed.
@@ -154,29 +148,18 @@ public class BehaviorSymbolEditPolicy extends GraphicalEditPolicy implements Not
 	}
 	protected void executeBehaviorSymbolDeletion( final TransactionalEditingDomain domain, final View commentNode) {
 		try {
-			if( domain!=null){
+			if(domain != null) {
 				domain.runExclusive(new Runnable() {
 
 					public void run() {
-						Display.getCurrent().syncExec(new Runnable() {
-
-							public void run() {
-								//because it is asynchrone the comment node maybe become s null
-								if( commentNode!= null&& TransactionUtil.getEditingDomain(commentNode)!=null){
-									DeleteCommand command= new DeleteCommand(commentNode);
-									Map<String,Boolean> options = new HashMap<String,Boolean>();  
-									options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-									try{
-										InternalTransaction it=((InternalTransactionalEditingDomain)  TransactionUtil.getEditingDomain(commentNode)).startTransaction(false, options);
-										GMFtoEMFCommandWrapper warpperCmd= new GMFtoEMFCommandWrapper (command);
-										warpperCmd.execute();
-										it.commit();
-									}catch(Exception e){
-										Activator.log.error(e);
-									}
-								}
+						if((commentNode != null) && (TransactionUtil.getEditingDomain(commentNode) != null)) {
+							DeleteCommand command = new DeleteCommand(commentNode);
+							try {
+								GMFUnsafe.write(domain, command);
+							} catch (Exception e) {
+								Activator.log.error(e);
 							}
-						});
+						}
 					}
 				});
 			}

@@ -23,8 +23,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.core.internal.CustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider;
@@ -32,7 +33,7 @@ import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 
 
-public class SemanticEMFContentProvider extends CustomizableModelContentProvider implements IAdaptableContentProvider, IHierarchicContentProvider, IStaticContentProvider {
+public class SemanticEMFContentProvider extends CustomizedTreeContentProvider implements IAdaptableContentProvider, IHierarchicContentProvider, IStaticContentProvider {
 
 	protected EObject[] roots;
 
@@ -50,7 +51,7 @@ public class SemanticEMFContentProvider extends CustomizableModelContentProvider
 		super(Activator.getDefault().getCustomizationManager());
 	}
 
-	public SemanticEMFContentProvider(EObject editedEObject, EStructuralFeature feature, EObject[] roots, CustomizationManager customizationManager) {
+	public SemanticEMFContentProvider(EObject editedEObject, EStructuralFeature feature, EObject[] roots, ICustomizationManager customizationManager) {
 		super(customizationManager);
 		this.roots = roots;
 
@@ -78,7 +79,7 @@ public class SemanticEMFContentProvider extends CustomizableModelContentProvider
 		this(null, null, roots);
 	}
 
-	public SemanticEMFContentProvider(EObject[] roots, CustomizationManager customizationManager) {
+	public SemanticEMFContentProvider(EObject[] roots, ICustomizationManager customizationManager) {
 		this(null, null, roots, customizationManager);
 	}
 

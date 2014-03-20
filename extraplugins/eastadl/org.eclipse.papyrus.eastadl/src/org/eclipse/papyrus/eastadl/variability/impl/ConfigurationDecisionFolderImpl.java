@@ -32,17 +32,19 @@ import org.eclipse.papyrus.eastadl.variability.VariabilityPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.variability.impl.ConfigurationDecisionFolderImpl#getChildEntry <em>Child Entry</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.variability.impl.ConfigurationDecisionFolderImpl#getChildEntry <em>Child Entry</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ConfigurationDecisionFolderImpl extends ConfigurationDecisionModelEntryImpl implements ConfigurationDecisionFolder {
+
 	/**
 	 * The cached value of the '{@link #getChildEntry() <em>Child Entry</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getChildEntry()
 	 * @generated
 	 * @ordered
@@ -52,6 +54,7 @@ public class ConfigurationDecisionFolderImpl extends ConfigurationDecisionModelE
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ConfigurationDecisionFolderImpl() {
@@ -61,13 +64,14 @@ public class ConfigurationDecisionFolderImpl extends ConfigurationDecisionModelE
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case VariabilityPackage.CONFIGURATION_DECISION_FOLDER__CHILD_ENTRY:
-				return getChildEntry();
+		switch(featureID) {
+		case VariabilityPackage.CONFIGURATION_DECISION_FOLDER__CHILD_ENTRY:
+			return getChildEntry();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -75,13 +79,14 @@ public class ConfigurationDecisionFolderImpl extends ConfigurationDecisionModelE
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case VariabilityPackage.CONFIGURATION_DECISION_FOLDER__CHILD_ENTRY:
-				return childEntry != null && !childEntry.isEmpty();
+		switch(featureID) {
+		case VariabilityPackage.CONFIGURATION_DECISION_FOLDER__CHILD_ENTRY:
+			return childEntry != null && !childEntry.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -89,16 +94,17 @@ public class ConfigurationDecisionFolderImpl extends ConfigurationDecisionModelE
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case VariabilityPackage.CONFIGURATION_DECISION_FOLDER__CHILD_ENTRY:
-				getChildEntry().clear();
-				getChildEntry().addAll((Collection<? extends ConfigurationDecisionModelEntry>)newValue);
-				return;
+		switch(featureID) {
+		case VariabilityPackage.CONFIGURATION_DECISION_FOLDER__CHILD_ENTRY:
+			getChildEntry().clear();
+			getChildEntry().addAll((Collection<? extends ConfigurationDecisionModelEntry>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -106,6 +112,7 @@ public class ConfigurationDecisionFolderImpl extends ConfigurationDecisionModelE
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,14 +123,15 @@ public class ConfigurationDecisionFolderImpl extends ConfigurationDecisionModelE
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case VariabilityPackage.CONFIGURATION_DECISION_FOLDER__CHILD_ENTRY:
-				getChildEntry().clear();
-				return;
+		switch(featureID) {
+		case VariabilityPackage.CONFIGURATION_DECISION_FOLDER__CHILD_ENTRY:
+			getChildEntry().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -131,10 +139,11 @@ public class ConfigurationDecisionFolderImpl extends ConfigurationDecisionModelE
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ConfigurationDecisionModelEntry> getChildEntry() {
-		if (childEntry == null) {
+		if(childEntry == null) {
 			childEntry = new EObjectResolvingEList<ConfigurationDecisionModelEntry>(ConfigurationDecisionModelEntry.class, this, VariabilityPackage.CONFIGURATION_DECISION_FOLDER__CHILD_ENTRY);
 		}
 		return childEntry;

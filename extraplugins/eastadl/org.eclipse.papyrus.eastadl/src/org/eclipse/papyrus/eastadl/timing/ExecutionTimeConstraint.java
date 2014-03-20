@@ -23,15 +23,19 @@ import org.eclipse.papyrus.eastadl.structure.functionmodeling.DesignFunctionType
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Execution Time Constraint</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * ExecutionTimeConstraint expresses the execution time of a function under the assumption of a nominal CPU that executes 1 "function second" per second. Function allocation will decide the actual execution time by multiplication with the relative speed of the host CPU. 
+ * ExecutionTimeConstraint expresses the execution time of a function under the assumption of a nominal CPU that executes 1 "function second" per
+ * second. Function allocation will decide the actual execution time by multiplication with the relative speed of the host CPU.
  * 
  * Example:
- * The ECU is 20% faster than a standard ECU (e.g. in a certain context, execution times are given assuming a nominal speed of 100 MHz; Our CPU is then 120 MHz) 
+ * The ECU is 20% faster than a standard ECU (e.g. in a certain context, execution times are given assuming a nominal speed of 100 MHz; Our CPU is
+ * then 120 MHz)
  * 
- * The function is activated by a time trigger or a port trigger. The function starts execution some time after activation, depending on e.g. interference and blocking from other functions on the same resource
- * Immediately on start, the function reads input data on all ports. Functions write data at the latest when the execution time has elapsed (which is after the execution time plus any blocking and interference time). 
+ * The function is activated by a time trigger or a port trigger. The function starts execution some time after activation, depending on e.g.
+ * interference and blocking from other functions on the same resource
+ * Immediately on start, the function reads input data on all ports. Functions write data at the latest when the execution time has elapsed (which is
+ * after the execution time plus any blocking and interference time).
  * 
  * Constraints:
  * [1] An ExecutionTimeConstraint either identifies a FunctionType or a FunctionPrototype as its target function.
@@ -49,32 +53,34 @@ import org.eclipse.papyrus.eastadl.structure.functionmodeling.DesignFunctionType
  * best case execution time of 6 and worst case of 7 is within this constraint
  * best case execution time of 6 and worst case of 9 violates this constraint
  * 
- * If a measured value is characterized, variation is not used, as it is always upper-lower, e.g. lower=6 and upper=9 above. In this example, the ExecutionTimeConstraint would be a Realization of a VVActualOutcome.
+ * If a measured value is characterized, variation is not used, as it is always upper-lower, e.g. lower=6 and upper=9 above. In this example, the
+ * ExecutionTimeConstraint would be a Realization of a VVActualOutcome.
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getVariation <em>Variation</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getTargetDesignFunctionType <em>Target Design Function Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getTargetDesignFunction <em>Target Design Function</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getTargetDesignFunctionPrototype <em>Target Design Function Prototype</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getVariation <em>Variation</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getTargetDesignFunctionType <em>Target Design Function Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getTargetDesignFunction <em>Target Design Function</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getTargetDesignFunctionPrototype <em>Target Design Function Prototype</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.timing.TimingPackage#getExecutionTimeConstraint()
  * @model
  * @generated
  */
 public interface ExecutionTimeConstraint extends TimingConstraint {
+
 	/**
 	 * Returns the value of the '<em><b>Target Design Function Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Target Design Function Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Target Design Function Type</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Target Design Function Type</em>' reference.
 	 * @see #setTargetDesignFunctionType(DesignFunctionType)
 	 * @see org.eclipse.papyrus.eastadl.timing.TimingPackage#getExecutionTimeConstraint_TargetDesignFunctionType()
@@ -87,10 +93,10 @@ public interface ExecutionTimeConstraint extends TimingConstraint {
 	 * Returns the value of the '<em><b>Variation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Variation</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Variation</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Variation</em>' reference.
 	 * @see #setVariation(TimeDuration)
 	 * @see org.eclipse.papyrus.eastadl.timing.TimingPackage#getExecutionTimeConstraint_Variation()
@@ -100,10 +106,13 @@ public interface ExecutionTimeConstraint extends TimingConstraint {
 	TimeDuration getVariation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getTargetDesignFunctionType <em>Target Design Function Type</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getTargetDesignFunctionType
+	 * <em>Target Design Function Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Design Function Type</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Target Design Function Type</em>' reference.
 	 * @see #getTargetDesignFunctionType()
 	 * @generated
 	 */
@@ -113,10 +122,10 @@ public interface ExecutionTimeConstraint extends TimingConstraint {
 	 * Returns the value of the '<em><b>Target Design Function</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Target Design Function</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Target Design Function</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Target Design Function</em>' reference.
 	 * @see #setTargetDesignFunction(DesignFunctionType)
 	 * @see org.eclipse.papyrus.eastadl.timing.TimingPackage#getExecutionTimeConstraint_TargetDesignFunction()
@@ -126,10 +135,13 @@ public interface ExecutionTimeConstraint extends TimingConstraint {
 	DesignFunctionType getTargetDesignFunction();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getTargetDesignFunction <em>Target Design Function</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getTargetDesignFunction
+	 * <em>Target Design Function</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Design Function</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Target Design Function</em>' reference.
 	 * @see #getTargetDesignFunction()
 	 * @generated
 	 */
@@ -139,10 +151,10 @@ public interface ExecutionTimeConstraint extends TimingConstraint {
 	 * Returns the value of the '<em><b>Target Design Function Prototype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Target Design Function Prototype</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Target Design Function Prototype</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Target Design Function Prototype</em>' reference.
 	 * @see #setTargetDesignFunctionPrototype(DesignFunctionPrototype)
 	 * @see org.eclipse.papyrus.eastadl.timing.TimingPackage#getExecutionTimeConstraint_TargetDesignFunctionPrototype()
@@ -152,10 +164,13 @@ public interface ExecutionTimeConstraint extends TimingConstraint {
 	DesignFunctionPrototype getTargetDesignFunctionPrototype();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getTargetDesignFunctionPrototype <em>Target Design Function Prototype</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getTargetDesignFunctionPrototype
+	 * <em>Target Design Function Prototype</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Design Function Prototype</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Target Design Function Prototype</em>' reference.
 	 * @see #getTargetDesignFunctionPrototype()
 	 * @generated
 	 */
@@ -165,7 +180,9 @@ public interface ExecutionTimeConstraint extends TimingConstraint {
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.timing.ExecutionTimeConstraint#getVariation <em>Variation</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Variation</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Variation</em>' reference.
 	 * @see #getVariation()
 	 * @generated
 	 */

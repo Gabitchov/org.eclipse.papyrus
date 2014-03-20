@@ -116,13 +116,13 @@ public class AnnotatedLinkEditCommand extends AbstractTransactionalCommand {
 		}
 		if(oldSourceElement != null) {
 			if(oldSourceElement instanceof Comment) {
-				((Comment)oldSourceElement).getAnnotatedElements().remove(targetElement);
+				((Comment)oldSourceElement).getAnnotatedElements().remove(oldTargetElement);
 			} else if(oldSourceElement instanceof DurationObservation) {
-				((DurationObservation)oldSourceElement).getEvents().remove(targetElement);
+				((DurationObservation)oldSourceElement).getEvents().remove(oldTargetElement);
 			} else if(oldSourceElement instanceof TimeObservation) {
 				((TimeObservation)oldSourceElement).setEvent(null);
 			} else if(oldSourceElement instanceof Constraint) {
-				((Constraint)oldSourceElement).getConstrainedElements().remove(targetElement);
+				((Constraint)oldSourceElement).getConstrainedElements().remove(oldTargetElement);
 			}
 		}
 		if(sourceElement instanceof Comment) {

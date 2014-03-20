@@ -43,6 +43,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.EditorNameInitializer;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
@@ -82,6 +83,24 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	}
 
 	/**
+	 * Prompts the user the future table's name
+	 * @return The name, or <code>null</code> if the user cancelled the creation
+	 */
+	public String askName() {
+		//we create a new resourceSet to avoid to load unused config in the resourceset in case of Cancel
+		ResourceSet set = new ResourceSetImpl();
+		Resource res = set.getResource(getTableEditorConfigurationURI(), true);
+		TableConfiguration conf = (TableConfiguration)res.getContents().get(0);
+		String defaultName = conf.getName();
+		// default Value
+		final String nameWithIncrement = EditorNameInitializer.getNameWithIncrement(NattablePackage.eINSTANCE.getTable(), NattableconfigurationPackage.eINSTANCE.getTableNamedElement_Name(), defaultName, getTableContext());
+		final InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), Messages.AbstractCreateNattableEditorHandler_PapyrusTableCreation, Messages.AbstractCreateNattableEditorHandler_EnterTheNameForTheNewTable, nameWithIncrement, null);
+		if(dialog.open() == Dialog.OK)
+			return dialog.getValue();
+		return null;
+	}
+	
+	/**
 	 * Run the command as a transaction. Create a Transaction and delegate the
 	 * command to {@link #doExecute(ServicesRegistry)}.
 	 * 
@@ -89,20 +108,9 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * 
 	 */
 	public void runAsTransaction(final ExecutionEvent event) throws ServiceException {
-		//we create a new resourceSet to avoid to load unused config in the resourceset in case of Cancel
-		ResourceSet set = new ResourceSetImpl();
-		Resource res = set.getResource(getTableEditorConfigurationURI(), true);
-		TableConfiguration conf = (TableConfiguration)res.getContents().get(0);
-		String defaultName = conf.getName();
-		// default Value
-		final String name;
-		final String nameWithIncrement = EditorNameInitializer.getNameWithIncrement(NattablePackage.eINSTANCE.getTable(), NattableconfigurationPackage.eINSTANCE.getTableNamedElement_Name(), defaultName, getTableContext());
-		final InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), Messages.AbstractCreateNattableEditorHandler_PapyrusTableCreation, Messages.AbstractCreateNattableEditorHandler_EnterTheNameForTheNewTable, nameWithIncrement, null);
-		if(dialog.open() == Dialog.OK) {
-			name = dialog.getValue();
+		String name = askName();
+		if (name != null)
 			runAsTransaction(event, name);
-		}
-
 	}
 
 	/**
@@ -157,14 +165,13 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * @throws ServiceException
 	 * @throws NotFoundException
 	 */
-	public void doExecute(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
-
-		final Object editorModel = createEditorModel(serviceRegistry, name, description);
+	public Table doExecute(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
+		final Table editorModel = createEditorModel(serviceRegistry, name, description);
 		// Get the mngr allowing to add/open new editor.
 		final IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 		// add the new editor model to the sash.
 		pageMngr.openPage(editorModel);
-
+		return editorModel;
 	}
 
 	/**
@@ -176,7 +183,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * @throws NotFoundException
 	 *         The model where to save the TableInstance is not found.
 	 */
-	protected Object createEditorModel(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
+	protected Table createEditorModel(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
 		final TableConfiguration configuration = getDefaultTableEditorConfiguration();
 		assert configuration != null;
 
@@ -250,13 +257,11 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 				final Iterator<?> it = structuredSelection.iterator();
 				while(it.hasNext()) {
 					final Object object = it.next();
-					if(object instanceof IAdaptable) {
-						final EObject currentEObject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
+						final EObject currentEObject = EMFHelper.getEObject(object);
 
 						if(currentEObject != null) {
 							selectedElements.add(currentEObject);
 						}
-					}
 
 				}
 			}

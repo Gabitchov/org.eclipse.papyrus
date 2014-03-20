@@ -1,4 +1,22 @@
 Manifest-Version: 1.0
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.generator;resolution:=optional,
+ org.apache.commons.logging;resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ com.ibm.icu;resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.uml2.uml;bundle-version="3.1.0",
+ org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="1.0.0",
+ org.apache.log4j;bundle-version="1.2.15",
+ org.eclipse.papyrus.uml.alf.common;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.uml.textedit.property.xtext,
  org.eclipse.papyrus.uml.textedit.property.xtext.formatting,
  org.eclipse.papyrus.uml.textedit.property.xtext.generator,
@@ -11,33 +29,15 @@ Export-Package: org.eclipse.papyrus.uml.textedit.property.xtext,
  org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.impl,
  org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.util,
  org.eclipse.papyrus.uml.textedit.property.xtext.validation
-Require-Bundle: org.eclipse.xtext,
- org.eclipse.xtext.generator;resolution:=optional,
- org.apache.commons.logging;resolution:=optional,
- org.eclipse.emf.codegen.ecore;resolution:=optional,
- org.eclipse.emf.mwe.utils;resolution:=optional,
- org.eclipse.emf.mwe2.launch;resolution:=optional,
- com.ibm.icu;resolution:=optional,
- org.eclipse.xtext.xtend;resolution:=optional,
- org.eclipse.xtext.util,
- org.eclipse.emf.ecore,
- org.eclipse.emf.common,
- org.antlr.runtime,
- org.eclipse.uml2.uml;bundle-version="3.1.0",
- org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="1.0.0",
- org.apache.log4j;bundle-version="1.2.15",
- org.eclipse.papyrus.uml.alf.common;bundle-version="1.0.0",
- org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.property.xtext;s
- ingleton:=true
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.property.xtext;s
+ ingleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

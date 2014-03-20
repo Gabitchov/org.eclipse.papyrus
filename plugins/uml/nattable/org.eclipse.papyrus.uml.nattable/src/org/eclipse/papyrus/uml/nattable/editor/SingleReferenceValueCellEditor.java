@@ -16,10 +16,12 @@ package org.eclipse.papyrus.uml.nattable.editor;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.edit.gui.AbstractDialogCellEditor;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer.MoveDirectionEnum;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -81,7 +83,14 @@ public class SingleReferenceValueCellEditor extends AbstractDialogCellEditor {
 	 */
 	@Override
 	public int open() {
-		return ((TreeSelectorDialog)this.dialog).open();
+		int result = ((TreeSelectorDialog)this.dialog).open();
+		if (manager instanceof IAdaptable) {
+			NatTable nattable = (NatTable) ((IAdaptable) manager).getAdapter(NatTable.class);
+			if (nattable != null && !nattable.isDisposed()) {
+				nattable.forceFocus();
+			}
+		}
+		return result;
 	}
 
 	/**

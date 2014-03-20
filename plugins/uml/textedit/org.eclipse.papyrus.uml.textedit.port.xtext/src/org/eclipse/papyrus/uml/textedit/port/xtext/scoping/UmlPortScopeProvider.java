@@ -20,7 +20,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.PopupXtextEditorHelper;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.QualifiedName;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.RedefinesRule;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.SubsetsRule;
@@ -59,14 +58,14 @@ public class UmlPortScopeProvider extends org.eclipse.xtext.scoping.impl.Abstrac
 	}
 
 	private IScope create___TypeRule_type___Scope(TypeRule ctx) {
-		if (ctx.getPath() == null) {
-			EObject contextElement =  ContextElementUtil.getContextElement(ctx.eResource());
-			Namespace root = (Namespace) EcoreUtil.getRootContainer(contextElement);
+		if(ctx.getPath() == null) {
+			EObject contextElement = ContextElementUtil.getContextElement(ctx.eResource());
+			Namespace root = (Namespace)EcoreUtil.getRootContainer(contextElement);
 			Iterator<EObject> i = root.eResource().getAllContents();
 			List<EObject> allContent = new ArrayList<EObject>();
-			while (i.hasNext()) {
+			while(i.hasNext()) {
 				EObject object = i.next();
-				if (object instanceof Classifier) {
+				if(object instanceof Classifier) {
 					allContent.add(object);
 				}
 			}
@@ -77,17 +76,16 @@ public class UmlPortScopeProvider extends org.eclipse.xtext.scoping.impl.Abstrac
 			// specified,
 			// retrieves visible elements from this name space
 			List<Element> tmpVisibleElementsFromPath = new ArrayList<Element>();
-			if (ctx.getPath() != null) {
+			if(ctx.getPath() != null) {
 				QualifiedName qualifiedName = ctx.getPath();
-				while (qualifiedName.getRemaining() != null) {
+				while(qualifiedName.getRemaining() != null) {
 					qualifiedName = qualifiedName.getRemaining();
 				}
 				Namespace nearestNamespace = qualifiedName.getPath();
-				if (nearestNamespace != null) {
+				if(nearestNamespace != null) {
 					List<Element> tmpVisiblePropertiesFromPath = new ArrayList<Element>();
-					tmpVisiblePropertiesFromPath.addAll(new Visitor_GetOwnedAndImportedClassifiers()
-							.visit(nearestNamespace));
-					for (Element e : tmpVisiblePropertiesFromPath) {
+					tmpVisiblePropertiesFromPath.addAll(new Visitor_GetOwnedAndImportedClassifiers().visit(nearestNamespace));
+					for(Element e : tmpVisiblePropertiesFromPath) {
 						tmpVisibleElementsFromPath.add(e);
 					}
 				}
@@ -97,14 +95,12 @@ public class UmlPortScopeProvider extends org.eclipse.xtext.scoping.impl.Abstrac
 			SimpleScope resultScope = null;
 
 			Iterable<IEObjectDescription> iterableIEobjectDescriptions;
-			if (!tmpVisibleElementsFromPath.isEmpty()) {
+			if(!tmpVisibleElementsFromPath.isEmpty()) {
 				iterableIEobjectDescriptions = Scopes.scopedElementsFor(tmpVisibleElementsFromPath);
-				resultScope = resultScope != null ? new SimpleScope(resultScope, iterableIEobjectDescriptions)
-						: new SimpleScope(iterableIEobjectDescriptions);
+				resultScope = resultScope != null ? new SimpleScope(resultScope, iterableIEobjectDescriptions) : new SimpleScope(iterableIEobjectDescriptions);
 			}
 
-			return resultScope != null ? resultScope : new SimpleScope(
-					Scopes.scopedElementsFor(new ArrayList<Element>()));
+			return resultScope != null ? resultScope : new SimpleScope(Scopes.scopedElementsFor(new ArrayList<Element>()));
 		}
 	}
 
@@ -115,12 +111,12 @@ public class UmlPortScopeProvider extends org.eclipse.xtext.scoping.impl.Abstrac
 	 */
 	public IScope scope_QualifiedName_path(QualifiedName ctx, EReference ref) {
 		List<Namespace> visibleNamespaces = new ArrayList<Namespace>();
-		if (ctx != null && ctx.eContainer() != null && ctx.eContainer() instanceof QualifiedName) {
-			Namespace parentNameSpace = ((QualifiedName) ctx.eContainer()).getPath();
+		if(ctx != null && ctx.eContainer() != null && ctx.eContainer() instanceof QualifiedName) {
+			Namespace parentNameSpace = ((QualifiedName)ctx.eContainer()).getPath();
 			visibleNamespaces.addAll(new Visitor_GetOwnedNamespacesAndImportedNamespaces().visit(parentNameSpace));
 		} else {
 			EObject contextElement = ContextElementUtil.getContextElement(ctx.eResource());
-			Namespace root = (Namespace) EcoreUtil.getRootContainer(contextElement);
+			Namespace root = (Namespace)EcoreUtil.getRootContainer(contextElement);
 			visibleNamespaces.add(root);
 			visibleNamespaces.addAll(new Visitor_GetOwnedNamespacesAndImportedNamespaces().visit(root));
 		}
@@ -134,12 +130,12 @@ public class UmlPortScopeProvider extends org.eclipse.xtext.scoping.impl.Abstrac
 			List<Namespace> namespaces = new ArrayList<Namespace>();
 
 			// retrieves imported namespaces
-			for (PackageImport pImport : visited.getPackageImports()) {
+			for(PackageImport pImport : visited.getPackageImports()) {
 				namespaces.add(pImport.getImportedPackage());
 			}
-			for (ElementImport eImport : visited.getElementImports()) {
-				if (eImport.getImportedElement() instanceof Namespace) {
-					namespaces.add((Namespace) eImport.getImportedElement());
+			for(ElementImport eImport : visited.getElementImports()) {
+				if(eImport.getImportedElement() instanceof Namespace) {
+					namespaces.add((Namespace)eImport.getImportedElement());
 				}
 			}
 
@@ -155,9 +151,9 @@ public class UmlPortScopeProvider extends org.eclipse.xtext.scoping.impl.Abstrac
 			// first retrieves imported namespaces
 			namespaces.addAll(super.visit(visited));
 			// then retrieves owned namespaces
-			for (NamedElement n : visited.getOwnedMembers()) {
-				if (n instanceof Namespace) {
-					namespaces.add((Namespace) n);
+			for(NamedElement n : visited.getOwnedMembers()) {
+				if(n instanceof Namespace) {
+					namespaces.add((Namespace)n);
 				}
 			}
 			return namespaces;
@@ -169,14 +165,14 @@ public class UmlPortScopeProvider extends org.eclipse.xtext.scoping.impl.Abstrac
 		public List<Element> visit(Namespace visited) {
 			List<Element> visibleElements = new ArrayList<Element>();
 			// first retrieves imported properties
-			for (ElementImport eImport : visited.getElementImports()) {
-				if (eImport.getImportedElement() instanceof Classifier) {
+			for(ElementImport eImport : visited.getElementImports()) {
+				if(eImport.getImportedElement() instanceof Classifier) {
 					visibleElements.add(eImport.getImportedElement());
 				}
 			}
 			// then retrieves owned properties
-			for (NamedElement n : visited.getOwnedMembers()) {
-				if (n instanceof Classifier) {
+			for(NamedElement n : visited.getOwnedMembers()) {
+				if(n instanceof Classifier) {
 					visibleElements.add(n);
 				}
 			}
@@ -194,8 +190,7 @@ public class UmlPortScopeProvider extends org.eclipse.xtext.scoping.impl.Abstrac
 	 * @return
 	 */
 	public IScope scope_RedefinesRule_property(RedefinesRule ctx, EReference ref) {
-		Iterable<IEObjectDescription> iterableIEobjectDescription = Scopes
-				.scopedElementsFor(retrieveInheritedProperties());
+		Iterable<IEObjectDescription> iterableIEobjectDescription = Scopes.scopedElementsFor(retrieveInheritedProperties(ctx));
 		return new SimpleScope(iterableIEobjectDescription);
 	}
 
@@ -207,21 +202,20 @@ public class UmlPortScopeProvider extends org.eclipse.xtext.scoping.impl.Abstrac
 	 * @return
 	 */
 	public IScope scope_SubsetsRule_property(SubsetsRule ctx, EReference ref) {
-		Iterable<IEObjectDescription> iterableIEobjectDescription = Scopes
-				.scopedElementsFor(retrieveInheritedProperties());
+		Iterable<IEObjectDescription> iterableIEobjectDescription = Scopes.scopedElementsFor(retrieveInheritedProperties(ctx));
 		return new SimpleScope(iterableIEobjectDescription);
 	}
-	//TODO
-	public static List<Property> retrieveInheritedProperties() {
-		Property editedProperty = (Property)PopupXtextEditorHelper.context;
-		if (editedProperty == null) {
+
+	public static List<Property> retrieveInheritedProperties(EObject modelRule) {
+		Property editedProperty = (Property)ContextElementUtil.getContextElement(modelRule.eResource());
+		if(editedProperty == null) {
 			return null;
 		}
-		Classifier owner = (Classifier) editedProperty.getNamespace();
+		Classifier owner = (Classifier)editedProperty.getNamespace();
 		List<Property> inheritedProperties = new ArrayList<Property>();
-		for (Classifier parent : owner.getGenerals()) {
-			for (Property p : parent.getAllAttributes()) {
-				if (!inheritedProperties.contains(p)) {
+		for(Classifier parent : owner.getGenerals()) {
+			for(Property p : parent.getAllAttributes()) {
+				if(!inheritedProperties.contains(p)) {
 					;
 				}
 				inheritedProperties.add(p);

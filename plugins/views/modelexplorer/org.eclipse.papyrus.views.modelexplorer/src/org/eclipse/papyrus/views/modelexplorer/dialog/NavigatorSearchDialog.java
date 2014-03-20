@@ -37,6 +37,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
@@ -178,11 +179,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 				ModelExplorerView.reveal(Iterables.transform(Lists.newArrayList(structured.iterator()), new Function<Object, EObject>() {
 
 					public EObject apply(Object arg0) {
-						if(arg0 instanceof IAdaptable) {
-							IAdaptable adapt = (IAdaptable)arg0;
-							return getAdapter(adapt, EObject.class);
-						}
-						return null;
+						return EMFHelper.getEObject(arg0);
 					}
 				}), (CommonViewer)viewer);
 			}
@@ -390,7 +387,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 					//If child can be adapted into a LinkNode, find its referenced EObjects
 					if(getAdapter(child, LinkNode.class) != null) {
 						for(Object referencedObject : contentProvider.getChildren(child)) {
-							EObject referencedEObject = (EObject)((IAdaptable)referencedObject).getAdapter(EObject.class);
+							EObject referencedEObject = EMFHelper.getEObject(referencedObject);
 							if(referencedEObject != null && (parentEObj == null || parentEObj.equals(referencedEObject.eContainer()))) {
 								children.add(referencedObject);
 							}
@@ -398,7 +395,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 					}
 					//If it is an EObject, add it to the list
 					else {
-						EObject eObject = (EObject)((IAdaptable)child).getAdapter(EObject.class);
+						EObject eObject = EMFHelper.getEObject(child);
 						if(eObject != null && eObject.eContainer() != null && (parentEObj == null || eObject.eContainer().equals(parentEObj))) {
 							children.add(child);
 						}

@@ -8,6 +8,8 @@
    <extension-point id="notationTypesMapping" name="notationTypesMapping" schema="schema/notationTypesMapping.exsd"/>
    <extension-point id="svgPostProcessors" name="svgPostProcessors" schema="schema/svgPostProcessors.exsd"/>
    <extension-point id="pasteCommandProvider" name="pasteCommandProvider" schema="schema/pasteCommandProvider.exsd"/>
+   <extension-point id="pasteStrategy" name="pasteStrategy" schema="schema/pasteStrategy.exsd"/>
+   <extension-point id="copyStrategy" name="copyStrategy" schema="schema/copyStrategy.exsd"/>
 
 <extension
       point="org.eclipse.ui.handlers">
@@ -55,6 +57,12 @@
          id="org.eclipse.papyrus.infra.gmfdiag.common.connectionTools"
          name="Connection Tools">
    </page>
+   <page
+         category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+         class="org.eclipse.papyrus.infra.gmfdiag.common.preferences.PastePreferencesPage"
+         id="org.eclipse.papyrus.infra.gmfdiag.paste.preferences"
+         name="Paste">
+   </page> 
 </extension>
 <extension
       point="org.eclipse.core.runtime.preferences">
@@ -66,7 +74,8 @@
          point="org.eclipse.papyrus.infra.core.model">
       <model
             classname="org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel"
-            description="Model for notation">
+            description="Model for notation"
+            fileExtension="notation">
       </model>
   </extension>
 
@@ -147,6 +156,27 @@
 	</binding>
 </extension>
 <extension
+      point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+   <metamodel
+         nsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+      <metamodelType
+            eclass="Diagram"
+            edithelper="org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramEditHelper"
+            id="org.eclipse.papyrus.infra.gmfdiag.common.DiagramElementType"
+            name="Diagram">
+      </metamodelType>
+   </metamodel>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+   <binding
+         context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+      <elementType
+            ref="org.eclipse.papyrus.infra.gmfdiag.common.DiagramElementType">
+      </elementType>
+   </binding>
+</extension>
+<extension
       point="org.eclipse.core.expressions.propertyTesters">
    <propertyTester
          class="org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramPropertyTester"
@@ -162,6 +192,76 @@
          properties="isGmfDiagramContextActive"
          type="java.util.Collection">
    </propertyTester>
+</extension>
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
+      <dynamic
+            class="org.eclipse.papyrus.infra.gmfdiag.common.handler.DynamicDiagramsMenuContribution"
+            id="org.eclipse.papyrus.infra.gmfdiag.common.handler.DynamicDiagramsMenuContribution">
+      </dynamic>
+   </menuContribution>
+   <menuContribution
+         allPopups="false"
+         locationURI="menu:org.eclipse.papyrus.ui.menu">
+      <menu
+            icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/NewDiagram.gif"
+            id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams"
+            label="New Diagram">
+         <dynamic
+               class="org.eclipse.papyrus.infra.gmfdiag.common.handler.DynamicDiagramsMenuContribution"
+               id="org.eclipse.papyrus.infra.gmfdiag.common.handler.DynamicDiagramsMenuContribution">
+         </dynamic>
+      </menu>
+   </menuContribution>
+   <menuContribution
+         allPopups="false"
+         locationURI="toolbar:org.eclipse.ui.main.toolbar">
+      <toolbar
+            id="org.eclipse.papyrus.infra.viewpoints.policy.toolbar">
+         <command
+               commandId="org.eclipse.papyrus.infra.viewpoints.policy.toolbar.diagrams.command"
+               icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/NewDiagram.gif"
+               id="org.eclipse.papyrus.infra.viewpoints.policy.toolbar.diagrams"
+               label="Create a new diagram ..."
+               style="pulldown"
+               tooltip="Create a new diagram ...">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </toolbar>
+   </menuContribution>
+   <menuContribution
+         allPopups="false"
+         locationURI="menu:org.eclipse.papyrus.infra.viewpoints.policy.toolbar.diagrams">
+      <dynamic
+            class="org.eclipse.papyrus.infra.gmfdiag.common.handler.DynamicDiagramsMenuContribution"
+            id="org.eclipse.papyrus.infra.gmfdiag.common.handler.DynamicDiagramsMenuContribution">
+      </dynamic>
+   </menuContribution>
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.infra.viewpoints.policy.commands"
+         defaultHandler="org.eclipse.papyrus.infra.viewpoints.policy.DynamicCommandHandler"
+         id="org.eclipse.papyrus.infra.viewpoints.policy.toolbar.diagrams.command"
+         name="Create Dynamic Diagram Command">
+   </command>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.viewpoints.policy.viewType">
+   <helper
+         class="org.eclipse.papyrus.infra.gmfdiag.common.helper.GMFDiagramViewTypeHelper">
+   </helper>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.common.shapeProvider">
@@ -180,5 +280,27 @@
          humanReadableType="symbol"
          type="compartment_shape_display">
    </mapping>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.services.decoration.decorationSpecificFunctions">
+   <client
+         class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.ExternalReferenceDecoration"
+         decorationType="org.eclipse.papyrus.infra.gmfdiag.common.externalref">
+   </client>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+   <editpolicyProvider
+         class="org.eclipse.papyrus.infra.gmfdiag.common.providers.ExternalReferenceEditPolicyProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </editpolicyProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.commands.historyListeners">
+   <historyListener
+         class="org.eclipse.papyrus.infra.gmfdiag.common.listener.RollbackNotificationHistoryListener">
+   </historyListener>
 </extension>
 </plugin>

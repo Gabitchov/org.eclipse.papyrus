@@ -18,11 +18,12 @@ package org.eclipse.papyrus.eastadl.variability;
 import org.eclipse.papyrus.eastadl.infrastructure.elements.TraceableSpecification;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Reuse Meta Information</b></em>'. <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Reuse Meta Information</b></em>'. <!-- end-user-doc -->
+ * 
  * <!-- begin-model-doc -->
- * ReuseMetaInformation represents the description information needed in the context of reuse. For example a specific entity is only a short-time solution that is not intended to be reused. Also a specific entity can only be reused for specific model ranges (that are not reflected in the product model). This kind of information can be stored in this information.
+ * ReuseMetaInformation represents the description information needed in the context of reuse. For example a specific entity is only a short-time
+ * solution that is not intended to be reused. Also a specific entity can only be reused for specific model ranges (that are not reflected in the
+ * product model). This kind of information can be stored in this information.
  * 
  * Semantics:
  * The ReuseMetaInformation represents information that explains if and how the respective entity can be reused.
@@ -30,16 +31,16 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.TraceableSpecificatio
  * 
  * Extension: Class
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.variability.ReuseMetaInformation#getInformation <em>Information</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.variability.ReuseMetaInformation#isIsReusable <em>Is Reusable</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.variability.ReuseMetaInformation#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.variability.ReuseMetaInformation#getInformation <em>Information</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.variability.ReuseMetaInformation#isIsReusable <em>Is Reusable</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.variability.ReuseMetaInformation#getBase_Class <em>Base Class</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.variability.VariabilityPackage#getReuseMetaInformation()
  * @model
  * @generated
@@ -49,8 +50,7 @@ public interface ReuseMetaInformation extends TraceableSpecification {
 	/**
 	 * Returns the value of the '<em><b>Information</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Information</em>' attribute isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Information</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc --> <!-- begin-model-doc --> The reuse information is stored in this
 	 * attribute. <!-- end-model-doc -->
@@ -64,11 +64,9 @@ public interface ReuseMetaInformation extends TraceableSpecification {
 	String getInformation();
 
 	/**
-	 * Returns the value of the '<em><b>Is Reusable</b></em>' attribute. The default value is
-	 * <code>"true"</code>. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Is Reusable</b></em>' attribute. The default value is <code>"true"</code>. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Reusable</em>' attribute isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Is Reusable</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc --> <!-- begin-model-doc --> This Boolean attributes just says if the
 	 * entity itself can essentially be reused or not. Specific information or constraints on reuse
@@ -85,7 +83,9 @@ public interface ReuseMetaInformation extends TraceableSpecification {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.variability.ReuseMetaInformation#getInformation <em>Information</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Information</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Information</em>' attribute.
 	 * @see #getInformation()
 	 * @generated
 	 */
@@ -94,7 +94,9 @@ public interface ReuseMetaInformation extends TraceableSpecification {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.variability.ReuseMetaInformation#isIsReusable <em>Is Reusable</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Reusable</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Is Reusable</em>' attribute.
 	 * @see #isIsReusable()
 	 * @generated
 	 */
@@ -104,10 +106,10 @@ public interface ReuseMetaInformation extends TraceableSpecification {
 	 * Returns the value of the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Class</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
 	 * @see org.eclipse.papyrus.eastadl.variability.VariabilityPackage#getReuseMetaInformation_Base_Class()
@@ -120,7 +122,9 @@ public interface ReuseMetaInformation extends TraceableSpecification {
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.variability.ReuseMetaInformation#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base Class</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Base Class</em>' reference.
 	 * @see #getBase_Class()
 	 * @generated
 	 */

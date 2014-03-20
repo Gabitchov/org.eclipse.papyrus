@@ -49,7 +49,7 @@ public class TestNodeDropOnConstraintCN extends AbstractTest {
 	@Test
 	public void testDropActor() throws Exception {
 		EObject droppedElement = createElement(UMLElementTypes.ACTOR, getDiagramView());
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true);
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class TestNodeDropOnConstraintCN extends AbstractTest {
 	@Test
 	public void testDropBlock() throws Exception {
 		EObject droppedElement = createElement(SysMLElementTypes.BLOCK, getDiagramView());
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true);
 	}
 
 	@Test
@@ -74,7 +74,7 @@ public class TestNodeDropOnConstraintCN extends AbstractTest {
 	@Test
 	public void testDropConstraintBlock() throws Exception {
 		EObject droppedElement = createElement(SysMLElementTypes.CONSTRAINT_BLOCK, getDiagramView());
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true);
 	}
 
 	@Test
@@ -93,7 +93,7 @@ public class TestNodeDropOnConstraintCN extends AbstractTest {
 	@Test
 	public void testDropDataType() throws Exception {
 		EObject droppedElement = createElement(UMLElementTypes.DATA_TYPE, getDiagramView());
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true);
 	}
 
 	@Test
@@ -105,7 +105,7 @@ public class TestNodeDropOnConstraintCN extends AbstractTest {
 	@Test
 	public void testDropEnumeration() throws Exception {
 		EObject droppedElement = createElement(UMLElementTypes.ENUMERATION, getDiagramView());
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true);
 	}
 
 	@Test
@@ -132,7 +132,7 @@ public class TestNodeDropOnConstraintCN extends AbstractTest {
 	@Test
 	public void testDropFlowSpecification() throws Exception {
 		EObject droppedElement = createElement(SysMLElementTypes.FLOW_SPECIFICATION, getDiagramView());
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true);
 	}
 
 	@Test
@@ -144,7 +144,7 @@ public class TestNodeDropOnConstraintCN extends AbstractTest {
 	@Test
 	public void testDropInterface() throws Exception {
 		EObject droppedElement = createElement(UMLElementTypes.INTERFACE, getDiagramView());
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true);
 	}
 
 	@Test
@@ -183,7 +183,7 @@ public class TestNodeDropOnConstraintCN extends AbstractTest {
 	@Test
 	public void testDropPrimitiveType() throws Exception {
 		EObject droppedElement = createElement(UMLElementTypes.PRIMITIVE_TYPE, getDiagramView());
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true);
 	}
 
 	@Test
@@ -210,7 +210,7 @@ public class TestNodeDropOnConstraintCN extends AbstractTest {
 	@Test
 	public void testDropSignal() throws Exception {
 		EObject droppedElement = createElement(UMLElementTypes.SIGNAL, getDiagramView());
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true);
 	}
 
 	@Test
@@ -236,6 +236,6 @@ public class TestNodeDropOnConstraintCN extends AbstractTest {
 	@Test
 	public void testDropValueType() throws Exception {
 		EObject droppedElement = createElement(SysMLElementTypes.VALUE_TYPE, getDiagramView());
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true);
 	}
 }

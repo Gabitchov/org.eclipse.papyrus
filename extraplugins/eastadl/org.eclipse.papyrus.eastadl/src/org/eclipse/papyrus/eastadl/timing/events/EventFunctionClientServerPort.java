@@ -25,39 +25,43 @@ import org.eclipse.papyrus.eastadl.timing.Event;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Event Function Client Server Port</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * Event that refers to the triggering of the Function at a client/server port, i.e., when the input data is sent / received, or when the output data is produced / received.
+ * Event that refers to the triggering of the Function at a client/server port, i.e., when the input data is sent / received, or when the output data
+ * is produced / received.
  * 
  * Constraints:
- * [1] eventKind is sentRequest or receivedResponse for a FunctionClientServerPort of type client. Rationale: Only these values make sense for client ports.
+ * [1] eventKind is sentRequest or receivedResponse for a FunctionClientServerPort of type client. Rationale: Only these values make sense for client
+ * ports.
  * 
- * [2] eventKind is receivedRequest or sentResponse for a FunctionClientServerPort of type server. Rationale: Only these values make sense for server ports.
+ * [2] eventKind is receivedRequest or sentResponse for a FunctionClientServerPort of type server. Rationale: Only these values make sense for server
+ * ports.
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionClientServerPort#getEventKind <em>Event Kind</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionClientServerPort#getPort <em>Port</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionClientServerPort#getPort_path <em>Port path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionClientServerPort#getEventKind <em>Event Kind</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionClientServerPort#getPort <em>Port</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionClientServerPort#getPort_path <em>Port path</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.timing.events.EventsPackage#getEventFunctionClientServerPort()
  * @model
  * @generated
  */
 public interface EventFunctionClientServerPort extends Event {
+
 	/**
 	 * Returns the value of the '<em><b>Event Kind</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionClientServerPortKind}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Event Kind</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Event Kind</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Event Kind</em>' attribute.
 	 * @see org.eclipse.papyrus.eastadl.timing.events.EventFunctionClientServerPortKind
 	 * @see #setEventKind(EventFunctionClientServerPortKind)
@@ -71,10 +75,10 @@ public interface EventFunctionClientServerPort extends Event {
 	 * Returns the value of the '<em><b>Port</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Port</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Port</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Port</em>' reference.
 	 * @see #setPort(FunctionClientServerPort)
 	 * @see org.eclipse.papyrus.eastadl.timing.events.EventsPackage#getEventFunctionClientServerPort_Port()
@@ -84,10 +88,13 @@ public interface EventFunctionClientServerPort extends Event {
 	FunctionClientServerPort getPort();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionClientServerPort#getEventKind <em>Event Kind</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionClientServerPort#getEventKind <em>Event Kind</em>}'
+	 * attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Event Kind</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Event Kind</em>' attribute.
 	 * @see org.eclipse.papyrus.eastadl.timing.events.EventFunctionClientServerPortKind
 	 * @see #getEventKind()
 	 * @generated
@@ -98,7 +105,9 @@ public interface EventFunctionClientServerPort extends Event {
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionClientServerPort#getPort <em>Port</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Port</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Port</em>' reference.
 	 * @see #getPort()
 	 * @generated
 	 */
@@ -109,10 +118,10 @@ public interface EventFunctionClientServerPort extends Event {
 	 * The list contents are of type {@link org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionPrototype}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Port path</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Port path</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Port path</em>' reference list.
 	 * @see org.eclipse.papyrus.eastadl.timing.events.EventsPackage#getEventFunctionClientServerPort_Port_path()
 	 * @model

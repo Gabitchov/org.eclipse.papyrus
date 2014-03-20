@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.tools.namereferences.NameReferencesHelper;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -151,7 +152,7 @@ public class CommentParser implements IParser {
 	 * @return the property associated or null if it can't be found.
 	 */
 	protected Comment doAdapt(IAdaptable element) {
-		Object obj = element.getAdapter(EObject.class);
+		Object obj = EMFHelper.getEObject(element);
 		if(obj instanceof Comment) {
 			return (Comment)obj;
 		}

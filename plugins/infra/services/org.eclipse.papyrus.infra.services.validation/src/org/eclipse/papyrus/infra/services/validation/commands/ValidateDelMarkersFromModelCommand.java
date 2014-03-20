@@ -24,14 +24,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.papyrus.infra.services.markerlistener.util.MarkerListenerUtils;
-import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 
 
 public class ValidateDelMarkersFromModelCommand extends AbstractValidateCommand {
 
 	public ValidateDelMarkersFromModelCommand(EObject selectedElement,IPapyrusDiagnostician diagnostician) {
-		super("Delete markers from model", TransactionUtil.getEditingDomain(selectedElement), selectedElement,diagnostician);
+		super(Messages.ValidateDelMarkersFromModelCommand_DeleteMarkersFromModel, TransactionUtil.getEditingDomain(selectedElement), selectedElement,diagnostician);
 	}
 
 	/**
@@ -45,7 +44,7 @@ public class ValidateDelMarkersFromModelCommand extends AbstractValidateCommand 
 				MarkerListenerUtils.getMarkerProvider(getValidationResource())
 					.deleteMarkers(resource, monitor);
 			} catch (CoreException e) {
-				throw new ExecutionException("Failed to delete all markers.", e);
+				throw new ExecutionException(Messages.ValidateDelMarkersFromModelCommand_FailedToDeleteMarkers, e);
 			}
 		}
 		return null;

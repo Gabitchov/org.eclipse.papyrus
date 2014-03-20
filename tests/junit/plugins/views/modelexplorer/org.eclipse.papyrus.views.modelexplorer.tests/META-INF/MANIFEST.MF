@@ -15,7 +15,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.0.0",
  org.eclipse.papyrus.views.modelexplorer;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
- org.junit;bundle-version="4.10.0"
+ org.junit;bundle-version="4.10.0",
+ org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.views.modelexplorer.tests
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

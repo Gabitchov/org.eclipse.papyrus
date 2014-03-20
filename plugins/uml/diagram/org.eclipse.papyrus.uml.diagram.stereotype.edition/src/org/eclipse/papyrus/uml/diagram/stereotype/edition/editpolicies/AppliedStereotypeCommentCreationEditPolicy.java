@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,23 +9,19 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.InternalTransaction;
-import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
@@ -37,7 +33,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -122,31 +118,18 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 					cmd.execute();
 				}
 			};
-			try {
-				domain.runExclusive(new Runnable() {
+			
+			Display.getCurrent().asyncExec(new Runnable() {
 
-					public void run() {
-						Display.getCurrent().asyncExec(new Runnable() {
-
-							public void run() {
-								//use to avoid to put it in the command stack
-								Map<String, Boolean> options = new HashMap<String, Boolean>();
-								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-								try {
-									InternalTransaction it = ((InternalTransactionalEditingDomain)domain).startTransaction(false, options);
-									cmd.execute();
-									it.commit();
-								} catch (Exception e) {
-									Activator.log.error(e);
-								}
-							}
-						});
+				public void run() {
+					//use to avoid to put it in the command stack
+					try {
+						GMFUnsafe.write(domain, cmd);
+					} catch (Exception e) {
+						Activator.log.error(e);
 					}
-				});
-			} catch (Exception e) {
-				Activator.log.error(e);
-			}
-
+				}
+			});
 		}
 	}
 
@@ -186,89 +169,62 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 	 *        the stereotype application
 	 */
 	protected void executeAppliedStereotypeCommentCreation(final EditPart editPart, final TransactionalEditingDomain domain, final EObject semanticElement) {
-		try {
-			domain.runExclusive(new Runnable() {
+		Display.getCurrent().asyncExec(new Runnable() {
 
-				public void run() {
-					Display.getCurrent().asyncExec(new Runnable() {
+			public void run() {
+				int x = 200;
+				int y = 100;
+				if(editPart.getModel() instanceof Node) {
+					LayoutConstraint constraint = ((Node)editPart.getModel()).getLayoutConstraint();
+					if(constraint instanceof Bounds) {
+						x = x + ((Bounds)constraint).getX();
+						y = ((Bounds)constraint).getY();
+					}
 
-						public void run() {
-							int x = 200;
-							int y = 100;
-							if(editPart.getModel() instanceof Node) {
-								LayoutConstraint constraint = ((Node)editPart.getModel()).getLayoutConstraint();
-								if(constraint instanceof Bounds) {
-									x = x + ((Bounds)constraint).getX();
-									y = ((Bounds)constraint).getY();
-								}
-
-							}
-							if(editPart.getModel() instanceof Edge && ((((Edge)editPart.getModel()).getSource()) instanceof Node)) {
-
-								LayoutConstraint constraint = ((Node)((Edge)editPart.getModel()).getSource()).getLayoutConstraint();
-								if(constraint instanceof Bounds) {
-									x = x + ((Bounds)constraint).getX();
-									y = ((Bounds)constraint).getY() - 100;
-								}
-
-							}
-							boolean isBorderElement = false;
-							if(editPart instanceof BorderedBorderItemEditPart) {
-								isBorderElement = true;
-							}
-							if(getAppliedStereotypeCommentNode() == null) {
-								CreateAppliedStereotypeCommentViewCommand command = new CreateAppliedStereotypeCommentViewCommand(domain, (View)editPart.getModel(), x, y, semanticElement, isBorderElement);
-								//use to avoid to put it in the command stack
-								Map<String, Boolean> options = new HashMap<String, Boolean>();
-								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-								try {
-									InternalTransaction it = ((InternalTransactionalEditingDomain)domain).startTransaction(false, options);
-									command.execute();
-									it.commit();
-								} catch (Exception e) {
-									Activator.log.error(e);
-								}
-							}
-						}
-
-					});
 				}
-			});
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
+				if(editPart.getModel() instanceof Edge && ((((Edge)editPart.getModel()).getSource()) instanceof Node)) {
+
+					LayoutConstraint constraint = ((Node)((Edge)editPart.getModel()).getSource()).getLayoutConstraint();
+					if(constraint instanceof Bounds) {
+						x = x + ((Bounds)constraint).getX();
+						y = ((Bounds)constraint).getY() - 100;
+					}
+
+				}
+				boolean isBorderElement = false;
+				if(editPart instanceof BorderedBorderItemEditPart) {
+					isBorderElement = true;
+				}
+				if(getAppliedStereotypeCommentNode() == null) {
+					CreateAppliedStereotypeCommentViewCommand command = new CreateAppliedStereotypeCommentViewCommand(domain, (View)editPart.getModel(), x, y, semanticElement, isBorderElement);
+					//use to avoid to put it in the command stack
+					try {
+						GMFUnsafe.write(domain, command);
+					} catch (Exception e) {
+						Activator.log.error(e);
+					}
+				}
+			}
+
+		});
 	}
 
 	protected void executeAppliedStereotypeCommentDeletion(final TransactionalEditingDomain domain, final View commentNode) {
-		try {
-			domain.runExclusive(new Runnable() {
+		Display.getCurrent().asyncExec(new Runnable() {
 
-				public void run() {
-					Display.getCurrent().asyncExec(new Runnable() {
-
-						public void run() {
-							//because it is asynchrone the comment node maybe become s null
-							if(commentNode != null && TransactionUtil.getEditingDomain(commentNode) != null) {
-								DeleteCommand command = new DeleteCommand(commentNode);
-								//use to avoid to put it in the command stack
-								Map<String, Boolean> options = new HashMap<String, Boolean>();
-								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-								try {
-									InternalTransaction it = ((InternalTransactionalEditingDomain)TransactionUtil.getEditingDomain(commentNode)).startTransaction(false, options);
-									GMFtoEMFCommandWrapper warpperCmd = new GMFtoEMFCommandWrapper(command);
-									warpperCmd.execute();
-									it.commit();
-								} catch (Exception e) {
-									Activator.log.error(e);
-								}
-							}
-						}
-					});
+			public void run() {
+				//because it is asynchrone the comment node maybe become s null
+				if(commentNode != null && TransactionUtil.getEditingDomain(commentNode) != null) {
+					DeleteCommand command = new DeleteCommand(commentNode);
+					//use to avoid to put it in the command stack
+					try {
+						GMFUnsafe.write(domain, command);
+					} catch (Exception e) {
+						Activator.log.error(e);
+					}
 				}
-			});
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
+			}
+		});
 	}
 
 	/**

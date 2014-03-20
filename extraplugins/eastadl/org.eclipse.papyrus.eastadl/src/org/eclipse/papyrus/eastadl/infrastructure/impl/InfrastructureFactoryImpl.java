@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.eastadl.infrastructure.*;
 import org.eclipse.papyrus.eastadl.infrastructure.InfrastructureFactory;
 import org.eclipse.papyrus.eastadl.infrastructure.InfrastructurePackage;
 
@@ -29,12 +30,15 @@ import org.eclipse.papyrus.eastadl.infrastructure.InfrastructurePackage;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class InfrastructureFactoryImpl extends EFactoryImpl implements InfrastructureFactory {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -47,16 +51,16 @@ public class InfrastructureFactoryImpl extends EFactoryImpl implements Infrastru
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static InfrastructureFactory init() {
 		try {
 			InfrastructureFactory theInfrastructureFactory = (InfrastructureFactory)EPackage.Registry.INSTANCE.getEFactory(InfrastructurePackage.eNS_URI);
-			if (theInfrastructureFactory != null) {
+			if(theInfrastructureFactory != null) {
 				return theInfrastructureFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new InfrastructureFactoryImpl();
@@ -66,6 +70,7 @@ public class InfrastructureFactoryImpl extends EFactoryImpl implements Infrastru
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InfrastructureFactoryImpl() {
@@ -75,6 +80,7 @@ public class InfrastructureFactoryImpl extends EFactoryImpl implements Infrastru
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertDummyToString(EDataType eDataType, Object instanceValue) {
@@ -84,34 +90,37 @@ public class InfrastructureFactoryImpl extends EFactoryImpl implements Infrastru
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case InfrastructurePackage.DUMMY:
-				return convertDummyToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch(eDataType.getClassifierID()) {
+		case InfrastructurePackage.DUMMY:
+			return convertDummyToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch(eClass.getClassifierID()) {
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String createDummyFromString(EDataType eDataType, String initialValue) {
@@ -121,21 +130,23 @@ public class InfrastructureFactoryImpl extends EFactoryImpl implements Infrastru
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case InfrastructurePackage.DUMMY:
-				return createDummyFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch(eDataType.getClassifierID()) {
+		case InfrastructurePackage.DUMMY:
+			return createDummyFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InfrastructurePackage getInfrastructurePackage() {

@@ -36,16 +36,17 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.AnalysisFunctionTypeImpl#getPart <em>Part</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.AnalysisFunctionTypeImpl#getPart <em>Part</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class AnalysisFunctionTypeImpl extends FunctionTypeImpl implements AnalysisFunctionType {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AnalysisFunctionTypeImpl() {
@@ -54,32 +55,35 @@ public class AnalysisFunctionTypeImpl extends FunctionTypeImpl implements Analys
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case FunctionmodelingPackage.ANALYSIS_FUNCTION_TYPE__PART:
-				return getPart();
+		switch(featureID) {
+		case FunctionmodelingPackage.ANALYSIS_FUNCTION_TYPE__PART:
+			return getPart();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.ANALYSIS_FUNCTION_TYPE__PART:
-				return !getPart().isEmpty();
+		switch(featureID) {
+		case FunctionmodelingPackage.ANALYSIS_FUNCTION_TYPE__PART:
+			return !getPart().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,8 +127,7 @@ public class AnalysisFunctionTypeImpl extends FunctionTypeImpl implements Analys
 			while(itDep.hasNext()) {
 				Property currentProperty = itDep.next();
 
-				currentFunctionPrototype = (AnalysisFunctionPrototype)UMLUtil.getStereotypeApplication(currentProperty,
-					AnalysisFunctionPrototype.class);
+				currentFunctionPrototype = (AnalysisFunctionPrototype)UMLUtil.getStereotypeApplication(currentProperty, AnalysisFunctionPrototype.class);
 
 				if(currentFunctionPrototype != null) {
 					parts.add(currentFunctionPrototype);
@@ -133,8 +136,7 @@ public class AnalysisFunctionTypeImpl extends FunctionTypeImpl implements Analys
 		}
 
 		// Convert to InternalEList<?>
-		return new BasicInternalEList<AnalysisFunctionPrototype>(AnalysisFunctionPrototype.class, parts.size(), parts
-			.toArray());
+		return new BasicInternalEList<AnalysisFunctionPrototype>(AnalysisFunctionPrototype.class, parts.size(), parts.toArray());
 	}
 
 	/**

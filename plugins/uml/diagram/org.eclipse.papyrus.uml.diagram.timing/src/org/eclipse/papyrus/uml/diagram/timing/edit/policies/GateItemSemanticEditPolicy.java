@@ -62,13 +62,12 @@ public class GateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	@Override
-	protected Command getDestroyElementCommand(final DestroyElementRequest req) {
-		final EObject selectedEObject = req.getElementToDestroy();
-		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		EObject selectedEObject = req.getElementToDestroy();
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
-			final ICommand deleteCommand = provider.getEditCommand(req);
-
+			ICommand deleteCommand = provider.getEditCommand(req);
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
@@ -80,16 +79,16 @@ public class GateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	@Override
-	protected Command getCreateRelationshipCommand(final CreateRelationshipRequest req) {
-		final Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
+	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(final CreateRelationshipRequest req) {
-		final IElementType requestElementType = req.getElementType();
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		IElementType requestElementType = req.getElementType();
 		if(requestElementType == null) {
 			return null;
 		}
@@ -100,8 +99,7 @@ public class GateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but
-				// can lead to bugs.
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
 				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
@@ -154,8 +152,8 @@ public class GateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(final CreateRelationshipRequest req) {
-		final IElementType requestElementType = req.getElementType();
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		IElementType requestElementType = req.getElementType();
 		if(requestElementType == null) {
 			return null;
 		}
@@ -166,8 +164,7 @@ public class GateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but
-				// can lead to bugs.
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
 				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
@@ -224,7 +221,7 @@ public class GateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	@Override
-	protected Command getReorientRelationshipCommand(final ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
 		case MessageSyncEditPart.VISUAL_ID:
 			return getGEFWrapper(new MessageSyncReorientCommand(req));
@@ -243,5 +240,4 @@ public class GateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
-
 }

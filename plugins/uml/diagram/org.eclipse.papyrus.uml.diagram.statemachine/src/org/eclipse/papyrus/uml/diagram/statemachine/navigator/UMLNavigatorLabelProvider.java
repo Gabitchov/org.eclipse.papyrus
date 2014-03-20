@@ -87,11 +87,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	public Image getImage(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case PackageEditPart.VISUAL_ID:
-			return getImage("Navigator?Diagram?http://www.eclipse.org/uml2/4.0.0/UML?Package", UMLElementTypes.Package_1000); //$NON-NLS-1$
+			return getImage("Navigator?Diagram?http://www.eclipse.org/uml2/5.0.0/UML?Package", UMLElementTypes.Package_1000); //$NON-NLS-1$
 		case StateMachineEditPart.VISUAL_ID:
-			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/4.0.0/UML?StateMachine", UMLElementTypes.StateMachine_2000); //$NON-NLS-1$
+			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/5.0.0/UML?StateMachine", UMLElementTypes.StateMachine_2000); //$NON-NLS-1$
 		case RegionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Region", UMLElementTypes.Region_3000); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?Region", UMLElementTypes.Region_3000); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}

@@ -50,7 +50,7 @@ public class StatemachinesFactoryImpl extends EFactoryImpl implements Statemachi
 	 */
 	public static StatemachinesFactory init() {
 		try {
-			StatemachinesFactory theStatemachinesFactory = (StatemachinesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/StateMachines");
+			StatemachinesFactory theStatemachinesFactory = (StatemachinesFactory)EPackage.Registry.INSTANCE.getEFactory(StatemachinesPackage.eNS_URI);
 			if(theStatemachinesFactory != null) {
 				return theStatemachinesFactory;
 			}

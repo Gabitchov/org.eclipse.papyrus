@@ -13,21 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.paletteconfiguration.queries;
 
-import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
-import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
-import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration;
 
 /** Returns the Label for a tool. */
-public class GetToolLabelQuery implements IJavaModelQuery<ToolConfiguration, String> {
+public class GetToolLabelQuery implements IJavaQuery2<ToolConfiguration, String> {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public String evaluate(final ToolConfiguration context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
+	public String evaluate(ToolConfiguration source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append('[');
-		switch(context.getKind()) {
+		switch(source.getKind()) {
 		case CONNECTION_TOOL:
 			buffer.append("Connection Tool");
 			break;
@@ -39,42 +37,7 @@ public class GetToolLabelQuery implements IJavaModelQuery<ToolConfiguration, Str
 		buffer.append(' ');
 
 
-		buffer.append(context.getLabel());
-
-		//		// retrieves list of types to create
-		//		List<IElementType> typesToCreate = new ArrayList<IElementType>();
-		//		for(ElementDescriptor descriptor : context.getElementDescriptors()) {
-		//			IElementType type = ExtendedTypesRegistry.getInstance().getType(descriptor.getElementTypeId());
-		//			if(type != null) {
-		//				typesToCreate.add(type);
-		//			}
-		//		}
-		//
-		//		// filter the list (removes all elements that create the same metaclass, but with different representation. this is caused by standard GMF tooling generation
-		//		List<IElementType> filteredList = new ArrayList<IElementType>();
-		//		for(IElementType type : typesToCreate) {
-		//			boolean toAdd = true;
-		//			for(IElementType typeInFilteredList : filteredList) {
-		//				boolean isEquivalent = ElementTypeUtils.isSemanticallyEquivalent(typeInFilteredList, type);
-		//				if(isEquivalent) {
-		//					toAdd = false;
-		//				}
-		//			}
-		//
-		//			if(toAdd) {
-		//				filteredList.add(type);
-		//			}
-		//		}
-		//
-		//		Iterator<IElementType> it = filteredList.iterator();
-		//		while(it.hasNext()) {
-		//			IElementType type = it.next();
-		//			buffer.append(type.getDisplayName());
-		//			if(it.hasNext()) {
-		//				buffer.append(", ");
-		//			}
-		//		}
-
+		buffer.append(source.getLabel());
 		return buffer.toString();
 	}
 }

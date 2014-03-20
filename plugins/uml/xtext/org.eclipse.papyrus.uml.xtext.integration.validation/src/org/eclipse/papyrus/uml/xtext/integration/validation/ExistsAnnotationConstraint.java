@@ -13,7 +13,7 @@ import org.eclipse.uml2.uml.Element;
  * the xtext string couldn't be parsed and is out of sync with the UML model.
  * 
  * 
- * @author Markus Mühlbrandt
+ * @author Markus Mï¿½hlbrandt
  * 
  */
 public class ExistsAnnotationConstraint extends AbstractModelConstraint {
@@ -30,7 +30,7 @@ public class ExistsAnnotationConstraint extends AbstractModelConstraint {
 				text = InvalidStringUtil.getTextualRepresentation(element);
 			}
 
-			if (text != null && !"".equals(text)) {
+			if (text != null && !"".equals(text)) { //$NON-NLS-1$
 				return ctx.createFailureStatus(eObj.eClass().getName());
 			}
 		}

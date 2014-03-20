@@ -51,13 +51,13 @@ public class AbstractObservationNodeFigure extends NodeNamedElementFigure {
 			int minimumWidth = 0;
 			int minimumHeight = 0;
 			// Adapt the container to the contents
-			for(int i = 0; i < container.getChildren().size(); i++) {
+			for (int i = 0; i < container.getChildren().size(); i++) {
 				// we ignore the stereotype Label and the qualified name label
-				if(container.getChildren().get(i) instanceof Label) {
+				if (container.getChildren().get(i) instanceof Label) {
 					// Do nothing
 				} else {
-					minimumHeight = minimumHeight + ((IFigure)container.getChildren().get(i)).getPreferredSize().height + 2;
-					minimumWidth = minimumWidth + ((IFigure)container.getChildren().get(i)).getPreferredSize().width + 1;
+					minimumHeight = minimumHeight + ((IFigure) container.getChildren().get(i)).getPreferredSize().height + 2;
+					minimumWidth = minimumWidth + ((IFigure) container.getChildren().get(i)).getPreferredSize().width + 1;
 				}
 			}
 			return new Dimension(minimumWidth, minimumHeight);
@@ -69,18 +69,18 @@ public class AbstractObservationNodeFigure extends NodeNamedElementFigure {
 		 */
 		public void layout(IFigure container) {
 			List<?> childrenList = container.getChildren();
-			for(int i = 0; i < container.getChildren().size(); i++) {
+			for (int i = 0; i < container.getChildren().size(); i++) {
 				// stereotype and qualified name labels are not displayed
-				if(container.getChildren().get(i) instanceof Label) {
-					((IFigure)container.getChildren().get(i)).setVisible(false);
+				if (container.getChildren().get(i) instanceof Label) {
+					((IFigure) container.getChildren().get(i)).setVisible(false);
 				}
-				Rectangle bound = new Rectangle(((IFigure)childrenList.get(i)).getBounds());
-				bound.setSize(((IFigure)childrenList.get(i)).getPreferredSize());
-				if(i > 0) {
+				Rectangle bound = new Rectangle(((IFigure) childrenList.get(i)).getBounds());
+				bound.setSize(((IFigure) childrenList.get(i)).getPreferredSize());
+				if (i > 0) {
 					bound.y = container.getBounds().y + 2;
 					bound.x = container.getBounds().x + 2;
 				}
-				((IFigure)childrenList.get(i)).setBounds(bound);
+				((IFigure) childrenList.get(i)).setBounds(bound);
 			}
 		}
 	}
@@ -99,7 +99,7 @@ public class AbstractObservationNodeFigure extends NodeNamedElementFigure {
 		this.add(this.iconLabel);
 		ToolbarLayout toolbarLayout = new ToolbarLayout();
 		toolbarLayout.setSpacing(5);
-		toolbarLayout.setVertical(false);
+		toolbarLayout.setHorizontal(true);
 		this.setLayoutManager(new AbstractObservationLayoutManager());
 	}
 

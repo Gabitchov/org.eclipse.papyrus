@@ -17,25 +17,20 @@ package org.eclipse.papyrus.views.modelexplorer.newchild;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.newchild.CreationMenuFactory;
 import org.eclipse.papyrus.infra.newchild.CreationMenuRegistry;
 import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Folder;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.ISelectionService;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
-import org.eclipse.ui.menus.CommandContributionItem;
-import org.eclipse.ui.menus.CommandContributionItemParameter;
 
 /**
  * This class has in charge to create menu from elementCreationMenuModel
@@ -101,15 +96,13 @@ public class DynamicNewChild extends CompoundContributionItem  {
 
 		if(selection instanceof IStructuredSelection) {
 			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
-			if(selectedobject instanceof IAdaptable) {
-				EObject selectedEObject = (EObject)((IAdaptable)selectedobject).getAdapter(EObject.class);
-				try {
-					editingDomain =ServiceUtilsForEObject.getInstance().getService(org.eclipse.emf.transaction.TransactionalEditingDomain.class, selectedEObject);
-				} catch (Exception ex) {
-					System.err.println("impossible to get the Transactional Editing Domain "+ex);
-				}
-				return selectedEObject;
+			EObject selectedEObject = EMFHelper.getEObject(selectedobject);
+			try {
+				editingDomain =ServiceUtilsForEObject.getInstance().getService(org.eclipse.emf.transaction.TransactionalEditingDomain.class, selectedEObject);
+			} catch (Throwable ex) {
+				Activator.log.error("Impossible to get the Transactional Editing Domain.",ex);
 			}
+			return selectedEObject;
 		}
 		return null;
 	}

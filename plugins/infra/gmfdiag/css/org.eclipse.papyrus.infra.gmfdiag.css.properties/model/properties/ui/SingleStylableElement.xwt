@@ -11,7 +11,7 @@
 		<Composite.layout>
 			<GridLayout></GridLayout>
 		</Composite.layout>
-		<css:ResetStyleWidget input="{Binding}"></css:ResetStyleWidget>
+		<css:ResetStyleWidget input="{Binding}" property="CSS:PapyrusCSSStyle:cssStyle"></css:ResetStyleWidget>
 	</Composite>
 	<Composite>
 		<Composite.layout>

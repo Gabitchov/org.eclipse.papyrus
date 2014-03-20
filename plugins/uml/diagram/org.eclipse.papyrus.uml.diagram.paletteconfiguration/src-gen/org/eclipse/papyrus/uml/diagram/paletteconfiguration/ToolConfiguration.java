@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.uml.diagram.paletteconfiguration;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.papyrus.infra.queries.core.configuration.QueryConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +16,6 @@ import org.eclipse.papyrus.infra.queries.core.configuration.QueryConfiguration;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration#getPreValidationQuery <em>Pre Validation Query</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration#getElementDescriptors <em>Element Descriptors</em>}</li>
  * </ul>
@@ -28,32 +26,6 @@ import org.eclipse.papyrus.infra.queries.core.configuration.QueryConfiguration;
  * @generated
  */
 public interface ToolConfiguration extends LeafConfiguration {
-	/**
-	 * Returns the value of the '<em><b>Pre Validation Query</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Pre Validation Query</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pre Validation Query</em>' reference.
-	 * @see #setPreValidationQuery(QueryConfiguration)
-	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationPackage#getToolConfiguration_PreValidationQuery()
-	 * @model
-	 * @generated
-	 */
-	QueryConfiguration getPreValidationQuery();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration#getPreValidationQuery <em>Pre Validation Query</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pre Validation Query</em>' reference.
-	 * @see #getPreValidationQuery()
-	 * @generated
-	 */
-	void setPreValidationQuery(QueryConfiguration value);
-
 	/**
 	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
 	 * The default value is <code>"CreationTool"</code>.

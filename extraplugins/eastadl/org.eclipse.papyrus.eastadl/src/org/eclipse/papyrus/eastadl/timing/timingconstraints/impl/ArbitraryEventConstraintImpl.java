@@ -32,18 +32,22 @@ import org.eclipse.papyrus.eastadl.timing.timingconstraints.TimingconstraintsPac
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.ArbitraryEventConstraintImpl#getMinimumInterArrivalTime <em>Minimum Inter Arrival Time</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.ArbitraryEventConstraintImpl#getMaximumInterArrivalTime <em>Maximum Inter Arrival Time</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.ArbitraryEventConstraintImpl#getMinimumInterArrivalTime <em>Minimum Inter
+ * Arrival Time</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.ArbitraryEventConstraintImpl#getMaximumInterArrivalTime <em>Maximum Inter
+ * Arrival Time</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ArbitraryEventConstraintImpl extends EventConstraintImpl implements ArbitraryEventConstraint {
+
 	/**
 	 * The cached value of the '{@link #getMinimumInterArrivalTime() <em>Minimum Inter Arrival Time</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMinimumInterArrivalTime()
 	 * @generated
 	 * @ordered
@@ -54,6 +58,7 @@ public class ArbitraryEventConstraintImpl extends EventConstraintImpl implements
 	 * The cached value of the '{@link #getMaximumInterArrivalTime() <em>Maximum Inter Arrival Time</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMaximumInterArrivalTime()
 	 * @generated
 	 * @ordered
@@ -63,6 +68,7 @@ public class ArbitraryEventConstraintImpl extends EventConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ArbitraryEventConstraintImpl() {
@@ -72,15 +78,16 @@ public class ArbitraryEventConstraintImpl extends EventConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MINIMUM_INTER_ARRIVAL_TIME:
-				return getMinimumInterArrivalTime();
-			case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MAXIMUM_INTER_ARRIVAL_TIME:
-				return getMaximumInterArrivalTime();
+		switch(featureID) {
+		case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MINIMUM_INTER_ARRIVAL_TIME:
+			return getMinimumInterArrivalTime();
+		case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MAXIMUM_INTER_ARRIVAL_TIME:
+			return getMaximumInterArrivalTime();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -88,15 +95,16 @@ public class ArbitraryEventConstraintImpl extends EventConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MINIMUM_INTER_ARRIVAL_TIME:
-				return minimumInterArrivalTime != null && !minimumInterArrivalTime.isEmpty();
-			case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MAXIMUM_INTER_ARRIVAL_TIME:
-				return maximumInterArrivalTime != null && !maximumInterArrivalTime.isEmpty();
+		switch(featureID) {
+		case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MINIMUM_INTER_ARRIVAL_TIME:
+			return minimumInterArrivalTime != null && !minimumInterArrivalTime.isEmpty();
+		case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MAXIMUM_INTER_ARRIVAL_TIME:
+			return maximumInterArrivalTime != null && !maximumInterArrivalTime.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -104,20 +112,21 @@ public class ArbitraryEventConstraintImpl extends EventConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MINIMUM_INTER_ARRIVAL_TIME:
-				getMinimumInterArrivalTime().clear();
-				getMinimumInterArrivalTime().addAll((Collection<? extends TimeDuration>)newValue);
-				return;
-			case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MAXIMUM_INTER_ARRIVAL_TIME:
-				getMaximumInterArrivalTime().clear();
-				getMaximumInterArrivalTime().addAll((Collection<? extends TimeDuration>)newValue);
-				return;
+		switch(featureID) {
+		case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MINIMUM_INTER_ARRIVAL_TIME:
+			getMinimumInterArrivalTime().clear();
+			getMinimumInterArrivalTime().addAll((Collection<? extends TimeDuration>)newValue);
+			return;
+		case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MAXIMUM_INTER_ARRIVAL_TIME:
+			getMaximumInterArrivalTime().clear();
+			getMaximumInterArrivalTime().addAll((Collection<? extends TimeDuration>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -125,6 +134,7 @@ public class ArbitraryEventConstraintImpl extends EventConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,17 +145,18 @@ public class ArbitraryEventConstraintImpl extends EventConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MINIMUM_INTER_ARRIVAL_TIME:
-				getMinimumInterArrivalTime().clear();
-				return;
-			case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MAXIMUM_INTER_ARRIVAL_TIME:
-				getMaximumInterArrivalTime().clear();
-				return;
+		switch(featureID) {
+		case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MINIMUM_INTER_ARRIVAL_TIME:
+			getMinimumInterArrivalTime().clear();
+			return;
+		case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MAXIMUM_INTER_ARRIVAL_TIME:
+			getMaximumInterArrivalTime().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -153,10 +164,11 @@ public class ArbitraryEventConstraintImpl extends EventConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<TimeDuration> getMaximumInterArrivalTime() {
-		if (maximumInterArrivalTime == null) {
+		if(maximumInterArrivalTime == null) {
 			maximumInterArrivalTime = new EObjectResolvingEList<TimeDuration>(TimeDuration.class, this, TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MAXIMUM_INTER_ARRIVAL_TIME);
 		}
 		return maximumInterArrivalTime;
@@ -165,10 +177,11 @@ public class ArbitraryEventConstraintImpl extends EventConstraintImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<TimeDuration> getMinimumInterArrivalTime() {
-		if (minimumInterArrivalTime == null) {
+		if(minimumInterArrivalTime == null) {
 			minimumInterArrivalTime = new EObjectResolvingEList<TimeDuration>(TimeDuration.class, this, TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT__MINIMUM_INTER_ARRIVAL_TIME);
 		}
 		return minimumInterArrivalTime;

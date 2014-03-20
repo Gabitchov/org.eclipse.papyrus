@@ -39,23 +39,25 @@ import org.eclipse.uml2.uml.NamedElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getBase_Class <em>Base Class</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getVvCase <em>Vv Case</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getAbstractVVCase <em>Abstract VV Case</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getVvTarget <em>Vv Target</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getVvSubject <em>Vv Subject</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getVvLog <em>Vv Log</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getVvProcedure <em>Vv Procedure</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getVvCase <em>Vv Case</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getAbstractVVCase <em>Abstract VV Case</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getVvTarget <em>Vv Target</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getVvSubject <em>Vv Subject</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getVvLog <em>Vv Log</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.verificationvalidation.impl.VVCaseImpl#getVvProcedure <em>Vv Procedure</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
+
 	/**
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Class()
 	 * @generated
 	 * @ordered
@@ -66,6 +68,7 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	 * The cached value of the '{@link #getVvCase() <em>Vv Case</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getVvCase()
 	 * @generated
 	 * @ordered
@@ -76,6 +79,7 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	 * The cached value of the '{@link #getAbstractVVCase() <em>Abstract VV Case</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAbstractVVCase()
 	 * @generated
 	 * @ordered
@@ -86,6 +90,7 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	 * The cached value of the '{@link #getVvTarget() <em>Vv Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getVvTarget()
 	 * @generated
 	 * @ordered
@@ -96,6 +101,7 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	 * The cached value of the '{@link #getVvSubject() <em>Vv Subject</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getVvSubject()
 	 * @generated
 	 * @ordered
@@ -106,6 +112,7 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	 * The cached value of the '{@link #getVvLog() <em>Vv Log</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getVvLog()
 	 * @generated
 	 * @ordered
@@ -116,6 +123,7 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	 * The cached value of the '{@link #getVvProcedure() <em>Vv Procedure</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getVvProcedure()
 	 * @generated
 	 * @ordered
@@ -125,6 +133,7 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected VVCaseImpl() {
@@ -134,6 +143,7 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VVCase basicGetAbstractVVCase() {
@@ -143,6 +153,7 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class basicGetBase_Class() {
@@ -152,27 +163,30 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case VerificationvalidationPackage.VV_CASE__BASE_CLASS:
-				if (resolve) return getBase_Class();
-				return basicGetBase_Class();
-			case VerificationvalidationPackage.VV_CASE__VV_CASE:
-				return getVvCase();
-			case VerificationvalidationPackage.VV_CASE__ABSTRACT_VV_CASE:
-				if (resolve) return getAbstractVVCase();
-				return basicGetAbstractVVCase();
-			case VerificationvalidationPackage.VV_CASE__VV_TARGET:
-				return getVvTarget();
-			case VerificationvalidationPackage.VV_CASE__VV_SUBJECT:
-				return getVvSubject();
-			case VerificationvalidationPackage.VV_CASE__VV_LOG:
-				return getVvLog();
-			case VerificationvalidationPackage.VV_CASE__VV_PROCEDURE:
-				return getVvProcedure();
+		switch(featureID) {
+		case VerificationvalidationPackage.VV_CASE__BASE_CLASS:
+			if(resolve)
+				return getBase_Class();
+			return basicGetBase_Class();
+		case VerificationvalidationPackage.VV_CASE__VV_CASE:
+			return getVvCase();
+		case VerificationvalidationPackage.VV_CASE__ABSTRACT_VV_CASE:
+			if(resolve)
+				return getAbstractVVCase();
+			return basicGetAbstractVVCase();
+		case VerificationvalidationPackage.VV_CASE__VV_TARGET:
+			return getVvTarget();
+		case VerificationvalidationPackage.VV_CASE__VV_SUBJECT:
+			return getVvSubject();
+		case VerificationvalidationPackage.VV_CASE__VV_LOG:
+			return getVvLog();
+		case VerificationvalidationPackage.VV_CASE__VV_PROCEDURE:
+			return getVvProcedure();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -180,25 +194,26 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case VerificationvalidationPackage.VV_CASE__BASE_CLASS:
-				return base_Class != null;
-			case VerificationvalidationPackage.VV_CASE__VV_CASE:
-				return vvCase != null && !vvCase.isEmpty();
-			case VerificationvalidationPackage.VV_CASE__ABSTRACT_VV_CASE:
-				return abstractVVCase != null;
-			case VerificationvalidationPackage.VV_CASE__VV_TARGET:
-				return vvTarget != null && !vvTarget.isEmpty();
-			case VerificationvalidationPackage.VV_CASE__VV_SUBJECT:
-				return vvSubject != null && !vvSubject.isEmpty();
-			case VerificationvalidationPackage.VV_CASE__VV_LOG:
-				return vvLog != null && !vvLog.isEmpty();
-			case VerificationvalidationPackage.VV_CASE__VV_PROCEDURE:
-				return vvProcedure != null && !vvProcedure.isEmpty();
+		switch(featureID) {
+		case VerificationvalidationPackage.VV_CASE__BASE_CLASS:
+			return base_Class != null;
+		case VerificationvalidationPackage.VV_CASE__VV_CASE:
+			return vvCase != null && !vvCase.isEmpty();
+		case VerificationvalidationPackage.VV_CASE__ABSTRACT_VV_CASE:
+			return abstractVVCase != null;
+		case VerificationvalidationPackage.VV_CASE__VV_TARGET:
+			return vvTarget != null && !vvTarget.isEmpty();
+		case VerificationvalidationPackage.VV_CASE__VV_SUBJECT:
+			return vvSubject != null && !vvSubject.isEmpty();
+		case VerificationvalidationPackage.VV_CASE__VV_LOG:
+			return vvLog != null && !vvLog.isEmpty();
+		case VerificationvalidationPackage.VV_CASE__VV_PROCEDURE:
+			return vvProcedure != null && !vvProcedure.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -206,38 +221,39 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case VerificationvalidationPackage.VV_CASE__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
-				return;
-			case VerificationvalidationPackage.VV_CASE__VV_CASE:
-				getVvCase().clear();
-				getVvCase().addAll((Collection<? extends VVCase>)newValue);
-				return;
-			case VerificationvalidationPackage.VV_CASE__ABSTRACT_VV_CASE:
-				setAbstractVVCase((VVCase)newValue);
-				return;
-			case VerificationvalidationPackage.VV_CASE__VV_TARGET:
-				getVvTarget().clear();
-				getVvTarget().addAll((Collection<? extends VVTarget>)newValue);
-				return;
-			case VerificationvalidationPackage.VV_CASE__VV_SUBJECT:
-				getVvSubject().clear();
-				getVvSubject().addAll((Collection<? extends NamedElement>)newValue);
-				return;
-			case VerificationvalidationPackage.VV_CASE__VV_LOG:
-				getVvLog().clear();
-				getVvLog().addAll((Collection<? extends VVLog>)newValue);
-				return;
-			case VerificationvalidationPackage.VV_CASE__VV_PROCEDURE:
-				getVvProcedure().clear();
-				getVvProcedure().addAll((Collection<? extends VVProcedure>)newValue);
-				return;
+		switch(featureID) {
+		case VerificationvalidationPackage.VV_CASE__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)newValue);
+			return;
+		case VerificationvalidationPackage.VV_CASE__VV_CASE:
+			getVvCase().clear();
+			getVvCase().addAll((Collection<? extends VVCase>)newValue);
+			return;
+		case VerificationvalidationPackage.VV_CASE__ABSTRACT_VV_CASE:
+			setAbstractVVCase((VVCase)newValue);
+			return;
+		case VerificationvalidationPackage.VV_CASE__VV_TARGET:
+			getVvTarget().clear();
+			getVvTarget().addAll((Collection<? extends VVTarget>)newValue);
+			return;
+		case VerificationvalidationPackage.VV_CASE__VV_SUBJECT:
+			getVvSubject().clear();
+			getVvSubject().addAll((Collection<? extends NamedElement>)newValue);
+			return;
+		case VerificationvalidationPackage.VV_CASE__VV_LOG:
+			getVvLog().clear();
+			getVvLog().addAll((Collection<? extends VVLog>)newValue);
+			return;
+		case VerificationvalidationPackage.VV_CASE__VV_PROCEDURE:
+			getVvProcedure().clear();
+			getVvProcedure().addAll((Collection<? extends VVProcedure>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -245,6 +261,7 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -255,32 +272,33 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case VerificationvalidationPackage.VV_CASE__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)null);
-				return;
-			case VerificationvalidationPackage.VV_CASE__VV_CASE:
-				getVvCase().clear();
-				return;
-			case VerificationvalidationPackage.VV_CASE__ABSTRACT_VV_CASE:
-				setAbstractVVCase((VVCase)null);
-				return;
-			case VerificationvalidationPackage.VV_CASE__VV_TARGET:
-				getVvTarget().clear();
-				return;
-			case VerificationvalidationPackage.VV_CASE__VV_SUBJECT:
-				getVvSubject().clear();
-				return;
-			case VerificationvalidationPackage.VV_CASE__VV_LOG:
-				getVvLog().clear();
-				return;
-			case VerificationvalidationPackage.VV_CASE__VV_PROCEDURE:
-				getVvProcedure().clear();
-				return;
+		switch(featureID) {
+		case VerificationvalidationPackage.VV_CASE__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)null);
+			return;
+		case VerificationvalidationPackage.VV_CASE__VV_CASE:
+			getVvCase().clear();
+			return;
+		case VerificationvalidationPackage.VV_CASE__ABSTRACT_VV_CASE:
+			setAbstractVVCase((VVCase)null);
+			return;
+		case VerificationvalidationPackage.VV_CASE__VV_TARGET:
+			getVvTarget().clear();
+			return;
+		case VerificationvalidationPackage.VV_CASE__VV_SUBJECT:
+			getVvSubject().clear();
+			return;
+		case VerificationvalidationPackage.VV_CASE__VV_LOG:
+			getVvLog().clear();
+			return;
+		case VerificationvalidationPackage.VV_CASE__VV_PROCEDURE:
+			getVvProcedure().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -288,14 +306,15 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VVCase getAbstractVVCase() {
-		if (abstractVVCase != null && abstractVVCase.eIsProxy()) {
+		if(abstractVVCase != null && abstractVVCase.eIsProxy()) {
 			InternalEObject oldAbstractVVCase = (InternalEObject)abstractVVCase;
 			abstractVVCase = (VVCase)eResolveProxy(oldAbstractVVCase);
-			if (abstractVVCase != oldAbstractVVCase) {
-				if (eNotificationRequired())
+			if(abstractVVCase != oldAbstractVVCase) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VerificationvalidationPackage.VV_CASE__ABSTRACT_VV_CASE, oldAbstractVVCase, abstractVVCase));
 			}
 		}
@@ -305,14 +324,15 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
+		if(base_Class != null && base_Class.eIsProxy()) {
 			InternalEObject oldBase_Class = (InternalEObject)base_Class;
 			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
-			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+			if(base_Class != oldBase_Class) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VerificationvalidationPackage.VV_CASE__BASE_CLASS, oldBase_Class, base_Class));
 			}
 		}
@@ -322,10 +342,11 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<VVCase> getVvCase() {
-		if (vvCase == null) {
+		if(vvCase == null) {
 			vvCase = new EObjectResolvingEList<VVCase>(VVCase.class, this, VerificationvalidationPackage.VV_CASE__VV_CASE);
 		}
 		return vvCase;
@@ -334,10 +355,11 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<VVLog> getVvLog() {
-		if (vvLog == null) {
+		if(vvLog == null) {
 			vvLog = new EObjectResolvingEList<VVLog>(VVLog.class, this, VerificationvalidationPackage.VV_CASE__VV_LOG);
 		}
 		return vvLog;
@@ -346,10 +368,11 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<VVProcedure> getVvProcedure() {
-		if (vvProcedure == null) {
+		if(vvProcedure == null) {
 			vvProcedure = new EObjectResolvingEList<VVProcedure>(VVProcedure.class, this, VerificationvalidationPackage.VV_CASE__VV_PROCEDURE);
 		}
 		return vvProcedure;
@@ -358,10 +381,11 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<NamedElement> getVvSubject() {
-		if (vvSubject == null) {
+		if(vvSubject == null) {
 			vvSubject = new EObjectResolvingEList<NamedElement>(NamedElement.class, this, VerificationvalidationPackage.VV_CASE__VV_SUBJECT);
 		}
 		return vvSubject;
@@ -370,10 +394,11 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<VVTarget> getVvTarget() {
-		if (vvTarget == null) {
+		if(vvTarget == null) {
 			vvTarget = new EObjectResolvingEList<VVTarget>(VVTarget.class, this, VerificationvalidationPackage.VV_CASE__VV_TARGET);
 		}
 		return vvTarget;
@@ -382,24 +407,26 @@ public class VVCaseImpl extends TraceableSpecificationImpl implements VVCase {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAbstractVVCase(VVCase newAbstractVVCase) {
 		VVCase oldAbstractVVCase = abstractVVCase;
 		abstractVVCase = newAbstractVVCase;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VerificationvalidationPackage.VV_CASE__ABSTRACT_VV_CASE, oldAbstractVVCase, abstractVVCase));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VerificationvalidationPackage.VV_CASE__BASE_CLASS, oldBase_Class, base_Class));
 	}
 

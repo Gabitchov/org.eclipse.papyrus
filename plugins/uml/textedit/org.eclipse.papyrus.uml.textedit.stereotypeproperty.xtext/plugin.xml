@@ -7,7 +7,7 @@
     <package 
        uri = "http://www.eclipse.org/papyrus/uml/textedit/property/xtext/StereotypeProperty" 
        class = "org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyPackage"
-       genModel = "/org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/AppliedStereotypeProperty.genmodel" /> 
+       genModel = "org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/AppliedStereotypeProperty.genmodel" /> 
 	
   </extension>
 

@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.views.modelexplorer.matching;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 
 /***
  * An IMatchingItem implementation that matches for ModelElementItem
@@ -31,15 +31,15 @@ public class ModelElementItemMatchingItem implements IMatchingItem {
 	}
 
 	public boolean matchingItemEquals(Object obj) {
-		if(element != null && obj instanceof ModelElementItem) {
-			return element.equals(((ModelElementItem)obj).getEObject());
+		if(element != null && obj instanceof EObjectTreeElement) {
+			return element.equals(((EObjectTreeElement)obj).getEObject());
 		}
 		return super.equals(obj);
 	}
 
 	public int matchingItemHashcode() {
 		if(element != null) {
-			return element.hashCode();
+			return HashCodeCalculus.getHashCode(element);
 		}
 		return 0;
 	}

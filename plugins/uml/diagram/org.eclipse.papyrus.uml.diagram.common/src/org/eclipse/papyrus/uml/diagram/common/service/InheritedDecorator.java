@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009-2010 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.common.service;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ImageFigure;
 import org.eclipse.draw2d.Locator;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -61,7 +62,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * <li>else if the element is in a compartment list : {@link PositionConstants#EAST} and margin =-1</li>
  * <li>else {@link PositionConstants#SOUTH_EAST} and margin = -1</li>
  * </ul>
+ *
+ * @deprecated Replaced with the generic org.eclipse.papyrus.infra.gmfdiag.common.decoration.ExternalReferenceMarker
  */
+@Deprecated
 public class InheritedDecorator implements IDecorator {
 
 	/** the object to be decorated */
@@ -152,6 +156,7 @@ public class InheritedDecorator implements IDecorator {
 	 * satisfied by the view passed in.
 	 */
 
+	@Override
 	public void refresh() {
 		removeDecoration();
 
@@ -340,6 +345,7 @@ public class InheritedDecorator implements IDecorator {
 		 * 
 		 * @param notification
 		 */
+		@Override
 		public void notifyChanged(Notification notification) {
 
 			if(notification.getEventType() == Notification.REMOVE) {
@@ -367,6 +373,7 @@ public class InheritedDecorator implements IDecorator {
 	 * <li>graphical parent, when its a {@link Property} (we add the listener on its Type)</li>
 	 * </ul>
 	 */
+	@Override
 	public void activate() {
 
 		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
@@ -443,6 +450,7 @@ public class InheritedDecorator implements IDecorator {
 	/**
 	 * Removes the listeners and the decorations
 	 */
+	@Override
 	public void deactivate() {
 		removeDecoration();
 

@@ -66,13 +66,16 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.DeviationAttributeSetImpl <em>Deviation Attribute Set</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.DeviationAttributeSetImpl
+		 * <em>Deviation Attribute Set</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.DeviationAttributeSetImpl
 		 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehiclefeaturemodelingPackageImpl#getDeviationAttributeSet()
 		 * @generated
@@ -82,6 +85,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Allow Change Attribute</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DEVIATION_ATTRIBUTE_SET__ALLOW_CHANGE_ATTRIBUTE = eINSTANCE.getDeviationAttributeSet_AllowChangeAttribute();
@@ -89,6 +93,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Allow Change Cardinality</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DEVIATION_ATTRIBUTE_SET__ALLOW_CHANGE_CARDINALITY = eINSTANCE.getDeviationAttributeSet_AllowChangeCardinality();
@@ -97,6 +102,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Allow Change Description</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DEVIATION_ATTRIBUTE_SET__ALLOW_CHANGE_DESCRIPTION = eINSTANCE.getDeviationAttributeSet_AllowChangeDescription();
@@ -104,6 +110,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Allow Change Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DEVIATION_ATTRIBUTE_SET__ALLOW_CHANGE_NAME = eINSTANCE.getDeviationAttributeSet_AllowChangeName();
@@ -127,6 +134,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Allow Refinement</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DEVIATION_ATTRIBUTE_SET__ALLOW_REFINEMENT = eINSTANCE.getDeviationAttributeSet_AllowRefinement();
@@ -134,6 +142,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Allow Regrouping</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DEVIATION_ATTRIBUTE_SET__ALLOW_REGROUPING = eINSTANCE.getDeviationAttributeSet_AllowRegrouping();
@@ -157,13 +166,16 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference DEVIATION_ATTRIBUTE_SET__FEATURE = eINSTANCE.getDeviationAttributeSet_Feature();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl <em>Vehicle Feature</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl
+		 * <em>Vehicle Feature</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl
 		 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehiclefeaturemodelingPackageImpl#getVehicleFeature()
 		 * @generated
@@ -173,6 +185,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Is Design Variability Rationale</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute VEHICLE_FEATURE__IS_DESIGN_VARIABILITY_RATIONALE = eINSTANCE.getVehicleFeature_IsDesignVariabilityRationale();
@@ -180,6 +193,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Is Customer Visible</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute VEHICLE_FEATURE__IS_CUSTOMER_VISIBLE = eINSTANCE.getVehicleFeature_IsCustomerVisible();
@@ -195,13 +209,16 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Deviation Attribute Set</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET = eINSTANCE.getVehicleFeature_DeviationAttributeSet();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationPermissionKind <em>Deviation Permission Kind</em>}' enum.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationPermissionKind
+		 * <em>Deviation Permission Kind</em>}' enum.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationPermissionKind
 		 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehiclefeaturemodelingPackageImpl#getDeviationPermissionKind()
 		 * @generated
@@ -213,6 +230,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "vehiclefeaturemodeling";
@@ -220,6 +238,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	/**
 	 * The package namespace URI.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.papyrusuml.org/EAST-ADL2/Structure/VehicleFeatureModeling/1";
@@ -227,6 +246,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	/**
 	 * The package namespace name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "VehicleFeatureModeling";
@@ -234,13 +254,16 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	/**
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	VehiclefeaturemodelingPackage eINSTANCE = org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehiclefeaturemodelingPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.DeviationAttributeSetImpl <em>Deviation Attribute Set</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.DeviationAttributeSetImpl
+	 * <em>Deviation Attribute Set</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.DeviationAttributeSetImpl
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehiclefeaturemodelingPackageImpl#getDeviationAttributeSet()
 	 * @generated
@@ -251,6 +274,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -260,6 +284,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Named Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -269,6 +294,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -296,6 +322,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Allow Change Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -305,6 +332,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Allow Change Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -314,6 +342,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Allow Move</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -323,6 +352,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Allow Reduction</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -332,6 +362,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Allow Refinement</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -341,6 +372,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Allow Regrouping</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -350,6 +382,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Allow Removal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -359,6 +392,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Data Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -368,6 +402,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -383,8 +418,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	int DEVIATION_ATTRIBUTE_SET_FEATURE_COUNT = ElementsPackage.EA_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl <em>Vehicle Feature</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl
+	 * <em>Vehicle Feature</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehiclefeaturemodelingPackageImpl#getVehicleFeature()
 	 * @generated
@@ -395,6 +432,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -404,6 +442,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Named Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -440,6 +479,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -449,6 +489,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Cardinality</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -458,6 +499,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Required Binding Time</b></em>' reference.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -467,6 +509,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Actual Binding Time</b></em>' reference.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -476,6 +519,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Feature Parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -485,6 +529,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Child Node</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -503,6 +548,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Customer Visible</b></em>' attribute.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -512,6 +558,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Removed</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -536,8 +583,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	int VEHICLE_FEATURE_FEATURE_COUNT = FeaturemodelingPackage.FEATURE_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationPermissionKind <em>Deviation Permission Kind</em>}' enum.
+	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationPermissionKind
+	 * <em>Deviation Permission Kind</em>}' enum.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationPermissionKind
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehiclefeaturemodelingPackageImpl#getDeviationPermissionKind()
 	 * @generated
@@ -545,8 +594,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	int DEVIATION_PERMISSION_KIND = 2;
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet <em>Deviation Attribute Set</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet
+	 * <em>Deviation Attribute Set</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Deviation Attribute Set</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet
 	 * @generated
@@ -554,8 +605,11 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EClass getDeviationAttributeSet();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowChangeAttribute <em>Allow Change Attribute</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowChangeAttribute
+	 * <em>Allow Change Attribute</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Allow Change Attribute</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowChangeAttribute()
 	 * @see #getDeviationAttributeSet()
@@ -564,8 +618,11 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EAttribute getDeviationAttributeSet_AllowChangeAttribute();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowChangeCardinality <em>Allow Change Cardinality</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowChangeCardinality
+	 * <em>Allow Change Cardinality</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Allow Change Cardinality</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowChangeCardinality()
 	 * @see #getDeviationAttributeSet()
@@ -574,9 +631,12 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EAttribute getDeviationAttributeSet_AllowChangeCardinality();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowChangeDescription <em>Allow Change Description</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowChangeDescription
+	 * <em>Allow Change Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Allow Change Description</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowChangeDescription()
 	 * @see #getDeviationAttributeSet()
@@ -585,8 +645,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EAttribute getDeviationAttributeSet_AllowChangeDescription();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowChangeName <em>Allow Change Name</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowChangeName <em>Allow Change Name</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Allow Change Name</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowChangeName()
 	 * @see #getDeviationAttributeSet()
@@ -595,8 +657,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EAttribute getDeviationAttributeSet_AllowChangeName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowMove <em>Allow Move</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowMove <em>Allow Move</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Allow Move</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowMove()
 	 * @see #getDeviationAttributeSet()
@@ -605,8 +669,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EAttribute getDeviationAttributeSet_AllowMove();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowReduction <em>Allow Reduction</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowReduction <em>Allow Reduction</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Allow Reduction</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowReduction()
 	 * @see #getDeviationAttributeSet()
@@ -615,8 +681,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EAttribute getDeviationAttributeSet_AllowReduction();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowRefinement <em>Allow Refinement</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowRefinement <em>Allow Refinement</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Allow Refinement</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowRefinement()
 	 * @see #getDeviationAttributeSet()
@@ -625,8 +693,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EAttribute getDeviationAttributeSet_AllowRefinement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowRegrouping <em>Allow Regrouping</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowRegrouping <em>Allow Regrouping</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Allow Regrouping</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowRegrouping()
 	 * @see #getDeviationAttributeSet()
@@ -635,8 +705,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EAttribute getDeviationAttributeSet_AllowRegrouping();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowRemoval <em>Allow Removal</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowRemoval <em>Allow Removal</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Allow Removal</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getAllowRemoval()
 	 * @see #getDeviationAttributeSet()
@@ -645,9 +717,11 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EAttribute getDeviationAttributeSet_AllowRemoval();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getBase_DataType <em>Base Data Type</em>}'.
+	 * Returns the meta object for the reference '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getBase_DataType <em>Base Data Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Base Data Type</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getBase_DataType()
 	 * @see #getDeviationAttributeSet()
@@ -656,8 +730,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EReference getDeviationAttributeSet_Base_DataType();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getFeature <em>Feature</em>}'.
+	 * Returns the meta object for the reference '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getFeature <em>Feature</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Feature</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationAttributeSet#getFeature()
 	 * @see #getDeviationAttributeSet()
@@ -666,8 +742,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EReference getDeviationAttributeSet_Feature();
 
 	/**
-	 * Returns the meta object for enum '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationPermissionKind <em>Deviation Permission Kind</em>}'.
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationPermissionKind
+	 * <em>Deviation Permission Kind</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for enum '<em>Deviation Permission Kind</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.DeviationPermissionKind
 	 * @generated
@@ -675,8 +753,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EEnum getDeviationPermissionKind();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature <em>Vehicle Feature</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature <em>Vehicle Feature</em>}
+	 * '.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Vehicle Feature</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature
 	 * @generated
@@ -684,8 +764,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EClass getVehicleFeature();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature#getDeviationAttributeSet <em>Deviation Attribute Set</em>}'.
+	 * Returns the meta object for the reference '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature#getDeviationAttributeSet <em>Deviation Attribute Set</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Deviation Attribute Set</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature#getDeviationAttributeSet()
 	 * @see #getVehicleFeature()
@@ -694,8 +776,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EReference getVehicleFeature_DeviationAttributeSet();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature#isIsCustomerVisible <em>Is Customer Visible</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature#isIsCustomerVisible <em>Is Customer Visible</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Is Customer Visible</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature#isIsCustomerVisible()
 	 * @see #getVehicleFeature()
@@ -704,8 +788,11 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EAttribute getVehicleFeature_IsCustomerVisible();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature#isIsDesignVariabilityRationale <em>Is Design Variability Rationale</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature#isIsDesignVariabilityRationale
+	 * <em>Is Design Variability Rationale</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Is Design Variability Rationale</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature#isIsDesignVariabilityRationale()
 	 * @see #getVehicleFeature()
@@ -714,8 +801,10 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	EAttribute getVehicleFeature_IsDesignVariabilityRationale();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature#isIsRemoved <em>Is Removed</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature#isIsRemoved
+	 * <em>Is Removed</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Is Removed</em>'.
 	 * @see org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehicleFeature#isIsRemoved()
 	 * @see #getVehicleFeature()
@@ -727,6 +816,7 @@ public interface VehiclefeaturemodelingPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */

@@ -25,32 +25,33 @@ import org.eclipse.papyrus.eastadl.timing.Event;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Event Function Flow Port</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * Event that refers to the triggering of the Function at a flow port, i.e., when data is sent or received.
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionFlowPort#getPort <em>Port</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionFlowPort#getPort_path <em>Port path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionFlowPort#getPort <em>Port</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionFlowPort#getPort_path <em>Port path</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.timing.events.EventsPackage#getEventFunctionFlowPort()
  * @model
  * @generated
  */
 public interface EventFunctionFlowPort extends Event {
+
 	/**
 	 * Returns the value of the '<em><b>Port</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Port</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Port</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Port</em>' reference.
 	 * @see #setPort(FunctionPort)
 	 * @see org.eclipse.papyrus.eastadl.timing.events.EventsPackage#getEventFunctionFlowPort_Port()
@@ -63,7 +64,9 @@ public interface EventFunctionFlowPort extends Event {
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.timing.events.EventFunctionFlowPort#getPort <em>Port</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Port</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Port</em>' reference.
 	 * @see #getPort()
 	 * @generated
 	 */
@@ -74,10 +77,10 @@ public interface EventFunctionFlowPort extends Event {
 	 * The list contents are of type {@link org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionPrototype}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Port path</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Port path</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Port path</em>' reference list.
 	 * @see org.eclipse.papyrus.eastadl.timing.events.EventsPackage#getEventFunctionFlowPort_Port_path()
 	 * @model

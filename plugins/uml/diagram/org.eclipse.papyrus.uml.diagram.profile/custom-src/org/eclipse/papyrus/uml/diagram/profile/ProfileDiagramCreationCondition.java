@@ -12,7 +12,6 @@ package org.eclipse.papyrus.uml.diagram.profile;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
-import org.eclipse.uml2.uml.Profile;
 
 /**
  * ProfileDiagramCreationCondition class allows to check if a Profile diagram can be added to the
@@ -24,9 +23,6 @@ public class ProfileDiagramCreationCondition extends PerspectiveContextDependenc
 	 * @return whether the diagram can be created.
 	 */
 	public boolean create(EObject selectedElement) {
-		if(super.create(selectedElement)) {
-			return selectedElement instanceof Profile;
-		}
 		return false;
 	}
 

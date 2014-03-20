@@ -38,6 +38,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ConstraintConstrainedElementCreateCommand;
@@ -114,7 +115,7 @@ public class PackageItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new PackageCreateCommandCN(req));
+			return getGEFWrapper(new PackageCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}
