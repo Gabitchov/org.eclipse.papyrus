@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 430701
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.menu.handlers;
@@ -18,12 +19,14 @@ import java.util.List;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
-import org.eclipse.gmf.runtime.diagram.ui.render.internal.commands.CopyImageCommand;
+import org.eclipse.gmf.runtime.diagram.ui.render.clipboard.AWTClipboardHelper;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.INonDirtying;
+import org.eclipse.papyrus.commands.util.NonDirtyingUtils;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
@@ -50,11 +53,10 @@ public class CopyInDiagramHandler extends AbstractGraphicalCommandHandler {
 		List<IGraphicalEditPart> selectedElements = getSelectedElements();
 		TransactionalEditingDomain editingDomain = getEditingDomain();
 		// TODO : select copyStrategy
-		CompoundCommand compoundCommand = new CompoundCommand();
+		Command result;
 
 		DefaultDiagramCopyCommand defaultDiagramCopyCommand = new DefaultDiagramCopyCommand(editingDomain, papyrusClipboard, selectedElements);
-		EMFtoGEFCommandWrapper emFtoGEFCommandWrapper = new EMFtoGEFCommandWrapper(defaultDiagramCopyCommand);
-		compoundCommand.add(emFtoGEFCommandWrapper);
+		result = EMFtoGEFCommandWrapper.wrap(defaultDiagramCopyCommand);
 
 		IDiagramWorkbenchPart activeDiagramWorkbenchPart = DiagramEditPartsUtil.getActiveDiagramWorkbenchPart();
 		Diagram diagram = activeDiagramWorkbenchPart.getDiagram();
@@ -64,9 +66,13 @@ public class CopyInDiagramHandler extends AbstractGraphicalCommandHandler {
 			selectedElementModels.add(iGraphicalEditPart.getModel());
 		}
 
-		CopyImageCommand copyImageCommand = new CopyImageCommand("Create image to allow paste on system", diagram, selectedElementModels, diagramEditPart); //$NON-NLS-1$
-		GMFtoGEFCommandWrapper gmFtoGEFCommandWrapper = new GMFtoGEFCommandWrapper(copyImageCommand);
-		compoundCommand.add(gmFtoGEFCommandWrapper);
+		MyCopyImageCommand copyImageCommand = new MyCopyImageCommand("Create image to allow paste on system", diagram, selectedElementModels, diagramEditPart); //$NON-NLS-1$
+		if(copyImageCommand.canExecute()) {
+			Command gmFtoGEFCommandWrapper = GMFtoGEFCommandWrapper.wrap(copyImageCommand);
+			result = NonDirtyingUtils.chain(result, gmFtoGEFCommandWrapper);
+		} else {
+			copyImageCommand.dispose();
+		}
 
 		List<IStrategy> allStrategies = PasteStrategyManager.getInstance().getAllStrategies();
 		for(IStrategy iStrategy : allStrategies) {
@@ -74,6 +80,23 @@ public class CopyInDiagramHandler extends AbstractGraphicalCommandHandler {
 			iIPasteStrategy.prepare(papyrusClipboard);
 		}
 
-		return compoundCommand;
+		return result;
+	}
+	
+	//
+	// Nested classes
+	//
+	
+	@SuppressWarnings("restriction")
+	private static class MyCopyImageCommand extends org.eclipse.gmf.runtime.diagram.ui.render.internal.commands.CopyImageCommand implements INonDirtying {
+
+		MyCopyImageCommand(String label, View viewContext, @SuppressWarnings("rawtypes") List source, DiagramEditPart diagramEP) {
+			super(label, viewContext, source, diagramEP);
+		}
+
+		@Override
+		public boolean canExecute() {
+			return AWTClipboardHelper.getInstance().isImageCopySupported();
+		}
 	}
 }

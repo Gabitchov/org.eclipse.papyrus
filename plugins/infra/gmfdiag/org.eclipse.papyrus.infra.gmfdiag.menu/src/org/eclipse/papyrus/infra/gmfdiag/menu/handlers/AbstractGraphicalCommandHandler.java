@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,8 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 430701
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.menu.handlers;
 
@@ -71,7 +73,7 @@ public abstract class AbstractGraphicalCommandHandler extends AbstractHandler {
 			ISelection selection = HandlerUtil.getCurrentSelection(event);
 			this.selection = (selection instanceof IStructuredSelection) ? ((IStructuredSelection)selection).toList() : Collections.EMPTY_LIST;
 
-			getEditingDomain(event).getCommandStack().execute(new GEFtoEMFCommandWrapper(getCommand()));
+			getEditingDomain(event).getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(getCommand()));
 		} finally {
 			// clear the selection
 			this.selection = Collections.EMPTY_LIST;

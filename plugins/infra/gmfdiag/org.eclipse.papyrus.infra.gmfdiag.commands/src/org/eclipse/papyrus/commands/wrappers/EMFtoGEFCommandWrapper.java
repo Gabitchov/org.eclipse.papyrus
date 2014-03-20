@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 AIRBUS FRANCE.
+ * Copyright (c) 2005, 2014 AIRBUS FRANCE, CEA, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,10 +8,14 @@
  * Contributors:
  *    David Sciamma (Anyware Technologies), Mathieu Garcia (Anyware Technologies),
  *    Jacques Lescot (Anyware Technologies) - initial API and implementation
+ *    Christian W. Damus (CEA) - bug 430701
+ *    
  *******************************************************************************/
 package org.eclipse.papyrus.commands.wrappers;
 
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.papyrus.commands.INonDirtying;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -39,6 +43,20 @@ public class EMFtoGEFCommandWrapper extends Command {
 	public EMFtoGEFCommandWrapper(final org.eclipse.emf.common.command.Command command) {
 		super(command.getLabel());
 		emfCommand = command;
+	}
+	
+	/**
+	 * Wraps the given {@code command}, accounting for possible non-dirty state.
+	 * 
+	 * @param command
+	 *        a command to wrap
+	 * @return the best wrapper for the {@code command}
+	 */
+	public static Command wrap(org.eclipse.emf.common.command.Command command) {
+		if(command instanceof AbstractCommand.NonDirtying) {
+			return new NonDirtying(command);
+		}
+		return new EMFtoGEFCommandWrapper(command);
 	}
 
 	/**
@@ -113,5 +131,24 @@ public class EMFtoGEFCommandWrapper extends Command {
 	@Override
 	public void undo() {
 		emfCommand.undo();
+	}
+	
+	//
+	// Nested types
+	//
+	
+	/**
+	 * A non-dirtying wrapper for non-dirtying commands.
+	 */
+	public static class NonDirtying extends EMFtoGEFCommandWrapper implements INonDirtying {
+
+		public NonDirtying(org.eclipse.emf.common.command.Command command) {
+			super(command);
+
+			if(!(command instanceof org.eclipse.emf.common.command.AbstractCommand.NonDirtying)) {
+				throw new IllegalArgumentException("Wrapped command is not non-dirtying"); //$NON-NLS-1$
+			}
+		}
+		
 	}
 }

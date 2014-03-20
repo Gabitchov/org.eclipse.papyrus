@@ -16,6 +16,7 @@ import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.workspace.EMFCommandOperation;
+import org.eclipse.papyrus.commands.INonDirtying;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 
 
@@ -56,8 +57,12 @@ public class OperationUtils {
 	 * @return whether it is a non-dirtying operation
 	 */
 	public static boolean isNonDirtying(IUndoableOperation operation) {
-		Command command = unwrap(operation);
-		return command instanceof AbstractCommand.NonDirtying;
+		boolean result = operation instanceof INonDirtying;
+		if (!result) {
+			Command command = unwrap(operation);
+			result = command instanceof AbstractCommand.NonDirtying;
+		}
+		return result;
 	}
 
 	/**

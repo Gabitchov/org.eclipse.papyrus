@@ -1,11 +1,12 @@
 /***************************************************************************
- * Copyright (c) 2007 Conselleria de Infraestructuras y Transporte,
- * Generalitat de la Comunitat Valenciana . All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2007, 2014 Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana, CEA, and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors: Mario Cervera Ubeda (Prodevelop)
+ *    Christian W. Damus (CEA) - bug 430701
  *
  ******************************************************************************/
 package org.eclipse.papyrus.commands.wrappers;
@@ -24,6 +25,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.papyrus.commands.INonDirtying;
 
 /**
  * A GMF Command that wraps an EMF command. Each method is redirected to the EMF one.
@@ -51,6 +54,20 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	public EMFtoGMFCommandWrapper(Command emfCommand) {
 		super(emfCommand.getLabel());
 		this.emfCommand = emfCommand;
+	}
+	
+	/**
+	 * Wraps the given {@code command}, accounting for possible non-dirty state.
+	 * 
+	 * @param command
+	 *        a command to wrap
+	 * @return the best wrapper for the {@code command}
+	 */
+	public static ICommand wrap(Command command) {
+		if(command instanceof org.eclipse.emf.common.command.AbstractCommand.NonDirtying) {
+			return new NonDirtying(command);
+		}
+		return new EMFtoGMFCommandWrapper(command);
 	}
 
 	/**
@@ -181,5 +198,24 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 			return CommandResult.newOKCommandResult(res);
 		}
 		return CommandResult.newOKCommandResult();
+	}
+	
+	//
+	// Nested types
+	//
+	
+	/**
+	 * A non-dirtying wrapper for non-dirtying commands.
+	 */
+	public static class NonDirtying extends EMFtoGMFCommandWrapper implements INonDirtying {
+
+		public NonDirtying(org.eclipse.emf.common.command.Command command) {
+			super(command);
+
+			if(!(command instanceof org.eclipse.emf.common.command.AbstractCommand.NonDirtying)) {
+				throw new IllegalArgumentException("Wrapped command is not non-dirtying"); //$NON-NLS-1$
+			}
+		}
+		
 	}
 }

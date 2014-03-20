@@ -64,6 +64,7 @@ import org.eclipse.emf.workspace.internal.Tracing;
 import org.eclipse.emf.workspace.internal.l10n.Messages;
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.commands.util.NonDirtyingUtils;
 
 /**
  * Copied from WorkspaceCommandStackImpl but modify in order to change the
@@ -250,7 +251,7 @@ implements IWorkspaceCommandStack {
 	 */
 	@Override
 	protected void doExecute(Command command, Map<?, ?> options) throws InterruptedException, RollbackException {
-		EMFCommandOperation oper = new EMFCommandOperation(getDomain(), command, options);
+		IUndoableOperation oper = NonDirtyingUtils.wrap(getDomain(), command, options);
 		// add the appropriate context
 		oper.addContext(getDefaultUndoContext());
 		try {
