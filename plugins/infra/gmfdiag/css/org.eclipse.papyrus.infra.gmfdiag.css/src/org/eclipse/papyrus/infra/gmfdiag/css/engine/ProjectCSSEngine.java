@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 429422
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 
@@ -94,6 +96,10 @@ public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 
 	protected IFile stylesheetPreferences;
 
+	/**
+	 * @deprecated Use the {@link #createEngine(Resource)} method, instead, which returns {@code null} for non-existent projects
+	 */
+	@Deprecated
 	public ProjectCSSEngine(Resource modelResource) {
 		super(WorkspaceCSSEngine.instance);
 
@@ -111,6 +117,50 @@ public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 				Activator.log.error(ex);
 			}
 		}
+	}
+
+	protected ProjectCSSEngine(IProject project) {
+		super(WorkspaceCSSEngine.instance);
+
+		this.project = project;
+		
+		try {
+			IPath preferencesAbsolutePath = new ProjectScope(project).getLocation().append(PROJECT_STYLESHEETS);
+			IPath projectRelativePath = preferencesAbsolutePath.makeRelativeTo(project.getLocation());
+			this.stylesheetPreferences = project.getFile(projectRelativePath);
+			project.getWorkspace().addResourceChangeListener(resourceListener);
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
+	}
+	
+	/**
+	 * Creates the project-scoped CSS engine for the project containing the specified {@code modelResource}, if such
+	 * project actually exists.
+	 * 
+	 * @param modelResource
+	 *        a model resource
+	 * @return the containing project's CSS engine, or {@code null} if the containing project does not exist
+	 */
+	public static ProjectCSSEngine createEngine(Resource modelResource) {
+		ProjectCSSEngine result = null;
+		
+		URI resourceURI = modelResource.getURI();
+		if(resourceURI.isPlatformResource()) {
+			String platformString = resourceURI.toPlatformString(true);
+			try {
+				IPath workspacePath = new Path(platformString);
+				IProject project = ResourcesPlugin.getWorkspace().getRoot().getFile(workspacePath).getProject();
+				if (project.isAccessible()) {
+					result = new ProjectCSSEngine(project);
+				}
+			} catch (Exception ex) {
+				// It's OK.  We'll return a null result because it wouldn't be a valid CSS engine
+				Activator.log.error(ex);
+			}
+		}
+		
+		return result;
 	}
 
 	@Override

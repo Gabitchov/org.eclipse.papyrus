@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2013 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - support adapter instead of custom resource impl (CDO)
+ *  Christian W. Damus (CEA) - bug 429422
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.resource;
@@ -61,7 +62,7 @@ public class CSSNotationResource extends GMFResource {
 
 	public ExtendedCSSEngine getProjectEngine() {
 		if(projectEngine == null) {
-			projectEngine = new ProjectCSSEngine(this);
+			projectEngine = ProjectCSSEngine.createEngine(this);
 		}
 
 		return projectEngine;
