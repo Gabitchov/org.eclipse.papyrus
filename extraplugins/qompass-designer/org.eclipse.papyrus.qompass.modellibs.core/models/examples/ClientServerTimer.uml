@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Alloc="http://www.eclipse.org/papyrus/Alloc/1" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/Alloc/1 http://www.eclipse.org/papyrus/MARTE/1#//Alloc">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Alloc="http://www.eclipse.org/papyrus/Alloc/1" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/Alloc/1 http://www.eclipse.org/papyrus/MARTE/1#//Alloc">
   <uml:Model xmi:id="_O6TiIDLUEd26WNosUASSSw" name="ClientServerTimer">
-    <packageImport xmi:type="uml:PackageImport" xmi:id="_O6TiITLUEd26WNosUASSSw">
+    <packageImport xmi:id="_O6TiITLUEd26WNosUASSSw">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
-    <packageImport xmi:type="uml:PackageImport" xmi:id="_Bc1WIFW4Ed63BrxiKsw-0Q">
+    <packageImport xmi:id="_Bc1WIFW4Ed63BrxiKsw-0Q">
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/core.uml#_O6TiIDLUEd26WNosUASSSw"/>
     </packageImport>
-    <packageImport xmi:type="uml:PackageImport" xmi:id="_rwBsMP7AEd6Zw96O-tCw7A">
+    <packageImport xmi:id="_rwBsMP7AEd6Zw96O-tCw7A">
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/corba.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
     </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_LOqIEDLaEd2qeKRLMdIx_A" name="ComponentModel">
       <packagedElement xmi:type="uml:Package" xmi:id="_OGM88DLaEd2qeKRLMdIx_A" name="Server">
-        <packagedElement xmi:type="uml:Class" xmi:id="_oqZNUDLaEd2qeKRLMdIx_A" clientDependency="_YQqH0JYlEd6G9q9hwr11bw" name="CServer_impl">
+        <packagedElement xmi:type="uml:Class" xmi:id="_oqZNUDLaEd2qeKRLMdIx_A" name="CServer_impl">
           <ownedAttribute xmi:type="uml:Port" xmi:id="_4KiE8DLbEd2qeKRLMdIx_A" name="p" type="_cn-H0DLbEd2qeKRLMdIx_A" aggregation="composite"/>
-          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_YQqH0JYlEd6G9q9hwr11bw" name="derived realization of ICompute" client="_oqZNUDLaEd2qeKRLMdIx_A" supplier="_cn-H0DLbEd2qeKRLMdIx_A" contract="_cn-H0DLbEd2qeKRLMdIx_A"/>
+          <interfaceRealization xmi:id="_YQqH0JYlEd6G9q9hwr11bw" name="derived realization of ICompute" client="_oqZNUDLaEd2qeKRLMdIx_A" supplier="_cn-H0DLbEd2qeKRLMdIx_A" contract="_cn-H0DLbEd2qeKRLMdIx_A"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ML-4AKI5Ed6FqJCjEUrkqQ" name="add" specification="_TbIjUJYlEd6G9q9hwr11bw">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_p8CfgFy9EeORBN8YBc21fg" name="a">
+            <ownedParameter xmi:id="_p8CfgFy9EeORBN8YBc21fg" name="a">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p8DGkFy9EeORBN8YBc21fg" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p8DtoFy9EeORBN8YBc21fg" value="1"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_p8EUsFy9EeORBN8YBc21fg" name="b">
+            <ownedParameter xmi:id="_p8EUsFy9EeORBN8YBc21fg" name="b">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p8Fi0Fy9EeORBN8YBc21fg" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p8Fi0Vy9EeORBN8YBc21fg" value="1"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_p8GJ4Fy9EeORBN8YBc21fg" name="res" direction="return">
+            <ownedParameter xmi:id="_p8GJ4Fy9EeORBN8YBc21fg" name="res" direction="return">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p8GJ4Vy9EeORBN8YBc21fg" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p8Gw8Fy9EeORBN8YBc21fg" value="1"/>
@@ -36,17 +36,17 @@
 return a+b;</body>
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_I1R3YAcDEeGnrLqQ0OQeAg" name="mult" specification="_4ZEZwHecEd6r18stFZxmFQ">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_p8HYAFy9EeORBN8YBc21fg" name="a">
+            <ownedParameter xmi:id="_p8HYAFy9EeORBN8YBc21fg" name="a">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p8HYAVy9EeORBN8YBc21fg" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p8H_EFy9EeORBN8YBc21fg" value="1"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_p8H_EVy9EeORBN8YBc21fg" name="b">
+            <ownedParameter xmi:id="_p8H_EVy9EeORBN8YBc21fg" name="b">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p8H_Ely9EeORBN8YBc21fg" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p8ImIFy9EeORBN8YBc21fg" value="1"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_p8ImIVy9EeORBN8YBc21fg" name="res" direction="return">
+            <ownedParameter xmi:id="_p8ImIVy9EeORBN8YBc21fg" name="res" direction="return">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p8JNMFy9EeORBN8YBc21fg" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p8JNMVy9EeORBN8YBc21fg" value="1"/>
@@ -55,25 +55,25 @@ return a+b;</body>
             <body>cout &lt;&lt; &quot;server: got mult request for a=&quot; &lt;&lt; a &lt;&lt; &quot; and b=&quot; &lt;&lt; b &lt;&lt; endl;
 return a*b;</body>
           </ownedBehavior>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_4ZEZwHecEd6r18stFZxmFQ" name="mult" method="_I1R3YAcDEeGnrLqQ0OQeAg">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_4ZEZwXecEd6r18stFZxmFQ" name="a">
+          <ownedOperation xmi:id="_4ZEZwHecEd6r18stFZxmFQ" name="mult" method="_I1R3YAcDEeGnrLqQ0OQeAg">
+            <ownedParameter xmi:id="_4ZEZwXecEd6r18stFZxmFQ" name="a">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_4ZEZwnecEd6r18stFZxmFQ" name="b">
+            <ownedParameter xmi:id="_4ZEZwnecEd6r18stFZxmFQ" name="b">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_4ZEZw3ecEd6r18stFZxmFQ" name="res" direction="return">
+            <ownedParameter xmi:id="_4ZEZw3ecEd6r18stFZxmFQ" name="res" direction="return">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_TbIjUJYlEd6G9q9hwr11bw" name="add" method="_ML-4AKI5Ed6FqJCjEUrkqQ">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_TbZCAJYlEd6G9q9hwr11bw" name="a">
+          <ownedOperation xmi:id="_TbIjUJYlEd6G9q9hwr11bw" name="add" method="_ML-4AKI5Ed6FqJCjEUrkqQ">
+            <ownedParameter xmi:id="_TbZCAJYlEd6G9q9hwr11bw" name="a">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_TbdTcJYlEd6G9q9hwr11bw" name="b">
+            <ownedParameter xmi:id="_TbdTcJYlEd6G9q9hwr11bw" name="b">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_TbkoMJYlEd6G9q9hwr11bw" name="res" direction="return">
+            <ownedParameter xmi:id="_TbkoMJYlEd6G9q9hwr11bw" name="res" direction="return">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
             </ownedParameter>
           </ownedOperation>
@@ -81,35 +81,35 @@ return a*b;</body>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_Tp4n8DLaEd2qeKRLMdIx_A" name="Interfaces">
         <packagedElement xmi:type="uml:Interface" xmi:id="_cn-H0DLbEd2qeKRLMdIx_A" name="ICompute">
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_DGs6wDLgEd28fJKJJnUaeQ" name="add" isAbstract="true">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_DGs6wTLgEd28fJKJJnUaeQ" name="a">
+          <ownedOperation xmi:id="_DGs6wDLgEd28fJKJJnUaeQ" name="add" isAbstract="true">
+            <ownedParameter xmi:id="_DGs6wTLgEd28fJKJJnUaeQ" name="a">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DGs6wzLgEd28fJKJJnUaeQ" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DGs6wjLgEd28fJKJJnUaeQ" value="1"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_DGs6xTLgEd28fJKJJnUaeQ" name="b">
+            <ownedParameter xmi:id="_DGs6xTLgEd28fJKJJnUaeQ" name="b">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DGs6xzLgEd28fJKJJnUaeQ" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DGs6xjLgEd28fJKJJnUaeQ" value="1"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_DGs6yTLgEd28fJKJJnUaeQ" name="res" direction="return">
+            <ownedParameter xmi:id="_DGs6yTLgEd28fJKJJnUaeQ" name="res" direction="return">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DGs6yzLgEd28fJKJJnUaeQ" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DGs6yjLgEd28fJKJJnUaeQ" value="1"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_L8EY8DLgEd28fJKJJnUaeQ" name="mult" isAbstract="true">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_L8EY8TLgEd28fJKJJnUaeQ" name="a">
+          <ownedOperation xmi:id="_L8EY8DLgEd28fJKJJnUaeQ" name="mult" isAbstract="true">
+            <ownedParameter xmi:id="_L8EY8TLgEd28fJKJJnUaeQ" name="a">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_L8EY8zLgEd28fJKJJnUaeQ" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_L8EY8jLgEd28fJKJJnUaeQ" value="1"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_L8EY9TLgEd28fJKJJnUaeQ" name="b">
+            <ownedParameter xmi:id="_L8EY9TLgEd28fJKJJnUaeQ" name="b">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_L8EY9zLgEd28fJKJJnUaeQ" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_L8EY9jLgEd28fJKJJnUaeQ" value="1"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_L8EY-TLgEd28fJKJJnUaeQ" name="res" direction="return">
+            <ownedParameter xmi:id="_L8EY-TLgEd28fJKJJnUaeQ" name="res" direction="return">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_L8EY-zLgEd28fJKJJnUaeQ" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_L8EY-jLgEd28fJKJJnUaeQ" value="1"/>
@@ -118,24 +118,24 @@ return a*b;</body>
         </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_etOZkDLaEd2qeKRLMdIx_A" name="Client">
-        <ownedComment xmi:type="uml:Comment" xmi:id="_yGhL0DenEeGPyrZ5I3hMlA" annotatedElement="_U50WMCkDEeGDDbdzqSb4UA">
+        <ownedComment xmi:id="_yGhL0DenEeGPyrZ5I3hMlA" annotatedElement="_U50WMCkDEeGDDbdzqSb4UA">
           <body>Additional &quot;tick&quot; port. The contained tick operation is called by the timer. See composite diagram of system for the assembly </body>
         </ownedComment>
-        <packagedElement xmi:type="uml:Class" xmi:id="_IfjoETLbEd2qeKRLMdIx_A" clientDependency="_vdcwkKDcEd-t8JNe-ruCrQ _qfhbMCozEeGxrprK9wB9iA" name="CClient_impl">
-          <generalization xmi:type="uml:Generalization" xmi:id="_34FjAPx3Ed6O2oOTPfeAMA">
+        <packagedElement xmi:type="uml:Class" xmi:id="_IfjoETLbEd2qeKRLMdIx_A" name="CClient_impl">
+          <generalization xmi:id="_34FjAPx3Ed6O2oOTPfeAMA">
             <general xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_N6fa4JsrEd61Eo3nmu3JhQ"/>
           </generalization>
           <ownedAttribute xmi:type="uml:Port" xmi:id="_DtWn4DLcEd2qeKRLMdIx_A" name="q" type="_cn-H0DLbEd2qeKRLMdIx_A" aggregation="composite"/>
           <ownedAttribute xmi:type="uml:Port" xmi:id="_U50WMCkDEeGDDbdzqSb4UA" name="tick" aggregation="composite">
             <type xmi:type="uml:Interface" href="pathmap://QML_CORE/sysinterfaces.uml#_Xb-y0AweEd6it_RkGhz_AA"/>
           </ownedAttribute>
-          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_vdcwkKDcEd-t8JNe-ruCrQ" name="derived realization of IStart" client="_IfjoETLbEd2qeKRLMdIx_A">
+          <interfaceRealization xmi:id="_vdcwkKDcEd-t8JNe-ruCrQ" name="derived realization of IStart" client="_IfjoETLbEd2qeKRLMdIx_A">
             <supplier xmi:type="uml:Interface" href="pathmap://QML_CORE/sysinterfaces.uml#_PTWzwCS-Ed-A_I32T0fkaA"/>
-            <contract xmi:type="uml:Interface" href="pathmap://QML_CORE/sysinterfaces.uml#_PTWzwCS-Ed-A_I32T0fkaA"/>
+            <contract href="pathmap://QML_CORE/sysinterfaces.uml#_PTWzwCS-Ed-A_I32T0fkaA"/>
           </interfaceRealization>
-          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_qfhbMCozEeGxrprK9wB9iA" name="derived realization of ITick" client="_IfjoETLbEd2qeKRLMdIx_A">
+          <interfaceRealization xmi:id="_qfhbMCozEeGxrprK9wB9iA" name="derived realization of ITick" client="_IfjoETLbEd2qeKRLMdIx_A">
             <supplier xmi:type="uml:Interface" href="pathmap://QML_CORE/sysinterfaces.uml#_Xb-y0AweEd6it_RkGhz_AA"/>
-            <contract xmi:type="uml:Interface" href="pathmap://QML_CORE/sysinterfaces.uml#_Xb-y0AweEd6it_RkGhz_AA"/>
+            <contract href="pathmap://QML_CORE/sysinterfaces.uml#_Xb-y0AweEd6it_RkGhz_AA"/>
           </interfaceRealization>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_yXNVoKF4Ed6FqJCjEUrkqQ" name="run" specification="_4CRrYHpbEd-X4Z9aZ0cpCQ">
             <language>C/C++</language>
@@ -150,29 +150,29 @@ cout &lt;&lt; &quot;finishing CClient_impl::run&quot; &lt;&lt; endl;</body>
             <body>cout &lt;&lt; &quot;call via port tick: mult(4, 5);&quot; &lt;&lt; endl;
 cout &lt;&lt; &quot;result: &quot; &lt;&lt; q->mult(4, 5) &lt;&lt; endl;</body>
           </ownedBehavior>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_4CRrYHpbEd-X4Z9aZ0cpCQ" name="run" method="_yXNVoKF4Ed6FqJCjEUrkqQ"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_qf6cwCozEeGxrprK9wB9iA" name="tick" method="_w5uegCozEeGxrprK9wB9iA"/>
+          <ownedOperation xmi:id="_4CRrYHpbEd-X4Z9aZ0cpCQ" name="run" method="_yXNVoKF4Ed6FqJCjEUrkqQ"/>
+          <ownedOperation xmi:id="_qf6cwCozEeGxrprK9wB9iA" name="tick" method="_w5uegCozEeGxrprK9wB9iA"/>
         </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_XLQjUDLiEd2RVeNawwNNzg" name="System">
         <packagedElement xmi:type="uml:Class" xmi:id="_bYJagDLiEd2RVeNawwNNzg" name="System_impl">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_q_GhcDbcEeGdqp2YT1LwWw">
+          <ownedComment xmi:id="_q_GhcDbcEeGdqp2YT1LwWw">
             <annotatedElement xmi:type="uml:Property" href="pathmap://QML_CORE/core.uml#_ARs_UCjaEeGFbebITJYb9g"/>
             <body>Period of timer can be configured via
 &quot;configure instance properties&quot; popup (once timer attribute is selected)</body>
           </ownedComment>
-          <ownedComment xmi:type="uml:Comment" xmi:id="_Qd-H4DenEeGPyrZ5I3hMlA" annotatedElement="_lKtZUCjYEeGFbebITJYb9g">
+          <ownedComment xmi:id="_Qd-H4DenEeGPyrZ5I3hMlA" annotatedElement="_lKtZUCjYEeGFbebITJYb9g">
             <body>Part of Qompasss modeling library</body>
           </ownedComment>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_gV1cgDLiEd2RVeNawwNNzg" name="server" type="_oqZNUDLaEd2qeKRLMdIx_A" isUnique="false" aggregation="composite"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_i-I7gDLiEd2RVeNawwNNzg" name="client" visibility="public" type="_IfjoETLbEd2qeKRLMdIx_A" isUnique="false" aggregation="composite">
+          <ownedAttribute xmi:id="_gV1cgDLiEd2RVeNawwNNzg" name="server" type="_oqZNUDLaEd2qeKRLMdIx_A" isUnique="false" aggregation="composite"/>
+          <ownedAttribute xmi:id="_i-I7gDLiEd2RVeNawwNNzg" name="client" visibility="public" type="_IfjoETLbEd2qeKRLMdIx_A" isUnique="false" aggregation="composite">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_d5JgYFl6EeKFQZ_XV_Kn6g" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_d5KugFl6EeKFQZ_XV_Kn6g" value="1"/>
             <defaultValue xmi:type="uml:LiteralString" xmi:id="_d5MjsFl6EeKFQZ_XV_Kn6g">
               <value xsi:nil="true"/>
             </defaultValue>
           </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_lKtZUCjYEeGFbebITJYb9g" name="timer" visibility="public" aggregation="composite">
+          <ownedAttribute xmi:id="_lKtZUCjYEeGFbebITJYb9g" name="timer" visibility="public" aggregation="composite">
             <type xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_-X6zMCjZEeGFbebITJYb9g"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ofEtECjYEeGFbebITJYb9g" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ofGiQCjYEeGFbebITJYb9g" value="1"/>
@@ -180,17 +180,17 @@ cout &lt;&lt; &quot;result: &quot; &lt;&lt; q->mult(4, 5) &lt;&lt; endl;</body>
               <value xsi:nil="true"/>
             </defaultValue>
           </ownedAttribute>
-          <ownedConnector xmi:type="uml:Connector" xmi:id="_fXbtMACUEd-PD8FdFs7bpA" name="qpconnector">
-            <end xmi:type="uml:ConnectorEnd" xmi:id="_fYI30ACUEd-PD8FdFs7bpA" partWithPort="_i-I7gDLiEd2RVeNawwNNzg" role="_DtWn4DLcEd2qeKRLMdIx_A"/>
-            <end xmi:type="uml:ConnectorEnd" xmi:id="_fYLUEACUEd-PD8FdFs7bpA" partWithPort="_gV1cgDLiEd2RVeNawwNNzg" role="_4KiE8DLbEd2qeKRLMdIx_A"/>
+          <ownedConnector xmi:id="_fXbtMACUEd-PD8FdFs7bpA" name="qpconnector">
+            <end xmi:id="_fYI30ACUEd-PD8FdFs7bpA" partWithPort="_i-I7gDLiEd2RVeNawwNNzg" role="_DtWn4DLcEd2qeKRLMdIx_A"/>
+            <end xmi:id="_fYLUEACUEd-PD8FdFs7bpA" partWithPort="_gV1cgDLiEd2RVeNawwNNzg" role="_4KiE8DLbEd2qeKRLMdIx_A"/>
           </ownedConnector>
-          <ownedConnector xmi:type="uml:Connector" xmi:id="_s0Ev4CkDEeGDDbdzqSb4UA" name="Connector1">
-            <end xmi:type="uml:ConnectorEnd" xmi:id="_s0FW8CkDEeGDDbdzqSb4UA" partWithPort="_lKtZUCjYEeGFbebITJYb9g">
+          <ownedConnector xmi:id="_s0Ev4CkDEeGDDbdzqSb4UA" name="Connector1">
+            <end xmi:id="_s0FW8CkDEeGDDbdzqSb4UA" partWithPort="_lKtZUCjYEeGFbebITJYb9g">
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_s0FW8ikDEeGDDbdzqSb4UA" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_s0FW8SkDEeGDDbdzqSb4UA" value="1"/>
               <role xmi:type="uml:Port" href="pathmap://QML_CORE/core.uml#_3NSGwCkAEeGDDbdzqSb4UA"/>
             </end>
-            <end xmi:type="uml:ConnectorEnd" xmi:id="_s0FW8ykDEeGDDbdzqSb4UA" partWithPort="_i-I7gDLiEd2RVeNawwNNzg" role="_U50WMCkDEeGDDbdzqSb4UA">
+            <end xmi:id="_s0FW8ykDEeGDDbdzqSb4UA" partWithPort="_i-I7gDLiEd2RVeNawwNNzg" role="_U50WMCkDEeGDDbdzqSb4UA">
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_s0FW9SkDEeGDDbdzqSb4UA" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_s0FW9CkDEeGDDbdzqSb4UA" value="1"/>
             </end>
@@ -202,7 +202,7 @@ cout &lt;&lt; &quot;result: &quot; &lt;&lt; q->mult(4, 5) &lt;&lt; endl;</body>
       <packagedElement xmi:type="uml:Node" xmi:id="_zY9vMDLiEd2RVeNawwNNzg" name="LinuxHost"/>
       <packagedElement xmi:type="uml:Node" xmi:id="_MxayMP_BEd6628OhKk_dpg" name="CygwinHost"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_M1a_8MniEeCMCo5Ox2CNmg" name="HWArchitectureLinux">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_QgKzYMniEeCMCo5Ox2CNmg" name="linux" visibility="public" type="_zY9vMDLiEd2RVeNawwNNzg" aggregation="composite">
+        <ownedAttribute xmi:id="_QgKzYMniEeCMCo5Ox2CNmg" name="linux" visibility="public" type="_zY9vMDLiEd2RVeNawwNNzg" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XijRAMniEeCMCo5Ox2CNmg" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XkfxwMniEeCMCo5Ox2CNmg" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_XlIq8MniEeCMCo5Ox2CNmg">
@@ -211,7 +211,7 @@ cout &lt;&lt; &quot;result: &quot; &lt;&lt; q->mult(4, 5) &lt;&lt; endl;</body>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_XkN14Da3EeGBl4WmUxMhOA" name="HWArchitectureCygwin">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_eBgCYDa3EeGBl4WmUxMhOA" name="cygwin" visibility="public" type="_MxayMP_BEd6628OhKk_dpg" aggregation="composite">
+        <ownedAttribute xmi:id="_eBgCYDa3EeGBl4WmUxMhOA" name="cygwin" visibility="public" type="_MxayMP_BEd6628OhKk_dpg" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_j8xuADa3EeGBl4WmUxMhOA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_j84bsDa3EeGBl4WmUxMhOA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_j936MDa3EeGBl4WmUxMhOA">
@@ -227,19 +227,19 @@ cout &lt;&lt; &quot;result: &quot; &lt;&lt; q->mult(4, 5) &lt;&lt; endl;</body>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_234GEDLiEd2RVeNawwNNzg" name="deployment">
-      <ownedComment xmi:type="uml:Comment" xmi:id="_7AvxUDemEeGPyrZ5I3hMlA" annotatedElement="_5Z7MEDLiEd2RVeNawwNNzg _bBSxQP_BEd6628OhKk_dpg">
+      <ownedComment xmi:id="_7AvxUDemEeGPyrZ5I3hMlA" annotatedElement="_5Z7MEDLiEd2RVeNawwNNzg _bBSxQP_BEd6628OhKk_dpg">
         <body>Linux and cygwin require different deployment plans, since we use different target platforms
 </body>
       </ownedComment>
       <packagedElement xmi:type="uml:Package" xmi:id="_5Z7MEDLiEd2RVeNawwNNzg" name="linux">
-        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_L9xhwDLjEd2RVeNawwNNzg" clientDependency="_KeQaUDa5EeG-uqYpasEQgg _fWvAAE2tEeGl8qrc8BM7vA _2kbjUGkEEeG997IUAIbceQ" name="mySystem" classifier="_bYJagDLiEd2RVeNawwNNzg">
-          <slot xmi:type="uml:Slot" xmi:id="_TdCvsDLjEd2RVeNawwNNzg" definingFeature="_gV1cgDLiEd2RVeNawwNNzg">
+        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_L9xhwDLjEd2RVeNawwNNzg" name="mySystem" classifier="_bYJagDLiEd2RVeNawwNNzg">
+          <slot xmi:id="_TdCvsDLjEd2RVeNawwNNzg" definingFeature="_gV1cgDLiEd2RVeNawwNNzg">
             <value xmi:type="uml:InstanceValue" xmi:id="_fw8xUDLjEd2RVeNawwNNzg" name="" instance="_MyQ5wDLjEd2RVeNawwNNzg"/>
           </slot>
-          <slot xmi:type="uml:Slot" xmi:id="_YhikUDLjEd2RVeNawwNNzg" definingFeature="_i-I7gDLiEd2RVeNawwNNzg">
+          <slot xmi:id="_YhikUDLjEd2RVeNawwNNzg" definingFeature="_i-I7gDLiEd2RVeNawwNNzg">
             <value xmi:type="uml:InstanceValue" xmi:id="_lAoiQDLjEd2RVeNawwNNzg" instance="_P3ovQDLjEd2RVeNawwNNzg"/>
           </slot>
-          <slot xmi:type="uml:Slot" xmi:id="_n1a1wSnNEeGxrprK9wB9iA" definingFeature="_lKtZUCjYEeGFbebITJYb9g">
+          <slot xmi:id="_n1a1wSnNEeGxrprK9wB9iA" definingFeature="_lKtZUCjYEeGFbebITJYb9g">
             <value xmi:type="uml:InstanceValue" xmi:id="_n1cD4CnNEeGxrprK9wB9iA" instance="_n1ThACnNEeGxrprK9wB9iA"/>
           </slot>
         </packagedElement>
@@ -247,18 +247,18 @@ cout &lt;&lt; &quot;result: &quot; &lt;&lt; q->mult(4, 5) &lt;&lt; endl;</body>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_P3ovQDLjEd2RVeNawwNNzg" name="mySystem.client" classifier="_IfjoETLbEd2qeKRLMdIx_A"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_n1ThACnNEeGxrprK9wB9iA" name="mySystem.timer">
           <classifier xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_-X6zMCjZEeGFbebITJYb9g"/>
-          <slot xmi:type="uml:Slot" xmi:id="_n1XLYCnNEeGxrprK9wB9iA">
+          <slot xmi:id="_n1XLYCnNEeGxrprK9wB9iA">
             <definingFeature xmi:type="uml:Property" href="pathmap://QML_CORE/core.uml#_ARs_UCjaEeGFbebITJYb9g"/>
             <value xmi:type="uml:InstanceValue" xmi:id="_n1XycCnNEeGxrprK9wB9iA" instance="_n1V9QCnNEeGxrprK9wB9iA"/>
           </slot>
-          <slot xmi:type="uml:Slot" xmi:id="_n1aOsCnNEeGxrprK9wB9iA">
+          <slot xmi:id="_n1aOsCnNEeGxrprK9wB9iA">
             <definingFeature xmi:type="uml:Property" href="pathmap://QML_CORE/core.uml#_RMqEkCjaEeGFbebITJYb9g"/>
             <value xmi:type="uml:InstanceValue" xmi:id="_n1a1wCnNEeGxrprK9wB9iA" instance="_n1YZgCnNEeGxrprK9wB9iA"/>
           </slot>
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_n1V9QCnNEeGxrprK9wB9iA" name="mySystem.timer.timer">
           <classifier xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_9V8OQCjYEeGFbebITJYb9g"/>
-          <slot xmi:type="uml:Slot" xmi:id="_AfWlACozEeGxrprK9wB9iA">
+          <slot xmi:id="_AfWlACozEeGxrprK9wB9iA">
             <definingFeature xmi:type="uml:Property" href="pathmap://QML_CORE/core.uml#_tmNeoCjbEeGFbebITJYb9g"/>
             <value xmi:type="uml:LiteralInteger" xmi:id="_AfXzICozEeGxrprK9wB9iA" name="value for periodLength" value="250">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
@@ -274,14 +274,14 @@ cout &lt;&lt; &quot;result: &quot; &lt;&lt; q->mult(4, 5) &lt;&lt; endl;</body>
         <packagedElement xmi:type="uml:Abstraction" xmi:id="_2kbjUGkEEeG997IUAIbceQ" name="allocate to linux" client="_L9xhwDLjEd2RVeNawwNNzg" supplier="_6EgaIDa3EeGBl4WmUxMhOA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_bBSxQP_BEd6628OhKk_dpg" name="cygwin">
-        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_bBdwYP_BEd6628OhKk_dpg" clientDependency="_JTpoYDa5EeG-uqYpasEQgg _gXDNgE2tEeGl8qrc8BM7vA _3pREcGkEEeG997IUAIbceQ" name="mainInstance" classifier="_bYJagDLiEd2RVeNawwNNzg">
-          <slot xmi:type="uml:Slot" xmi:id="_bBpWkP_BEd6628OhKk_dpg" definingFeature="_gV1cgDLiEd2RVeNawwNNzg">
+        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_bBdwYP_BEd6628OhKk_dpg" name="mainInstance" classifier="_bYJagDLiEd2RVeNawwNNzg">
+          <slot xmi:id="_bBpWkP_BEd6628OhKk_dpg" definingFeature="_gV1cgDLiEd2RVeNawwNNzg">
             <value xmi:type="uml:InstanceValue" xmi:id="_bBqksP_BEd6628OhKk_dpg" instance="_bBnhYP_BEd6628OhKk_dpg"/>
           </slot>
-          <slot xmi:type="uml:Slot" xmi:id="_bBuPEP_BEd6628OhKk_dpg" definingFeature="_i-I7gDLiEd2RVeNawwNNzg">
+          <slot xmi:id="_bBuPEP_BEd6628OhKk_dpg" definingFeature="_i-I7gDLiEd2RVeNawwNNzg">
             <value xmi:type="uml:InstanceValue" xmi:id="_bBxSYP_BEd6628OhKk_dpg" instance="_bBry0P_BEd6628OhKk_dpg"/>
           </slot>
-          <slot xmi:type="uml:Slot" xmi:id="_JtE40CozEeGxrprK9wB9iA" definingFeature="_lKtZUCjYEeGFbebITJYb9g">
+          <slot xmi:id="_JtE40CozEeGxrprK9wB9iA" definingFeature="_lKtZUCjYEeGFbebITJYb9g">
             <value xmi:type="uml:InstanceValue" xmi:id="_JtE40SozEeGxrprK9wB9iA" instance="_JtB1gCozEeGxrprK9wB9iA"/>
           </slot>
         </packagedElement>
@@ -289,18 +289,18 @@ cout &lt;&lt; &quot;result: &quot; &lt;&lt; q->mult(4, 5) &lt;&lt; endl;</body>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_bBry0P_BEd6628OhKk_dpg" name="mainInstance.client" classifier="_IfjoETLbEd2qeKRLMdIx_A"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_JtB1gCozEeGxrprK9wB9iA" name="mainInstance.timer">
           <classifier xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_-X6zMCjZEeGFbebITJYb9g"/>
-          <slot xmi:type="uml:Slot" xmi:id="_JtDDoCozEeGxrprK9wB9iA">
+          <slot xmi:id="_JtDDoCozEeGxrprK9wB9iA">
             <definingFeature xmi:type="uml:Property" href="pathmap://QML_CORE/core.uml#_ARs_UCjaEeGFbebITJYb9g"/>
             <value xmi:type="uml:InstanceValue" xmi:id="_JtDqsCozEeGxrprK9wB9iA" instance="_JtCckCozEeGxrprK9wB9iA"/>
           </slot>
-          <slot xmi:type="uml:Slot" xmi:id="_JtERwCozEeGxrprK9wB9iA">
+          <slot xmi:id="_JtERwCozEeGxrprK9wB9iA">
             <definingFeature xmi:type="uml:Property" href="pathmap://QML_CORE/core.uml#_RMqEkCjaEeGFbebITJYb9g"/>
             <value xmi:type="uml:InstanceValue" xmi:id="_JtERwSozEeGxrprK9wB9iA" instance="_JtDqsSozEeGxrprK9wB9iA"/>
           </slot>
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_JtCckCozEeGxrprK9wB9iA" name="mainInstance.timer.timer">
           <classifier xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_9V8OQCjYEeGFbebITJYb9g"/>
-          <slot xmi:type="uml:Slot" xmi:id="_1wSfkCsJEeGEwYCLcbR5yw">
+          <slot xmi:id="_1wSfkCsJEeGEwYCLcbR5yw">
             <definingFeature xmi:type="uml:Property" href="pathmap://QML_CORE/core.uml#_tmNeoCjbEeGFbebITJYb9g"/>
             <value xmi:type="uml:LiteralInteger" xmi:id="_1yhUMCsJEeGEwYCLcbR5yw" name="value for periodLength" value="500">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
@@ -316,41 +316,41 @@ cout &lt;&lt; &quot;result: &quot; &lt;&lt; q->mult(4, 5) &lt;&lt; endl;</body>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_QT6okKDjEd-rLNbSWf1QuA" name="ConfigTraceMono"/>
     </packagedElement>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_O6TiIjLUEd26WNosUASSSw">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_O6TiIzLUEd26WNosUASSSw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2#/"/>
+    <profileApplication xmi:id="_O6TiIjLUEd26WNosUASSSw">
+      <eAnnotations xmi:id="_O6TiIzLUEd26WNosUASSSw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/StandardL2.profile.uml#_0"/>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
     </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GcC0cAHtEd6HSdiss9GQ0A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Gd1kMAHtEd6HSdiss9GQ0A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_GcC0cAHtEd6HSdiss9GQ0A">
+      <eAnnotations xmi:id="_Gd1kMAHtEd6HSdiss9GQ0A" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+      <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_z1TwgFW3Ed63BrxiKsw-0Q">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_z2GasFW3Ed63BrxiKsw-0Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_z1TwgFW3Ed63BrxiKsw-0Q">
+      <eAnnotations xmi:id="_z2GasFW3Ed63BrxiKsw-0Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/FCM/1#/"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
+      <appliedProfile href="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
     </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_2aRhwGkEEeG997IUAIbceQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2eU7UGkEEeG997IUAIbceQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_2aRhwGkEEeG997IUAIbceQ">
+      <eAnnotations xmi:id="_2eU7UGkEEeG997IUAIbceQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//Alloc"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_ar8OsAPMEdyuUt-4qHuVvQ"/>
+      <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_ar8OsAPMEdyuUt-4qHuVvQ"/>
     </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_2eX-oGkEEeG997IUAIbceQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2hLbAGkEEeG997IUAIbceQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_2eX-oGkEEeG997IUAIbceQ">
+      <eAnnotations xmi:id="_2hLbAGkEEeG997IUAIbceQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//HLAM"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_yNSZIAPMEdyuUt-4qHuVvQ"/>
+      <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_yNSZIAPMEdyuUt-4qHuVvQ"/>
     </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_2hOeUGkEEeG997IUAIbceQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2kYgAGkEEeG997IUAIbceQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_2hOeUGkEEeG997IUAIbceQ">
+      <eAnnotations xmi:id="_2kYgAGkEEeG997IUAIbceQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//GCM"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_YgAioAPMEdyuUt-4qHuVvQ"/>
+      <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_YgAioAPMEdyuUt-4qHuVvQ"/>
     </profileApplication>
   </uml:Model>
   <FCM:DerivedElement xmi:id="_B9o7sP6yEd6Ie_kieu_3CQ">
@@ -359,11 +359,11 @@ cout &lt;&lt; &quot;result: &quot; &lt;&lt; q->mult(4, 5) &lt;&lt; endl;</body>
   <FCM:DerivedElement xmi:id="_DWb6oP6yEd6Ie_kieu_3CQ" base_Element="_TbIjUJYlEd6G9q9hwr11bw" source="_DGs6wDLgEd28fJKJJnUaeQ"/>
   <FCM:DerivedElement xmi:id="_DXK6cP6yEd6Ie_kieu_3CQ" base_Element="_4ZEZwHecEd6r18stFZxmFQ" source="_L8EY8DLgEd28fJKJJnUaeQ"/>
   <FCM:RuleApplication xmi:id="_DWIYoP6yEd6Ie_kieu_3CQ" base_Class="_oqZNUDLaEd2qeKRLMdIx_A">
-    <containerRule xmi:type="FCM:ContainerRule" href="pathmap://QML_TRACE/tracing.uml#_ISo6gLdwEd-CtfrGQre34Q"/>
+    <containerRule href="pathmap://QML_TRACE/tracing.uml#_ISo6gLdwEd-CtfrGQre34Q"/>
     <interceptor href="pathmap://QML_TRACE/tracing.uml#_35od4DKrEd-z5o2wSoJ16A"/>
   </FCM:RuleApplication>
   <FCM:Port xmi:id="_GofhQP6yEd6Ie_kieu_3CQ" base_Port="_4KiE8DLbEd2qeKRLMdIx_A">
-    <kind xmi:type="FCM:PortKind" href="pathmap://QML_CORE/core.uml#_wySlkFRxEd6GqrP6fkWBoQ"/>
+    <kind href="pathmap://QML_CORE/core.uml#_wySlkFRxEd6GqrP6fkWBoQ"/>
   </FCM:Port>
   <FCM:Connector xmi:id="_K2_iAP6yEd6Ie_kieu_3CQ"/>
   <FCM:DeploymentPlan xmi:id="_6dGQgP6zEd6Ie_kieu_3CQ" mainInstance="_L9xhwDLjEd2RVeNawwNNzg" base_Package="_5Z7MEDLiEd2RVeNawwNNzg"/>
@@ -377,29 +377,29 @@ cout &lt;&lt; &quot;result: &quot; &lt;&lt; q->mult(4, 5) &lt;&lt; endl;</body>
   <FCM:DeploymentPlan xmi:id="_u_ACgGSuEd-dQdK1-7wIFg"/>
   <FCM:DeploymentPlan xmi:id="_YK67AGTgEd-rCOWJcspHOA"/>
   <FCM:Port xmi:id="_IWQqoP6yEd6Ie_kieu_3CQ" base_Port="_DtWn4DLcEd2qeKRLMdIx_A">
-    <kind xmi:type="FCM:PortKind" href="pathmap://QML_CORE/core.uml#_9Fif4FRxEd6GqrP6fkWBoQ"/>
+    <kind href="pathmap://QML_CORE/core.uml#_9Fif4FRxEd6GqrP6fkWBoQ"/>
   </FCM:Port>
   <FCM:ContainerRule xmi:id="_lNrDwH4HEd-rD-b0gnx-AQ"/>
   <FCM:Configuration xmi:id="_RM9kQH8UEd-7Bsdl4VhuEw" deploymentPlan="_6dGQgP6zEd6Ie_kieu_3CQ" base_Package="_BJc50H8TEd-7Bsdl4VhuEw">
-    <configOptions xmi:type="FCM:ConfigOption" href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
+    <configOptions href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:Configuration>
   <FCM:DerivedElement xmi:id="_vd5cgKDcEd-t8JNe-ruCrQ" base_Element="_4CRrYHpbEd-X4Z9aZ0cpCQ">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
   </FCM:DerivedElement>
   <FCM:Configuration xmi:id="_Y10_QKDjEd-rLNbSWf1QuA" base_Class="_QT6okKDjEd-rLNbSWf1QuA" deploymentPlan="_6dGQgP6zEd6Ie_kieu_3CQ">
-    <configOptions xmi:type="FCM:ConfigOption" href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
+    <configOptions href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:Configuration>
   <FCM:DerivedElement xmi:id="_1E0nUKFhEd-AoOVE_odazw"/>
   <FCM:Target xmi:id="_Et5N4LqQEd-BObGGoBbehA" base_Node="_MxayMP_BEd6628OhKk_dpg">
-    <targetArch xmi:type="FCM:TargetArchitecture" href="pathmap://QML_CORE/core.uml#_FYOqwF0OEd-12d_h0i1xhQ"/>
-    <usedOS xmi:type="FCM:OperatingSystem" href="pathmap://QML_CORE/core.uml#_r4nVcCp9EeG1Y7BvjQ0T-w"/>
+    <targetArch href="pathmap://QML_CORE/core.uml#_FYOqwF0OEd-12d_h0i1xhQ"/>
+    <usedOS href="pathmap://QML_CORE/core.uml#_r4nVcCp9EeG1Y7BvjQ0T-w"/>
   </FCM:Target>
   <FCM:Target xmi:id="_HvbFMLqQEd-BObGGoBbehA" base_Node="_zY9vMDLiEd2RVeNawwNNzg">
-    <targetArch xmi:type="FCM:TargetArchitecture" href="pathmap://QML_CORE/core.uml#_FYOqwF0OEd-12d_h0i1xhQ"/>
-    <usedOS xmi:type="FCM:OperatingSystem" href="pathmap://QML_CORE/core.uml#_1eULwF0NEd-12d_h0i1xhQ"/>
+    <targetArch href="pathmap://QML_CORE/core.uml#_FYOqwF0OEd-12d_h0i1xhQ"/>
+    <usedOS href="pathmap://QML_CORE/core.uml#_1eULwF0NEd-12d_h0i1xhQ"/>
   </FCM:Target>
   <FCM:Port xmi:id="_U509QCkDEeGDDbdzqSb4UA" base_Port="_U50WMCkDEeGDDbdzqSb4UA">
-    <kind xmi:type="FCM:PortKind" href="pathmap://QML_CORE/core.uml#_wySlkFRxEd6GqrP6fkWBoQ"/>
+    <kind href="pathmap://QML_CORE/core.uml#_wySlkFRxEd6GqrP6fkWBoQ"/>
   </FCM:Port>
   <FCM:DerivedElement xmi:id="_qf85ACozEeGxrprK9wB9iA" base_Element="_qf6cwCozEeGxrprK9wB9iA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_asFRoAweEd6it_RkGhz_AA"/>
