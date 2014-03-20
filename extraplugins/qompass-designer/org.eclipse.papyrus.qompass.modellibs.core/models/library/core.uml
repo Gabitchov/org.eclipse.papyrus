@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:SW_Concurrency="http://www.eclipse.org/papyrus/SW_Concurrency/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:l2="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/SW_Concurrency/1 http://www.eclipse.org/papyrus/MARTE/1#//SRM/SW_Concurrency">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:SW_Concurrency="http://www.eclipse.org/papyrus/SW_Concurrency/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/SW_Concurrency/1 http://www.eclipse.org/papyrus/MARTE/1#//SRM/SW_Concurrency">
   <uml:Model xmi:id="_O6TiIDLUEd26WNosUASSSw" name="core" viewpoint="">
     <packageImport xmi:id="_O6TiITLUEd26WNosUASSSw">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -90,7 +90,7 @@ Note that ports on connector side are conjugated</body>
           <generalization xmi:id="_0KzSsDBEEd6V16eboHV1gw" general="_j29X4NttEd2eM5kqcby5ZA"/>
           <generalization xmi:id="_1H2JwDBEEd6V16eboHV1gw" general="_mIpj8Ns8Ed2eM5kqcby5ZA"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_Whe8EClYEd-eoo60eNyGlg" clientDependency="_nBpugClzEd-eoo60eNyGlg" name="AsyncCall_impl">
+        <packagedElement xmi:type="uml:Class" xmi:id="_Whe8EClYEd-eoo60eNyGlg" name="AsyncCall_impl">
           <ownedComment xmi:id="_sp9YYG5fEd-5CZIeuHpHAg">
             <body>Description: A simple implementation of asynchronous calls. It will execution requests by means of a single dispatcher thread</body>
           </ownedComment>
@@ -187,7 +187,7 @@ switch (operationID)
           <ownedOperation xmi:id="_2bwsEClzEd-eoo60eNyGlg" name="[name/]" method="_WhfjIilYEd-eoo60eNyGlg"/>
           <ownedOperation xmi:id="_G6LzAD3QEd-Bk-AHd6yyoA" name="dispatch" method="_nV2DcED5Ed-_DOja_sRgWA"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_pXzKcEJ1Ed-Ps4Bfh0j9LQ" clientDependency="_pXzxh0J1Ed-Ps4Bfh0j9LQ" name="AsyncCallPool_impl">
+        <packagedElement xmi:type="uml:Class" xmi:id="_pXzKcEJ1Ed-Ps4Bfh0j9LQ" name="AsyncCallPool_impl">
           <ownedComment xmi:id="_spsPMDJKEeCAhMtIsY9HwA">
             <body>(untested) implementation of an asynchronous invocation that uses a thread pool for
 spawning new requests</body>
@@ -286,7 +286,7 @@ switch (operationID)
           <ownedOperation xmi:id="_pXzxjkJ1Ed-Ps4Bfh0j9LQ" name="[name/]" method="_pXzxhEJ1Ed-Ps4Bfh0j9LQ"/>
           <ownedOperation xmi:id="_pXzxj0J1Ed-Ps4Bfh0j9LQ" name="dispatch" method="_pXzxhkJ1Ed-Ps4Bfh0j9LQ"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_3itBkNdwEd-ZnqCk2P2ZKg" clientDependency="_3itBmtdwEd-ZnqCk2P2ZKg" name="AMIPollCall_impl">
+        <packagedElement xmi:type="uml:Class" xmi:id="_3itBkNdwEd-ZnqCk2P2ZKg" name="AMIPollCall_impl">
           <ownedComment xmi:id="_3itBkddwEd-ZnqCk2P2ZKg">
             <body>Description: A simple implementation of asynchronous calls. It will execution requests by means of a single dispatcher thread</body>
           </ownedComment>
@@ -412,7 +412,7 @@ switch (operationID)
           <ownedOperation xmi:id="_3itBoddwEd-ZnqCk2P2ZKg" name="[name/]" method="_3itBl9dwEd-ZnqCk2P2ZKg"/>
           <ownedOperation xmi:id="_3itBotdwEd-ZnqCk2P2ZKg" name="dispatch" method="_3itBmddwEd-ZnqCk2P2ZKg"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_Mo2kwF7pEeGEmrrwB1vhPg" clientDependency="_8e_ocF7sEeGEmrrwB1vhPg" name="CallMultiplier_impl">
+        <packagedElement xmi:type="uml:Class" xmi:id="_Mo2kwF7pEeGEmrrwB1vhPg" name="CallMultiplier_impl">
           <generalization xmi:id="_eJqowF7sEeGEmrrwB1vhPg" general="_TLShkF7qEeGEmrrwB1vhPg"/>
           <interfaceRealization xmi:id="_8e_ocF7sEeGEmrrwB1vhPg" name="derived realization of I" client="_Mo2kwF7pEeGEmrrwB1vhPg" supplier="_ZzlzMPfBEd2TbIfwytOyPA" contract="_ZzlzMPfBEd2TbIfwytOyPA"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DmUQcF7tEeGEmrrwB1vhPg" name="operation1" specification="_ChD4kF7tEeGEmrrwB1vhPg">
@@ -544,7 +544,7 @@ out->dispatch(event);</body>
           <generalization xmi:id="_STdvYDBFEd6V16eboHV1gw" general="_j29X4NttEd2eM5kqcby5ZA"/>
           <generalization xmi:id="_T1zr4DBFEd6V16eboHV1gw" general="_mIpj8Ns8Ed2eM5kqcby5ZA"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_jOU60A1jEd6tvthBDl600Q" clientDependency="_1tfFAJyCEd6WR4pSVO_UYw" name="DirectCall_impl">
+        <packagedElement xmi:type="uml:Class" xmi:id="_jOU60A1jEd6tvthBDl600Q" name="DirectCall_impl">
           <ownedComment xmi:id="_MgKU8G5gEd-5CZIeuHpHAg">
             <body>Description: This connector is a kind of dummy connector, since it only passes incoming requests to its caller port</body>
           </ownedComment>
@@ -571,7 +571,7 @@ out->dispatch(event);</body>
         </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_UAIU0K-iEd6DndT7kDY1-A" name="AdaptiveContainerServices">
-        <packagedElement xmi:type="uml:Class" xmi:id="_cxVEsK-iEd6DndT7kDY1-A" clientDependency="_v-oAAK-iEd6DndT7kDY1-A" name="SampleInterceptor">
+        <packagedElement xmi:type="uml:Class" xmi:id="_cxVEsK-iEd6DndT7kDY1-A" name="SampleInterceptor">
           <generalization xmi:id="_lrS8oAQxEd--t-uhRn9OBA" general="_Zx2ZUA1jEd6tvthBDl600Q"/>
           <interfaceRealization xmi:id="_v-oAAK-iEd6DndT7kDY1-A" name="derived realization of I" client="_cxVEsK-iEd6DndT7kDY1-A" supplier="_ZzlzMPfBEd2TbIfwytOyPA" contract="_ZzlzMPfBEd2TbIfwytOyPA"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_GTvA0K-jEd6DndT7kDY1-A" name="[name/]" specification="_16jy8K-iEd6DndT7kDY1-A">
@@ -591,7 +591,7 @@ cout &lt;&lt; &quot;this is a sample post-call interception&quot; &lt;&lt; endl;
         <packagedElement xmi:type="uml:Class" xmi:id="_e6Y_EChYEd-eoo60eNyGlg" name="Activator">
           <generalization xmi:id="_oJX3IChYEd-eoo60eNyGlg" general="_KxQBELuXEd2TTr3gJIvazw"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_qgzokChYEd-eoo60eNyGlg" clientDependency="_cWjrYCsAEd-uZPFNCty7PQ" name="LeaderFollower">
+        <packagedElement xmi:type="uml:Class" xmi:id="_qgzokChYEd-eoo60eNyGlg" name="LeaderFollower">
           <generalization xmi:id="_sW6OkChYEd-eoo60eNyGlg" general="_e6Y_EChYEd-eoo60eNyGlg"/>
           <ownedAttribute xmi:type="uml:Port" xmi:id="_N0tB4Cu4Ed-uZPFNCty7PQ" name="listener" type="_fxfe8Cu1Ed-uZPFNCty7PQ" aggregation="composite">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UxKdsCu4Ed-uZPFNCty7PQ" value="1"/>
@@ -666,11 +666,11 @@ m_state = FOLLOWER;</body>
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_2wMyEChiEd-eoo60eNyGlg" clientDependency="_BhfKYChjEd-eoo60eNyGlg" name="SimpleActivation">
+        <packagedElement xmi:type="uml:Class" xmi:id="_2wMyEChiEd-eoo60eNyGlg" name="SimpleActivation">
           <generalization xmi:id="_5AKpkChiEd-eoo60eNyGlg" general="_e6Y_EChYEd-eoo60eNyGlg"/>
           <interfaceRealization xmi:id="_BhfKYChjEd-eoo60eNyGlg" name="derived realization of I" client="_2wMyEChiEd-eoo60eNyGlg" supplier="_ZzlzMPfBEd2TbIfwytOyPA" contract="_ZzlzMPfBEd2TbIfwytOyPA"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_6rmQoChiEd-eoo60eNyGlg" clientDependency="_cWkScCsAEd-uZPFNCty7PQ" name="Thread Pool">
+        <packagedElement xmi:type="uml:Class" xmi:id="_6rmQoChiEd-eoo60eNyGlg" name="Thread Pool">
           <generalization xmi:id="_892AEChiEd-eoo60eNyGlg" general="_e6Y_EChYEd-eoo60eNyGlg"/>
           <interfaceRealization xmi:id="_cWkScCsAEd-uZPFNCty7PQ" name="derived realization of I" client="_6rmQoChiEd-eoo60eNyGlg" supplier="_ZzlzMPfBEd2TbIfwytOyPA" contract="_ZzlzMPfBEd2TbIfwytOyPA"/>
         </packagedElement>
@@ -859,7 +859,7 @@ m_state = FOLLOWER;</body>
       <ownedComment xmi:id="_EuvHYCXREeGX6PuSE-DJlQ" annotatedElement="_5J9coCXQEeGX6PuSE-DJlQ">
         <body> Interceptor variant of thread (inherits all, only difference to Thread superclass: tagged as connector)</body>
       </ownedComment>
-      <packagedElement xmi:type="uml:Class" xmi:id="_SiY_AP-EEd6628OhKk_dpg" clientDependency="_lrFSQDz9Ed-v9PxuTj6Elw _wCkVcNYGEd-CgJIavLpOxQ" name="Thread">
+      <packagedElement xmi:type="uml:Class" xmi:id="_SiY_AP-EEd6628OhKk_dpg" name="Thread">
         <ownedComment xmi:id="_lCtoICnOEeGxrprK9wB9iA" annotatedElement="_rVfYoMGJEd-Mveea1W_olA">
           <body>Priority of the thread. The interpretation of the value is OS specific. In case of POSIX; priorities are only taken into accound for threads with a FIFO and round-robin scheduliung policy.</body>
         </ownedComment>
@@ -952,7 +952,7 @@ pthread_setschedparam (pt, SCHED_RR, &amp;schedParam);
           </defaultValue>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_JRmo0PNAEeCovO8AYZymZQ" clientDependency="_mI0xEPQXEeCovO8AYZymZQ" name="EventPool">
+      <packagedElement xmi:type="uml:Class" xmi:id="_JRmo0PNAEeCovO8AYZymZQ" name="EventPool">
         <ownedAttribute xmi:type="uml:Port" xmi:id="_MzO8gPNAEeCovO8AYZymZQ" name="control" visibility="public" type="_omxU4PNAEeCovO8AYZymZQ" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_N-OI8PNAEeCovO8AYZymZQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_N-PXEPNAEeCovO8AYZymZQ" value="1"/>
@@ -1093,7 +1093,7 @@ return events[0];</body>
       <packagedElement xmi:type="uml:Class" xmi:id="_5J9coCXQEeGX6PuSE-DJlQ" name="ThreadInterceptor">
         <generalization xmi:id="_9thucCXQEeGX6PuSE-DJlQ" general="_SiY_AP-EEd6628OhKk_dpg"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_9V8OQCjYEeGFbebITJYb9g" clientDependency="_F9_-UCjbEeGFbebITJYb9g _SXkHQCo0EeGxrprK9wB9iA" name="PeriodicTimer">
+      <packagedElement xmi:type="uml:Class" xmi:id="_9V8OQCjYEeGFbebITJYb9g" name="PeriodicTimer">
         <ownedComment xmi:id="_zLeSkCnOEeGxrprK9wB9iA" annotatedElement="_tmNeoCjbEeGFbebITJYb9g">
           <body>The period length of the perdioci timer in ticks. Currently, a tick corresponds to 1 ms (simulation time in the underlying OS abstraction layer). It is planned to support VSL expressions, i.e. a value/unit pair.</body>
         </ownedComment>
@@ -1328,7 +1328,7 @@ Be aware that the number of instantiated template packages will be considerably 
     </packagedElement>
     <profileApplication xmi:id="_O6TiIjLUEd26WNosUASSSw">
       <eAnnotations xmi:id="_O6TiIzLUEd26WNosUASSSw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2#/"/>
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
       </eAnnotations>
       <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
     </profileApplication>
@@ -1363,7 +1363,7 @@ Be aware that the number of instantiated template packages will be considerably 
   <FCM:InteractionComponent xmi:id="_s8OWIFR1Ed6GqrP6fkWBoQ" base_Class="_KxQBELuXEd2TTr3gJIvazw"/>
   <FCM:InteractionComponent xmi:id="_vEYVcFR1Ed6GqrP6fkWBoQ" base_Class="_Zx2ZUA1jEd6tvthBDl600Q"/>
   <FCM:InteractionComponent xmi:id="_wT-8IFR1Ed6GqrP6fkWBoQ" base_Class="_jOU60A1jEd6tvthBDl600Q"/>
-  <l2:ModelLibrary xmi:id="_CQiMQFtQEd6p9KQoJ8hRoA" base_Package="_O6TiIDLUEd26WNosUASSSw"/>
+  <standard:ModelLibrary xmi:id="_CQiMQFtQEd6p9KQoJ8hRoA" base_Package="_O6TiIDLUEd26WNosUASSSw"/>
   <C_Cpp:Include xmi:id="_sJry0JsqEd61Eo3nmu3JhQ" body="BootLoader bootloader;&#xA;&#xA;int main (int argc, char* argv[])&#xA;{&#xA;    bootloader.init ();&#xA;    return 0;&#xA;}&#xA;" base_class="_1RehUAGpEd6eR-dxi5su4Q"/>
   <FCM:Port xmi:id="_OfjPwJsrEd61Eo3nmu3JhQ" base_Port="_OfiosJsrEd61Eo3nmu3JhQ" kind="_wySlkFRxEd6GqrP6fkWBoQ"/>
   <FCM:Port xmi:id="__SL-kNtxEd6nqsBVkgJEEA" base_Port="__SLXgNtxEd6nqsBVkgJEEA" kind="_wySlkFRxEd6GqrP6fkWBoQ"/>
@@ -1403,7 +1403,7 @@ Be aware that the number of instantiated template packages will be considerably 
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
   </FCM:DerivedElement>
   <FCM:Port xmi:id="_N0to8Cu4Ed-uZPFNCty7PQ" base_Port="_N0tB4Cu4Ed-uZPFNCty7PQ" kind="_9Fif4FRxEd6GqrP6fkWBoQ"/>
-  <l2:Create xmi:id="_WFy8ECu9Ed-uZPFNCty7PQ" base_BehavioralFeature="_JM4I4Cu9Ed-uZPFNCty7PQ"/>
+  <standard:Create xmi:id="_WFy8ECu9Ed-uZPFNCty7PQ" base_BehavioralFeature="_JM4I4Cu9Ed-uZPFNCty7PQ"/>
   <C_Cpp:External xmi:id="_EbeZ8Cu-Ed-uZPFNCty7PQ" name="semaphore.h" base_class="_BY-fwCnxEd-eoo60eNyGlg"/>
   <C_Cpp:External xmi:id="_7tUvUCvDEd-uZPFNCty7PQ" name="pthread.h" base_class="_5KatsCvDEd-uZPFNCty7PQ"/>
   <C_Cpp:Ptr xmi:id="_G6PMUCvHEd-uZPFNCty7PQ" base_parameter="_Dn-xYCvHEd-uZPFNCty7PQ"/>
@@ -1501,7 +1501,7 @@ Be aware that the number of instantiated template packages will be considerably 
   <FCM:DerivedElement xmi:id="_mKpWAPQXEeCovO8AYZymZQ" base_Element="_tK0poPQWEeCovO8AYZymZQ0" source="_tK0poPQWEeCovO8AYZymZQ"/>
   <FCM:DerivedElement xmi:id="_mK0VIPQXEeCovO8AYZymZQ" base_Element="_FBMo4PQXEeCovO8AYZymZQ0" source="_FBMo4PQXEeCovO8AYZymZQ"/>
   <FCM:DerivedElement xmi:id="_mK7C0PQXEeCovO8AYZymZQ" base_Element="_f1HmEPQREeCovO8AYZymZQ0" source="_f1HmEPQREeCovO8AYZymZQ"/>
-  <l2:Create xmi:id="_o4VNAPRTEeCUGrV0Hl4JwQ" base_BehavioralFeature="_lrF08PRTEeCUGrV0Hl4JwQ"/>
+  <standard:Create xmi:id="_o4VNAPRTEeCUGrV0Hl4JwQ" base_BehavioralFeature="_lrF08PRTEeCUGrV0Hl4JwQ"/>
   <FCM:InterceptionRule xmi:id="_qlcF8AJzEeG0Lb1KYG16fA" interceptionSet="__SLXgNtxEd6nqsBVkgJEEA" base_Property="_mvN04PTWEeCn1-FCrfecFg" portSet="__SL-kNtxEd6nqsBVkgJEEA"/>
   <FCM:Template xmi:id="_QUZxoCQeEeGj_4swHBbKwg" base_Element="_QQPDUSQeEeGj_4swHBbKwg" kind="LoopPorts"/>
   <C_Cpp:Const xmi:id="_MGjk0CSlEeG6GJ4vU06VYQ" base_property="_Ig_MUCSlEeG6GJ4vU06VYQ"/>
