@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012 Mia-Software.
+ * Copyright (c) 2012, 2014 Mia-Software, CEA, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,8 @@
  *    Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *    Gregoire Dupe (Mia-Software) - Bug 385292 - [CustomizedTreeContentProvider] StackOverFlow when refreshing a TreeViewer with ICustomizedTreeContentProvider
  *    Gregoire Dupe (Mia-Software) - Bug 386387 - [CustomizedTreeContentProvider] The TreeElements are not preserved between two calls to getElements()
+ *    Christian W. Damus (CEA) - bug 430700
+ *    
  *******************************************************************************/
 package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +29,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.emf.facet.custom.ui.IContentPropertiesHandler;
 import org.eclipse.papyrus.emf.facet.custom.ui.IContentPropertiesHandlerFactory;
 import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedContentProvider;
@@ -41,7 +43,6 @@ import org.eclipse.papyrus.emf.facet.custom.core.exception.CustomizationExceptio
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
-import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeElement;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyFactory;
 
@@ -51,7 +52,6 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 
 	private final ICustomizationManager customManager;
 	private final IContentPropertiesHandler contentHandler;
-	private Object previousInput;
 	private Object[] rootElements;
 
 	private final Map<EObjectCacheElement, TreeElement> cache;
@@ -139,28 +139,44 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 	}
 
 	public Object[] getElements(final Object inputElement) {
-		Object[] result;
-		if (this.previousInput == inputElement) {
-			result = this.rootElements;
-		} else {
-			this.previousInput = inputElement;
-			final Object[] elements = getRootElements(inputElement);
-			final List<Object> elementList = new ArrayList<Object>();
-			for (final Object element : elements) {
-				if (!isVisible(element, null)) {
-					continue;
-				}
-				if (element instanceof EObject) {
-					final EObjectTreeElement eObjectProxy = createEObjectProxy(element, null);
-					elementList.add(eObjectProxy);
+		// Reconcile the (possibly changed) list of root elements with our tree element proxies
+
+		final Object[] elements = getRootElements(inputElement);
+		final List<Object> elementList = new ArrayList<Object>();
+
+		// Index the existing elements
+		final Map<Object, Object> index = new IdentityHashMap<Object, Object>(elements.length + 1);
+		if(this.rootElements != null) {
+			for(Object next : this.rootElements) {
+				if(next instanceof EObjectTreeElement) {
+					// Maps to its tree-element proxy
+					index.put(((EObjectTreeElement)next).getEObject(), next);
 				} else {
-					elementList.add(element);
+					// Maps to itself
+					index.put(next, next);
 				}
 			}
-			result = elementList.toArray();
-			this.rootElements = result;
 		}
-		return result;
+
+		for(final Object element : elements) {
+			if(!isVisible(element, null)) {
+				continue;
+			}
+
+			Object existing = index.get(element);
+			if(existing != null) {
+				// Just add it
+				elementList.add(existing);
+			} else if(element instanceof EObject) {
+				final EObjectTreeElement eObjectProxy = createEObjectProxy(element, null);
+				elementList.add(eObjectProxy);
+			} else {
+				elementList.add(element);
+			}
+		}
+
+		this.rootElements = elementList.toArray();
+		return this.rootElements;
 	}
 
 	protected static EObjectTreeElement createEObjectProxy(final Object element, final TreeElement parent) {

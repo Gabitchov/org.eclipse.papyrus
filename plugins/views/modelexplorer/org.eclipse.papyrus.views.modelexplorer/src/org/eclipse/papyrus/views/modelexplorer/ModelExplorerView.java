@@ -1092,9 +1092,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					Activator.log.warn("Unsupported read-only event type: " + event.getEventType());
 					break;
 				}
-				if (!isRefreshing.get()) {
-					refresh();
-				}
 			}
 		};
 	}
