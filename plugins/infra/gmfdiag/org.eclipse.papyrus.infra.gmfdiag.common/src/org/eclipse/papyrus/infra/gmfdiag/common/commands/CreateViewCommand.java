@@ -47,7 +47,7 @@ public class CreateViewCommand extends CreateCommand {
 		}
 
 		// Try to adapt the descriptor ElementAdapter in EObject
-		EObject element = EMFHelper.getEObject((EObject)viewDescriptor.getElementAdapter());
+		EObject element = EMFHelper.getEObject(viewDescriptor.getElementAdapter());
 		IElementType elementType = (IElementType)viewDescriptor.getElementAdapter().getAdapter(IElementType.class);
 
 		SemanticElementAdapter semanticAdapter = new SemanticElementAdapter(element, elementType);
