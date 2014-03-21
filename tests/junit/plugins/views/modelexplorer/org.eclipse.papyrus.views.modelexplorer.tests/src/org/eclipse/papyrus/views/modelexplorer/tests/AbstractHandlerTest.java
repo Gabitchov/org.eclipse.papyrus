@@ -30,13 +30,13 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.emf.facet.util.core.internal.exported.FileUtils;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeElement;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPage;
@@ -205,7 +205,7 @@ public abstract class AbstractHandlerTest {
 	 * @param elementToSelect
 	 *        the element to select
 	 */
-	protected void selectElementInTheModelexplorer(final ITreeElement elementToSelect) {
+	protected void selectElementInTheModelexplorer(final TreeElement elementToSelect) {
 		Display.getDefault().syncExec(new Runnable() {
 
 			public void run() {
