@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL
+ * Copyright (c) 2009, 2014 CEA LIST, LIFL, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,23 +10,33 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
+ *  Christian W. Damus (CEA) - bug 430880
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.editor;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.preference.PreferenceStore;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.common.utils.TableEditorInput;
+import org.eclipse.papyrus.infra.nattable.listener.NatTableDropListener;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -74,7 +84,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	 */
 	public AbstractEMFNattableEditor(final ServicesRegistry servicesRegistry, final Table rawModel) {
 		this.servicesRegistry = servicesRegistry;
-		this.tableManager = new NattableModelManager(rawModel);
+		this.tableManager = new EMFNattableModelManager(rawModel);
 		this.synchronizer = new PartNameSynchronizer(rawModel);
 		this.workspacePreferenceStore = getWorkspaceViewerPreferenceStore();
 	}
@@ -301,6 +311,32 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 			setPartName(papyrusTable.getName());
 			// Listen to name change
 			papyrusTable.eAdapters().add(this.tableNameListener);
+		}
+	}
+	
+	private static class EMFNattableModelManager extends NattableModelManager {
+
+		EMFNattableModelManager(Table rawModel) {
+			super(rawModel);
+		}
+
+		@Override
+		protected NatTableDropListener createDropListener() {
+			return new NatTableDropListener(this) {
+				@Override
+				protected Collection<?> extractSelectedObjects(IStructuredSelection structuredSelection) {
+					List<EObject> result = new ArrayList<EObject>(structuredSelection.size());
+
+					for(Iterator<?> iter = structuredSelection.iterator(); iter.hasNext();) {
+						EObject eObject = EMFHelper.getEObject(iter.next());
+						if(eObject != null) {
+							result.add(eObject);
+						}
+					}
+
+					return result;
+				}
+			};
 		}
 	}
 }

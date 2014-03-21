@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 430880
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.listener;
@@ -22,8 +23,9 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.util.LocalSelectionTransfer;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -71,9 +73,17 @@ public class NatTableDropListener implements DropTargetListener {
 	 * @param event
 	 */
 	public void dragEnter(final DropTargetEvent event) {
-		//nothing to do
+		validateDropEvent(event);
 	}
 
+	protected void validateDropEvent(final DropTargetEvent event) {
+		event.operations = DND.DROP_COPY | DND.DROP_MOVE;
+		
+		// Move and Link semantics don't make sense for tables which, like diagrams, are visualizations
+		// of objects also visualized in other places (such as the Model Explorer)
+		event.detail = DND.DROP_COPY;
+	}
+	
 	/**
 	 * 
 	 * @see org.eclipse.swt.dnd.DropTargetListener#dragLeave(org.eclipse.swt.dnd.DropTargetEvent)
@@ -91,7 +101,7 @@ public class NatTableDropListener implements DropTargetListener {
 	 * @param event
 	 */
 	public void dragOperationChanged(final DropTargetEvent event) {
-		//nothing to do
+		validateDropEvent(event);
 	}
 
 	/**
@@ -101,38 +111,33 @@ public class NatTableDropListener implements DropTargetListener {
 	 * @param event
 	 */
 	public void dragOver(final DropTargetEvent event) {
+		validateDropEvent(event);
 		this.dropKindValue = null;
-		final LocalTransfer localTransfer = LocalTransfer.getInstance();
-		final Object data = localTransfer.nativeToJava(event.currentDataType);
-		IStructuredSelection structuredSelection = null;
-		if(data instanceof IStructuredSelection) {
-			structuredSelection = (IStructuredSelection)data;
+		final List<Object> droppedElements = getDroppedObjects(event);
+		if (droppedElements.isEmpty()) {
+			return; // Nothing to do
 		}
-		if(structuredSelection == null) {
-			return;
-		}
-		final List<Object> droppedElements = new ArrayList<Object>((Collection<?>)structuredSelection.toList());
 		this.dropKindValue = this.manager.getLocationInTheTable(new Point(event.x, event.y));
 		int drop = DND.DROP_NONE;
 		switch(this.dropKindValue.getKind()) {
 		case AFTER_COLUMN_HEADER:
 			if(this.manager.canDropColumnsElement(droppedElements)) {
-				drop = DND.DROP_DEFAULT;
+				drop = event.detail;
 			}
 			break;
 		case AFTER_ROW_HEADER:
 			if(this.manager.canDropRowElement(droppedElements)) {
-				drop = DND.DROP_DEFAULT;
+				drop = event.detail;
 			}
 			break;
 		case COLUMN_HEADER:
 			if(this.manager.canInsertColumns(droppedElements, this.dropKindValue.getColumnIndex())) {
-				drop = DND.DROP_DEFAULT;
+				drop = event.detail;
 			}
 			break;
 		case ROW_HEADER:
 			if(this.manager.canInsertRow(droppedElements, this.dropKindValue.getRowIndex())) {
-				drop = DND.DROP_DEFAULT;
+				drop = event.detail;
 			}
 			break;
 		case CELL:
@@ -144,7 +149,7 @@ public class NatTableDropListener implements DropTargetListener {
 				final TransactionalEditingDomain domain = getEditingDomain();
 				final Command cmd = getDropSetValueCommand(domain, droppedElements);
 				if(cmd.canExecute()) {
-					drop = DND.DROP_DEFAULT;
+					drop = event.detail;
 				}
 			}
 			break;
@@ -156,6 +161,29 @@ public class NatTableDropListener implements DropTargetListener {
 			break;
 		}
 		event.detail = drop;
+	}
+	
+	protected List<Object> getDroppedObjects(DropTargetEvent event) {
+		final LocalTransfer localTransfer = LocalTransfer.getInstance();
+		final Object data = localTransfer.nativeToJava(event.currentDataType);
+		IStructuredSelection structuredSelection = null;
+		if(data instanceof IStructuredSelection) {
+			structuredSelection = (IStructuredSelection)data;
+		} else if(LocalSelectionTransfer.getTransfer().isSupportedType(event.currentDataType)) {
+			// Try the local selection transfer
+			ISelection selection = LocalSelectionTransfer.getTransfer().getSelection();
+			if(selection instanceof IStructuredSelection) {
+				structuredSelection = (IStructuredSelection)selection;
+			}
+		}
+		if(structuredSelection == null) {
+			return Collections.emptyList();
+		}
+		return new ArrayList<Object>(extractSelectedObjects(structuredSelection));
+	}
+	
+	protected Collection<?> extractSelectedObjects(IStructuredSelection structuredSelection) {
+		return structuredSelection.toList();
 	}
 
 	/**
@@ -198,11 +226,8 @@ public class NatTableDropListener implements DropTargetListener {
 	 */
 	public void drop(final DropTargetEvent event) {
 		//we drop the elements into the table
-		LocalTransfer localTransfer = LocalTransfer.getInstance();
-		Object data = localTransfer.nativeToJava(event.currentDataType);
-		if(data instanceof StructuredSelection) {
-			final IStructuredSelection selection = (IStructuredSelection)data;
-			final List<Object> droppedElements = new ArrayList<Object>((Collection<?>)selection.toList());
+		final List<Object> droppedElements = getDroppedObjects(event);
+		if (!droppedElements.isEmpty()) {
 			if(this.dropKindValue != null) {
 				switch(this.dropKindValue.getKind()) {
 				case AFTER_COLUMN_HEADER:
