@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,11 +9,13 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 430878
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -133,17 +135,19 @@ public class NotationUtils {
 	 * @author Laurent Wouters
 	 */
 	private static class NotationsIterator implements Iterator<Resource> {
-		private Iterator<Resource> inner;
+		private List<Resource> resources;
+		private int cursor;
 		private Resource next;
 
 		public NotationsIterator(ResourceSet set) {
-			inner = set.getResources().iterator();
+			resources = set.getResources();
 			next = getNextNotation();
 		}
 
 		private Resource getNextNotation() {
-			while (inner.hasNext()) {
-				Resource resource = inner.next();
+			// More resources may be added by proxy resolution while we iterate, but none would be removed
+			while (cursor < resources.size()) {
+				Resource resource = resources.get(cursor++);
 				String uri = resource.getURI().toString();
 				if (uri.endsWith(".notation"))
 					return resource;
