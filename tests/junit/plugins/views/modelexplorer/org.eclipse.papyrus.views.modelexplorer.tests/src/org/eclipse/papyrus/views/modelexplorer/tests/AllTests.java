@@ -19,7 +19,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ 
-DeleteHandlerTest.class,
+	ModelExplorerViewTests.class,
+	DeleteHandlerTest.class,
 	ModelExplorerViewTests.class,
 	OpendiagramTest.class })
 public class AllTests {
