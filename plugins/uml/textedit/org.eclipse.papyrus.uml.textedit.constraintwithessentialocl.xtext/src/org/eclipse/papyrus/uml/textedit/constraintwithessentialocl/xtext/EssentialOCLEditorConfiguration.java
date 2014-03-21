@@ -16,9 +16,12 @@
 
 package org.eclipse.papyrus.uml.textedit.constraintwithessentialocl.xtext;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -30,6 +33,7 @@ import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -241,8 +245,9 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 			objectToEdit = semanticObject;
 		}
 		final IParser defaultParser = super.createParser(semanticObject);
-		return new IParser() {
-
+		// use a semantic parser to assure refresh after opaque expression changes, see bug 400077
+		return new ISemanticParser() {
+			
 			public String getEditString(IAdaptable element, int flags) {
 				return defaultParser.getEditString(element, flags);
 			}
@@ -290,6 +295,21 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 			public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 				// Not used
 				return null;
+			}
+
+			public List getSemanticElementsBeingParsed(EObject element) {
+				// Add specification to list.
+				List<EObject> list = new BasicEList<EObject>();
+				if (element instanceof Constraint) {
+					list.add(((Constraint) element).getSpecification());
+				}
+				return list;
+			}
+
+			public boolean areSemanticElementsAffected(EObject listener,
+					Object notification) {
+				// always return true to assure refresh of semantic listeners 
+				return true;
 			}
 		};
 	}
