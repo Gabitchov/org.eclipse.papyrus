@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *		
  *		CEA LIST - Initial API and implementation
+ *      Christian W. Damus (CEA) - bug 413703
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.newchild;
@@ -18,10 +19,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITreeSelection;
+import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.newchild.CreationMenuFactory;
@@ -97,8 +101,19 @@ public class DynamicNewChild extends CompoundContributionItem  {
 		if(selection instanceof IStructuredSelection) {
 			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
 			EObject selectedEObject = EMFHelper.getEObject(selectedobject);
+			EObject editingDomainCitizen = selectedEObject;
+			
+			if((editingDomainCitizen instanceof EReference) && (selection instanceof ITreeSelection)) {
+				// The user selected a reference in the Advanced presentation. Infer the editing domain from the parent node, which is the reference owner
+				ITreeSelection treeSel = (ITreeSelection)selection;
+				TreePath[] paths = treeSel.getPathsFor(selectedobject);
+				if((paths != null) && (paths.length > 0) && (paths[0].getSegmentCount() > 1)) {
+					editingDomainCitizen = EMFHelper.getEObject(paths[0].getSegment(paths[0].getSegmentCount() - 2));
+				}
+			}
+			
 			try {
-				editingDomain =ServiceUtilsForEObject.getInstance().getService(org.eclipse.emf.transaction.TransactionalEditingDomain.class, selectedEObject);
+				editingDomain =ServiceUtilsForEObject.getInstance().getService(org.eclipse.emf.transaction.TransactionalEditingDomain.class, editingDomainCitizen);
 			} catch (Throwable ex) {
 				Activator.log.error("Impossible to get the Transactional Editing Domain.",ex);
 			}
