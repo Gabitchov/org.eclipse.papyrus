@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +8,13 @@
  *
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 431109
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.handlers;
 
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
@@ -65,7 +69,7 @@ public abstract class AbstractCreateCommandHandler extends AbstractCommandHandle
 
 		ICommand createGMFCommand = provider.getEditCommand(createRequest);
 		if(createGMFCommand != null) {
-			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
+			Command emfCommand = org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper.wrap(createGMFCommand);
 			return emfCommand;
 		}
 		return UnexecutableCommand.INSTANCE;
@@ -94,6 +98,9 @@ public abstract class AbstractCreateCommandHandler extends AbstractCommandHandle
 	 * @return current command
 	 */
 	protected Command getCommand() {
+		// In case we had one before, dispose it before replacing it
+		disposeCommand();
+		
 		createRequest = buildRequest();
 		createCommand = buildCommand();
 		return createCommand;
@@ -127,4 +134,35 @@ public abstract class AbstractCreateCommandHandler extends AbstractCommandHandle
 
 	/** returns the command filter to use for this handler */
 	public abstract ICommandFilter getCommandFilter();
+	
+	@Override
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		Object result;
+		
+		try {
+			result = super.execute(event);
+		} finally {
+			// If execution succeeded, the command will be disposed later by the history.
+			// If it failed, the history already disposed it.
+			// Either way, we should not dispose it.
+			createCommand = null;
+			createRequest = null;
+		}
+		
+		return result;
+	}
+	
+	private void disposeCommand() {
+		if(createCommand != null) {
+			createCommand.dispose();
+		}
+		createRequest = null;
+		createCommand = null;
+	}
+	
+	@Override
+	public void dispose() {
+		disposeCommand();
+		super.dispose();
+	}
 }
