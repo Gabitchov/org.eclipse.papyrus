@@ -2,13 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.infra.nattable.configuration">
-      <configuration
-            file="configs/generic.nattableconfiguration"
-            type="PapyrusGenericTable">
-      </configuration>
-   </extension>
-   <extension
          point="org.eclipse.ui.commands">
       <command
             categoryId="org.eclipse.papyrus.editor.category"

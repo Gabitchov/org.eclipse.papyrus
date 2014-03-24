@@ -16,11 +16,15 @@ package org.eclipse.papyrus.uml.diagram.common.editparts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.Trace;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
@@ -35,6 +39,7 @@ import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConne
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * This is an abstract edit-part to manage a constraint
@@ -46,19 +51,38 @@ import org.eclipse.uml2.uml.Constraint;
 @SuppressWarnings("restriction")
 public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 
+	private static final String SPECIFICATION = "specification"; //$NON-NLS-1$
+
 	protected static final String CONSTRAINT_VALUE_SPECIFICATION_LISTENER = "Constraint_valueSpecification_Listener"; //$NON-NLS-1$
 
 	public AbstractConstraintEditPart(View view) {
 		super(view);
 	}
-	  
+	
 	/**
-	 * this methods add listeners on targets and sources
+	 * assure that a specification change gets handled by the constraint body.
 	 */
-	protected void addAssociationEndListeners() {
-
+	protected void handleNotificationEvent(Notification event) {
+		if (event.getFeature() instanceof ENamedElement) {
+			if (((ENamedElement) event.getFeature()).getName().equals(SPECIFICATION)) {
+				GraphicalEditPart gef = (GraphicalEditPart) getChildren().get(1);
+				gef.notifyChanged(event);
+			}
+		}
+		super.handleNotificationEvent(event);
 	}
-
+	
+	@Override
+	protected void addSemanticListeners() {
+		super.addSemanticListeners();
+		EObject semanicElement = resolveSemanticElement();
+		if (semanicElement instanceof Constraint) {
+			ValueSpecification vs = ((Constraint) semanicElement).getSpecification();
+			// delegate to constraint-body, will refresh listeners by removing and adding semantic listeners again
+			addListenerFilter(SPECIFICATION, this, vs); 
+		}
+	}
+	
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NodeEditPart#getPrimaryShape()
