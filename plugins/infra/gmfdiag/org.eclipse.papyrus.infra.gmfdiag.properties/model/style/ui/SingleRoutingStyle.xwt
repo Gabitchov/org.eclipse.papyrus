@@ -14,8 +14,8 @@
 			<Group.layout>
 				<FillLayout></FillLayout>
 			</Group.layout>
-			<ppe:EnumRadio input="{Binding}" numColumns="2"
-				property="notation:RoutingStyle:routing" showLabel="false"></ppe:EnumRadio>
+			<ppe:EnumCombo input="{Binding}" numColumns="2"
+				property="notation:RoutingStyle:routing" showLabel="false"></ppe:EnumCombo>
 		</Group>
 		<Composite>
 			<Composite.layout>
@@ -38,15 +38,15 @@
 			<Group.layout>
 				<ppel:PropertiesLayout></ppel:PropertiesLayout>
 			</Group.layout>
-			<ppe:EnumRadio numColumns="2" input="{Binding}"
-				property="notation:RoutingStyle:jumpLinkStatus" showLabel="false"></ppe:EnumRadio>
+			<ppe:EnumCombo numColumns="2" input="{Binding}"
+				property="notation:RoutingStyle:jumpLinkStatus" showLabel="false"></ppe:EnumCombo>
 		</Group>
 		<Group text="Type">
 			<Group.layout>
 				<ppel:PropertiesLayout></ppel:PropertiesLayout>
 			</Group.layout>
-			<ppe:EnumRadio input="{Binding}" numColumns="2"
-				property="notation:RoutingStyle:jumpLinkType" showLabel="false"></ppe:EnumRadio>
+			<ppe:EnumCombo input="{Binding}" numColumns="2"
+				property="notation:RoutingStyle:jumpLinkType" showLabel="false"></ppe:EnumCombo>
 		</Group>
 		<ppe:BooleanCheckbox input="{Binding}"
 			property="notation:RoutingStyle:jumpLinksReverse"></ppe:BooleanCheckbox>
@@ -55,7 +55,7 @@
 		<Group.layout>
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Group.layout>
-		<ppe:EnumRadio input="{Binding}" numColumns="2"
-			property="notation:RoutingStyle:smoothness" showLabel="false"></ppe:EnumRadio>
+		<ppe:EnumCombo input="{Binding}" numColumns="2"
+			property="notation:RoutingStyle:smoothness" showLabel="false"></ppe:EnumCombo>
 	</Group>
 </Composite>

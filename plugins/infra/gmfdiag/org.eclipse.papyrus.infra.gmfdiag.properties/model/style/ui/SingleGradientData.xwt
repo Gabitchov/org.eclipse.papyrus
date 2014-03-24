@@ -12,6 +12,6 @@
 		property="notation:GradientData:activate"></ppe:BooleanCheckbox>
 	<gmf:XWTAwareColorPicker input="{Binding}"
 		property="notation:GradientData:gradientColor1"></gmf:XWTAwareColorPicker>
-	<ppe:EnumRadio input="{Binding}"
-		property="notation:GradientData:gradientStyle"></ppe:EnumRadio>
+	<ppe:EnumCombo input="{Binding}"
+		property="notation:GradientData:gradientStyle"></ppe:EnumCombo>
 </Composite>
