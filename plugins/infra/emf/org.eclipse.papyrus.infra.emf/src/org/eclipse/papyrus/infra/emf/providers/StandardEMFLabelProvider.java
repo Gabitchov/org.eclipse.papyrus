@@ -188,7 +188,7 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 			for (IConfigurationElement e : extensions) {
 				if (uri.equals(e.getAttribute("uri"))) { //$NON-NLS-1$
 					String types = e.getAttribute("supportedTypes"); //$NON-NLS-1$
-					List<String> typesList = Arrays.asList(types.replaceAll("\\s+", " ").split(" ")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					List<String> typesList = Arrays.asList(types.split("\\s+")); //$NON-NLS-1$
 					if (typesList.contains(I_ITEM_LABEL_PROVIDER)) {
 						try {
 							factory = (AdapterFactory) e.createExecutableExtension("class"); //$NON-NLS-1$
