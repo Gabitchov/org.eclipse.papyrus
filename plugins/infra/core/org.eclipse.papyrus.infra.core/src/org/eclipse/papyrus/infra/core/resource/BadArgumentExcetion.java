@@ -71,9 +71,10 @@ public class BadArgumentExcetion extends Exception {
 	 * @param cause
 	 * @param enableSuppression
 	 * @param writableStackTrace
+	 * Remove temporarily (because of incompatibility with current Java version)
 	 */
-	public BadArgumentExcetion(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-	}
+//	public BadArgumentExcetion(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+//		super(message, cause, enableSuppression, writableStackTrace);
+//	}
 
 }
