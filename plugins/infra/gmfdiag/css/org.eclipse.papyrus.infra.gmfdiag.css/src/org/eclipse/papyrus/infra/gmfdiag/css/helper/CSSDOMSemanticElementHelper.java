@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.emf.Activator;
+
 
 /**
  * A Helper for retrieving Views and Semantic elements from a
@@ -26,19 +26,19 @@ import org.eclipse.papyrus.infra.emf.Activator;
  * for building the CSS DOM Model, which is slightly different from the semantics
  * containment model (i.e. Compartments and Floating Labels appear in the DOM model,
  * although they are not semantics elements)
- * 
+ *
  * Used for building the CSS DOM Model
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class CSSDOMSemanticElementHelper {
 
 	/**
 	 * Returns the semantic element attached to the given notation element
-	 * 
+	 *
 	 * The result element can also be a Diagram
-	 * 
+	 *
 	 * @param notationElement
 	 * @return
 	 */
@@ -77,23 +77,34 @@ public class CSSDOMSemanticElementHelper {
 
 		EObject currentElement = notationElement.eContainer();
 
-		do {
+		while(currentElement != null) {
 			if(currentElement instanceof View) {
 				return findSemanticElement(currentElement);
 			}
 			currentElement = currentElement.eContainer();
-		} while(currentElement != null);
+		}
 
-		Activator.log.warn("Cannot find a valid source for " + notationElement);
+		/*
+		 * Remove the warning to avoid flooding the error log.
+		 *
+		 * This may happen in the following cases:
+		 *
+		 * - The element is at the root of the Notation model and is not a Diagram (Which may happen in corrupted models,
+		 * or (maybe) non-Papyrus notation models, but shouldn't have a major impact)
+		 * - The element is contained in an EMF ChangeDescription (e.g. Create + Undo creation)
+		 *
+		 * See Bug 430534
+		 */
+		//Activator.log.warn("Cannot find a valid source for " + notationElement);
 		return notationElement;
 	}
 
 	/**
 	 * Retrieves the primary view associated to the argument.
-	 * 
+	 *
 	 * For example, for a compartment, this method will return the top-most
 	 * view associated to the same semantic element.
-	 * 
+	 *
 	 * @param notationElement
 	 * @return
 	 */
@@ -104,7 +115,7 @@ public class CSSDOMSemanticElementHelper {
 	/**
 	 * Finds the top-most View associated to the same semantic
 	 * element as the argument.
-	 * 
+	 *
 	 * @param notationElement
 	 * @return
 	 */
@@ -132,7 +143,7 @@ public class CSSDOMSemanticElementHelper {
 
 	/**
 	 * Tests whether the given View is a Floating label
-	 * 
+	 *
 	 * @param view
 	 * @return
 	 *         True if this is a Floating Label
