@@ -11,6 +11,7 @@
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Emilien Perico (Atos Origin) - add code to refactor some classes
  *    Christian W. Damus (CEA) - bug 430648
+ *    Christian W. Damus (CEA) - bug 431023
  */
 package aspects.xpt.editor
 
@@ -43,7 +44,7 @@ public static final String CONTEXT_ID = "«contextID»"; «nonNLS»
 
 	«««	Helps to handle correctly the dirty state
 	«generatedMemberComment»
-	private org.eclipse.core.commands.operations.IUndoableOperation savedOperation = null;
+	private org.eclipse.papyrus.commands.util.OperationHistoryDirtyState dirtyState;
 	
 	«generatedMemberComment»
 	private org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain;
@@ -103,6 +104,10 @@ override additions (GenEditorView it)'''
 	
 	« doSave(it)»
 	
+	« getDirtyState(it)»
+	
+	« setUndoContext(it)»
+	
 	« isDirty(it)»
 	
 	«««Documentation. adds method to handle palette changes
@@ -151,6 +156,11 @@ def dispose(GenEditorView it)'''
 		// remove palette service listener
 		// remove preference listener
 		org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().removeProviderChangeListener(this);
+		
+		if(dirtyState != null) {
+		    dirtyState.dispose();
+		    dirtyState = null;
+		}
 		
 		super.dispose();
 	}
@@ -360,16 +370,37 @@ def doSave (GenEditorView it)'''
 «generatedMemberComment»
 	public void doSave(org.eclipse.core.runtime.IProgressMonitor progressMonitor) {
 		// The saving of the resource is done by the CoreMultiDiagramEditor
-		savedOperation =  getOperationHistory().getUndoOperation(getUndoContext());
+		getDirtyState().saved();
 	}
+'''
+
+def getDirtyState (GenEditorView it)'''
+«generatedMemberComment»
+    protected org.eclipse.papyrus.commands.util.OperationHistoryDirtyState getDirtyState() {
+        if(dirtyState == null) {
+            dirtyState = org.eclipse.papyrus.commands.util.OperationHistoryDirtyState.newInstance(getUndoContext(), getOperationHistory());
+        }
+        return dirtyState;
+    }
+'''
+
+def setUndoContext (GenEditorView it)'''
+«generatedMemberComment»
+    protected void setUndoContext(org.eclipse.core.commands.operations.IUndoContext context) {
+        if(dirtyState != null) {
+            dirtyState.dispose();
+            dirtyState = null;
+        }
+        
+        super.setUndoContext(context);
+    }
 '''
 
 //Fix the dirty state
 def isDirty (GenEditorView it)'''
 «generatedMemberComment»
 	public boolean isDirty() {
-		org.eclipse.core.commands.operations.IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
-		return savedOperation != op && org.eclipse.papyrus.commands.util.OperationUtils.anyDirtyingAfter(getOperationHistory().getUndoHistory(getUndoContext()), savedOperation);
+		return getDirtyState().isDirty();
 	}
 '''
 

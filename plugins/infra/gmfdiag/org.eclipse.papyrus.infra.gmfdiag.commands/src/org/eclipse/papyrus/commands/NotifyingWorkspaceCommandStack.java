@@ -12,12 +12,13 @@
  *  Christian W. Damus (CEA) - 404220: Add contexts for tracking objects changed by operations (CDO)
  *  Christian W. Damus (CEA) - bug 402525
  *  Christian W. Damus (CEA) - bug 430648
+ *  Christian W. Damus (CEA) - bug 431023
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
 
 import static org.eclipse.papyrus.commands.util.OperationUtils.anyDirtying;
-import static org.eclipse.papyrus.commands.util.OperationUtils.anyDirtyingAfter;
+import static org.eclipse.papyrus.commands.util.OperationUtils.isDirty;
 
 import java.util.Collection;
 import java.util.EventObject;
@@ -629,7 +630,7 @@ implements IWorkspaceCommandStack {
 			// return savedContext != null;
 			return super.isSaveNeeded();
 		}
-		return savedContext != null ? !nextUndoableOperation.hasContext(getSavedContext()) && anyDirtyingAfter(history.getUndoHistory(getDefaultUndoContext()), history.getUndoOperation(savedContext)) : anyDirtying(history.getUndoHistory(getDefaultUndoContext()));
+		return savedContext != null ? !nextUndoableOperation.hasContext(getSavedContext()) && isDirty(history.getUndoHistory(getDefaultUndoContext()), history.getRedoHistory(getDefaultUndoContext()), history.getUndoOperation(savedContext)) : anyDirtying(history.getUndoHistory(getDefaultUndoContext()));
 	}
 
 	@Override

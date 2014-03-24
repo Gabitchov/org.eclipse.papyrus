@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.communication.part;
 
 import java.util.EventObject;
 
-import org.eclipse.core.commands.operations.IUndoableOperation;
+import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -39,7 +39,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.commands.util.OperationUtils;
+import org.eclipse.papyrus.commands.util.OperationHistoryDirtyState;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -92,7 +92,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	/**
 	 * @generated
 	 */
-	private IUndoableOperation savedOperation = null;
+	private OperationHistoryDirtyState dirtyState;
 
 	/**
 	 * @generated
@@ -288,16 +288,37 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
 		// The saving of the resource is done by the CoreMultiDiagramEditor
-		savedOperation = getOperationHistory().getUndoOperation(getUndoContext());
+		getDirtyState().saved();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected OperationHistoryDirtyState getDirtyState() {
+		if(dirtyState == null) {
+			dirtyState = OperationHistoryDirtyState.newInstance(getUndoContext(), getOperationHistory());
+		}
+		return dirtyState;
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
+	protected void setUndoContext(IUndoContext context) {
+		if(dirtyState != null) {
+			dirtyState.dispose();
+			dirtyState = null;
+		}
+		
+		super.setUndoContext(context);
+	}
+	
+	/**
+	 * @generated
+	 */
 	public boolean isDirty() {
-		IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
-		return savedOperation != op && OperationUtils.anyDirtyingAfter(getOperationHistory().getUndoHistory(getUndoContext()), savedOperation);
+		return getDirtyState().isDirty();
 	}
 
 	/**
@@ -318,6 +339,12 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		// remove palette service listener
 		// remove preference listener
 		PapyrusPaletteService.getInstance().removeProviderChangeListener(this);
+
+		if(dirtyState != null) {
+			dirtyState.dispose();
+			dirtyState = null;
+		}
+		
 		super.dispose();
 	}
 

@@ -12,6 +12,10 @@
  */
 package org.eclipse.papyrus.commands.util;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
@@ -85,26 +89,49 @@ public class OperationUtils {
 		return result;
 	}
 
-	public static boolean anyDirtyingAfter(IUndoableOperation[] undoHistory, IUndoableOperation savepoint) {
+	public static boolean isDirty(IUndoableOperation[] undoHistory, IUndoableOperation[] redoHistory, IUndoableOperation savepoint) {
 		boolean result = false;
 
 		if(savepoint == null) {
 			result = anyDirtying(undoHistory);
-		} else if((undoHistory != null) && (undoHistory.length > 0)) {
-			int i = 0;
+		} else {
+			List<IUndoableOperation> undos = ((undoHistory == null) || (undoHistory.length == 0)) ? Collections.<IUndoableOperation> emptyList() : Arrays.asList(undoHistory);
+			List<IUndoableOperation> redos = ((redoHistory == null) || (redoHistory.length == 0)) ? Collections.<IUndoableOperation> emptyList() : Arrays.asList(redoHistory);
 
-			for(i = 0; i < undoHistory.length; i++) {
-				if(undoHistory[i] == savepoint) {
-					i++; // Advance over the save point to start testing
-					break;
-				}
-			}
+			if(undos.contains(savepoint)) {
+				// See whether there is any dirtying command after the savepoint in the undo stack
+				int i = 0;
 
-			for(; i < undoHistory.length; i++) {
-				if(!isNonDirtying(undoHistory[i])) {
-					result = true;
-					break;
+				for(; i < undoHistory.length; i++) {
+					if(undoHistory[i] == savepoint) {
+						i++; // Advance over the save point to start testing
+						break;
+					}
 				}
+
+				for(; i < undoHistory.length; i++) {
+					if(!isNonDirtying(undoHistory[i])) {
+						result = true;
+						break;
+					}
+				}
+			} else if(redos.contains(savepoint)) {
+				// See whether there is any dirtying command before the savepoint in the redo stack
+				for(int i = redoHistory.length - 1; i >= 0; i--) {
+					if(!isNonDirtying(redoHistory[i])) {
+						result = true;
+						break;
+					}
+					if(redoHistory[i] == savepoint) {
+						// Done scanning.  Everything up to and including the savepoint is non-dirtying
+						break;
+					}
+				}
+			} else {
+				// If we have no history but we have a savepoint, then we cannot undo nor redo to that savepoint
+				// (the history has been flushed) so evidently some change was made that invalidated the history,
+				// therefore we are dirty
+				result = true;
 			}
 		}
 
