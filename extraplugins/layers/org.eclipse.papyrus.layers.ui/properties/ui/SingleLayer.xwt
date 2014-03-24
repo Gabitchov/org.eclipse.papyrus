@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}" property="layers:LayerExpression:name"></ppe:StringEditor>
+		<ppe:StringMultiline input="{Binding}"
+			property="layers:LayerExpression:description"></ppe:StringMultiline>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanCheckbox input="{Binding}"
+			property="layers:LayerExpression:isLayerEnabled"></ppe:BooleanCheckbox>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceLabel input="{Binding}"
+			property="layers:AbstractLayer:layerDescriptor" readOnly="true"></ppe:ReferenceLabel>
+		<ppe:ReferenceLabel input="{Binding}"
+			property="layers:ApplicationDependantElement:application" readOnly="true"></ppe:ReferenceLabel>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReferencePropertyEditorWithPropertyView
+			input="{Binding}" property="layers:AbstractLayer:propertyValues"
+			readOnly="true"></ppe:MultiReferencePropertyEditorWithPropertyView>
+		<ppe:MultiReferencePropertyEditorWithPropertyView
+			input="{Binding}" property="layers:AbstractLayer:views" readOnly="true"></ppe:MultiReferencePropertyEditorWithPropertyView>
+	</Composite>
+</Composite>

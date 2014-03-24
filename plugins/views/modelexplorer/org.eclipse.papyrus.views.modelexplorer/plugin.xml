@@ -448,10 +448,6 @@ TODO: PAPYRUS EMF-FACET update uiCustom Here
    <extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resources/PapyrusEcoreBrowser.uiCustom"/>
    </extension>
-   <extension point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
-      <context description="The ModelExplorer labelProvider context" id="org.eclipse.papyrus.views.modelexplorer.labelProvider.context">
-      </context>
-   </extension>
    <extension point="org.eclipse.papyrus.emf.facet.infra.facet.registration">
       <facetset file="resources/PapyrusPages.facetSet"/>
    </extension>
@@ -464,6 +460,10 @@ TODO: PAPYRUS EMF-FACET update uiCustom Here
             loadByDefault="true"/>
    </extension>
    -->
+   <extension point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <context description="The ModelExplorer labelProvider context" id="org.eclipse.papyrus.views.modelexplorer.labelProvider.context">
+      </context>
+   </extension>
    <extension
          point="org.eclipse.papyrus.infra.services.navigation.navigationContributor">
       <target
