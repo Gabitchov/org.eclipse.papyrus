@@ -22,6 +22,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.EMFCommandOperation;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.papyrus.commands.INonDirtying;
 
 
@@ -56,6 +57,25 @@ public class NonDirtyingUtils {
 
 	public static CompoundCommand nonDirtyingEMFCompound() {
 		return new NonDirtyingEMFCompoundCommand();
+	}
+	
+	/**
+	 * Wrap a possibly {@linkplain INonDirtying non-dirtying} GEF command as a GMF command.
+	 * 
+	 * @param command
+	 *        a GEF command
+	 * @return the most appropriate wrapper GMF command
+	 */
+	public static ICommand wrap(org.eclipse.gef.commands.Command command) {
+		ICommand result;
+
+		if(command instanceof INonDirtying) {
+			result = new NonDirytingCommandProxy(command);
+		} else {
+			result = new CommandProxy(command);
+		}
+
+		return result;
 	}
 
 	public static Command chain(Command command1, Command command2) {
@@ -184,4 +204,12 @@ public class NonDirtyingUtils {
 			}
 		}
 	}
+	
+	private static class NonDirytingCommandProxy extends CommandProxy implements INonDirtying {
+
+		NonDirytingCommandProxy(org.eclipse.gef.commands.Command command) {
+			super(command);
+		}
+	}
+
 }

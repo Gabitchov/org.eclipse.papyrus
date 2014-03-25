@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2010, 2014 Atos Origin, CEA, and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *  Patrick Tessier (CEA LIST)-modification
+ *  Christian W. Damus (CEA) - bug 421411
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies;
@@ -37,6 +38,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.commands.INonDirtying;
+import org.eclipse.papyrus.commands.util.NonDirtyingUtils;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -198,25 +201,21 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 			if(defaultHyperLinkObject.size() == 1) {
 				// open the diagram
 				final HyperLinkObject hyperlinkObject = defaultHyperLinkObject.get(0);
-				Command command = new Command("Navigate hyperlink") {
-
+				class NavigateHyperlinkCommand extends Command implements INonDirtying {
+					
 					private ICommand openLinkCommand;
 
+					NavigateHyperlinkCommand() {
+						super("Navigate hyperlink");
+					}
+						
 					@Override
 					public void execute() {
 
 						if(hyperlinkObject.needsOpenCommand()) {
 							try {
 								TransactionalEditingDomain editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(getHost());
-								openLinkCommand = new AbstractTransactionalCommand(editingDomain, "Navigate hyperlink", null) {
-
-									@Override
-									protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-										hyperlinkObject.openLink();
-										return CommandResult.newOKCommandResult();
-									}
-								};
-
+								openLinkCommand = new OpenCommand(editingDomain, hyperlinkObject);
 								openLinkCommand.execute(new NullProgressMonitor(), null);
 							} catch (ServiceException ex) {
 								Activator.log.error(ex);
@@ -249,8 +248,18 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 							}
 						}
 					}
+					
+					@Override
+					public void dispose() {
+						if (openLinkCommand != null) {
+							openLinkCommand.dispose();
+							openLinkCommand = null;
+						}
+						
+						super.dispose();
+					}
 				};
-				return command;
+				return new NavigateHyperlinkCommand();
 			}
 
 			if(defaultHyperLinkObject.size() > 1) {
@@ -259,30 +268,25 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 				diagramNavigationDialog.open();
 				final List<HyperLinkObject> hList = diagramNavigationDialog.getSelectedHyperlinks();
 
-				Command command = new Command("Navigate hyperlinks") {
-
+				class NavigateHyperlinksCommand extends Command implements INonDirtying {
+									
 					private CompositeCommand openLinksCommand;
+				
+					NavigateHyperlinksCommand() {
+						super("Navigate hyperlinks");
+					}
 
 					@Override
 					public void execute() {
 						Iterator<HyperLinkObject> iter = hList.iterator();
-						openLinksCommand = new CompositeCommand("Navigate hyperlinks");
+						openLinksCommand = NonDirtyingUtils.nonDirtyingGMFComposite("Navigate hyperlinks");
 
 						try {
 							TransactionalEditingDomain editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(getHost());
 							while(iter.hasNext()) {
 								final HyperLinkObject hyperlinkObject = iter.next();
 								if(hyperlinkObject.needsOpenCommand()) {
-									ICommand navigateCommand = new AbstractTransactionalCommand(editingDomain, "Navigate hyperlink", null) {
-
-										@Override
-										protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-											hyperlinkObject.openLink();
-											return CommandResult.newOKCommandResult();
-										}
-
-									};
-									openLinksCommand.add(navigateCommand);
+									openLinksCommand.add(new OpenCommand(editingDomain, hyperlinkObject));
 								} else {
 									hyperlinkObject.openLink();
 								}
@@ -323,7 +327,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 					}
 				};
 
-				return command;
+				return new NavigateHyperlinksCommand();
 			}
 
 		} catch (Exception e) {
@@ -350,4 +354,24 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		}
 	}
 
+	//
+	// Nested types
+	//
+	
+	class OpenCommand extends AbstractTransactionalCommand implements INonDirtying {
+		private final HyperLinkObject hyperlinkObject;
+		
+		OpenCommand(TransactionalEditingDomain editingDomain, HyperLinkObject hyperlinkObject) {
+			super(editingDomain, "Navigate hyperlink", null);
+			
+			this.hyperlinkObject = hyperlinkObject;
+		}
+		
+		@Override
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			hyperlinkObject.openLink();
+			return CommandResult.newOKCommandResult();
+		}
+	};
+	
 }
