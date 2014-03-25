@@ -111,10 +111,12 @@ public class LayersStackApplicationEventNotifier {
 	 * Deactivate listeners
 	 */
 	protected void deactivate() {
-		LayersStackApplication application = layersModel.getLayerStackApplication();
-		
-		application.eAdapters().remove( layerStackListener );
-		
+		// The application can be already deactivated (because we are in dispose()
+		// See bug 431121
+		LayersStackApplication application = layersModel.lookupLayerStackApplication();
+		if( application != null) {
+			application.eAdapters().remove( layerStackListener );
+		}
 	}
 	
 	/**
