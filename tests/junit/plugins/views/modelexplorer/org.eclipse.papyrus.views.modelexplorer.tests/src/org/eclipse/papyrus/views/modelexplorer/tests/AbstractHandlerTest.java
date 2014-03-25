@@ -24,7 +24,6 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
@@ -191,9 +190,7 @@ public abstract class AbstractHandlerTest {
 		IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
 		Assert.assertEquals("Only one element should be selected", 1, currentSelection.size()); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
-		if(obj instanceof IAdaptable) {
-			obj = ((IAdaptable)obj).getAdapter(EObject.class);
-		}
+		obj = EMFHelper.getEObject(obj);
 		Assert.assertSame("the current selected element is not the wanted element", elementToSelect, obj); //$NON-NLS-1$
 	}
 
@@ -296,7 +293,7 @@ public abstract class AbstractHandlerTest {
 
 				// store the root of the model
 				Object[] visibleElement = commonViewer.getVisibleExpandedElements();
-					modelRoot = EMFHelper.getEObject(visibleElement[0]);
+				modelRoot = EMFHelper.getEObject(visibleElement[0]);
 
 				setStatus(Status.OK_STATUS);
 			}
