@@ -81,4 +81,17 @@
           implementation="org.eclipse.papyrus.infra.gmfdiag.css.CssSvgPostProcessor">
     </postProcessor>
  </extension>
+ <extension
+       point="org.eclipse.ui.propertyPages">
+    <page
+          category="org.eclipse.papyrus.infra.gmfdiag.preferences.properties.generalcategory"
+          class="org.eclipse.papyrus.infra.gmfdiag.css.property.StyleSheetsPropertyPage"
+          id="org.eclipse.papyrus.infra.gmfdiag.css.stylesheets"
+          name="Style sheets">
+       <enabledWhen>
+          <adapt
+                type="org.eclipse.core.resources.IProject">
+          </adapt></enabledWhen>
+    </page>
+ </extension>
 </plugin>
