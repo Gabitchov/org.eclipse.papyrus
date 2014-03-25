@@ -473,7 +473,6 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	protected ViewPrototype[] getSelectedPrototypes() {
 		Object[] checked = diagramKindTableViewer.getCheckedElements();
-		// as Object is not a subclass of String we cannot cast Object[] to String[]
 		ViewPrototype[] result = Arrays.asList(checked).toArray(new ViewPrototype[checked.length]);
 		return result;
 	}

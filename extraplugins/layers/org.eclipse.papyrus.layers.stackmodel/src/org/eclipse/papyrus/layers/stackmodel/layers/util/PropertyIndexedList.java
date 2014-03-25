@@ -22,6 +22,7 @@ import org.eclipse.papyrus.layers.stackmodel.BadStateException;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
 import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.papyrus.layers.stackmodel.layers.Property;
+import static org.eclipse.papyrus.layers.stackmodel.Activator.log;
 
 
 /**
@@ -287,8 +288,9 @@ public class PropertyIndexedList<T> extends EObjectResolvingEList<T> {
 		
 		@Override
 		public void notifyChanged(Notification msg) {
-			System.err.println("event " + msg.getEventType());
-			
+			if(log.isDebugEnabled()) {
+				log.debug("event " + msg.getEventType());
+							}
 		
 			// Check if the notification comes from the map
 			if( msg.getFeatureID(mapParentClasstype) ==  MAP_FEATURE_ID) {
@@ -301,7 +303,10 @@ public class PropertyIndexedList<T> extends EObjectResolvingEList<T> {
 		 * @param msg
 		 */
 		protected void notifyLayerPropertyValueMapChanged(Notification msg) {
-			System.err.println("map changed " + msg.getEventType());
+			if(log.isDebugEnabled()) {
+				log.debug("map changed " + msg.getEventType());
+			}
+
 			switch(msg.getEventType()) {
 			case Notification.SET:	
 			{
@@ -309,8 +314,11 @@ public class PropertyIndexedList<T> extends EObjectResolvingEList<T> {
 				// Add the value to other list
 				@SuppressWarnings("unchecked")
 				Map.Entry<String, T> entry = (Map.Entry<String, T>)msg.getNewValue();
-				System.out.println("SET - newValue=" + entry.getValue()
-						 + ", key=" + entry.getKey());
+				
+				if(log.isDebugEnabled()) {
+					log.debug("SET - newValue=" + entry.getValue()
+							 + ", key=" + entry.getKey());
+				}
 				
 //				String newKey = (String)msg.getNewValue();
 				T value = entry.getValue();
@@ -338,8 +346,11 @@ public class PropertyIndexedList<T> extends EObjectResolvingEList<T> {
 				// An entry is added
 				@SuppressWarnings("unchecked")
 				Map.Entry<String, T> entry = (Map.Entry<String, T>)msg.getNewValue();
-				System.out.println("ADD - newValue=" + entry.getValue()
-						 + ", key=" + entry.getKey());
+				if(log.isDebugEnabled()) {
+					log.debug("ADD - newValue=" + entry.getValue()
+							 + ", key=" + entry.getKey());
+				}
+
 				// Add the corresponding instance to propertyValues
 				try {
 					synchronizePropertyValue(entry.getKey(), entry.getValue());
@@ -354,8 +365,11 @@ public class PropertyIndexedList<T> extends EObjectResolvingEList<T> {
 				// An entry is removed
 				@SuppressWarnings("unchecked")
 				Map.Entry<String, T> entry = (Map.Entry<String, T>)msg.getNewValue();
-				System.out.println("REMOVE" + entry.getValue()
-						 + ", key=" + entry.getKey());
+				if(log.isDebugEnabled()) {
+					log.debug("REMOVE" + entry.getValue()
+							 + ", key=" + entry.getKey());
+				}
+
 				// Add the corresponding instance to propertyValues
 				try {
 					synchronizePropertyValue(entry.getKey(), NULL_VALUE);

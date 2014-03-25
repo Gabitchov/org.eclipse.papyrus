@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.viewpoints.policy;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -218,8 +219,11 @@ public class ViewPrototypeContentProvider implements ITreeContentProvider {
 	public Object[] getChildren(Object element) {
 		if (element == treeRoot)
 			return categories.toArray();
-		if (element instanceof Category)
-			return views.get((Category) element).toArray();
+		if (element instanceof Category) {
+			List<ViewPrototype> protos = new ArrayList<ViewPrototype>(views.get((Category) element));
+			Collections.sort(protos, new ViewPrototype.Comp());
+			return protos.toArray();
+		}
 		if (element instanceof ViewPrototype)
 			return getChildren((ViewPrototype) element);
 		return new Object[0];

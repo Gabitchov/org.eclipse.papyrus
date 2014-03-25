@@ -41,7 +41,6 @@ public class ShowCreateChildCommand extends AbstractLayerCommand implements IHan
 	 */
 	@Override
 	protected void doExecute(NotationDiagramHelper notationDiagramHelper) {
-		System.out.println( this.getClass().getSimpleName() + ".doExecute()");
 		notationDiagramHelper.attachLayersStack();
 	}
 

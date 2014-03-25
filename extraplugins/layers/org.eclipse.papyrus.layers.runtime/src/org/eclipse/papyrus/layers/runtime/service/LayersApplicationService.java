@@ -10,7 +10,8 @@
  ******************************************************************************/
 package org.eclipse.papyrus.layers.runtime.service;
 
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import static org.eclipse.papyrus.layers.runtime.Activator.log;
+
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.IService;
@@ -20,7 +21,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.layers.runtime.LayerStackApplicationSynchronizer;
 import org.eclipse.papyrus.layers.runtime.model.LayersModel;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
-
 
 /**
  * @author cedric dumoulin
@@ -38,10 +38,6 @@ public class LayersApplicationService implements IService {
 	 * The synchronizer used to listen on events and to synchronize layers and notation.
 	 */
 	protected LayerStackApplicationSynchronizer layersSynchronizer;
-	/**
-	 * Papyrus editor instance
-	 */
-	private IMultiDiagramEditor multiDiagramEditor;
 	/**
 	 * associated layerModel.
 	 */
@@ -69,7 +65,7 @@ public class LayersApplicationService implements IService {
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 		// Retrieve required services.
 		modelSet = servicesRegistry.getService(ModelSet.class);
-		multiDiagramEditor = servicesRegistry.getService(IMultiDiagramEditor.class);
+//		multiDiagramEditor = servicesRegistry.getService(IMultiDiagramEditor.class);
 	}
 
 	/**
@@ -93,11 +89,13 @@ public class LayersApplicationService implements IService {
 		// Check model
 		LayersStackApplication application = layersModel.getModelRoot();
 		boolean isAlreadyExist = (application !=null);
-		if( isAlreadyExist) {
-			System.out.println("LayerApplication already exist in modelSet");
-		}
-		else {
-			System.out.println("LayerApplication do not exist in modelSet");			
+		if( log.isDebugEnabled() ) {
+			if( isAlreadyExist) {
+				log.debug("LayerApplication already exist in modelSet");
+			}
+			else {
+				log.debug("LayerApplication do not exist in modelSet");			
+			}
 		}
 		
 		// Start synchronizer
@@ -117,7 +115,7 @@ public class LayersApplicationService implements IService {
 		layersSynchronizer = null;
 		layersModel = null;
 		modelSet = null;
-		multiDiagramEditor = null;
+//		multiDiagramEditor = null;
 
 	}
 

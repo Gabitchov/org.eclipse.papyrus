@@ -21,6 +21,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.AbstractLayer;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperatorDescriptor;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.StackedLayerOperator;
+import static org.eclipse.papyrus.layers.stackmodel.Activator.log;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,9 +81,9 @@ public class StackedLayerOperatorImpl extends AbstractLayerOperatorImpl implemen
 			setLayerOperatorDescriptor(descriptor);
 		} catch (NotFoundException e) {
 			// Not found
-			// TODO log the error
-			System.err.println("LOG-" + this.getClass().getName() 
-					+ "- Can't get LayerOperatorDescriptor for descriptorName '" + getLayerOperatorDescriptorName() + "'.");
+			log.error( this.getClass().getName() 
+					+ "- Can't get LayerOperatorDescriptor for descriptorName '" + getLayerOperatorDescriptorName() + "'."
+					, e);
 		}
 	}
 

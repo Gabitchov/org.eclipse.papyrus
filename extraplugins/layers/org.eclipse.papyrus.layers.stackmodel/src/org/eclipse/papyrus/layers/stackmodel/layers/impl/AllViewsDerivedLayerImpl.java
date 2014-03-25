@@ -7,6 +7,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.AllViewsDerivedLayer;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.util.DiagramViewToListSynchronizer;
+import static org.eclipse.papyrus.layers.stackmodel.Activator.log;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +60,10 @@ public class AllViewsDerivedLayerImpl extends AbstractLayerImpl implements AllVi
 	public void initLayer(LayersStack owningLayersStack) {
 		super.initLayer(owningLayersStack);
 		
-		System.err.println(this.getClass().getSimpleName() + ".initLayer(" + owningLayersStack + ")");
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".initLayer(" + owningLayersStack + ")");
+		}
+
 		// Set the diagram associated to this tree of layers
 		viewsListSynchronizer.setDiagram(owningLayersStack.getDiagram());
 	}

@@ -89,8 +89,14 @@ public abstract class AbstractFixEdgeAnchorDeferredCommand extends AbstractTrans
 	 */
 	protected void refreshConnection(final AbstractConnectionEditPart connectionToRefresh) {
 		connectionToRefresh.refresh();
-		connectionToRefresh.getSource().refresh();
-		connectionToRefresh.getTarget().refresh();
+		final EditPart sourceEp = connectionToRefresh.getSource();
+		if(sourceEp != null) {
+			sourceEp.refresh();
+		}
+		final EditPart targetEP = connectionToRefresh.getTarget();
+		if(targetEP != null) {
+			targetEP.refresh();
+		}
 		//to force the call to the router, to update the figure
 		connectionToRefresh.getFigure().validate();
 	}

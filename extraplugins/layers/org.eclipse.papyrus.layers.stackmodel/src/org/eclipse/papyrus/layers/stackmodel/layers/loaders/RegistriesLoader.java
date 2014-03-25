@@ -20,6 +20,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperatorDescriptorRegis
 import org.eclipse.papyrus.layers.stackmodel.layers.Property;
 import org.eclipse.papyrus.layers.stackmodel.layers.PropertyOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.PropertyRegistry;
+import static org.eclipse.papyrus.layers.stackmodel.Activator.log;
 
 
 /**
@@ -61,8 +62,7 @@ public class RegistriesLoader implements ILayerOperatorDescriptorRegistryLoader 
 				LayerOperatorDescriptor descriptor = layerOperatorConfig.createLayersOperatorDescriptor();
 				descriptorRegistry.addLayerOperatorDescriptor(descriptor);
 			} catch (InstanciationException e) {
-				System.err.println("LOG - " + this.getClass().getName() + " - " + e.getMessage());
-				e.printStackTrace();
+				log.error("LOG - " + this.getClass().getName() + " - " + e.getMessage(), e);
 			}
 		}
 		
@@ -72,8 +72,7 @@ public class RegistriesLoader implements ILayerOperatorDescriptorRegistryLoader 
 				PropertyOperator operator = operatorConfig.createOperatorDescriptor();
 				descriptorRegistry.addPropertyOperator(operator);
 			} catch (InstanciationException e) {
-				System.err.println("LOG - " + this.getClass().getName() + " - " + e.getMessage());
-				e.printStackTrace();
+				log.error("LOG - " + this.getClass().getName() + " - " + e.getMessage(), e);
 			}
 			
 		}
@@ -86,8 +85,7 @@ public class RegistriesLoader implements ILayerOperatorDescriptorRegistryLoader 
 				String operatorName = binding.getOperator().getName();
 				descriptorRegistry.attachOperatorToDescriptor(property, operatorName, layerDescriptorName);
 			} catch (NotFoundException e) {
-				System.err.println("LOG - " + this.getClass().getName() + " - " + e.getMessage());
-				e.printStackTrace();
+				log.error("LOG - " + this.getClass().getName() + " - " + e.getMessage(), e);
 			}
 			
 		}

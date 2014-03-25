@@ -23,6 +23,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
+import static org.eclipse.papyrus.layers.ui.Activator.log;
 
 public abstract class AbstractCreateLayerExpressionHandler extends AbstractLayersCommand {
 
@@ -45,7 +46,9 @@ public abstract class AbstractCreateLayerExpressionHandler extends AbstractLayer
 	 */
 	@Override
 	protected void doExecute(ExecutionEvent event, IEvaluationContext context, List<Object> selections) {
-		System.out.println( this.getClass().getSimpleName() + ".doExecute()");
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".doExecute()");
+		}
 		
 		if(!isEnabled(context, selections)) {
 			return;
@@ -72,7 +75,9 @@ public abstract class AbstractCreateLayerExpressionHandler extends AbstractLayer
 		layer.setName("layer" + creationCount++);
 		layer.setApplication(application);
 		
-		System.out.println( this.getClass().getSimpleName() + ". layerCreated");
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ". layerCreated");
+		}
 	
 		// insert layer in selected object
 		Object selection = selections.get(0);
@@ -108,7 +113,9 @@ public abstract class AbstractCreateLayerExpressionHandler extends AbstractLayer
 	    }
 	    Object first = selections.get(0);
 	    boolean res = (first instanceof LayerOperator) || (first instanceof LayersStack);
-	    System.err.println("isEnable(" + res + ")");
+//	    if(log.isDebugEnabled()) {
+//			log.debug("isEnable(" + res + ")");
+//		}
 		return res;
 	}
 

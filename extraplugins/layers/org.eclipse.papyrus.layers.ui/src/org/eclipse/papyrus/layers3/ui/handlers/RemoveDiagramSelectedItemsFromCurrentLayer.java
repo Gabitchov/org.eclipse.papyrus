@@ -33,6 +33,7 @@ import org.eclipse.papyrus.layers3.ui.commands.AbstractLayersCommand;
 import org.eclipse.papyrus.layers3.ui.view.LayersExplorerView;
 import org.eclipse.papyrus.layers3.ui.view.LayersExplorerViewUtils;
 import org.eclipse.ui.IEditorPart;
+import static org.eclipse.papyrus.layers.ui.Activator.log;
 
 /**
  * Remove the items selected in the diagram from the current Layer.
@@ -68,12 +69,12 @@ public class RemoveDiagramSelectedItemsFromCurrentLayer extends AbstractLayersCo
 			currentLayer = getSelectedLayerFromLayerExplorer(context);
 		} catch (NotFoundException e) {
 			// fail
-			System.err.println("ERROR - " + this.getClass().getName() + " - " +e.getMessage());
+			log.error("ERROR - " + this.getClass().getName() + " - " +e.getMessage(), e);
 			return;
 		}
 		
-		System.out.println("selected views=" + diagramSelectedViews);
-		System.out.println("selected layer=" + currentLayer.getName());
+//		System.out.println("selected views=" + diagramSelectedViews);
+//		System.out.println("selected layer=" + currentLayer.getName());
 		
 		currentLayer.getViews().removeAll(diagramSelectedViews);
 	}
