@@ -10,11 +10,13 @@
  * Contributors:
  *  Vincent Hemery (Atos) - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 421411
+ *  Christian W. Damus (CEA) - bug 384169
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
 
 import org.eclipse.core.commands.operations.IOperationHistory;
+import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -71,5 +73,16 @@ public class CheckedDiagramCommandStack extends DiagramCommandStack {
 		} else {
 			return null;
 		}
+	}
+	
+	@Override
+	public void dispose() {
+		// Flush my undo context
+		IUndoContext context = getUndoContext();
+		if((context != null) && (operationHistory != null)) {
+			operationHistory.dispose(context, true, true, true);
+		}
+		
+		super.dispose();
 	}
 }

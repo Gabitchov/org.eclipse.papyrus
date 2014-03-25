@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - bug 402525
  *  Christian W. Damus (CEA) - bug 430648
  *  Christian W. Damus (CEA) - bug 431023
+ *  Christian W. Damus (CEA) - bug 384169
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
@@ -450,6 +451,8 @@ implements IWorkspaceCommandStack {
 		}
 		proxyOperationListeners.clear();
 
+		// Flush default and savepoint undo contexts
+		flush();
 	}
 
 	/**
