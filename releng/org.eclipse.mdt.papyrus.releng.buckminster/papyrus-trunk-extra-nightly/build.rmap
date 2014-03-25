@@ -204,9 +204,9 @@
       </rm:uri>
     </rm:provider>
     
-    <!-- Incoming -->
+    <!-- Layers -->
     <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/incoming/{1}">
+      <rm:uri format="{0}/extraplugins/layers/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
