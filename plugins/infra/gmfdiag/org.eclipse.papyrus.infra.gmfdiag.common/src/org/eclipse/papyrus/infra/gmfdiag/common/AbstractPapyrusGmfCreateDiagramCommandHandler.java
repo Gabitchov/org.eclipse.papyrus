@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008, 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -49,6 +49,7 @@ import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
@@ -65,13 +66,13 @@ import org.eclipse.ui.PlatformUI;
 /**
  * Command creating a new GMF diagram in Papyrus. This command is intended to be used in eclipse
  * extensions.
- * 
+ *
  * Commands to create a GMF Diagram can subclass this class. There is two kinds of commands: -
  * Eclipse handlers issuing commands (toolbar, menu, ...). This commands can find the active editor
  * by using the Worbench.getActivePArt(). The entry point is {@link #execute(ExecutionEvent)}. -
  * Commands called during editor initializing (like wizard). This commands require the diResourceSet
  * to work. The entry point is {@link #createDiagram(Resource, EObject, String)}
- * 
+ *
  * @author cedric dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
@@ -79,15 +80,20 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 	/**
 	 * Inner class for the creation of diagrams
-	 * 
+	 *
 	 * @author Laurent Wouters
 	 *
 	 */
 	private class Creator {
+
 		private ModelSet modelSet;
+
 		private EObject owner;
+
 		private EObject element;
+
 		private ViewPrototype prototype;
+
 		private String name;
 
 		public Creator(ModelSet modelSet, EObject owner, EObject element, ViewPrototype prototype, String name) {
@@ -103,39 +109,42 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			Resource notationResource = NotationUtils.getNotationResource(modelSet);
 			Resource diResource = DiModelUtils.getDiResource(modelSet);
 
-			if (owner == null) {
+			if(owner == null) {
 				owner = getRootElement(modelResource);
 				attachModelToResource(owner, modelResource);
 			}
 
-			if (!PolicyChecker.getCurrent().canOwnNewView(owner, prototype)) {
-				ModelElementSelectionDialog dialog = new ModelElementSelectionDialog(Display.getCurrent().getActiveShell(), getMultiDiagramEditor().getServicesRegistry(), "Select an appropriate owner for the diagram:", getRootElement(modelResource), owner,
-						new IModelElementValidator() {
-							public String isSelectable(EObject element) {
-								if (PolicyChecker.getCurrent().canOwnNewView(owner, prototype))
-									return null;
-								return "This element cannot own the diagram.";
-							}
-						});
+			if(!PolicyChecker.getCurrent().canOwnNewView(owner, prototype)) {
+				ModelElementSelectionDialog dialog = new ModelElementSelectionDialog(Display.getCurrent().getActiveShell(), ServiceUtilsForResourceSet.getInstance().getServiceRegistry(modelSet), "Select an appropriate owner for the diagram:", getRootElement(modelResource), owner, new IModelElementValidator() {
+
+					@Override
+					public String isSelectable(EObject element) {
+						if(PolicyChecker.getCurrent().canOwnNewView(owner, prototype)) {
+							return null;
+						}
+						return "This element cannot own the diagram.";
+					}
+				});
 				int result = dialog.open();
-				if (result != Window.OK)
+				if(result != Window.OK) {
 					return null;
+				}
 				owner = dialog.getSelection();
 			}
 
 			element = prototype.getRootFor(owner);
-			if (!PolicyChecker.getCurrent().canHaveNewView(element, owner, prototype)) {
+			if(!PolicyChecker.getCurrent().canHaveNewView(element, owner, prototype)) {
 				StringBuilder builder = new StringBuilder("Select a root element for the diagram. Allowed types: ");
-				if (prototype.getConfiguration() == null) {
+				if(prototype.getConfiguration() == null) {
 					builder.append("<unknown>");
-				} else if (prototype.getConfiguration().getModelRules().size() == 0) {
+				} else if(prototype.getConfiguration().getModelRules().size() == 0) {
 					builder.append("<unknown>");
 				} else {
 					boolean first = true;
-					for (ModelRule rule : prototype.getConfiguration().getModelRules()) {
+					for(ModelRule rule : prototype.getConfiguration().getModelRules()) {
 						EClass model = rule.getElement();
-						if (model != null) {
-							if (!first) {
+						if(model != null) {
+							if(!first) {
 								builder.append(", ");
 							}
 							first = false;
@@ -144,31 +153,34 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 					}
 				}
 				builder.append(".");
-				ModelElementSelectionDialog dialog = new ModelElementSelectionDialog(Display.getCurrent().getActiveShell(), getMultiDiagramEditor().getServicesRegistry(), builder.toString(), getRootElement(modelResource), element,
-						new IModelElementValidator() {
-							public String isSelectable(EObject element) {
-								if (PolicyChecker.getCurrent().canHaveNewView(element, owner, prototype))
-									return null;
-								return "This element cannot be the root element of the diagram.";
-							}
-						});
+				ModelElementSelectionDialog dialog = new ModelElementSelectionDialog(Display.getCurrent().getActiveShell(), ServiceUtilsForResourceSet.getInstance().getServiceRegistry(modelSet), builder.toString(), getRootElement(modelResource), element, new IModelElementValidator() {
+
+					@Override
+					public String isSelectable(EObject element) {
+						if(PolicyChecker.getCurrent().canHaveNewView(element, owner, prototype)) {
+							return null;
+						}
+						return "This element cannot be the root element of the diagram.";
+					}
+				});
 				int result = dialog.open();
-				if (result != Window.OK)
+				if(result != Window.OK) {
 					return null;
+				}
 				element = dialog.getSelection();
 			}
 
-			if (name == null) {
+			if(name == null) {
 				name = openDiagramNameDialog(prototype.isNatural() ? getDefaultDiagramName() : "New" + prototype.getLabel().replace(" ", ""));
 			}
 			// canceled
-			if (name == null) {
+			if(name == null) {
 				return null;
 			}
 
 			Diagram diagram = doCreateDiagram(notationResource, owner, element, prototype, name);
 
-			if (diagram != null) {
+			if(diagram != null) {
 				IPageManager pageManager = ServiceUtilsForResource.getInstance().getIPageManager(diResource);
 				pageManager.addPage(diagram);
 
@@ -183,10 +195,10 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	private EObject getRootElement(Resource modelResource) {
 		EObject rootElement = null;
-		if (modelResource != null && modelResource.getContents() != null && modelResource.getContents().size() > 0) {
+		if(modelResource != null && modelResource.getContents() != null && modelResource.getContents().size() > 0) {
 			Object root = modelResource.getContents().get(0);
-			if (root instanceof EObject) {
-				rootElement = (EObject) root;
+			if(root instanceof EObject) {
+				rootElement = (EObject)root;
 			}
 		}
 
@@ -206,27 +218,27 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	private IMultiDiagramEditor getMultiDiagramEditor() {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editorPart = page.getActiveEditor();
-		return (IMultiDiagramEditor) editorPart;
+		return (IMultiDiagramEditor)editorPart;
 	}
 
 	/**
 	 * Open popup to enter the new diagram name
-	 * 
+	 *
 	 * @param defaultValue
-	 *            the default value
+	 *        the default value
 	 * @return the entered diagram name
 	 */
 	private String openDiagramNameDialog(String defaultValue) {
-		if (defaultValue == null) {
+		if(defaultValue == null) {
 			defaultValue = "";
 		}
 
 		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_SelectNewDiagramName, Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_NewDiagramName, defaultValue, null);
 		int result = inputDialog.open();
 
-		if (result == Window.OK) {
+		if(result == Window.OK) {
 			String name = inputDialog.getValue();
-			if (name == null || name.length() == 0) {
+			if(name == null || name.length() == 0) {
 				name = defaultValue;
 			}
 			return name;
@@ -238,20 +250,25 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.commands.ICreationCommand#createDiagram(org.eclipse.emf.ecore.resource.Resource, org.eclipse.emf.ecore.EObject, java.lang.String)
+	 * @see org.eclipse.papyrus.commands.ICreationCommand#createDiagram(org.eclipse.emf.ecore.resource.Resource, org.eclipse.emf.ecore.EObject,
+	 * java.lang.String)
 	 */
+	@Override
 	public final Diagram createDiagram(ModelSet modelSet, EObject owner, String name) {
 		ViewPrototype proto = ViewPrototype.get(getCreatedDiagramType(), owner, owner);
-		if (proto == null)
+		if(proto == null) {
 			return null;
+		}
 		return createDiagram(modelSet, owner, owner, proto, name);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.commands.ICreationCommand#createDiagram(org.eclipse.emf.ecore.resource.Resource, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype, java.lang.String)
+	 * @see org.eclipse.papyrus.commands.ICreationCommand#createDiagram(org.eclipse.emf.ecore.resource.Resource, org.eclipse.emf.ecore.EObject,
+	 * org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype, java.lang.String)
 	 */
+	@Override
 	public final Diagram createDiagram(ModelSet modelSet, EObject owner, EObject element, ViewPrototype prototype, String name) {
 		ICommand createCmd = getCreateDiagramCommand(modelSet, owner, element, prototype, name);
 		TransactionalEditingDomain dom = modelSet.getTransactionalEditingDomain();
@@ -265,37 +282,45 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.commands.ICreationCommand#getCreateDiagramCommand(org.eclipse.papyrus.infra.core.resource.ModelSet, org.eclipse.emf.ecore.EObject, java.lang.String)
+	 * @see org.eclipse.papyrus.commands.ICreationCommand#getCreateDiagramCommand(org.eclipse.papyrus.infra.core.resource.ModelSet,
+	 * org.eclipse.emf.ecore.EObject, java.lang.String)
 	 */
+	@Override
 	public final ICommand getCreateDiagramCommand(ModelSet modelSet, EObject owner, String name) {
 		ViewPrototype proto = ViewPrototype.get(getCreatedDiagramType(), owner, owner);
-		if (proto == null)
+		if(proto == null) {
 			return null;
+		}
 		return getCreateDiagramCommand(modelSet, owner, owner, proto, name);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.commands.ICreationCommand#getCreateDiagramCommand(org.eclipse.papyrus.infra.core.resource.ModelSet, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype,
+	 * @see org.eclipse.papyrus.commands.ICreationCommand#getCreateDiagramCommand(org.eclipse.papyrus.infra.core.resource.ModelSet,
+	 * org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype,
 	 * java.lang.String)
 	 */
+	@Override
 	public final ICommand getCreateDiagramCommand(final ModelSet modelSet, final EObject owner, final EObject element, final ViewPrototype prototype, final String name) {
 		// Diagram creation should not change the semantic resource
 		final Resource notationResource = NotationUtils.getNotationResource(modelSet);
 		final Resource diResource = DiModelUtils.getDiResource(modelSet);
 
 		ArrayList<IFile> modifiedFiles = new ArrayList<IFile>();
-		if (notationResource.getURI().isPlatformResource()) {
+		if(notationResource.getURI().isPlatformResource()) {
 			modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(notationResource.getURI().toPlatformString(true))));
 		}
-		if (diResource.getURI().isPlatformResource()) {
+		if(diResource.getURI().isPlatformResource()) {
 			modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(diResource.getURI().toPlatformString(true))));
 		}
 
 		return new AbstractTransactionalCommand(modelSet.getTransactionalEditingDomain(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel, modifiedFiles) {
+
 			private Diagram diagram = null;
+
 			private EObject diagramElement = null;
+
 			private EObject diagramOwner = null;
 
 			@Override
@@ -303,8 +328,9 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				Creator creator = new Creator(modelSet, owner, element, prototype, name);
 				try {
 					diagram = creator.createDiagram();
-					if (diagram == null)
+					if(diagram == null) {
 						return CommandResult.newCancelledCommandResult();
+					}
 					diagramElement = diagram.getElement();
 					diagramOwner = DiagramUtils.getOwner(diagram);
 					return CommandResult.newOKCommandResult(diagram);
@@ -337,18 +363,20 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.commands.ICreationCommand#getCreatedDiagramType()
 	 */
+	@Override
 	public String getCreatedDiagramType() {
 		return getDiagramNotationID();
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.commands.ICreationCommand#isParentReassignable()
 	 */
+	@Override
 	public boolean isParentReassignable() {
 		// yes by default
 		return true;
@@ -356,6 +384,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 
 
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// This method should not be called, use the execute(ExecutionEvent, ViewPrototype, String) method.
 		throw new UnsupportedOperationException();
@@ -370,28 +399,29 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 	/**
 	 * Overridable method that effectively create the diagram with the given validated parameters
-	 * 
+	 *
 	 * @param diagramResource
-	 *            the diagram resource
+	 *        the diagram resource
 	 * @param owner
-	 *            the diagram's owner
+	 *        the diagram's owner
 	 * @param element
-	 *            the diagram's model element
+	 *        the diagram's model element
 	 * @param prototype
-	 *            the diagram's prototype
+	 *        the diagram's prototype
 	 * @param name
-	 *            the diagram's name
+	 *        the diagram's name
 	 * @return the created diagram, or <code>null</code> if the creation failed
 	 */
 	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, ViewPrototype prototype, String name) {
 		// create diagram
 		Diagram diagram = ViewService.createDiagram(element, getDiagramNotationID(), getPreferenceHint());
-		if (diagram != null) {
+		if(diagram != null) {
 			diagram.setName(name);
 			diagram.setElement(element);
 			DiagramUtils.setOwner(diagram, owner);
-			if (!prototype.isNatural())
+			if(!prototype.isNatural()) {
 				DiagramUtils.setPrototype(diagram, prototype);
+			}
 			initializeDiagram(diagram);
 			diagramResource.getContents().add(diagram);
 		}
@@ -400,12 +430,11 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 	/**
 	 * Overridable method for the initialization of create diagrams
-	 * 
+	 *
 	 * @param diagram
-	 *            the created diagram
+	 *        the created diagram
 	 */
 	protected void initializeDiagram(EObject diagram) {
 
 	};
 }
-
