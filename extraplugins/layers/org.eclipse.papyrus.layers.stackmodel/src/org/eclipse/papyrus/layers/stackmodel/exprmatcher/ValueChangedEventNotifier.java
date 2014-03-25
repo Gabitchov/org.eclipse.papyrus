@@ -25,6 +25,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
 import org.eclipse.papyrus.layers.stackmodel.notifier.LayersTreeEventNotifier;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
+import static org.eclipse.papyrus.layers.stackmodel.Activator.log;
 
 
 /**
@@ -247,8 +248,10 @@ public class ValueChangedEventNotifier extends EContentAdapter {
 	@Override
 	protected void selfAdapt(Notification notification)
 	{
-		System.err.println( this.getClass().getSimpleName() + ".selfAdapt("+ notification+")" );
-		// Handle the View::element tree
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".selfAdapt("+ notification+")" );
+		}
+
 		if (notification.getFeature() == NotationPackage.eINSTANCE.getView_Element())
 		{
 			handleContainment(notification);
@@ -266,13 +269,15 @@ public class ValueChangedEventNotifier extends EContentAdapter {
 	 */
 	@Override
 	protected void setTarget(EObject target) {
-		System.err.println( this.getClass().getSimpleName() + ".setTarget("+ target+")" );
-		super.setTarget(target);
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".setTarget("+ target+")" );
+		}
+
 		// Handle the View::element tree
 		if( target instanceof View ) {
 			EObject extraTarget = ((View)target).getElement();
 			if( extraTarget != null) {
-				System.err.println( this.getClass().getSimpleName() + ".setExtraTarget("+ extraTarget+")" );
+				log.info( this.getClass().getSimpleName() + ".setExtraTarget("+ extraTarget+")" );
 				// copied from org.eclipse.emf.ecore.util.EContentAdapter.setTarget(EObject)
 //			    basicSetTarget(target);
 				// Add the extra object

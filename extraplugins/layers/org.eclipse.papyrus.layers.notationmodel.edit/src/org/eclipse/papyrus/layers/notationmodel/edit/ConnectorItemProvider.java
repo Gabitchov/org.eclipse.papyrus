@@ -45,7 +45,7 @@ public class ConnectorItemProvider extends org.eclipse.gmf.runtime.notation.prov
 	@Override
 	public String getText(Object object) {
 		
-		System.err.println("getText()");
+//		System.err.println("getText()");
 		Shape shape = (Shape)object;
 		
 		Object domainObject = shape.getElement();
@@ -69,7 +69,7 @@ public class ConnectorItemProvider extends org.eclipse.gmf.runtime.notation.prov
 	 */
 	@Override
 	public Object getImage(Object object) {
-		System.err.println("getImage()");
+//		System.err.println("getImage()");
 		Shape shape = (Shape)object;
 		
 		Object domainObject = shape.getElement();

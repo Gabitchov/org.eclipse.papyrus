@@ -26,6 +26,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.operators.CustomPropertyOperatorsInstance;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceException;
+import static org.eclipse.papyrus.layers.stackmodel.Activator.log;
 
 /**
  * <!-- begin-user-doc -->
@@ -157,8 +158,8 @@ public class CustomPropertyOperatorImpl extends PropertyOperatorImpl implements 
 				resetOperatorInstance();
 			} catch (LayersException e) {
 				// TODO log the error
-				System.err.println("LOG-" + this.getClass().getName() 
-						+ "- Can't set custom operator instance '" + e.getMessage() + "'.");
+				log.error("LOG-" + this.getClass().getName() 
+						+ "- Can't set custom operator instance '" + e.getMessage() + "'.", e);
 				
 			}
 		}

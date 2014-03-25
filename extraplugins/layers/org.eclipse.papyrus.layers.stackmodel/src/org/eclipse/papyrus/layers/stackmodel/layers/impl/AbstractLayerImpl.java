@@ -44,6 +44,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
 import org.eclipse.papyrus.layers.stackmodel.layers.NullInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.Property;
 import org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance;
+import static org.eclipse.papyrus.layers.stackmodel.Activator.log;
 
 /**
  * <!-- begin-user-doc -->
@@ -533,7 +534,10 @@ public abstract class AbstractLayerImpl extends LayerExpressionImpl implements A
 		
 		@Override
 		public void notifyChanged(Notification msg) {
-			System.err.println("event " + msg.getEventType());
+			if(log.isDebugEnabled()) {
+				log.debug("event " + msg.getEventType());
+				
+			}
 			
 			switch(msg.getFeatureID(AbstractLayer.class)) {
 			case LayersPackage.ABSTRACT_LAYER__PROPERTY_VALUE_MAP:
@@ -554,7 +558,11 @@ public abstract class AbstractLayerImpl extends LayerExpressionImpl implements A
 		 * @param msg
 		 */
 		protected void notifyLayerPropertyValueMapChanged(Notification msg) {
-			System.err.println("map changed " + msg.getEventType());
+			
+			if(log.isDebugEnabled()) {
+				log.debug("map changed " + msg.getEventType());
+			}
+
 			switch(msg.getEventType()) {
 			case Notification.SET:	
 			{
@@ -562,9 +570,12 @@ public abstract class AbstractLayerImpl extends LayerExpressionImpl implements A
 				// Add the value to other list
 				// An entry is added
 				StringToTypeInstanceMapImpl entry = (StringToTypeInstanceMapImpl)msg.getNewValue();
-				System.out.println("SET - newValue=" + entry.getValue()
-						 + ", key=" + entry.getKey());
-				
+
+				if(log.isDebugEnabled()) {
+					log.debug("SET - newValue=" + entry.getValue()
+							 + ", key=" + entry.getKey());
+				}
+								
 				String newKey = entry.getKey();
 				TypeInstance value = entry.getValue();
 				if( value != null) {
@@ -589,8 +600,12 @@ public abstract class AbstractLayerImpl extends LayerExpressionImpl implements A
 			{
 				// An entry is added
 				StringToTypeInstanceMapImpl entry = (StringToTypeInstanceMapImpl)msg.getNewValue();
-				System.out.println("ADD - newValue=" + entry.getValue()
-						 + ", key=" + entry.getKey());
+				
+				if(log.isDebugEnabled()) {
+					log.debug("ADD - newValue=" + entry.getValue()
+							 + ", key=" + entry.getKey());
+				}
+
 				// Add the corresponding instance to propertyValues
 				try {
 					synchronizePropertyValue(entry.getKey(), entry.getValue());
@@ -604,8 +619,12 @@ public abstract class AbstractLayerImpl extends LayerExpressionImpl implements A
 			{
 				// An entry is removed
 				StringToTypeInstanceMapImpl entry = (StringToTypeInstanceMapImpl)msg.getOldValue();
-				System.out.println("REMOVE" + entry.getValue()
-						 + ", key=" + entry.getKey());
+				
+				if(log.isDebugEnabled()) {
+					log.debug("REMOVE" + entry.getValue()
+							 + ", key=" + entry.getKey());
+				}
+
 				// Add the corresponding instance to propertyValues
 				try {
 					synchronizePropertyValue(entry.getKey(), NullInstance.NULLINSTANCE);
@@ -625,7 +644,10 @@ public abstract class AbstractLayerImpl extends LayerExpressionImpl implements A
 		 * @param msg
 		 */
 		protected void notifyLayerApplicationFeatureChanged(Notification msg) {
-			System.err.println("application changed " + msg.getEventType());
+			if(log.isDebugEnabled()) {
+				log.debug("application changed " + msg.getEventType());
+			}
+
 			switch(msg.getEventType()) {
 			case Notification.SET:	
 			{

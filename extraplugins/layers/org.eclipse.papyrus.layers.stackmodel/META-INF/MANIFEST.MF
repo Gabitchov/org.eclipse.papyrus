@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml;bundle-version="4.1.0",
  org.eclipse.ocl.ecore;bundle-version="3.3.0",
  org.eclipse.emf.query.ocl;bundle-version="2.0.0",
- com.google.guava;bundle-version="11.0.2"
+ com.google.guava;bundle-version="11.0.2",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -26,3 +27,4 @@ Export-Package: org.eclipse.papyrus.layers.configmodel.layersconfig,
  org.eclipse.papyrus.layers.stackmodel.layers.impl,
  org.eclipse.papyrus.layers.stackmodel.layers.util,
  org.eclipse.papyrus.layers.stackmodel.notifier
+Bundle-Activator: org.eclipse.papyrus.layers.stackmodel.Activator

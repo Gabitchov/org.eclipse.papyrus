@@ -27,6 +27,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.Property;
 import org.eclipse.papyrus.layers.stackmodel.layers.PropertySetter;
 import org.eclipse.papyrus.layers.stackmodel.notifier.DiagramViewEventNotifier;
 import org.eclipse.papyrus.layers.stackmodel.notifier.IDiagramViewEventListener;
+import static org.eclipse.papyrus.layers.runtime.Activator.log;
 
 
 /**
@@ -172,7 +173,10 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 */
 	@Override
 	public void propertyValueAdded(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + ".propertyValueAdded " + notification.getNewValue());
+		
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".propertyValueAdded " + notification.getNewValue());
+		}
 
 		PropertySetter setter = null;
 		try {
@@ -202,14 +206,13 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 				  setter.setValue(views.get(i), commands.get(i).getCmdValue() );
 				} 
 				else {
-					System.err.println( this.getClass().getSimpleName() + "ERROR - a cmd is null " + commands);
+					log.info(this.getClass().getSimpleName() + "ERROR - a cmd is null " + commands);
 				}
 			}
 		} catch (NotFoundException e) {
-			System.err.println(e.getMessage());
+			log.error(e);
 		}	catch (LayersException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e);
 		}	catch (UnsupportedOperationException e) {
 			// A setter or getter is not implemented
 			throw new UnsupportedOperationException("setter='" + setter.getClass().getName()+"'", e);
@@ -220,7 +223,9 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 
 	@Override
 	public void propertyValueRemoved(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + ".propertyValueRemoved " + notification.getOldValue());
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".propertyValueRemoved " + notification.getOldValue());
+		}
 
 		try {
 			// Name of the property
@@ -254,10 +259,9 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 
 			}
 		} catch (NotFoundException e) {
-			System.err.println(e.getMessage());
+			log.error(e);
 		} catch (LayersException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e);
 		}		
 	}
 
@@ -265,7 +269,9 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 
 	@Override
 	public void propertyValueChanged(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + ".propertyValueChanged " + notification.getNewValue());
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".propertyValueChanged " + notification.getNewValue());
+		}
 
 		// If LayerExpression::IsLayerEnabled() is changed, treat it separately.
 		if(notification.getFeature() == LayersPackage.eINSTANCE.getLayerExpression_IsLayerEnabled()) {
@@ -303,10 +309,9 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 				}
 			}
 		} catch (NotFoundException e) {
-			System.err.println(e.getMessage());
+			log.error(e);
 		} catch (LayersException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e);
 		}
 	}
 
@@ -319,8 +324,12 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 * @param notification
 	 */
 	private void propertyValueChangedIsLayerEnabled(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + ".propertyValueChangedIsLayerEnabled " + notification.getNewValue());
 		
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".propertyValueChangedIsLayerEnabled " + notification.getNewValue());
+			
+		}
+
 		try {
 			
 			checkApplication();
@@ -331,10 +340,9 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 			
 			recomputePropertiesForAllViewsOf(layer);
 		} catch (NotFoundException e) {
-			System.err.println(e.getMessage());
+			log.error(e);
 		} catch (LayersException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e);
 		}
 	}
 
@@ -387,7 +395,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 
 			} catch (NotFoundException e) {
 				// No setter found
-				System.err.println(e.getMessage());
+				log.error(e);
 			} catch (NullPointerException e) {
 				// A command is null
 			}
@@ -399,10 +407,12 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 
 	@Override
 	public void layerAdded(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + ".layerAdded() " + notification.getNewValue());
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".layerAdded() " + notification.getNewValue());
+		}
 
 		if( ! (notification.getNewValue() instanceof AbstractLayer) ) {
-			System.err.println( "TODO: " + this.getClass().getSimpleName() + ".layerAdded() " + notification.getOldValue() + " - recompute for LayerOperator not implemented yet.");;
+			log.info( "TODO: " + this.getClass().getSimpleName() + ".layerAdded() " + notification.getOldValue() + " - recompute for LayerOperator not implemented yet.");;
             return;
 		}
 
@@ -413,7 +423,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 			checkApplication();
 			recomputePropertiesForAllViewsOf(layer);
 		} catch (LayersException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 
 	}
@@ -422,10 +432,12 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 
 	@Override
 	public void layerRemoved(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + " layerRemoved() " + notification.getOldValue());
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + " layerRemoved() " + notification.getOldValue());
+		}
 
 		if( ! (notification.getOldValue() instanceof AbstractLayer) ) {
-			System.err.println( "TODO: " + this.getClass().getSimpleName() + ".layerRemoved() " + notification.getOldValue() + " - recompute() after removing layerOperator not implemented yet.");;
+			log.info( "TODO: " + this.getClass().getSimpleName() + ".layerRemoved() " + notification.getOldValue() + " - recompute() after removing layerOperator not implemented yet.");;
             return;
 		}
 		// Extract the affected layer
@@ -435,7 +447,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 			checkApplication();
 			recomputePropertiesForAllViewsOf(layer);
 		} catch (LayersException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 
 	}
@@ -472,7 +484,9 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 */
 	@Override
 	public void layerMoved(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + " layerMoved(not tested) " + notification.getNewValue());
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + " layerMoved(not tested) " + notification.getNewValue());
+		}
 
 		// Extract the affected layer
 		AbstractLayer layer = (AbstractLayer)notification.getNewValue();
@@ -481,7 +495,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 			checkApplication();
 			recomputePropertiesForAllViewsOf(layer);
 		} catch (LayersException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 
 	}
@@ -494,7 +508,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 */
 	@Override
 	public void layerSet(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + " layerSet(not implemented) " + notification.getNewValue());
+		log.info(this.getClass().getSimpleName() + " layerSet(not implemented) " + notification.getNewValue());
 
 	}
 
@@ -508,7 +522,10 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 */
 	@Override
 	public void viewAddedToLayer(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + " viewAddedToLayer( " + notification.getNewValue() + " )");
+		
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + " viewAddedToLayer( " + notification.getNewValue() + " )");
+		}
 
 		// We need to find the view, the layer in which it is added,
 		// and the properties attached to this layer.
@@ -536,21 +553,23 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 					setter.setValue(view, commands.get(i).getCmdValue() );
 				} catch (NotFoundException e) {
 					// No setter found
-					System.err.println(e.getMessage());
+					log.error("No setter found", e);
 				} catch (NullPointerException e) {
 					// A command is null
 				}
 			}
 		} catch (LayersException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e);
 		}
 	}
 
 
 	@Override
 	public void multiViewsAddedToLayer(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + ".multiViewsAddedToLayer( " + notification.getNewValue() + " )");
+		
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".multiViewsAddedToLayer( " + notification.getNewValue() + " )");
+		}
 
 		// We need to find the view, the layer in which it is added,
 		// and the properties attached to this layer.
@@ -564,7 +583,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 			recompute(views, properties);
 			
 		} catch (LayersException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 		
 	}
@@ -579,7 +598,10 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 */
 	@Override
 	public void viewRemovedFromLayer(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + " viewRemovedFromLayer( " + notification.getOldValue() + " )");
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + " viewRemovedFromLayer( " + notification.getOldValue() + " )");
+		}
+		
 		// We need to find the view, the layer in which it is added,
 		// and the properties attached to this layer.
 		// Then, we compute this property and set it to the view.
@@ -605,21 +627,24 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 					setter.setValue(view, commands.get(i).getCmdValue() );
 				} catch (NotFoundException e) {
 					// No setter found
-					System.err.println(e.getMessage());
+					log.error("No setter found", e);
 				} catch (NullPointerException e) {
 					// A command is null
 				}
 			}
 		} catch (LayersException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e);
 		}
 	}
 
 	@Override
 	public void multiViewsRemovedFromLayer(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + " multiViewsRemovedFromLayer( " + notification.getOldValue() + " )");
-
+		
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + " multiViewsRemovedFromLayer( " + notification.getOldValue() + " )");
+		}
+		
 		// We need to find the view, the layer in which it is added,
 		// and the properties attached to this layer.
 		// Then, we compute this property and set it to the view.
@@ -632,7 +657,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 			recompute(views, properties);
 			
 		} catch (LayersException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 		
 	}
@@ -648,7 +673,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 */
 	@Override
 	public void viewMovedBetweenLayer(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + " viewMovedBetweenLayer(not implemented) " + notification.getNewValue());
+		log.info(this.getClass().getSimpleName() + " viewMovedBetweenLayer(not implemented) " + notification.getNewValue());
 
 	}
 
@@ -662,7 +687,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 */
 	@Override
 	public void diagramViewAdded(Notification msg) {
-		System.out.println(this.getClass().getSimpleName() + " diagramViewAdded(not implemented) " + msg.getNewValue());
+		log.info(this.getClass().getSimpleName() + " diagramViewAdded(not implemented) " + msg.getNewValue());
 
 		// WARNING !!!
 		// Some filtering should be done on the event. 
@@ -682,7 +707,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 */
 	@Override
 	public void diagramViewRemoved(Notification msg) {
-		System.out.println(this.getClass().getSimpleName() + " diagramViewRemoved(not implemented) " + msg.getOldValue());
+		log.info(this.getClass().getSimpleName() + " diagramViewRemoved(not implemented) " + msg.getOldValue());
 
 		// WARNING !!!
 		// Some filtering should be done on the event. 

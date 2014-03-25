@@ -24,7 +24,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.impl.StringToTypeInstanceMapImpl;
 import org.eclipse.papyrus.layers.stackmodel.layers.util.ECoreUtils;
-
+import static org.eclipse.papyrus.layers.runtime.Activator.log;
 
 /**
  * This class listen to a {@link LayersStack} and send event to listeners.
@@ -52,7 +52,10 @@ public class LayersModelEventNotifier {
 		
 		@Override
 		public void notifyChanged(Notification notification) {
-			System.err.println( this.getClass().getSimpleName() + ".event received " + notification.getFeature());
+			if(log.isDebugEnabled() ) {
+				log.debug( this.getClass().getSimpleName() + ".event received " + notification.getFeature());
+			}	
+			
 			// Self atttach
 			super.notifyChanged(notification);
 			

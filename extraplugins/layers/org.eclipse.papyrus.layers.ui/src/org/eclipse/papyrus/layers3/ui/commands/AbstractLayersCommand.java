@@ -221,7 +221,7 @@ public abstract class AbstractLayersCommand extends AbstractHandler {
 		
 		if( ! (evaluationContext instanceof IEvaluationContext)) {
 			setBaseEnabled(false);
-			System.out.println(getCommandName() + ".setEnabled(" + isEnabled() + ") - no context");
+//			System.out.println(getCommandName() + ".setEnabled(" + isEnabled() + ") - no context");
 			return;
 		}
 		
@@ -232,7 +232,7 @@ public abstract class AbstractLayersCommand extends AbstractHandler {
 		setBaseEnabled(isEnabled(context, selections));
 		
 		
-		System.out.println(getCommandName() + ".setEnabled(" + isEnabled() + ")");
+//		System.out.println(getCommandName() + ".setEnabled(" + isEnabled() + ")");
 	}
 	
 	/**

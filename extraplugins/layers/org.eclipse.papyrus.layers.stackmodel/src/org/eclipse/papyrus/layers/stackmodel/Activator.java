@@ -8,7 +8,7 @@
  * Contributors:
  *     Cedric Dumoulin - cedric.dumoulin@lifl.fr
  ******************************************************************************/
-package org.eclipse.papyrus.layers.runtime;
+package org.eclipse.papyrus.layers.stackmodel;
 
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.papyrus.infra.core.log.LogHelper;

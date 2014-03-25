@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
+import static org.eclipse.papyrus.layers.stackmodel.Activator.log;
 
 
 /**
@@ -70,8 +71,11 @@ public class LayersTreeEventNotifier extends EContentAdapter {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		System.err.println( this.getClass().getSimpleName() + ".notifyChanged( " 
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".notifyChanged( " 
 	                   + notification.getFeature() + ")");
+		}
+
 		// Self atttach
 		super.notifyChanged(notification);
 

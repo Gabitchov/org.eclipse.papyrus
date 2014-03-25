@@ -21,6 +21,7 @@ import org.eclipse.papyrus.layers.runtime.model.LayersModel;
 import org.eclipse.papyrus.layers.runtime.model.LayersModelEventRootNotifier;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
+import static org.eclipse.papyrus.layers.runtime.Activator.log;
 
 
 /**
@@ -287,7 +288,10 @@ public class LayerStackApplicationSynchronizer implements ILayersModelRootEventL
 	 * @param msg
 	 */
 	public void layerStackAdded(Notification msg) {
-		System.out.println("LayerStackApplicationSynchronizer.layerStackAdded : " + msg.getNewValue());
+		
+		if(log.isDebugEnabled()) {
+			log.debug("LayerStackApplicationSynchronizer.layerStackAdded : " + msg.getNewValue());
+		}
 		
 		// Find the LayerStack
 		LayersStack stack = LayersStackApplicationEventNotifier.getAddedLayerStack(msg);
@@ -338,7 +342,9 @@ public class LayerStackApplicationSynchronizer implements ILayersModelRootEventL
 	 * @param msg
 	 */
 	public void layerStackRemoved(Notification msg) {
-		System.out.println("LayerStack is removed" + msg.getOldValue());
+		if(log.isDebugEnabled()) {
+			log.debug("LayerStack is removed" + msg.getOldValue());
+		}
 		
 		// Find the LayerStack
 		LayersStack stack = LayersStackApplicationEventNotifier.getRemovedLayerStack(msg);
@@ -355,7 +361,10 @@ public class LayerStackApplicationSynchronizer implements ILayersModelRootEventL
 	 * @param msg
 	 */
 	public void diagramRemoved(Notification msg) {
-		System.out.println(this.getClass().getSimpleName() + ".diagramRemoved() - " + msg.getOldValue());
+		
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".diagramRemoved() - " + msg.getOldValue());
+		}
 		
 		if( state != State.ApplicationCreated) {
 			return;
@@ -373,7 +382,7 @@ public class LayerStackApplicationSynchronizer implements ILayersModelRootEventL
 		LayerStackSynchronizer synchronizer = synchronizers.remove(diagram);
 		if( synchronizer != null ) {
 			// Should not happen
-			System.err.println(this.getClass().getSimpleName() + ".diagramRemoved() - synchronizernot completly cleaned. Finish the job.");
+			log.info(this.getClass().getSimpleName() + ".diagramRemoved() - synchronizer not completly cleaned. Finish the job.");
 			synchronizer.dispose();
 		}
 	}

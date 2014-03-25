@@ -30,6 +30,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperatorDescriptor;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.Property;
+import static org.eclipse.papyrus.layers.stackmodel.Activator.log;
 
 /**
  * <!-- begin-user-doc -->
@@ -193,7 +194,7 @@ public abstract class AbstractLayerOperatorImpl extends LayerOperatorImpl implem
 			LayerOperatorDescriptor descriptor = application.getLayerOperatorDescriptorRegistry().getLayerOperatorDescriptor(getLayerOperatorDescriptorName());
 			setLayerOperatorDescriptor(descriptor);
 		} catch (NotFoundException e) {
-			System.err.println("LOG - " + this.getClass().getName() + " - " + e.getMessage() );
+			log.error("LOG - " + this.getClass().getName() + " - " + e.getMessage(), e );
 		}
 		
 	}
@@ -365,9 +366,9 @@ public abstract class AbstractLayerOperatorImpl extends LayerOperatorImpl implem
 			res = getLayerOperatorDescriptor().getPropertyOperator(property).getComputePropertyValueCommand(collectedCmds);
 		} catch (UnsupportedOperationException e) {
 			// The operator is not implemented
-			System.err.println(this.getClass().getSimpleName() + "WARNING - Operator not implemened for LayerOperator '" 
+			log.error(this.getClass().getSimpleName() + "WARNING - Operator not implemened for LayerOperator '" 
 			         + this.getClass().getSimpleName() +"' and property '"
-			         + property.getName() + "'.");
+			         + property.getName() + "'.", e);
 			return null;
 		}
 		return res;

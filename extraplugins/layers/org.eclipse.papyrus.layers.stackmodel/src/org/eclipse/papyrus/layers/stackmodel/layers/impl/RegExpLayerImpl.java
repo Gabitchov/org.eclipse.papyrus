@@ -43,6 +43,7 @@ import org.eclipse.papyrus.layers.stackmodel.notifier.IDiagramViewEventListener;
 import org.eclipse.papyrus.layers.stackmodel.util.ObservableListView;
 
 import com.google.common.eventbus.Subscribe;
+import static org.eclipse.papyrus.layers.stackmodel.Activator.log;
 
 /**
  * <!-- begin-user-doc -->
@@ -288,7 +289,7 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 			expressionMatcher.refreshMatchingElements();
 		} catch (LayersException e) {
 			// silently fails, but log the error.
-			System.err.println( "Error - " + this.getClass().getSimpleName() + " - " + e.getMessage());
+			log.error( "Error - " + this.getClass().getSimpleName() + " - " + e.getMessage(), e);
 		}
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.REG_EXP_LAYER__EXPR, oldExpr, expr));
@@ -461,7 +462,11 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	@Subscribe
 	public void expressionResultChanged( ObservableListView<View>.ObservableListEvent event) {
 		
-		System.out.println( this.getClass().getSimpleName() + ".expressionResultChanged()");
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".expressionResultChanged()");
+		}
+		
+
 		if( ! event.getAddedElements().isEmpty()) {
 			getViews().addAll(event.getAddedElements());
 		}
