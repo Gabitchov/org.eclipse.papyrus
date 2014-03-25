@@ -628,6 +628,9 @@ public class PolicyChecker {
 				int count = getOwnedViewCount(element, proto);
 				if (!matchesOwnerMultiplicity(view, element.eClass(), stereotypes, count))
 					continue;
+				count = getViewCountOn(element, proto);
+				if (!matchesRootMultiplicity(view, element.eClass(), stereotypes, count))
+					continue;
 				result.add(proto);
 			}
 		}
