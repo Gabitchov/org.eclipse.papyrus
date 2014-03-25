@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008, 2014 CEA LIST and others.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,7 +16,9 @@
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
@@ -24,9 +26,11 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.profile.Activator;
@@ -37,6 +41,7 @@ import org.eclipse.papyrus.uml.profile.tree.ProfileElementTreeViewerFilter;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypeTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.StereotypedElementTreeObject;
+import org.eclipse.papyrus.uml.profile.tree.objects.TreeObject;
 import org.eclipse.papyrus.uml.profile.utils.Util;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.ChooseSetStereotypeDialog;
 import org.eclipse.papyrus.uml.properties.profile.ui.panels.AppliedStereotypePanel;
@@ -58,7 +63,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	/**
 	 * Gets the domain.
-	 * 
+	 *
 	 * @return the domain
 	 */
 	public TransactionalEditingDomain getEditingDomain(Element context) {
@@ -78,7 +83,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	/**
 	 * The default constructor.
-	 * 
+	 *
 	 * @param parent
 	 *        the parent Composite for this panel
 	 */
@@ -90,7 +95,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	/**
 	 * create a composite applied stereotype on model.
-	 * 
+	 *
 	 * @param parent
 	 *        the parent composite
 	 */
@@ -167,7 +172,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	}
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -183,7 +188,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	/**
 	 * Creates the stereotypes tree.
-	 * 
+	 *
 	 * @return the tree of applied stereotypes and properties
 	 */
 	private void createStereotypesTree() {
@@ -232,7 +237,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	/**
 	 * Edits the item.
-	 * 
+	 *
 	 * @param item
 	 *        the item
 	 */
@@ -243,7 +248,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	/**
 	 * Gets the selected.
-	 * 
+	 *
 	 * @return Returns the selected element.
 	 */
 	public Element getSelected() {
@@ -252,7 +257,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	/**
 	 * Gets the tree.
-	 * 
+	 *
 	 * @return the tree
 	 */
 	public Tree getTree() {
@@ -261,10 +266,10 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	/**
 	 * Checks if is in stereotype display.
-	 * 
+	 *
 	 * @param st
 	 *        the stereotype
-	 * 
+	 *
 	 * @return true, if checks if is in stereotype display
 	 */
 	protected Boolean isInStereotypeDisplay(Stereotype st) {
@@ -276,7 +281,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * It is not sufficient to redraw only selected elements as an optimization, since
 	 * derived stereotype attributes (that are not selected) might change in response to
 	 * changing other attributes.
-	 * 
+	 *
 	 * @param propertyView
 	 */
 	public void refreshTreeViewer() {
@@ -289,7 +294,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	@Override
 	public void refresh() {
 		super.refresh();
-		
+
 		if(treeViewer.getTree() != null && !(treeViewer.getTree().isDisposed())) {
 			treeViewer.setInput(null);
 			treeViewer.refresh();
@@ -302,7 +307,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			}
 
 			boolean isEditable = isEditable();
-			
+
 			// If the property is Multivalued show Up - Down
 			if((rTO.getChildren() != null) && (rTO.getChildren().length > 1)) {
 				upButton.setEnabled(isEditable);
@@ -330,7 +335,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	/**
 	 * Selection changed.
-	 * 
+	 *
 	 * @param event
 	 *        the event
 	 */
@@ -354,7 +359,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	/**
 	 * Sets the input.
-	 * 
+	 *
 	 * @param element
 	 *        the element
 	 */
@@ -430,8 +435,19 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	}
 
 	/**
-	 * Apply stereotype.
 	 * 
+	 * @see org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel.DecoratedTreeComposite#keepSelection(org.eclipse.jface.viewers.ISelection)
+	 *
+	 * @param pSelection
+	 */
+	@Override
+	public void keepSelection(ISelection pSelection) {
+		getDisplay().asyncExec(new SelectionKeeper(pSelection));
+	}
+
+	/**
+	 * Apply stereotype.
+	 *
 	 * @param elt
 	 *        the elt
 	 * @param st
@@ -468,7 +484,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	/**
 	 * Unapply stereotype.
-	 * 
+	 *
 	 * @param elt
 	 *        the uml element
 	 * @param st
@@ -507,7 +523,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	/**
 	 * change the order of applied stereotype
-	 * 
+	 *
 	 * @param element
 	 *        the UML element where stereotypes are applied
 	 * @param stereotypes
@@ -541,5 +557,74 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 		}
 
 	}
+
+	/**
+	 * 
+	 * @author gpascual
+	 *
+	 */
+	private class SelectionKeeper implements Runnable {
+
+		/** Selection to keep. */
+		ISelection selection = null;
+
+		/**
+		 * 
+		 * Constructor.
+		 *
+		 */
+		public SelectionKeeper(ISelection selection) {
+			this.selection = selection;
+		}
+
+		public void run() {
+			Object[] vSelectedElements = extractSelectedElements(selection);
+			Object[] vCorrespondingElements = getCorrespondingElements(vSelectedElements);
+			ISelection vSelection = new StructuredSelection(vCorrespondingElements);
+			treeViewer.setSelection(vSelection);
+
+		}
+
+
+
+
+
+		private Object[] getCorrespondingElements(Object[] vSelectedElements) {
+			StereotypedElementTreeObject vStereotypesTree = (StereotypedElementTreeObject)treeViewer.getInput();
+			List<Object> vReturn = new ArrayList<Object>();
+			for(Object vStereotype : vSelectedElements) {
+				if(vStereotype instanceof AppliedStereotypeTreeObject) {
+					AppliedStereotypeTreeObject vTreeObject = findAppliedStereotypeInTree(((AppliedStereotypeTreeObject)vStereotype).getStereotype(), vStereotypesTree);
+					vReturn.add(vTreeObject);
+				}
+			}
+
+			return vReturn.toArray();
+		}
+
+		private AppliedStereotypeTreeObject findAppliedStereotypeInTree(Stereotype stereotype, StereotypedElementTreeObject vStereotypesTree) {
+			AppliedStereotypeTreeObject vAppliedStereotypeObject = null;
+
+			for(TreeObject vChild : vStereotypesTree.getChildren()) {
+				if(vChild instanceof AppliedStereotypeTreeObject) {
+					if(stereotype.equals(((AppliedStereotypeTreeObject)vChild).getStereotype())) {
+						vAppliedStereotypeObject = (AppliedStereotypeTreeObject)vChild;
+					}
+				}
+			}
+
+			return vAppliedStereotypeObject;
+
+		}
+
+		private Object[] extractSelectedElements(ISelection pSelection) {
+			List<Object> vObjectsList = new ArrayList<Object>();
+			if(pSelection instanceof IStructuredSelection) {
+				vObjectsList.addAll(Arrays.asList(((IStructuredSelection)pSelection).toArray()));
+			}
+			return vObjectsList.toArray();
+		}
+	}
+
 
 }
