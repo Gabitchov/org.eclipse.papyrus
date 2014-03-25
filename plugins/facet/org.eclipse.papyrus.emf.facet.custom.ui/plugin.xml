@@ -18,16 +18,7 @@ Contributors:
       <modeldeclaration file="resources/customproperties.efacet"/>
    </extension>
 
-   <extension point="org.eclipse.ui.views">
-      <view
-            category="org.eclipse.papyrus.emf.facet.common.ui.views"
-            class="org.eclipse.papyrus.emf.facet.custom.ui.internal.view.CustomizationsCatalogView"
-            icon="icons/uiCustom.gif"
-            id="org.eclipse.papyrus.emf.facet.custom.ui.view.catalog"
-            name="%view.customizations"
-            restorable="true">
-      </view>
-   </extension>
+  
    <extension
          point="org.eclipse.papyrus.emf.facet.efacet.core.queryImplementationRegistration">
       <queryImplementationRegistration

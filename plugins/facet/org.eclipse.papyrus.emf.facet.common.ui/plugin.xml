@@ -13,40 +13,5 @@
         Grégoire Dupé (Mia-Software) - Bug 388422 - [Table] Queries for InstanciationMethod needs to have 2 parameters
  -->
 <plugin>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            class="org.eclipse.papyrus.emf.facet.common.ui.internal.preference.pages.EmfFacetRootPreferencePage"
-            id="org.eclipse.papyrus.emf.facet.common.ui.preference.pages.EmfFacetRootPreferencePage"
-            name="%page.name">
-      </page>
-   </extension>
-   <extension
-         point="org.eclipse.ui.views">
-      <category
-            id="org.eclipse.papyrus.emf.facet.common.ui.views"
-            name="%category.name">
-      </category>
-   </extension>
-
-   <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipse.papyrus.emf.facet.common.ui.wizardsCategory"
-            name="%category.name">
-      </category>
-   </extension>
-   <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.ui.popup.any">
-         <menu
-               id="org.eclipse.papyrus.emf.facet.common.ui.menu.examples"
-               label="%emf.facet.examples">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </menu>
-      </menuContribution>
-   </extension>
+   
 </plugin>
