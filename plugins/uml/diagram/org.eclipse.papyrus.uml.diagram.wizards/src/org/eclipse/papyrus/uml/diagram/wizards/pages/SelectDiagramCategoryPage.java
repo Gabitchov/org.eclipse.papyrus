@@ -274,7 +274,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 */
 	protected void diagramCategorySelected(String category, boolean checked) {
 		if(checked) {
-			mySelectedDiagramCategoryIds.add(category);
+			if (!mySelectedDiagramCategoryIds.contains(category))
+				mySelectedDiagramCategoryIds.add(category);
 		} else {
 			mySelectedDiagramCategoryIds.remove(category);
 		}

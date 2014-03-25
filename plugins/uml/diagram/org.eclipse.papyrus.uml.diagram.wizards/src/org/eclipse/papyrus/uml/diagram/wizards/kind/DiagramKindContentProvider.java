@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.wizards.kind;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,12 +97,7 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 					result.addAll(getPrototypes(diagramCategory));
 				}
 			}
-			Collections.sort(result, new Comparator<ViewPrototype>() {
-
-				public int compare(ViewPrototype o1, ViewPrototype o2) {
-					return o1.getLabel().compareTo(o2.getLabel());
-				}
-			});
+			Collections.sort(result, new ViewPrototype.Comp());
 			return result.toArray(new Object[result.size()]);
 		}
 		if(inputElement instanceof String) {
@@ -122,12 +116,13 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 	 */
 	protected List<ViewPrototype> getPrototypes(String diagramCategory) {
 		List<ViewPrototype> result = new ArrayList<ViewPrototype>();
-		if (!prototypes.containsKey(diagramCategory))
-			return result;
-		EClass rootType = getExpectedRootType(diagramCategory);
-		for(ViewPrototype proto : prototypes.get(diagramCategory))
-			if (isAllowedOn(proto, rootType))
-				result.add(proto);
+		// Add the category-specific views
+		if (prototypes.containsKey(diagramCategory)) {
+			EClass rootType = getExpectedRootType(diagramCategory);
+			for (ViewPrototype proto : prototypes.get(diagramCategory))
+				if (isAllowedOn(proto, rootType))
+					result.add(proto);
+		}
 		return result;
 	}
 	

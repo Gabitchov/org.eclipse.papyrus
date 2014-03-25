@@ -18,6 +18,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -430,11 +432,33 @@ public abstract class ViewPrototype {
 	 * @author Laurent Wouters
 	 */
 	public static class Comp implements Comparator<ViewPrototype> {
+		private static final Map<Class<? extends PapyrusView>, Integer> priorities = new HashMap<Class<? extends PapyrusView>, Integer>();
+		{
+			priorities.put(PapyrusDiagram.class, 1);
+			priorities.put(PapyrusTable.class, 2);
+			priorities.put(PapyrusSyncTable.class, 3);
+		}
+
+		private static Integer getPriority(ViewPrototype proto) {
+			for (Map.Entry<Class<? extends PapyrusView>, Integer> entry : priorities.entrySet()) {
+				if (entry.getKey().isAssignableFrom(proto.configuration.getClass())) {
+					return entry.getValue();
+				}
+			}
+			return 0;
+		}
+
 		/**
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 		 */
-		public int compare(ViewPrototype arg0, ViewPrototype arg1) {
-			return (arg0.getLabel().compareTo(arg1.getLabel()));
+		public int compare(ViewPrototype proto1, ViewPrototype proto2) {
+			Integer p1 = getPriority(proto1);
+			Integer p2 = getPriority(proto2);
+			if (p1 == p2) {
+				return (proto1.getLabel().compareTo(proto2.getLabel()));
+			} else {
+				return p1.compareTo(p2);
+			}
 		}
 	}
 }

@@ -347,7 +347,7 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
       </owningRules>
     </modelKinds>
-    <modelKinds xsi:type="configuration:PapyrusSyncTable" name="Allocation Table" icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.allocation.config/icons/table_SysML_Allocation.png" implementationID="PapyrusSysMLAllocationTable" categories="//@categories.1">
+    <modelKinds xsi:type="configuration:PapyrusSyncTable" name="SysML Allocation Table" icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.allocation.config/icons/table_SysML_Allocation.png" implementationID="PapyrusSysMLAllocationTable" categories="//@categories.1">
       <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//allocations"/>
       <modelRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
@@ -356,7 +356,7 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </owningRules>
     </modelKinds>
-    <modelKinds xsi:type="configuration:PapyrusSyncTable" name="Requirement Table" icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/icons/table_SysML_Requirement.png" implementationID="PapyrusSysMLRequirementTable" categories="//@categories.1">
+    <modelKinds xsi:type="configuration:PapyrusSyncTable" name="SysML Requirement Table" icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/icons/table_SysML_Requirement.png" implementationID="PapyrusSysMLRequirementTable" categories="//@categories.1">
       <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
       <modelRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
