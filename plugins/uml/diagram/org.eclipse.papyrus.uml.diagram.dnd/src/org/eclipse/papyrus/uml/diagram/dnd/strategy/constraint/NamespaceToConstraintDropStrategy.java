@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- * 
+ * Copyright (c) 2014 CEA LIST.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A strategy to drop a name-space on a constraint. The constraint
- * context will be updated by the dropped name-space. 
+ * context will be updated by the dropped name-space.
  */
 public class NamespaceToConstraintDropStrategy extends TransactionalDropStrategy {
 
@@ -54,7 +54,7 @@ public class NamespaceToConstraintDropStrategy extends TransactionalDropStrategy
 	public String getCategoryLabel() {
 		return "Sets the dropped namespace as context of the target constraint.";
 	}
-	
+
 	public String getDescription() {
 		return getCategoryLabel();
 	}
@@ -74,7 +74,7 @@ public class NamespaceToConstraintDropStrategy extends TransactionalDropStrategy
 	@Override
 	public Command doGetCommand(Request request, EditPart targetEditPart) {
 
-		if( request instanceof CreateAspectUnspecifiedTypeConnectionRequest){
+		if(request instanceof CreateAspectUnspecifiedTypeConnectionRequest) {
 			return null;
 		}
 		CompositeCommand cc = new CompositeCommand(getLabel());
@@ -82,7 +82,7 @@ public class NamespaceToConstraintDropStrategy extends TransactionalDropStrategy
 		EObject semanticElement = getTargetSemanticElement(targetEditPart);
 
 		List<EObject> sourceElements = getSourceEObjects(request);
-		if (sourceElements.size() != 1) {
+		if(sourceElements.size() != 1) {
 			return null;
 		}
 		if(!(semanticElement instanceof Constraint)) {

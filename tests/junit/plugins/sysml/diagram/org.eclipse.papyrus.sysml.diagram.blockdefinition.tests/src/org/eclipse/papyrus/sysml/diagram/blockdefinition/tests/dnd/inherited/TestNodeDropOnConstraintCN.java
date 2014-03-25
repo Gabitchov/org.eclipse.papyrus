@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -150,20 +150,20 @@ public class TestNodeDropOnConstraintCN extends AbstractTest {
 	@Test
 	public void testDropModel() throws Exception {
 		EObject droppedElement = createElement(UMLElementTypes.MODEL, getDiagramView());
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true); //Should set the context of the Constraint
 	}
 
 	@Test
 	public void testDropOperation() throws Exception {
 		EObject intermediateContainer = createElement(SysMLElementTypes.BLOCK, getDiagramView());
 		EObject droppedElement = createElement(UMLElementTypes.OPERATION, intermediateContainer);
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true); //Should set the context of the Constraint
 	}
 
 	@Test
 	public void testDropPackage() throws Exception {
 		EObject droppedElement = createElement(UMLElementTypes.PACKAGE, getDiagramView());
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true); //Should set the context of the Constraint
 	}
 
 	@Test
@@ -197,7 +197,7 @@ public class TestNodeDropOnConstraintCN extends AbstractTest {
 	public void testDropReception() throws Exception {
 		EObject intermediateContainer = createElement(SysMLElementTypes.BLOCK, getDiagramView());
 		EObject droppedElement = createElement(UMLElementTypes.RECEPTION, intermediateContainer);
-		dropFromModelExplorer(droppedElement, containerView, false);
+		dropFromModelExplorer(droppedElement, containerView, true); //Should set the context of the Constraint
 	}
 
 	@Test
