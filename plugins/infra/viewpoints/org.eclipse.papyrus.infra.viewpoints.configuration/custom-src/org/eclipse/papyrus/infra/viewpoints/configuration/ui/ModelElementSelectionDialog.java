@@ -205,9 +205,15 @@ public class ModelElementSelectionDialog extends Dialog {
 	protected void configureShell(Shell shell) {
         super.configureShell(shell);
         shell.setSize(SIZE_WIDTH, SIZE_HEIGHT);
-        Point size = shell.getParent().getShell().getSize();
-        shell.setLocation((size.x - SIZE_WIDTH)/2, (size.y - SIZE_HEIGHT)/2);
         shell.setText(MSG_TITLE);
+		if (shell.getParent() != null) {
+			Composite parent = shell.getParent();
+			Shell parentShell = parent.getShell();
+			if (parentShell != null) {
+				Point size = parentShell.getSize();
+				shell.setLocation((size.x - SIZE_WIDTH) / 2, (size.y - SIZE_HEIGHT) / 2);
+			}
+		}
     }
 	
 	private ILabelProvider getLabelProvider() {
