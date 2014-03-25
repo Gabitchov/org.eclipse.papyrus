@@ -1,7 +1,6 @@
 package org.eclipse.papyrus.robotml.diagram.common.migration;
 
 import java.io.IOException;
-
 import java.util.Iterator;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -17,6 +16,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
@@ -24,13 +24,11 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelsReader;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
-import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.robotml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
-
 import org.eclipse.ui.handlers.HandlerUtil;
 
 public class MigrateDiagramsHandler extends AbstractHandler {
@@ -47,8 +45,8 @@ public class MigrateDiagramsHandler extends AbstractHandler {
 
 		Object selectedAdapter = Platform.getAdapterManager().getAdapter(selectedElement, IFile.class);
 
-		
-		
+
+
 		if(selectedAdapter instanceof IFile) {
 			final IFile selectedFile = (IFile)selectedAdapter;
 
@@ -61,7 +59,7 @@ public class MigrateDiagramsHandler extends AbstractHandler {
 					ModelSet modelSet = new ModelSet();
 					ModelsReader reader = new ModelsReader();
 					reader.readModel(modelSet);
-		
+
 
 					IPath workspacePath = selectedFile.getFullPath();
 
@@ -71,22 +69,22 @@ public class MigrateDiagramsHandler extends AbstractHandler {
 					ViewPrototype protoDatatypeDef = null;
 					ViewPrototype protoInterfaceDef = null;
 					ViewPrototype protoComponentDef = null;
-					for (ViewPrototype proto : PolicyChecker.getCurrent().getAllPrototypes()) {
-						if (proto.getLabel().contains("RobotML Architecture"))
+					for(ViewPrototype proto : PolicyChecker.getCurrent().getAllPrototypes()) {
+						if(proto.getLabel().contains("RobotML Architecture")) {
 							protoArchitecture = proto;
-						else if (proto.getLabel().contains("RobotML Component")){
+						} else if(proto.getLabel().contains("RobotML Component")) {
 							protoComponentDef = proto;
-						}else if (proto.getLabel().contains("RobotML Interface")){
+						} else if(proto.getLabel().contains("RobotML Interface")) {
 							protoInterfaceDef = proto;
-							
-						}else if (proto.getLabel().contains("RobotML Datatype")){
+
+						} else if(proto.getLabel().contains("RobotML Datatype")) {
 							protoDatatypeDef = proto;
 						}
 					}
-					
-					
+
+
 					try {
-						modelSet.loadModels(workspaceURI);			
+						modelSet.loadModels(workspaceURI);
 						//do the diagrams migration
 						NotationModel notationModel = (NotationModel)modelSet.getModel(NotationModel.MODEL_ID);
 						if(notationModel != null) {
@@ -96,47 +94,45 @@ public class MigrateDiagramsHandler extends AbstractHandler {
 
 							while(allContents.hasNext()) {
 								EObject currentElement = allContents.next();
-								
-								if (currentElement instanceof CSSDiagramImpl){
+
+								if(currentElement instanceof Diagram) {
 									// 1. Changing the type of the diagram
 									//System.err.println(currentElement);
-									if (((CSSDiagramImpl) currentElement).getType().equalsIgnoreCase("architecture")  )
-									{
-										((CSSDiagramImpl) currentElement).setType(CompositeStructureDiagramEditPart.MODEL_ID);
-										DiagramUtils.setPrototype((CSSDiagramImpl) currentElement, protoArchitecture);
-										DiagramUtils.setOwner(((CSSDiagramImpl) currentElement), ((CSSDiagramImpl) currentElement).getElement());
-										
-									}else if(((CSSDiagramImpl) currentElement).getType().equalsIgnoreCase("componentdef")){
-										((CSSDiagramImpl) currentElement).setType(CompositeStructureDiagramEditPart.MODEL_ID);
-										DiagramUtils.setPrototype((CSSDiagramImpl) currentElement, protoComponentDef);
-										DiagramUtils.setOwner(((CSSDiagramImpl) currentElement), ((CSSDiagramImpl) currentElement).getElement());
+									if(((Diagram)currentElement).getType().equalsIgnoreCase("architecture")) {
+										((Diagram)currentElement).setType(CompositeStructureDiagramEditPart.MODEL_ID);
+										DiagramUtils.setPrototype((Diagram)currentElement, protoArchitecture);
+										DiagramUtils.setOwner(((Diagram)currentElement), ((Diagram)currentElement).getElement());
+
+									} else if(((Diagram)currentElement).getType().equalsIgnoreCase("componentdef")) {
+										((Diagram)currentElement).setType(CompositeStructureDiagramEditPart.MODEL_ID);
+										DiagramUtils.setPrototype((Diagram)currentElement, protoComponentDef);
+										DiagramUtils.setOwner(((Diagram)currentElement), ((Diagram)currentElement).getElement());
 									}
-									
-									else if (((CSSDiagramImpl) currentElement).getType().equalsIgnoreCase("datatypedef")  )
-									{
-										((CSSDiagramImpl) currentElement).setType(ModelEditPart.MODEL_ID);
-										DiagramUtils.setPrototype((CSSDiagramImpl) currentElement, protoDatatypeDef);
-										DiagramUtils.setOwner(((CSSDiagramImpl) currentElement), ((CSSDiagramImpl) currentElement).getElement());
-										
-									}else if(((CSSDiagramImpl) currentElement).getType().equalsIgnoreCase("interfacedef")){
-										((CSSDiagramImpl) currentElement).setType(ModelEditPart.MODEL_ID);
-										DiagramUtils.setPrototype((CSSDiagramImpl) currentElement, protoInterfaceDef);
-										DiagramUtils.setOwner(((CSSDiagramImpl) currentElement), ((CSSDiagramImpl) currentElement).getElement());
-									}								
-									
+
+									else if(((Diagram)currentElement).getType().equalsIgnoreCase("datatypedef")) {
+										((Diagram)currentElement).setType(ModelEditPart.MODEL_ID);
+										DiagramUtils.setPrototype((Diagram)currentElement, protoDatatypeDef);
+										DiagramUtils.setOwner(((Diagram)currentElement), ((Diagram)currentElement).getElement());
+
+									} else if(((Diagram)currentElement).getType().equalsIgnoreCase("interfacedef")) {
+										((Diagram)currentElement).setType(ModelEditPart.MODEL_ID);
+										DiagramUtils.setPrototype((Diagram)currentElement, protoInterfaceDef);
+										DiagramUtils.setOwner(((Diagram)currentElement), ((Diagram)currentElement).getElement());
+									}
+
 								}
-							
+
 
 							}//end while
 							mainNotationResource.save(null);
-							
+
 						}
-						
+
 					} catch (ModelMultiException e) {
 						Activator.log.error(e);
 						return new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e);
 					} catch (IOException e) {
-						
+
 						Activator.log.error(e);
 						return new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e);
 					}
