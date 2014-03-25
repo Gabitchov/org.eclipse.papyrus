@@ -32,6 +32,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.CheckedTreeSelectionDialog;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 
+import static org.eclipse.papyrus.layers.ui.Activator.log;
+
 
 /**
  * Handler used to select multiples views to attach to the selected Layer.
@@ -79,6 +81,7 @@ public class AttachDiagramViewsToLayer extends AbstractLayersCommand {
 		
 		try {
 			// Get the layer and application
+			@SuppressWarnings("unused")
 			LayersStackApplication application = lookupLayersStackApplicationChecked(context);
 			AbstractLayer layer = (AbstractLayer)getSelections(context).get(0);
 
@@ -158,13 +161,17 @@ public class AttachDiagramViewsToLayer extends AbstractLayersCommand {
 			
 			// Remove unset views
 			for( View property : unsetProperties) {
-				System.out.println("unset view " + property.getElement());
+				if(log.isDebugEnabled()) {
+					log.debug("unset view " + property.getElement());
+				}
 				layer.getViews().remove(property);
 			}
 
 			// add set instances
 			for( View property : setProperties) {
-				System.out.println("set Property " + property.getElement());
+				if(log.isDebugEnabled()) {
+					log.debug("set Property " + property.getElement());
+				}
 				layer.getViews().add(property);
 			}
 

@@ -22,6 +22,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.AbstractLayerOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
+import static org.eclipse.papyrus.layers.ui.Activator.log;
 
 
 /**
@@ -74,7 +75,9 @@ public class CreateLayerOperatorsFromParameter extends AbstractLayersCommand {
 
 		// Get command parameters
 		newLayerID = event.getParameter("org.eclipse.papyrus.layers.ui.createLayerOperator.parameters");
-		System.err.println("Create Layer Operators '" + newLayerID + "'.");
+		if(log.isDebugEnabled()) {
+			log.debug("Create Layer Operators '" + newLayerID + "'.");
+		}
 		
 		// Get application
 		try {
@@ -103,7 +106,9 @@ public class CreateLayerOperatorsFromParameter extends AbstractLayersCommand {
 	 */
 	@Override
 	protected void doExecute(ExecutionEvent event, IEvaluationContext context, List<Object> selections) {
-		System.out.println( this.getClass().getSimpleName() + ".doExecute()");
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".doExecute()");
+		}
 		
 		// Create a layer !
 		AbstractLayerOperator layerOperator;
@@ -113,8 +118,8 @@ public class CreateLayerOperatorsFromParameter extends AbstractLayersCommand {
 			layerOperator.setApplication(application);
 		} catch (LayersException e) {
 //			e.printStackTrace();
-			System.err.println("Log - " + this.getClass().getName() 
-					+ " - " + e.getMessage());
+			log.error("Log - " + this.getClass().getName() 
+					+ " - " + e.getMessage(), e);
 			return;
 		}
 		
@@ -141,7 +146,6 @@ public class CreateLayerOperatorsFromParameter extends AbstractLayersCommand {
 	    }
 	    Object first = selections.get(0);
 	    boolean res = (first instanceof LayerOperator) || (first instanceof LayersStack);
-	    System.err.println("isEnable(" + res + ")");
 		return res;
 	}
 

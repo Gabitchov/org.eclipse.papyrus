@@ -439,7 +439,7 @@ public class DynamicContextMenu	implements ISelectionChangedListener {
 	 */
 	public void menuAboutToShow(IMenuManager menuManager) {
 		
-		System.err.println("menuAboutToShow("+ menuManager.getId()+ ")");
+//		System.err.println("menuAboutToShow("+ menuManager.getId()+ ")");
 		MenuManager submenuManager = null;
 
 		submenuManager = new MenuManager(LayersEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));

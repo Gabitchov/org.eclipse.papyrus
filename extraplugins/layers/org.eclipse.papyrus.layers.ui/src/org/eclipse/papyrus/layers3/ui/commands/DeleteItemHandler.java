@@ -22,6 +22,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
+import static org.eclipse.papyrus.layers.ui.Activator.log;
 
 
 /**
@@ -73,7 +74,9 @@ public class DeleteItemHandler extends AbstractLayersCommand {
 	 */
 	@Override
 	protected void doExecute(ExecutionEvent event, IEvaluationContext context, List<Object> selections) {
-		System.out.println( this.getClass().getSimpleName() + ".doExecute()");
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + ".doExecute()");
+		}
 		
 		// insert layer in selected object
 		Object selection = selections.get(0);

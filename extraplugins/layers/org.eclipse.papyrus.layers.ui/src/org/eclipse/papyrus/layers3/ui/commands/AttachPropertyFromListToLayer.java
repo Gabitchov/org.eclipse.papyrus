@@ -10,8 +10,9 @@
  ******************************************************************************/
 package org.eclipse.papyrus.layers3.ui.commands;
 
+import static org.eclipse.papyrus.layers.ui.Activator.log;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -134,13 +135,17 @@ public class AttachPropertyFromListToLayer extends AbstractLayersCommand {
 			
 			// Remove unset instances
 			for( Property property : unsetProperties) {
-				System.out.println("unset Property " + property.getName());
+				if(log.isDebugEnabled()) {
+					log.debug("unset Property " + property.getName());
+				}
 				layer.removePropertyInstance(property);
 			}
 
 			// add set instances
 			for( Property property : setProperties) {
-				System.out.println("set Property " + property.getName());
+				if(log.isDebugEnabled()) {
+					log.debug("set Property " + property.getName());
+				}
 				layer.addPropertyInstance(property);
 			}
 

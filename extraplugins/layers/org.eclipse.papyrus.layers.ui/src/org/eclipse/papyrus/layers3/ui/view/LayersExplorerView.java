@@ -62,6 +62,8 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.wb.swt.SWTResourceManager;
+import static org.eclipse.papyrus.layers.ui.Activator.log;
+import static org.eclipse.papyrus.layers.ui.Activator.log;
 
 
 /**
@@ -142,7 +144,7 @@ public class LayersExplorerView extends ViewPart implements ITabbedPropertySheet
 		
 		@Override
 		public void widgetDisposed(DisposeEvent e) {
-			System.err.println(this.getClass().getName() + " is disposed !!!" + e.widget);
+			log.info(this.getClass().getName() + " is disposed !!!" + e.widget);
 			
 		}
 	};
@@ -152,8 +154,10 @@ public class LayersExplorerView extends ViewPart implements ITabbedPropertySheet
 		
 		@Override
 		public void selectionChanged(SelectionChangedEvent event) {
-			System.out.println(LayersExplorerView.this.getClass().getSimpleName() 
-					+ ".selectionChanged("+event.getSelection()+")" );
+			if(log.isDebugEnabled()) {
+				log.debug(LayersExplorerView.this.getClass().getSimpleName() 
+						+ ".selectionChanged("+event.getSelection()+")" );
+			}
 			
 			
 		}
@@ -363,7 +367,10 @@ public void createPartControl(Composite parent) {
 	 * @param newContainer
 	 */
 	protected void activeSashWindowContainerChanged(ISashWindowsContainer newContainer) {
-		System.err.println("activeSashWindowContainerChanged(" + (newContainer!=null?newContainer:"noContainer") + ")");
+		
+		if(log.isDebugEnabled()) {
+			log.debug("activeSashWindowContainerChanged(" + (newContainer!=null?newContainer:"noContainer") + ")");
+		}
 
 		// check if there is a container
 		if(newContainer==null) {
@@ -500,7 +507,7 @@ public void createPartControl(Composite parent) {
 
 		ServicesRegistry registry = (ServicesRegistry)editor.getAdapter(ServicesRegistry.class);
 		if(registry == null) {
-			System.err.println("New editor has no ServiceRegistry");
+			log.info("New editor has no ServiceRegistry");
 			setEmptyTreeInput();
 			return;
 		}
@@ -668,7 +675,7 @@ public void createPartControl(Composite parent) {
 
 				// Bad state
 				// FIXME Log error ?
-				System.err.println("Error - "+ getClass().getSimpleName() + " - currentLayersModel and currentServicesRegistry should not be null.");
+				log.info("Error - "+ getClass().getSimpleName() + " - currentLayersModel and currentServicesRegistry should not be null.");
 				return null;
 			}
 			

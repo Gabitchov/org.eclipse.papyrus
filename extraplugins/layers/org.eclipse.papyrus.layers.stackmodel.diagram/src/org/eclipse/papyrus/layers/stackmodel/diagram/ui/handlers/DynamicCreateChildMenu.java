@@ -35,8 +35,7 @@ public class DynamicCreateChildMenu extends CompoundContributionItem {
 	 */
 	@Override
 	protected IContributionItem[] getContributionItems() {
-		// TODO Auto-generated method stub
-		System.err.println("getContributionItems()");
+//		System.err.println("getContributionItems()");
 		IContributionItem[] items = new IContributionItem[1];
 		
 	    Map<String, String> parms = new HashMap<String, String>();

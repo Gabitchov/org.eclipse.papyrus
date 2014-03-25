@@ -29,12 +29,13 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -185,7 +186,7 @@ public class DeferredSnapToGridCommand extends AbstractTransactionalCommand {
 			request.setLocation(boundsFigure.getLocation());
 			nodeSnapHelper.snapPoint(request);
 			request.setLocation(result.getLocation());
-			cc.add(((GraphicalEditPart)current).getCommand(request));
+			cc.add(((EditPart)current).getCommand(request));
 		}
 
 

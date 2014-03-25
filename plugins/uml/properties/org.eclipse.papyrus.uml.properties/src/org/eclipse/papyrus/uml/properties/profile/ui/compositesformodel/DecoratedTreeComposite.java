@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008, 2014 CEA LIST and others.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,6 +16,7 @@
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
 
 import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.profile.ImageManager;
@@ -46,7 +47,7 @@ import org.eclipse.uml2.uml.Element;
  * tree that describes a tree structure, and four buttons on the side of the
  * table to add an element into the tree, remove selected element(s), move up
  * or down the selected element.
- * 
+ *
  * @author Remi SCHNEKENBURGER
  */
 public abstract class DecoratedTreeComposite extends Composite implements ISectionComposite {
@@ -112,7 +113,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	protected MouseListener downButtonlistener;
 
 	/**
-	 * 
+	 *
 	 */
 	protected Listener treeListener;
 
@@ -131,7 +132,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	/**
 	 * returns the element that is selected in Papyrus tool, for which
 	 * properties are displayed in the property section.
-	 * 
+	 *
 	 * @return the element
 	 */
 	public Element getElement() {
@@ -140,19 +141,19 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 
 	/**
 	 * Sets the element that holds property displyed in property section.
-	 * 
+	 *
 	 * @param element
 	 *        the element to set
 	 */
 	public void setElement(Element element) {
 		this.element = element;
-		
+
 		updateEnablement();
 	}
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param style
 	 * @param isStereotypeTree
 	 * @param name
@@ -184,15 +185,14 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 * org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory)
 	 */
 	/**
-	 * 
-	 * 
+	 *
+	 *
 	 * @param factory
 	 * @param parent
-	 * 
+	 *
 	 * @return
 	 */
-	public Composite createContent(Composite parent,
-			TabbedPropertySheetWidgetFactory factory) {
+	public Composite createContent(Composite parent, TabbedPropertySheetWidgetFactory factory) {
 
 		FormData data;
 
@@ -269,24 +269,24 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		data.bottom = new FormAttachment(100, -ITabbedPropertyConstants.VSPACE);
 
 		tree.setLayoutData(data);
-		
+
 		// initialize enablement of controls
 		updateEnablement();
-		
+
 		return this;
 	}
 
 	public void refresh() {
 		updateEnablement();
 	}
-	
+
 	protected boolean isEditable() {
 		return (element != null) && !EMFHelper.isReadOnly(element);
 	}
-	
+
 	protected void updateEnablement() {
 		boolean isEditable = isEditable();
-		
+
 		if((addButton != null) && !addButton.isDisposed()) {
 			addButton.setEnabled(isEditable);
 			removeButton.setEnabled(isEditable);
@@ -302,14 +302,14 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	//	public void setLayoutData(Object data) {
 	//		composite.setLayoutData(data);
 	//	}
-	//	
+	//
 	//	public Composite getMainComposite() {
 	//		return composite;
 	//	}
 
 	/**
 	 * Returns the CommmandStack of the current editor.
-	 * 
+	 *
 	 * @return the CommmandStack of the current editor
 	 */
 	public CommandStack getCommandStack() {
@@ -321,7 +321,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 
 	/**
 	 * Returns the current Editor.
-	 * 
+	 *
 	 * @return the current editor
 	 */
 	public IEditorPart getActiveEditor() {
@@ -332,6 +332,13 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 * action executed when the add button is pressed.
 	 */
 	public void addButtonPressed() {
+	}
+
+	/**
+	 * @param pSelection
+	 */
+	public void keepSelection(ISelection pSelection) {
+
 	}
 
 	/**
@@ -351,7 +358,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 
 	/**
 	 * action executed when a table item is edited.
-	 * 
+	 *
 	 * @param item
 	 */
 	public abstract void editItem(TreeItem item);
@@ -359,14 +366,14 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	/**
 	 * Listener for the Add Button
 	 * Specific behavior is implemented in {@link DecoratedTreeComposite#addButtonPressed()}.
-	 * 
+	 *
 	 * @author Remi SCHNEKENBURGER
 	 */
 	private class AddButtonlistener implements MouseListener {
 
 		/**
-		 * 
-		 * 
+		 *
+		 *
 		 * @param e
 		 */
 		public void mouseDoubleClick(MouseEvent e) {
@@ -374,8 +381,8 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		}
 
 		/**
-		 * 
-		 * 
+		 *
+		 *
 		 * @param e
 		 */
 		public void mouseDown(MouseEvent e) {
@@ -383,8 +390,8 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		}
 
 		/**
-		 * 
-		 * 
+		 *
+		 *
 		 * @param e
 		 */
 		public void mouseUp(MouseEvent e) {
@@ -396,14 +403,14 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	/**
 	 * Listener for the Remove Button
 	 * Specific behavior is implemented in {@link DecoratedTreeComposite#removeButtonPressed()}.
-	 * 
+	 *
 	 * @author Remi SCHNEKENBURGER
 	 */
 	private class RemoveButtonlistener implements MouseListener {
 
 		/**
-		 * 
-		 * 
+		 *
+		 *
 		 * @param e
 		 */
 		public void mouseDoubleClick(MouseEvent e) {
@@ -411,8 +418,8 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		}
 
 		/**
-		 * 
-		 * 
+		 *
+		 *
 		 * @param e
 		 */
 		public void mouseDown(MouseEvent e) {
@@ -420,8 +427,8 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		}
 
 		/**
-		 * 
-		 * 
+		 *
+		 *
 		 * @param e
 		 */
 		public void mouseUp(MouseEvent e) {
@@ -433,14 +440,14 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	/**
 	 * Listener for the Up Button
 	 * Specific behavior is implemented in {@link DecoratedTreeComposite#upButtonPressed()}.
-	 * 
+	 *
 	 * @author Remi SCHNEKENBURGER
 	 */
 	private class UpButtonlistener implements MouseListener {
 
 		/**
-		 * 
-		 * 
+		 *
+		 *
 		 * @param e
 		 */
 		public void mouseDoubleClick(MouseEvent e) {
@@ -448,8 +455,8 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		}
 
 		/**
-		 * 
-		 * 
+		 *
+		 *
 		 * @param e
 		 */
 		public void mouseDown(MouseEvent e) {
@@ -457,30 +464,30 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		}
 
 		/**
-		 * 
-		 * 
+		 *
+		 *
 		 * @param e
 		 */
 		public void mouseUp(MouseEvent e) {
-			TreeItem[] treeItems = tree.getSelection();
+			ISelection selection = treeViewer.getSelection();
 			upButtonPressed();
 			refresh();
 			// Keep selection
-			tree.setSelection(treeItems);
+			keepSelection(selection);
 		}
 	}
 
 	/**
 	 * Listener for the Down Button
 	 * Specific behavior is implemented in {@link DecoratedTreeComposite#downButtonPressed()}.
-	 * 
+	 *
 	 * @author Remi SCHNEKENBURGER
 	 */
 	private class DownButtonlistener implements MouseListener {
 
 		/**
-		 * 
-		 * 
+		 *
+		 *
 		 * @param e
 		 */
 		public void mouseDoubleClick(MouseEvent e) {
@@ -488,8 +495,8 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		}
 
 		/**
-		 * 
-		 * 
+		 *
+		 *
 		 * @param e
 		 */
 		public void mouseDown(MouseEvent e) {
@@ -497,27 +504,29 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		}
 
 		/**
-		 * 
-		 * 
+		 *
+		 *
 		 * @param e
 		 */
 		public void mouseUp(MouseEvent e) {
-			TreeItem[] treeItems = tree.getSelection();
+			ISelection vSelection = treeViewer.getSelection();
+
 			downButtonPressed();
 			refresh();
 			// Keep selection
-			tree.setSelection(treeItems);
+			keepSelection(vSelection);
+
 		}
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private class EditItemListener implements Listener {
 
 		/**
-		 * 
-		 * 
+		 *
+		 *
 		 * @param event
 		 */
 		public void handleEvent(Event event) {
@@ -532,15 +541,20 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 * Dipose listeners.
 	 */
 	public void disposeListeners() {
-		if(addButton != null && !addButton.isDisposed())
+		if(addButton != null && !addButton.isDisposed()) {
 			addButton.removeMouseListener(addButtonlistener);
-		if(removeButton != null && !removeButton.isDisposed())
+		}
+		if(removeButton != null && !removeButton.isDisposed()) {
 			removeButton.removeMouseListener(removeButtonlistener);
-		if(upButton != null && !upButton.isDisposed())
+		}
+		if(upButton != null && !upButton.isDisposed()) {
 			upButton.removeMouseListener(upButtonlistener);
-		if(downButton != null && !downButton.isDisposed())
+		}
+		if(downButton != null && !downButton.isDisposed()) {
 			downButton.removeMouseListener(downButtonlistener);
-		if(tree != null && !tree.isDisposed())
+		}
+		if(tree != null && !tree.isDisposed()) {
 			tree.removeListener(SWT.MouseDoubleClick, treeListener);
+		}
 	}
 }
