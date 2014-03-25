@@ -180,7 +180,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.cea.papyrus.ui.composites.ISectionComposite#createContent(org.eclipse.swt.widgets.Composite,
 	 * org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory)
 	 */
@@ -470,7 +470,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 */
 		public void mouseUp(MouseEvent e) {
 			ISelection selection = treeViewer.getSelection();
-			downButtonPressed();
+			upButtonPressed();
 			refresh();
 			// Keep selection
 			keepSelection(selection);
@@ -511,7 +511,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		public void mouseUp(MouseEvent e) {
 			ISelection vSelection = treeViewer.getSelection();
 
-			upButtonPressed();
+			downButtonPressed();
 			refresh();
 			// Keep selection
 			keepSelection(vSelection);

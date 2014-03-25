@@ -14,6 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositeforview;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -24,7 +26,6 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleReferenceEditor;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
@@ -132,80 +133,9 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 		super.addButtonPressed();
 	}
 
-	/**
-	 * Display the stereotype once it is applied
-	 * 
-	 * @param st
-	 *        the stereotype to add
-	 */
-	@Override
-	public void applyStereotype(final Element elt, final Stereotype st) {
-		super.applyStereotype(elt, st);
-		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if(diagramElement == null) {
-			return;
-		}
-		try {
-			final TransactionalEditingDomain domain = getEditingDomain(elt);
-			domain.runExclusive(new Runnable() {
 
-				public void run() {
 
-					Display.getCurrent().asyncExec(new Runnable() {
 
-						public void run() {
-
-							String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
-							RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
-							domain.getCommandStack().execute(command);
-						}
-					});
-				}
-			});
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	/**
-	 * Remove a stereotype from the list of stereotypes to display.
-	 * 
-	 * @param st
-	 *        the stereotype to remove
-	 */
-	@Override
-	protected void unapplyStereotype(final Element elt, final Stereotype st) {
-		super.unapplyStereotype(elt, st);
-		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if(diagramElement == null) {
-			return;
-		}
-
-		final TransactionalEditingDomain domain = getEditingDomain(elt);
-
-		try {
-			domain.runExclusive(new Runnable() {
-
-				public void run() {
-
-					Display.getCurrent().asyncExec(new Runnable() {
-
-						public void run() {
-							String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
-							RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
-
-							domain.getCommandStack().execute(command);
-						}
-					});
-				}
-			});
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -233,5 +163,54 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
 		propertySelectionChangeListener.selectionChanged(event);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel.AppliedStereotypeCompositeOnModel#getApplyStereotypeCommmand(org.eclipse.uml2.uml.Element,
+	 *      org.eclipse.uml2.uml.Stereotype, org.eclipse.emf.transaction.TransactionalEditingDomain)
+	 *
+	 * @param elt
+	 * @param st
+	 * @param domain
+	 * @return
+	 */
+	@Override
+	protected Command getApplyStereotypeCommmand(Element elt, Stereotype st, TransactionalEditingDomain domain) {
+		CompoundCommand compoundCommand = new CompoundCommand("applyStereotypeCommand");
+
+		Command parentCommmand = super.getApplyStereotypeCommmand(elt, st, domain);
+		compoundCommand.append(parentCommmand);
+
+		String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
+		RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
+
+		compoundCommand.append(command);
+
+		return parentCommmand;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel.AppliedStereotypeCompositeOnModel#getUnapplyStereotypeCommand(org.eclipse.uml2.uml.Element,
+	 *      org.eclipse.uml2.uml.Stereotype, org.eclipse.emf.transaction.TransactionalEditingDomain)
+	 *
+	 * @param elt
+	 * @param st
+	 * @param domain
+	 * @return
+	 */
+	@Override
+	protected Command getUnapplyStereotypeCommand(Element elt, Stereotype st, TransactionalEditingDomain domain) {
+		CompoundCommand compoundCommand = new CompoundCommand("UnapplyStereotypeCommand");
+
+		Command parentCommand = super.getUnapplyStereotypeCommand(elt, st, domain);
+		compoundCommand.append(parentCommand);
+
+		String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
+		RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
+		compoundCommand.append(command);
+
+		return compoundCommand;
 	}
 }

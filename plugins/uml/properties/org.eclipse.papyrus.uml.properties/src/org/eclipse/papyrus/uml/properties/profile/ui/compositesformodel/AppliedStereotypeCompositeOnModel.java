@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.util.BasicEList;
@@ -435,7 +436,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel.DecoratedTreeComposite#keepSelection(org.eclipse.jface.viewers.ISelection)
 	 *
 	 * @param pSelection
@@ -463,14 +464,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							domain.getCommandStack().execute(new RecordingCommand(domain) {
-
-								@Override
-								protected void doExecute() {
-									elt.applyStereotype(st);
-									refresh();
-								}
-							});
+							domain.getCommandStack().execute(getApplyStereotypeCommmand(elt, st, domain));
 						}
 					});
 				}
@@ -501,15 +495,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							domain.getCommandStack().execute(new RecordingCommand(domain) {
-
-								@Override
-								protected void doExecute() {
-									elt.unapplyStereotype(st);
-									elt.eNotify(new NotificationImpl(Notification.SET, true, true, true));
-									refresh();
-								}
-							});
+							domain.getCommandStack().execute(getUnapplyStereotypeCommand(elt, st, domain));
 						}
 					});
 				}
@@ -559,7 +545,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	}
 
 	/**
-	 * 
+	 *
 	 * @author gpascual
 	 *
 	 */
@@ -569,7 +555,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 		ISelection selection = null;
 
 		/**
-		 * 
+		 *
 		 * Constructor.
 		 *
 		 */
@@ -624,6 +610,58 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			}
 			return vObjectsList.toArray();
 		}
+	}
+
+	/**
+	 * Create command to execute during apply stereotype action.
+	 *
+	 * @param elt
+	 *        Element where stereotype was applied
+	 * @param st
+	 *        Stereotype to apply on element
+	 *
+	 * @param domain
+	 *        Transaction domain to execute command
+	 * @return Command to execute to apply stereotype on element
+	 */
+	protected Command getApplyStereotypeCommmand(final Element elt, final Stereotype st, final TransactionalEditingDomain domain) {
+		return new RecordingCommand(domain) {
+
+			/**
+			 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+			 */
+			@Override
+			protected void doExecute() {
+				elt.applyStereotype(st);
+				refresh();
+			}
+		};
+	}
+
+	/**
+	 * Create command execute during unapply stereotype action.
+	 *
+	 * @param elt
+	 *        element where stereotype was unapplied
+	 * @param st
+	 *        Stereotype to unapply on element
+	 * @param domain
+	 *        Transaction domain to execute command
+	 * @return Command to execute to unapply stereotype on element
+	 */
+	protected Command getUnapplyStereotypeCommand(final Element elt, final Stereotype st, final TransactionalEditingDomain domain) {
+		return new RecordingCommand(domain) {
+
+			/**
+			 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+			 */
+			@Override
+			protected void doExecute() {
+				elt.unapplyStereotype(st);
+				elt.eNotify(new NotificationImpl(Notification.SET, true, true, true));
+				refresh();
+			}
+		};
 	}
 
 
