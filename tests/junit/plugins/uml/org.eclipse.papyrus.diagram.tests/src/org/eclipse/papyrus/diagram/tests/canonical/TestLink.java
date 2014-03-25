@@ -250,8 +250,8 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	}
 
 	public void installEnvironment(IElementType sourceType, IElementType targetType) {
-		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 0);
-		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 0);
+		assertEquals(CREATION + INITIALIZATION_TEST, 0, getDiagramEditPart().getChildren().size());
+		assertEquals(CREATION + INITIALIZATION_TEST, 0, getRootSemanticModel().getOwnedElements().size());
 		//create the source
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(sourceType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(100, 100));

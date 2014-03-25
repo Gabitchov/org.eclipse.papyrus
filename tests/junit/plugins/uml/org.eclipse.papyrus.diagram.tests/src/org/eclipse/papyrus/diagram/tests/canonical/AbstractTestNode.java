@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.diagram.tests.canonical;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EClass;
@@ -306,7 +307,9 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 		command = null;
 		//CREATION
 		assertEquals(CREATION + INITIALIZATION_TEST, expectedGraphicalChildren, getContainerEditPart().getChildren().size());
-		assertEquals(CREATION + INITIALIZATION_TEST, expectedSemanticChildren, getRootSemanticModel().getOwnedElements().size());
+		Element root = getRootSemanticModel();
+		List<Element> ownedElements = root.getOwnedElements();
+		assertEquals(CREATION + INITIALIZATION_TEST, expectedSemanticChildren, ownedElements.size());
 		final CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getContainerEditPart().getDiagramPreferencesHint());
 		Display.getDefault().syncExec(new Runnable() {
 
@@ -344,7 +347,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 	 *        the type
 	 */
 	public void testToCreateANode(IElementType type) {
-		testToCreateANode(type, 0, 0, 1, 1);
+		testToCreateANode(type, 0, getRequiredProfiles().length, 1, 1);
 	}
 
 	/**
