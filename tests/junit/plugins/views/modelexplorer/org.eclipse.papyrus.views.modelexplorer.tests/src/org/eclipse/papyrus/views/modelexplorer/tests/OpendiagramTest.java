@@ -95,7 +95,7 @@ public class OpendiagramTest extends AbstractEditorTest {
 		//test icons of closed diagram
 		DecoratingLabelProviderWTooltips labeProvider=(DecoratingLabelProviderWTooltips)modelExplorerView.getCommonViewer().getLabelProvider();
 		Assert.assertNotEquals("the label of diagram1 is not good", "Diagram1", labeProvider.getText(diagram1));
-		Assert.assertNotEquals("the label of class1 is not good","Class1",labeProvider.getText(class1));
+		Assert.assertNotEquals("the label of class1 is not good","class1",labeProvider.getText(class1));
 
 		//now test image about diagram for open and closed diagram
 		//select all Tree element in the common viewer.
