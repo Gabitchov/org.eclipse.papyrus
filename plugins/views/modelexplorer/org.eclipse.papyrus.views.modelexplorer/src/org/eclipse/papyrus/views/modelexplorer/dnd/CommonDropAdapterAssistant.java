@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -47,7 +47,6 @@ import org.eclipse.papyrus.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
-import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -55,7 +54,6 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.commands.MoveOpenableCommand;
@@ -83,7 +81,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	/**
 	 * get the list of command to put an eobject into another EObject,
 	 * if the parameter eref is null,It will look for the good role of the child eobject
-	 * 
+	 *
 	 * @param domain
 	 *        the Transactional Domain , cannot be null
 	 * @param targetOwner
@@ -112,7 +110,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	/**
 	 * Get the creation command registry to test when diagrams can be created
-	 * 
+	 *
 	 * @return instance
 	 */
 	private static ICreationCommandRegistry getCreationCommandRegistry() {
@@ -121,7 +119,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	/**
 	 * get a list that contains command to move a view into a new element
-	 * 
+	 *
 	 * @param domain
 	 *        the transactionnal edit domain, cannot be null
 	 * @param target
@@ -131,16 +129,16 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 * @return a list that contains one command to move the diagram
 	 */
 	protected Command getDropViewCommands(TransactionalEditingDomain domain, EObject target, EObject view) {
-		
-		
+
+
 		ViewPrototype proto = ViewPrototype.get(view);
-		
+
 		// check if diagram can exist in new location
-		if (!proto.isOwnerReassignable() || !PolicyChecker.getCurrent().canOwnNewView(target, proto)) {
+		if(!proto.isOwnerReassignable()) {
 			// stop here with unexecutable command
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		// Retrieve reassignment command from the Element Edit service
 		Command command = proto.getCommandChangeOwner(view, target);
 
@@ -157,7 +155,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 				}
 			}
 		}
-		
+
 		// Failed : stop here with unexecutable command
 		return UnexecutableCommand.INSTANCE;
 	}
@@ -173,7 +171,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	/**
 	 * get the list of command to put an eobject before or after another EObject
 	 * It will look for the good role of the child eobject
-	 * 
+	 *
 	 * @param domain
 	 *        the Transactional Domain, cannot be null
 	 * @param targetOwner
@@ -257,7 +255,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	/**
 	 * get the list of good command by taking in account if this is a change order or a drop into
-	 * 
+	 *
 	 * @param target
 	 *        the target object of the drop
 	 * @return the list of command
@@ -293,7 +291,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	/**
 	 * Test if a possibleSub eclass is a sub eclass
-	 * 
+	 *
 	 * @param aclass
 	 *        , cannot be null
 	 * @param possibleSubClasse
@@ -322,7 +320,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	/**
 	 * get the list of commands to drop an element
-	 * 
+	 *
 	 * @param target
 	 *        , can be null but do nothing
 	 * @param the
@@ -347,9 +345,9 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			Iterator<?> it = selectedElements.iterator();
 			while(it.hasNext()) {
 				Object object = it.next();
-				EObject eObjectchild =  EMFHelper.getEObject(object);
-				
-				if (ViewPrototype.isViewObject(eObjectchild) && getEditors(targetEObject).contains(eObjectchild)) {
+				EObject eObjectchild = EMFHelper.getEObject(object);
+
+				if(ViewPrototype.isViewObject(eObjectchild) && getEditors(targetEObject).contains(eObjectchild)) {
 					result.add(getDropViewCommands(getEditingDomain(targetEObject), targetEObject, eObjectchild));
 				}
 				//test if object is an eobject
@@ -364,7 +362,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 *         the list of the editors
 	 */
@@ -378,7 +376,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	/**
 	 * get the list of commands to drop an element
-	 * 
+	 *
 	 * @param target
 	 *        , can be null but do nothing
 	 * @return the list of the commands
@@ -404,12 +402,12 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			Iterator<?> it = selectedElements.iterator();
 			while(it.hasNext()) {
 				Object object = it.next();
-					EObject eObjectchild = EMFHelper.getEObject(object);
-					//test if object is an eobject
-					if(eObjectchild != null && objectOwner != null) {
+				EObject eObjectchild = EMFHelper.getEObject(object);
+				//test if object is an eobject
+				if(eObjectchild != null && objectOwner != null) {
 
-						result.addAll(getOrderChangeCommand(getEditingDomain(eObjectchild), objectOwner, objectLocation, eObjectchild, before));
-					}
+					result.addAll(getOrderChangeCommand(getEditingDomain(eObjectchild), objectOwner, objectLocation, eObjectchild, before));
+				}
 			}
 		}
 		return result;
@@ -417,7 +415,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	/**
 	 * get the editing domain
-	 * 
+	 *
 	 * @return get the Transaction Editing Domain
 	 */
 	protected TransactionalEditingDomain getEditingDomain(EObject context) {
