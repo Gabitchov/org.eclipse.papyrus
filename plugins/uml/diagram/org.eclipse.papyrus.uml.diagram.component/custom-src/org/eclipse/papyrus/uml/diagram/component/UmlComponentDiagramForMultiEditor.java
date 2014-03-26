@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2014 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -8,7 +8,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr
+ *   Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr
+ *   Christian W. Damus (CEA) - bug 392301
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component;
 
@@ -23,6 +25,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
@@ -46,6 +49,8 @@ public class UmlComponentDiagramForMultiEditor extends UMLDiagramEditor {
 	/** The editor splitter. */
 	private Composite splitter;
 
+	private Image titleImage;
+	
 	/**
 	 * Constructor for SashSystem v2. Context and required objects are retrieved from the
 	 * ServiceRegistry.
@@ -81,7 +86,18 @@ public class UmlComponentDiagramForMultiEditor extends UMLDiagramEditor {
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
 		setPartName(getDiagram().getName());
-		setTitleImage(DIAG_IMG_DESC.createImage());
+		titleImage = DIAG_IMG_DESC.createImage();
+		setTitleImage(titleImage);
+	}
+
+	@Override
+	public void dispose() {
+		if(titleImage != null) {
+			titleImage.dispose();
+			titleImage = null;
+		}
+		
+		super.dispose();
 	}
 
 
