@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 LIFL, CEA LIST, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,8 @@
  * 
  * Contributors:
  *     Cedric Dumoulin - cedric.dumoulin@lifl.fr
+ *     Christian W. Damus (CEA) - bug 392301
+ *  
  ******************************************************************************/
 package org.eclipse.papyrus.layers.stackmodel.diagram;
 
@@ -105,6 +107,8 @@ public class LayersTreeDiagramEditorFactory implements IPluggableEditorFactory {
 		private Diagram pageIdentifier;
 
 		private ServicesRegistry servicesRegistry;
+		
+		private Image tabIcon;
 
 		/**
 		 * 
@@ -185,12 +189,14 @@ public class LayersTreeDiagramEditorFactory implements IPluggableEditorFactory {
 		 * 
 		 */
 		public Image getTabIcon() {
-			ImageDescriptor imageDescriptor = editorDescriptor.getIcon();
-			if(imageDescriptor == null) {
-				return null;
+			if(tabIcon == null) {
+				ImageDescriptor imageDescriptor = editorDescriptor.getIcon();
+				if(imageDescriptor != null) {
+					tabIcon = imageDescriptor.createImage();
+				}
 			}
-
-			return imageDescriptor.createImage();
+			
+			return tabIcon;
 		}
 
 		/**
@@ -201,6 +207,14 @@ public class LayersTreeDiagramEditorFactory implements IPluggableEditorFactory {
 		 */
 		public String getTabTitle() {
 			return "Layers Tree Editor";
+		}
+		
+		@Override
+		public void dispose() {
+			if(tabIcon != null) {
+				tabIcon.dispose();
+				tabIcon = null;
+			}
 		}
 
 	}

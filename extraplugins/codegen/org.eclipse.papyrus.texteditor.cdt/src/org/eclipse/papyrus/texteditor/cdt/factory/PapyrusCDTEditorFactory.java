@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *  Ansgar Radermacher (CEA LIST) - Minor adaptations
+ *  Christian W. Damus (CEA) - bug 392301
  *
  *****************************************************************************/
 package org.eclipse.papyrus.texteditor.cdt.factory;
@@ -192,6 +193,11 @@ public class PapyrusCDTEditorFactory extends AbstractEditorFactory {
 		 */
 		public String getTabTitle() {
 			return rawEditorModel.getName();
+		}
+		
+		@Override
+		public void dispose() {
+			// Pass. The tab icon is a plugin-shared image
 		}
 	}
 }
