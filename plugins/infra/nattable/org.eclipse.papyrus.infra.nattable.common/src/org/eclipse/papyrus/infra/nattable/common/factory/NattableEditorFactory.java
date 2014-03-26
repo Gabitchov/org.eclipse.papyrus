@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 LIFL & CEA LIST.
+ * Copyright (c) 2011, 2014 LIFL, CEA LIST, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,8 @@
  * Contributors:
  *  Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
+ *  Christian W. Damus (CEA) - bug 392301
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.factory;
 
@@ -200,6 +202,11 @@ public class NattableEditorFactory extends AbstractEditorFactory {
 		 */
 		public String getTabTitle() {
 			return this.rawModel.getName();
+		}
+		
+		@Override
+		public void dispose() {
+			// Pass. The tab icon is a plugin-shared image
 		}
 	}
 }

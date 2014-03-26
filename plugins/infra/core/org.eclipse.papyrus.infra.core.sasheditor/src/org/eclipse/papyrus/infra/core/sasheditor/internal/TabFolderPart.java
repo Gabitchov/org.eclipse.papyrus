@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 392301
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -28,6 +29,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabFolderEvent;
 import org.eclipse.swt.custom.CTabItem;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.MenuDetectEvent;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackListener;
@@ -1041,7 +1044,7 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 	private PagePart createChildPart(Object newModel) {
 
 		// Create the child PartModel. Delegate creation to this part PartModel.
-		IPageModel partModel = getPartModel().createChildSashModel(newModel);
+		final IPageModel partModel = getPartModel().createChildSashModel(newModel);
 
 		if(partModel != null) {
 			// Delegate part creation to the container. This allow the container to provide appropriate 
@@ -1053,6 +1056,18 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 			newPart.createPartControl(getControl());
 			getSashWindowContainer().getLifeCycleEventProvider().firePageOpenedEvent(newPart);
 
+			if(newPart.getControl() != null) {
+				newPart.getControl().addDisposeListener(new DisposeListener() {
+					
+					public void widgetDisposed(DisposeEvent e) {
+						// Dispose the model that generated the part
+						partModel.dispose();
+					}
+				});
+			} else {
+				// No part control? Dispose the model, now
+				partModel.dispose();
+			}
 			return newPart;
 		}
 

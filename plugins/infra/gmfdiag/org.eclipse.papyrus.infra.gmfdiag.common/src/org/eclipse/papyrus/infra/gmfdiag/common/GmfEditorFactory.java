@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2013 CEA LIST.
+ * Copyright (c) 2008, 2014 LIFL, CEA LIST, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - service hook for integrating tools into graphical editor (CDO)
+ *  Christian W. Damus (CEA) - bug 392301
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common;
@@ -108,6 +109,8 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 		 */
 		private ServicesRegistry servicesRegistry;
 
+		private Image tabIcon;
+		
 		/**
 		 * 
 		 * Constructor.
@@ -202,11 +205,14 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 		 * 
 		 */
 		public Image getTabIcon() {
-			ImageDescriptor imageDescriptor = DiagramUtils.getPrototype(diagram).getIconDescriptor();
-			if(imageDescriptor == null)
-				return null;
+			if(tabIcon == null) {
+				ImageDescriptor imageDescriptor = DiagramUtils.getPrototype(diagram).getIconDescriptor();
+				if(imageDescriptor != null) {
+					tabIcon = imageDescriptor.createImage();
+				}
+			}
 
-			return imageDescriptor.createImage();
+			return tabIcon;
 		}
 
 		/**
@@ -220,6 +226,13 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 			return diagram.getName();
 		}
 
+		@Override
+		public void dispose() {
+			if(tabIcon != null) {
+				tabIcon.dispose();
+				tabIcon = null;
+			}
+		}
 	}
 
 }
