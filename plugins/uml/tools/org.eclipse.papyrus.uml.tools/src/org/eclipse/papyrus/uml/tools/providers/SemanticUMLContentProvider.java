@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 410346
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.providers;
 
@@ -258,9 +260,14 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 	}
 
 	protected void listenOnResourceSet(ResourceSet resourceSet) {
-		resourceSetListener.unsetTarget(root);
-		resourceSetListener.setTarget(resourceSet);
+		if(root != null) {
+			resourceSetListener.unsetTarget(root);
+			root = null;
+			roots = null;
+		}
+		
 		if(resourceSet != null) {
+			resourceSetListener.setTarget(resourceSet);
 			this.root = resourceSet;
 			this.roots = getRoots(root);
 		}
@@ -268,7 +275,12 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 	@Override
 	public void dispose() {
-		resourceSetListener.unsetTarget(root);
+		if (root != null) {
+			resourceSetListener.unsetTarget(root);
+		}
+		root = null;
+		roots = null;
+		viewer = null;
 		super.dispose();
 	}
 
