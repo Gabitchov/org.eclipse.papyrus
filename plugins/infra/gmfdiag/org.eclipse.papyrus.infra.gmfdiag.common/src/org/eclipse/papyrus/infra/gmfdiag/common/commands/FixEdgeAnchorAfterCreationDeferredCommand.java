@@ -15,6 +15,7 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
+import java.io.ObjectInputStream.GetField;
 import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -22,6 +23,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -32,6 +34,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
+import org.eclipse.swt.widgets.Display;
 
 
 /**
@@ -73,44 +76,14 @@ public class FixEdgeAnchorAfterCreationDeferredCommand extends AbstractFixEdgeAn
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-		final RunnableWithResult<AbstractConnectionEditPart> refreshRunnable = new RunnableWithResult<AbstractConnectionEditPart>() {
+		//we execute all ui thread
+		while(Display.getDefault().readAndDispatch());
 
-			private IStatus status;
-
-			private AbstractConnectionEditPart result;
-
-			public AbstractConnectionEditPart getResult() {
-				return result;
-			}
-
-			public void setStatus(IStatus status) {
-				this.status = status;
-			}
-
-			public IStatus getStatus() {
-				return status;
-			}
-
-			public void run() {
-				getContainerEP().refresh();
-
-				// We update the figure world 
-				getContainerFigure().invalidate();
-				getContainerFigure().validate();
-				final View view = (View)request.getConnectionViewDescriptor().getAdapter(View.class);
-				if(view != null) {
-					final Map<?, ?> epRegistry = getContainerEP().getRoot().getViewer().getEditPartRegistry();
-					Object editPart = epRegistry.get(view);
-					if(editPart instanceof AbstractConnectionEditPart) {
-						this.result = (AbstractConnectionEditPart)editPart;
-						refreshConnection(this.result);
-					}
-				}
-				setStatus(Status.OK_STATUS);
-			}
-		};
-
+		//we refresh the editparts
+		RefreshConnectionElementsRunnable refreshRunnable = new RefreshConnectionElementsRunnable(this.request, getContainerEP());
 		EditPartUtil.synchronizeRunnableToMainThread(getContainerEP(), refreshRunnable);
+
+		//we do the work
 		final AbstractConnectionEditPart connectionEP = refreshRunnable.getResult();
 		if(connectionEP != null) {
 			final CompoundCommand cc = new CompoundCommand("Fix connections anchors"); //$NON-NLS-1$
@@ -145,4 +118,55 @@ public class FixEdgeAnchorAfterCreationDeferredCommand extends AbstractFixEdgeAn
 	public boolean canExecute() {
 		return super.canExecute() && this.request != null;
 	}
+
+	/**
+	 * 
+	 * The runnable used to refresh the views
+	 * 
+	 */
+	private static class RefreshConnectionElementsRunnable extends AbstractRefreshConnectionElementsRunnable<AbstractConnectionEditPart> {
+
+		/**
+		 * the connection request
+		 */
+		final CreateConnectionViewRequest request;
+
+		/**
+		 * 
+		 * Constructor.
+		 * 
+		 * @param request
+		 *        the request used to create the connection view
+		 * @param containerEP
+		 *        the edit part owning the new connection editpart
+		 * @param containerFigure
+		 */
+		public RefreshConnectionElementsRunnable(final CreateConnectionViewRequest request, final IGraphicalEditPart containerEP) {
+			super(containerEP);
+			this.request = request;
+		}
+
+		/**
+		 * 
+		 * @see java.lang.Runnable#run()
+		 * 
+		 */
+		public void run() {
+			getContainerEditPart().refresh();
+			// We update the figure world 
+			getContainerFigure().invalidate();
+			getContainerFigure().validate();
+			final View view = (View)this.request.getConnectionViewDescriptor().getAdapter(View.class);
+			if(view != null) {
+				final Map<?, ?> epRegistry = getContainerEditPart().getRoot().getViewer().getEditPartRegistry();
+				Object editPart = epRegistry.get(view);
+				if(editPart instanceof AbstractConnectionEditPart) {
+					setResult((AbstractConnectionEditPart)editPart);
+					refreshConnection(getResult());
+				}
+			}
+			setStatus(Status.OK_STATUS);
+		}
+	};
+
 }

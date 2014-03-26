@@ -72,44 +72,8 @@ public class FixEdgeAnchorsDeferredCommand extends AbstractFixEdgeAnchorDeferred
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-		final RunnableWithResult<Collection<AbstractConnectionEditPart>> refreshRunnable = new RunnableWithResult<Collection<AbstractConnectionEditPart>>() {
-
-			private IStatus status;
-
-			private Collection<AbstractConnectionEditPart> result;
-
-			public Collection<AbstractConnectionEditPart> getResult() {
-				return result;
-			}
-
-			public void setStatus(IStatus status) {
-				this.status = status;
-			}
-
-			public IStatus getStatus() {
-				return status;
-			}
-
-			public void run() {
-				getContainerEP().refresh();
-
-				// We update the figure world 
-				getContainerFigure().invalidate();
-				getContainerFigure().validate();
-				final Iterator<?> iter = connectionsEditPartToRefresh.iterator();
-				final Collection<AbstractConnectionEditPart> connectionsEP = new HashSet<AbstractConnectionEditPart>();
-				this.result = connectionsEP;
-				while(iter.hasNext()) {
-					final Object object = iter.next();
-					if(object instanceof AbstractConnectionEditPart) {
-						connectionsEP.add((AbstractConnectionEditPart)object);
-						refreshConnection((AbstractConnectionEditPart)object);
-					}
-				}
-				setStatus(Status.OK_STATUS);
-			}
-		};
-
+		final RefreshConnectionElementsRunnable refreshRunnable = new RefreshConnectionElementsRunnable(this.connectionsEditPartToRefresh,  getContainerEP());
+		
 		EditPartUtil.synchronizeRunnableToMainThread(getContainerEP(), refreshRunnable);
 		final Collection<AbstractConnectionEditPart> toRefresh = refreshRunnable.getResult();
 		final Iterator<AbstractConnectionEditPart> iter = toRefresh.iterator();
@@ -119,7 +83,7 @@ public class FixEdgeAnchorsDeferredCommand extends AbstractFixEdgeAnchorDeferred
 			addFixAnchorCommand(current, cc);
 			if(cc.canExecute()) {
 				cc.execute();
-			}else{
+			} else {
 				Activator.log.warn("Command to fix the anchors is null"); //$NON-NLS-1$
 			}
 		}
@@ -136,6 +100,48 @@ public class FixEdgeAnchorsDeferredCommand extends AbstractFixEdgeAnchorDeferred
 		this.connectionsEditPartToRefresh.clear();
 	}
 
+	private static class RefreshConnectionElementsRunnable extends AbstractRefreshConnectionElementsRunnable<Collection<AbstractConnectionEditPart>> {
 
+		/**
+		 * the list of the connections to refresh
+		 */
+		private Collection<?> connectionsEditPartToRefresh;
 
+		/**
+		 * 
+		 * Constructor.
+		 * 
+		 * @param connectionsEditPartToRefresh
+		 *        the list of the connection edit part to refresh
+		 * @param containerEP
+		 */
+		public RefreshConnectionElementsRunnable(final Collection<?> connectionsEditPartToRefresh, final IGraphicalEditPart containerEP) {
+			super(containerEP);
+			this.connectionsEditPartToRefresh = connectionsEditPartToRefresh;
+		}
+
+		/**
+		 * 
+		 * @see java.lang.Runnable#run()
+		 * 
+		 */
+		public void run() {
+			getContainerEditPart().refresh();
+
+			// We update the figure world 
+			getContainerFigure().invalidate();
+			getContainerFigure().validate();
+			final Iterator<?> iter = connectionsEditPartToRefresh.iterator();
+			final Collection<AbstractConnectionEditPart> connectionsEP = new HashSet<AbstractConnectionEditPart>();
+			setResult(connectionsEP);
+			while(iter.hasNext()) {
+				final Object object = iter.next();
+				if(object instanceof AbstractConnectionEditPart) {
+					connectionsEP.add((AbstractConnectionEditPart)object);
+					refreshConnection((AbstractConnectionEditPart)object);
+				}
+			}
+			setStatus(Status.OK_STATUS);
+		}
+	}
 }

@@ -29,7 +29,6 @@ import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.templates.ConnectorBinding;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
-import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -338,8 +337,7 @@ public class ConnectorSelectionDialog extends AbstractElementListSelectionDialog
 								connectorList.add((Class)el);
 							}
 						} catch (TransformationException e) {
-							// transform into runtime exception
-							throw new TransformationRTException(e.getMessage());
+							// silently ignore exception: it is normal that we cannot find a binding for some connectors
 						}
 					}
 				}

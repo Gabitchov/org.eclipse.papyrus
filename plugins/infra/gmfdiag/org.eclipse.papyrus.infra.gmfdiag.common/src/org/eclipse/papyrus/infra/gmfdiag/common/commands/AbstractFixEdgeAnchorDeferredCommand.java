@@ -17,13 +17,17 @@ package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.EditPart;
@@ -33,6 +37,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.FixAnchorHelper;
@@ -80,25 +85,6 @@ public abstract class AbstractFixEdgeAnchorDeferredCommand extends AbstractTrans
 			}
 		}
 		return super.getAffectedFiles();
-	}
-
-	/**
-	 * 
-	 * @param connectionToRefresh
-	 *        the connection edit part to refresh
-	 */
-	protected void refreshConnection(final AbstractConnectionEditPart connectionToRefresh) {
-		connectionToRefresh.refresh();
-		final EditPart sourceEp = connectionToRefresh.getSource();
-		if(sourceEp != null) {
-			sourceEp.refresh();
-		}
-		final EditPart targetEP = connectionToRefresh.getTarget();
-		if(targetEP != null) {
-			targetEP.refresh();
-		}
-		//to force the call to the router, to update the figure
-		connectionToRefresh.getFigure().validate();
 	}
 
 	/**
@@ -171,4 +157,6 @@ public abstract class AbstractFixEdgeAnchorDeferredCommand extends AbstractTrans
 	public boolean canExecute() {
 		return super.canExecute() && this.helper != null && this.containerEP != null;
 	}
+
+	
 }

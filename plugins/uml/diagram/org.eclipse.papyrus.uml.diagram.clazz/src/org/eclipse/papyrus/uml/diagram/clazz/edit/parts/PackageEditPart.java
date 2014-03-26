@@ -314,21 +314,21 @@ public class PackageEditPart extends NamedElementEditPart
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof NodeFigure) {
-			((NodeFigure) primaryShape).setLineWidth(width);
-		}
+		// Do not mask implementation, use method from parent.
+		// See. https://bugs.eclipse.org/bugs/show_bug.cgi?id=352549
+		super.setLineWidth(width);
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof NodeFigure) {
-			((NodeFigure) primaryShape).setLineStyle(style);
-		}
+		// Do not mask implementation, use method from parent.
+		// See. https://bugs.eclipse.org/bugs/show_bug.cgi?id=352549
+		super.setLineType(style);
 	}
 
 	/**
