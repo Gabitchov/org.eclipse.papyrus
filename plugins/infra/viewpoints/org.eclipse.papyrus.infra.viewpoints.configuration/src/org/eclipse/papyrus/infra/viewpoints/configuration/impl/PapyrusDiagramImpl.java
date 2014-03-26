@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ChildRule;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PaletteRule;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
 
@@ -39,7 +38,6 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.PapyrusDiagramImpl#getCustomStyle <em>Custom Style</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.PapyrusDiagramImpl#getChildRules <em>Child Rules</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.PapyrusDiagramImpl#getPaletteRules <em>Palette Rules</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.PapyrusDiagramImpl#getImports <em>Imports</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,16 +103,6 @@ public class PapyrusDiagramImpl extends PapyrusViewImpl implements PapyrusDiagra
 	 * @ordered
 	 */
 	protected EList<PaletteRule> paletteRules;
-
-	/**
-	 * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImports()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ElementImport> imports;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -206,18 +194,6 @@ public class PapyrusDiagramImpl extends PapyrusViewImpl implements PapyrusDiagra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ElementImport> getImports() {
-		if (imports == null) {
-			imports = new EObjectContainmentEList<ElementImport>(ElementImport.class, this, ConfigurationPackage.PAPYRUS_DIAGRAM__IMPORTS);
-		}
-		return imports;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -225,8 +201,6 @@ public class PapyrusDiagramImpl extends PapyrusViewImpl implements PapyrusDiagra
 				return ((InternalEList<?>)getChildRules()).basicRemove(otherEnd, msgs);
 			case ConfigurationPackage.PAPYRUS_DIAGRAM__PALETTE_RULES:
 				return ((InternalEList<?>)getPaletteRules()).basicRemove(otherEnd, msgs);
-			case ConfigurationPackage.PAPYRUS_DIAGRAM__IMPORTS:
-				return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -247,8 +221,6 @@ public class PapyrusDiagramImpl extends PapyrusViewImpl implements PapyrusDiagra
 				return getChildRules();
 			case ConfigurationPackage.PAPYRUS_DIAGRAM__PALETTE_RULES:
 				return getPaletteRules();
-			case ConfigurationPackage.PAPYRUS_DIAGRAM__IMPORTS:
-				return getImports();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -276,10 +248,6 @@ public class PapyrusDiagramImpl extends PapyrusViewImpl implements PapyrusDiagra
 				getPaletteRules().clear();
 				getPaletteRules().addAll((Collection<? extends PaletteRule>)newValue);
 				return;
-			case ConfigurationPackage.PAPYRUS_DIAGRAM__IMPORTS:
-				getImports().clear();
-				getImports().addAll((Collection<? extends ElementImport>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -304,9 +272,6 @@ public class PapyrusDiagramImpl extends PapyrusViewImpl implements PapyrusDiagra
 			case ConfigurationPackage.PAPYRUS_DIAGRAM__PALETTE_RULES:
 				getPaletteRules().clear();
 				return;
-			case ConfigurationPackage.PAPYRUS_DIAGRAM__IMPORTS:
-				getImports().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -327,8 +292,6 @@ public class PapyrusDiagramImpl extends PapyrusViewImpl implements PapyrusDiagra
 				return childRules != null && !childRules.isEmpty();
 			case ConfigurationPackage.PAPYRUS_DIAGRAM__PALETTE_RULES:
 				return paletteRules != null && !paletteRules.isEmpty();
-			case ConfigurationPackage.PAPYRUS_DIAGRAM__IMPORTS:
-				return imports != null && !imports.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

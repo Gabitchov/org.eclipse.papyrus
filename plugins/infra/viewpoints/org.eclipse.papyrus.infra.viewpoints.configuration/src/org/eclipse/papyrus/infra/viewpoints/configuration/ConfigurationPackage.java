@@ -515,22 +515,13 @@ public interface ConfigurationPackage extends EPackage {
 	int PAPYRUS_DIAGRAM__PALETTE_RULES = PAPYRUS_VIEW_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Imports</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_DIAGRAM__IMPORTS = PAPYRUS_VIEW_FEATURE_COUNT + 4;
-
-	/**
 	 * The number of structural features of the '<em>Papyrus Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_DIAGRAM_FEATURE_COUNT = PAPYRUS_VIEW_FEATURE_COUNT + 5;
+	int PAPYRUS_DIAGRAM_FEATURE_COUNT = PAPYRUS_VIEW_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Papyrus Diagram</em>' class.
@@ -888,22 +879,13 @@ public interface ConfigurationPackage extends EPackage {
 	int MODEL_RULE__MULTIPLICITY = RULE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Auto Select Path</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_RULE__AUTO_SELECT_PATH = RULE_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Model Rule</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_RULE_FEATURE_COUNT = RULE_FEATURE_COUNT + 4;
+	int MODEL_RULE_FEATURE_COUNT = RULE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Model Rule</em>' class.
@@ -961,13 +943,22 @@ public interface ConfigurationPackage extends EPackage {
 	int OWNING_RULE__MULTIPLICITY = RULE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>New Model Path</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNING_RULE__NEW_MODEL_PATH = RULE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Owning Rule</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OWNING_RULE_FEATURE_COUNT = RULE_FEATURE_COUNT + 3;
+	int OWNING_RULE_FEATURE_COUNT = RULE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Owning Rule</em>' class.
@@ -1192,51 +1183,59 @@ public interface ConfigurationPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.ElementImportImpl <em>Element Import</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.ModelAutoCreateImpl <em>Model Auto Create</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.ElementImportImpl
-	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.ConfigurationPackageImpl#getElementImport()
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.ModelAutoCreateImpl
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.ConfigurationPackageImpl#getModelAutoCreate()
 	 * @generated
 	 */
-	int ELEMENT_IMPORT = 13;
+	int MODEL_AUTO_CREATE = 13;
 
 	/**
-	 * The feature id for the '<em><b>From</b></em>' reference.
+	 * The feature id for the '<em><b>Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_IMPORT__FROM = 0;
+	int MODEL_AUTO_CREATE__FEATURE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
+	 * The feature id for the '<em><b>Origin</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_IMPORT__ELEMENT = 1;
+	int MODEL_AUTO_CREATE__ORIGIN = 1;
 
 	/**
-	 * The number of structural features of the '<em>Element Import</em>' class.
+	 * The feature id for the '<em><b>Creation Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_IMPORT_FEATURE_COUNT = 2;
+	int MODEL_AUTO_CREATE__CREATION_TYPE = 2;
 
 	/**
-	 * The number of operations of the '<em>Element Import</em>' class.
+	 * The number of structural features of the '<em>Model Auto Create</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_IMPORT_OPERATION_COUNT = 0;
+	int MODEL_AUTO_CREATE_FEATURE_COUNT = 3;
 
+	/**
+	 * The number of operations of the '<em>Model Auto Create</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_AUTO_CREATE_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusConfiguration <em>Papyrus Configuration</em>}'.
@@ -1444,17 +1443,6 @@ public interface ConfigurationPackage extends EPackage {
 	EReference getPapyrusDiagram_PaletteRules();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram#getImports <em>Imports</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Imports</em>'.
-	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram#getImports()
-	 * @see #getPapyrusDiagram()
-	 * @generated
-	 */
-	EReference getPapyrusDiagram_Imports();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable <em>Papyrus Sync Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1529,17 +1517,6 @@ public interface ConfigurationPackage extends EPackage {
 	EAttribute getModelRule_Multiplicity();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule#getAutoSelectPath <em>Auto Select Path</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Auto Select Path</em>'.
-	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule#getAutoSelectPath()
-	 * @see #getModelRule()
-	 * @generated
-	 */
-	EReference getModelRule_AutoSelectPath();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule <em>Owning Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1581,6 +1558,17 @@ public interface ConfigurationPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getOwningRule_Multiplicity();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule#getNewModelPath <em>New Model Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>New Model Path</em>'.
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule#getNewModelPath()
+	 * @see #getOwningRule()
+	 * @generated
+	 */
+	EReference getOwningRule_NewModelPath();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ChildRule <em>Child Rule</em>}'.
@@ -1743,36 +1731,47 @@ public interface ConfigurationPackage extends EPackage {
 	EAttribute getCategory_Name();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport <em>Element Import</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate <em>Model Auto Create</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Element Import</em>'.
-	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport
+	 * @return the meta object for class '<em>Model Auto Create</em>'.
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate
 	 * @generated
 	 */
-	EClass getElementImport();
+	EClass getModelAutoCreate();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport#getFrom <em>From</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate#getFeature <em>Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>From</em>'.
-	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport#getFrom()
-	 * @see #getElementImport()
+	 * @return the meta object for the reference '<em>Feature</em>'.
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate#getFeature()
+	 * @see #getModelAutoCreate()
 	 * @generated
 	 */
-	EReference getElementImport_From();
+	EReference getModelAutoCreate_Feature();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport#getElement <em>Element</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate#getOrigin <em>Origin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Element</em>'.
-	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport#getElement()
-	 * @see #getElementImport()
+	 * @return the meta object for the reference '<em>Origin</em>'.
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate#getOrigin()
+	 * @see #getModelAutoCreate()
 	 * @generated
 	 */
-	EReference getElementImport_Element();
+	EReference getModelAutoCreate_Origin();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate#getCreationType <em>Creation Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Creation Type</em>'.
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate#getCreationType()
+	 * @see #getModelAutoCreate()
+	 * @generated
+	 */
+	EReference getModelAutoCreate_CreationType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1958,14 +1957,6 @@ public interface ConfigurationPackage extends EPackage {
 		EReference PAPYRUS_DIAGRAM__PALETTE_RULES = eINSTANCE.getPapyrusDiagram_PaletteRules();
 
 		/**
-		 * The meta object literal for the '<em><b>Imports</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PAPYRUS_DIAGRAM__IMPORTS = eINSTANCE.getPapyrusDiagram_Imports();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.PapyrusSyncTableImpl <em>Papyrus Sync Table</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2028,14 +2019,6 @@ public interface ConfigurationPackage extends EPackage {
 		EAttribute MODEL_RULE__MULTIPLICITY = eINSTANCE.getModelRule_Multiplicity();
 
 		/**
-		 * The meta object literal for the '<em><b>Auto Select Path</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_RULE__AUTO_SELECT_PATH = eINSTANCE.getModelRule_AutoSelectPath();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.OwningRuleImpl <em>Owning Rule</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2068,6 +2051,14 @@ public interface ConfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OWNING_RULE__MULTIPLICITY = eINSTANCE.getOwningRule_Multiplicity();
+
+		/**
+		 * The meta object literal for the '<em><b>New Model Path</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OWNING_RULE__NEW_MODEL_PATH = eINSTANCE.getOwningRule_NewModelPath();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.ChildRuleImpl <em>Child Rule</em>}' class.
@@ -2200,30 +2191,38 @@ public interface ConfigurationPackage extends EPackage {
 		EAttribute CATEGORY__NAME = eINSTANCE.getCategory_Name();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.ElementImportImpl <em>Element Import</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.ModelAutoCreateImpl <em>Model Auto Create</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.ElementImportImpl
-		 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.ConfigurationPackageImpl#getElementImport()
+		 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.ModelAutoCreateImpl
+		 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.ConfigurationPackageImpl#getModelAutoCreate()
 		 * @generated
 		 */
-		EClass ELEMENT_IMPORT = eINSTANCE.getElementImport();
+		EClass MODEL_AUTO_CREATE = eINSTANCE.getModelAutoCreate();
 
 		/**
-		 * The meta object literal for the '<em><b>From</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ELEMENT_IMPORT__FROM = eINSTANCE.getElementImport_From();
+		EReference MODEL_AUTO_CREATE__FEATURE = eINSTANCE.getModelAutoCreate_Feature();
 
 		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Origin</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ELEMENT_IMPORT__ELEMENT = eINSTANCE.getElementImport_Element();
+		EReference MODEL_AUTO_CREATE__ORIGIN = eINSTANCE.getModelAutoCreate_Origin();
+
+		/**
+		 * The meta object literal for the '<em><b>Creation Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_AUTO_CREATE__CREATION_TYPE = eINSTANCE.getModelAutoCreate_CreationType();
 
 	}
 

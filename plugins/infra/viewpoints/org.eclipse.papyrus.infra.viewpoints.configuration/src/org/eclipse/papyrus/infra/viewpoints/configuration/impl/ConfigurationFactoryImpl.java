@@ -79,7 +79,7 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 			case ConfigurationPackage.PALETTE_RULE: return createPaletteRule();
 			case ConfigurationPackage.PATH_ELEMENT: return createPathElement();
 			case ConfigurationPackage.CATEGORY: return createCategory();
-			case ConfigurationPackage.ELEMENT_IMPORT: return createElementImport();
+			case ConfigurationPackage.MODEL_AUTO_CREATE: return createModelAutoCreate();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -210,9 +210,9 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ElementImport createElementImport() {
-		ElementImportImpl elementImport = new ElementImportImpl();
-		return elementImport;
+	public ModelAutoCreate createModelAutoCreate() {
+		ModelAutoCreateImpl modelAutoCreate = new ModelAutoCreateImpl();
+		return modelAutoCreate;
 	}
 
 	/**

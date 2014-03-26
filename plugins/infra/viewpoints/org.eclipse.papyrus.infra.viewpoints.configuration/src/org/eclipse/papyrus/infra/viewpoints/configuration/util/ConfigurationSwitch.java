@@ -175,9 +175,9 @@ public class ConfigurationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConfigurationPackage.ELEMENT_IMPORT: {
-				ElementImport elementImport = (ElementImport)theEObject;
-				T result = caseElementImport(elementImport);
+			case ConfigurationPackage.MODEL_AUTO_CREATE: {
+				ModelAutoCreate modelAutoCreate = (ModelAutoCreate)theEObject;
+				T result = caseModelAutoCreate(modelAutoCreate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -381,17 +381,17 @@ public class ConfigurationSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element Import</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Auto Create</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element Import</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Auto Create</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseElementImport(ElementImport object) {
+	public T caseModelAutoCreate(ModelAutoCreate object) {
 		return null;
 	}
 

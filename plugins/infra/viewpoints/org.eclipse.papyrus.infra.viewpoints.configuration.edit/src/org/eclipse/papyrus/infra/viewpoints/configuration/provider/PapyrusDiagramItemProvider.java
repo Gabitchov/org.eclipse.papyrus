@@ -132,7 +132,6 @@ public class PapyrusDiagramItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__CHILD_RULES);
 			childrenFeatures.add(ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__PALETTE_RULES);
-			childrenFeatures.add(ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__IMPORTS);
 		}
 		return childrenFeatures;
 	}
@@ -189,7 +188,6 @@ public class PapyrusDiagramItemProvider
 				return;
 			case ConfigurationPackage.PAPYRUS_DIAGRAM__CHILD_RULES:
 			case ConfigurationPackage.PAPYRUS_DIAGRAM__PALETTE_RULES:
-			case ConfigurationPackage.PAPYRUS_DIAGRAM__IMPORTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -216,11 +214,6 @@ public class PapyrusDiagramItemProvider
 			(createChildParameter
 				(ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__PALETTE_RULES,
 				 ConfigurationFactory.eINSTANCE.createPaletteRule()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__IMPORTS,
-				 ConfigurationFactory.eINSTANCE.createElementImport()));
 	}
 
 }

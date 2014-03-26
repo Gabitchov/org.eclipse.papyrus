@@ -141,13 +141,13 @@ public interface ConfigurationFactory extends EFactory {
 	Category createCategory();
 
 	/**
-	 * Returns a new object of class '<em>Element Import</em>'.
+	 * Returns a new object of class '<em>Model Auto Create</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element Import</em>'.
+	 * @return a new object of class '<em>Model Auto Create</em>'.
 	 * @generated
 	 */
-	ElementImport createElementImport();
+	ModelAutoCreate createModelAutoCreate();
 
 	/**
 	 * Returns the package supported by this factory.

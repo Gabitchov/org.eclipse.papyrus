@@ -16,10 +16,8 @@ Bundle-ClassPath: .
 Bundle-Version: 1.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.infra.viewpoints.configuration.A
- ctivator
+Bundle-Activator: org.eclipse.papyrus.infra.viewpoints.configuration.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.infra.viewpoints.configuratio
- n;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.viewpoints.configuration;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

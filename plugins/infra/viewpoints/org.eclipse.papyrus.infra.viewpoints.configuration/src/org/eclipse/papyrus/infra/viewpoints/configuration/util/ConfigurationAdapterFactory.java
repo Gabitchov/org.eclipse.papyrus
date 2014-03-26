@@ -132,8 +132,8 @@ public class ConfigurationAdapterFactory extends AdapterFactoryImpl {
 				return createCategoryAdapter();
 			}
 			@Override
-			public Adapter caseElementImport(ElementImport object) {
-				return createElementImportAdapter();
+			public Adapter caseModelAutoCreate(ModelAutoCreate object) {
+				return createModelAutoCreateAdapter();
 			}
 			@Override
 			public Adapter caseArchitectureFramework(ArchitectureFramework object) {
@@ -354,16 +354,16 @@ public class ConfigurationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport <em>Element Import</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate <em>Model Auto Create</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate
 	 * @generated
 	 */
-	public Adapter createElementImportAdapter() {
+	public Adapter createModelAutoCreateAdapter() {
 		return null;
 	}
 

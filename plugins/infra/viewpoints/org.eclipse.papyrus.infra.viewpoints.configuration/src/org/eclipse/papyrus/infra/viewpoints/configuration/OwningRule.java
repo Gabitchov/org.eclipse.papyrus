@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule#getElement <em>Element</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule#getStereotypes <em>Stereotypes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule#getMultiplicity <em>Multiplicity</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule#getNewModelPath <em>New Model Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,5 +104,21 @@ public interface OwningRule extends Rule {
 	 * @generated
 	 */
 	void setMultiplicity(int value);
+
+	/**
+	 * Returns the value of the '<em><b>New Model Path</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>New Model Path</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>New Model Path</em>' containment reference list.
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage#getOwningRule_NewModelPath()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ModelAutoCreate> getNewModelPath();
 
 } // OwningRule

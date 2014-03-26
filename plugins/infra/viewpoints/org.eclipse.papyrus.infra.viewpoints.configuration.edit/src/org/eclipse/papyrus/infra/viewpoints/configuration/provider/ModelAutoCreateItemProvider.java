@@ -29,15 +29,14 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ElementImportItemProvider
+public class ModelAutoCreateItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +50,7 @@ public class ElementImportItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ElementImportItemProvider(AdapterFactory adapterFactory) {
+	public ModelAutoCreateItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,26 +65,27 @@ public class ElementImportItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFromPropertyDescriptor(object);
-			addElementPropertyDescriptor(object);
+			addFeaturePropertyDescriptor(object);
+			addOriginPropertyDescriptor(object);
+			addCreationTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the From feature.
+	 * This adds a property descriptor for the Feature feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFromPropertyDescriptor(Object object) {
+	protected void addFeaturePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ElementImport_from_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ElementImport_from_feature", "_UI_ElementImport_type"),
-				 ConfigurationPackage.Literals.ELEMENT_IMPORT__FROM,
+				 getString("_UI_ModelAutoCreate_feature_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_feature_feature", "_UI_ModelAutoCreate_type"),
+				 ConfigurationPackage.Literals.MODEL_AUTO_CREATE__FEATURE,
 				 true,
 				 false,
 				 true,
@@ -95,19 +95,41 @@ public class ElementImportItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Element feature.
+	 * This adds a property descriptor for the Origin feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addElementPropertyDescriptor(Object object) {
+	protected void addOriginPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ElementImport_element_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ElementImport_element_feature", "_UI_ElementImport_type"),
-				 ConfigurationPackage.Literals.ELEMENT_IMPORT__ELEMENT,
+				 getString("_UI_ModelAutoCreate_origin_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_origin_feature", "_UI_ModelAutoCreate_type"),
+				 ConfigurationPackage.Literals.MODEL_AUTO_CREATE__ORIGIN,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Creation Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCreationTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModelAutoCreate_creationType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_creationType_feature", "_UI_ModelAutoCreate_type"),
+				 ConfigurationPackage.Literals.MODEL_AUTO_CREATE__CREATION_TYPE,
 				 true,
 				 false,
 				 true,
@@ -117,29 +139,25 @@ public class ElementImportItemProvider
 	}
 
 	/**
-	 * This returns ElementImport.gif.
+	 * This returns ModelAutoCreate.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ElementImport.png"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PathElement.png"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		ElementImport ei = (ElementImport) object;
-		StringBuilder builder = new StringBuilder("[");
-		builder.append(ei.getElement() != null ? ei.getElement().getName() : "?");
-		builder.append("] from ");
-		builder.append(ei.getFrom() != null ? PapyrusViewItemProvider.getTextFor(ei.getFrom()) : "?");
-		return builder.toString();
+		return getString("_UI_ModelAutoCreate_type");
 	}
 	
 

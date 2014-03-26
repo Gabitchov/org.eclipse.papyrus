@@ -359,26 +359,26 @@ public class ConfigurationItemProviderAdapterFactory extends ConfigurationAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ElementImportItemProvider elementImportItemProvider;
+	protected ModelAutoCreateItemProvider modelAutoCreateItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createElementImportAdapter() {
-		if (elementImportItemProvider == null) {
-			elementImportItemProvider = new ElementImportItemProvider(this);
+	public Adapter createModelAutoCreateAdapter() {
+		if (modelAutoCreateItemProvider == null) {
+			modelAutoCreateItemProvider = new ModelAutoCreateItemProvider(this);
 		}
 
-		return elementImportItemProvider;
+		return modelAutoCreateItemProvider;
 	}
 
 	/**
@@ -492,7 +492,7 @@ public class ConfigurationItemProviderAdapterFactory extends ConfigurationAdapte
 		if (paletteRuleItemProvider != null) paletteRuleItemProvider.dispose();
 		if (pathElementItemProvider != null) pathElementItemProvider.dispose();
 		if (categoryItemProvider != null) categoryItemProvider.dispose();
-		if (elementImportItemProvider != null) elementImportItemProvider.dispose();
+		if (modelAutoCreateItemProvider != null) modelAutoCreateItemProvider.dispose();
 	}
 
 }

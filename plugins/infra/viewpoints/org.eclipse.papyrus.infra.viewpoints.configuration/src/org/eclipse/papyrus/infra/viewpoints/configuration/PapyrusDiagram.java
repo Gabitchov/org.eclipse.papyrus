@@ -27,7 +27,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram#getCustomStyle <em>Custom Style</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram#getChildRules <em>Child Rules</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram#getPaletteRules <em>Palette Rules</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram#getImports <em>Imports</em>}</li>
  * </ul>
  * </p>
  *
@@ -117,21 +116,5 @@ public interface PapyrusDiagram extends PapyrusView {
 	 * @generated
 	 */
 	EList<PaletteRule> getPaletteRules();
-
-	/**
-	 * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Imports</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage#getPapyrusDiagram_Imports()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ElementImport> getImports();
 
 } // PapyrusDiagram

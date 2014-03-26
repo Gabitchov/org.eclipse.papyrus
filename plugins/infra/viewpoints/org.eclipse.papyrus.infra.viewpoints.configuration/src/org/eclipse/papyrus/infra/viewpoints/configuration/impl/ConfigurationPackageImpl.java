@@ -23,7 +23,7 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.Category;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ChildRule;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationFactory;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ElementImport;
+import org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
 import org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PaletteRule;
@@ -140,7 +140,7 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass elementImportEClass = null;
+	private EClass modelAutoCreateEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -383,15 +383,6 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPapyrusDiagram_Imports() {
-		return (EReference)papyrusDiagramEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPapyrusSyncTable() {
 		return papyrusSyncTableEClass;
 	}
@@ -455,15 +446,6 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelRule_AutoSelectPath() {
-		return (EReference)modelRuleEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getOwningRule() {
 		return owningRuleEClass;
 	}
@@ -493,6 +475,15 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 	 */
 	public EAttribute getOwningRule_Multiplicity() {
 		return (EAttribute)owningRuleEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOwningRule_NewModelPath() {
+		return (EReference)owningRuleEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -635,8 +626,8 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getElementImport() {
-		return elementImportEClass;
+	public EClass getModelAutoCreate() {
+		return modelAutoCreateEClass;
 	}
 
 	/**
@@ -644,8 +635,8 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getElementImport_From() {
-		return (EReference)elementImportEClass.getEStructuralFeatures().get(0);
+	public EReference getModelAutoCreate_Feature() {
+		return (EReference)modelAutoCreateEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -653,8 +644,17 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getElementImport_Element() {
-		return (EReference)elementImportEClass.getEStructuralFeatures().get(1);
+	public EReference getModelAutoCreate_Origin() {
+		return (EReference)modelAutoCreateEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModelAutoCreate_CreationType() {
+		return (EReference)modelAutoCreateEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -707,7 +707,6 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		createEAttribute(papyrusDiagramEClass, PAPYRUS_DIAGRAM__CUSTOM_STYLE);
 		createEReference(papyrusDiagramEClass, PAPYRUS_DIAGRAM__CHILD_RULES);
 		createEReference(papyrusDiagramEClass, PAPYRUS_DIAGRAM__PALETTE_RULES);
-		createEReference(papyrusDiagramEClass, PAPYRUS_DIAGRAM__IMPORTS);
 
 		papyrusSyncTableEClass = createEClass(PAPYRUS_SYNC_TABLE);
 
@@ -721,12 +720,12 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		createEReference(modelRuleEClass, MODEL_RULE__ELEMENT);
 		createEReference(modelRuleEClass, MODEL_RULE__STEREOTYPES);
 		createEAttribute(modelRuleEClass, MODEL_RULE__MULTIPLICITY);
-		createEReference(modelRuleEClass, MODEL_RULE__AUTO_SELECT_PATH);
 
 		owningRuleEClass = createEClass(OWNING_RULE);
 		createEReference(owningRuleEClass, OWNING_RULE__ELEMENT);
 		createEReference(owningRuleEClass, OWNING_RULE__STEREOTYPES);
 		createEAttribute(owningRuleEClass, OWNING_RULE__MULTIPLICITY);
+		createEReference(owningRuleEClass, OWNING_RULE__NEW_MODEL_PATH);
 
 		childRuleEClass = createEClass(CHILD_RULE);
 		createEReference(childRuleEClass, CHILD_RULE__ELEMENT);
@@ -745,9 +744,10 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		categoryEClass = createEClass(CATEGORY);
 		createEAttribute(categoryEClass, CATEGORY__NAME);
 
-		elementImportEClass = createEClass(ELEMENT_IMPORT);
-		createEReference(elementImportEClass, ELEMENT_IMPORT__FROM);
-		createEReference(elementImportEClass, ELEMENT_IMPORT__ELEMENT);
+		modelAutoCreateEClass = createEClass(MODEL_AUTO_CREATE);
+		createEReference(modelAutoCreateEClass, MODEL_AUTO_CREATE__FEATURE);
+		createEReference(modelAutoCreateEClass, MODEL_AUTO_CREATE__ORIGIN);
+		createEReference(modelAutoCreateEClass, MODEL_AUTO_CREATE__CREATION_TYPE);
 	}
 
 	/**
@@ -815,7 +815,6 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		initEAttribute(getPapyrusDiagram_CustomStyle(), ecorePackage.getEString(), "customStyle", null, 0, 1, PapyrusDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPapyrusDiagram_ChildRules(), this.getChildRule(), null, "childRules", null, 0, -1, PapyrusDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPapyrusDiagram_PaletteRules(), this.getPaletteRule(), null, "paletteRules", null, 0, -1, PapyrusDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPapyrusDiagram_Imports(), this.getElementImport(), null, "imports", null, 0, -1, PapyrusDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(papyrusSyncTableEClass, PapyrusSyncTable.class, "PapyrusSyncTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -829,12 +828,12 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		initEReference(getModelRule_Element(), ecorePackage.getEClass(), null, "element", null, 0, 1, ModelRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelRule_Stereotypes(), ecorePackage.getEClass(), null, "stereotypes", null, 0, -1, ModelRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelRule_Multiplicity(), ecorePackage.getEInt(), "multiplicity", "-1", 1, 1, ModelRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelRule_AutoSelectPath(), this.getPathElement(), null, "autoSelectPath", null, 0, -1, ModelRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(owningRuleEClass, OwningRule.class, "OwningRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOwningRule_Element(), ecorePackage.getEClass(), null, "element", null, 0, 1, OwningRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOwningRule_Stereotypes(), ecorePackage.getEClass(), null, "stereotypes", null, 0, -1, OwningRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOwningRule_Multiplicity(), ecorePackage.getEInt(), "multiplicity", "-1", 1, 1, OwningRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOwningRule_NewModelPath(), this.getModelAutoCreate(), null, "newModelPath", null, 0, -1, OwningRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(childRuleEClass, ChildRule.class, "ChildRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChildRule_Element(), ecorePackage.getEClass(), null, "element", null, 0, 1, ChildRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -853,9 +852,10 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		initEClass(categoryEClass, Category.class, "Category", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCategory_Name(), ecorePackage.getEString(), "name", null, 1, 1, Category.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(elementImportEClass, ElementImport.class, "ElementImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getElementImport_From(), this.getPapyrusDiagram(), null, "from", null, 1, 1, ElementImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getElementImport_Element(), ecorePackage.getEClass(), null, "element", null, 1, 1, ElementImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(modelAutoCreateEClass, ModelAutoCreate.class, "ModelAutoCreate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModelAutoCreate_Feature(), ecorePackage.getEReference(), null, "feature", null, 1, 1, ModelAutoCreate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelAutoCreate_Origin(), ecorePackage.getEClass(), null, "origin", null, 1, 1, ModelAutoCreate.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getModelAutoCreate_CreationType(), ecorePackage.getEClass(), null, "creationType", null, 1, 1, ModelAutoCreate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule#getElement <em>Element</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule#getStereotypes <em>Stereotypes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule#getMultiplicity <em>Multiplicity</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule#getAutoSelectPath <em>Auto Select Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -104,21 +103,5 @@ public interface ModelRule extends Rule {
 	 * @generated
 	 */
 	void setMultiplicity(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Auto Select Path</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.infra.viewpoints.configuration.PathElement}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Auto Select Path</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Auto Select Path</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage#getModelRule_AutoSelectPath()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<PathElement> getAutoSelectPath();
 
 } // ModelRule

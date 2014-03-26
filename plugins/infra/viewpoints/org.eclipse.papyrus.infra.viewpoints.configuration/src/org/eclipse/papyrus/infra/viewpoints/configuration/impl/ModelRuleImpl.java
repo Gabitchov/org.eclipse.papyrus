@@ -15,17 +15,13 @@ package org.eclipse.papyrus.infra.viewpoints.configuration.impl;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PathElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +33,6 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.PathElement;
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.ModelRuleImpl#getElement <em>Element</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.ModelRuleImpl#getStereotypes <em>Stereotypes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.ModelRuleImpl#getMultiplicity <em>Multiplicity</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.ModelRuleImpl#getAutoSelectPath <em>Auto Select Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,16 +78,6 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	 * @ordered
 	 */
 	protected int multiplicity = MULTIPLICITY_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getAutoSelectPath() <em>Auto Select Path</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAutoSelectPath()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<PathElement> autoSelectPath;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -189,32 +174,6 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<PathElement> getAutoSelectPath() {
-		if (autoSelectPath == null) {
-			autoSelectPath = new EObjectContainmentEList<PathElement>(PathElement.class, this, ConfigurationPackage.MODEL_RULE__AUTO_SELECT_PATH);
-		}
-		return autoSelectPath;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ConfigurationPackage.MODEL_RULE__AUTO_SELECT_PATH:
-				return ((InternalEList<?>)getAutoSelectPath()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -225,8 +184,6 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 				return getStereotypes();
 			case ConfigurationPackage.MODEL_RULE__MULTIPLICITY:
 				return getMultiplicity();
-			case ConfigurationPackage.MODEL_RULE__AUTO_SELECT_PATH:
-				return getAutoSelectPath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -250,10 +207,6 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 			case ConfigurationPackage.MODEL_RULE__MULTIPLICITY:
 				setMultiplicity((Integer)newValue);
 				return;
-			case ConfigurationPackage.MODEL_RULE__AUTO_SELECT_PATH:
-				getAutoSelectPath().clear();
-				getAutoSelectPath().addAll((Collection<? extends PathElement>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -275,9 +228,6 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 			case ConfigurationPackage.MODEL_RULE__MULTIPLICITY:
 				setMultiplicity(MULTIPLICITY_EDEFAULT);
 				return;
-			case ConfigurationPackage.MODEL_RULE__AUTO_SELECT_PATH:
-				getAutoSelectPath().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -296,8 +246,6 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 				return stereotypes != null && !stereotypes.isEmpty();
 			case ConfigurationPackage.MODEL_RULE__MULTIPLICITY:
 				return multiplicity != MULTIPLICITY_EDEFAULT;
-			case ConfigurationPackage.MODEL_RULE__AUTO_SELECT_PATH:
-				return autoSelectPath != null && !autoSelectPath.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
