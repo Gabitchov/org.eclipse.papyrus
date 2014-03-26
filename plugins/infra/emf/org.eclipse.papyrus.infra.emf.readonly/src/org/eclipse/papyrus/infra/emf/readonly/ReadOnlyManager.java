@@ -61,11 +61,16 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 	private IReadOnlyListener forwardingListener;
 	
 	public static IReadOnlyHandler2 getReadOnlyHandler(EditingDomain editingDomain) {
-		IReadOnlyHandler2 roHandler = roHandlers.get(editingDomain);
-		if(roHandler == null) {
-			roHandler = new ReadOnlyManager(editingDomain);
-			roHandlers.put(editingDomain, roHandler);
+		IReadOnlyHandler2 roHandler = IReadOnlyHandler2.NULL;
+		
+		if(editingDomain != null) {
+			roHandler = roHandlers.get(editingDomain);
+			if(roHandler == null) {
+				roHandler = new ReadOnlyManager(editingDomain);
+				roHandlers.put(editingDomain, roHandler);
+			}
 		}
+		
 		return roHandler;
 	}
 

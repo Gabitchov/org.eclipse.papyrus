@@ -29,6 +29,70 @@ import com.google.common.base.Optional;
  */
 public interface IReadOnlyHandler2 extends IReadOnlyHandler {
 
+	IReadOnlyHandler2 NULL = new IReadOnlyHandler2() {
+		private final Optional<Boolean> answer = Optional.of(false);
+		
+		@Override
+		public Optional<Boolean> makeWritable(Set<ReadOnlyAxis> axes, EObject eObject) {
+			return answer;
+		}
+		
+		@Override
+		public Optional<Boolean> makeWritable(Set<ReadOnlyAxis> axes, URI[] uris) {
+			return answer;
+		}
+		
+		@Override
+		public Optional<Boolean> makeWritable(EObject eObject) {
+			return answer;
+		}
+		
+		@Override
+		public Optional<Boolean> makeWritable(URI[] uris) {
+			return answer;
+		}
+		
+		@Override
+		public Optional<Boolean> isReadOnly(Set<ReadOnlyAxis> axes, EObject eObject) {
+			return answer;
+		}
+		
+		@Override
+		public Optional<Boolean> isReadOnly(EObject eObject) {
+			return answer;
+		}
+		
+		@Override
+		public Optional<Boolean> canMakeWritable(Set<ReadOnlyAxis> axes, EObject object) {
+			return answer;
+		}
+		
+		@Override
+		public Optional<Boolean> canMakeWritable(Set<ReadOnlyAxis> axes, URI[] uris) {
+			return answer;
+		}
+		
+		@Override
+		public Optional<Boolean> anyReadOnly(Set<ReadOnlyAxis> axes, URI[] uris) {
+			return answer;
+		}
+		
+		@Override
+		public Optional<Boolean> anyReadOnly(URI[] uris) {
+			return answer;
+		}
+		
+		@Override
+		public void addReadOnlyListener(IReadOnlyListener listener) {
+			// Won't report any events, so don't need to track listeners
+		}
+		
+		@Override
+		public void removeReadOnlyListener(IReadOnlyListener listener) {
+			// Won't report any events, so don't need to track listeners
+		}
+	};
+	
 	/**
 	 * A shortcut for {@link #anyReadOnly(Set, URI[])} with a singleton set
 	 * of {@linkplain ReadOnlyAxis#PERMISSION}.
