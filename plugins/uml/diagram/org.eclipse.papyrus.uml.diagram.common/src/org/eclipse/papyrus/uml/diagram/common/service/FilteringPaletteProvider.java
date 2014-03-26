@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 410346
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.service;
@@ -175,10 +176,6 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 	 */
 	private IConfigurationElement config;
 	/**
-	 * The view to which the palette will be provided
-	 */
-	private Diagram diagram;
-	/**
 	 * The exception to the filtering scheme.
 	 * Palette entry IDs in this array are always allowed, regardless of the current configuration.
 	 */
@@ -198,14 +195,15 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 	
 	/**
 	 * Determines whether a palette element with the given entry ID should be exposed to the user
+	 * @param editor a diagram editor to which a palette is being contributed
 	 * @param entryID A palette element entry ID
 	 * @return <code>true</code> if the element should be exposed
 	 */
-	public boolean shouldExpose(String entryID) {
+	public boolean shouldExpose(IEditorPart editor, String entryID) {
 		for (int i=0; i!=exceptions.length; i++)
 			if (entryID.startsWith(exceptions[i]))
 				return true;
-		return PolicyChecker.getCurrent().isInPalette(diagram, entryID);
+		return PolicyChecker.getCurrent().isInPalette(((DiagramEditor)editor).getDiagram(), entryID);
 	}
 	
 	/**
@@ -230,7 +228,7 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 	 * 
 	 * @return The policy-enforced custom palette's URI
 	 */
-	private String getCustomPalette() {
+	private String getCustomPalette(Diagram diagram) {
 		ViewPrototype proto = ViewPrototype.get(diagram);
 		PapyrusDiagram pd = (PapyrusDiagram) proto.getConfiguration();
 		if (pd == null)
@@ -243,7 +241,7 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 	 */
 	public void contributeToPalette(IEditorPart editor, Object content, PaletteRoot root, Map predefinedEntries) {
 		// the view needs to be known now because the actual filtering is called within setContributions
-		diagram = ((DiagramEditor)editor).getDiagram();
+		Diagram diagram = ((DiagramEditor)editor).getDiagram();
 		
 		// Setting up the actual contribution
 		clearContributions();
@@ -252,7 +250,7 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 		proxied.contributeToPalette(editor, content, root, predefinedEntries);
 		
 		// retrieves the custom palette
-		String paletteURI = getCustomPalette();
+		String paletteURI = getCustomPalette(diagram);
 		if (paletteURI != null && !paletteURI.isEmpty()) {
 			CustomPaletteProvider provider = new CustomPaletteProvider();
 			provider.setContributions(paletteURI);
