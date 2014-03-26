@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.ui.PlatformUI;
@@ -47,10 +48,10 @@ public abstract class AbstractDiagramCommandHandler extends AbstractCommandHandl
 				Object current = iter.next();
 				/**
 				 * Get the diagram object.
-				 * This getElement is used in order to use IAdaptabel mechanisme
+				 * This getElement is used in order to use IAdaptabel mechanism
 				 * For example for Facet Elements
 				 */
-				EObject diag = NavigatorUtils.getElement(current, EObject.class);
+				EObject diag = EMFHelper.getEObject(current);
 				if(diag instanceof Diagram) {
 					diagrams.add((Diagram)diag);
 				}
