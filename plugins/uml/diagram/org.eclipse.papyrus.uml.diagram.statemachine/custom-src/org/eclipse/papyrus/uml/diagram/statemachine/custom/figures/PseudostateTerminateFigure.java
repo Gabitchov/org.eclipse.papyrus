@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 CEA List.
+ * Copyright (c) 2006, 2014 CEA List and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,8 @@
  *
  * Contributors:
  *     CEA List - initial API and implementation
+ *     Christian W. Damus (CEA) - bug 392301
+ *     
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.figures;
 
@@ -16,7 +18,7 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.swt.graphics.Color;
@@ -58,8 +60,8 @@ public class PseudostateTerminateFigure extends PapyrusNodeFigure implements IPa
 		graphics.setForegroundColor(getForegroundColor());
 		Rectangle r = getBounds().getCopy().crop(new Insets(0, 0, 1, 1));
 		if(isUsingGradient()) {
-			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-			//graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+			graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
+			//graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
 		} else {
 			graphics.setBackgroundColor(getBackgroundColor());
 			//graphics.setForegroundColor(getForegroundColor());
