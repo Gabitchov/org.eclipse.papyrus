@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -7,14 +7,19 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Contributors:
+ *		
+ *	 CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 392301
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.timing.custom.figures;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.gmf.tooling.runtime.draw2d.CenterLayout;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
@@ -86,9 +91,9 @@ public class CompactStateFigure extends PapyrusNodeFigure implements IPapyrusUML
 			final int widthScaled = (int)(this.bounds.width * scale);
 			final int heightScaled = (int)(height * scale);
 			if(getGradientStyle() == GradientStyle.VERTICAL) {
-				pattern = new Pattern(Display.getCurrent(), xScaled, yScaled, xScaled, yScaled + heightScaled, FigureUtilities.integerToColor(Integer.valueOf(getGradientColor2())), FigureUtilities.integerToColor(Integer.valueOf(getGradientColor1())));
+				pattern = new Pattern(Display.getCurrent(), xScaled, yScaled, xScaled, yScaled + heightScaled, ColorRegistry.getInstance().getColor(getGradientColor2()), ColorRegistry.getInstance().getColor(getGradientColor1()));
 			} else {
-				pattern = new Pattern(Display.getCurrent(), xScaled, yScaled, xScaled + widthScaled, this.bounds.y, FigureUtilities.integerToColor(Integer.valueOf(getGradientColor2())), FigureUtilities.integerToColor(Integer.valueOf(getGradientColor1())));
+				pattern = new Pattern(Display.getCurrent(), xScaled, yScaled, xScaled + widthScaled, this.bounds.y, ColorRegistry.getInstance().getColor(getGradientColor2()), ColorRegistry.getInstance().getColor(getGradientColor1()));
 			}
 			g.setBackgroundPattern(pattern);
 			g.fillPolygon(polygon);

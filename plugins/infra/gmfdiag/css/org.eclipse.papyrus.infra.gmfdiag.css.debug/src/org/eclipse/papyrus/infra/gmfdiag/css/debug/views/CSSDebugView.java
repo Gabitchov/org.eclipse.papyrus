@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 392301
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.debug.views;
 
@@ -24,6 +26,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -463,7 +466,7 @@ public class CSSDebugView extends ViewPart implements ISelectionListener, ISelec
 			String text = getValueAsText(feature, value);
 			cell.setText(text);
 			if(feature.getName().endsWith("Color") && value instanceof Integer) {
-				Color color = FigureUtilities.integerToColor((Integer)value);
+				Color color = ColorRegistry.getInstance().getColor((Integer)value);
 				cell.setBackground(color);
 				int lightness = getLightness(color);
 				//Use a white font when the color is dark

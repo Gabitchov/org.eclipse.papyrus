@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2010, 2014 Atos Origin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 392301
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.figures;
@@ -17,7 +18,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.RoundedRectangleDashedBorder;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
@@ -73,8 +74,8 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 		if(isUsingGradient()) {
 			applyTransparency(graphics);
 			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
-			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-			graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+			graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
+			graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
 			graphics.fillGradient(rectangle, isVertical);
 		} else {
 			graphics.setBackgroundColor(getBackgroundColor());

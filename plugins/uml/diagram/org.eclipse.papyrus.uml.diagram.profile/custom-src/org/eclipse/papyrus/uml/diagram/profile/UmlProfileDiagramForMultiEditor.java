@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2014 LIFL, CEA LIST, and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,8 @@
  *  Cedric Dumoulin cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Yann Tanguy yann.tanguy@cea.fr - Adapted from Class Diagram
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted from composite structure diagram
+ *  Christian W. Damus (CEA) - bug 392301
+ *  
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.profile;
@@ -27,6 +29,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramEditorPlugin;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
@@ -61,6 +64,8 @@ public class UmlProfileDiagramForMultiEditor extends UMLDiagramEditor {
 	/** The editor splitter. */
 	private Composite splitter;
 
+	private Image titleImage;
+	
 	/**
 	 * Constructor. Context and required objects are retrieved from the ServiceRegistry.
 	 * 
@@ -106,7 +111,18 @@ public class UmlProfileDiagramForMultiEditor extends UMLDiagramEditor {
 		super.init(site, input);
 		// Set name after calling super.init()
 		setPartName(getDiagram().getName());
-		setTitleImage(DIAG_IMG_DESC.createImage());
+		titleImage = DIAG_IMG_DESC.createImage();
+		setTitleImage(titleImage);
+	}
+
+	@Override
+	public void dispose() {
+		if(titleImage != null) {
+			titleImage.dispose();
+			titleImage = null;
+		}
+		
+		super.dispose();
 	}
 
 

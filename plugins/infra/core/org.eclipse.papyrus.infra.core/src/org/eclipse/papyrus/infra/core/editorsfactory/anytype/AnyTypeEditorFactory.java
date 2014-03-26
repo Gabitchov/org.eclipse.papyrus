@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 392301
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.editorsfactory.anytype;
@@ -50,6 +51,11 @@ public class AnyTypeEditorFactory extends AbstractEditorFactory {
 
 			private AnyType anyType = anyTypeModel;
 
+			@Override
+			public void dispose() {
+				// Pass. The tab icon is a workbench-shared image
+			}
+			
 			public String getTabTitle() {
 				EClass eClass = anyType.eClass();
 				String label;

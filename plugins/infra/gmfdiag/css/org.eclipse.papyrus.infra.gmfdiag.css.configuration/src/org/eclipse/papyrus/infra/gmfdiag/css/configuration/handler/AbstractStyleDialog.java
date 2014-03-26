@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 392301
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler;
 
@@ -17,7 +19,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.e4.ui.css.core.css2.CSS2ColorHelper;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
@@ -396,7 +398,7 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 	protected Color getColor(HexColor color) {
 		RGBColor rgbColor = CSS2ColorHelper.getRGBColor("#" + color.getValue());
 		int intColor = ColorToGMFConverter.getIntColor(rgbColor);
-		return FigureUtilities.integerToColor(intColor);
+		return ColorRegistry.getInstance().getColor(intColor);
 	}
 
 	public String getCSSClass() {

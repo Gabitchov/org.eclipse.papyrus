@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009, 2014 Atos Origin, CEA, and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 392301
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence;
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.FixGateViewOnOpening;
 import org.eclipse.papyrus.uml.diagram.sequence.util.FixInteractionOperandsOnOpening;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
@@ -58,6 +60,8 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 	/** The editor splitter. */
 	private Composite splitter;
 
+	private Image titleImage;
+	
 	/**
 	 * Constructor for SashSystem v2. Context and required objects are retrieved from the
 	 * ServiceRegistry.
@@ -80,7 +84,18 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
 		setPartName(getDiagram().getName());
-		setTitleImage(DIAG_IMG_DESC.createImage());
+		titleImage = DIAG_IMG_DESC.createImage();
+		setTitleImage(titleImage);
+	}
+
+	@Override
+	public void dispose() {
+		if(titleImage != null) {
+			titleImage.dispose();
+			titleImage = null;
+		}
+		
+		super.dispose();
 	}
 
 	/**

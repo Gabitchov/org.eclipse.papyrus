@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 392301
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
@@ -19,7 +20,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.swt.graphics.Color;
 /**
  * this class is used to display a sendNodeFigure, the gradient can be only
@@ -77,13 +78,13 @@ public class PapyrusSendNodeFigure extends NodeNamedElementFigure {
 		ptList.addPoint(getBounds().getBottomLeft());
 		if(isUsingGradient()) {
 			applyTransparency(graphics);
-			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
+			graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
 			graphics.setForegroundColor(getForegroundColor());
 			graphics.fillPolygon(ptList);
 			
 			Rectangle rect1= new Rectangle(rectangle.getLocation(),new Dimension(getBounds().width-widthArrow,rectangle.height));
-			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-			graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+			graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
+			graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
 			graphics.fillGradient(rect1, false);
 			
 		}

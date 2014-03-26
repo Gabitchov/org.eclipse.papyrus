@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
+ * Copyright (c) 2009, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 392301
  *
  *****************************************************************************/
 
@@ -25,6 +26,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
@@ -57,6 +59,8 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	/** The editor splitter. */
 	private Composite splitter;
 
+	private Image titleImage;
+	
 	/**
 	 * Constructor. Context and required objects are retrieved from the ServiceRegistry.
 	 * 
@@ -75,7 +79,18 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
 		setPartName(getDiagram().getName());
-		setTitleImage(DIAG_IMG_DESC.createImage());
+		titleImage = DIAG_IMG_DESC.createImage();
+		setTitleImage(titleImage);
+	}
+
+	@Override
+	public void dispose() {
+		if(titleImage != null) {
+			titleImage.dispose();
+			titleImage = null;
+		}
+		
+		super.dispose();
 	}
 
 	/**

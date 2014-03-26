@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 392301
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
@@ -39,6 +41,10 @@ public class ErrorComponentPart extends ComponentPart {
 	private static IComponentModel createErrorComponentPartModel() {
 		IComponentModel componentModel = new IComponentModel() {
 
+			public void dispose() {
+				// Pass. The tab icon is a workbench-shared icon
+			}
+			
 			public String getTabTitle() {
 				return "Invalid tab";
 			}
