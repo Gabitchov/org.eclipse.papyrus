@@ -321,8 +321,7 @@
       <childRules/>
     </modelKinds>
     <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="RequirementDiagram" categories="//@categories.1">
-      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
-      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows"/>
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
       <modelRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
