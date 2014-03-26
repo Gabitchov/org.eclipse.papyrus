@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.tools;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.emf,
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="1.7.0"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
