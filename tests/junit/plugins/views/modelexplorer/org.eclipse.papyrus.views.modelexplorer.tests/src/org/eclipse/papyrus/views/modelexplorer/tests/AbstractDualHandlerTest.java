@@ -24,7 +24,6 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
@@ -33,6 +32,7 @@ import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.emf.facet.util.core.internal.exported.FileUtils;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPage;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
@@ -155,9 +155,7 @@ public abstract class AbstractDualHandlerTest extends AbstractHandlerTest{
 
 				// store the root of the model
 				Object[] visibleElement = commonViewer.getVisibleExpandedElements();
-				if(visibleElement[0] instanceof IAdaptable) {
-					modelRoot = (EObject)((IAdaptable)visibleElement[0]).getAdapter(EObject.class);
-				}
+				modelRoot = EMFHelper.getEObject(visibleElement[0]);
 
 				setStatus(Status.OK_STATUS);
 			}
