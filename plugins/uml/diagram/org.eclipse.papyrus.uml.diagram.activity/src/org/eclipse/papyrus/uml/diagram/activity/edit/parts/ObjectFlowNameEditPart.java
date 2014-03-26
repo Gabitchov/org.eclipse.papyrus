@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009, 2014 Atos Origin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 410346
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
@@ -123,6 +124,9 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 	 * @generated NOT
 	 */
 	private final IPreferenceStore preferenceStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+	
+	private IPropertyChangeListener preferenceListener;
+	
 	/**
 	 * @generated
 	 */
@@ -135,17 +139,31 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 	 */
 	public ObjectFlowNameEditPart(View view) {
 		super(view);
-		// add preference listener to enable/disable the label
-		preferenceStore.addPropertyChangeListener(new IPropertyChangeListener() {
+		// a preference listener to enable/disable the label
+		preferenceListener = new IPropertyChangeListener() {
 
 			public void propertyChange(PropertyChangeEvent event) {
 				if(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL.equals(event.getProperty())) {
 					refreshLabel();
 				}
 			}
-		});
+		};
 	}
 
+	@Override
+	public void activate() {
+		super.activate();
+		
+		preferenceStore.addPropertyChangeListener(preferenceListener);
+	}
+	
+	@Override
+	public void deactivate() {
+		preferenceStore.removePropertyChangeListener(preferenceListener);
+		
+		super.deactivate();
+	}
+	
 	/**
 	 * @generated
 	 */
