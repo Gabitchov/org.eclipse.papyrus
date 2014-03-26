@@ -20,6 +20,8 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -29,6 +31,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage;
+import org.eclipse.papyrus.infra.viewpoints.configuration.EReferencePropertyDescriptor;
+import org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate} object.
@@ -80,7 +84,7 @@ public class ModelAutoCreateItemProvider
 	 */
 	protected void addFeaturePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new EReferencePropertyDescriptor(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ModelAutoCreate_feature_feature"),
@@ -91,7 +95,7 @@ public class ModelAutoCreateItemProvider
 				 true,
 				 null,
 				 null,
-				 null));
+				 null)));
 	}
 
 	/**
@@ -153,11 +157,20 @@ public class ModelAutoCreateItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ModelAutoCreate_type");
+		ModelAutoCreate path = (ModelAutoCreate) object;
+		StringBuilder builder = new StringBuilder();
+		EClass origin = path.getOrigin();
+		EReference feature = path.getFeature();
+		EClass target = path.getCreationType();
+		builder.append(origin != null ? origin.getName() : "?");
+		builder.append(".");
+		builder.append(feature != null ? feature.getName() : "?");
+		builder.append(" => new ");
+		builder.append(target != null ? target.getName() : "?");
+		return builder.toString();
 	}
 	
 

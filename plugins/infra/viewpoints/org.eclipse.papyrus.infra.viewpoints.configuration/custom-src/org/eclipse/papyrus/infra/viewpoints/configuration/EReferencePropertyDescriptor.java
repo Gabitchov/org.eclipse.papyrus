@@ -33,10 +33,19 @@ public class EReferencePropertyDescriptor extends SurrogateItemPropertyDescripto
 	
 	@Override
 	public Collection<?> getChoiceOfValues(Object object) {
-		PathElement pe = (PathElement)object;
-		EClass origin = pe.getOrigin();
-		if (origin == null)
-			return empty;
-		return origin.getEAllReferences();
+		if (object instanceof PathElement) {
+			PathElement pe = (PathElement) object;
+			EClass origin = pe.getOrigin();
+			if (origin == null)
+				return empty;
+			return origin.getEAllReferences();
+		} else if (object instanceof ModelAutoCreate) {
+			ModelAutoCreate pe = (ModelAutoCreate) object;
+			EClass origin = pe.getOrigin();
+			if (origin == null)
+				return empty;
+			return origin.getEAllReferences();
+		}
+		return empty;
 	}
 }

@@ -20,6 +20,8 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -157,10 +159,16 @@ public class PathElementItemProvider
 	@Override
 	public String getText(Object object) {
 		PathElement path = (PathElement) object;
-		String data = "<undefined>";
-		if (path.getFeature() != null && path.getOrigin() != null)
-			data = path.getOrigin().getName() + "." + path.getFeature().getName() + " => " + path.getTarget().getName();
-		return data;
+		StringBuilder builder = new StringBuilder();
+		EClass origin = path.getOrigin();
+		EReference feature = path.getFeature();
+		EClass target = path.getTarget();
+		builder.append(origin != null ? origin.getName() : "?");
+		builder.append(".");
+		builder.append(feature != null ? feature.getName() : "?");
+		builder.append(" => ");
+		builder.append(target != null ? target.getName() : "?");
+		return builder.toString();
 	}
 
 	/**

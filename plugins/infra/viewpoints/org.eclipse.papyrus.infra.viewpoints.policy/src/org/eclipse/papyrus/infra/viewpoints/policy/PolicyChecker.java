@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -28,6 +29,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -37,6 +39,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.core.pluginexplorer.Plugin;
 import org.eclipse.papyrus.infra.core.pluginexplorer.PluginEntry;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ChildRule;
+import org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
 import org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PaletteRule;
@@ -441,24 +444,6 @@ public class PolicyChecker {
 		}
 	}
 
-
-	/**
-	 * Determines whether the given element can own the given view
-	 * 
-	 * @param element
-	 *            The possible owner
-	 * @param prototype
-	 *            The view prototype
-	 * @return <code>true</code> if the element can own the view
-	 */
-	public boolean canOwnNewView(EObject element, ViewPrototype prototype) {
-		if (prototype == null)
-			return false;
-		if (!matchesProfiles(prototype.configuration, profileHelper.getAppliedProfiles(element)))
-			return false;
-		return (matchesOwnerMultiplicity(prototype.configuration, element.eClass(), profileHelper.getAppliedStereotypes(element), getOwnedViewCount(element, prototype)));
-	}
-
 	/**
 	 * Determines whether the given element can be the root of a view owned by the given object
 	 * 
@@ -477,9 +462,7 @@ public class PolicyChecker {
 			return false;
 		if (!matchesProfiles(prototype.configuration, profileHelper.getAppliedProfiles(element)))
 			return false;
-		if (!matchesOwnerMultiplicity(prototype.configuration, owner.eClass(), profileHelper.getAppliedStereotypes(owner), getOwnedViewCount(owner, prototype)))
-			return false;
-		if (!matchesRootMultiplicity(prototype.configuration, element.eClass(), profileHelper.getAppliedStereotypes(element), getViewCountOn(element, prototype)))
+		if (!matchesCreationRoot(prototype.configuration, element.eClass(), profileHelper.getAppliedStereotypes(element), getViewCountOn(element, prototype)))
 			return false;
 		return true;
 	}
@@ -626,15 +609,39 @@ public class PolicyChecker {
 				if (proto == null)
 					continue;
 				int count = getOwnedViewCount(element, proto);
-				if (!matchesOwnerMultiplicity(view, element.eClass(), stereotypes, count))
+				OwningRule rule = matchesCreationOwner(view, element, stereotypes, count);
+				if (rule == null)
 					continue;
-				count = getViewCountOn(element, proto);
-				if (!matchesRootMultiplicity(view, element.eClass(), stereotypes, count))
-					continue;
-				result.add(proto);
+				if (rule.getNewModelPath() != null && !rule.getNewModelPath().isEmpty()) {
+					// Auto-created root => always OK
+					result.add(proto);
+				} else {
+					// We have to check if the owner can also be a root
+					count = getViewCountOn(element, proto);
+					if (matchesCreationRoot(view, element, stereotypes, count)) {
+						// The owner can also be the root => OK
+						result.add(proto);
+					}
+				}
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * Gets the owning rule relevant for the given view prototype and owner
+	 * 
+	 * @param prototype
+	 *            The view prototype
+	 * @param owner
+	 *            The view's owner
+	 * @return The owning rule
+	 */
+	public OwningRule getOwningRuleFor(ViewPrototype prototype, EObject owner) {
+		Collection<EClass> stereotypes = profileHelper.getAppliedStereotypes(owner);
+		int count = getOwnedViewCount(owner, prototype);
+		OwningRule rule = matchesCreationOwner(prototype.configuration, owner, stereotypes, count);
+		return rule;
 	}
 
 	/**
@@ -732,13 +739,13 @@ public class PolicyChecker {
 		if (owner != null) {
 			if (!matchesProfiles(view, profileHelper.getAppliedProfiles(owner)))
 				return false;
-			if (!matchesOwner(view, owner.eClass(), profileHelper.getAppliedStereotypes(owner)))
+			if (!matchesExistingOwner(view, owner, profileHelper.getAppliedStereotypes(owner)))
 				return false;
 		}
 		if (root != null) {
 			if (!matchesProfiles(view, profileHelper.getAppliedProfiles(root)))
 				return false;
-			if (!matchesRoot(view, root.eClass(), profileHelper.getAppliedStereotypes(root)))
+			if (!matchesExistingRoot(view, root, profileHelper.getAppliedStereotypes(root)))
 				return false;
 		}
 		return true;
@@ -775,11 +782,11 @@ public class PolicyChecker {
 	 *            The stereotypes applied on the owning element
 	 * @return <code>true</code> if the prototype is matching
 	 */
-	private boolean matchesOwner(PapyrusView view, EClass type, Collection<EClass> stereotypes) {
+	private boolean matchesExistingOwner(PapyrusView view, EObject owner, Collection<EClass> stereotypes) {
 		PapyrusView current = view;
 		while (current != null) {
 			for (OwningRule rule : current.getOwningRules()) {
-				int result = allows(rule, type, stereotypes);
+				int result = allows(rule, owner.eClass(), stereotypes);
 				if (result == RESULT_DENY)
 					return false;
 				if (result == RESULT_PERMIT)
@@ -795,31 +802,33 @@ public class PolicyChecker {
 	 * 
 	 * @param view
 	 *            The view to check against
-	 * @param type
-	 *            The owning element's type
+	 * @param owner
+	 *            The owning element
 	 * @param stereotypes
 	 *            The stereotypes applied on the owning element
 	 * @param count
 	 *            The current cardinality for the owning element
-	 * @return <code>true</code> if the prototype is matching
+	 * @return The matching rule that allows the owner
 	 */
-	private boolean matchesOwnerMultiplicity(PapyrusView view, EClass type, Collection<EClass> stereotypes, int count) {
+	private OwningRule matchesCreationOwner(PapyrusView view, EObject owner, Collection<EClass> stereotypes, int count) {
 		PapyrusView current = view;
 		while (current != null) {
 			for (OwningRule rule : current.getOwningRules()) {
-				int allow = allows(rule, type, stereotypes);
+				int allow = allows(rule, owner.eClass(), stereotypes);
 				if (allow == RESULT_DENY)
-					return false;
+					return null;
 				if (allow == RESULT_UNKNOWN)
 					continue;
 				int multiplicity = rule.getMultiplicity();
-				if (multiplicity == -1)
-					return true;
-				return (count < multiplicity);
+				if (multiplicity == -1 || count < multiplicity) {
+					if (allows(rule, owner)) {
+						return rule;
+					}
+				}
 			}
 			current = current.getParent();
 		}
-		return false;
+		return null;
 	}
 
 	/**
@@ -827,17 +836,17 @@ public class PolicyChecker {
 	 * 
 	 * @param view
 	 *            The view to check against
-	 * @param type
-	 *            The root element's type
+	 * @param root
+	 *            The root element
 	 * @param stereotypes
 	 *            The stereotypes applied on the root element
 	 * @return <code>true</code> if the prototype is matching
 	 */
-	private boolean matchesRoot(PapyrusView view, EClass type, Collection<EClass> stereotypes) {
+	private boolean matchesExistingRoot(PapyrusView view, EObject root, Collection<EClass> stereotypes) {
 		PapyrusView current = view;
 		while (current != null) {
 			for (ModelRule rule : current.getModelRules()) {
-				int result = allows(rule, type, stereotypes);
+				int result = allows(rule, root.eClass(), stereotypes);
 				if (result == RESULT_DENY)
 					return false;
 				if (result == RESULT_PERMIT)
@@ -853,27 +862,26 @@ public class PolicyChecker {
 	 * 
 	 * @param view
 	 *            The view to check against
-	 * @param type
-	 *            The root element's type
+	 * @param root
+	 *            The root element
 	 * @param stereotypes
 	 *            The stereotypes applied on the root element
 	 * @param count
 	 *            The current cardinality for the root element
 	 * @return <code>true</code> if the prototype is matching
 	 */
-	private boolean matchesRootMultiplicity(PapyrusView view, EClass type, Collection<EClass> stereotypes, int count) {
+	private boolean matchesCreationRoot(PapyrusView view, EObject root, Collection<EClass> stereotypes, int count) {
 		PapyrusView current = view;
 		while (current != null) {
 			for (ModelRule rule : current.getModelRules()) {
-				int allow = allows(rule, type, stereotypes);
+				int allow = allows(rule, root.eClass(), stereotypes);
 				if (allow == RESULT_DENY)
 					return false;
 				if (allow == RESULT_UNKNOWN)
 					continue;
 				int multiplicity = (oneViewPerElem ? 1 : rule.getMultiplicity());
-				if (multiplicity == -1)
+				if (multiplicity == -1 || count < multiplicity)
 					return true;
-				return (count < multiplicity);
 			}
 			current = current.getParent();
 		}
@@ -903,6 +911,32 @@ public class PolicyChecker {
 			// type is not matching => unknown
 			return RESULT_UNKNOWN;
 		}
+	}
+
+	/**
+	 * Checks whether the given owning rule will allow to derive an auto-created root
+	 * 
+	 * @param rule
+	 *            The owning rule
+	 * @param owner
+	 *            The owner
+	 * @return <code>true</code> if it is possible
+	 */
+	private boolean allows(OwningRule rule, EObject owner) {
+		List<ModelAutoCreate> list = rule.getNewModelPath();
+		if (list == null || list.isEmpty())
+			return true;
+		EObject current = owner;
+		for (ModelAutoCreate elem : list) {
+			EReference ref = elem.getFeature();
+			if (ref.isMany())
+				return true;
+			Object e = current.eGet(ref);
+			if (e == null)
+				return true;
+			current = (EObject) e;
+		}
+		return false;
 	}
 
 	/**

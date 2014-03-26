@@ -28,10 +28,8 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.viewpoints.configuration.Category;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
@@ -40,7 +38,6 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusTable;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusViewpoint;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PathElement;
 import org.eclipse.swt.graphics.Image;
 
 
@@ -319,44 +316,6 @@ public abstract class ViewPrototype {
 	 */
 	public Collection<Category> getCategories() {
 		return configuration.getCategories();
-	}
-
-	/**
-	 * Gets the initial view's root from the owner
-	 * 
-	 * @param owner
-	 *            The initial view's owner
-	 * @return The initial root
-	 */
-	public EObject getRootFor(EObject owner) {
-		for (ModelRule rule : configuration.getModelRules()) {
-			if (rule.getAutoSelectPath() != null && rule.getAutoSelectPath().size() > 0) {
-				EObject result = traverse(owner, rule.getAutoSelectPath());
-				if (result != null)
-					return result;
-			}
-		}
-		return owner;
-	}
-
-	private EObject traverse(EObject from, EList<PathElement> path) {
-		EObject current = from;
-		for (PathElement elem : path) {
-			EReference feature = elem.getFeature();
-			if (current.eIsSet(feature)) {
-				Object temp = current.eGet(feature);
-				if (temp instanceof EList) {
-					current = ((EList<? extends EObject>) temp).get(0);
-				} else if (temp instanceof EObject) {
-					current = (EObject) temp;
-				} else {
-					return null;
-				}
-			} else {
-				return null;
-			}
-		}
-		return current;
 	}
 
 	/**

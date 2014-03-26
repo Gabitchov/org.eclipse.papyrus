@@ -16,6 +16,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.common;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -29,6 +30,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -49,12 +52,10 @@ import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ui.IModelElementValidator;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ui.ModelElementSelectionDialog;
+import org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate;
+import org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
@@ -94,6 +95,8 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 		private ViewPrototype prototype;
 
+		private OwningRule rule;
+
 		private String name;
 
 		public Creator(ModelSet modelSet, EObject owner, EObject element, ViewPrototype prototype, String name) {
@@ -114,67 +117,41 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				attachModelToResource(owner, modelResource);
 			}
 
-			if(!PolicyChecker.getCurrent().canOwnNewView(owner, prototype)) {
-				ModelElementSelectionDialog dialog = new ModelElementSelectionDialog(Display.getCurrent().getActiveShell(), ServiceUtilsForResourceSet.getInstance().getServiceRegistry(modelSet), "Select an appropriate owner for the diagram:", getRootElement(modelResource), owner, new IModelElementValidator() {
-
-					@Override
-					public String isSelectable(EObject element) {
-						if(PolicyChecker.getCurrent().canOwnNewView(owner, prototype)) {
-							return null;
-						}
-						return "This element cannot own the diagram.";
-					}
-				});
-				int result = dialog.open();
-				if(result != Window.OK) {
-					return null;
-				}
-				owner = dialog.getSelection();
+			rule = PolicyChecker.getCurrent().getOwningRuleFor(prototype, owner);
+			if (rule == null) {
+				// Something isn't right ...
+				return null;
 			}
 
-			element = prototype.getRootFor(owner);
-			if(!PolicyChecker.getCurrent().canHaveNewView(element, owner, prototype)) {
-				StringBuilder builder = new StringBuilder("Select a root element for the diagram. Allowed types: ");
-				if(prototype.getConfiguration() == null) {
-					builder.append("<unknown>");
-				} else if(prototype.getConfiguration().getModelRules().size() == 0) {
-					builder.append("<unknown>");
-				} else {
-					boolean first = true;
-					for(ModelRule rule : prototype.getConfiguration().getModelRules()) {
-						EClass model = rule.getElement();
-						if(model != null) {
-							if(!first) {
-								builder.append(", ");
-							}
-							first = false;
-							builder.append(model.getName());
+			element = owner;
+			if (rule.getNewModelPath() != null) {
+				// We have a path for the root auto-creation
+				for (ModelAutoCreate auto : rule.getNewModelPath()) {
+					EReference ref = auto.getFeature();
+					EClass type = auto.getCreationType();
+					if (ref.isMany()) {
+						EObject temp = ((EPackage) type.eContainer()).getEFactoryInstance().create(type);
+						List list = (List) element.eGet(ref);
+						list.add(temp);
+						element = temp;
+					} else {
+						EObject temp = (EObject) element.eGet(ref);
+						if (temp != null) {
+							element = temp;
+						} else {
+							temp = ((EPackage) type.eContainer()).getEFactoryInstance().create(type);
+							element.eSet(ref, temp);
+							element = temp;
 						}
 					}
 				}
-				builder.append(".");
-				ModelElementSelectionDialog dialog = new ModelElementSelectionDialog(Display.getCurrent().getActiveShell(), ServiceUtilsForResourceSet.getInstance().getServiceRegistry(modelSet), builder.toString(), getRootElement(modelResource), element, new IModelElementValidator() {
-
-					@Override
-					public String isSelectable(EObject element) {
-						if(PolicyChecker.getCurrent().canHaveNewView(element, owner, prototype)) {
-							return null;
-						}
-						return "This element cannot be the root element of the diagram.";
-					}
-				});
-				int result = dialog.open();
-				if(result != Window.OK) {
-					return null;
-				}
-				element = dialog.getSelection();
 			}
 
-			if(name == null) {
+			if (name == null) {
 				name = openDiagramNameDialog(prototype.isNatural() ? getDefaultDiagramName() : "New" + prototype.getLabel().replace(" ", ""));
 			}
 			// canceled
-			if(name == null) {
+			if (name == null) {
 				return null;
 			}
 

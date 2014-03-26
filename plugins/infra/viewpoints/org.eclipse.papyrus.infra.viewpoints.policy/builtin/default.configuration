@@ -7,10 +7,10 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
       </modelRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
       </owningRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </owningRules>
       <childRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
@@ -60,10 +60,28 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
       </modelRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
       </owningRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+        </newModelPath>
       </owningRules>
       <childRules/>
     </modelKinds>
@@ -81,11 +99,29 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
       </modelRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
-      </owningRules>
-      <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
       </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
+        </newModelPath>
+      </owningRules>
       <childRules/>
     </modelKinds>
     <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="PapyrusUMLComponentDiagram" categories="//@categories.0">
@@ -102,10 +138,10 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
       </modelRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
       </owningRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </owningRules>
       <childRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
@@ -197,10 +233,28 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
       </modelRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
       </owningRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
+        </newModelPath>
       </owningRules>
       <childRules/>
     </modelKinds>
@@ -209,10 +263,28 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
       </modelRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
       </owningRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+        </newModelPath>
       </owningRules>
       <childRules/>
     </modelKinds>
@@ -239,10 +311,28 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
       </modelRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
       </owningRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <newModelPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+        </newModelPath>
       </owningRules>
       <childRules/>
     </modelKinds>
