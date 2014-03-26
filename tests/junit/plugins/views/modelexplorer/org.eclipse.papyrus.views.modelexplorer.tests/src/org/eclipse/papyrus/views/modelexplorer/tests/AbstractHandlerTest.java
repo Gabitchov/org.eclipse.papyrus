@@ -15,6 +15,7 @@ package org.eclipse.papyrus.views.modelexplorer.tests;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.Command;
@@ -35,6 +36,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeElement;
 import org.eclipse.papyrus.emf.facet.util.core.internal.exported.FileUtils;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
@@ -167,7 +169,7 @@ public abstract class AbstractHandlerTest {
 				setResult(activePart);
 			}
 		});
-		
+
 		Assert.assertTrue("The active part is not the ModelExplorer", activePartRunnable.getResult() instanceof ModelExplorerPageBookView); //$NON-NLS-1$
 	}
 
@@ -191,9 +193,8 @@ public abstract class AbstractHandlerTest {
 		IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
 		Assert.assertEquals("Only one element should be selected", 1, currentSelection.size()); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
-		if(obj instanceof IAdaptable) {
-			obj = ((IAdaptable)obj).getAdapter(EObject.class);
-		}
+		
+			obj = EMFHelper.getEObject(obj);
 		Assert.assertSame("the current selected element is not the wanted element", elementToSelect, obj); //$NON-NLS-1$
 	}
 
@@ -296,8 +297,19 @@ public abstract class AbstractHandlerTest {
 
 				// store the root of the model
 				Object[] visibleElement = commonViewer.getVisibleExpandedElements();
-					modelRoot = EMFHelper.getEObject(visibleElement[0]);
+				modelRoot = EMFHelper.getEObject(visibleElement[0]);
 
+				List<Customization> appliedCustomizations=org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations();
+				Customization SimpleUML=null;
+				Iterator<?>iter=appliedCustomizations.iterator();
+				while(iter.hasNext()) {
+					Customization custo = (Customization)iter.next();
+					if( custo.getName().equals("SimpleUML")){
+						SimpleUML=custo;
+					}
+				}
+				org.junit.Assert.assertNotNull("Custom SimpleUML not found", SimpleUML);
+				org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations().add(0, SimpleUML);
 				setStatus(Status.OK_STATUS);
 			}
 		});

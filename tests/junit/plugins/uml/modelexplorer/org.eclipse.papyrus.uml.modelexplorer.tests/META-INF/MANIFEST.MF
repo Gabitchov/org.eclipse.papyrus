@@ -14,7 +14,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.core,
  org.eclipse.papyrus.emf.facet.custom.metamodel,
- org.eclipse.papyrus.junit.utils
+ org.eclipse.papyrus.junit.utils,
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.uml.modelexplorer.tests
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
