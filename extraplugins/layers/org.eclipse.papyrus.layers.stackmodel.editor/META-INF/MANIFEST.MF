@@ -12,10 +12,11 @@ Export-Package: org.eclipse.papyrus.layers.stackmodel.layers.presentation,
  org.eclipse.papyrus.layers.configmodel.layersconfig.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.eclipse.papyrus.layers.stackmodel.edit;visibility:=reexport,
+ org.eclipse.papyrus.layers.stackmodel.edit;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.gmf.runtime.notation.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin

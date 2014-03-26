@@ -19,3 +19,4 @@ Export-Package: org.eclipse.papyrus.layers.runtime,
  org.eclipse.papyrus.layers.runtime.model,
  org.eclipse.papyrus.layers.runtime.service,
  org.eclipse.papyrus.layers.runtime.utils
+Bundle-Localization: plugin

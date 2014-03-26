@@ -36,13 +36,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.emf.facet.efacet.core;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.0.0",
- org.eclipse.papyrus.emf.facet.custom.ui,
- org.eclipse.papyrus.uml.tools.utils
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer;singleton:=
  true
-Import-Package: org.eclipse.papyrus.emf.facet.custom.core
 
