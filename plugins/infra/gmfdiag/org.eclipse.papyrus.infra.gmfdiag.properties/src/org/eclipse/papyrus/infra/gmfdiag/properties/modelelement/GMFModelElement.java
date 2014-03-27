@@ -163,7 +163,7 @@ public class GMFModelElement extends EMFModelElement {
 			return new ModelContentProvider(diagram, getRoot(diagram.getElement())) {
 				@Override
 				protected boolean isValid(EObject selection, Diagram diagram, ViewPrototype prototype) {
-					return PolicyChecker.getCurrent().canHaveNewView(diagram.getElement(), selection, prototype);
+					return (PolicyChecker.getCurrent().getOwningRuleFor(prototype, selection) != null);
 				}
 			};
 		}

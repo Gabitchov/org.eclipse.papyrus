@@ -30,7 +30,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -40,6 +39,10 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
@@ -54,6 +57,10 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.services.edit.Activator;
+import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate;
 import org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
@@ -99,6 +106,10 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 		private String name;
 
+		private IElementEditService service;
+
+		private IClientContext clientContext;
+
 		public Creator(ModelSet modelSet, EObject owner, EObject element, ViewPrototype prototype, String name) {
 			this.modelSet = modelSet;
 			this.owner = owner;
@@ -112,9 +123,25 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			Resource notationResource = NotationUtils.getNotationResource(modelSet);
 			Resource diResource = DiModelUtils.getDiResource(modelSet);
 
-			if(owner == null) {
+			if (owner == null) {
 				owner = getRootElement(modelResource);
 				attachModelToResource(owner, modelResource);
+			}
+
+			service = ElementEditServiceUtils.getCommandProvider(owner);
+			if (service == null) {
+				// Something isn't right ...
+				return null;
+			}
+
+			try {
+				clientContext = TypeContext.getContext();
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
+			if (clientContext == null) {
+				// Something isn't right ...
+				return null;
 			}
 
 			rule = PolicyChecker.getCurrent().getOwningRuleFor(prototype, owner);
@@ -130,7 +157,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 					EReference ref = auto.getFeature();
 					EClass type = auto.getCreationType();
 					if (ref.isMany()) {
-						EObject temp = ((EPackage) type.eContainer()).getEFactoryInstance().create(type);
+						EObject temp = create(element, ref, type);
 						List list = (List) element.eGet(ref);
 						list.add(temp);
 						element = temp;
@@ -139,7 +166,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 						if (temp != null) {
 							element = temp;
 						} else {
-							temp = ((EPackage) type.eContainer()).getEFactoryInstance().create(type);
+							temp = create(element, ref, type);
 							element.eSet(ref, temp);
 							element = temp;
 						}
@@ -163,6 +190,24 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 			}
 			return diagram;
+		}
+
+		private EObject create(EObject origin, EReference reference, EClass type) {
+			IElementType itype = ElementTypeRegistry.getInstance().getElementType(type, clientContext);
+			CreateElementRequest request = new CreateElementRequest(origin, itype, reference);
+			ICommand command = service.getEditCommand(request);
+			IStatus status = null;
+			try {
+				status = command.execute(null, null);
+			} catch (ExecutionException e) {
+				return null;
+			}
+			if (!status.isOK())
+				return null;
+			CommandResult result = command.getCommandResult();
+			if (result == null)
+				return null;
+			return (EObject) result.getReturnValue();
 		}
 	}
 

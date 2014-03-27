@@ -462,7 +462,7 @@ public class PolicyChecker {
 			return false;
 		if (!matchesProfiles(prototype.configuration, profileHelper.getAppliedProfiles(element)))
 			return false;
-		if (!matchesCreationRoot(prototype.configuration, element.eClass(), profileHelper.getAppliedStereotypes(element), getViewCountOn(element, prototype)))
+		if (!matchesCreationRoot(prototype.configuration, element, profileHelper.getAppliedStereotypes(element), getViewCountOn(element, prototype)))
 			return false;
 		return true;
 	}
