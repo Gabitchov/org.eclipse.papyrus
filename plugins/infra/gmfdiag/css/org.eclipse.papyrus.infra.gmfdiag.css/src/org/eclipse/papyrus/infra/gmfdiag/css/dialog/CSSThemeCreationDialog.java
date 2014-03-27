@@ -28,7 +28,6 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -45,14 +44,12 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
 /**
  * Dialog to define a local theme from a selected CSS style.
  * 
  * @author gpascual
- *
  */
 public class CSSThemeCreationDialog extends Dialog {
 
@@ -62,12 +59,6 @@ public class CSSThemeCreationDialog extends Dialog {
 
 	/** Text for dialog title. */
 	private static final String DIALOG_TITLE = "CSS Theme Definition";
-
-	/** Icon for add button. */
-	private static final Image ADD_IMAGE = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "/icons/Add_12x12.gif").createImage();
-
-	/** Icon for remove button. */
-	private static final Image DELETE_IMAGE = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "/icons/Delete_12x12.gif").createImage();
 
 	/** Text for theme icon field. */
 	private static final String ICON_PATH_LABEL = "Icon";
@@ -155,7 +146,7 @@ public class CSSThemeCreationDialog extends Dialog {
 		// Add different parts to dialog
 		createThemeLabelPart(mainComposite);
 		createThemeIconPart(mainComposite);
-		createThemeStyleSheetsPart(mainComposite);
+		createStyleSheetsTreeComposite(mainComposite);
 
 		// Initialise tree viewer 
 		initialiseTree();
@@ -247,44 +238,7 @@ public class CSSThemeCreationDialog extends Dialog {
 		});
 	}
 
-	/**
-	 * Create all components for theme style sheets.
-	 * 
-	 * @param parent
-	 *        Composite where components will be added
-	 */
-	private void createThemeStyleSheetsPart(Composite parent) {
-		SashForm sashForm = new SashForm(parent, SWT.NONE);
-		sashForm.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 
-		createStyleSheetsTreeComposite(sashForm);
-		createActionButtonsComposite(sashForm);
-
-		sashForm.setWeights(new int[]{ 215, 82 });
-	}
-
-	/**
-	 * Create composite with action buttons.
-	 * 
-	 * @param parent
-	 *        Composite where components will be added
-	 */
-	private void createActionButtonsComposite(Composite parent) {
-		Composite composite = new Composite(parent, SWT.NONE);
-		GridLayout layout = new GridLayout(1, false);
-		layout.marginHeight = 0;
-		layout.marginWidth = 0;
-		composite.setLayout(layout);
-
-		Button addButton = new Button(composite, SWT.NONE);
-		addButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		addButton.setImage(ADD_IMAGE);
-
-		Button removeButton = new Button(composite, SWT.NONE);
-		removeButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		removeButton.setImage(DELETE_IMAGE);
-
-	}
 
 	/**
 	 * Create composite containing style sheets viewer.
@@ -293,15 +247,10 @@ public class CSSThemeCreationDialog extends Dialog {
 	 *        Composite where components will be added
 	 */
 	private void createStyleSheetsTreeComposite(Composite parent) {
-		Composite composite = new Composite(parent, SWT.NONE);
-		GridLayout layout = new GridLayout(1, false);
-		layout.marginWidth = 0;
-		layout.marginHeight = 0;
-		composite.setLayout(layout);
 
-		styleSheetsViewer = new TreeViewer(composite, SWT.BORDER);
+		styleSheetsViewer = new TreeViewer(parent, SWT.BORDER);
 		Tree tree = styleSheetsViewer.getTree();
-		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 	}
 
 	/**

@@ -12,7 +12,10 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.helper;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
@@ -22,6 +25,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
@@ -55,10 +59,21 @@ public class CSSStyleSheetsToThemeHelper {
 	 * 
 	 * @param file
 	 */
-	public Theme defineCSSStyleSheetFileAsTheme(IFile file) {
+	public Theme defineCSSStyleSheetFilesAsTheme(IStructuredSelection selection) {
+		List<IFile> selectedCSSFilesList = new ArrayList<IFile>();
+
+		// Extract file from selection
+		Iterator<?> selectionIterator = selection.iterator();
+
+		while(selectionIterator.hasNext()) {
+			Object next = selectionIterator.next();
+			if(next instanceof IFile) {
+				selectedCSSFilesList.add((IFile)next);
+			}
+		}
 
 		// Create a theme from selected CSS file
-		Theme theme = createThemeFromSelection(file);
+		Theme theme = createThemeFromSelection(selectedCSSFilesList);
 
 		return theme;
 
@@ -102,10 +117,10 @@ public class CSSStyleSheetsToThemeHelper {
 	/**
 	 * Created a style sheets theme from project selection.
 	 * 
-	 * @param file
+	 * @param selectedCSSFilesList
 	 * @return
 	 */
-	private Theme createThemeFromSelection(IFile file) {
+	private Theme createThemeFromSelection(List<IFile> selectedCSSFilesList) {
 
 		// Factory to create necessary elements
 		StylesheetsFactory styleSheetsFactory = StylesheetsFactory.eINSTANCE;
@@ -113,12 +128,13 @@ public class CSSStyleSheetsToThemeHelper {
 		// Create new theme
 		Theme newTheme = styleSheetsFactory.createTheme();
 
-		//Style sheets to add in theme
-		StyleSheetReference styleSheetsReference = styleSheetsFactory.createStyleSheetReference();
-		styleSheetsReference.setPath(URI.createFileURI(file.getLocation().toOSString()).toFileString());
+		for(IFile cssFile : selectedCSSFilesList) {
 
-		newTheme.getStylesheets().add(styleSheetsReference);
-
+			//Style sheets to add in theme
+			StyleSheetReference styleSheetsReference = styleSheetsFactory.createStyleSheetReference();
+			styleSheetsReference.setPath(URI.createFileURI(cssFile.getLocation().toOSString()).toFileString());
+			newTheme.getStylesheets().add(styleSheetsReference);
+		}
 		return newTheme;
 	}
 

@@ -16,7 +16,6 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -69,14 +68,11 @@ public class CSSFileHandler extends AbstractHandler implements IHandler {
 		Theme theme = null;
 		// Get selected file from selection
 		if(selection instanceof IStructuredSelection) {
-			Object selectedObject = ((IStructuredSelection)selection).getFirstElement();
 
-			// Handle selected file
-			if(selectedObject instanceof IFile) {
-				theme = cssHelper.defineCSSStyleSheetFileAsTheme((IFile)selectedObject);
-
-			}
+			// Get theme initialise with slected elements
+			theme = cssHelper.defineCSSStyleSheetFilesAsTheme((IStructuredSelection)selection);
 		}
+
 
 
 		// Get executed command ID
