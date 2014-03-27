@@ -76,8 +76,8 @@ public class FixEdgeAnchorAfterCreationDeferredCommand extends AbstractFixEdgeAn
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-		//we execute all ui thread
-		while(Display.getDefault().readAndDispatch());
+		//we execute all ui thread allow to fix anchor after a DnD from the ModelExplorer
+		//		while(Display.getDefault().readAndDispatch()); //commented because it breaks the tests
 
 		//we refresh the editparts
 		RefreshConnectionElementsRunnable refreshRunnable = new RefreshConnectionElementsRunnable(this.request, getContainerEP());
