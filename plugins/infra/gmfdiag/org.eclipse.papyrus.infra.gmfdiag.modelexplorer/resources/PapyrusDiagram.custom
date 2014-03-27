@@ -19,11 +19,17 @@
       <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
     </facetOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="custom:EClassCustomization" name="EObject" documentation="representation around EObject displayed in model explorer">
+  <eClassifiers xsi:type="efacet:Facet" name="DiagramContainer" documentation="this element represent a container of diagram" conformanceTypedElement="//DiagramContainer/isDiagramContainer">
     <extendedMetaclass href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <facetOperations name="isDiagramContainer" documentation="test if the element references diagrams">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.IsDiagramContainer"/>
+    </facetOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="custom:FacetCustomization" name="DiagramContainer" documentation="Representation of a diagram container">
     <facetElements xsi:type="efacet:FacetReference" name="diagrams" upperBound="-1" defaultValueLiteral="" derived="true">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
-      <query xsi:type="query:OperationCallQuery" operation="//EObject/DiagramsRefContent"/>
+      <query xsi:type="query:OperationCallQuery" operation="//DiagramContainer.1/DiagramsRefContent"/>
     </facetElements>
     <facetOperations name="DiagramsRefVisibility" documentation="Return true if the element contains diagrams">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -45,5 +51,7 @@
       <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.DiagramsRefCollapseQuery"/>
       <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
     </facetOperations>
+    <extendedFacets href="../../../plugin/org.eclipse.papyrus.infra.gmfdiag.modelexplorer/resources/PapyrusDiagram.custom#//DiagramContainer"/>
+    <customizedFacet href="../../../plugin/org.eclipse.papyrus.infra.gmfdiag.modelexplorer/resources/PapyrusDiagram.custom#//DiagramContainer"/>
   </eClassifiers>
 </custom:Customization>

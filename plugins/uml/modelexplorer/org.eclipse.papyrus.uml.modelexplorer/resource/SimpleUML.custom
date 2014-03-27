@@ -12,8 +12,8 @@
     </facetOperations>
     <facetOperations name="GetElementIcon">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom_primitive_types#//Image"/>
-      <eParameters name="eStructuralElement">
-        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
+      <eParameters name="eObject">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       </eParameters>
       <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.uml.modelexplorer.queries.GetImageQuery"/>
       <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/image"/>

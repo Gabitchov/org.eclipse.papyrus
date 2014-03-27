@@ -19,18 +19,24 @@
       <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
     </facetOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="custom:EClassCustomization" name="EObject" documentation="representation around EObject displayed in model explorer">
+  <eClassifiers xsi:type="efacet:Facet" name="TableContainer" documentation="this is a container of table" conformanceTypedElement="//TableContainer/isTableContainer">
     <extendedMetaclass href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <facetOperations name="isTableContainer" documentation="test if it references table">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.nattable.modelexplorer.queries.IsTableContainer"/>
+    </facetOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="custom:FacetCustomization" name="TableContainer" documentation="representation of a container of table" extendedFacets="//TableContainer">
     <facetElements xsi:type="efacet:FacetReference" name="tables" upperBound="-1" defaultValueLiteral="" derived="true">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/nattable/model#//Table"/>
-      <query xsi:type="query:OperationCallQuery" operation="//EObject/TablesRefContent"/>
+      <query xsi:type="query:OperationCallQuery" operation="//TableContainer.1/TablesRefContent"/>
     </facetElements>
     <facetOperations name="TablesRefVisibility" documentation="Return true if the element contains tables">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="eStructuralFeature">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
       </eParameters>
-      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.nattable.modelexplorer.queries.IsTableContainer"/>
+      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.nattable.modelexplorer.queries.DisplayTablesRef"/>
       <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
     </facetOperations>
     <facetOperations name="TablesRefContent" upperBound="-1" documentation="Get the collection of all contained tables">
@@ -45,5 +51,6 @@
       <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.nattable.modelexplorer.queries.TablesRefCollapseQuery"/>
       <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
     </facetOperations>
+    <customizedFacet href="../../../plugin/org.eclipse.papyrus.infra.nattable.modelexplorer/resources/PapyrusTable.custom#//TableContainer"/>
   </eClassifiers>
 </custom:Customization>

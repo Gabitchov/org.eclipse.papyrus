@@ -27,7 +27,7 @@ public class TablesRefCollapseQuery implements IJavaQuery2<EObject, Boolean> {
 			throws DerivedTypedElementException {
 		ParameterValue parameterValue= (ParameterValue)parameterValues.getParameterValueByName("eStructuralFeature");
 		EStructuralFeature eStructuralFeature=(EStructuralFeature)parameterValue.getValue();
-		if((eStructuralFeature instanceof FacetReference)&&("diagrams".equals((eStructuralFeature).getName()))){
+		if((eStructuralFeature instanceof FacetReference)&&("tables".equals((eStructuralFeature).getName()))){
 			return true;
 		}
 		return false;
