@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
+ * Copyright (c) 2009, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 410346
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.command;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -74,52 +74,56 @@ public class InformationFlowCreateCommand extends org.eclipse.papyrus.uml.diagra
 	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 
 		// Create and open the selection dialog
-		AdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		Shell currentShell = new Shell(Display.getCurrent(), SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
 		InformationItemElementTreeSelectionDialog dialog = new InformationItemElementTreeSelectionDialog(currentShell, new AdapterFactoryLabelProvider(adapterFactory), new AdapterFactoryContentProvider(adapterFactory));
 
-		// Set dialog parameters
-		dialog.setTitle(Messages.InformationFlowSelectionDialog_Title);
-		dialog.setMessage(Messages.InformationFlowSelectionDialog_Message);
-		dialog.setAllowMultiple(true);
-		dialog.setHelpAvailable(false);
-		dialog.setInput(getSource().getModel());
-		dialog.setValidator(new InformationItemValidator());
-
-		ArrayList<Classifier> initialSelection = new ArrayList<Classifier>();
-
-		// here the dialog.getReturnCode is IDialogConstants.OK_ID
-		while(dialog.open() != IDialogConstants.CANCEL_ID) {
-
-			/*
-			 * If classifiers have been selected, complete command execution and write the selection
-			 * in the conveyed:Classifief Association
-			 */
-			if(dialog.getReturnCode() == ElementTreeSelectionDialog.OK) {
-				Object[] conveyedClassified = dialog.getResult();
-
-				InformationFlow newInformationFlow = UMLFactory.eINSTANCE.createInformationFlow();
-				getContainer().getPackagedElements().add(newInformationFlow);
-				newInformationFlow.getInformationSources().add(getSource());
-				newInformationFlow.getInformationTargets().add(getTarget());
-
-				// add the classifier in the list of conveyed Classifier
-				for(int i = 0; i < conveyedClassified.length; i++) {
-					newInformationFlow.getConveyeds().add((Classifier)conveyedClassified[i]);
+		try {
+			// Set dialog parameters
+			dialog.setTitle(Messages.InformationFlowSelectionDialog_Title);
+			dialog.setMessage(Messages.InformationFlowSelectionDialog_Message);
+			dialog.setAllowMultiple(true);
+			dialog.setHelpAvailable(false);
+			dialog.setInput(getSource().getModel());
+			dialog.setValidator(new InformationItemValidator());
+	
+			ArrayList<Classifier> initialSelection = new ArrayList<Classifier>();
+	
+			// here the dialog.getReturnCode is IDialogConstants.OK_ID
+			while(dialog.open() != IDialogConstants.CANCEL_ID) {
+	
+				/*
+				 * If classifiers have been selected, complete command execution and write the selection
+				 * in the conveyed:Classifief Association
+				 */
+				if(dialog.getReturnCode() == ElementTreeSelectionDialog.OK) {
+					Object[] conveyedClassified = dialog.getResult();
+	
+					InformationFlow newInformationFlow = UMLFactory.eINSTANCE.createInformationFlow();
+					getContainer().getPackagedElements().add(newInformationFlow);
+					newInformationFlow.getInformationSources().add(getSource());
+					newInformationFlow.getInformationTargets().add(getTarget());
+	
+					// add the classifier in the list of conveyed Classifier
+					for(int i = 0; i < conveyedClassified.length; i++) {
+						newInformationFlow.getConveyeds().add((Classifier)conveyedClassified[i]);
+					}
+	
+					ElementInitializers.getInstance().init_InformationFlow_4021(newInformationFlow);
+	
+					((CreateElementRequest)getRequest()).setNewElement(newInformationFlow);
+					return CommandResult.newOKCommandResult(newInformationFlow);
+	
+				} else if(dialog.getReturnCode() == InformationItemElementTreeSelectionDialog.newInformationItemButton_ID) {
+					// create a new InformationItem
+					initialSelection.add((Classifier)createNewInformationItem());
+					dialog.setInitialElementSelections(initialSelection);
 				}
-
-				ElementInitializers.getInstance().init_InformationFlow_4021(newInformationFlow);
-
-				((CreateElementRequest)getRequest()).setNewElement(newInformationFlow);
-				return CommandResult.newOKCommandResult(newInformationFlow);
-
-			} else if(dialog.getReturnCode() == InformationItemElementTreeSelectionDialog.newInformationItemButton_ID) {
-				// create a new InformationItem
-				initialSelection.add((Classifier)createNewInformationItem());
-				dialog.setInitialElementSelections(initialSelection);
-			}
-		}// end of while()
-
+			}// end of while()
+		} finally {
+			adapterFactory.dispose();
+		}
+		
 		// No Classifier selected: abort element creation
 		return CommandResult.newCancelledCommandResult();
 	}
