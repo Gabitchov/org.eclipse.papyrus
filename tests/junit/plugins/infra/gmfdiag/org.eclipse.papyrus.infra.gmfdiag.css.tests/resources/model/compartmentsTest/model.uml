@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_4DWgNImVEeOGN4dVepS-Uw" name="CSSTests">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_4DWgNImVEeOGN4dVepS-Uw" name="CSSTests">
   <ownedComment xmi:type="uml:Comment" xmi:id="__TiJAImVEeOGN4dVepS-Uw">
     <body>Test model for CSS in Luna >= M5 (Compartments, Labels)</body>
   </ownedComment>

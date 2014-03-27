@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,21 +22,32 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.css.engine.WorkspaceCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
+import org.eclipse.papyrus.infra.gmfdiag.css.preferences.ThemePreferences;
 import org.eclipse.papyrus.infra.gmfdiag.css.tests.Activator;
 import org.eclipse.uml2.uml.NamedElement;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 
 public class CSSStylesheetTest {
 
 	private CSSDiagram diagram;
+
+	@BeforeClass
+	public static void initCSSTheme() {
+		IPreferenceStore cssThemePreferences = org.eclipse.papyrus.infra.gmfdiag.css.Activator.getDefault().getPreferenceStore();
+		cssThemePreferences.setValue(ThemePreferences.CURRENT_THEME, "org.eclipse.papyrus.css.papyrus_theme");
+		WorkspaceCSSEngine.instance.reset();
+	}
 
 	@Before
 	public void init() {
@@ -63,25 +74,25 @@ public class CSSStylesheetTest {
 
 		Assert.assertEquals("Invalid color", rgb(255, 0, 0), classView.getFillColor()); //Red = #FF0000
 		Assert.assertNull("Invalid gradient", classView.getGradient());
-		Assert.assertTrue(AppearanceHelper.showElementIcon(classView));
+		Assert.assertTrue("The element icon should be displayed", AppearanceHelper.showElementIcon(classView));
 	}
 
 	@Test
 	public void testInterfaceStyle() {
 		Shape interfaceView = findShape("Interface1");
 
-		Assert.assertNotNull(interfaceView.getGradient());
-		Assert.assertEquals(rgb(255, 255, 0), interfaceView.getFillColor()); //Yellow = #FFFF00 
-		Assert.assertEquals(rgb(255, 0, 0), interfaceView.getGradient().getGradientColor1()); //Red = #FF0000 
-		Assert.assertEquals(GradientStyle.VERTICAL, interfaceView.getGradient().getGradientStyle());
-		Assert.assertTrue(AppearanceHelper.showElementIcon(interfaceView));
+		Assert.assertNotNull("The interface should have a gradient", interfaceView.getGradient());
+		Assert.assertEquals("The fill color should be yellow", rgb(255, 255, 0), interfaceView.getFillColor()); //Yellow = #FFFF00
+		Assert.assertEquals("The gradient should be red", rgb(255, 0, 0), interfaceView.getGradient().getGradientColor1()); //Red = #FF0000
+		Assert.assertEquals("The gradient should be vertical", GradientStyle.VERTICAL, interfaceView.getGradient().getGradientStyle());
+		Assert.assertTrue("The element icon should be displayed", AppearanceHelper.showElementIcon(interfaceView));
 	}
 
 	@Test
 	public void testCSSClassStyle() {
 		Shape interfaceView = findShape("Interface2");
-		Assert.assertNotNull(interfaceView.getGradient());
-		Assert.assertEquals(rgb(144, 238, 144), interfaceView.getFillColor()); //Lightgreen = #90EE90
+		Assert.assertNotNull("The interface should have a gradient", interfaceView.getGradient());
+		Assert.assertEquals("The fill color should be light green (#90EE90)", rgb(144, 238, 144), interfaceView.getFillColor()); //Lightgreen = #90EE90
 
 		//Case insensitive color name
 		Assert.assertEquals(rgb(0, 191, 255), interfaceView.getGradient().getGradientColor1()); //DeepSkyBlue = #00BFFF
@@ -108,7 +119,7 @@ public class CSSStylesheetTest {
 		//.myClass : Low priority
 		//.myClass.myOtherClass : Highest priority
 		//[isAbstract=true] : Medium priority
-		//Styles should also be merged when they aren't conflicting (ie. [isAbstract] + .myClass -> fontName = Tunga)  
+		//Styles should also be merged when they aren't conflicting (ie. [isAbstract] + .myClass -> fontName = Tunga)
 		Shape class3 = findShape("Class3");
 		Shape class5 = findShape("Class5");
 
