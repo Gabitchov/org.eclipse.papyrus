@@ -122,9 +122,10 @@ override addFixedChild (GenNode it)'''
 	override def setLineWidth(GenNode it) '''
 		«generatedMemberComment»
 		protected void setLineWidth(int width) {
-			if (primaryShape instanceof org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure) {	
-				((org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure) primaryShape).setLineWidth(«IF getDiagram().isPixelMapMode()»width«ELSE»getMapMode().DPtoLP(width)«ENDIF»);
-			}
+«««			if (primaryShape instanceof org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure) {	
+«««				((org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure) primaryShape).setLineWidth(«IF getDiagram().isPixelMapMode()»width«ELSE»getMapMode().DPtoLP(width)«ENDIF»);
+«««			}
+			super.setLineWidth(width);
 		}
 	'''
 	
