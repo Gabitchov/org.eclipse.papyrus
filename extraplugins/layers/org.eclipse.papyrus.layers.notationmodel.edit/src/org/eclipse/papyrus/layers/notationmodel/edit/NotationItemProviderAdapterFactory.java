@@ -13,7 +13,6 @@ package org.eclipse.papyrus.layers.notationmodel.edit;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;
 
-
 /**
  * A ProviderAdapterFactory for notations elements in Layers.
  * The associated providers allows to render notation elements as UML elements.
@@ -61,5 +60,14 @@ public class NotationItemProviderAdapterFactory extends org.eclipse.gmf.runtime.
 		}
 
 		return shapeItemProvider;
+	}
+	
+	@Override
+	public Adapter createConnectorAdapter() {
+		if (connectorItemProvider == null) {
+			connectorItemProvider = new ConnectorItemProvider(this, domainAdapterFactory);
+		}
+
+		return connectorItemProvider;
 	}
 }

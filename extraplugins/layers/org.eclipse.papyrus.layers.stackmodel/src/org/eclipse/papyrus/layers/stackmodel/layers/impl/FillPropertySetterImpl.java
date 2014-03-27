@@ -13,7 +13,8 @@
 package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.FillStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.layers.stackmodel.layers.FillInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.FillPropertySetter;
@@ -61,13 +62,24 @@ public class FillPropertySetterImpl extends PropertySetterImpl implements FillPr
 	@Override
 	public void setValue(View view, TypeInstance value) {
 
+		// Try to get the FontStyle object to modify
+		FillStyle style;
+		if(view instanceof FillStyle) {
+			// Try directly (case of Shape ...)
+			style = (FillStyle)view;
+		} 
+		else {
+			// Try as additionnal style
+			style = (FillStyle)view.getStyle(NotationPackage.eINSTANCE.getFillStyle() );
+		}
 
-		FillInstance fillValue = (FillInstance)value;
-		
-		if(view instanceof Shape) {
-			Shape shape = (Shape)view;
-			shape.setFillColor(fillValue.getFillColor().getValue());
-			shape.setTransparency(fillValue.getTransparency());
+		// Set values
+		if( style != null ) {
+
+			FillInstance fillValue = (FillInstance)value;
+
+			style.setFillColor(fillValue.getFillColor().getValue());
+			style.setTransparency(fillValue.getTransparency());
 		}
 		
 	}

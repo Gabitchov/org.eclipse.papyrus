@@ -13,8 +13,9 @@
 package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.gmf.runtime.notation.Connector;
-import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.FontStyle;
+import org.eclipse.gmf.runtime.notation.LineStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LineInstance;
@@ -60,21 +61,29 @@ public class LinePropertySetterImpl extends PropertySetterImpl implements LinePr
 	 */
 	@Override
 	public void setValue(View view, TypeInstance value) {
-	
-	
-		LineInstance lineValue = (LineInstance)value;
-		
-		if(view instanceof Shape) {
-			Shape shape = (Shape)view;
-			shape.setLineColor(lineValue.getLineColor());
-			shape.setLineWidth(lineValue.getLineWith());
+
+
+		// Try to get the FontStyle object to modify
+		LineStyle style;
+		if(view instanceof FontStyle) {
+			// Try directly (case of Shape ...)
+			style = (LineStyle)view;
+		} 
+		else {
+			// Try as additionnal style
+			style = (LineStyle)view.getStyle(NotationPackage.eINSTANCE.getLineStyle() );
 		}
-		else if (view instanceof Connector) {
-			Connector shape = (Connector)view;
-			shape.setLineColor(lineValue.getLineColor());
-			shape.setLineWidth(lineValue.getLineWith());
+
+		// Set values
+		if( style != null ) {
+
+
+			LineInstance lineValue = (LineInstance)value;
+
+			style.setLineColor(lineValue.getLineColor());
+			style.setLineWidth(lineValue.getLineWith());
 		}
-		
+
 	}
 
 } //LinePropertySetterImpl
