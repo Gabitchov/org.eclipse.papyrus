@@ -129,6 +129,12 @@ public class ExtendEditPart extends UMLConnectionNodeEditPart implements ITreeBr
 			setTargetDecoration(createTargetDecoration());
 		}
 
+		@Override
+		public void resetStyle() {
+			super.resetStyle();
+			setTargetDecoration(createTargetDecoration());
+		}
+
 		/**
 		 * @generated
 		 */

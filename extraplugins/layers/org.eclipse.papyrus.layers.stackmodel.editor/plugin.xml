@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated layers -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.layers.stackmodel.layers.presentation.LayersModelWizardID"
+            name="%_UI_LayersModelWizard_label"
+            class="org.eclipse.papyrus.layers.stackmodel.layers.presentation.LayersModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/LayersModelFile.gif">
+         <description>%_UI_LayersModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated layersconfig -->
+      <editor
+            id="org.eclipse.papyrus.layers.configmodel.layersconfig.presentation.LayersconfigEditorID"
+            name="%_UI_LayersconfigEditor_label"
+            icon="icons/full/obj16/LayersconfigModelFile.gif"
+            extensions="layersconfig"
+            class="org.eclipse.papyrus.layers.configmodel.layersconfig.presentation.LayersconfigEditor"
+            contributorClass="org.eclipse.papyrus.layers.configmodel.layersconfig.presentation.LayersconfigActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated layers -->
+      <editor
+            id="org.eclipse.papyrus.layers.stackmodel.layers.presentation.LayersEditorID"
+            name="%_UI_LayersEditor_label"
+            icon="icons/full/obj16/LayersModelFile.gif"
+            extensions="layers"
+            class="org.eclipse.papyrus.layers.stackmodel.layers.presentation.LayersEditor"
+            contributorClass="org.eclipse.papyrus.layers.stackmodel.layers.presentation.LayersActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

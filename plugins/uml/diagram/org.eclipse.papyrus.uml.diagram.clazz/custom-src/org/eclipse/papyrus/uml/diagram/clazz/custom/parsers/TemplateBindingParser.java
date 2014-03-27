@@ -34,8 +34,6 @@ import org.eclipse.uml2.uml.TemplateParameterSubstitution;
  */
 public class TemplateBindingParser implements IParser {
 
-	private static final String arrow = String.valueOf("\u0510");
-
 	final ILabelProvider labelProvider = new AdapterFactoryLabelProvider(org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
@@ -74,20 +72,20 @@ public class TemplateBindingParser implements IParser {
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		String out = "";
-		if(element instanceof EObjectAdapter) {
-			final TemplateBinding binding = ((TemplateBinding)((EObjectAdapter)element).getRealObject());
+		if (element instanceof EObjectAdapter) {
+			final TemplateBinding binding = ((TemplateBinding) ((EObjectAdapter) element).getRealObject());
 			Iterator<TemplateParameterSubstitution> bindIter = binding.getParameterSubstitutions().iterator();
-			while(bindIter.hasNext()) {
+			while (bindIter.hasNext()) {
 				TemplateParameterSubstitution substitution = bindIter.next();
-				if(substitution.getFormal() != null && substitution.getFormal().getParameteredElement() instanceof NamedElement) {
-					out = out + ((NamedElement)substitution.getFormal().getParameteredElement()).getName();
+				if (substitution.getFormal() != null && substitution.getFormal().getParameteredElement() instanceof NamedElement) {
+					out = out + ((NamedElement) substitution.getFormal().getParameteredElement()).getName();
 				}
-				if(substitution.getActual() instanceof NamedElement) {
-					out = out + " -> " + ((NamedElement)substitution.getActual()).getName() + "\n";
+				if (substitution.getActual() instanceof NamedElement) {
+					out = out + " -> " + ((NamedElement) substitution.getActual()).getName() + "\n";
 				}
 			}
 		}
-		if(out.equals("")) {
+		if (out.equals("")) {
 			return "<No Binding Substitution>";
 		}
 		return out;

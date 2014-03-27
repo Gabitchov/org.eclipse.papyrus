@@ -50,7 +50,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.property.xtext.ui.i
  nternal.UmlPropertyActivator
+Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.property.xtext.u
  i;singleton:=true
-Import-Package: org.apache.log4j
 

@@ -48,6 +48,9 @@
             class="org.eclipse.papyrus.uml.controlmode.profile.ControlledElementReadOnlyHandler"
             id="org.eclipse.papyrus.uml.controlmode.profile.ControlledElementReadOnlyHandler"
             priority="50">
+         <affinity
+               axis="discretion">
+         </affinity>
       </readOnlyHandler>
    </extension>
 

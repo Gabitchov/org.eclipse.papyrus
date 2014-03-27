@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA
+ * Copyright (c) 2013, 2014 Soyatec, CEA, and others
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 426732
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
@@ -21,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -116,7 +118,7 @@ public class OccurrenceSpecificationHelper {
 		if(os == null || copy == null || os instanceof MessageOccurrenceSpecification) {
 			return false;
 		}
-		Collection<Setting> usages = EcoreUtil.UsageCrossReferencer.find(os, os.eResource());
+		Collection<Setting> usages = EMFHelper.getUsages(os);
 		for(Setting setting : usages) {
 			Object osValue = setting.get(true);
 			if(osValue instanceof List<?> && ((List<?>)osValue).contains(copy)) {
@@ -139,7 +141,7 @@ public class OccurrenceSpecificationHelper {
 		if(end instanceof ExecutionOccurrenceSpecification) {
 			return ((ExecutionOccurrenceSpecification)end).getExecution();
 		}
-		Collection<Setting> usages = EcoreUtil.UsageCrossReferencer.find(end, end.eResource());
+		Collection<Setting> usages = EMFHelper.getUsages(end);
 		for(Setting setting : usages) {
 			EObject eObject = setting.getEObject();
 			EStructuralFeature feature = setting.getEStructuralFeature();

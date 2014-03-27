@@ -1,4 +1,16 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.nattable,
+ org.eclipse.papyrus.uml.nattable.config,
+ org.eclipse.papyrus.uml.nattable.dataprovider,
+ org.eclipse.papyrus.uml.nattable.editor,
+ org.eclipse.papyrus.uml.nattable.manager.axis,
+ org.eclipse.papyrus.uml.nattable.manager.cell,
+ org.eclipse.papyrus.uml.nattable.messages,
+ org.eclipse.papyrus.uml.nattable.provider,
+ org.eclipse.papyrus.uml.nattable.tester,
+ org.eclipse.papyrus.uml.nattable.utils,
+ org.eclipse.papyrus.uml.nattable.validator,
+ org.eclipse.papyrus.uml.nattable.widget
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.uml2.uml;bundle-version="4.1.0",
@@ -21,25 +33,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface,
  org.eclipse.core.expressions,
  org.eclipse.swt,
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.4.0"
-Export-Package: org.eclipse.papyrus.uml.nattable,
- org.eclipse.papyrus.uml.nattable.config,
- org.eclipse.papyrus.uml.nattable.dataprovider,
- org.eclipse.papyrus.uml.nattable.editor,
- org.eclipse.papyrus.uml.nattable.manager.axis,
- org.eclipse.papyrus.uml.nattable.manager.cell,
- org.eclipse.papyrus.uml.nattable.messages,
- org.eclipse.papyrus.uml.nattable.provider,
- org.eclipse.papyrus.uml.nattable.tester,
- org.eclipse.papyrus.uml.nattable.utils,
- org.eclipse.papyrus.uml.nattable.validator,
- org.eclipse.papyrus.uml.nattable.widget
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

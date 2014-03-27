@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.core.runtime
 Export-Package: org.eclipse.papyrus.java.generator.transfo.umltojdt
+Require-Bundle: org.eclipse.core.runtime
 Bundle-Vendor: %providerName
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.java.generator.transfo.umltoj
  dt

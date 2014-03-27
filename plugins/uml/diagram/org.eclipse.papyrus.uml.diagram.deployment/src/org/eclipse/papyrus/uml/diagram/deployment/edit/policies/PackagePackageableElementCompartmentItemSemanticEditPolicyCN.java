@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.CommentCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ConstraintCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.NestedArtifactNodeCreateCommandCN;
@@ -59,62 +60,47 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicyCN extend
 			}
 		}
 		if(UMLElementTypes.Package_36 == baseElementType) {
-
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new PackageCreateCommandCN(req));
-
+			return getGEFWrapper(new PackageCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Artifact_40 == baseElementType) {
-
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new NestedArtifactNodeCreateCommandCN(req));
-
+			return getGEFWrapper(new NestedArtifactNodeCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Device_44 == baseElementType) {
-
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new NestedDeviceCreateCommandCN(req));
-
+			return getGEFWrapper(new NestedDeviceCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.ExecutionEnvironment_46 == baseElementType) {
-
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new NestedExecutionEnvironmentCreateCommandCN(req));
-
+			return getGEFWrapper(new NestedExecutionEnvironmentCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Node_42 == baseElementType) {
-
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new NestedNodeCreateCommandCN(req));
-
+			return getGEFWrapper(new NestedNodeCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Comment_54 == baseElementType) {
-
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new CommentCreateCommandCN(req));
-
+			return getGEFWrapper(new CommentCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Constraint_56 == baseElementType) {
-
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ConstraintCreateCommandCN(req));
-
+			return getGEFWrapper(new ConstraintCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

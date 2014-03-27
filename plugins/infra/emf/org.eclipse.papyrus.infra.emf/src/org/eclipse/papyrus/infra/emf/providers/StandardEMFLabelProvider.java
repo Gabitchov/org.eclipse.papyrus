@@ -12,7 +12,9 @@
  *******************************************************************************/
 package org.eclipse.papyrus.infra.emf.providers;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
@@ -49,6 +51,8 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 	/** emf item provider factories */
 	private static final String EXT_FACTORIES = "org.eclipse.emf.edit.itemProviderAdapterFactories"; //$NON-NLS-1$
 
+	private static final String I_ITEM_LABEL_PROVIDER = "org.eclipse.emf.edit.provider.IItemLabelProvider"; //$NON-NLS-1$
+
 	/**
 	 * Creates a new EMFObjectLabelProvider.
 	 */
@@ -62,12 +66,12 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 	@Override
 	public String getText(Object element) {
 		EObject eObject = EMFHelper.getEObject(element);
-		if(eObject != null) {
+		if (eObject != null) {
 			return getText(eObject);
 		}
 
-		if(element instanceof IStructuredSelection) {
-			return getText((IStructuredSelection)element);
+		if (element instanceof IStructuredSelection) {
+			return getText((IStructuredSelection) element);
 		}
 
 		return super.getText(element);
@@ -75,16 +79,16 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 
 	protected String getText(EObject element) {
 		String title = ""; //$NON-NLS-1$
-		if(element instanceof Enumerator) {
-			return ((Enumerator)element).getName();
+		if (element instanceof Enumerator) {
+			return ((Enumerator) element).getName();
 		}
 		EObject eObject = EMFHelper.getEObject(element);
 		IItemLabelProvider itemLabelProvider = getItemLabelProvider(eObject);
-		if(itemLabelProvider != null) {
+		if (itemLabelProvider != null) {
 			title = itemLabelProvider.getText(eObject);
 		}
 
-		if("".equals(title)) { //$NON-NLS-1$
+		if ("".equals(title)) { //$NON-NLS-1$
 			title = super.getText(eObject);
 		}
 
@@ -92,11 +96,11 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 	}
 
 	protected String getText(IStructuredSelection selection) {
-		if(selection.isEmpty()) {
+		if (selection.isEmpty()) {
 			return ""; //$NON-NLS-1$
 		}
 
-		//TODO : Implement a multi-selection label, instead of just the first element's label
+		// TODO : Implement a multi-selection label, instead of just the first element's label
 		Object element = selection.getFirstElement();
 		return getText(element);
 	}
@@ -107,12 +111,12 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 	@Override
 	public Image getImage(Object element) {
 		EObject eObject = EMFHelper.getEObject(element);
-		if(eObject != null) {
+		if (eObject != null) {
 			return getImage(eObject);
 		}
 
-		if(element instanceof IStructuredSelection) {
-			return getImage((IStructuredSelection)element);
+		if (element instanceof IStructuredSelection) {
+			return getImage((IStructuredSelection) element);
 		}
 
 		return super.getImage(element);
@@ -121,7 +125,7 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 	protected Image getImage(EObject eObject) {
 		Image result = null;
 		IItemLabelProvider itemLabelProvider = getItemLabelProvider(eObject);
-		if(itemLabelProvider != null) {
+		if (itemLabelProvider != null) {
 			result = getImageFromObject(itemLabelProvider.getImage(eObject));
 		}
 
@@ -129,11 +133,11 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 	}
 
 	protected Image getImage(IStructuredSelection selection) {
-		if(selection.isEmpty()) {
+		if (selection.isEmpty()) {
 			return null;
 		}
 
-		//TODO : Implement a multi-selection label, instead of just the first element's label
+		// TODO : Implement a multi-selection label, instead of just the first element's label
 		Object element = selection.getFirstElement();
 		return getImage(element);
 	}
@@ -142,15 +146,15 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 	 * Returns the item provider for the given object
 	 * 
 	 * @param eObject
-	 *        the object to display
+	 *            the object to display
 	 * @return the item label provider for the given eobject
 	 */
 	private IItemLabelProvider getItemLabelProvider(EObject eObject) {
 		IItemLabelProvider itemLabelProvider = null;
-		if(eObject != null) {
+		if (eObject != null) {
 			AdapterFactory adapterFactory = getEditFactory(eObject);
-			if(adapterFactory != null) {
-				return (IItemLabelProvider)adapterFactory.adapt(eObject, IItemLabelProviderClass);
+			if (adapterFactory != null) {
+				return (IItemLabelProvider) adapterFactory.adapt(eObject, IItemLabelProviderClass);
 			}
 		}
 		return itemLabelProvider;
@@ -160,7 +164,7 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 	 * Gets the edit factory.
 	 * 
 	 * @param eobject
-	 *        the eobject
+	 *            the eobject
 	 * 
 	 * @return the edits the factory
 	 */
@@ -173,23 +177,27 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 	 * Gets the factory from uri.
 	 * 
 	 * @param uri
-	 *        the uri
+	 *            the uri
 	 * 
 	 * @return the factory
 	 */
 	public static AdapterFactory getFactory(String uri) {
 		AdapterFactory factory = factories.get(uri);
-		if(factory == null) {
+		if (factory == null) {
 			IConfigurationElement[] extensions = Platform.getExtensionRegistry().getConfigurationElementsFor(EXT_FACTORIES);
-			for(IConfigurationElement e : extensions) {
-				if(uri.equals(e.getAttribute("uri"))) { //$NON-NLS-1$
-					try {
-						factory = (AdapterFactory)e.createExecutableExtension("class"); //$NON-NLS-1$
-						if(factory != null) {
-							factories.put(uri, factory);
+			for (IConfigurationElement e : extensions) {
+				if (uri.equals(e.getAttribute("uri"))) { //$NON-NLS-1$
+					String types = e.getAttribute("supportedTypes"); //$NON-NLS-1$
+					List<String> typesList = Arrays.asList(types.split("\\s+")); //$NON-NLS-1$
+					if (typesList.contains(I_ITEM_LABEL_PROVIDER)) {
+						try {
+							factory = (AdapterFactory) e.createExecutableExtension("class"); //$NON-NLS-1$
+							if (factory != null) {
+								factories.put(uri, factory);
+							}
+						} catch (CoreException e1) {
+							// do nothing
 						}
-					} catch (CoreException e1) {
-						// do nothing
 					}
 				}
 			}
@@ -211,8 +219,8 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 	 *         String if the object is not an EObject
 	 */
 	protected String getQualifiedClassName(Object object) {
-		if(object instanceof EObject) {
-			EObject eObject = (EObject)object;
+		if (object instanceof EObject) {
+			EObject eObject = (EObject) object;
 			EClass eClass = eObject.eClass();
 			return EMFHelper.getQualifiedName(eClass, "::"); //$NON-NLS-1$
 		}

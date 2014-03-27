@@ -13,8 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Point;
@@ -40,9 +43,11 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.LayoutHelper;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.FixEdgeAnchorsDeferredCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.FixAnchorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 
@@ -136,7 +141,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 		final List<?> children = request.getEditParts();
 		final int direction = request.getResizeDirection();
 		boolean isConstrainedResize = request.isConstrainedResize();
-		boolean forceLocation = isConstrainedResize && (direction == PositionConstants.WEST || direction == PositionConstants.NORTH || direction == PositionConstants.NORTH_WEST);
+		boolean forceLocation = isConstrainedResize;//&& (direction == PositionConstants.WEST || direction == PositionConstants.NORTH || direction == PositionConstants.NORTH_WEST );//|| direction == PositionConstants.NORTH_EAST || direction == PositionConstants.SOUTH_WEST);
 		for(int i = 0; i < children.size(); i++) {
 			child = (IGraphicalEditPart)children.get(i);
 			resize.add(createChangeConstraintCommand(request, child, translateToModelConstraint(getConstraintFor(request, child))));
@@ -182,5 +187,34 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 		return resize.unwrap();
 	}
 
+	@Override
+	protected Command createChangeConstraintCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
+		final Command cmd = super.createChangeConstraintCommand(request, child, constraint);
+		if(RequestConstants.REQ_MOVE_CHILDREN.equals(request.getType()) && child instanceof INodeEditPart) {
+			List<?> sources = ((INodeEditPart)child).getSourceConnections();
+			List<?> targets = ((INodeEditPart)child).getTargetConnections();
+			Set<Object> connections = new HashSet<Object>();
+			connections.addAll(sources);
+			connections.addAll(targets);
+			if(!connections.isEmpty()) {
+				final CompoundCommand cc = new CompoundCommand();
+				cc.add(cmd);
+				//see bug 430702: [Diagram] Moving source of a link moves the target too.	
+				cc.add(new ICommandProxy(new FixEdgeAnchorsDeferredCommand(getEditingDomain(), (IGraphicalEditPart)getHost(), connections)));
+				return cc;
+			}
+		}
+		return cmd;
+	}
 
+	protected final TransactionalEditingDomain getEditingDomain() {
+
+		TransactionalEditingDomain domain = null;
+		try {
+			domain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(getHost());
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+		return domain;
+	}
 }

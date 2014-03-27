@@ -13,10 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -36,7 +38,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
@@ -50,7 +52,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
-
 
 //TODO: Refactor. Remove the diagram creation listener, and use a Dialog (Which is blocker) instead of a Shell
 public class EditorLookForEditorShell extends AbstractLookForEditorShell {
@@ -227,10 +228,46 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		}
 
 		treeViewer.setLabelProvider(labelProvider);
-		//		treeViewer.setContentProvider(new CustomAdapterFactoryContentProvider(adapterFactory));
-		//		treeViewer.setContentProvider(new SemanticEMFContentProvider(amodel)); //This content provider will only display the selected element, instead of the root element
-		treeViewer.setContentProvider(new MoDiscoContentProvider()); //FIXME: Use a standard, non-deprecated content provider.
-		//treeViewer.setInput(model.eResource());
+		// treeViewer.setContentProvider(new
+		// CustomAdapterFactoryContentProvider(adapterFactory));
+		// treeViewer.setContentProvider(new
+		// SemanticEMFContentProvider(amodel)); //This content provider will
+		// only display the selected element, instead of the root element
+		// FIXME:  Use a standard, non-deprecated content
+		treeViewer.setContentProvider(new SemanticEMFContentProvider() {
+
+			@Override
+			public boolean hasChildren(Object element) {
+				return super.getChildren(element).length > 0;
+			}
+
+			/**
+			 *
+			 * @see org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider#getChildren(java.lang.Object)
+			 * 
+			 * @param parentElement
+			 * @return
+			 */
+			//in some case we return diagram twice!
+			//TODO the best correction we be able to manage applied facet, because if we get diagram twice it is probably because there are 2 facets with the same behavior applied
+			@Override
+			public Object[] getChildren(Object parentElement) {
+				List<Object> alreadyVisited = new ArrayList<Object>();
+				List<Object> returnedChildren = new ArrayList<Object>();
+				Object[] children = super.getChildren(parentElement);
+				for(Object current : children) {
+					if(current instanceof IAdaptable) {
+						EObject el = EMFHelper.getEObject(current);
+						if(!alreadyVisited.contains(el)) {
+							returnedChildren.add(current);
+							alreadyVisited.add(el);
+						}
+					}
+				}
+				return returnedChildren.toArray();
+			}
+		});
+		// treeViewer.setInput(model.eResource());
 		treeViewer.setInput(registry);
 
 		// install diagramlist

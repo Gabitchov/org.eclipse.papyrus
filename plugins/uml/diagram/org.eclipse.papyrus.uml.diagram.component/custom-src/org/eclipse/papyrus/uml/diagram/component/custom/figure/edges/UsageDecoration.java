@@ -12,12 +12,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.custom.figure.edges;
 
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure;
+
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class UsageDecoration.
  */
-public class UsageDecoration extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {
+public class UsageDecoration extends PapyrusEdgeFigure {
 
 
 	/**
@@ -28,6 +30,11 @@ public class UsageDecoration extends org.eclipse.gmf.runtime.draw2d.ui.figures.P
 		setTargetDecoration(createTargetDecoration());
 	}
 
+	@Override
+	public void resetStyle() {
+		super.resetStyle();
+		setTargetDecoration(createTargetDecoration());
+	}
 
 	/**
 	 * Creates the target decoration.

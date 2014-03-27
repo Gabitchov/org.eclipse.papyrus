@@ -4,7 +4,8 @@
    <extension
          point="org.eclipse.papyrus.infra.nattable.configuration">
       <configuration
-            file="configs/generic.nattableconfiguration">
+            file="configs/generic.nattableconfiguration"
+            type="PapyrusGenericTable">
       </configuration>
    </extension>
 

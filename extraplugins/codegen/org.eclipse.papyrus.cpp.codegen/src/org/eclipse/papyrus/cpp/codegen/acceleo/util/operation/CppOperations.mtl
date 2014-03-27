@@ -36,7 +36,7 @@ return a list of owned operations, since this is not supported directly on a cla
 
 
 [query public isConsOrDestructor(operation : Operation) : Boolean =
-hasStereotype(l2::Create) or hasStereotype(l2::Destroy)
+hasStereotype(standard::Create) or hasStereotype(standard::Destroy)
 /]
 
 [query public ConsDestructorOrVoid(operation : Operation) : String =
@@ -48,7 +48,7 @@ endif/]
 
 
 [query public destructor(operation : Operation) : String =
-if hasStereotype(l2::Destroy) and not operation.name.startsWith('~') then
+if hasStereotype(standard::Destroy) and not operation.name.startsWith('~') then
 	'~'
 else
 	''
@@ -84,7 +84,7 @@ endif/]
 [/template]
 
 [template public CppConstInit(operation : Operation)]
-[if (hasStereotype(ConstInit) and hasStereotype(l2::Create))] : [getApplication(ConstInit).oclAsType(ConstInit).initialisation/][/if]
+[if (hasStereotype(ConstInit) and hasStereotype(standard::Create))] : [getApplication(ConstInit).oclAsType(ConstInit).initialisation/][/if]
 [/template]
 
 

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ClassPropertyCreateCommand;
 import org.eclipse.papyrus.uml.diagram.profile.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Association;
@@ -39,8 +40,8 @@ public class PropertyCommandForAssociation extends ClassPropertyCreateCommand {
 	 * @param req
 	 *        the req to launch the command
 	 */
-	public PropertyCommandForAssociation(CreateElementRequest req) {
-		super(req);
+	public PropertyCommandForAssociation(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 	}
 
 	/**

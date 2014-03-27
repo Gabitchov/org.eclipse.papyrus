@@ -126,5 +126,49 @@ information compared to the tree structure depicted by the dedicated dialog.<br>
 The last step is the code generation which can be executed via the context menu of a deployment plan. The code generation creates an CDT project
 which can be compiled and executed.
 
+<h2>Compilation, Execution and Debugging</h2>
+
+<h3>For Windows users</h3>
+
+If you are using Windows and it is the first time you are running C++ project using Eclipse CDT, 
+you can face some problems during compilation, execution and debugging of the generated code. 
+
+First of all, be sure that you have defined the environment variable for your C++ compiler. To do so, open a command line window  (cmd.exe) and type "gdb".
+You should see an output like below.
+
+<center>
+<img src="screenshots/cmd_without_error.png" alt="command line without error">
+</center> 
+
+If you do not see this output and see the error below, 
+
+<center>
+<img src="screenshots/cmd_with_error.png" alt="command line with error">
+</center> 
+
+
+go to "My Computer -> Properties -> Advanced System Parameters". Edit the variable named "PATH" and add the following to the end of its value ";C:\MinGW\bin\" 
+<br><br>
+Moreover, another problem you can face can be having no console output after a successful run of the code. In this case, 
+<br><br>
+Right-click on your project. Select "Properties".
+<br><br>
+Select the "Run/Debug Settings" Property on the left of the new window.
+<br><br>
+In the right window, click on your executable to highlight (ie - Test.exe) and click "Edit".
+<br><br>
+In the Environment tab, hit "New"
+<br><br>
+Name: <b>PATH</b> 
+<br>
+Value: <b>Path to your MinGW bin directory</b> (For example: C:\MinGW\bin) 
+<br><br>
+Click "OK" on all windows to close down.
+<br><br>
+Try running again, it should print output to the screen.
+<br><br>
+<a href="http://stackoverflow.com/questions/3443254/eclipse-cdt-using-mingw-does-not-output-in-console">See this link!</a>
+
+
 </body>
 </html>

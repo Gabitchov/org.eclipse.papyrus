@@ -72,7 +72,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 			((WrappingLabel)getHostFigure()).setFocus(false);
 		} else {
 			hideSelection();
-			addFeedback(this.selectionFeedbackFigure = createSelectionFeedbackFigure());
+			addFeedback(selectionFeedbackFigure = createSelectionFeedbackFigure());
 			getHostFigure().addFigureListener(getHostPositionListener());
 			refreshSelectionFeedback();
 			hideFocus();
@@ -88,10 +88,10 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 			((WrappingLabel)getHostFigure()).setSelected(false);
 			((WrappingLabel)getHostFigure()).setFocus(false);
 		} else {
-			if(this.selectionFeedbackFigure != null) {
-				removeFeedback(this.selectionFeedbackFigure);
+			if(selectionFeedbackFigure != null) {
+				removeFeedback(selectionFeedbackFigure);
 				getHostFigure().removeFigureListener(getHostPositionListener());
-				this.selectionFeedbackFigure = null;
+				selectionFeedbackFigure = null;
 			}
 			hideFocus();
 		}
@@ -106,7 +106,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 			((WrappingLabel)getHostFigure()).setFocus(true);
 		} else {
 			hideFocus();
-			addFeedback(this.focusFeedbackFigure = createFocusFeedbackFigure());
+			addFeedback(focusFeedbackFigure = createFocusFeedbackFigure());
 			refreshFocusFeedback();
 		}
 	}
@@ -119,9 +119,9 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 		if(getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getHostFigure()).setFocus(false);
 		} else {
-			if(this.focusFeedbackFigure != null) {
-				removeFeedback(this.focusFeedbackFigure);
-				this.focusFeedbackFigure = null;
+			if(focusFeedbackFigure != null) {
+				removeFeedback(focusFeedbackFigure);
+				focusFeedbackFigure = null;
 			}
 		}
 	}
@@ -147,13 +147,13 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	 */
 	protected IFigure createSelectionFeedbackFigure() {
 		if(getHostFigure() instanceof Label) {
-			final Label feedbackFigure = new Label();
+			Label feedbackFigure = new Label();
 			feedbackFigure.setOpaque(true);
 			feedbackFigure.setBackgroundColor(ColorConstants.menuBackgroundSelected);
 			feedbackFigure.setForegroundColor(ColorConstants.menuForegroundSelected);
 			return feedbackFigure;
 		} else {
-			final RectangleFigure feedbackFigure = new RectangleFigure();
+			RectangleFigure feedbackFigure = new RectangleFigure();
 			feedbackFigure.setFill(false);
 			return feedbackFigure;
 		}
@@ -165,8 +165,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	protected IFigure createFocusFeedbackFigure() {
 		return new Figure() {
 
-			@Override
-			protected void paintFigure(final Graphics graphics) {
+			protected void paintFigure(Graphics graphics) {
 				graphics.drawFocus(getBounds().getResized(-1, -1));
 			}
 		};
@@ -175,8 +174,8 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
-	protected void updateLabel(final Label target) {
-		final Label source = (Label)getHostFigure();
+	protected void updateLabel(Label target) {
+		Label source = (Label)getHostFigure();
 		target.setText(source.getText());
 		target.setTextAlignment(source.getTextAlignment());
 		target.setFont(source.getFont());
@@ -186,12 +185,12 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	 * @generated
 	 */
 	protected void refreshSelectionFeedback() {
-		if(this.selectionFeedbackFigure != null) {
-			if(this.selectionFeedbackFigure instanceof Label) {
-				updateLabel((Label)this.selectionFeedbackFigure);
-				this.selectionFeedbackFigure.setBounds(getFeedbackBounds());
+		if(selectionFeedbackFigure != null) {
+			if(selectionFeedbackFigure instanceof Label) {
+				updateLabel((Label)selectionFeedbackFigure);
+				selectionFeedbackFigure.setBounds(getFeedbackBounds());
 			} else {
-				this.selectionFeedbackFigure.setBounds(getFeedbackBounds().expand(5, 5));
+				selectionFeedbackFigure.setBounds(getFeedbackBounds().expand(5, 5));
 			}
 		}
 	}
@@ -200,8 +199,8 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	 * @generated
 	 */
 	protected void refreshFocusFeedback() {
-		if(this.focusFeedbackFigure != null) {
-			this.focusFeedbackFigure.setBounds(getFeedbackBounds());
+		if(focusFeedbackFigure != null) {
+			focusFeedbackFigure.setBounds(getFeedbackBounds());
 		}
 	}
 
@@ -217,15 +216,15 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	 * @generated
 	 */
 	private FigureListener getHostPositionListener() {
-		if(this.hostPositionListener == null) {
-			this.hostPositionListener = new FigureListener() {
+		if(hostPositionListener == null) {
+			hostPositionListener = new FigureListener() {
 
-				public void figureMoved(final IFigure source) {
+				public void figureMoved(IFigure source) {
 					refreshFeedback();
 				}
 			};
 		}
-		return this.hostPositionListener;
+		return hostPositionListener;
 	}
 
 	/**
@@ -233,10 +232,9 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	 */
 	@Override
 	protected List createSelectionHandles() {
-		final MoveHandle moveHandle = new MoveHandle((GraphicalEditPart)getHost());
+		MoveHandle moveHandle = new MoveHandle((GraphicalEditPart)getHost());
 		moveHandle.setBorder(null);
 		moveHandle.setDragTracker(new DragEditPartsTrackerEx(getHost()));
 		return Collections.singletonList(moveHandle);
 	}
-
 }

@@ -85,7 +85,9 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 		final Object current = getElements().get(axisPosition);
 		final Object elementToDestroy = AxisUtils.getRepresentedElement(current);
 		if(this.managedObject.contains(current) || this.managedObject.contains(elementToDestroy)) {
-			return !EMFHelper.isReadOnly(((EObjectAxis)current).getElement());
+			if(elementToDestroy instanceof EObject) {
+				return !EMFHelper.isReadOnly((EObject)elementToDestroy);
+			}
 		}
 		return false;
 	}

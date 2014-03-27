@@ -12,9 +12,17 @@
 package org.eclipse.papyrus.robotml.diagram.common.utils;
 
 import org.eclipse.core.expressions.PropertyTester;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ModelsReader;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
@@ -29,7 +37,7 @@ import org.eclipse.uml2.uml.Package;
  * This class is used in order to create test for deciding whether a diagram creation command should be visible or not.
  * This property tester assumes that currently active editor is Papyrus, it should be used with care (simultaneously with a test to ensure Papyrus is
  * currently opened and active).
- * 
+ *
  */
 public class RobotmlSelectionTester extends PropertyTester {
 
@@ -66,6 +74,8 @@ public class RobotmlSelectionTester extends PropertyTester {
 	protected boolean testRobotmlModelNature(Object receiver) {
 		boolean isRobotmlModel = false;
 
+
+
 		EObject root = getRoot(receiver);
 		if(root instanceof Package) {
 			return (((Package)root).getAppliedProfile("RobotML") != null);
@@ -95,15 +105,46 @@ public class RobotmlSelectionTester extends PropertyTester {
 			}
 
 			try {
-				ServiceUtilsForSelection serviceUtils = ServiceUtilsForSelection.getInstance();
-				UmlModel openedModel = (UmlModel)serviceUtils.getModelSet(selection).getModel(UmlModel.MODEL_ID);
-				if(openedModel != null) {
-					root = openedModel.lookupRoot();
+				//this is the case where the selection is on the Project Explorer
+				IStructuredSelection selectionstructured = (IStructuredSelection)selection;
+
+				Object selectedElement = selectionstructured.getFirstElement();
+
+				Object selectedAdapter = Platform.getAdapterManager().getAdapter(selectedElement, IFile.class);
+
+
+				if(selectedAdapter instanceof IFile) {
+					final IFile selectedFile = (IFile)selectedAdapter;
+					ModelSet modelSet = new ModelSet();
+					ModelsReader reader = new ModelsReader();
+					reader.readModel(modelSet);
+
+
+					IPath workspacePath = selectedFile.getFullPath();
+
+					URI workspaceURI = URI.createPlatformResourceURI(workspacePath.toString(), true);
+					modelSet.loadModels(workspaceURI);
+
+					UmlModel openedModel = (UmlModel)modelSet.getModel(UmlModel.MODEL_ID);
+					if(openedModel != null) {
+						root = openedModel.lookupRoot();
+					}
+				} else {
+					//this is the case where the selection is on the Model Explorer
+					ServiceUtilsForSelection serviceUtils = ServiceUtilsForSelection.getInstance();
+					UmlModel openedModel = (UmlModel)serviceUtils.getModelSet(selection).getModel(UmlModel.MODEL_ID);
+					if(openedModel != null) {
+						root = openedModel.lookupRoot();
+					}
 				}
+
 			} catch (ServiceException e) {
 				//Ignored: The selection cannot be used to retrieve the ServicesRegistry
 			} catch (NotFoundException e) {
 				Activator.log.error(e);
+			} catch (ModelMultiException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 

@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.emf.facet.util.swt.colorprovider,
+ org.eclipse.papyrus.emf.facet.util.swt.fontprovider,
+ org.eclipse.papyrus.emf.facet.util.swt.imageprovider,
+ org.eclipse.papyrus.emf.facet.util.swt.internal.exported
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.swt;bundle-version="3.6.0",
+ org.eclipse.ui;bundle-version="3.6.0",
+ org.eclipse.papyrus.emf.facet.util.core;bundle-version="1.0.0"
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Activator: org.eclipse.papyrus.emf.facet.util.swt.internal.Acti
+ vator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.util.swt;singleton:
+ =true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

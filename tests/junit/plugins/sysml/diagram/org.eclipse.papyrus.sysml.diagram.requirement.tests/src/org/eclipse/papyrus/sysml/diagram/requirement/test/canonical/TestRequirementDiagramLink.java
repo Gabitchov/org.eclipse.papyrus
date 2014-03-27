@@ -39,6 +39,11 @@ public class TestRequirementDiagramLink extends TestLink {
 		return IRequirementDiagramTestsConstants.FILE_NAME;
 	}
 
+	@Override
+	protected String[] getRequiredProfiles() {
+		return IRequirementDiagramTestsConstants.PROFILES;
+	}
+
 	/**
 	 * Test to manage Abstraction
 	 */

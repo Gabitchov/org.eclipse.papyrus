@@ -1,20 +1,24 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.design.profile.architecture.editor;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.design.profile.architecture.presentation.ArchitectureEditorPlugin$Implementation
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.design.profile.architecture.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.design.profile.architecture.edit;visibility:=reexport,
+ org.eclipse.papyrus.design.profile.architecture.edit;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.ocl.uml.edit;bundle-version="3.1.0",
  org.eclipse.uml2.uml.edit;bundle-version="5.0.0"
+Export-Package: org.eclipse.papyrus.design.profile.architecture.presen
+ tation
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.design.profile.architecture.pres
+ entation.ArchitectureEditorPlugin$Implementation
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.design.profile.architecture.e
+ ditor;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

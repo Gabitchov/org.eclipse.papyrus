@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010-2012 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *		
  *		CEA LIST - Initial API and implementation
+ *      Christian W. Damus (CEA) - bug 413703
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
@@ -26,9 +27,11 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -261,5 +264,21 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 		}
 
 		return null;
+	}
+
+	@Override
+	public void configureRequest(IEditCommandRequest request) {
+		if(request instanceof CreateElementRequest) {
+			configureCreateElementRequest((CreateElementRequest)request);
+		} else {
+			super.configureRequest(request);
+		}
+	}
+
+	protected void configureCreateElementRequest(CreateElementRequest request) {
+		if((request.getContainmentFeature() == null) && UMLPackage.Literals.VALUE_SPECIFICATION.isSuperTypeOf(request.getElementType().getEClass())) {
+			// Prefer to create value specifications as property default values, not as lower/upper values for multiplicity
+			request.setContainmentFeature(UMLPackage.Literals.PROPERTY__DEFAULT_VALUE);
+		}
 	}
 }

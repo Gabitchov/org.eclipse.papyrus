@@ -19,6 +19,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 
+import org.eclipse.papyrus.junit.utils.classification.ClassificationRunner;
 import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.rules.MethodRule;
@@ -27,13 +28,20 @@ import org.junit.runners.model.Statement;
 
 
 /**
+ * <p>
  * A JUnit {@linkplain Rule rule} that skips tests annotated as {@linkplain Conditional @Conditional} when their {@linkplain Condition conditions} are
  * not satisfied. This model is compatible with the JUnit execution and reporting in the Papyrus Hudson build, which does not understand
  * {@linkplain Assume#assumeThat(Object, org.hamcrest.Matcher) assumption failures} and reports them as test failures.
+ * </p>
+ * <p>
+ * <b>Note</b> that this is not ideal, as tests will be reported in the JDT's JUnit view as passes, when in fact they should be reported as skipped.
+ * It is better to use the {@link ClassificationRunner} if possible (such as when not using some other test runner).
+ * </p>
  * 
  * @see Conditional
  * @see Condition
  * @see Rule
+ * @see ClassificationRunner
  */
 public class ConditionRule implements MethodRule {
 
@@ -53,7 +61,7 @@ public class ConditionRule implements MethodRule {
 		};
 	}
 
-	protected boolean testCondition(Class<?> testClass, Conditional conditional, Object test) {
+	public static boolean testCondition(Class<?> testClass, Conditional conditional, Object test) {
 		boolean result = true;
 
 		if(conditional != null) {
@@ -73,7 +81,7 @@ public class ConditionRule implements MethodRule {
 		return result;
 	}
 
-	protected Method findConditionMethod(Class<?> testClass, Conditional conditional) {
+	static Method findConditionMethod(Class<?> testClass, Conditional conditional) {
 		Method result = null;
 
 		for(Method next : testClass.getDeclaredMethods()) {
@@ -87,7 +95,7 @@ public class ConditionRule implements MethodRule {
 		return result;
 	}
 
-	protected Field findConditionField(Class<?> testClass, Conditional conditional) {
+	static Field findConditionField(Class<?> testClass, Conditional conditional) {
 		Field result = null;
 
 		for(Field next : testClass.getDeclaredFields()) {
@@ -101,7 +109,7 @@ public class ConditionRule implements MethodRule {
 		return result;
 	}
 
-	protected boolean evaluateCondition(Method conditionMethod, Object test) {
+	static boolean evaluateCondition(Method conditionMethod, Object test) {
 		boolean result = true;
 
 		try {
@@ -116,7 +124,7 @@ public class ConditionRule implements MethodRule {
 		return result;
 	}
 
-	protected boolean evaluateCondition(Field conditionField, Object test) {
+	static boolean evaluateCondition(Field conditionField, Object test) {
 		boolean result = true;
 
 		try {

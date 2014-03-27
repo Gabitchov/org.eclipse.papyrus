@@ -278,6 +278,9 @@ public class Decoration implements IPapyrusDecoration {
 		String message = decorationService.initialMessage(eObject);
 		if(decorations != null) {
 			for(IPapyrusDecoration decoration : decorations) {
+				if (message == null) {
+					message = ""; //$NON-NLS-1$
+				}
 				if(message.length() > 0) {
 					message += "\n"; //$NON-NLS-1$
                	}

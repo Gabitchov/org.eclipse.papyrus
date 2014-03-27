@@ -4374,7 +4374,7 @@
                name="Clean Diagram">
          </command>
       </extension>
-      <extension
+ <!--         <extension
             point="org.eclipse.ui.bindings">
          <key
                commandId="org.eclipse.papyrus.infra.gmfdiag.menu.pastewithmodel"
@@ -4383,5 +4383,5 @@
                sequence="M1+V">
          </key>
       </extension>
-<!--                                                      -->      
+                                                  -->      
 </plugin>

@@ -36,11 +36,12 @@ import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.ResetStyleHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.tests.Activator;
+import org.eclipse.papyrus.junit.utils.classification.NotImplemented;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.uml2.uml.NamedElement;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -48,9 +49,9 @@ import org.junit.Test;
  * See resources/model/compartmentsTest/model.di for details
  *
  * @author Camille Letavernier
- * 
+ *
  */
-public class CSSCompartmentsTests {
+public class CSSCompartmentsTests extends AbstractPapyrusTest {
 
 	public static final String CLASS_ATTRIBUTE_COMPARTMENT_TYPE = "7017"; //$NON-NLS-1$
 
@@ -110,9 +111,8 @@ public class CSSCompartmentsTests {
 	}
 
 	/* Test Enumeration1 */
+	@NotImplemented("The 'case insensitive' attributes are not supported by Eclipse E4 CSS")
 	@Test
-	//Currently fails. The "case insensitive" attributes are not supported by Eclipse E4 CSS
-	@Ignore("The 'case insensitive' attributes are not supported by Eclipse E4 CSS")
 	public void testCaseInsensitiveForEnumeration() {
 		Shape enumeration = findShape("Enumeration1");
 		BasicCompartment compartment = findCompartment(enumeration, ENUMERATION_LITERAL_COMPARTMENT_TYPE);
@@ -121,7 +121,6 @@ public class CSSCompartmentsTests {
 	}
 
 	/* Test Interface 1 and Interface 2 */
-	//Currently fails. The interface compartments are not defined in the NotationTypesMap
 	@Test
 	public void testAttributeCompartmentForInterface() {
 		Shape interface1 = findShape("Interface1");

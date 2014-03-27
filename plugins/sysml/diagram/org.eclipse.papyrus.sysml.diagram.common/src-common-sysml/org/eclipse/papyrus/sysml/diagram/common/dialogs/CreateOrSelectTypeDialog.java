@@ -1,16 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2011 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
- *  
- *  CEA LIST - Class Adaptation in SysML context, Content and Label provider replacement.
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.dialogs;
@@ -29,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -506,7 +505,7 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 		if(dialog.open() == Window.OK) {
 			Object result = dialog.getResult()[0];
 			if(result instanceof IAdaptable) {
-				result = ((IAdaptable)result).getAdapter(EObject.class);
+				result = EMFHelper.getEObject(result);
 			}
 
 			if(result instanceof EObject) {
@@ -548,7 +547,7 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 		if(dialog.open() == Window.OK) {
 			Object result = dialog.getResult()[0];
 			if(result instanceof IAdaptable) {
-				result = ((IAdaptable)result).getAdapter(EObject.class);
+				result = EMFHelper.getEObject(result);
 			}
 
 			if(result instanceof EObject) {

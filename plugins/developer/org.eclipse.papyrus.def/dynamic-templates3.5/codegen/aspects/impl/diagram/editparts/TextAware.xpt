@@ -408,7 +408,12 @@
 «DEFINE performDirectEdit FOR gmfgen::GenCommonBase-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected void performDirectEdit() {
-		getManager().show();
+		org.eclipse.swt.custom.BusyIndicator.showWhile(org.eclipse.swt.widgets.Display.getDefault(), new java.lang.Runnable() {
+					
+			public void run() {
+				getManager().show();
+			}
+		});
 	}
 «ENDDEFINE»
 	
@@ -509,10 +514,8 @@
 							org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if ((request instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							org.eclipse.gef.requests.DirectEditRequest editRequest = (org.eclipse.gef.requests.DirectEditRequest) request;
-							performDirectEdit(editRequest.getLocation());
-						} else {
+						}
+						else {
 							performDirectEdit();
 						}
 					}

@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.common.commands;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 
 /**
  * This class is used to supplement a gmf connection command.
@@ -30,6 +31,8 @@ public abstract class SupplementCommand {
 
 	private final EObject target;
 
+	protected final Diagram diagram;
+	
 	/**
 	 * the supplement command has the same parameter as connection create
 	 * command of gmf command
@@ -42,11 +45,12 @@ public abstract class SupplementCommand {
 	 * @param target
 	 *        the target of the link
 	 */
-	public SupplementCommand(EObject container, EObject source, EObject target) {
+	public SupplementCommand(EObject container, EObject source, EObject target, Diagram diagram) {
 		super();
 		this.container = container;
 		this.source = source;
 		this.target = target;
+		this.diagram = diagram;
 	}
 
 	/**

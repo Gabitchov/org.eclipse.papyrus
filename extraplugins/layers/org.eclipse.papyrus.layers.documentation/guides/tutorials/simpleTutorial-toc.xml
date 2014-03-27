@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc topic="guides/tutorials/simpleTutorial.html" label="simpleTutorial">
+	<topic href="guides/tutorials/simpleTutorial.html" label="A simple Example and Tutorial">
+		<topic href="guides/tutorials/simpleTutorial.html#Create_a_new_Class_Diagram" label="Create a new Class Diagram"></topic>
+		<topic href="guides/tutorials/simpleTutorial.html#Open_the_LayersExplorer" label="Open the LayersExplorer"></topic>
+		<topic href="guides/tutorials/simpleTutorial.html#Attach_a_LayersStack_to_your_diagram" label="Attach a LayersStack to your diagram"></topic>
+		<topic href="guides/tutorials/simpleTutorial.html#Create_a_new_Layer_in_the_LayersStack" label="Create a new Layer in the LayersStack"></topic>
+		<topic href="guides/tutorials/simpleTutorial.html#Attach_Classes_to_the_Layer" label="Attach Classes to the Layer"></topic>
+		<topic href="guides/tutorials/simpleTutorial.html#Attach_some_properties_to_the_layer" label="Attach some properties to the layer"></topic>
+		<topic href="guides/tutorials/simpleTutorial.html#Add_more_layers" label="Add more layers"></topic>
+		<topic href="guides/tutorials/simpleTutorial.html#Change_the_value_of_an_attached_property" label="Change the value of an attached property"></topic>
+		<topic href="guides/tutorials/simpleTutorial.html#Add_the_3rd_layer" label="Add the 3rd layer"></topic>
+		<topic href="guides/tutorials/simpleTutorial.html#Disabling_a_Layer" label="Disabling a Layer"></topic>
+	</topic>
+	<topic href="guides/tutorials/simpleTutorial.html#Layer_Operators" label="Layer Operators">
+		<topic href="guides/tutorials/simpleTutorial.html#Top_Layer_Operator" label="Top Layer Operator"></topic>
+	</topic>
+</toc>

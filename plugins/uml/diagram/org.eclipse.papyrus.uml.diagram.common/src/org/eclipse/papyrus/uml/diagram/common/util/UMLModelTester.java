@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,9 +25,9 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
 /**
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class UMLModelTester extends PropertyTester {
 
@@ -38,6 +38,7 @@ public class UMLModelTester extends PropertyTester {
 	public final static String IS_UML_PROFILE = "isUMLProfile";
 
 	/** Test the receiver against the selected property */
+	@Override
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
 		Object currentValue = null;
 		if(IS_UML_MODEL.equals(property)) {
@@ -69,6 +70,9 @@ public class UMLModelTester extends PropertyTester {
 
 	private EObject getRoot(Object receiver) {
 		ModelSet modelSet = getModelSet(receiver);
+		if(modelSet == null) {
+			return null;
+		}
 		return getRoot(modelSet);
 	}
 

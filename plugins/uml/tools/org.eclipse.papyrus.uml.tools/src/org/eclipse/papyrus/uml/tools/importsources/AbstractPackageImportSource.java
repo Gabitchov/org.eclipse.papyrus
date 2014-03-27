@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 430700
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.importsources;
 
@@ -17,7 +19,6 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
@@ -61,10 +63,10 @@ public abstract class AbstractPackageImportSource implements IPackageImportSourc
 			if(next instanceof Package) {
 				result = (Package)next;
 				break;
-			} else if(next instanceof IAdaptable) {
-				Object adapter = ((IAdaptable)next).getAdapter(EObject.class);
-				if(adapter instanceof Package) {
-					result = (Package)adapter;
+			} else if(next != null) {
+				EObject eObject = EMFHelper.getEObject(next);
+				if(eObject instanceof Package) {
+					result = (Package)eObject;
 				}
 			}
 		}

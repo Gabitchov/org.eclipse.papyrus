@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Duration;
@@ -255,7 +256,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 	 * @return the constraint or null if it can't be found.
 	 */
 	protected Constraint doAdapt(IAdaptable element) {
-		Object obj = element.getAdapter(EObject.class);
+		Object obj = EMFHelper.getEObject(element);
 		if(obj instanceof Constraint) {
 			return (Constraint)obj;
 		}

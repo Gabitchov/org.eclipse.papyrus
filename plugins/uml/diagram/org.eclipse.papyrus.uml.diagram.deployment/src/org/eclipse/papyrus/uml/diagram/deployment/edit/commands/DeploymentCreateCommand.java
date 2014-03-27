@@ -81,7 +81,6 @@ public class DeploymentCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		Deployment newElement = UMLFactory.eINSTANCE.createDeployment();
 		getContainer().getDeployments().add(newElement);
 		newElement.getClients().add(getSource());
@@ -90,7 +89,6 @@ public class DeploymentCreateCommand extends EditElementCommand {
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**
@@ -154,5 +152,4 @@ public class DeploymentCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    copyrightText=" Copyright (c) 2011 Mia-Software.&#xD;&#xA; &#xD;&#xA; All rights reserved. This program and the accompanying materials&#xD;&#xA; are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA; which accompanies this distribution, and is available at&#xD;&#xA; http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA; Contributors:&#xD;&#xA; &#x9;Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model&#xD;&#xA;  &#x9;Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning&#xD;&#xA; "
+    modelDirectory="/org.eclipse.papyrus.emf.facet.custom.metamodel/src" editDirectory="/org.eclipse.papyrus.emf.facet.custom.metamodel.edit/src"
+    editorDirectory="/org.eclipse.papyrus.emf.facet.custom.metamodel.editor/src" modelPluginID="org.eclipse.papyrus.emf.facet.custom.metamodel"
+    modelName="Catalog" editPluginClass="org.eclipse.papyrus.emf.facet.custom.metamodel.provider.CatalogEditPlugin"
+    editorPluginClass="org.eclipse.papyrus.emf.facet.custom.metamodel.presentation.CatalogEditorPlugin"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    editPluginID="org.eclipse.papyrus.emf.facet.custom.metamodel.edit" editorPluginID="org.eclipse.papyrus.emf.facet.custom.metamodel.editor"
+    runtimeVersion="2.6" usedGenPackages="platform:/plugin/org.eclipse.papyrus.emf.facet.util.emf.catalog/model/catalog.genmodel#//catalog">
+  <foreignModel>catalog.ecore</foreignModel>
+</genmodel:GenModel>

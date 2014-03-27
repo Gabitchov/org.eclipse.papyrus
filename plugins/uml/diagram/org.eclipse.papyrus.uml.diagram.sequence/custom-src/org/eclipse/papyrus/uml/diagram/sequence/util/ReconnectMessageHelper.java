@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Boutheina Bannour (CEA LIST) boutheina.bannour@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
@@ -18,6 +19,7 @@ import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
+import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
@@ -25,6 +27,7 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -80,6 +83,61 @@ public class ReconnectMessageHelper {
 				}
 				newEnd.setMessage(message);
 				messageEnd.setMessage(null);
+			}
+		} else {
+			if(newElement instanceof Lifeline && !(oldElement instanceof CombinedFragment && InteractionOperatorKind.PAR_LITERAL.equals(((CombinedFragment)oldElement).getInteractionOperator()))) {
+				Message message = messageEnd.getMessage();
+				MessageOccurrenceSpecification newMessageEnd = UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
+				newMessageEnd.setCovered((Lifeline)newElement);
+				updateOccurenceSpecification(newMessageEnd, (Lifeline)newElement);
+				if(message != null) {
+					if(messageEnd == message.getSendEvent()) {
+						if(newMessageEnd.getName() == null) {
+							newMessageEnd.setName(message.getName() + "Send");
+						}
+						message.setSendEvent(newMessageEnd);
+						MessageEnd receivedMessageEnd = message.getReceiveEvent();
+						updateMosEnclosingNamespace(newMessageEnd, receivedMessageEnd);
+					} else if(messageEnd == message.getReceiveEvent()) {
+						if(newMessageEnd.getName() == null) {
+							newMessageEnd.setName(message.getName() + "Recv");
+						}
+						message.setReceiveEvent(newMessageEnd);
+						MessageEnd sendMessageEnd = message.getSendEvent();
+						updateMosEnclosingNamespace(newMessageEnd, sendMessageEnd);
+					}
+					newMessageEnd.setMessage(message);
+					messageEnd.setMessage(null);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Update Message occurrence specification with the enclosing Interaction or Operand
+	 * 
+	 * @param mos
+	 *        the message occurrence specification to update
+	 * @param oppositeMessageEnd
+	 *        the opposite message end
+	 */
+	public static void updateMosEnclosingNamespace(MessageOccurrenceSpecification mos, MessageEnd oppositeMessageEnd) {
+		if(oppositeMessageEnd instanceof MessageOccurrenceSpecification) {
+			MessageOccurrenceSpecification oppositeMos = (MessageOccurrenceSpecification)oppositeMessageEnd;
+			Interaction interaction = oppositeMos.getEnclosingInteraction();
+			InteractionOperand operand = oppositeMos.getEnclosingOperand();
+			if(interaction != null) {
+				mos.setEnclosingInteraction(interaction);
+			} else if(operand != null) {
+				mos.setEnclosingOperand(operand);
+			}
+		} else if(oppositeMessageEnd instanceof Gate) {
+			Gate oppositeGate = (Gate)oppositeMessageEnd;
+			Namespace namespace = oppositeGate.getNamespace();
+			if(namespace instanceof Interaction) {
+				mos.setEnclosingInteraction((Interaction)namespace);
+			} else if(namespace instanceof InteractionOperand) {
+				mos.setEnclosingOperand((InteractionOperand)namespace);
 			}
 		}
 	}

@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 429242
+ *   Christian W. Damus (CEA) - bug 429826
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.resource.tests;
@@ -38,6 +39,7 @@ import org.eclipse.papyrus.cdo.core.resource.PapyrusCDOResourceFactory;
 import org.eclipse.papyrus.cdo.core.tests.AbstractPapyrusCDOTest;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
@@ -107,7 +109,7 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 		CDOTransaction transaction = getTransaction(fixture);
 
 		Resource resource = transaction.getOrCreateResource(getResourcePath(MODEL_FILENAME));
-		assertThat(fixture.getReadOnlyHandler().anyReadOnly(new URI[]{ resource.getURI() }), is(Optional.of(false)));
+		assertThat(fixture.getReadOnlyHandler().anyReadOnly(ReadOnlyAxis.anyAxis(), new URI[]{ resource.getURI() }), is(Optional.of(false)));
 	}
 
 	@Test

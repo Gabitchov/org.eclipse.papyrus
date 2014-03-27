@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc label="Papyrus Layers" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocDev">
+	<topic href="guides/developpers/layersDevs.html" label="Layers Developers Documentation">
+        <link toc="guides/developpers/layersDevs-toc.xml"/>
+        <anchor id="layers.guides.devs"/>
+	</topic>
+</toc>

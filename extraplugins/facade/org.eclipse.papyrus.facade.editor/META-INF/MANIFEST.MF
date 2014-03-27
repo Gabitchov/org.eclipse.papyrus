@@ -1,23 +1,25 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.facade.editor;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.facade.presentation.FacadeEditorPlugin$Implementation
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: org.eclipse.papyrus.facade.extensiondefinition.presentation,
- org.eclipse.papyrus.facade.presentation,
- org.eclipse.papyrus.facade.virtualmetamodel.presentation,
- org.eclipse.papyrus.facademapping.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.facade.edit;visibility:=reexport,
+ org.eclipse.papyrus.facade.edit;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.uml2.uml.edit;visibility:=reexport
+Export-Package: org.eclipse.papyrus.facade.extensiondefinition.presentation,
+ org.eclipse.papyrus.facade.presentation,
+ org.eclipse.papyrus.facade.virtualmetamodel.presentation,
+ org.eclipse.papyrus.facademapping.presentation
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.facade.presentation.FacadeEditor
+ Plugin$Implementation
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.facade.editor;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 Atos.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -34,15 +34,15 @@ import org.eclipse.uml2.uml.Package;
  * Participant to control command handling Uml element.
  * Handle Profile applications on package
  * Handle Stereotype Application on Package
- * 
+ *
  * @author adaussy
- * 
+ *
  */
 public class UMLProfileControlParticipant implements IControlCommandParticipant, IUncontrolCommandParticipant {
 
 	/**
 	 * Return the command to copy profile application
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */
@@ -55,12 +55,12 @@ public class UMLProfileControlParticipant implements IControlCommandParticipant,
 	}
 
 	private String getPreControlCommandMessage(Element objectToControl) {
-		return "This element is not a package. Dued to UML restrictions the newly created model fragment will not be able to be modified in standalone mode";////$NON-NLS-0$
+		return "This element is not a package. Due to UML restrictions, the newly created model fragment is not allowed to be modified in the standalone mode";//
 	}
 
 	/**
 	 * Get the command to move stereotype application
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */
@@ -94,7 +94,7 @@ public class UMLProfileControlParticipant implements IControlCommandParticipant,
 
 	/**
 	 * Get the command to move profile applicaiton
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */
@@ -104,7 +104,7 @@ public class UMLProfileControlParticipant implements IControlCommandParticipant,
 
 	/**
 	 * Get the command to remove profile application
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */
@@ -135,7 +135,7 @@ public class UMLProfileControlParticipant implements IControlCommandParticipant,
 	}
 
 	protected String getPreControlCommandDialogTitle(Element elem) {
-		return "Warning not a package element";
+		return "Warning: The element is not a Package";
 	}
 
 	public boolean provideControlCommand(ControlModeRequest request) {

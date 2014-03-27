@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
+ *  Christian W. Damus (CEA) - bug 430880
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -23,6 +24,7 @@ import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.AbstractRegistryConfiguration;
 import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
@@ -273,10 +275,15 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		final int operations = DND.DROP_MOVE | DND.DROP_COPY | DND.DROP_DEFAULT;
 		final DropTarget target = new DropTarget(nattable, operations);
 		final LocalTransfer localTransfer = LocalTransfer.getInstance();
-		final Transfer[] types = new Transfer[]{ localTransfer };
+		final LocalSelectionTransfer localSelectionTransfer = LocalSelectionTransfer.getTransfer();
+		final Transfer[] types = new Transfer[]{ localSelectionTransfer, localTransfer };
 		target.setTransfer(types);
-		final NatTableDropListener dropListener = new NatTableDropListener(this);
+		final NatTableDropListener dropListener = createDropListener();
 		target.addDropListener(dropListener);
+	}
+	
+	protected NatTableDropListener createDropListener() {
+		return new NatTableDropListener(this);
 	}
 
 	/**

@@ -28,8 +28,9 @@ import org.eclipse.papyrus.uml.commands.command.PasteElementCommand;
 
 /**
  * Handler for the Paste Action
- * 
+ * @deprecated use org.eclipse.papyrus.views.modelexplorer.handler.PasteHandler
  */
+@Deprecated 
 public class PasteHandler extends AbstractEMFCommandHandler {
 
 	/**
@@ -54,7 +55,7 @@ public class PasteHandler extends AbstractEMFCommandHandler {
 
 		List<EObject> selection = getSelectedElements();
 		if(editingDomain != null && selection.size() == 1) {
-			//return PasteFromClipboardCommand.create(getEditingDomain(), selection.get(0), null);
+//			return UmlPasteFromClipboardCommand.create(getEditingDomain(), owner, null);
 			//select UML Element and copy
 			return new PasteElementCommand(editingDomain, selection.get(0));
 		}

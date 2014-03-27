@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.communication;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
-import org.eclipse.uml2.uml.Interaction;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -32,9 +31,6 @@ public class CommunicationDiagramCreationCondition extends PerspectiveContextDep
 	 * @return whether the diagram can be created.
 	 */
 	public boolean create(EObject selectedElement) {
-		if(super.create(selectedElement)) {
-			return selectedElement instanceof Interaction;
-		}
 		return false;
 	}
 

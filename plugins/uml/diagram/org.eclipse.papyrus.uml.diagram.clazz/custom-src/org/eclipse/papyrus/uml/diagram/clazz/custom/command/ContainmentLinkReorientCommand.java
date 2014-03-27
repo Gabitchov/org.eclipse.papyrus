@@ -61,30 +61,29 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 	 * Instantiates a new containment link reorient command.
 	 * 
 	 * @param req
-	 *        the req
+	 *            the req
 	 * @param editPartTarget
-	 *        the edit part target
+	 *            the edit part target
 	 */
 	public ContainmentLinkReorientCommand(ReorientReferenceRelationshipRequest req, EditPart editPartTarget) {
 		super(req.getEditingDomain(), req.getLabel(), null);
 		myTargetEditPart = editPartTarget;
 		reorientDirection = req.getDirection();
 		final EObject oldEndView;
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
-			oldEndView = ((Edge)req.getParameter(ContainmentHelper.KEY_CONNECTION_VIEW)).getSource();
-		} else if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
-			oldEndView = ((Edge)req.getParameter(ContainmentHelper.KEY_CONNECTION_VIEW)).getTarget();
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+			oldEndView = ((Edge) req.getParameter(ContainmentHelper.KEY_CONNECTION_VIEW)).getSource();
+		} else if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+			oldEndView = ((Edge) req.getParameter(ContainmentHelper.KEY_CONNECTION_VIEW)).getTarget();
 		} else {
 			throw new IllegalStateException();
 		}
-		oldEndVisualParent = ((View)oldEndView.eContainer()).getElement();
+		oldEndVisualParent = ((View) oldEndView.eContainer()).getElement();
 		oldEnd = req.getOldRelationshipEnd();
 		newEnd = req.getNewRelationshipEnd();
 	}
 
 	/**
-	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
-	 *      org.eclipse.core.runtime.IAdaptable)
+	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 	 * 
 	 * @param monitor
 	 * @param info
@@ -93,13 +92,13 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
+		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -111,10 +110,10 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 	 * @return
 	 */
 	public boolean canExecute() {
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -135,13 +134,13 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 	 * @return true, if successful
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof PackageableElement && newEnd instanceof PackageableElement)) {
+		if (!(oldEnd instanceof PackageableElement && newEnd instanceof PackageableElement)) {
 			return false;
 		}
-		if(getNewTarget().equals(getOldTarget().getOwner())) {
+		if (getNewTarget().equals(getOldTarget().getOwner())) {
 			return false;
 		}
-		if(EcoreUtil.isAncestor(getNewTarget(), getOldTarget())) {
+		if (EcoreUtil.isAncestor(getNewTarget(), getOldTarget())) {
 			return false;
 		}
 		return newEnd != null;
@@ -152,7 +151,7 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 	 * 
 	 * @return the command result
 	 * @throws ExecutionException
-	 *         the execution exception
+	 *             the execution exception
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
 		throw new ExecutionException("Cannot reorient a source of Containment link");
@@ -163,7 +162,7 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 	 * 
 	 * @return the command result
 	 * @throws ExecutionException
-	 *         the execution exception
+	 *             the execution exception
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
 		EObject source = getOldTarget().getOwner();
@@ -182,14 +181,14 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 	 * @return true, if successful
 	 */
 	private boolean deleteOldLinkEditPart() {
-		if(myTargetEditPart instanceof ClassEditPart || myTargetEditPart instanceof PackageEditPart) {
+		if (myTargetEditPart instanceof ClassEditPart || myTargetEditPart instanceof PackageEditPart) {
 			CompoundCommand cc = new CompoundCommand();
-			for(Object currentLink : ((AbstractGraphicalEditPart)myTargetEditPart).getTargetConnections()) {
-				if(currentLink instanceof ContainmentSubLinkEditPart) {
-					ContainmentSubLinkEditPart addedLinkEP = (ContainmentSubLinkEditPart)currentLink;
-					if((addedLinkEP.getSource() instanceof CContainmentCircleEditPart)) {
-						if(((CContainmentCircleEditPart)addedLinkEP.getSource()).getSourceConnections().size() == 1) {
-							cc.add(new ICommandProxy(new DeleteCommand(getEditingDomain(), (View)addedLinkEP.getSource().getModel())));
+			for (Object currentLink : ((AbstractGraphicalEditPart) myTargetEditPart).getTargetConnections()) {
+				if (currentLink instanceof ContainmentSubLinkEditPart) {
+					ContainmentSubLinkEditPart addedLinkEP = (ContainmentSubLinkEditPart) currentLink;
+					if ((addedLinkEP.getSource() instanceof CContainmentCircleEditPart)) {
+						if (((CContainmentCircleEditPart) addedLinkEP.getSource()).getSourceConnections().size() == 1) {
+							cc.add(new ICommandProxy(new DeleteCommand(getEditingDomain(), (View) addedLinkEP.getSource().getModel())));
 						}
 						cc.add(new ICommandProxy(new DeleteCommand(getEditingDomain(), addedLinkEP.getNotationView())));
 					}
@@ -201,30 +200,12 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 	}
 
 	/**
-	 * Gets the old source.
-	 * 
-	 * @return the old source
-	 */
-	private PackageableElement getOldSource() {
-		return (PackageableElement)oldEnd;
-	}
-
-	/**
-	 * Gets the new source.
-	 * 
-	 * @return the new source
-	 */
-	private PackageableElement getNewSource() {
-		return (PackageableElement)newEnd;
-	}
-
-	/**
 	 * Gets the old target.
 	 * 
 	 * @return the old target
 	 */
 	private PackageableElement getOldTarget() {
-		return (PackageableElement)oldEnd;
+		return (PackageableElement) oldEnd;
 	}
 
 	/**
@@ -233,7 +214,7 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 	 * @return the new target
 	 */
 	private PackageableElement getNewTarget() {
-		return (PackageableElement)newEnd;
+		return (PackageableElement) newEnd;
 	}
 
 	/**

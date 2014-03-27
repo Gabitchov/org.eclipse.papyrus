@@ -166,7 +166,7 @@ public class NavigatorUtils {
 
 		IAdaptable input = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getInput();
 		if(input != null) {
-			EObject obj = (EObject)input.getAdapter(EObject.class);
+			EObject obj = EMFHelper.getEObject(input);
 			return tryGetResources(obj, fileExtension);
 		}
 		return null;

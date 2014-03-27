@@ -57,6 +57,7 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
@@ -65,6 +66,7 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
@@ -78,9 +80,11 @@ import org.eclipse.papyrus.uml.diagram.common.parser.StereotypePropertyParser;
 import org.eclipse.papyrus.uml.profile.structure.AppliedStereotypeProperty;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
+import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
@@ -91,9 +95,9 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * the goal of this editpart is to edit a property of an application of the stereotype into a text area
  * 
  */
-public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditPart implements ITextAwareEditPart, NotificationListener, IPapyrusListener {
+public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditPart implements ITextAwareEditPart, NotificationListener, IPapyrusListener, IControlParserForDirectEdit {
 
-	public static final String ID = "AppliedStereotypeProperty";
+	public static final String ID = "AppliedStereotypeProperty"; //$NON-NLS-1$
 
 	private DirectEditManager manager;
 
@@ -282,7 +286,9 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 		if(getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		return getParser().getEditString(new SemanticAdapter(this.resolveSemanticElement(), getNotationView()), getParserOptions().intValue());
+		
+		// return getParser().getEditString(new SemanticAdapter((EObject) this.getAdapter(AppliedStereotypeProperty.class), getNotationView()), getParserOptions().intValue());
+		return getParser().getEditString(new SemanticAdapter(resolveSemanticElement(), getNotationView()), getParserOptions().intValue());
 	}
 
 	/**
@@ -382,7 +388,12 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	 * do the edition
 	 */
 	protected void performDirectEdit() {
-		getManager().show();
+		BusyIndicator.showWhile(Display.getDefault(), new Runnable() {
+			
+			public void run() {
+				getManager().show();
+			}
+		});
 	}
 
 	/**
@@ -431,9 +442,14 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 			if(configuration == null || configuration.getLanguage() == null) {
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
-				configuration.preEditAction(this.getAdapter(AppliedStereotypeProperty.class));
+				configuration.preEditAction(getAdapter(AppliedStereotypeProperty.class));
 				Dialog dialog = null;
-				if(configuration instanceof IPopupEditorConfiguration) {
+				if (configuration instanceof ICustomDirectEditorConfiguration) {
+					setManager(((ICustomDirectEditorConfiguration) configuration)
+							.createDirectEditManager(this));
+					initializeDirectEditManager(theRequest);
+					return;
+				}  else if(configuration instanceof IPopupEditorConfiguration) {
 					IPopupEditorHelper helper = ((IPopupEditorConfiguration)configuration).createPopupEditorHelper(this);
 					if(helper != null) {
 						helper.showEditor();
@@ -491,7 +507,40 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 		}
 	}
 
+	public void setParser(IParser parser) {
+		this.parser = parser;
+	}
 
+	/**
+	 */
+	protected void initializeDirectEditManager(final Request request) {
+		// initialize the direct edit manager
+		try {
+			getEditingDomain().runExclusive(new Runnable() {
+				public void run() {
+					if (isActive() && isEditable()) {
+						if (request
+								.getExtendedData()
+								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) request
+									.getExtendedData()
+									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							performDirectEdit(initialChar.charValue());
+						} else if ((request instanceof DirectEditRequest)
+								&& (getEditText().equals(getLabelText()))) {
+							DirectEditRequest editRequest = (DirectEditRequest) request;
+							performDirectEdit(editRequest.getLocation());
+						} else {
+							performDirectEdit();
+						}
+					}
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#refreshVisuals()

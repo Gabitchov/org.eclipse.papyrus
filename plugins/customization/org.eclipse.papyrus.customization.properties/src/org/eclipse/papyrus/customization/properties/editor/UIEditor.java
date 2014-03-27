@@ -141,7 +141,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 			selectionViewer.setFilters(new ViewerFilter[]{ filter });
 			setCurrentViewer(selectionViewer);
 			ContextContentProvider contentProvider = new ContextContentProvider();
-			contentProvider.getCustomizationManager().installCustomPainter(tree);
+			//contentProvider.getCustomizationManager().installCustomPainter(tree);
 
 			ILabelProvider labelProvider = new ContextLabelProvider();
 

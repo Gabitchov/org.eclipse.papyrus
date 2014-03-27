@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.viewpoints.configuration,
+ org.eclipse.papyrus.infra.viewpoints.configuration.impl,
+ org.eclipse.papyrus.infra.viewpoints.configuration.ui,
+ org.eclipse.papyrus.infra.viewpoints.configuration.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.jface,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.edit,
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.viewpoints.iso42010;bundle-version="1.0.0"
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.infra.viewpoints.configuration.A
+ ctivator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.viewpoints.configuratio
+ n;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

@@ -1,6 +1,18 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0",
+Export-Package: org.eclipse.papyrus.uml.profile,
+ org.eclipse.papyrus.uml.profile.constraints,
+ org.eclipse.papyrus.uml.profile.definition,
+ org.eclipse.papyrus.uml.profile.preference,
+ org.eclipse.papyrus.uml.profile.providers,
+ org.eclipse.papyrus.uml.profile.structure,
+ org.eclipse.papyrus.uml.profile.tree,
+ org.eclipse.papyrus.uml.profile.tree.objects,
+ org.eclipse.papyrus.uml.profile.ui.dialogs,
+ org.eclipse.papyrus.uml.profile.ui.items,
+ org.eclipse.papyrus.uml.profile.utils,
+ org.eclipse.papyrus.uml.profile.validation,
+ org.eclipse.papyrus.uml.profile.wizard
+Require-Bundle: org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0",
  org.eclipse.core.runtime;bundle-version="3.8.0",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
@@ -17,27 +29,17 @@ Require-Bundle: org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0
  org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.300",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
- com.google.guava;bundle-version="11.0.0"
-Export-Package: org.eclipse.papyrus.uml.profile,
- org.eclipse.papyrus.uml.profile.constraints,
- org.eclipse.papyrus.uml.profile.definition,
- org.eclipse.papyrus.uml.profile.preference,
- org.eclipse.papyrus.uml.profile.providers,
- org.eclipse.papyrus.uml.profile.structure,
- org.eclipse.papyrus.uml.profile.tree,
- org.eclipse.papyrus.uml.profile.tree.objects,
- org.eclipse.papyrus.uml.profile.ui.dialogs,
- org.eclipse.papyrus.uml.profile.ui.items,
- org.eclipse.papyrus.uml.profile.utils,
- org.eclipse.papyrus.uml.profile.validation,
- org.eclipse.papyrus.uml.profile.wizard
+ com.google.guava;bundle-version="11.0.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
+Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.uml.profile.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.profile;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

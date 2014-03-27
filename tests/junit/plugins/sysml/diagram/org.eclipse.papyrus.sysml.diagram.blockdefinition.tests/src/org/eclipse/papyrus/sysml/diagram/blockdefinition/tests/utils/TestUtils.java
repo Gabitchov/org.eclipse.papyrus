@@ -151,9 +151,10 @@ public class TestUtils {
 
 		// Get drop command
 		Command command = containerEditPart.getCommand(dropRequest);
-
+		
 		// if the drop is not allowed the command should not be executable
 		if(!isAllowed) {
+			
 			if((command == null) || (!command.canExecute())) {
 				// Ok the command cannot be executed.
 			} else {
@@ -161,6 +162,9 @@ public class TestUtils {
 			}
 
 		} else {
+			if (command==null){
+				fail("The command is null! not normal.");
+			}
 			if((command == null) || (!command.canExecute())) {
 				fail("The command should be executable.");
 			} else {

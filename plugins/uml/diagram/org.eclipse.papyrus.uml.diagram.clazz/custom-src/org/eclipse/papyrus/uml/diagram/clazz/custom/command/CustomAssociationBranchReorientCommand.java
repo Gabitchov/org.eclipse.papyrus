@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.CustomMultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.AssociationBranchReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.AssociationHelper;
@@ -42,7 +42,7 @@ public class CustomAssociationBranchReorientCommand extends AssociationBranchReo
 		super(request);
 		oldNamedElementEnd = request.getOldRelationshipEnd();
 		newNamedElementEnd = request.getNewRelationshipEnd();
-		connection = (View)request.getParameters().get("graphical_edge");
+		connection = (View) request.getParameters().get("graphical_edge");
 	}
 
 	/**
@@ -56,17 +56,17 @@ public class CustomAssociationBranchReorientCommand extends AssociationBranchReo
 	 * {@inheritDoc}
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldNamedElementEnd instanceof Type && newNamedElementEnd instanceof Type)) {
+		if (!(oldNamedElementEnd instanceof Type && newNamedElementEnd instanceof Type)) {
 			return false;
 		}
-		if(getLink().getEndTypes().size() < 1) {
+		if (getLink().getEndTypes().size() < 1) {
 			return false;
 		}
-		Type source = (Type)getLink().getEndTypes().get(0);
-		if(!(getLink().eContainer() instanceof Package)) {
+		Type source = (Type) getLink().getEndTypes().get(0);
+		if (!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package)getLink().eContainer();
+		Package container = (Package) getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistAssociation_4019(container, getLink(), source, getNewTarget());
 	}
 
@@ -77,12 +77,12 @@ public class CustomAssociationBranchReorientCommand extends AssociationBranchReo
 		/* look for end for the given type */
 		int i = 0;
 		Property end = null;
-		if(MultiAssociationHelper.getSemanticBranchEnd(connection) != null) {
-			end = MultiAssociationHelper.getSemanticBranchEnd(connection);
+		if (CustomMultiAssociationHelper.getSemanticBranchEnd(connection) != null) {
+			end = CustomMultiAssociationHelper.getSemanticBranchEnd(connection);
 			i = getLink().getMemberEnds().indexOf(end);
 		} else {
 			end = getLink().getMemberEnds().get(i);
-			while(!end.getType().equals(getOldTarget())) {
+			while (!end.getType().equals(getOldTarget())) {
 				i++;
 				end = getLink().getMemberEnds().get(i);
 			}

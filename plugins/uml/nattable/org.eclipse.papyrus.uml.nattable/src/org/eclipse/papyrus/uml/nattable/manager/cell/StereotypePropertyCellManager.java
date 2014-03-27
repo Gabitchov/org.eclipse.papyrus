@@ -29,11 +29,17 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
 import org.eclipse.papyrus.infra.tools.converter.ConvertedValueContainer;
 import org.eclipse.papyrus.infra.tools.converter.MultiConvertedValueContainer;
@@ -195,18 +201,18 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
 		final List<Stereotype> stereotypes = UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id);
 		if(prop != null) {
-			if (stereotypes.isEmpty()) {
+			if(stereotypes.isEmpty()) {
 				// Must first apply the stereotype
-				return new RecordingCommand(domain, "Set Value") {
-					
+				return new RecordingCommand(domain, "Set Value") { //$NON-NLS-1$
+
 					@Override
 					protected void doExecute() {
-						if (!applyRequiredStereotype(domain, el, id)) {
+						if(!applyRequiredStereotype(domain, el, id)) {
 							throw new OperationCanceledException();
 						} else {
 							// Now recursively execute the set-string-value command
 							Command command = getSetValueCommand(domain, columnElement, rowElement, newValue, tableManager);
-							if (command == null || !command.canExecute()) {
+							if(command == null || !command.canExecute()) {
 								throw new OperationCanceledException();
 							} else {
 								domain.getCommandStack().execute(command);
@@ -215,11 +221,11 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 					}
 				};
 			}
-			
+
 			if(stereotypes.size() == 1) {
 				final EObject stereotypeApplication = el.getStereotypeApplication(stereotypes.get(0));
 				final EStructuralFeature steApFeature = stereotypeApplication.eClass().getEStructuralFeature(prop.getName());
-				return getSetValueCommand(domain, stereotypeApplication, steApFeature, newValue);
+				return getSetValueCommand(domain, stereotypeApplication, steApFeature, newValue, columnElement, rowElement, tableManager);
 			} else {
 				//TODO : not yet managed
 			}
@@ -250,18 +256,18 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		EObject stereotypeApplication = null;
 		EStructuralFeature steApFeature = null;
 		if(prop != null) {
-			if (stereotypes.isEmpty()) {
+			if(stereotypes.isEmpty()) {
 				// Must first apply the stereotype
-				return new RecordingCommand(domain, "Set Value") {
-					
+				return new RecordingCommand(domain, "Set Value") { //$NON-NLS-1$
+
 					@Override
 					protected void doExecute() {
-						if (!applyRequiredStereotype(domain, el, id)) {
+						if(!applyRequiredStereotype(domain, el, id)) {
 							throw new OperationCanceledException();
 						} else {
 							// Now recursively execute the set-string-value command
 							Command command = getSetStringValueCommand(domain, columnElement, rowElement, newValue, valueSolver, tableManager);
-							if (command == null || !command.canExecute()) {
+							if(command == null || !command.canExecute()) {
 								throw new OperationCanceledException();
 							} else {
 								domain.getCommandStack().execute(command);
@@ -270,7 +276,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 					}
 				};
 			}
-			
+
 			if(stereotypes.size() == 1) {
 				stereotypeApplication = el.getStereotypeApplication(stereotypes.get(0));
 				switch(UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id).size()) {
@@ -321,7 +327,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 			Object value = solvedValue.getConvertedValue();
 			if((value != null) || (value == null && !(prop.getType() instanceof PrimitiveType))) {
 				//we want avoid set null on element which doesn't allow it (FlowPort#direction) when the enum has not been properly resolved
-				final Command setValueCommand = getSetValueCommand(domain, stereotypeApplication, steApFeature, value);
+				final Command setValueCommand = getSetValueCommand(domain, stereotypeApplication, steApFeature, value, columnElement, rowElement, tableManager);
 				if(setValueCommand != null) {
 					cmd.add(new EMFtoGMFCommandWrapper(setValueCommand));
 				}
@@ -330,6 +336,23 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		final Command createProblemCommand = getCreateStringResolutionProblemCommand(domain, tableManager, columnElement, rowElement, newValue, solvedValue);
 		if(createProblemCommand != null) {
 			cmd.add(new EMFtoGMFCommandWrapper(createProblemCommand));
+		} else {
+			//we need to destroy associated cell problem 
+			final Cell cell = tableManager.getCell(columnElement, rowElement);
+			StringResolutionProblem stringPb = null;//we assume that there is only one string resolution problem for a cell
+			if(cell != null && cell.getProblems().size() > 0) {
+				for(final Problem current : cell.getProblems()) {
+					if(current instanceof StringResolutionProblem) {
+						stringPb = (StringResolutionProblem)current;
+						break;
+					}
+				}
+			}
+			if(stringPb != null) {
+				final DestroyElementRequest destroyRequest = new DestroyElementRequest(domain, stringPb, false);
+				final IElementEditService commandProvider2 = ElementEditServiceUtils.getCommandProvider(stringPb);
+				cmd.add(commandProvider2.getEditCommand(destroyRequest));
+			}
 		}
 		if(cmd.isEmpty()) {
 			return null;

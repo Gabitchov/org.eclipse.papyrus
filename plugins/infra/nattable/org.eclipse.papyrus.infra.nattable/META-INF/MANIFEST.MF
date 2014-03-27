@@ -1,26 +1,4 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
- org.eclipse.core.runtime,
- org.eclipse.emf.transaction,
- org.eclipse.emf.ecore,
- org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.7.0",
- org.eclipse.emf.edit,
- org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
- org.eclipse.swt,
- org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.nattable.model;bundle-version="1.0.0",
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.1",
- org.eclipse.papyrus.infra.tools;bundle-version="1.0.0",
- org.eclipse.emf.edit.ui,
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
- org.eclipse.nebula.widgets.nattable.core;bundle-version="1.0.0",
- org.eclipse.core.expressions,
- org.eclipse.papyrus.infra.services.edit;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="1.0.0",
- org.apache.commons.lang,
- com.google.guava;bundle-version="11.0.0"
 Export-Package: org.eclipse.papyrus.infra.nattable,
  org.eclipse.papyrus.infra.nattable.celleditor,
  org.eclipse.papyrus.infra.nattable.celleditor.config,
@@ -43,12 +21,35 @@ Export-Package: org.eclipse.papyrus.infra.nattable,
  org.eclipse.papyrus.infra.nattable.tester,
  org.eclipse.papyrus.infra.nattable.utils,
  org.eclipse.papyrus.infra.nattable.widget
+Require-Bundle: org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
+ org.eclipse.core.runtime,
+ org.eclipse.emf.transaction,
+ org.eclipse.emf.ecore,
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.7.0",
+ org.eclipse.emf.edit,
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.swt,
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.tools;bundle-version="1.0.0",
+ org.eclipse.emf.edit.ui,
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
+ org.eclipse.nebula.widgets.nattable.core;bundle-version="1.0.0",
+ org.eclipse.core.expressions,
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="1.0.0",
+ org.apache.commons.lang,
+ com.google.guava;bundle-version="11.0.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable;singleton:=tru
  e
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011, 2014 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
  *  Christian W. Damus (CEA) - bug 323802
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.importt.handlers;
 
@@ -29,8 +29,8 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.uml.extensionpoints.profile.FilteredRegisteredProfilesAsLibrarySelectionDialog;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
-import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementImportTreeSelectionDialog.ImportSpec;
+import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -50,16 +50,16 @@ public class ImportRegisteredProfileHandler extends AbstractImportHandler {
 
 
 	/**
-	 * 
+	 *
 	 * The command to import profiles in the the model
-	 * 
+	 *
 	 */
 	public class ImportProfileCommand extends AbstractImportCommand {
 
 		/**
-		 * 
+		 *
 		 * Constructor.
-		 * 
+		 *
 		 * @param editingDomain
 		 *        the editing domain
 		 */
@@ -88,14 +88,14 @@ public class ImportRegisteredProfileHandler extends AbstractImportHandler {
 
 	/**
 	 * Import the profiles in the model.
-	 * 
+	 *
 	 * @param profilesToImport
 	 *        the profiles to import
 	 */
 	protected void importProfiles(RegisteredProfile[] profilesToImport) {
 
 		// retrieve the current resource set
-		ResourceSet resourceSet = Util.getResourceSet(getSelectedElement());
+		ResourceSet resourceSet = Util.createTemporaryResourceSet();
 
 		for(int i = 0; i < profilesToImport.length; i++) {
 			RegisteredProfile currentLibrary = (profilesToImport[i]);
@@ -112,7 +112,7 @@ public class ImportRegisteredProfileHandler extends AbstractImportHandler {
 				while(resultIter.hasNext()) {
 					Package element = resultIter.next().getElement();
 					PackageImport ei = UMLFactory.eINSTANCE.createPackageImport();
-					ei.setImportedPackage((Package)element);
+					ei.setImportedPackage(element);
 
 					//we import only once an element :
 					List<Package> importedPackages = ((Package)getSelectedElement()).getImportedPackages();
@@ -126,7 +126,7 @@ public class ImportRegisteredProfileHandler extends AbstractImportHandler {
 
 	/**
 	 * Returns the list of the profiles which are already imported
-	 * 
+	 *
 	 * @return
 	 *         the list of the profiles which are already imported
 	 */

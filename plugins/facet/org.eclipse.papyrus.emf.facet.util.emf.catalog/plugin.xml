@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+  Copyright (c) 2011 Mia-Software.
+  
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+  
+  Contributors:
+ 	Gregoire Dupe (Mia-Software) - Design
+ 	Nicolas Guyomar (Mia-Software) - Implementation
+  
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/papyrus/emf/facet/catalog/0.1.incubation"            
+            class="org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage"
+            genModel="model/catalog.genmodel"/>
+   </extension>
+
+</plugin>

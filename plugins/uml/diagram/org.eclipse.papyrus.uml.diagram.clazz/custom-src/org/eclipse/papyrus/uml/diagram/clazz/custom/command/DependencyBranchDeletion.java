@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.clazz.custom.command;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -64,13 +65,13 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 		TransactionalEditingDomain domain = selectedElement.getEditingDomain();
 		GraphicalEditPart dependencyNodeEditPart = null;
 		// 1. Semanctic deletion of the client or supplier
-		GraphicalEditPart branchSource = (GraphicalEditPart)selectedElement.getSource();
-		GraphicalEditPart branchtarget = (GraphicalEditPart)selectedElement.getTarget();
+		GraphicalEditPart branchSource = (GraphicalEditPart) selectedElement.getSource();
+		GraphicalEditPart branchtarget = (GraphicalEditPart) selectedElement.getTarget();
 		EStructuralFeature feature = null;
-		ArrayList<NamedElement> newValue = new ArrayList<NamedElement>();
-		if(branchSource.resolveSemanticElement() instanceof Dependency) {
+		List<NamedElement> newValue = new ArrayList<NamedElement>();
+		if (branchSource.resolveSemanticElement() instanceof Dependency) {
 			// target is the supplier of the dependency
-			dependency = (Dependency)branchSource.resolveSemanticElement();
+			dependency = (Dependency) branchSource.resolveSemanticElement();
 			dependencyNodeEditPart = branchSource;
 			newValue.addAll(dependency.getSuppliers());
 			newValue.remove(branchtarget.resolveSemanticElement());
@@ -78,7 +79,7 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 		} else {
 			// source is the client of the dependency to remove
 			feature = UMLPackage.eINSTANCE.getDependency_Client();
-			dependency = (Dependency)branchtarget.resolveSemanticElement();
+			dependency = (Dependency) branchtarget.resolveSemanticElement();
 			dependencyNodeEditPart = branchtarget;
 			newValue.addAll(dependency.getClients());
 			newValue.remove(branchSource.resolveSemanticElement());
@@ -91,21 +92,26 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 		command.add(new ICommandProxy(new DeleteCommand(domain, branchDependencyView)));
 		// 3. test if it exists more than 2 branches
 		int branchNumber = dependencyNodeEditPart.getSourceConnections().size() + dependencyNodeEditPart.getTargetConnections().size();
-		if(branchNumber == 3) {
+		if (branchNumber == 3) {
 			// 4. Graphical deletion of the node
 			command.add(new ICommandProxy(new DeleteCommand(domain, dependencyNodeEditPart.getNotationView())));
 			// 5. Graphical creation of the binary dependency
 			// 5.1 calculus of the furture source and taget of the binary
 			// dependency
-			ArrayList<EditPart> sourceList = new ArrayList<EditPart>();
-			ArrayList<EditPart> targetList = new ArrayList<EditPart>();
-			sourceList.addAll(dependencyNodeEditPart.getSourceConnections());
-			targetList.addAll(dependencyNodeEditPart.getTargetConnections());
+			List<EditPart> sourceList = new ArrayList<EditPart>();
+			List<EditPart> targetList = new ArrayList<EditPart>();
+			for (Object editPart : dependencyNodeEditPart.getSourceConnections()) {
+				sourceList.add((EditPart) editPart);
+			}
+			for (Object editPart : dependencyNodeEditPart.getTargetConnections()) {
+				targetList.add((EditPart) editPart);
+			}
 			sourceList.remove(selectedElement);
 			targetList.remove(selectedElement);
-			PreferencesHint preferencesHint = ((GraphicalEditPart)((ConnectionEditPart)(sourceList.get(0))).getTarget()).getDiagramPreferencesHint();
-			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_4008, ((IHintedType)UMLElementTypes.Dependency_4008).getSemanticHint(), preferencesHint);
-			CustomDeferredCreateConnectionViewCommand binaryCommand = new CustomDeferredCreateConnectionViewCommand(domain, ((IHintedType)UMLElementTypes.Dependency_4008).getSemanticHint(), new SemanticAdapter(null, (((ConnectionEditPart)(targetList.get(0))).getSource()).getModel()), new SemanticAdapter(null, (((ConnectionEditPart)(sourceList.get(0))).getTarget()).getModel()), sourceList.get(0).getViewer(), preferencesHint, viewDescriptor, null);
+			PreferencesHint preferencesHint = ((GraphicalEditPart) ((ConnectionEditPart) (sourceList.get(0))).getTarget()).getDiagramPreferencesHint();
+			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_4008, ((IHintedType) UMLElementTypes.Dependency_4008).getSemanticHint(), preferencesHint);
+			CustomDeferredCreateConnectionViewCommand binaryCommand = new CustomDeferredCreateConnectionViewCommand(domain, ((IHintedType) UMLElementTypes.Dependency_4008).getSemanticHint(), new SemanticAdapter(null,
+					(((ConnectionEditPart) (targetList.get(0))).getSource()).getModel()), new SemanticAdapter(null, (((ConnectionEditPart) (sourceList.get(0))).getTarget()).getModel()), sourceList.get(0).getViewer(), preferencesHint, viewDescriptor, null);
 			binaryCommand.setElement(dependency);
 			command.add(new ICommandProxy(binaryCommand));
 		}
@@ -117,10 +123,10 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 	 * {@inheritedDoc}
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
-		if(selection instanceof IStructuredSelection) {
-			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
-			if(selectedobject instanceof DependencyBranchEditPart) {
-				selectedElement = (DependencyBranchEditPart)selectedobject;
+		if (selection instanceof IStructuredSelection) {
+			Object selectedobject = ((IStructuredSelection) selection).getFirstElement();
+			if (selectedobject instanceof DependencyBranchEditPart) {
+				selectedElement = (DependencyBranchEditPart) selectedobject;
 			}
 		}
 	}

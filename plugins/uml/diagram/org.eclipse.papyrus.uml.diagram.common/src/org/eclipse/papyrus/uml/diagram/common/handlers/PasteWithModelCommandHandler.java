@@ -25,7 +25,9 @@ import org.eclipse.ui.handlers.HandlerUtil;
  * 
  * @see org.eclipse.core.commands.IHandler
  * @see org.eclipse.core.commands.AbstractHandler
+ * @deprecated unused and with the text "Hello, Eclipse world" 
  */
+@Deprecated 
 public class PasteWithModelCommandHandler extends AbstractHandler {
 
 	/**

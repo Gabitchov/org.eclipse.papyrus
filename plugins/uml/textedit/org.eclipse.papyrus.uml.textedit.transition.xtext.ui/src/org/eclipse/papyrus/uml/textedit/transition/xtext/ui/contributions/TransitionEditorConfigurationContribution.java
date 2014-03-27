@@ -82,7 +82,7 @@ public class TransitionEditorConfigurationContribution extends DefaultXtextDirec
 	 */
 	@Override
 	public int getStyle() {
-		return SWT.MULTI;
+		return SWT.MULTI | SWT.WRAP;
 	}
 
 	/*

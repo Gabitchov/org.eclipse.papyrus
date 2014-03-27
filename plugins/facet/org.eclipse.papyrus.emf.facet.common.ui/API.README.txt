@@ -1,0 +1,22 @@
+/*******************************************************************************
+ * Copyright (c) 2011 Mia-Software.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Nicolas Guyomar (Mia-Software) - Bug 339723 - Add x-friend on EMF Facet internal package
+ *   Gregoire Dupe (Mia-Software) - Bug 339710 - org.eclipse.papyrus.emf.facet.common.ui API Cleaning
+ *******************************************************************************/
+ 
+ org.eclipse.papyrus.emf.facet.common.ui.internal.controls
+ 	x-internal:=used by org.eclipse.papyrus.emf.facet.infra.*. No x-friends because we don't care about the warning in the "infra" plug-ins.
+ 
+ org.eclipse.papyrus.emf.facet.common.ui.internal.views
+	x-friends:="org.eclipse.papyrus.emf.facet.util.emf.ui" for EMF Facet internal utilization
+
+org.eclipse.papyrus.emf.facet.common.ui.internal.widgets
+	x-friends:="org.eclipse.papyrus.emf.facet.efacet.ui" for EMF Facet internal utilization
+	x-friends:="org.eclipse.papyrus.emf.facet.util.emf.ui" for EMF Facet internal utilization

@@ -1,19 +1,19 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.domaincontextcodegen.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.domaincontextcodegen;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport
+Export-Package: org.eclipse.papyrus.domaincontextcodegen.provider
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.domaincontextcodegen.provider.Do
  mainContextEditPlugin$Implementation
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.domaincontextcodegen.edit;sin
  gleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

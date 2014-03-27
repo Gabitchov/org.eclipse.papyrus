@@ -17,10 +17,11 @@ Require-Bundle: org.eclipse.ui,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.constraintwithessen
+ tialocl.xtext.UMLConstraintEditorActivator
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.textedit.constraintwithessentialocl.xtext.UMLConstraintEditorActivator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.constraintwithes
  sentialocl.xtext;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

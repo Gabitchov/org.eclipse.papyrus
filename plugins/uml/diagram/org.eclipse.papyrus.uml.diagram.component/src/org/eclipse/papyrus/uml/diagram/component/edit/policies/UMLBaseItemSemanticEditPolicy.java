@@ -300,14 +300,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @param req
 	 *        the req
 	 * @return the creates the command
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		// no more usage of the extended types here. 
 		IElementType requestElementType = req.getElementType();
 		if (requestElementType instanceof IExtendedHintedElementType) {
-			IExtendedHintedElementType extendedElementType = (IExtendedHintedElementType) requestElementType;
-
 			// try to get a semantic create command from the extended type
 			IElementEditService commandProvider = ElementEditServiceUtils.getCommandProvider(req.getContainer());
 			if (commandProvider != null) {
@@ -317,7 +314,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 			}
 		}
-
 		return null;
 	}
 

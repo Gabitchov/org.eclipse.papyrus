@@ -79,7 +79,7 @@ public class NewPapyrusProjectWithMultiModelsWizard extends NewPapyrusProjectWiz
 			return false;
 		}
 		for (String category: getDiagramCategoryIds()) {
-			if (myDoNotCreateModelForNoDiagrams && getDiagramKindsFor(category).isEmpty()){
+			if (myDoNotCreateModelForNoDiagrams && getPrototypesFor(category).isEmpty()){
 				// don't create model
 				continue;
 			}

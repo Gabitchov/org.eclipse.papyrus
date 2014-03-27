@@ -133,8 +133,8 @@
             </ifExpr>
           </body>
           <letVariable name="attributeList" eType="/16/Set(Property)">
-            <initExpression xsi:type="ocl.ecore:IteratorExp" name="select" eType="/16/Set(Property)">
-              <source xsi:type="ocl.ecore:PropertyCallExp" eType="/16/Set(Property)">
+            <initExpression xsi:type="ocl.ecore:IteratorExp" name="select" eType="/16/OrderedSet(Property)">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="/16/OrderedSet(Property)">
                 <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/18">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
                 </source>
@@ -1012,6 +1012,9 @@
     <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Operation)" instanceClassName="java.util.List">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Property)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Property)" instanceClassName="java.util.Set">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
     </eClassifiers>
@@ -1261,52 +1264,52 @@
     </eAnnotations>
     <eAnnotations source="positions.22" references="/0/defaultInitializer">
       <details key="start" value="1847"/>
-      <details key="end" value="3384"/>
+      <details key="end" value="3390"/>
       <details key="line" value="35"/>
     </eAnnotations>
     <eAnnotations source="positions.23" references="/0/defaultInitializer/%">
       <details key="start" value="2948"/>
-      <details key="end" value="3372"/>
+      <details key="end" value="3378"/>
       <details key="line" value="54"/>
     </eAnnotations>
     <eAnnotations source="positions.24" references="/0/defaultInitializer/%/%">
-      <details key="start" value="3017"/>
-      <details key="end" value="3366"/>
+      <details key="start" value="3023"/>
+      <details key="end" value="3372"/>
       <details key="line" value="55"/>
     </eAnnotations>
     <eAnnotations source="positions.25" references="/0/defaultInitializer/%/%/%">
-      <details key="start" value="3182"/>
-      <details key="end" value="3360"/>
+      <details key="start" value="3188"/>
+      <details key="end" value="3366"/>
       <details key="line" value="59"/>
     </eAnnotations>
     <eAnnotations source="positions.26" references="/0/defaultInitializer/%/%/%/%">
-      <details key="start" value="3216"/>
-      <details key="end" value="3221"/>
+      <details key="start" value="3222"/>
+      <details key="end" value="3227"/>
       <details key="line" value="60"/>
     </eAnnotations>
     <eAnnotations source="positions.27" references="/0/defaultInitializer/%/%/%/%.1">
-      <details key="start" value="3222"/>
-      <details key="end" value="3237"/>
+      <details key="start" value="3228"/>
+      <details key="end" value="3243"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.28" references="/0/defaultInitializer/%/%/%/%.1/classifier">
-      <details key="start" value="3222"/>
-      <details key="end" value="3232"/>
+      <details key="start" value="3228"/>
+      <details key="end" value="3238"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.29" references="/0/defaultInitializer/%/%/%/%.2">
-      <details key="start" value="3239"/>
-      <details key="end" value="3244"/>
+      <details key="start" value="3245"/>
+      <details key="end" value="3250"/>
       <details key="line" value="60"/>
     </eAnnotations>
     <eAnnotations source="positions.30" references="/0/defaultInitializer/%/%/%/%.3">
-      <details key="start" value="3244"/>
-      <details key="end" value="3347"/>
+      <details key="start" value="3250"/>
+      <details key="end" value="3353"/>
       <details key="line" value="60"/>
     </eAnnotations>
     <eAnnotations source="positions.31" references="/0/defaultInitializer/%/%/%/%.3/%">
-      <details key="start" value="3304"/>
-      <details key="end" value="3308"/>
+      <details key="start" value="3310"/>
+      <details key="end" value="3314"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.32" references="/0/defaultInitializer/%/%/%/%.3/%/self">
@@ -1315,18 +1318,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.33" references="/0/defaultInitializer/%/%/%/%.3/%.1">
-      <details key="start" value="3310"/>
-      <details key="end" value="3311"/>
+      <details key="start" value="3316"/>
+      <details key="end" value="3317"/>
       <details key="line" value="61"/>
     </eAnnotations>
     <eAnnotations source="positions.34" references="/0/defaultInitializer/%/%/%/%.3/%.2">
-      <details key="start" value="3312"/>
-      <details key="end" value="3338"/>
+      <details key="start" value="3318"/>
+      <details key="end" value="3344"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.35" references="/0/defaultInitializer/%/%/%/%.3/%.2/%">
-      <details key="start" value="3312"/>
-      <details key="end" value="3324"/>
+      <details key="start" value="3318"/>
+      <details key="end" value="3330"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.36" references="/0/defaultInitializer/%/%/%/%.3/%.2/%/self">
@@ -1335,58 +1338,58 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.37" references="/0/defaultInitializer/%/%/%/%.3/%.3">
-      <details key="start" value="3340"/>
-      <details key="end" value="3341"/>
+      <details key="start" value="3346"/>
+      <details key="end" value="3347"/>
       <details key="line" value="61"/>
     </eAnnotations>
     <eAnnotations source="positions.38" references="/0/defaultInitializer/%/%/%/%.3/a">
-      <details key="start" value="3250"/>
-      <details key="end" value="3262"/>
+      <details key="start" value="3256"/>
+      <details key="end" value="3268"/>
       <details key="line" value="60"/>
     </eAnnotations>
     <eAnnotations source="positions.39" references="/0/defaultInitializer/%/%/%/%.3/attributeList">
-      <details key="start" value="3265"/>
-      <details key="end" value="3278"/>
+      <details key="start" value="3271"/>
+      <details key="end" value="3284"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.40" references="/0/defaultInitializer/%/%/%/%.3/%.4">
-      <details key="start" value="3290"/>
-      <details key="end" value="3294"/>
+      <details key="start" value="3296"/>
+      <details key="end" value="3300"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.41" references="/0/defaultInitializer/%/%/%/%.4">
-      <details key="start" value="3347"/>
-      <details key="end" value="3351"/>
+      <details key="start" value="3353"/>
+      <details key="end" value="3357"/>
       <details key="line" value="61"/>
     </eAnnotations>
     <eAnnotations source="positions.42" references="/0/defaultInitializer/%/%/%/%.5">
-      <details key="start" value="3186"/>
-      <details key="end" value="3214"/>
+      <details key="start" value="3192"/>
+      <details key="end" value="3220"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.43" references="/0/defaultInitializer/%/%/%/%.5/%">
-      <details key="start" value="3190"/>
-      <details key="end" value="3214"/>
+      <details key="start" value="3196"/>
+      <details key="end" value="3220"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.44" references="/0/defaultInitializer/%/%/%/%.5/%/attributeList">
-      <details key="start" value="3190"/>
-      <details key="end" value="3203"/>
+      <details key="start" value="3196"/>
+      <details key="end" value="3209"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.45" references="/0/defaultInitializer/%/%/attributeList">
-      <details key="start" value="3022"/>
-      <details key="end" value="3176"/>
+      <details key="start" value="3028"/>
+      <details key="end" value="3182"/>
       <details key="line" value="55"/>
     </eAnnotations>
     <eAnnotations source="positions.46" references="/0/defaultInitializer/%/%/attributeList/select">
-      <details key="start" value="3055"/>
-      <details key="end" value="3177"/>
+      <details key="start" value="3061"/>
+      <details key="end" value="3183"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.47" references="/0/defaultInitializer/%/%/attributeList/select/%">
-      <details key="start" value="3055"/>
-      <details key="end" value="3064"/>
+      <details key="start" value="3061"/>
+      <details key="end" value="3070"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.48" references="/0/defaultInitializer/%/%/attributeList/select/%/self">
@@ -1395,23 +1398,23 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.49" references="/0/defaultInitializer/%/%/attributeList/select/%.1">
-      <details key="start" value="3080"/>
-      <details key="end" value="3176"/>
+      <details key="start" value="3086"/>
+      <details key="end" value="3182"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.50" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%">
-      <details key="start" value="3080"/>
-      <details key="end" value="3130"/>
+      <details key="start" value="3086"/>
+      <details key="end" value="3136"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.51" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%/%">
-      <details key="start" value="3080"/>
-      <details key="end" value="3098"/>
+      <details key="start" value="3086"/>
+      <details key="end" value="3104"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.52" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%/%/%">
-      <details key="start" value="3081"/>
-      <details key="end" value="3089"/>
+      <details key="start" value="3087"/>
+      <details key="end" value="3095"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.53" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%/%/%/temp1">
@@ -1420,18 +1423,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.54" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%/%/%.1">
-      <details key="start" value="3092"/>
-      <details key="end" value="3097"/>
+      <details key="start" value="3098"/>
+      <details key="end" value="3103"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.55" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%/%.1">
-      <details key="start" value="3108"/>
-      <details key="end" value="3130"/>
+      <details key="start" value="3114"/>
+      <details key="end" value="3136"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.56" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%/%.1/%">
-      <details key="start" value="3109"/>
-      <details key="end" value="3121"/>
+      <details key="start" value="3115"/>
+      <details key="end" value="3127"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.57" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%/%.1/%/temp1">
@@ -1440,23 +1443,23 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.58" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%/%.1/%.1">
-      <details key="start" value="3125"/>
-      <details key="end" value="3129"/>
+      <details key="start" value="3131"/>
+      <details key="end" value="3135"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.59" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%.1">
-      <details key="start" value="3140"/>
-      <details key="end" value="3176"/>
+      <details key="start" value="3146"/>
+      <details key="end" value="3182"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.60" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%.1/%">
-      <details key="start" value="3141"/>
-      <details key="end" value="3167"/>
+      <details key="start" value="3147"/>
+      <details key="end" value="3173"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.61" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%.1/%/%">
-      <details key="start" value="3141"/>
-      <details key="end" value="3153"/>
+      <details key="start" value="3147"/>
+      <details key="end" value="3159"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.62" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%.1/%/%/temp1">
@@ -1465,8 +1468,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.63" references="/0/defaultInitializer/%/%/attributeList/select/%.1/%.1/%.1">
-      <details key="start" value="3171"/>
-      <details key="end" value="3175"/>
+      <details key="start" value="3177"/>
+      <details key="end" value="3181"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.64" references="/0/defaultInitializer/%/%/attributeList/select/temp1">
@@ -1476,12 +1479,12 @@
     </eAnnotations>
     <eAnnotations source="positions.65" references="/0/defaultInitializer/%/%.1">
       <details key="start" value="2952"/>
-      <details key="end" value="3011"/>
+      <details key="end" value="3017"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.66" references="/0/defaultInitializer/%/%.1/any">
       <details key="start" value="2952"/>
-      <details key="end" value="3004"/>
+      <details key="end" value="3010"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.67" references="/0/defaultInitializer/%/%.1/any/%">
@@ -1496,7 +1499,7 @@
     </eAnnotations>
     <eAnnotations source="positions.69" references="/0/defaultInitializer/%/%.1/any/%.1">
       <details key="start" value="2978"/>
-      <details key="end" value="3003"/>
+      <details key="end" value="3009"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.70" references="/0/defaultInitializer/%/%.1/any/%.1/temp1">
@@ -1506,7 +1509,7 @@
     </eAnnotations>
     <eAnnotations source="positions.71" references="/0/defaultInitializer/%/%.1/any/%.1/%">
       <details key="start" value="2992"/>
-      <details key="end" value="3002"/>
+      <details key="end" value="3008"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.72" references="/0/defaultInitializer/%/%.1/any/temp2">
@@ -1515,8 +1518,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.73" references="/0/defaultInitializer/%/%.1/%">
-      <details key="start" value="3007"/>
-      <details key="end" value="3011"/>
+      <details key="start" value="3013"/>
+      <details key="end" value="3017"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.74" references="/0/defaultInitializer/classifier">
@@ -1535,18 +1538,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.77" references="/0/CppClassHeader">
-      <details key="start" value="3387"/>
-      <details key="end" value="5502"/>
+      <details key="start" value="3393"/>
+      <details key="end" value="5508"/>
       <details key="line" value="67"/>
     </eAnnotations>
     <eAnnotations source="positions.78" references="/0/CppClassHeader/%">
-      <details key="start" value="3440"/>
-      <details key="end" value="3448"/>
+      <details key="start" value="3446"/>
+      <details key="end" value="3454"/>
       <details key="line" value="68"/>
     </eAnnotations>
     <eAnnotations source="positions.79" references="/0/CppClassHeader/%.1">
-      <details key="start" value="3449"/>
-      <details key="end" value="3464"/>
+      <details key="start" value="3455"/>
+      <details key="end" value="3470"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.80" references="/0/CppClassHeader/%.1/self">
@@ -1555,13 +1558,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.81" references="/0/CppClassHeader/%.2">
-      <details key="start" value="3466"/>
-      <details key="end" value="3477"/>
+      <details key="start" value="3472"/>
+      <details key="end" value="3483"/>
       <details key="line" value="68"/>
     </eAnnotations>
     <eAnnotations source="positions.82" references="/0/CppClassHeader/%.3">
-      <details key="start" value="3478"/>
-      <details key="end" value="3493"/>
+      <details key="start" value="3484"/>
+      <details key="end" value="3499"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.83" references="/0/CppClassHeader/%.3/self">
@@ -1570,33 +1573,33 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.84" references="/0/CppClassHeader/%.4">
-      <details key="start" value="3495"/>
-      <details key="end" value="3575"/>
+      <details key="start" value="3501"/>
+      <details key="end" value="3581"/>
       <details key="line" value="69"/>
     </eAnnotations>
     <eAnnotations source="positions.85" references="/0/CppClassHeader/%.5">
-      <details key="start" value="3576"/>
-      <details key="end" value="3586"/>
+      <details key="start" value="3582"/>
+      <details key="end" value="3592"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.86" references="/0/CppClassHeader/%.5/class">
-      <details key="start" value="3576"/>
-      <details key="end" value="3581"/>
+      <details key="start" value="3582"/>
+      <details key="end" value="3587"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.87" references="/0/CppClassHeader/%.6">
-      <details key="start" value="3588"/>
-      <details key="end" value="3666"/>
+      <details key="start" value="3594"/>
+      <details key="end" value="3672"/>
       <details key="line" value="72"/>
     </eAnnotations>
     <eAnnotations source="positions.88" references="/0/CppClassHeader/%.7">
-      <details key="start" value="3667"/>
-      <details key="end" value="3711"/>
+      <details key="start" value="3673"/>
+      <details key="end" value="3717"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.89" references="/0/CppClassHeader/%.7/%">
-      <details key="start" value="3667"/>
-      <details key="end" value="3675"/>
+      <details key="start" value="3673"/>
+      <details key="end" value="3681"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.90" references="/0/CppClassHeader/%.7/%/self">
@@ -1605,13 +1608,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.91" references="/0/CppClassHeader/%.8">
-      <details key="start" value="3713"/>
-      <details key="end" value="3715"/>
+      <details key="start" value="3719"/>
+      <details key="end" value="3721"/>
       <details key="line" value="76"/>
     </eAnnotations>
     <eAnnotations source="positions.92" references="/0/CppClassHeader/%.9">
-      <details key="start" value="3716"/>
-      <details key="end" value="3748"/>
+      <details key="start" value="3722"/>
+      <details key="end" value="3754"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.93" references="/0/CppClassHeader/%.9/self">
@@ -1620,13 +1623,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.94" references="/0/CppClassHeader/%.10">
-      <details key="start" value="3750"/>
-      <details key="end" value="3752"/>
+      <details key="start" value="3756"/>
+      <details key="end" value="3758"/>
       <details key="line" value="78"/>
     </eAnnotations>
     <eAnnotations source="positions.95" references="/0/CppClassHeader/%.11">
-      <details key="start" value="3753"/>
-      <details key="end" value="3771"/>
+      <details key="start" value="3759"/>
+      <details key="end" value="3777"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.96" references="/0/CppClassHeader/%.11/self">
@@ -1635,13 +1638,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.97" references="/0/CppClassHeader/%.12">
-      <details key="start" value="3773"/>
-      <details key="end" value="3775"/>
+      <details key="start" value="3779"/>
+      <details key="end" value="3781"/>
       <details key="line" value="80"/>
     </eAnnotations>
     <eAnnotations source="positions.98" references="/0/CppClassHeader/%.13">
-      <details key="start" value="3776"/>
-      <details key="end" value="3784"/>
+      <details key="start" value="3782"/>
+      <details key="end" value="3790"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.99" references="/0/CppClassHeader/%.13/self">
@@ -1650,13 +1653,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.100" references="/0/CppClassHeader/%.14">
-      <details key="start" value="3786"/>
-      <details key="end" value="3852"/>
+      <details key="start" value="3792"/>
+      <details key="end" value="3858"/>
       <details key="line" value="81"/>
     </eAnnotations>
     <eAnnotations source="positions.101" references="/0/CppClassHeader/%.15">
-      <details key="start" value="3853"/>
-      <details key="end" value="3868"/>
+      <details key="start" value="3859"/>
+      <details key="end" value="3874"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.102" references="/0/CppClassHeader/%.15/self">
@@ -1665,13 +1668,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.103" references="/0/CppClassHeader/%.16">
-      <details key="start" value="3870"/>
-      <details key="end" value="3871"/>
+      <details key="start" value="3876"/>
+      <details key="end" value="3877"/>
       <details key="line" value="85"/>
     </eAnnotations>
     <eAnnotations source="positions.104" references="/0/CppClassHeader/%.17">
-      <details key="start" value="3872"/>
-      <details key="end" value="3891"/>
+      <details key="start" value="3878"/>
+      <details key="end" value="3897"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.105" references="/0/CppClassHeader/%.17/self">
@@ -1680,8 +1683,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.106" references="/0/CppClassHeader/%.18">
-      <details key="start" value="3894"/>
-      <details key="end" value="3914"/>
+      <details key="start" value="3900"/>
+      <details key="end" value="3920"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.107" references="/0/CppClassHeader/%.18/self">
@@ -1690,23 +1693,23 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.108" references="/0/CppClassHeader/%.19">
-      <details key="start" value="3916"/>
-      <details key="end" value="3917"/>
+      <details key="start" value="3922"/>
+      <details key="end" value="3923"/>
       <details key="line" value="85"/>
     </eAnnotations>
     <eAnnotations source="positions.109" references="/0/CppClassHeader/%.20">
-      <details key="start" value="3918"/>
-      <details key="end" value="3928"/>
+      <details key="start" value="3924"/>
+      <details key="end" value="3934"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.110" references="/0/CppClassHeader/%.20/class">
-      <details key="start" value="3918"/>
-      <details key="end" value="3923"/>
+      <details key="start" value="3924"/>
+      <details key="end" value="3929"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.111" references="/0/CppClassHeader/%.21">
-      <details key="start" value="3931"/>
-      <details key="end" value="3962"/>
+      <details key="start" value="3937"/>
+      <details key="end" value="3968"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.112" references="/0/CppClassHeader/%.21/self">
@@ -1715,13 +1718,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.113" references="/0/CppClassHeader/%.22">
-      <details key="start" value="3964"/>
-      <details key="end" value="3967"/>
+      <details key="start" value="3970"/>
+      <details key="end" value="3973"/>
       <details key="line" value="85"/>
     </eAnnotations>
     <eAnnotations source="positions.114" references="/0/CppClassHeader/%.23">
-      <details key="start" value="3968"/>
-      <details key="end" value="4002"/>
+      <details key="start" value="3974"/>
+      <details key="end" value="4008"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.115" references="/0/CppClassHeader/%.23/self">
@@ -1730,8 +1733,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.116" references="/0/CppClassHeader/%.24">
-      <details key="start" value="4005"/>
-      <details key="end" value="4026"/>
+      <details key="start" value="4011"/>
+      <details key="end" value="4032"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.117" references="/0/CppClassHeader/%.24/self">
@@ -1740,23 +1743,23 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.118" references="/0/CppClassHeader/%.25">
-      <details key="start" value="4028"/>
-      <details key="end" value="4033"/>
+      <details key="start" value="4034"/>
+      <details key="end" value="4039"/>
       <details key="line" value="87"/>
     </eAnnotations>
     <eAnnotations source="positions.119" references="/0/CppClassHeader/%.26">
-      <details key="start" value="4034"/>
-      <details key="end" value="4089"/>
+      <details key="start" value="4040"/>
+      <details key="end" value="4095"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.120" references="/0/CppClassHeader/%.26/%">
-      <details key="start" value="4034"/>
-      <details key="end" value="4056"/>
+      <details key="start" value="4040"/>
+      <details key="end" value="4062"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.121" references="/0/CppClassHeader/%.26/%.1">
-      <details key="start" value="4068"/>
-      <details key="end" value="4088"/>
+      <details key="start" value="4074"/>
+      <details key="end" value="4094"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.122" references="/0/CppClassHeader/%.26/%.1/self">
@@ -1765,23 +1768,23 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.123" references="/0/CppClassHeader/%.27">
-      <details key="start" value="4091"/>
-      <details key="end" value="4096"/>
+      <details key="start" value="4097"/>
+      <details key="end" value="4102"/>
       <details key="line" value="88"/>
     </eAnnotations>
     <eAnnotations source="positions.124" references="/0/CppClassHeader/%.28">
-      <details key="start" value="4097"/>
-      <details key="end" value="4185"/>
+      <details key="start" value="4103"/>
+      <details key="end" value="4191"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.125" references="/0/CppClassHeader/%.28/%">
-      <details key="start" value="4097"/>
-      <details key="end" value="4119"/>
+      <details key="start" value="4103"/>
+      <details key="end" value="4125"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.126" references="/0/CppClassHeader/%.28/%.1">
-      <details key="start" value="4131"/>
-      <details key="end" value="4184"/>
+      <details key="start" value="4137"/>
+      <details key="end" value="4190"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.127" references="/0/CppClassHeader/%.28/%.1/self">
@@ -1790,28 +1793,28 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.128" references="/0/CppClassHeader/%.28/%.1/%">
-      <details key="start" value="4161"/>
-      <details key="end" value="4183"/>
+      <details key="start" value="4167"/>
+      <details key="end" value="4189"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.129" references="/0/CppClassHeader/%.29">
-      <details key="start" value="4187"/>
-      <details key="end" value="4192"/>
+      <details key="start" value="4193"/>
+      <details key="end" value="4198"/>
       <details key="line" value="89"/>
     </eAnnotations>
     <eAnnotations source="positions.130" references="/0/CppClassHeader/%.30">
-      <details key="start" value="4193"/>
-      <details key="end" value="4281"/>
+      <details key="start" value="4199"/>
+      <details key="end" value="4287"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.131" references="/0/CppClassHeader/%.30/%">
-      <details key="start" value="4193"/>
-      <details key="end" value="4215"/>
+      <details key="start" value="4199"/>
+      <details key="end" value="4221"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.132" references="/0/CppClassHeader/%.30/%.1">
-      <details key="start" value="4227"/>
-      <details key="end" value="4280"/>
+      <details key="start" value="4233"/>
+      <details key="end" value="4286"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.133" references="/0/CppClassHeader/%.30/%.1/self">
@@ -1820,28 +1823,28 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.134" references="/0/CppClassHeader/%.30/%.1/%">
-      <details key="start" value="4257"/>
-      <details key="end" value="4279"/>
+      <details key="start" value="4263"/>
+      <details key="end" value="4285"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.135" references="/0/CppClassHeader/%.31">
-      <details key="start" value="4283"/>
-      <details key="end" value="4289"/>
+      <details key="start" value="4289"/>
+      <details key="end" value="4295"/>
       <details key="line" value="90"/>
     </eAnnotations>
     <eAnnotations source="positions.136" references="/0/CppClassHeader/%.32">
-      <details key="start" value="4290"/>
-      <details key="end" value="4384"/>
+      <details key="start" value="4296"/>
+      <details key="end" value="4390"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.137" references="/0/CppClassHeader/%.32/%">
-      <details key="start" value="4290"/>
-      <details key="end" value="4315"/>
+      <details key="start" value="4296"/>
+      <details key="end" value="4321"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.138" references="/0/CppClassHeader/%.32/%.1">
-      <details key="start" value="4327"/>
-      <details key="end" value="4383"/>
+      <details key="start" value="4333"/>
+      <details key="end" value="4389"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.139" references="/0/CppClassHeader/%.32/%.1/self">
@@ -1850,28 +1853,28 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.140" references="/0/CppClassHeader/%.32/%.1/%">
-      <details key="start" value="4357"/>
-      <details key="end" value="4382"/>
+      <details key="start" value="4363"/>
+      <details key="end" value="4388"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.141" references="/0/CppClassHeader/%.33">
-      <details key="start" value="4386"/>
-      <details key="end" value="4391"/>
+      <details key="start" value="4392"/>
+      <details key="end" value="4397"/>
       <details key="line" value="92"/>
     </eAnnotations>
     <eAnnotations source="positions.142" references="/0/CppClassHeader/%.34">
-      <details key="start" value="4392"/>
-      <details key="end" value="4486"/>
+      <details key="start" value="4398"/>
+      <details key="end" value="4492"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.143" references="/0/CppClassHeader/%.34/%">
-      <details key="start" value="4392"/>
-      <details key="end" value="4417"/>
+      <details key="start" value="4398"/>
+      <details key="end" value="4423"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.144" references="/0/CppClassHeader/%.34/%.1">
-      <details key="start" value="4429"/>
-      <details key="end" value="4485"/>
+      <details key="start" value="4435"/>
+      <details key="end" value="4491"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.145" references="/0/CppClassHeader/%.34/%.1/self">
@@ -1880,28 +1883,28 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.146" references="/0/CppClassHeader/%.34/%.1/%">
-      <details key="start" value="4459"/>
-      <details key="end" value="4484"/>
+      <details key="start" value="4465"/>
+      <details key="end" value="4490"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.147" references="/0/CppClassHeader/%.35">
-      <details key="start" value="4488"/>
-      <details key="end" value="4494"/>
+      <details key="start" value="4494"/>
+      <details key="end" value="4500"/>
       <details key="line" value="93"/>
     </eAnnotations>
     <eAnnotations source="positions.148" references="/0/CppClassHeader/%.36">
-      <details key="start" value="4495"/>
-      <details key="end" value="4585"/>
+      <details key="start" value="4501"/>
+      <details key="end" value="4591"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.149" references="/0/CppClassHeader/%.36/%">
-      <details key="start" value="4495"/>
-      <details key="end" value="4518"/>
+      <details key="start" value="4501"/>
+      <details key="end" value="4524"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.150" references="/0/CppClassHeader/%.36/%.1">
-      <details key="start" value="4530"/>
-      <details key="end" value="4584"/>
+      <details key="start" value="4536"/>
+      <details key="end" value="4590"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.151" references="/0/CppClassHeader/%.36/%.1/self">
@@ -1910,28 +1913,28 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.152" references="/0/CppClassHeader/%.36/%.1/%">
-      <details key="start" value="4560"/>
-      <details key="end" value="4583"/>
+      <details key="start" value="4566"/>
+      <details key="end" value="4589"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.153" references="/0/CppClassHeader/%.37">
-      <details key="start" value="4587"/>
-      <details key="end" value="4592"/>
+      <details key="start" value="4593"/>
+      <details key="end" value="4598"/>
       <details key="line" value="95"/>
     </eAnnotations>
     <eAnnotations source="positions.154" references="/0/CppClassHeader/%.38">
-      <details key="start" value="4593"/>
-      <details key="end" value="4683"/>
+      <details key="start" value="4599"/>
+      <details key="end" value="4689"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.155" references="/0/CppClassHeader/%.38/%">
-      <details key="start" value="4593"/>
-      <details key="end" value="4616"/>
+      <details key="start" value="4599"/>
+      <details key="end" value="4622"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.156" references="/0/CppClassHeader/%.38/%.1">
-      <details key="start" value="4628"/>
-      <details key="end" value="4682"/>
+      <details key="start" value="4634"/>
+      <details key="end" value="4688"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.157" references="/0/CppClassHeader/%.38/%.1/self">
@@ -1940,18 +1943,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.158" references="/0/CppClassHeader/%.38/%.1/%">
-      <details key="start" value="4658"/>
-      <details key="end" value="4681"/>
+      <details key="start" value="4664"/>
+      <details key="end" value="4687"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.159" references="/0/CppClassHeader/%.39">
-      <details key="start" value="4685"/>
-      <details key="end" value="4815"/>
+      <details key="start" value="4691"/>
+      <details key="end" value="4821"/>
       <details key="line" value="96"/>
     </eAnnotations>
     <eAnnotations source="positions.160" references="/0/CppClassHeader/%.40">
-      <details key="start" value="4816"/>
-      <details key="end" value="4871"/>
+      <details key="start" value="4822"/>
+      <details key="end" value="4877"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.161" references="/0/CppClassHeader/%.40/self">
@@ -1960,18 +1963,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.162" references="/0/CppClassHeader/%.40/%">
-      <details key="start" value="4846"/>
-      <details key="end" value="4870"/>
+      <details key="start" value="4852"/>
+      <details key="end" value="4876"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.163" references="/0/CppClassHeader/%.41">
-      <details key="start" value="4873"/>
-      <details key="end" value="4874"/>
+      <details key="start" value="4879"/>
+      <details key="end" value="4880"/>
       <details key="line" value="100"/>
     </eAnnotations>
     <eAnnotations source="positions.164" references="/0/CppClassHeader/%.42">
-      <details key="start" value="4875"/>
-      <details key="end" value="4930"/>
+      <details key="start" value="4881"/>
+      <details key="end" value="4936"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.165" references="/0/CppClassHeader/%.42/self">
@@ -1980,28 +1983,28 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.166" references="/0/CppClassHeader/%.42/%">
-      <details key="start" value="4905"/>
-      <details key="end" value="4929"/>
+      <details key="start" value="4911"/>
+      <details key="end" value="4935"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.167" references="/0/CppClassHeader/%.43">
-      <details key="start" value="4932"/>
-      <details key="end" value="4997"/>
+      <details key="start" value="4938"/>
+      <details key="end" value="5003"/>
       <details key="line" value="101"/>
     </eAnnotations>
     <eAnnotations source="positions.168" references="/0/CppClassHeader/%.44">
-      <details key="start" value="4997"/>
-      <details key="end" value="5189"/>
+      <details key="start" value="5003"/>
+      <details key="end" value="5195"/>
       <details key="line" value="103"/>
     </eAnnotations>
     <eAnnotations source="positions.169" references="/0/CppClassHeader/%.44/%">
-      <details key="start" value="5015"/>
-      <details key="end" value="5141"/>
+      <details key="start" value="5021"/>
+      <details key="end" value="5147"/>
       <details key="line" value="104"/>
     </eAnnotations>
     <eAnnotations source="positions.170" references="/0/CppClassHeader/%.44/%.1">
-      <details key="start" value="5142"/>
-      <details key="end" value="5181"/>
+      <details key="start" value="5148"/>
+      <details key="end" value="5187"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.171" references="/0/CppClassHeader/%.44/%.1/self">
@@ -2010,18 +2013,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.172" references="/0/CppClassHeader/%.44/%.1/%">
-      <details key="start" value="5175"/>
-      <details key="end" value="5180"/>
+      <details key="start" value="5181"/>
+      <details key="end" value="5186"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.173" references="/0/CppClassHeader/%.44/%.2">
-      <details key="start" value="5183"/>
-      <details key="end" value="5184"/>
+      <details key="start" value="5189"/>
+      <details key="end" value="5190"/>
       <details key="line" value="107"/>
     </eAnnotations>
     <eAnnotations source="positions.174" references="/0/CppClassHeader/%.44/%.3">
-      <details key="start" value="5001"/>
-      <details key="end" value="5013"/>
+      <details key="start" value="5007"/>
+      <details key="end" value="5019"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.175" references="/0/CppClassHeader/%.44/%.3/self">
@@ -2030,13 +2033,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.176" references="/0/CppClassHeader/%.45">
-      <details key="start" value="5190"/>
-      <details key="end" value="5254"/>
+      <details key="start" value="5196"/>
+      <details key="end" value="5260"/>
       <details key="line" value="108"/>
     </eAnnotations>
     <eAnnotations source="positions.177" references="/0/CppClassHeader/%.46">
-      <details key="start" value="5255"/>
-      <details key="end" value="5293"/>
+      <details key="start" value="5261"/>
+      <details key="end" value="5299"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.178" references="/0/CppClassHeader/%.46/self">
@@ -2045,18 +2048,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.179" references="/0/CppClassHeader/%.46/%">
-      <details key="start" value="5288"/>
-      <details key="end" value="5292"/>
+      <details key="start" value="5294"/>
+      <details key="end" value="5298"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.180" references="/0/CppClassHeader/%.47">
-      <details key="start" value="5295"/>
-      <details key="end" value="5296"/>
+      <details key="start" value="5301"/>
+      <details key="end" value="5302"/>
       <details key="line" value="111"/>
     </eAnnotations>
     <eAnnotations source="positions.181" references="/0/CppClassHeader/%.48">
-      <details key="start" value="5297"/>
-      <details key="end" value="5306"/>
+      <details key="start" value="5303"/>
+      <details key="end" value="5312"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.182" references="/0/CppClassHeader/%.48/self">
@@ -2065,28 +2068,28 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.183" references="/0/CppClassHeader/%.49">
-      <details key="start" value="5308"/>
-      <details key="end" value="5393"/>
+      <details key="start" value="5314"/>
+      <details key="end" value="5399"/>
       <details key="line" value="112"/>
     </eAnnotations>
     <eAnnotations source="positions.184" references="/0/CppClassHeader/%.50">
-      <details key="start" value="5394"/>
-      <details key="end" value="5404"/>
+      <details key="start" value="5400"/>
+      <details key="end" value="5410"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.185" references="/0/CppClassHeader/%.50/class">
-      <details key="start" value="5394"/>
-      <details key="end" value="5399"/>
+      <details key="start" value="5400"/>
+      <details key="end" value="5405"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.186" references="/0/CppClassHeader/%.51">
-      <details key="start" value="5406"/>
-      <details key="end" value="5490"/>
+      <details key="start" value="5412"/>
+      <details key="end" value="5496"/>
       <details key="line" value="114"/>
     </eAnnotations>
     <eAnnotations source="positions.187" references="/0/CppClassHeader/class">
-      <details key="start" value="3419"/>
-      <details key="end" value="3437"/>
+      <details key="start" value="3425"/>
+      <details key="end" value="3443"/>
       <details key="line" value="67"/>
     </eAnnotations>
   </ecore:EAnnotation>

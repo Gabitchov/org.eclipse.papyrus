@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <!-- TODO: EMF-FACET update query
    <extension
          point="org.eclipse.emf.facet.infra.query.factory">
       <factory
             class="org.eclipse.papyrus.infra.emf.facet.queries.factory.ParametricQueryFactory">
       </factory>
    </extension>
+   -->
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package

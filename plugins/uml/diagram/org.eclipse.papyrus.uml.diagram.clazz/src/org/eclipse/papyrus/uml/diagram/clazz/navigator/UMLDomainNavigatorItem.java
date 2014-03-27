@@ -1,14 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.navigator;
 
@@ -29,23 +28,27 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	static {
-		final Class[] supportedTypes = new Class[]{ EObject.class, IPropertySource.class };
+		@SuppressWarnings("rawtypes")
+		final Class[] supportedTypes = new Class[] { EObject.class, IPropertySource.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
+			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if(adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) {
-					org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem)adaptableObject;
+				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) {
+					org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) adaptableObject;
 					EObject eObject = domainNavigatorItem.getEObject();
-					if(adapterType == EObject.class) {
+					if (adapterType == EObject.class) {
 						return eObject;
 					}
-					if(adapterType == IPropertySource.class) {
+					if (adapterType == IPropertySource.class) {
 						return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
 					}
 				}
+
 				return null;
 			}
 
+			@SuppressWarnings("rawtypes")
 			public Class[] getAdapterList() {
 				return supportedTypes;
 			}
@@ -101,8 +104,8 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if(obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) {
-			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem)obj).getEObject()));
+		if (obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) {
+			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) obj).getEObject()));
 		}
 		return super.equals(obj);
 	}
@@ -113,4 +116,5 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	public int hashCode() {
 		return EcoreUtil.getURI(getEObject()).hashCode();
 	}
+
 }

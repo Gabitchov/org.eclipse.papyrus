@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated layers -->
+      <package
+            uri="org.eclipse.papyrus.layers.0.10"
+            class="org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage"
+            genModel="model/layers.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated layersconfig -->
+      <package
+            uri="org.eclipse.papyrus.layersconfig.0.10"
+            class="org.eclipse.papyrus.layers.configmodel.layersconfig.LayersconfigPackage"
+            genModel="model/layersconfig.genmodel"/>
+   </extension>
+
+</plugin>

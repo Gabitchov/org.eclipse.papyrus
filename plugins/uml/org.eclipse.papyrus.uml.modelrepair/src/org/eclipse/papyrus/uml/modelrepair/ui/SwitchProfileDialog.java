@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 429826
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelrepair.ui;
 
@@ -47,8 +49,9 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.papyrus.infra.emf.resource.DependencyManagementHelper;
@@ -306,9 +309,9 @@ public class SwitchProfileDialog extends SelectionDialog {
 			}
 		});
 
-		IReadOnlyHandler handler = ReadOnlyManager.getReadOnlyHandler(editingDomain);
+		IReadOnlyHandler2 handler = ReadOnlyManager.getReadOnlyHandler(editingDomain);
 		for(Resource resource : modelSet.getResources()) {
-			if(handler.anyReadOnly(new URI[]{ resource.getURI() }).get()) {
+			if(handler.anyReadOnly(ReadOnlyAxis.anyAxis(), new URI[]{ resource.getURI() }).get()) {
 				continue;
 			}
 			try {

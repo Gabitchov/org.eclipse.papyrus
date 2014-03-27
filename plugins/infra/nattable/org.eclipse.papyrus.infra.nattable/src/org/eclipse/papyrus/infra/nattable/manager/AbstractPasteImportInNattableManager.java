@@ -239,6 +239,7 @@ public abstract class AbstractPasteImportInNattableManager {
 	 *         a status indicating if the first line of the file allows to do the paste
 	 */
 	private IStatus verifyColumnCountOnFirstLine(final INattableModelManager tableManager, final Reader reader) {
+		final int axisCount = tableManager.getColumnCount();
 		CSVParser parser = this.pasteHelper.createParser(reader);
 		//we verify the nb of columns
 		final RowIterator rowIter = parser.parse();
@@ -250,12 +251,21 @@ public abstract class AbstractPasteImportInNattableManager {
 				nbCell++;
 			}
 		}
-		final int axisCount = tableManager.getColumnCount();
+		//430115: [Table2] Paste/Import must be possible when the number of columns is not the same in the table and in the clipboard/file
+		//https://bugs.eclipse.org/bugs/show_bug.cgi?id=430115
+		if(axisCount == 0) {
+			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.AbstractPasteImportInNattableManager_TheTableDoesntHaveColumns);
+		}
+		//commented because the next line could have data
+		//		if(nbCell == 0) {
+		//			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Your data doesn't have cell on the first row");
+		//		}
 		if(axisCount == nbCell) {
 			return new Status(IStatus.OK, Activator.PLUGIN_ID, Messages.AbstractPasteImportInNattableManager_NumberOfColumnsAreEquals);
 		} else {
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, NLS.bind(Messages.AbstractPasteImportInNattableManager_NumberOfColumnsAreNotEquals, nbCell, axisCount));
+			return new Status(IStatus.OK, Activator.PLUGIN_ID, NLS.bind(Messages.AbstractPasteImportInNattableManager_NumberOfColumnsAreNotEquals, nbCell, axisCount));
 		}
+
 	}
 
 

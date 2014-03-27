@@ -37,22 +37,19 @@
          </editor>
          <editor editor="org.eclipse.papyrus.uml.properties.widgets.NaturalLanguageEditor" language="Natural language">
          </editor>
-         <editor
-               editor="org.eclipse.papyrus.uml.properties.widgets.NaturalLanguageEditor"
-               language="OCL">
-         </editor>
       </extension>
       <extension point="org.eclipse.papyrus.views.properties.context">
          <context contextModel="Model/UMLNotation/UMLNotation.ctx">
          </context>
       </extension>
 
+   <!-- TODO EMF-FACET
    <extension
-         point="org.eclipse.emf.facet.infra.query.registration">
+         point="org.eclipse.papyrus.emf.facet.infra.query.registration">
       <modelqueryset
             file="Model/UML/uml.querySet">
       </modelqueryset>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.papyrus.views.properties.labelprovider">
       <labelProvider

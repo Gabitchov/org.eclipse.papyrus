@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.facet.infra.facet.FacetReference;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -66,9 +65,9 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy {
 
 		//Only browse Containment references and Facet references
 		if(semanticElement instanceof EReference) {
-			if(semanticElement instanceof FacetReference) {
-				return true;
-			}
+			//if(semanticElement instanceof FacetReference) {
+			//	return true;
+			//}
 
 			return ((EReference)semanticElement).isContainment() && !((EReference)semanticElement).isDerived();
 		}

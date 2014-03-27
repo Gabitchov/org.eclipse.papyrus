@@ -113,17 +113,20 @@ public class FigureHierarchyView extends ViewPart {
 		viewer.getTree().setLinesVisible(true);
 
 		TreeColumn tcName = new TreeColumn(viewer.getTree(), SWT.LEFT);
-		tcName.setText("Figure");
+		tcName.setText("Figure"); //$NON-NLS-1$
 		tcName.setWidth(300);
 		TreeColumn tcFigBounds = new TreeColumn(viewer.getTree(), SWT.LEFT);
-		tcFigBounds.setText("Figure bounds");
+		tcFigBounds.setText("Figure bounds"); //$NON-NLS-1$
 		tcFigBounds.setWidth(250);
 		TreeColumn tcLayoutManager = new TreeColumn(viewer.getTree(), SWT.LEFT);
-		tcLayoutManager.setText("Layout manager");
+		tcLayoutManager.setText("Layout manager"); //$NON-NLS-1$
 		tcLayoutManager.setWidth(150);
 		TreeColumn tcBorder = new TreeColumn(viewer.getTree(), SWT.LEFT);
-		tcBorder.setText("Border");
+		tcBorder.setText("Border (width)"); //$NON-NLS-1$
 		tcBorder.setWidth(150);
+		TreeColumn tcLineWidth = new TreeColumn(viewer.getTree(), SWT.LEFT);
+		tcLineWidth.setText("Line width"); //$NON-NLS-1$
+		tcLineWidth.setWidth(100);
 	}
 
 	@Override

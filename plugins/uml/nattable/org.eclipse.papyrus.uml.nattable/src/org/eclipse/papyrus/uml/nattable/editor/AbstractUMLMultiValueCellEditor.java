@@ -18,10 +18,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.edit.gui.AbstractDialogCellEditor;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer.MoveDirectionEnum;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
@@ -81,7 +83,14 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 	 */
 	@Override
 	public int open() {
-		return ((MultipleValueSelectorDialog)this.dialog).open();
+		int result = ((MultipleValueSelectorDialog)this.dialog).open();
+		if (manager instanceof IAdaptable) {
+			NatTable nattable = (NatTable) ((IAdaptable) manager).getAdapter(NatTable.class);
+			if (nattable != null && !nattable.isDisposed()) {
+				nattable.forceFocus();
+			}
+		}
+		return result;
 	}
 
 	/**

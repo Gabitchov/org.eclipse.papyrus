@@ -19,7 +19,7 @@ import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 /**
  * This class provides test called by the plugin.xml in order to know if handlers should be active or not.
@@ -96,7 +96,7 @@ public class DiagramPropertyTester extends PropertyTester {
 				 * Used for example for facet elements
 				 */
 				final Object next = iter.next();
-				EObject diag = NavigatorUtils.getElement(next, EObject.class);
+				EObject diag = EMFHelper.getEObject(next);
 				if(!(diag instanceof Diagram)) {
 					return false;
 				}

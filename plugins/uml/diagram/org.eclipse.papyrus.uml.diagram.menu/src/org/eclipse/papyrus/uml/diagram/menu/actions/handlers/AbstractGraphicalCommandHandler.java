@@ -30,8 +30,9 @@ import org.eclipse.papyrus.uml.diagram.common.Activator;
  * This handler can use a parameter.
  * The command is executed by the handler
  * 
- * 
+ * @deprecated Since February 2014 use org.eclipse.papyrus.infra.gmfdiag.menu.handlers.AbstractGraphicalCommandHandler
  */
+@Deprecated
 public abstract class AbstractGraphicalCommandHandler extends AbstractParametricHandler {
 
 	/**

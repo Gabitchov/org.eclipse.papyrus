@@ -1,4 +1,27 @@
 Manifest-Version: 1.0
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.emf.cdo;bundle-version="[4.3.0,5.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.services.resourceloading;bundle-version="1.0.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.emf.readonly;bundle-version="1.0.0";visibility:=reexport,
+ org.eclipse.emf.workspace;bundle-version="[1.5.1,2.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
+ org.eclipse.emf.cdo.dawn;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.emf.cdo.dawn.gmf;bundle-version="[2.1.0,3.0.0)",
+ org.eclipse.emf.transaction;bundle-version="[1.4.0,2.0.0)";visibility:=reexport,
+ org.eclipse.gmf.runtime.notation;bundle-version="[1.5.0,2.0.0)",
+ org.eclipse.equinox.security;bundle-version="[1.1.100,2.0.0)",
+ org.eclipse.core.expressions;bundle-version="[3.4.0,4.0.0)",
+ com.google.guava;bundle-version="11.0.0",
+ org.eclipse.papyrus.infra.services.controlmode;bundle-version="1.0.0",
+ org.eclipse.gmf.runtime.emf.commands.core;bundle-version="[1.7.0,2.0.0)",
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="[1.7.0,2.0.0)",
+ org.eclipse.papyrus.infra.services.localizer;bundle-version="1.0.0",
+ org.eclipse.net4j;bundle-version="[4.3.0,5.0.0)",
+ org.eclipse.emf.cdo.admin;bundle-version="[4.1.200,5.0.0)"
 Export-Package: org.eclipse.papyrus.cdo.core,
  org.eclipse.papyrus.cdo.core.admin,
  org.eclipse.papyrus.cdo.core.exporter,
@@ -26,37 +49,14 @@ Export-Package: org.eclipse.papyrus.cdo.core,
  org.eclipse.papyrus.cdo.internal.core.repositories.util;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
  org.eclipse.papyrus.cdo.internal.core.resource;x-internal:=true,
  org.eclipse.papyrus.cdo.internal.core.services.localizer;x-internal:=true
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.emf.cdo;bundle-version="[4.3.0,5.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.core;bundle-version="1.0.0";visibility:=reexport,
- org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.services.resourceloading;bundle-version="1.0.0";visibility:=reexport,
- org.eclipse.papyrus.infra.emf.readonly;bundle-version="1.0.0";visibility:=reexport,
- org.eclipse.emf.workspace;bundle-version="[1.5.1,2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
- org.eclipse.emf.cdo.dawn;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.emf.cdo.dawn.gmf;bundle-version="[2.1.0,3.0.0)",
- org.eclipse.emf.transaction;bundle-version="[1.4.0,2.0.0)";visibility:=reexport,
- org.eclipse.gmf.runtime.notation;bundle-version="[1.5.0,2.0.0)",
- org.eclipse.equinox.security;bundle-version="[1.1.100,2.0.0)",
- org.eclipse.core.expressions;bundle-version="[3.4.0,4.0.0)",
- com.google.guava;bundle-version="11.0.0",
- org.eclipse.papyrus.infra.services.controlmode;bundle-version="1.0.0",
- org.eclipse.gmf.runtime.emf.commands.core;bundle-version="[1.7.0,2.0.0)",
- org.eclipse.gmf.runtime.emf.type.core;bundle-version="[1.7.0,2.0.0)",
- org.eclipse.papyrus.infra.services.localizer;bundle-version="1.0.0",
- org.eclipse.net4j;bundle-version="[4.3.0,5.0.0)",
- org.eclipse.emf.cdo.admin;bundle-version="[4.1.200,5.0.0)"
-Bundle-Vendor: %providerName
 Bundle-Version: 1.0.0.qualifier
-Bundle-ManifestVersion: 2
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.cdo.internal.core.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.cdo.core;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

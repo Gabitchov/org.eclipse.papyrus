@@ -37,4 +37,14 @@ public class GeneralizationFigure extends UMLEdgeFigure {
 		setForegroundColor(ColorConstants.black);
 
 	}
+
+	@Override
+	public void resetStyle() {
+		super.resetStyle();
+		PolygonDecoration dec = new PolygonDecoration();
+		dec.setScale(10, 8);
+		dec.setBackgroundColor(ColorConstants.white);
+		dec.setLineWidth(1);
+		setTargetDecoration(dec); // arrow at target endpoint
+	}
 }

@@ -9,16 +9,20 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.core.resource.BadArgumentExcetion;
 import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
 import org.eclipse.papyrus.infra.core.resource.IEMFModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
+import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenableWithContainer;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 /**
- * @author dumoulin
+ * @author cedric dumoulin
  *
  */
 public class NotationModel extends EMFLogicalModel implements IModel {
@@ -106,11 +110,48 @@ public class NotationModel extends EMFLogicalModel implements IModel {
 			return;
 		}
 
+		//If the parameter resource is already a notation resource, nothing to do
 		if(!isRelatedResource(resource)) {
 			URI notationURI = resource.getURI().trimFileExtension().appendFileExtension(NOTATION_FILE_EXTENSION);
-			if(getResourceSet().getURIConverter().exists(notationURI, Collections.emptyMap())) {
-				getResourceSet().getResource(notationURI, true);
+			ResourceSet resourceSet = getResourceSet();
+			if(resourceSet != null && resourceSet.getURIConverter() != null) {
+				URIConverter converter = resourceSet.getURIConverter();
+				if(converter.exists(notationURI, Collections.emptyMap())) {
+					//If the notation resource associated to the parameter resource exists, load it
+					getResourceSet().getResource(notationURI, true);
+				}
 			}
 		}
+	}
+
+
+	/**
+	 * Get a diagram by its name.
+	 *
+	 * @param diagramName
+	 *        Name of the diagram. This is the name set by the user.
+	 * @return
+	 * @throws NotFoundException
+	 * @throws BadArgumentExcetion
+	 */
+	public Diagram getDiagram(String diagramName) throws NotFoundException, BadArgumentExcetion {
+
+		if(diagramName == null || diagramName.length() == 0) {
+			throw new BadArgumentExcetion("Diagram name should not be null and size should be >0.");
+		}
+
+		for(EObject element : getResource().getContents()) {
+			if(element instanceof Diagram) {
+				Diagram diagram = (Diagram)element;
+
+				if(diagramName.equals(diagram.getName())) {
+					// Found
+					return diagram;
+
+				}
+			}
+		}
+		// not found
+		throw new NotFoundException("No Diagram named '" + diagramName + "' can be found in Model.");
 	}
 }

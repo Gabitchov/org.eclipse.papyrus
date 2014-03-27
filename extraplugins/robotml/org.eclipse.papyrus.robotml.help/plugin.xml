@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
 
-   <extension
+   <!--extension
          point="org.eclipse.help.toc">
       <toc
             file="toc.xml">
@@ -11,6 +11,6 @@
             file="testToc.xml"
             primary="true">
       </toc>
-   </extension>
+   </extension-->
 
 </plugin>

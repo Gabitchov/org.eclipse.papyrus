@@ -14,7 +14,7 @@
     <package 
        uri = "http://www.eclipse.org/papyrus/0.7.0/SysML" 
        class = "org.eclipse.papyrus.sysml.SysmlPackage"
-       genModel = "model/sysml.genmodel" /> 
+       genModel = "model/SysML.profile.genmodel" /> 
   </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">

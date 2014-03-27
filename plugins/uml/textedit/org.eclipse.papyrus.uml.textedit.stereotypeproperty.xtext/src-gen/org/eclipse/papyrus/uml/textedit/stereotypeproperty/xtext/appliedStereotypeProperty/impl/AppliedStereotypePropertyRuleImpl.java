@@ -15,8 +15,6 @@ import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereoty
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule;
 
-import org.eclipse.uml2.uml.Property;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Rule</b></em>'.
@@ -24,7 +22,6 @@ import org.eclipse.uml2.uml.Property;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl.AppliedStereotypePropertyRuleImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl.AppliedStereotypePropertyRuleImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
@@ -33,16 +30,6 @@ import org.eclipse.uml2.uml.Property;
  */
 public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Container implements AppliedStereotypePropertyRule
 {
-  /**
-   * The cached value of the '{@link #getProperty() <em>Property</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getProperty()
-   * @generated
-   * @ordered
-   */
-  protected Property property;
-
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -72,49 +59,6 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
   protected EClass eStaticClass()
   {
     return AppliedStereotypePropertyPackage.Literals.APPLIED_STEREOTYPE_PROPERTY_RULE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Property getProperty()
-  {
-    if (property != null && property.eIsProxy())
-    {
-      InternalEObject oldProperty = (InternalEObject)property;
-      property = (Property)eResolveProxy(oldProperty);
-      if (property != oldProperty)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY, oldProperty, property));
-      }
-    }
-    return property;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Property basicGetProperty()
-  {
-    return property;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setProperty(Property newProperty)
-  {
-    Property oldProperty = property;
-    property = newProperty;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY, oldProperty, property));
   }
 
   /**
@@ -191,9 +135,6 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
   {
     switch (featureID)
     {
-      case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY:
-        if (resolve) return getProperty();
-        return basicGetProperty();
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE:
         return getValue();
     }
@@ -210,9 +151,6 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
   {
     switch (featureID)
     {
-      case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY:
-        setProperty((Property)newValue);
-        return;
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE:
         setValue((ExpressionValueRule)newValue);
         return;
@@ -230,9 +168,6 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
   {
     switch (featureID)
     {
-      case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY:
-        setProperty((Property)null);
-        return;
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE:
         setValue((ExpressionValueRule)null);
         return;
@@ -250,8 +185,6 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
   {
     switch (featureID)
     {
-      case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY:
-        return property != null;
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE:
         return value != null;
     }

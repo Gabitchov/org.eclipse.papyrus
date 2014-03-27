@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,14 +8,16 @@
  *
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 413703
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelexplorer.util;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.service.types.utils.CommandContext;
 import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -53,19 +55,18 @@ public class ModelExplorerUtils {
 		EObject container = null;
 		EReference reference = null;
 
-		if(selection instanceof IAdaptable) {
 
-			container = (EObject)((IAdaptable)selection).getAdapter(EObject.class);
+		container = EMFHelper.getEObject(selection);
 
-			if(container == null) {
-				reference = (EReference)((IAdaptable)selection).getAdapter(EReference.class);
-
-				// The following part introduce a dependency to EMF Facet.
-				// Although the selection can be adapted to EReference, the link parent is required but
-				// no API allows to get this element except LinkItem or ITreeElement.
-				if((reference != null) && (selection instanceof LinkItem)) {
-					container = ((LinkItem)selection).getParent();
-				}
+		if(container instanceof EReference) {
+			reference = (EReference)container;
+			container = null;
+			
+			// The following part introduce a dependency to EMF Facet.
+			// Although the selection can be adapted to EReference, the link parent is required but
+			// no API allows to get this element except LinkItem or ITreeElement.
+			if(selection instanceof EReferenceTreeElement) {
+				container = ((EReferenceTreeElement)selection).getParent().getEObject();
 			}
 		}
 

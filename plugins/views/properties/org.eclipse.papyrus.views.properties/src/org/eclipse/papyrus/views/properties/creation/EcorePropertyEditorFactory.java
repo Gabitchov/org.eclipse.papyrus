@@ -9,10 +9,12 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
+ *  Christian W. Damus (CEA) - bug 430077
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.creation;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -22,11 +24,14 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.dialog.NestedEditingDialogContext;
@@ -462,5 +467,67 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 
 	public void setReferenceContentProvider(CreateInFeatureContentProvider contentProvider) {
 		this.referenceContentProvider = contentProvider;
+	}
+	
+	@Override
+	protected CreationContext getCreationContext(Object element) {
+		return (element instanceof EObject) ? getCreationContext((EObject)element, true) : super.getCreationContext(element);
+	}
+	
+	/**
+	 * Gets the creation context providing the element in which a {@code modelElement} is being created.
+	 * 
+	 * @param modelElement
+	 *        a model element that is currently being created and probably is, therefore, not yet attached to the model
+	 * @param demandCreate
+	 *        whether to create the context and implicitly attach it if it is not already attached. This is only appropriate in the case that the
+	 *        {@code modelElement} is the element in which context we are creating new elements
+	 * 
+	 * @return the creation context, or {@code null} if none is currently attached and we did not elect to create it on demand
+	 */
+	public static CreationContext getCreationContext(EObject modelElement, boolean demandCreate) {
+		class EObjectCreationContext extends AdapterImpl implements CreationContext {
+
+			private EObject context;
+
+			private List<Object> createdElements = new ArrayList<Object>(2); // Anticipate small depth of dialog nesting
+
+			EObjectCreationContext(EObject context) {
+				this.context = context;
+				context.eAdapters().add(this);
+			}
+
+			@Override
+			public boolean isAdapterForType(Object type) {
+				return type == CreationContext.class;
+			}
+
+			public Object getCreationContextElement() {
+				return context;
+			}
+
+			public void popCreatedElement(Object newElement) {
+				if(createdElements.remove(newElement)) {
+					((Notifier)newElement).eAdapters().remove(this);
+
+					if(createdElements.isEmpty()) {
+						// Don't need this context adapter any more
+						context.eAdapters().remove(this);
+					}
+				}
+			}
+
+			public void pushCreatedElement(Object newElement) {
+				createdElements.add(newElement);
+				((Notifier)newElement).eAdapters().add(this);
+			}
+		}
+
+		CreationContext result = (CreationContext)EcoreUtil.getExistingAdapter(modelElement, CreationContext.class);
+		if((result == null) && demandCreate) {
+			result = new EObjectCreationContext(modelElement);
+		}
+
+		return result;
 	}
 }

@@ -45,13 +45,13 @@ public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 
 	/**
 	 * Apply the result of the dialog, i.e. it adds package imports to libraries
-	 * 
+	 *
 	 * @param librariesToImport
 	 *        the array of Libraries to import
 	 */
 	protected void importLibraries(RegisteredLibrary[] librariesToImport) {
 		// retrieve the current resource set
-		ResourceSet resourceSet = Util.getSharedResourceSet();
+		ResourceSet resourceSet = Util.createTemporaryResourceSet();
 
 		for(int i = 0; i < librariesToImport.length; i++) {
 			RegisteredLibrary currentLibrary = (librariesToImport[i]);
@@ -86,7 +86,7 @@ public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 	 * <p>
 	 * It returns all registered libraries except the already imported ones.
 	 * </p>
-	 * 
+	 *
 	 * @return the array of available libraries for the currently selected package
 	 */
 	protected RegisteredLibrary[] getAvailableLibraries() {
@@ -107,7 +107,7 @@ public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 	 * <p>
 	 * It returns all already imported libraries.
 	 * </p>
-	 * 
+	 *
 	 * @return the array of already selected libraries for the currently selected package
 	 */
 	protected Collection<RegisteredLibrary> getImportedLibraries() {
@@ -131,7 +131,7 @@ public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 
 		/**
 		 * Creates a new ImportLibraryFromRepositoryCommand
-		 * 
+		 *
 		 * @param editingDomain
 		 *        editing domain that manages the changed objects
 		 * @param runnable

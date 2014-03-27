@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.emf.facet.query.ocl.core.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf;bundle-version="2.6.0",
+ org.eclipse.ocl;bundle-version="3.0.0",
+ org.eclipse.ocl.ecore;bundle-version="3.0.0",
+ org.eclipse.papyrus.emf.facet.efacet;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.efacet.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.util.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.query.ocl.metamodel;bundle-version="1.0.0"
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Activator: org.eclipse.papyrus.emf.facet.query.ocl.core.interna
+ l.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.query.ocl.core;sing
+ leton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

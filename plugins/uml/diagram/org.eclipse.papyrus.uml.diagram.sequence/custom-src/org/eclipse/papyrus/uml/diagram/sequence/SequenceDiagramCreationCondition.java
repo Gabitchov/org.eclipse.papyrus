@@ -12,7 +12,6 @@ package org.eclipse.papyrus.uml.diagram.sequence;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
-import org.eclipse.uml2.uml.Interaction;
 
 /**
  * SequenceDiagramCreationCondition class allows to check if a Sequence diagram can be added to the
@@ -25,10 +24,6 @@ public class SequenceDiagramCreationCondition extends PerspectiveContextDependen
 	 */
 	@Override
 	public boolean create(EObject selectedElement) {
-		if(super.create(selectedElement)) {
-			// TODO : to specify according to the spec
-			return selectedElement instanceof Interaction;
-		}
 		return false;
 	}
 }

@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomCombinedFragmentCreateCommand;
@@ -80,16 +81,16 @@ public class CustomInteractionOperandItemSemanticEditPolicy extends InteractionO
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.InteractionUse_3002 == req.getElementType()) {
-			return getGEFWrapper(new CustomInteractionUseCreateCommand(req));
+			return getGEFWrapper(new CustomInteractionUseCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.ConsiderIgnoreFragment_3007 == req.getElementType()) {
-			return getGEFWrapper(new CustomConsiderIgnoreFragmentCreateCommand(req));
+			return getGEFWrapper(new CustomConsiderIgnoreFragmentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.CombinedFragment_3004 == req.getElementType()) {
-			return getGEFWrapper(new CustomCombinedFragmentCreateCommand(req));
+			return getGEFWrapper(new CustomCombinedFragmentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Continuation_3016 == req.getElementType()) {
-			return getGEFWrapper(new CustomContinuationCreateCommand(req));
+			return getGEFWrapper(new CustomContinuationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

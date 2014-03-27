@@ -1,14 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.commands;
 
@@ -51,16 +50,16 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(source == null && target == null) {
+		if (source == null && target == null) {
 			return false;
 		}
-		if(source != null && false == source instanceof Comment) {
+		if (source != null && false == source instanceof Comment) {
 			return false;
 		}
-		if(target != null && false == target instanceof Element) {
+		if (target != null && false == target instanceof Element) {
 			return false;
 		}
-		if(getSource() == null) {
+		if (getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
@@ -71,13 +70,16 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
+		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		if(getSource() != null && getTarget() != null) {
-			getSource().getAnnotatedElements().add(getTarget());
+
+		if (getSource() != null && getTarget() != null) {
+			getSource().getAnnotatedElements()
+					.add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
+
 	}
 
 	/**
@@ -91,13 +93,13 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Comment getSource() {
-		return (Comment)source;
+		return (Comment) source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getTarget() {
-		return (Element)target;
+		return (Element) target;
 	}
 }

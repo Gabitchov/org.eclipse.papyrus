@@ -25,6 +25,7 @@ import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.QualifiedName
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.RedefinesRule;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.SubsetsRule;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.TypeRule;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -140,6 +141,8 @@ public class UmlPropertyScopeProvider extends AbstractDeclarativeScopeProvider {
 					namespaces.add((Namespace)eImport.getImportedElement());
 				}
 			}
+			// get top-level packages (imported or not)
+			namespaces.addAll(PackageUtil.getTopLevelPackages(visited));
 
 			return namespaces;
 		}

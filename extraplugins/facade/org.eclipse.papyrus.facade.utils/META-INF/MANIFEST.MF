@@ -1,15 +1,17 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Utils
-Bundle-SymbolicName: org.eclipse.papyrus.facade.utils
-Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.facade.utils.FacadeUtilsActivator
+Export-Package: org.eclipse.papyrus.facade.utils,
+ org.eclipse.papyrus.facade.utils.wrappinglist,
+ org.eclipse.papyrus.facade.utils.wrappinglist.subset
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;bundle-version="2.9.0",
  org.eclipse.uml2.uml;bundle-version="4.1.0",
  org.eclipse.emf.common
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.facade.utils,
- org.eclipse.papyrus.facade.utils.wrappinglist,
- org.eclipse.papyrus.facade.utils.wrappinglist.subset
+Bundle-Version: 0.10.0.qualifier
+Bundle-Name: Utils
+Bundle-Activator: org.eclipse.papyrus.facade.utils.FacadeUtilsActivato
+ r
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.facade.utils
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+

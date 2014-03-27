@@ -1,4 +1,11 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.diagram.common.groups.commands,
+ org.eclipse.papyrus.uml.diagram.common.groups.core.utils,
+ org.eclipse.papyrus.uml.diagram.common.groups.edit.policies,
+ org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment,
+ org.eclipse.papyrus.uml.diagram.common.groups.preferences,
+ org.eclipse.papyrus.uml.diagram.common.groups.tabbedproperties.appearance,
+ org.eclipse.papyrus.uml.diagram.common.groups.utils
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.ui.properties,
@@ -8,21 +15,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml;bundle-version="4.0.0",
  org.eclipse.uml2.uml.edit;bundle-version="4.0.0",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0"
-Export-Package: org.eclipse.papyrus.uml.diagram.common.groups.commands,
- org.eclipse.papyrus.uml.diagram.common.groups.core.utils,
- org.eclipse.papyrus.uml.diagram.common.groups.edit.policies,
- org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment,
- org.eclipse.papyrus.uml.diagram.common.groups.preferences,
- org.eclipse.papyrus.uml.diagram.common.groups.tabbedproperties.appearance,
- org.eclipse.papyrus.uml.diagram.common.groups.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.common.groups.Activa
  tor
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.common.groups;sin
  gleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

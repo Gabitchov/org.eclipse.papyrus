@@ -1,0 +1,5 @@
+All of these tests must be done by two different instances running on different workspaces.
+
+You should first share them to a local SVN repository and set their needs-lock property. Do this by right-clicking on the project, then selecting Team -> Set Property...
+Select svn:needs-lock, set the property value to *, then ensuring that the property is applied recursively to all resources and comitting.
+Then, open a second workspace and checkout your project.

@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.usecase.command.CreateExtensionPointCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Extend;
@@ -51,7 +52,7 @@ public class CreateExtensionPointEditPolicy extends GraphicalNodeEditPolicy {
 					if(targetEP instanceof AbstractEditPart) {
 						IAdaptable adapter = getExtendViewAdapter(request);
 						EObject usecase = ViewUtil.resolveSemanticElement((View)getHost().getModel());
-						CreateExtensionPointCommand createExtensionPointCommand = new CreateExtensionPointCommand((IHintedType)UMLElementTypes.ExtensionPoint_3007, (AbstractEditPart)targetEP, usecase, adapter);
+						CreateExtensionPointCommand createExtensionPointCommand = new CreateExtensionPointCommand((IHintedType)UMLElementTypes.ExtensionPoint_3007, (AbstractEditPart)targetEP, usecase, adapter, DiagramUtils.getDiagramFrom(getHost()));
 						compound.add(createExtensionPointCommand);
 						return compound;
 					}

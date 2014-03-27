@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
@@ -12,9 +12,9 @@ import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 
 /**
  * Set of utility methods linked to Trace for ControlMode
- * 
+ *
  * @author cedric dumoulin
- * 
+ *
  */
 public class SashModelUtils {
 
@@ -23,12 +23,14 @@ public class SashModelUtils {
 	 * Warning: This method is designed to be call from ui.handlers. It is not
 	 * designed to be call from Editors. This method can return null if called
 	 * during the MultiEditor initialization.
-	 * 
+	 *
 	 * @see ServiceUtilsForActionHandlers.getInstance().getModelSet()
-	 * 
+	 *
 	 * @return The {@link SashModel} of the current editor, or null if not
 	 *         found.
+	 * @deprecated Use {@link #getSashModel(ModelSet)} or {@link #getSashModel(ServicesRegistry)} instead
 	 */
+	@Deprecated
 	public static SashModel getSashModel() {
 
 		try {
@@ -43,14 +45,16 @@ public class SashModelUtils {
 	 * Warning: This method is designed to be call from ui.handlers. It is not
 	 * designed to be call from Editors. This method can return null if called
 	 * during the MultiEditor initialization.
-	 * 
+	 *
 	 * @see ServiceUtilsForActionHandlers.getInstance().getModelSet()
-	 * 
+	 *
 	 * @return The {@link SashModel} of the current editor, or null if not
 	 *         found.
 	 * @throws ServiceException
 	 *         If an error occurs while getting or starting the service.
+	 * @deprecated Use {@link #getSashModelChecked(ServicesRegistry)} instead
 	 */
+	@Deprecated
 	public static SashModel getSashModelChecked() throws ServiceException {
 
 		return (SashModel)ServiceUtilsForActionHandlers.getInstance().getModelSet().getModel(SashModel.MODEL_ID);
@@ -58,10 +62,10 @@ public class SashModelUtils {
 
 	/**
 	 * Gets the SashModel from the {@link ModelSet}. <br>
-	 * 
+	 *
 	 * @param modelsManager
 	 *        The modelManager containing the requested model.
-	 * 
+	 *
 	 * @return The {@link SashModel} registered in modelManager, or null if not
 	 *         found.
 	 */
@@ -72,10 +76,10 @@ public class SashModelUtils {
 
 	/**
 	 * Gets the SashModel from the {@link ModelSet}. <br>
-	 * 
+	 *
 	 * @param ServicesRegistry
 	 *        The servie registry under which the ModelSet is registered.
-	 * 
+	 *
 	 * @return The {@link SashModel} registered in modelManager, or null if not
 	 *         found.
 	 */
@@ -90,10 +94,10 @@ public class SashModelUtils {
 
 	/**
 	 * Gets the SashModel from the {@link ModelSet}. <br>
-	 * 
+	 *
 	 * @param ServicesRegistry
 	 *        The servie registry under which the ModelSet is registered.
-	 * 
+	 *
 	 * @return The {@link SashModel} registered in modelManager, or null if not
 	 *         found.
 	 * @throws ServiceException
@@ -106,7 +110,7 @@ public class SashModelUtils {
 
 	/**
 	 * Retrieve the uri of the initial di opened
-	 * 
+	 *
 	 * @param modelSet
 	 * @return
 	 */

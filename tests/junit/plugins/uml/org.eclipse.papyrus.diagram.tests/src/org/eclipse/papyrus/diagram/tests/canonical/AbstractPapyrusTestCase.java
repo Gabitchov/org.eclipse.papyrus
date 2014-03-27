@@ -14,37 +14,52 @@
 package org.eclipse.papyrus.diagram.tests.canonical;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 
 import junit.framework.TestCase;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
+import org.eclipse.papyrus.uml.tools.model.UmlModel;
+import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -162,8 +177,8 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 			public void run() {
 				try {
 					papyrusEditor.doSave(new NullProgressMonitor());
-					//diResourceSet.save( new NullProgressMonitor());
-					//diagramEditor.close(true);
+					// diResourceSet.save( new NullProgressMonitor());
+					// diagramEditor.close(true);
 					papyrusEditor = null;
 					diagramEditPart = null;
 					diagramEditor = null;
@@ -209,10 +224,14 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	 */
 	protected abstract String getFileName();
 
+	protected String[] getRequiredProfiles() {
+		return new String[0];
+	}
+
 	/**
 	 * Project creation.
 	 */
-	protected void projectCreation() {
+	protected void projectCreation() throws Exception {
 		// assert the intro is not visible
 		Runnable closeIntroRunnable = new Runnable() {
 
@@ -234,60 +253,88 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 		/*
 		 * final String timestamp = Long.toString(System.currentTimeMillis());
 		 * 
-		 * project = root.getProject("DiagramTestProject_" + timestamp);
-		 * file = project.getFile("DiagramTest_" + timestamp + ".di"); //$NON-NLS-2$
+		 * project = root.getProject("DiagramTestProject_" + timestamp); file =
+		 * project.getFile("DiagramTest_" + timestamp + ".di"); //$NON-NLS-2$
 		 */
 		project = root.getProject(getProjectName());
 		file = project.getFile(getFileName()); //$NON-NLS-2$
 		this.diResourceSet = new DiResourceSet();
-		//at this point, no resources have been created
-		try {
-			if(!project.exists()) {
-				project.create(null);
-			}
-			if(!project.isOpen()) {
-				project.open(null);
-			}
-			if(file.exists()) {
-				file.delete(true, new NullProgressMonitor());
-			}
-			if(!file.exists()) {
-				file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
-				diResourceSet.createsModels(file);
-				new CreateUMLModelCommand().createModel(this.diResourceSet);
-				ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
-				try {
-					registry.add(ModelSet.class, Integer.MAX_VALUE, diResourceSet); //High priority to override all contributions
-					registry.startRegistry();
-				} catch (ServiceException ex) {
-					//Ignore exceptions
-				}
-				// diResourceSet.createsModels(file);
-				ICreationCommand command = getDiagramCommandCreation();
-				command.createDiagram(diResourceSet, null, "DiagramToTest");
-				diResourceSet.save(new NullProgressMonitor());
-			}
-			Runnable runnable = new Runnable() {
+		// at this point, no resources have been created
 
-				public void run() {
+		if(!project.exists()) {
+			project.create(null);
+		}
+		if(!project.isOpen()) {
+			project.open(null);
+		}
+		if(file.exists()) {
+			file.delete(true, new NullProgressMonitor());
+		}
+		if(!file.exists()) {
+			file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
+			diResourceSet.createsModels(file);
+			new CreateUMLModelCommand().createModel(this.diResourceSet);
+			ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+			try {
+				registry.add(ModelSet.class, Integer.MAX_VALUE, diResourceSet); // High priority to override all contributions
+				registry.startRegistry();
+			} catch (ServiceException ex) {
+				// Ignore exceptions
+			}
+
+			// Apply the required profiles
+			ArrayList<IFile> modifiedFiles = new ArrayList<IFile>();
+			modifiedFiles.add(file);
+			ICommand commandProfiles = new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), "Apply profiles", modifiedFiles) {
+
+				@Override
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					UmlModel resModel = UmlUtils.getUmlModel(diResourceSet);
+					EObject obj;
 					try {
-						page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-						papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), PapyrusMultiDiagramEditor.EDITOR_ID);
-					} catch (Exception ex) {
-						fail(ex.getMessage());
-						ex.printStackTrace(System.out);
+						obj = resModel.lookupRoot();
+					} catch (NotFoundException e) {
+						return CommandResult.newErrorCommandResult(e);
 					}
+					if(obj instanceof Model) {
+						Model model = (Model)obj;
+						for(String uri : getRequiredProfiles()) {
+							EPackage definition = EPackage.Registry.INSTANCE.getEPackage(uri);
+							if(definition != null) {
+								Profile profile = UMLUtil.getProfile(definition, model);
+								model.applyProfile(profile);
+							}
+						}
+					}
+					return CommandResult.newOKCommandResult();
 				}
 			};
-			Display.getDefault().syncExec(runnable);
-			Assert.assertNotNull("Failed to open the editor", papyrusEditor);
-		} catch (Exception e) {
-			e.printStackTrace(System.out);
-			fail("Project creation failed: " + e.getMessage());
+			commandProfiles.execute(new NullProgressMonitor(), null);
+
+			ICreationCommand command = getDiagramCommandCreation();
+			command.createDiagram(diResourceSet, null, "DiagramToTest");
+			diResourceSet.save(new NullProgressMonitor());
 		}
+		Runnable runnable = new Runnable() {
+
+			public void run() {
+				try {
+					page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+					papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), PapyrusMultiDiagramEditor.EDITOR_ID);
+				} catch (Exception ex) {
+					fail(ex.getMessage());
+					ex.printStackTrace(System.out);
+				}
+			}
+		};
+		Display.getDefault().syncExec(runnable);
+		Assert.assertNotNull("Failed to open the editor", papyrusEditor);
 	}
 
-	/** Call {@link AbstractPapyrusTestCase#execute(Command) execute} on the UI thread. */
+	/**
+	 * Call {@link AbstractPapyrusTestCase#execute(Command) execute} on the UI
+	 * thread.
+	 */
 	protected void executeOnUIThread(final Command command) {
 		Display.getDefault().syncExec(new Runnable() {
 
@@ -322,8 +369,8 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	}
 
 	/**
-	 * Reset the "operation failed" state. Call this before executing each operation for which you want to test whether
-	 * if failed with {@link AbstractPapyrusTestCase#assertLastOperationSuccessful()}.
+	 * Reset the "operation failed" state. Call this before executing each
+	 * operation for which you want to test whether if failed with {@link AbstractPapyrusTestCase#assertLastOperationSuccessful()}.
 	 */
 	protected void resetLastOperationFailedState() {
 		this.operationFailed = false;
@@ -356,7 +403,8 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 
 	/** The command stack to use to execute commands on the diagram. */
 	protected CommandStack getCommandStack() {
-		// not "diagramEditor.getDiagramEditDomain().getDiagramCommandStack()" because it messes up undo contexts
+		// not "diagramEditor.getDiagramEditDomain().getDiagramCommandStack()"
+		// because it messes up undo contexts
 		return this.diagramEditor.getEditingDomain().getCommandStack();
 	}
 }
