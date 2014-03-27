@@ -17,6 +17,7 @@ import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusC
 import org.eclipse.papyrus.infra.emf.appearance.style.AnnotationStyleProvider;
 import org.eclipse.papyrus.infra.emf.appearance.style.AppearanceStyleProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
+import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSDOMSemanticElementHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.StringHelper;
 import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
@@ -55,11 +56,12 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 	 *        The CSS engine used to handle the custom properties
 	 */
 	public CSSCustomStyleDelegate(View view, ExtendedCSSEngine engine) {
-		this.view = view;
+		this.view = CSSDOMSemanticElementHelper.findPrimaryView(view);
 		this.engine = engine;
 		this.element = engine.getElement(this.view);
 	}
 
+	@Override
 	public boolean showElementIcon() {
 		EAnnotation displayNameLabelIcon = view.getEAnnotation(VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON);
 		if(displayNameLabelIcon != null) {
@@ -73,6 +75,7 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 		return (Boolean)engine.convert(cssValue, Boolean.class, null);
 	}
 
+	@Override
 	public int getQualifiedNameDepth() {
 		EAnnotation qualifiedNameAnnotation = view.getEAnnotation(VisualInformationPapyrusConstants.QUALIFIED_NAME);
 		if(qualifiedNameAnnotation != null) {
@@ -103,6 +106,7 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 		}
 	}
 
+	@Override
 	public boolean showShadow() {
 		EAnnotation shadowAnnotation = view.getEAnnotation(VisualInformationPapyrusConstants.SHADOWFIGURE);
 
