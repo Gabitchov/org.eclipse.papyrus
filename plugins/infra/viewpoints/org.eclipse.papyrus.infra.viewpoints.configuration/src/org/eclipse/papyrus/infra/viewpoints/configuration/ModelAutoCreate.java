@@ -78,29 +78,29 @@ public interface ModelAutoCreate extends EObject {
 	EClass getOrigin();
 
 	/**
-	 * Returns the value of the '<em><b>Creation Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Creation Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Creation Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Creation Type</em>' reference.
-	 * @see #setCreationType(EClass)
+	 * @return the value of the '<em>Creation Type</em>' attribute.
+	 * @see #setCreationType(String)
 	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage#getModelAutoCreate_CreationType()
 	 * @model required="true"
 	 * @generated
 	 */
-	EClass getCreationType();
+	String getCreationType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate#getCreationType <em>Creation Type</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate#getCreationType <em>Creation Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Creation Type</em>' reference.
+	 * @param value the new value of the '<em>Creation Type</em>' attribute.
 	 * @see #getCreationType()
 	 * @generated
 	 */
-	void setCreationType(EClass value);
+	void setCreationType(String value);
 
 } // ModelAutoCreate

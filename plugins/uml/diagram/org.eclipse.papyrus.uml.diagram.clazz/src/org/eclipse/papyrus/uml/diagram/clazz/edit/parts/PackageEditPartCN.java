@@ -313,9 +313,7 @@ public class PackageEditPartCN extends NamedElementEditPart
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof NodeFigure) {
-			((NodeFigure) primaryShape).setLineWidth(width);
-		}
+		super.setLineWidth(width);
 	}
 
 	/**

@@ -5,16 +5,20 @@
       version="1.0.0.qualifier"
       provider-name="%providerName">
 
-   <description url="http://www.example.com/description">
+   <description url="http://www.eclipse.com/papyrus">
       This plugins add Layers capapbilities to Papyrus diagrams.
    </description>
 
-   <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2013 CEA LIST.
+All rights reserved.   This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0 which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html.
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license url="%licenseURL">
+      %license
    </license>
 
    <requires>

@@ -16,7 +16,6 @@
 package org.eclipse.papyrus.infra.gmfdiag.common;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -28,9 +27,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -40,13 +37,16 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
@@ -54,15 +54,16 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.services.edit.Activator;
+import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate;
 import org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * Command creating a new GMF diagram in Papyrus. This command is intended to be used in eclipse
@@ -99,6 +100,10 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 		private String name;
 
+		private IElementEditService service;
+
+		private IClientContext clientContext;
+
 		public Creator(ModelSet modelSet, EObject owner, EObject element, ViewPrototype prototype, String name) {
 			this.modelSet = modelSet;
 			this.owner = owner;
@@ -112,9 +117,25 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			Resource notationResource = NotationUtils.getNotationResource(modelSet);
 			Resource diResource = DiModelUtils.getDiResource(modelSet);
 
-			if(owner == null) {
+			if (owner == null) {
 				owner = getRootElement(modelResource);
 				attachModelToResource(owner, modelResource);
+			}
+
+			service = ElementEditServiceUtils.getCommandProvider(owner);
+			if (service == null) {
+				// Something isn't right ...
+				return null;
+			}
+
+			try {
+				clientContext = TypeContext.getContext();
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
+			if (clientContext == null) {
+				// Something isn't right ...
+				return null;
 			}
 
 			rule = PolicyChecker.getCurrent().getOwningRuleFor(prototype, owner);
@@ -128,20 +149,15 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				// We have a path for the root auto-creation
 				for (ModelAutoCreate auto : rule.getNewModelPath()) {
 					EReference ref = auto.getFeature();
-					EClass type = auto.getCreationType();
+					String type = auto.getCreationType();
 					if (ref.isMany()) {
-						EObject temp = ((EPackage) type.eContainer()).getEFactoryInstance().create(type);
-						List list = (List) element.eGet(ref);
-						list.add(temp);
-						element = temp;
+						element = create(element, ref, type);
 					} else {
 						EObject temp = (EObject) element.eGet(ref);
 						if (temp != null) {
 							element = temp;
 						} else {
-							temp = ((EPackage) type.eContainer()).getEFactoryInstance().create(type);
-							element.eSet(ref, temp);
-							element = temp;
+							element = create(element, ref, type);
 						}
 					}
 				}
@@ -163,6 +179,24 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 			}
 			return diagram;
+		}
+
+		private EObject create(EObject origin, EReference reference, String typeID) {
+			IElementType itype = ElementTypeRegistry.getInstance().getType(typeID);
+			CreateElementRequest request = new CreateElementRequest(origin, itype, reference);
+			ICommand command = service.getEditCommand(request);
+			IStatus status = null;
+			try {
+				status = command.execute(null, null);
+			} catch (ExecutionException e) {
+				return null;
+			}
+			if (!status.isOK())
+				return null;
+			CommandResult result = command.getCommandResult();
+			if (result == null)
+				return null;
+			return (EObject) result.getReturnValue();
 		}
 	}
 
@@ -187,15 +221,6 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	private void attachModelToResource(EObject root, Resource resource) {
 		resource.getContents().add(root);
-	}
-
-	/**
-	 * Get the current MultiDiagramEditor.
-	 */
-	private IMultiDiagramEditor getMultiDiagramEditor() {
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		IEditorPart editorPart = page.getActiveEditor();
-		return (IMultiDiagramEditor)editorPart;
 	}
 
 	/**

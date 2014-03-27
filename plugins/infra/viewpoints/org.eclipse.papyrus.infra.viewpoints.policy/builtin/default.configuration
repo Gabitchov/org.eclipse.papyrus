@@ -64,23 +64,20 @@
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Activity">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
         </newModelPath>
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Activity">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
         </newModelPath>
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Activity">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
         </newModelPath>
       </owningRules>
       <childRules/>
@@ -103,23 +100,20 @@
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Interaction">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
         </newModelPath>
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Interaction">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
         </newModelPath>
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Interaction">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
         </newModelPath>
       </owningRules>
       <childRules/>
@@ -237,23 +231,20 @@
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Interaction">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
         </newModelPath>
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Interaction">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
         </newModelPath>
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Interaction">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
         </newModelPath>
       </owningRules>
       <childRules/>
@@ -267,23 +258,20 @@
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.StateMachine">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
         </newModelPath>
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.StateMachine">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
         </newModelPath>
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.StateMachine">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
         </newModelPath>
       </owningRules>
       <childRules/>
@@ -315,23 +303,20 @@
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Activity">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
         </newModelPath>
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Activity">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
         </newModelPath>
       </owningRules>
       <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
-        <newModelPath>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Activity">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
-          <creationType href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
         </newModelPath>
       </owningRules>
       <childRules/>
@@ -354,11 +339,14 @@
         <stereotypes href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
       </modelRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
-      </owningRules>
-      <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
         <stereotypes href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <newModelPath creationType="org.eclipse.papyrus.sysml.Block">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+        </newModelPath>
       </owningRules>
       <childRules/>
     </modelKinds>
@@ -382,11 +370,11 @@
         <stereotypes href="http://www.eclipse.org/papyrus/0.7.0/SysML#//constraints/ConstraintBlock"/>
       </modelRules>
       <owningRules>
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
-      </owningRules>
-      <owningRules>
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
         <stereotypes href="http://www.eclipse.org/papyrus/0.7.0/SysML#//constraints/ConstraintBlock"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </owningRules>
       <childRules/>
       <paletteRules permit="false" element="parametric.tool.blockpropertycomposite"/>

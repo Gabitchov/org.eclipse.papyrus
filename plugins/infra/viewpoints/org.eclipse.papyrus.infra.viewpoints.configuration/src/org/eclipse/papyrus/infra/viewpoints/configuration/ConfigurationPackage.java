@@ -1211,7 +1211,7 @@ public interface ConfigurationPackage extends EPackage {
 	int MODEL_AUTO_CREATE__ORIGIN = 1;
 
 	/**
-	 * The feature id for the '<em><b>Creation Type</b></em>' reference.
+	 * The feature id for the '<em><b>Creation Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1763,15 +1763,15 @@ public interface ConfigurationPackage extends EPackage {
 	EReference getModelAutoCreate_Origin();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate#getCreationType <em>Creation Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate#getCreationType <em>Creation Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Creation Type</em>'.
+	 * @return the meta object for the attribute '<em>Creation Type</em>'.
 	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate#getCreationType()
 	 * @see #getModelAutoCreate()
 	 * @generated
 	 */
-	EReference getModelAutoCreate_CreationType();
+	EAttribute getModelAutoCreate_CreationType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2217,12 +2217,12 @@ public interface ConfigurationPackage extends EPackage {
 		EReference MODEL_AUTO_CREATE__ORIGIN = eINSTANCE.getModelAutoCreate_Origin();
 
 		/**
-		 * The meta object literal for the '<em><b>Creation Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Creation Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_AUTO_CREATE__CREATION_TYPE = eINSTANCE.getModelAutoCreate_CreationType();
+		EAttribute MODEL_AUTO_CREATE__CREATION_TYPE = eINSTANCE.getModelAutoCreate_CreationType();
 
 	}
 

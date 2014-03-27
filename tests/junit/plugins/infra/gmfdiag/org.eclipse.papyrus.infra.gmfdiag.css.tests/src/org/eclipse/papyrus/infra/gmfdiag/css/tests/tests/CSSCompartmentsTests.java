@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -26,12 +27,13 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.StringListValueStyle;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringStyleObservableList;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.ResetStyleHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
@@ -155,8 +157,7 @@ public class CSSCompartmentsTests extends AbstractPapyrusTest {
 		}
 
 		//We need an editingDomain for the ResetStyle operation
-		TransactionalEditingDomain domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), diagram.eResource().getResourceSet());
-		diagram.eResource().getResourceSet().eAdapters().add(new AdapterFactoryEditingDomain.EditingDomainProvider(domain));
+		createAndAttachEditingDomain(diagram);
 
 		//Test resetStyle
 		ResetStyleHelper.resetStyle(Collections.singleton(class3));
@@ -180,14 +181,17 @@ public class CSSCompartmentsTests extends AbstractPapyrusTest {
 			for(View compartment : (List<View>)childNode.getChildren()) {
 				if(compartment instanceof BasicCompartment) {
 					TitleStyle titleStyle = (TitleStyle)compartment.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
-					Assert.assertFalse("Title should be hidden", titleStyle.isShowTitle());
+					Assert.assertFalse("Title should be hidden for " + childNode + ", " + compartment, titleStyle.isShowTitle());
 				}
 			}
 		}
 
 		//Apply style
-		CustomStringStyleObservableList stylesList = new CustomStringStyleObservableList(diagram, null, "cssClass");
-		stylesList.add("showTitleForAllCompartments");
+		StringListValueStyle stylesList = (StringListValueStyle)diagram.getNamedStyle(NotationPackage.eINSTANCE.getStringListValueStyle(), "cssClass");
+		if(stylesList == null) {
+			stylesList = NotationFactory.eINSTANCE.createStringListValueStyle();
+		}
+		stylesList.getStringListValue().add("showTitleForAllCompartments");
 
 		//Check that all titles are visible
 		for(View childNode : (List<View>)diagram.getChildren()) {
@@ -198,8 +202,14 @@ public class CSSCompartmentsTests extends AbstractPapyrusTest {
 				}
 			}
 		}
+
 	}
 
+	protected static TransactionalEditingDomain createAndAttachEditingDomain(EObject element) {
+		TransactionalEditingDomain domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), element.eResource().getResourceSet());
+		element.eResource().getResourceSet().eAdapters().add(new AdapterFactoryEditingDomain.EditingDomainProvider(domain));
+		return domain;
+	}
 
 	@After
 	public void dispose() {

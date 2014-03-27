@@ -54,6 +54,7 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.commands.MoveOpenableCommand;
@@ -134,7 +135,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		ViewPrototype proto = ViewPrototype.get(view);
 
 		// check if diagram can exist in new location
-		if(!proto.isOwnerReassignable()) {
+		if (!proto.isOwnerReassignable() || PolicyChecker.getCurrent().getOwningRuleFor(proto, target) == null) {
 			// stop here with unexecutable command
 			return UnexecutableCommand.INSTANCE;
 		}
