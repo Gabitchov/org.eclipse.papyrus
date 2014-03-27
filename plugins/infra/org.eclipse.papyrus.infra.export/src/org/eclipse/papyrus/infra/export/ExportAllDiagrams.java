@@ -1,14 +1,14 @@
 /*******************************************************************************
- * Copyright (c) 2007 Anyware Technologies. All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2007, 2014 Anyware Technologies, CEA, and others.
+ * All rights reserved. This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies
+ * this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: Jacques Lescot (Anyware Technologies) - initial API and
- * implementation
+ * Contributors: Jacques Lescot (Anyware Technologies) - initial API and implementation
  * Thibault Landre (Atos Origin) - refactor to extract the exportAllDiagram from ExportAllDiagramsAction
  * Alexia Allanic (Atos Origin) - Add margin to not truncate images
  * Anass Radouani (AtoS) - add use GMF exporting tool and remove manual extraction
+ * Christian W. Damus (CEA) - bug 431411
  * 
  ******************************************************************************/
 package org.eclipse.papyrus.infra.export;
@@ -24,6 +24,7 @@ import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -63,6 +64,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.export.internal.Activator;
+import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
+import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
 import org.eclipse.swt.SWTError;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -164,8 +167,17 @@ public class ExportAllDiagrams {
 			final ResourceSetImpl resourceSet = new ResourceSetImpl();
 			resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 			resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
-			resourceSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), true);
-
+			
+			// Since the *.di file is empty as of Luna, we cannot rely on it to find all diagrams by resolving cross-references
+			IPapyrusFile logical = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(file);
+			if(logical != null) {
+				for(IResource component : logical.getAssociatedResources()) {
+					if(component.getType() == IResource.FILE) {
+						resourceSet.getResource(URI.createPlatformResourceURI(component.getFullPath().toString(), true), true);
+					}
+				}
+			}
+			
 			// create transactional editing domain
 
 			TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(resourceSet);
