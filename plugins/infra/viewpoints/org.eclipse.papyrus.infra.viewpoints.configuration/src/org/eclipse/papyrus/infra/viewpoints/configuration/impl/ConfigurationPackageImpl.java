@@ -653,8 +653,8 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelAutoCreate_CreationType() {
-		return (EReference)modelAutoCreateEClass.getEStructuralFeatures().get(2);
+	public EAttribute getModelAutoCreate_CreationType() {
+		return (EAttribute)modelAutoCreateEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -747,7 +747,7 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		modelAutoCreateEClass = createEClass(MODEL_AUTO_CREATE);
 		createEReference(modelAutoCreateEClass, MODEL_AUTO_CREATE__FEATURE);
 		createEReference(modelAutoCreateEClass, MODEL_AUTO_CREATE__ORIGIN);
-		createEReference(modelAutoCreateEClass, MODEL_AUTO_CREATE__CREATION_TYPE);
+		createEAttribute(modelAutoCreateEClass, MODEL_AUTO_CREATE__CREATION_TYPE);
 	}
 
 	/**
@@ -855,7 +855,7 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		initEClass(modelAutoCreateEClass, ModelAutoCreate.class, "ModelAutoCreate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelAutoCreate_Feature(), ecorePackage.getEReference(), null, "feature", null, 1, 1, ModelAutoCreate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelAutoCreate_Origin(), ecorePackage.getEClass(), null, "origin", null, 1, 1, ModelAutoCreate.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getModelAutoCreate_CreationType(), ecorePackage.getEClass(), null, "creationType", null, 1, 1, ModelAutoCreate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelAutoCreate_CreationType(), ecorePackage.getEString(), "creationType", null, 1, 1, ModelAutoCreate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

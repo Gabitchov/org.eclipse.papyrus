@@ -29,7 +29,10 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.papyrus.infra.viewpoints.configuration.ComplexTypePropertyDescriptor;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage;
 import org.eclipse.papyrus.infra.viewpoints.configuration.EReferencePropertyDescriptor;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate;
@@ -128,7 +131,7 @@ public class ModelAutoCreateItemProvider
 	 */
 	protected void addCreationTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ComplexTypePropertyDescriptor(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ModelAutoCreate_creationType_feature"),
@@ -136,10 +139,10 @@ public class ModelAutoCreateItemProvider
 				 ConfigurationPackage.Literals.MODEL_AUTO_CREATE__CREATION_TYPE,
 				 true,
 				 false,
-				 true,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
-				 null,
-				 null));
+				 null)));
 	}
 
 	/**
@@ -164,12 +167,12 @@ public class ModelAutoCreateItemProvider
 		StringBuilder builder = new StringBuilder();
 		EClass origin = path.getOrigin();
 		EReference feature = path.getFeature();
-		EClass target = path.getCreationType();
+		String target = path.getCreationType();
 		builder.append(origin != null ? origin.getName() : "?");
 		builder.append(".");
 		builder.append(feature != null ? feature.getName() : "?");
-		builder.append(" => new ");
-		builder.append(target != null ? target.getName() : "?");
+		builder.append(" = new ");
+		builder.append(target != null ? target : "?");
 		return builder.toString();
 	}
 	
@@ -184,6 +187,12 @@ public class ModelAutoCreateItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(ModelAutoCreate.class)) {
+			case ConfigurationPackage.MODEL_AUTO_CREATE__CREATION_TYPE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
