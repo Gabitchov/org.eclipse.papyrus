@@ -17,9 +17,13 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.gmfdiag.css.dialog.CSSThemeCreationDialog;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSStyleSheetsToThemeHelper;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 
@@ -62,14 +66,14 @@ public class CSSFileHandler extends AbstractHandler implements IHandler {
 
 		// Get current selection
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
-
+		Theme theme = null;
 		// Get selected file from selection
 		if(selection instanceof IStructuredSelection) {
 			Object selectedObject = ((IStructuredSelection)selection).getFirstElement();
 
 			// Handle selected file
 			if(selectedObject instanceof IFile) {
-				cssHelper.defineCSSStyleSheetFileAsTheme((IFile)selectedObject);
+				theme = cssHelper.defineCSSStyleSheetFileAsTheme((IFile)selectedObject);
 
 			}
 		}
@@ -77,18 +81,21 @@ public class CSSFileHandler extends AbstractHandler implements IHandler {
 
 		// Get executed command ID
 		String commandID = event.getCommand().getId();
-
+		int dialogResult = -1;
 		if(THEME_DEFINE_COMMAND_ID.equals(commandID)) {
 
 			// TODO Open a specific dialog to define theme according to selection
-
+			Dialog dialog = new CSSThemeCreationDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), theme);
+			dialogResult = dialog.open();
 		} else if(THEME_EDIT_COMMAND_ID.equals(commandID)) {
 			// TODO Open a specific dialog to edit existing theme  according to selection
 		}
 
+		// Save only if user has validated
+		if(dialogResult == Dialog.OK) {
+			cssHelper.saveThemeWorkspacePreference(theme);
+		}
+
 		return null;
 	}
-
-
-
 }

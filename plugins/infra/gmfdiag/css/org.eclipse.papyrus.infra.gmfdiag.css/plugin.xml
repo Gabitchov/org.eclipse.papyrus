@@ -87,7 +87,7 @@
           allPopups="false"
           locationURI="popup:org.eclipse.ui.popup.any?after=additions">
        <menu
-             id="org.eclipse.papyrus.infra.gmfdiag.css.theme.menu.category"
+             id="org.eclipse.papyrus.infra.gmfdiag.css.theme.menu"
              label="CSS Theme">
           <visibleWhen
                 checkEnabled="true">
@@ -102,7 +102,7 @@
     </menuContribution>
     <menuContribution
           allPopups="false"
-          locationURI="popup:org.eclipse.papyrus.infra.gmfdiag.css.theme.menu.category">
+          locationURI="popup:org.eclipse.papyrus.infra.gmfdiag.css.theme.menu">
        <command
              commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme.define"
              style="push">
@@ -121,9 +121,14 @@
           name="Define theme">
     </command>
     <command
+          categoryId="org.eclipse.papyrus.infra.gmfdiag.css.theme.category"
           id="org.eclipse.papyrus.infra.gmfdiag.css.theme.edit"
           name="Edit theme">
     </command>
+    <category
+          id="org.eclipse.papyrus.infra.gmfdiag.css.theme.category"
+          name="CSS Theme">
+    </category>
  </extension>
  <extension
        point="org.eclipse.ui.handlers">

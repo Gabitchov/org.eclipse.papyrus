@@ -55,10 +55,27 @@ public class CSSStyleSheetsToThemeHelper {
 	 * 
 	 * @param file
 	 */
-	public void defineCSSStyleSheetFileAsTheme(IFile file) {
+	public Theme defineCSSStyleSheetFileAsTheme(IFile file) {
 
-		// Get themes preference file
-		Resource themeFile = findThemeFile();
+		// Create a theme from selected CSS file
+		Theme theme = createThemeFromSelection(file);
+
+		return theme;
+
+	}
+
+	/**
+	 * Svae theme in workspace preferences.
+	 * 
+	 * @param theme
+	 *        Theme to save
+	 */
+	public void saveThemeWorkspacePreference(Theme theme) {
+		Resource themeFile = theme.eResource();
+
+		if(themeFile == null) {
+			themeFile = findThemeFile();
+		}
 
 		// Get workspace themes
 		WorkspaceThemes workspaceThemes = (WorkspaceThemes)EcoreUtil.getObjectByType(themeFile.getContents(), StylesheetsPackage.eINSTANCE.getWorkspaceThemes());
@@ -69,21 +86,18 @@ public class CSSStyleSheetsToThemeHelper {
 			themeFile.getContents().add(workspaceThemes);
 		}
 
-		// Create a theme from selected CSS file
-		Theme theme = createThemeFromSelection(file);
-
 		// Add created theme 
 		workspaceThemes.getThemes().add(theme);
 
 		// Save theme preference file
-		try {
-			themeFile.save(Collections.EMPTY_MAP);
-		} catch (IOException e) {
-			Activator.log.error(e);
+		if(themeFile != null) {
+			try {
+				themeFile.save(Collections.EMPTY_MAP);
+			} catch (IOException e) {
+				Activator.log.error(e);
+			}
 		}
-
 	}
-
 
 	/**
 	 * Created a style sheets theme from project selection.
@@ -98,7 +112,6 @@ public class CSSStyleSheetsToThemeHelper {
 
 		// Create new theme
 		Theme newTheme = styleSheetsFactory.createTheme();
-		newTheme.setLabel("Pipo");
 
 		//Style sheets to add in theme
 		StyleSheetReference styleSheetsReference = styleSheetsFactory.createStyleSheetReference();
@@ -110,16 +123,22 @@ public class CSSStyleSheetsToThemeHelper {
 	}
 
 	/**
-	 * @param workspacePath
-	 * @return
+	 * Look for theme workspace preferences file.
+	 * 
+	 * @return Created resource if it don't exist, otherwise loaded
 	 */
 	private Resource findThemeFile() {
 
+		// Get workspace path
 		IPath pluginStatePath = Activator.getDefault().getStateLocation();
+
+		// Build preference file path
 		IPath themeFilePath = pluginStatePath.append("theme.xmi");
 
+		// Create associated URI
 		URI resolvedURI = CommonPlugin.resolve(URI.createFileURI(themeFilePath.toOSString()));
 
+		// Create EMF resource
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = null;
 
@@ -128,9 +147,6 @@ public class CSSStyleSheetsToThemeHelper {
 		} else {
 			resource = resourceSet.createResource(resolvedURI);
 		}
-
-
-
 
 		return resource;
 	}
