@@ -1,16 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.navigator;
 
 import org.eclipse.core.runtime.IAdapterFactory;
@@ -28,9 +28,11 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	 * @generated
 	 */
 	static {
+		@SuppressWarnings("rawtypes")
 		final Class[] supportedTypes = new Class[]{ View.class, EObject.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
+			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if(adaptableObject instanceof org.eclipse.papyrus.uml.diagram.profile.navigator.UMLNavigatorItem && (adapterType == View.class || adapterType == EObject.class)) {
 					return ((org.eclipse.papyrus.uml.diagram.profile.navigator.UMLNavigatorItem)adaptableObject).getView();
@@ -38,6 +40,7 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 				return null;
 			}
 
+			@SuppressWarnings("rawtypes")
 			public Class[] getAdapterList() {
 				return supportedTypes;
 			}
@@ -93,4 +96,5 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	public int hashCode() {
 		return EcoreUtil.getURI(getView()).hashCode();
 	}
+
 }

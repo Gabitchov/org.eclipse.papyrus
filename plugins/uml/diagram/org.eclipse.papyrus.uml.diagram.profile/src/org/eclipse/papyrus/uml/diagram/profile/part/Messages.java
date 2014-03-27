@@ -1,16 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.part;
 
 import org.eclipse.osgi.util.NLS;
@@ -32,6 +32,7 @@ public class Messages extends NLS {
 	 */
 	private Messages() {
 	}
+
 
 	/**
 	 * @generated
@@ -256,222 +257,202 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createPackages1Group_title;
+	public static String Nodes1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createPackages1Group_desc;
+	public static String Nodes1Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createClassifiers2Group_title;
+	public static String Edges2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createClassifiers2Group_desc;
+	public static String Edges2Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createRelationShips3Group_title;
+	public static String Package1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createRelationShips3Group_desc;
+	public static String Package1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createFeatures4Group_title;
+	public static String Profile2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createFeatures4Group_desc;
+	public static String Profile2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createPackage1CreationTool_title;
+	public static String Comment3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createPackage1CreationTool_desc;
+	public static String Comment3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createProfile2CreationTool_title;
+	public static String Constraint4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createProfile2CreationTool_desc;
+	public static String Constraint4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createComment3CreationTool_title;
+	public static String Stereotype5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createComment3CreationTool_desc;
+	public static String Stereotype5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraint4CreationTool_title;
+	public static String ImportMetaclass6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraint4CreationTool_desc;
+	public static String ImportMetaclass6CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createStereotype1CreationTool_title;
+	public static String Enumeration7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createStereotype1CreationTool_desc;
+	public static String Enumeration7CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createImportMetaclass2CreationTool_title;
+	public static String DataType8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createImportMetaclass2CreationTool_desc;
+	public static String DataType8CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createEnumeration3CreationTool_title;
+	public static String PrimitiveType9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createEnumeration3CreationTool_desc;
+	public static String PrimitiveType9CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createDataType4CreationTool_title;
+	public static String Property10CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createDataType4CreationTool_desc;
+	public static String Property10CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createPrimitiveType5CreationTool_title;
+	public static String Operation11CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createPrimitiveType5CreationTool_desc;
+	public static String Operation11CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createExtension1CreationTool_title;
+	public static String EnumerationLiteral12CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createExtension1CreationTool_desc;
+	public static String EnumerationLiteral12CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createGeneralization2CreationTool_title;
+	public static String Extension1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createGeneralization2CreationTool_desc;
+	public static String Extension1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLink3CreationTool_title;
+	public static String Generalization2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLink3CreationTool_desc;
+	public static String Generalization2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createProfileApplication4CreationTool_title;
+	public static String Link3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createProfileApplication4CreationTool_desc;
+	public static String Link3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createAssociation5CreationTool_title;
+	public static String ProfileApplication4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createAssociation5CreationTool_desc;
+	public static String ProfileApplication4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createContextLink6CreationTool_title;
+	public static String Association5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createContextLink6CreationTool_desc;
+	public static String Association5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createProperty1CreationTool_title;
+	public static String ContextLink6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createProperty1CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String createOperation2CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createOperation2CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String createEnumerationLiteral3CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createEnumerationLiteral3CreationTool_desc;
+	public static String ContextLink6CreationTool_desc;
 
 	/**
 	 * @generated
@@ -577,5 +558,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String UMLModelingAssistantProviderMessage;
+
 	//TODO: put accessor fields manually	
 }

@@ -1,16 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.edit.policies;
 
 import java.util.ArrayList;
@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
@@ -81,6 +82,8 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Enumeration_2006);
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -88,7 +91,7 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
+		EAnnotation annotation = view.getEAnnotation("Shortcut");//$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyChildNodesCommand(cmd);
@@ -117,6 +120,16 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case EnumerationLiteralEditPart.VISUAL_ID:
+
+
+
+
+
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
+							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
+							}
+						}
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
@@ -127,6 +140,8 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 			}
 		}
 	}
+
+
 
 	/**
 	 * @generated
@@ -333,4 +348,5 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
+
 }
