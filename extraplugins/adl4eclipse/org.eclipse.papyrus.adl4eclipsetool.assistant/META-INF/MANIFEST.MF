@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.adl4eclipsetool;bundle-version="1.0.0",
  org.eclipse.pde.core
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.adltool.assistant.Activator
