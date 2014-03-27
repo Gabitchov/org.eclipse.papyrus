@@ -1,16 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.edit.policies;
 
 import java.util.ArrayList;
@@ -62,6 +62,8 @@ public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 		super(UMLElementTypes.Constraint_1028);
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -69,7 +71,7 @@ public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
+		EAnnotation annotation = view.getEAnnotation("Shortcut");//$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyShortcutsCommand(cmd, view);
@@ -83,6 +85,8 @@ public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
+
 
 	/**
 	 * @generated
@@ -236,4 +240,5 @@ public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
+
 }

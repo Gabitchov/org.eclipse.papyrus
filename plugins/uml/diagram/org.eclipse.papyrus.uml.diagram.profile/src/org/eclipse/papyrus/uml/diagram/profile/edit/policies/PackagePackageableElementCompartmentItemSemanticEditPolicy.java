@@ -1,16 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.edit.policies;
 
 import org.eclipse.gef.commands.Command;
@@ -27,6 +27,7 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ModelCreateCommandC
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.PackageCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.PrimitiveTypeCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ProfileCreateCommandCN;
+import org.eclipse.papyrus.uml.diagram.profile.edit.commands.StereotypeCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes;
 
 /**
@@ -40,6 +41,7 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicy extends 
 	public PackagePackageableElementCompartmentItemSemanticEditPolicy() {
 		super(UMLElementTypes.Package_2007);
 	}
+
 
 	/**
 	 * @generated
@@ -61,54 +63,73 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicy extends 
 				isExtendedType = true;
 			}
 		}
+
 		if(UMLElementTypes.Comment_1007 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new CommentCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.Model_1027 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ModelCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.Profile_1024 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ProfileCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.Package_1012 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new PackageCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.Constraint_1028 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ConstraintCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.Enumeration_3025 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new EnumerationCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.PrimitiveType_3026 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new PrimitiveTypeCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.DataType_3027 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new DataTypeCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
+		}
+		if(UMLElementTypes.Stereotype_1023 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new StereotypeCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		return super.getCreateCommand(req);
 	}
+
+
+
 }

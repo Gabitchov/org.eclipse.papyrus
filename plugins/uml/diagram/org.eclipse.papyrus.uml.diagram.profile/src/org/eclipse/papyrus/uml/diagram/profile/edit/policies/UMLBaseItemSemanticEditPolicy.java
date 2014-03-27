@@ -1,16 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
+/*
+ * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.edit.policies;
 
 import java.util.Iterator;
@@ -80,14 +80,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Extended request data key to hold editpart visual id.
-	 * 
 	 * @generated
 	 */
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 
 	/**
 	 * Extended request data key to hold the edge view during a reconnect request.
-	 * 
 	 * @generated
 	 */
 	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; //$NON-NLS-1$
@@ -111,12 +109,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * It is done in those cases when it's not possible to deduce diagram
 	 * element kind from domain element.
 	 * Add the reoriented view to the request extended data so that the view
-	 * currently edited can be distinguished from other views of the same element
-	 * and these latter possibly removed if they become inconsistent after reconnect
+	 *  currently edited can be distinguished from other views of the same element
+	 *  and these latter possibly removed if they become inconsistent after reconnect
 	 * 
 	 * @generated
 	 */
-	@Override
 	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
@@ -132,7 +129,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns visual id from request parameters.
-	 * 
 	 * @generated
 	 */
 	protected int getVisualID(IEditCommandRequest request) {
@@ -143,7 +139,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
@@ -245,6 +240,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		return null;
 	}
 
+	// RS: add code for extended types
 	/**
 	 * @generated
 	 */
@@ -283,6 +279,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		ICommand createGMFCommand = provider.getEditCommand(request);
 		return getGEFWrapper(createGMFCommand);
 	}
+
+	// RS: End of add code for extended types
 
 	/**
 	 * @generated
@@ -336,6 +334,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		} else {
 			return getGEFWrapper(new MoveElementsCommand(req));
 		}
+
 	}
 
 	/**
@@ -361,7 +360,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns editing domain from the host edit part.
-	 * 
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
@@ -370,12 +368,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Clean all shortcuts to the host element from the same diagram
-	 * 
 	 * @generated
 	 */
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
 		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
-		for(Iterator it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
+		for(Iterator<?> it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
 			View nextView = (View)it.next();
 			if(nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
 				continue;
@@ -383,6 +380,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
 		}
 	}
+
 
 	/**
 	 * @generated
@@ -403,8 +401,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public LinkConstraints() {
-			// use static method #getLinkConstraints() to access instance
+		public LinkConstraints() { // use static method #getLinkConstraints() to access instance
 		}
 
 		/**
@@ -479,6 +476,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
+
 			return canExistCommentAnnotatedElement_1022(source, target);
 		}
 
@@ -491,6 +489,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
+
 			return canExistConstraintConstrainedElement_4014(source, target);
 		}
 
@@ -506,6 +505,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(target != null && (target.getOwnedRules().contains(target))) {
 				return false;
 			}
+
 			return canExistConstraintContext_8500(source, target);
 		}
 
@@ -515,14 +515,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistExtension_1013(Package container, Extension linkInstance, Property source, Class target) {
 			try {
 				//ExtensionSource
-				/**
-				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
+				/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
 				 * 
 				 * @see org.eclipse.papyrus.uml.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
 				 */
 				//ExtensionTarget
-				/**
-				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
+
+				/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
 				 * 
 				 * @see org.eclipse.papyrus.uml.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
 				 */
@@ -757,4 +756,5 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return true;
 		}
 	}
+
 }

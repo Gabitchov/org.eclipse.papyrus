@@ -1,16 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.edit.policies;
 
 import java.util.ArrayList;
@@ -47,6 +47,7 @@ public class ProfileApplicationItemSemanticEditPolicy extends UMLBaseItemSemanti
 		super(UMLElementTypes.ProfileApplication_1045);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -60,6 +61,7 @@ public class ProfileApplicationItemSemanticEditPolicy extends UMLBaseItemSemanti
 		return getGEFWrapper(cmd.reduce());
 		//return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 	}
+
 
 	/**
 	 * @generated
@@ -78,15 +80,12 @@ public class ProfileApplicationItemSemanticEditPolicy extends UMLBaseItemSemanti
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
-		boolean isExtendedType = false;
 		if(requestElementType instanceof IExtendedHintedElementType) {
 			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
 			if(baseElementType != null) {
-				isExtendedType = true;
 			} else {
 				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
 				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
-				isExtendedType = true;
 			}
 		}
 		if(UMLElementTypes.CommentAnnotatedElement_1022 == baseElementType) {
@@ -148,4 +147,5 @@ public class ProfileApplicationItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
+
 }
