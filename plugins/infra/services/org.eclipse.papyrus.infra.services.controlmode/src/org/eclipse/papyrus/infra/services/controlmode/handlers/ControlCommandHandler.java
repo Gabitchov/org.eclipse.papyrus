@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 Atos, CEA LIST, and others.
+ * Copyright (c) 2013, 2014 Atos, CEA LIST, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Arthur Daussy (Atos) arthur.daussy@atos.net - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - pluggable providers of fragment-resource selection dialogs
+ *  Christian W. Damus (CEA) - bug 410346
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.handlers;
@@ -92,9 +93,9 @@ public class ControlCommandHandler extends AbstractModelExplorerHandler {
 			}
 		}
 		if(defaultName == null) {
-			LabelHelper.getPrettyLabel(eObject);
-			Pattern p = Pattern.compile("<<.*>>");
-			defaultName = p.matcher(defaultName).replaceAll("");
+			defaultName = LabelHelper.getPrettyLabel(eObject);
+			Pattern p = Pattern.compile("<<.*?>>|<.*?>");
+			defaultName = p.matcher(defaultName).replaceAll("").trim();
 		}
 		StringBuilder b = new StringBuilder();
 		for(Character c : defaultName.toCharArray()) {

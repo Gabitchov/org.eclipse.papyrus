@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 AtoS.
+ * Copyright (c) 2011, 2014 AtoS, CEA, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Tristan FAURE (AtoS) tristan.faure@atos.net - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 410346
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.palette.customaction.utils;
 
@@ -29,6 +31,15 @@ public class ProviderUtil {
 	 */
 	public static String getLabel (EObject eobject)
 	{
-		return new ReflectiveItemProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getText(eobject);
+		// FIXME: The reflective provider doesn't use the factory to get item labels. If that was intended, it will not work. This will only provide generic labels
+		ComposedAdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		ReflectiveItemProvider provider = new ReflectiveItemProvider(factory);
+		try {
+			return provider.getText(eobject);
+		} finally {
+			// We created these, so we must dispose them
+			provider.dispose();
+			factory.dispose();
+		}
 	}
 }
