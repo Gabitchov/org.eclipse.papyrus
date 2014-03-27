@@ -56,18 +56,21 @@ public class NamespaceHelperAdvice extends AbstractEditHelperAdvice {
 				Object object = (Object) value.next();
 				if (object instanceof Constraint) {
 					if (UMLPackage.eINSTANCE.getNamespace_OwnedRule().equals(elemsToMove.get(object))) {
-						View viewConstraint = findView((Constraint) object);
-						List<?> sourceConnections = ViewUtil.getSourceConnections(viewConstraint);
-						for (Object connector : sourceConnections) {
-							if (!(connector instanceof Edge)) {
-								continue;
-							}
-							Edge edge = (Edge) connector;
-							EObject targetElem = edge.getTarget().getElement();
-							if (targetElem instanceof Namespace) {
-								if (((Namespace) targetElem).getOwnedRules().contains((Constraint) object)) {
-									edgeToDestroy = edge;
-									break;
+						Constraint constraint = (Constraint) object;
+						View viewConstraint = findView(constraint);
+						if (viewConstraint != null){	
+							List<?> sourceConnections = ViewUtil.getSourceConnections(viewConstraint);
+							for (Object connector : sourceConnections) {
+								if (!(connector instanceof Edge)) {
+									continue;
+								}
+								Edge edge = (Edge) connector;
+								EObject targetElem = edge.getTarget().getElement();
+								if (targetElem instanceof Namespace) {
+									if (((Namespace) targetElem).getOwnedRules().contains(constraint)) {
+										edgeToDestroy = edge;
+										break;
+									}
 								}
 							}
 						}
