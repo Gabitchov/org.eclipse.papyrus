@@ -20,8 +20,9 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.gmfdiag.css.dialog.CSSThemeCreationDialog;
-import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSStyleSheetsToThemeHelper;
+import org.eclipse.papyrus.infra.gmfdiag.css.helper.WorkspaceThemesHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
+import org.eclipse.papyrus.infra.gmfdiag.css.theme.ThemeManager;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -42,7 +43,7 @@ public class CSSFileHandler extends AbstractHandler implements IHandler {
 	private static final String THEME_DEFINE_COMMAND_ID = "org.eclipse.papyrus.infra.gmfdiag.css.theme.define"; //$NON-NLS-1$
 
 	/** */
-	private CSSStyleSheetsToThemeHelper cssHelper = new CSSStyleSheetsToThemeHelper();
+	private WorkspaceThemesHelper cssHelper = new WorkspaceThemesHelper();
 
 	/**
 	 * Default constructor.
@@ -79,17 +80,17 @@ public class CSSFileHandler extends AbstractHandler implements IHandler {
 		String commandID = event.getCommand().getId();
 		int dialogResult = -1;
 		if(THEME_DEFINE_COMMAND_ID.equals(commandID)) {
-
-			// TODO Open a specific dialog to define theme according to selection
+			// Open a specific dialog to define theme according to selection
 			Dialog dialog = new CSSThemeCreationDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), theme);
 			dialogResult = dialog.open();
 		} else if(THEME_EDIT_COMMAND_ID.equals(commandID)) {
 			// TODO Open a specific dialog to edit existing theme  according to selection
 		}
 
-		// Save only if user has validated
+		// Save and reload themes list only if user has validated
 		if(dialogResult == Dialog.OK) {
 			cssHelper.saveThemeWorkspacePreference(theme);
+			ThemeManager.instance.reloadThemes();
 		}
 
 		return null;

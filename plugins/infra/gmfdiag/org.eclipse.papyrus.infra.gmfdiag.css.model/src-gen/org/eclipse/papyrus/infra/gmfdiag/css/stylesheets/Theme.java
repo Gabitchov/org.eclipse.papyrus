@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Theme extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
@@ -36,7 +37,7 @@ public interface Theme extends EObject {
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getTheme_Id()
-	 * @model id="true"
+	 * @model default="" id="true" ordered="false"
 	 * @generated
 	 */
 	String getId();

@@ -13,9 +13,10 @@ package org.eclipse.papyrus.infra.gmfdiag.css.helper;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
@@ -41,14 +43,14 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes;
  * @author gpascual
  *
  */
-public class CSSStyleSheetsToThemeHelper {
+public class WorkspaceThemesHelper {
 
 
 	/**
 	 * Default constructor.
 	 *
 	 */
-	public CSSStyleSheetsToThemeHelper() {
+	public WorkspaceThemesHelper() {
 	}
 
 	/**
@@ -74,13 +76,14 @@ public class CSSStyleSheetsToThemeHelper {
 
 		// Create a theme from selected CSS file
 		Theme theme = createThemeFromSelection(selectedCSSFilesList);
+		theme.setId(EcoreUtil.generateUUID());
 
 		return theme;
 
 	}
 
 	/**
-	 * Svae theme in workspace preferences.
+	 * Save theme in workspace preferences.
 	 * 
 	 * @param theme
 	 *        Theme to save
@@ -107,11 +110,14 @@ public class CSSStyleSheetsToThemeHelper {
 		// Save theme preference file
 		if(themeFile != null) {
 			try {
-				themeFile.save(Collections.EMPTY_MAP);
+				Map<String, Object> options = new HashMap<String, Object>();
+				options.put(XMIResource.XMI_ID, Boolean.TRUE);
+				themeFile.save(options);
 			} catch (IOException e) {
 				Activator.log.error(e);
 			}
 		}
+
 	}
 
 	/**
@@ -132,7 +138,7 @@ public class CSSStyleSheetsToThemeHelper {
 
 			//Style sheets to add in theme
 			StyleSheetReference styleSheetsReference = styleSheetsFactory.createStyleSheetReference();
-			styleSheetsReference.setPath(URI.createFileURI(cssFile.getLocation().toOSString()).toFileString());
+			styleSheetsReference.setPath(URI.createFileURI(cssFile.getLocation().toOSString()).toString());
 			newTheme.getStylesheets().add(styleSheetsReference);
 		}
 		return newTheme;
@@ -145,11 +151,7 @@ public class CSSStyleSheetsToThemeHelper {
 	 */
 	private Resource findThemeFile() {
 
-		// Get workspace path
-		IPath pluginStatePath = Activator.getDefault().getStateLocation();
-
-		// Build preference file path
-		IPath themeFilePath = pluginStatePath.append("theme.xmi");
+		IPath themeFilePath = getThemeWorkspacePreferenceFilePath();
 
 		// Create associated URI
 		URI resolvedURI = CommonPlugin.resolve(URI.createFileURI(themeFilePath.toOSString()));
@@ -165,5 +167,19 @@ public class CSSStyleSheetsToThemeHelper {
 		}
 
 		return resource;
+	}
+
+	/**
+	 * Build path to access preference file.
+	 * 
+	 * @return Path to theme.xmi file in workspace preference directory
+	 */
+	public IPath getThemeWorkspacePreferenceFilePath() {
+		// Get workspace path
+		IPath pluginStatePath = Activator.getDefault().getStateLocation();
+
+		// Build preference file path
+		IPath themeFilePath = pluginStatePath.append("theme.xmi");
+		return themeFilePath;
 	}
 }

@@ -24,15 +24,25 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.CommonPlugin;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.preference.IPersistentPreferenceStore;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.css.helper.WorkspaceThemesHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.preferences.ThemePreferences;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ThemeImpl;
 import org.eclipse.swt.graphics.Image;
 
@@ -89,6 +99,13 @@ public class ThemeManager {
 		return getAllThemes().get(themeId);
 	}
 
+	/**
+	 * Permit to reload known themes list.
+	 */
+	public void reloadThemes() {
+		allThemes = null;
+	}
+
 	private Map<String, Theme> getAllThemes() {
 		if(allThemes == null) {
 			allThemes = new LinkedHashMap<String, Theme>(); //Keep the themes ordered, to avoid nondeterministic behavior
@@ -97,6 +114,7 @@ public class ThemeManager {
 
 			loadThemeDefinitions(config);
 			loadThemeContributions(config);
+			loadThemePreferenceWorkspace();
 		}
 
 		return allThemes;
@@ -177,6 +195,38 @@ public class ThemeManager {
 					Activator.log.error(ex);
 				}
 			}
+		}
+	}
+
+	/**
+	 * Load themes of workspace preference.
+	 */
+	private void loadThemePreferenceWorkspace() {
+
+		// Get helper
+		WorkspaceThemesHelper helper = new WorkspaceThemesHelper();
+
+		// Get path of preference file
+		IPath path = helper.getThemeWorkspacePreferenceFilePath();
+
+		// If file exist, themes can load
+		if(path.toFile().exists()) {
+
+			// Resolve URI
+			URI fileURI = CommonPlugin.resolve(URI.createFileURI(path.toOSString()));
+
+			// Create associated resource
+			ResourceSet resourceSet = new ResourceSetImpl();
+			Resource resource = resourceSet.getResource(fileURI, true);
+
+			// Get workspace theme
+			WorkspaceThemes workspaceThemes = (WorkspaceThemes)EcoreUtil.getObjectByType(resource.getContents(), StylesheetsPackage.eINSTANCE.getWorkspaceThemes());
+
+			// Add each themme to current list
+			for(Theme theme : workspaceThemes.getThemes()) {
+				allThemes.put(theme.getId(), theme);
+			}
+
 		}
 	}
 
