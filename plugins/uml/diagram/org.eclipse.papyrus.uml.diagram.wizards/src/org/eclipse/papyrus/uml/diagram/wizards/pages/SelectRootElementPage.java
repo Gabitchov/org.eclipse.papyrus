@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008 Obeo.
+ * Copyright (c) 2008, 2014 Obeo, CEA, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,8 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
+ *     Christian W. Damus (CEA) - bug 410346
+ *     
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
 
@@ -25,6 +27,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IWrapperItemProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -42,6 +45,8 @@ import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.uml.diagram.wizards.Messages;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -127,7 +132,7 @@ public class SelectRootElementPage extends WizardPage {
 		layoutData.heightHint = 300;
 		layoutData.widthHint = 300;
 		modelViewer.getTree().setLayoutData(layoutData);
-		AdapterFactory adapterFactory = createAdapterFactory();
+		final AdapterFactory adapterFactory = createAdapterFactory();
 		modelViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 		modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -143,6 +148,16 @@ public class SelectRootElementPage extends WizardPage {
 			}
 		});
 
+		modelViewer.getControl().addDisposeListener(new DisposeListener() {
+			
+			public void widgetDisposed(DisposeEvent e) {
+				// Dispose the adapter factory that we created to avoid leaking its adapters
+				if(adapterFactory instanceof IDisposable) {
+					((IDisposable)adapterFactory).dispose();
+				}
+			}
+		});
+		
 		setPageComplete(validatePage());
 	}
 
