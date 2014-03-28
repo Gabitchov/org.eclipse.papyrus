@@ -99,30 +99,14 @@ public class ModelItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy
 		if (requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
-		IElementType baseElementType = requestElementType;
-		boolean isExtendedType = false;
-		if (requestElementType instanceof IExtendedHintedElementType) {
-			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if (baseElementType != null) {
-				isExtendedType = true;
-			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType) requestElementType);
-				isExtendedType = true;
-			}
-		}
 
-		if (UMLElementTypes.RedefinableTemplateSignature_3015 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
+		if (UMLElementTypes.RedefinableTemplateSignature_3015 == requestElementType) {
+
 			return getGEFWrapper(new RedefinableTemplateSignatureCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.TemplateSignature_3033 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
+		if (UMLElementTypes.TemplateSignature_3033 == requestElementType) {
+
 			return getGEFWrapper(new TemplateSignatureCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}

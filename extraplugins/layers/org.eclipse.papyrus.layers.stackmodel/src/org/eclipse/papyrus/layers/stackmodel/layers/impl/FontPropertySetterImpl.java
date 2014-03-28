@@ -13,7 +13,8 @@
 package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.FontStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.layers.stackmodel.layers.FontInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.FontPropertySetter;
@@ -60,17 +61,25 @@ public class FontPropertySetterImpl extends PropertySetterImpl implements FontPr
 	@Override
 	public void setValue(View view, TypeInstance value) {
 	
-	
-		FontInstance lineValue = (FontInstance)value;
+		// Try to get the FontStyle object to modify
+		FontStyle style;
+		if(view instanceof FontStyle) {
+			// Try directly (case of Shape ...)
+			style = (FontStyle)view;
+		} 
+		else {
+			// Try as additionnal style
+			style = (FontStyle)view.getStyle(NotationPackage.eINSTANCE.getFontStyle() );
+		}
 		
-		if(view instanceof Shape) {
-			Shape shape = (Shape)view;
-			
-			
-			shape.setFontColor(lineValue.getFontColor());
-			shape.setFontName(lineValue.getFontName());
-			shape.setFontHeight(lineValue.getFontHeigh());
-			shape.setBold(lineValue.isBold());
+		// Set values
+		if( style != null ) {
+			FontInstance lineValue = (FontInstance)value;
+
+			style.setFontColor(lineValue.getFontColor());
+			style.setFontName(lineValue.getFontName());
+			style.setFontHeight(lineValue.getFontHeigh());
+			style.setBold(lineValue.isBold());
 		}
 		
 	}

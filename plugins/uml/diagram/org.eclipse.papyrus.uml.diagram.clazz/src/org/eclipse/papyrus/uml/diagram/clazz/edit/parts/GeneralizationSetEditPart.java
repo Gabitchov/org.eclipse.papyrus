@@ -62,12 +62,10 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof ConstraintLabelEditPart) {
 			((ConstraintLabelEditPart) childEditPart).setLabel(
 					getPrimaryShape().getConstraintLabel());
-			return true;
 		}
 		if (childEditPart instanceof AppliedStereotypeGeneralizationSetLabelEditPart) {
 			((AppliedStereotypeGeneralizationSetLabelEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
 		}
 		return false;
 	}

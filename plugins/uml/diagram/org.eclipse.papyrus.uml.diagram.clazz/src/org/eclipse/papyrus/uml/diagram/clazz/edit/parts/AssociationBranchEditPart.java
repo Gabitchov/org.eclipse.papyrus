@@ -59,12 +59,10 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 		if (childEditPart instanceof AssociationBranchRoleEditPart) {
 			((AssociationBranchRoleEditPart) childEditPart).setLabel(
 					getPrimaryShape().getRoleSourceLabel());
-			return true;
 		}
 		if (childEditPart instanceof AssociationBranchMutliplicityEditPart) {
 			((AssociationBranchMutliplicityEditPart) childEditPart).setLabel(
 					getPrimaryShape().getMultiplicitySourceLabel());
-			return true;
 		}
 		return false;
 	}

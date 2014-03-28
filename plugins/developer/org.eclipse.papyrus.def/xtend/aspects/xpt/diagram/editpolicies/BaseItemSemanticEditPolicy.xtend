@@ -192,10 +192,20 @@ protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.ecli
 
 	override getCreateCommand(GenDiagram it) '''
 «generatedMemberComment()»
- protected org.eclipse.gef.commands.Command getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
- 		// no more usage of the extended types here. 
-        return null;
-  }
+	protected org.eclipse.gef.commands.Command getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
+		org.eclipse.gmf.runtime.emf.type.core.IElementType requestElementType = req.getElementType();
+		if (requestElementType instanceof org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType) {
+			// try to get a semantic create command from the extended type
+			org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandProvider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getContainer());
+			if (commandProvider != null) {
+				org.eclipse.gmf.runtime.common.core.command.ICommand command = commandProvider.getEditCommand(req);
+				if (command != null && command.canExecute()) {
+					return new org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy(command);
+				}
+			}
+		}
+		return null;
+	}
 '''
 
 	def getCreateExtendedTypeCommand(GenDiagram it) '''

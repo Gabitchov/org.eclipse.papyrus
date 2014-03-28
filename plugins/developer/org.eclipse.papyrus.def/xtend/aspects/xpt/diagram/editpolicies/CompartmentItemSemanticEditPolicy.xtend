@@ -22,6 +22,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenNode
 import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet
 import org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy
 import xpt.Common
+import xpt.diagram.editpolicies.childContainerCreateCommand
 
 @Singleton class CompartmentItemSemanticEditPolicy extends xpt.diagram.editpolicies.CompartmentItemSemanticEditPolicy {
 	@Inject extension Common;

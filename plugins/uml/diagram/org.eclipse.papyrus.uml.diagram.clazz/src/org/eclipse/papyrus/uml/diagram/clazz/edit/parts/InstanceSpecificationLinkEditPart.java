@@ -57,12 +57,10 @@ public class InstanceSpecificationLinkEditPart extends ConnectionEditPart
 		if (childEditPart instanceof SourceISLinkLabelEditPart) {
 			((SourceISLinkLabelEditPart) childEditPart).setLabel(
 					getPrimaryShape().getSourceLabel());
-			return true;
 		}
 		if (childEditPart instanceof TargetISLinkLabelEditPart) {
 			((TargetISLinkLabelEditPart) childEditPart).setLabel(
 					getPrimaryShape().getTargetLabel());
-			return true;
 		}
 		return false;
 	}
