@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 429422
+ *  Mickael ADAM (CEA) - bug 429642
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
@@ -16,15 +17,20 @@ package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 import java.io.IOException;
 import java.net.URL;
 
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.e4.ui.css.core.dom.IElementProvider;
 import org.eclipse.e4.ui.css.core.engine.CSSElementContext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
+import org.eclipse.swt.widgets.Display;
 import org.w3c.dom.Element;
 
 /**
@@ -42,6 +48,20 @@ public class ModelCSSEngine extends ExtendedCSSEngineImpl {
 
 	private final Resource model;
 
+	private IResourceChangeListener resourceListener = new IResourceChangeListener() {
+
+		public void resourceChanged(IResourceChangeEvent event) {
+			ModelCSSEngine.this.reset();
+			DiagramHelper.setNeedsRefresh();
+			Display.getDefault().asyncExec(new Runnable() {
+
+				public void run() {
+					DiagramHelper.refreshDiagrams();
+				}
+			});
+		}
+	};
+
 	/**
 	 * Creates a ModelCSSEngine for the requested resource.
 	 * 
@@ -50,6 +70,7 @@ public class ModelCSSEngine extends ExtendedCSSEngineImpl {
 	public ModelCSSEngine(Resource model) {
 		super(getProjectCSSEngine(model));
 		this.model = model;
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
 	}
 
 	private static ExtendedCSSEngine getProjectCSSEngine(Resource resource) {
@@ -90,6 +111,12 @@ public class ModelCSSEngine extends ExtendedCSSEngineImpl {
 		}
 		URL url = new URL(path);
 		parseStyleSheet(url.openStream());
+	}
+
+	@Override
+	public void dispose() {
+		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceListener);
+		super.dispose();
 	}
 
 	//Unsupported operations. The ModelCSSEngine should not be used directly.

@@ -14,7 +14,6 @@ package org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
@@ -27,7 +26,7 @@ import org.eclipse.gmf.runtime.notation.EObjectListValueStyle;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 
-public class ModelStyleSheetObservableList extends EMFObservableList implements IChangeListener {
+public class ModelStyleSheetObservableList extends EMFObservableList {
 
 	private Resource notationResource;
 
@@ -84,18 +83,4 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	public Command getRemoveAllCommand(Collection<?> values) {
 		return new RemoveAllModelStyleSheetValueCommand((TransactionalEditingDomain)domain, notationResource, values);
 	}
-
-	//	@Override
-	//	//FIXME Refresh don't  work 
-	//	public void handleChange(ChangeEvent event) {
-	//		Display.getDefault().syncExec(new Runnable() {
-	//
-	//			public void run() {
-	//				//((CSSDiagram)source).getEngine().resetCache();
-	//				DiagramHelper.setNeedsRefresh();
-	//				DiagramHelper.refreshDiagrams();
-	//			}
-	//		});
-	//	}
-
 }

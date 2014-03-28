@@ -104,6 +104,7 @@ public class CSSModelElement extends CustomStyleModelElement {
 
 			});
 
+			
 			return modelStyleSheetObservableList;
 		}
 		return super.doGetObservable(propertyPath);
