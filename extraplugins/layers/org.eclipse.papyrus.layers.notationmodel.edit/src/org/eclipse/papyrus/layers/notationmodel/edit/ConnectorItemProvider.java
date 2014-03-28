@@ -12,6 +12,7 @@ package org.eclipse.papyrus.layers.notationmodel.edit;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Shape;
 
 
@@ -20,7 +21,7 @@ import org.eclipse.gmf.runtime.notation.Shape;
  * @author cedric dumoulin
  *
  */
-public class ConnectorItemProvider extends org.eclipse.gmf.runtime.notation.provider.ShapeItemProvider {
+public class ConnectorItemProvider extends org.eclipse.gmf.runtime.notation.provider.ConnectorItemProvider {
 
 	protected AdapterFactory domainAdapterFactory;
 	
@@ -46,7 +47,7 @@ public class ConnectorItemProvider extends org.eclipse.gmf.runtime.notation.prov
 	public String getText(Object object) {
 		
 //		System.err.println("getText()");
-		Shape shape = (Shape)object;
+		Connector shape = (Connector)object;
 		
 		Object domainObject = shape.getElement();
 		if( domainObject != null) {
@@ -70,7 +71,7 @@ public class ConnectorItemProvider extends org.eclipse.gmf.runtime.notation.prov
 	@Override
 	public Object getImage(Object object) {
 //		System.err.println("getImage()");
-		Shape shape = (Shape)object;
+		Connector shape = (Connector)object;
 		
 		Object domainObject = shape.getElement();
 		if( domainObject != null) {
