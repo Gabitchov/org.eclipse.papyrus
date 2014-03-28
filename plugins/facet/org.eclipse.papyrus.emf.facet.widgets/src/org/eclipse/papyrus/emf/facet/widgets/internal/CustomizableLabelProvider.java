@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010 Mia-Software.
+ * Copyright (c) 2010, 2014 Mia-Software, CEA, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,8 @@
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *    Nicolas Bros (Mia-Software) - Bug 339653 - org.eclipse.papyrus.emf.facet.widgets API Cleaning
  *    Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
+ *    Christian W. Damus (CEA) - bug 410346
+ *  
  *******************************************************************************/
 
 package org.eclipse.papyrus.emf.facet.widgets.internal;
@@ -48,6 +50,18 @@ public class CustomizableLabelProvider extends LabelProvider {
 				.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 	}
 
+	@Override
+	public void dispose() {
+		try {
+			// Because we created this adapter factory, ourselves, we must dispose it, as it may have created
+			// adapters that are redundant with other adapters still attached to the model and nobody else will
+			// be using our adapters (they are only recognized by the factory that created them)
+			adapterFactoryWithRegistry.dispose();
+		} finally {
+			super.dispose();
+		}
+	}
+	
 	@Override
 	public String getText(final Object element) {
 		if (element instanceof EReference) {

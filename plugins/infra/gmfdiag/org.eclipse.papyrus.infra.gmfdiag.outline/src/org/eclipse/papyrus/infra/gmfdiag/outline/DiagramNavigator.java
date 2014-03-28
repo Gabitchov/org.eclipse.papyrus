@@ -1,5 +1,5 @@
 /***********************************************************************
- * Copyright (c) 2007, 2008, 2009 Anyware Technologies, Obeo.
+ * Copyright (c) 2007, 2014 Anyware Technologies, Obeo, CEA, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *    Anyware Technologies - initial API and implementation
  *    Obeo 
+ *    Christian W. Damus (CEA) - bug 410346
  * 
  **********************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.outline;
@@ -20,6 +21,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IViewerNotification;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
@@ -155,7 +157,17 @@ public class DiagramNavigator extends Composite {
 	 * Set the tree providers for the outline
 	 */
 	protected void initProviders() {
-		AdapterFactoryContentProvider adapterContentProvider = new NavigatorAdapterFactoryContentProvider(getAdapterFactory());
+		final AdapterFactory adapterFactory = getAdapterFactory();
+		AdapterFactoryContentProvider adapterContentProvider = new NavigatorAdapterFactoryContentProvider(adapterFactory) {
+			@Override
+			public void dispose() {
+				// Dispose the adapter factory because we created it
+				if(adapterFactory instanceof IDisposable) {
+					((IDisposable)adapterFactory).dispose();
+				}
+				super.dispose();
+			}
+		};
 		adapterContentProvider.inputChanged(viewer, null, null);
 		viewer.setContentProvider(new DiagramOrientedContentProvider(adapterContentProvider));
 		try {

@@ -1,14 +1,15 @@
 /*******************************************************************************
- * Copyright (c) 2007 Anyware Technologies. All rights reserved. This program
- * and the accompanying materials are made available under the terms of the
- * Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2007, 2014 Anyware Technologies, CEA, and others.
+ * All rights reserved. This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies
+ * this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: Jacques Lescot (Anyware Technologies) - initial API and
- * implementation
+ * Contributors: Jacques Lescot (Anyware Technologies) - initial API and implementation
  * Thibault Landre (Atos Origin) - refactor to extract the exportAllDiagram from ExportAllDiagramsAction
  * Alexia Allanic (Atos Origin) - Add margin to not truncate images
  * Anass Radouani (AtoS) - add use GMF exporting tool and remove manual extraction
+ * Christian W. Damus (CEA) - bug 431411
+ * Christian W. Damus (CEA) - bug 410346
  * 
  ******************************************************************************/
 package org.eclipse.papyrus.infra.export;
@@ -24,6 +25,7 @@ import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -51,8 +53,6 @@ import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain.Factory;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.image.ImageFileFormat;
@@ -63,6 +63,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.export.internal.Activator;
+import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
+import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
 import org.eclipse.swt.SWTError;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -162,70 +164,93 @@ public class ExportAllDiagrams {
 		newMonitor.subTask(Messages.ExportAllDiagrams_2);
 		if(file != null) {
 			final ResourceSetImpl resourceSet = new ResourceSetImpl();
-			resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
-			resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
-			resourceSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), true);
-
-			// create transactional editing domain
-
-			TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(resourceSet);
-			if(editingDomain == null) {
-				Factory factory = TransactionalEditingDomain.Factory.INSTANCE;
-				editingDomain = factory.createEditingDomain(resourceSet);
-			}
-
-			AbstractTransactionalCommand com = new AbstractTransactionalCommand(editingDomain, "Resolve", Collections.emptyList()) {
-
-				@Override
-				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-					EcoreUtil.resolveAll(resourceSet);
-					return null;
+			TransactionalEditingDomain editingDomain = null;
+			try {
+				resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
+				resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
+				
+				// Since the *.di file is empty as of Luna, we cannot rely on it to find all diagrams by resolving cross-references
+				IPapyrusFile logical = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(file);
+				if(logical != null) {
+					for(IResource component : logical.getAssociatedResources()) {
+						if(component.getType() == IResource.FILE) {
+							resourceSet.getResource(URI.createPlatformResourceURI(component.getFullPath().toString(), true), true);
+						}
+					}
 				}
-			};
-
-			// bypass all the transaction/validate/notification mechanisms, it is a lot faster and it has no impact
-			// since we do not modify the model
-			CommandStack commandStack = editingDomain.getCommandStack();
-			if(commandStack instanceof TransactionalCommandStack) {
-				TransactionalCommandStack stack = (TransactionalCommandStack)commandStack;
-				Map<Object, Object> options = new HashMap<Object, Object>();
-				options.put(Transaction.OPTION_NO_NOTIFICATIONS, Boolean.TRUE);
-				options.put(Transaction.OPTION_NO_UNDO, Boolean.TRUE);
-				options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-				options.put(Transaction.OPTION_IS_UNDO_REDO_TRANSACTION, Boolean.FALSE);
-				options.put(Transaction.OPTION_NO_TRIGGERS, Boolean.TRUE);
-				options.put(Transaction.OPTION_VALIDATE_EDIT, Boolean.FALSE);
-				options.put(Transaction.OPTION_VALIDATE_EDIT_CONTEXT, Boolean.FALSE);
-				try {
-					stack.execute(new GMFtoEMFCommandWrapper(com), options);
-				} catch (InterruptedException e) {
-				} catch (RollbackException e) {
+				
+				// create transactional editing domain
+				editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resourceSet);
+	
+				AbstractTransactionalCommand com = new AbstractTransactionalCommand(editingDomain, "Resolve", Collections.emptyList()) {
+	
+					@Override
+					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+						EcoreUtil.resolveAll(resourceSet);
+						return null;
+					}
+				};
+	
+				// bypass all the transaction/validate/notification mechanisms, it is a lot faster and it has no impact
+				// since we do not modify the model
+				CommandStack commandStack = editingDomain.getCommandStack();
+				if(commandStack instanceof TransactionalCommandStack) {
+					TransactionalCommandStack stack = (TransactionalCommandStack)commandStack;
+					Map<Object, Object> options = new HashMap<Object, Object>();
+					options.put(Transaction.OPTION_NO_NOTIFICATIONS, Boolean.TRUE);
+					options.put(Transaction.OPTION_NO_UNDO, Boolean.TRUE);
+					options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+					options.put(Transaction.OPTION_IS_UNDO_REDO_TRANSACTION, Boolean.FALSE);
+					options.put(Transaction.OPTION_NO_TRIGGERS, Boolean.TRUE);
+					options.put(Transaction.OPTION_VALIDATE_EDIT, Boolean.FALSE);
+					options.put(Transaction.OPTION_VALIDATE_EDIT_CONTEXT, Boolean.FALSE);
+					try {
+						stack.execute(new GMFtoEMFCommandWrapper(com), options);
+					} catch (InterruptedException e) {
+					} catch (RollbackException e) {
+					}
+				} else {
+					Activator.log.warn("no transactional editing domain found");
 				}
-			} else {
-				Activator.log.warn("no transactional editing domain found");
-			}
-
-			List<Diagram> diagrams = new ArrayList<Diagram>();
-			if(newMonitor.isCanceled()) {
-				return;
-			}
-			for(Iterator<Notifier> i = resourceSet.getAllContents(); i.hasNext();) {
-				Notifier n = i.next();
-				if(n instanceof Diagram) {
-					diagrams.add((Diagram)n);
+	
+				List<Diagram> diagrams = new ArrayList<Diagram>();
+				if(newMonitor.isCanceled()) {
+					return;
+				}
+				for(Iterator<Notifier> i = resourceSet.getAllContents(); i.hasNext();) {
+					Notifier n = i.next();
+					if(n instanceof Diagram) {
+						diagrams.add((Diagram)n);
+					}
+				}
+				if(newMonitor.isCanceled()) {
+					return;
+				}
+				newMonitor.worked(1);
+				export(new SubProgressMonitor(newMonitor, 9), diagrams);
+			} finally {
+				// Unload the resource set so that we don't leak loads of UML content in the CacheAdapter
+				unload(resourceSet);
+				if(editingDomain != null) {
+					editingDomain.dispose();
 				}
 			}
-			if(newMonitor.isCanceled()) {
-				return;
-			}
-			newMonitor.worked(1);
-			export(new SubProgressMonitor(newMonitor, 9), diagrams);
 		} else {
 			Activator.log.warn(Messages.ExportAllDiagrams_3);
 		}
 
 	}
 
+	private void unload(ResourceSet resourceSet) {
+		for (Resource next : resourceSet.getResources()) {
+			next.unload();
+			next.eAdapters().clear();
+		}
+		
+		resourceSet.getResources().clear();
+		resourceSet.eAdapters().clear();
+	}
+	
 	/**
 	 * export all the diagrams in image
 	 * 
@@ -305,8 +330,14 @@ public class ExportAllDiagrams {
 					if(qualifiedName) {
 						ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 						composedAdapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-						IItemLabelProvider itemLabelFactory = (IItemLabelProvider)composedAdapterFactory.adapt(diagram.getElement(), IItemLabelProvider.class);
-						label = itemLabelFactory.getText(diagram.getElement()).replace(Messages.ExportAllDiagrams_16, "") + "_"; //$NON-NLS-1$//$NON-NLS-2$ 
+						
+						try {
+							IItemLabelProvider itemLabelFactory = (IItemLabelProvider)composedAdapterFactory.adapt(diagram.getElement(), IItemLabelProvider.class);
+							label = itemLabelFactory.getText(diagram.getElement()).replace(Messages.ExportAllDiagrams_16, "") + "_"; //$NON-NLS-1$//$NON-NLS-2$ 
+						} finally {
+							// Don't leak the adapters created by this factory
+							composedAdapterFactory.dispose();
+						}
 					}
 					String uniqueFileName = encodeFileName(label + diagram.getName());
 					if(uniqueFileName.length() > 150) {

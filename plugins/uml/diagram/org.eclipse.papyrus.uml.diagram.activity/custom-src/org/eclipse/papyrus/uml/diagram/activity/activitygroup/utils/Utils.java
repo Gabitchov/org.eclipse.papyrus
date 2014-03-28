@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos.
+ * Copyright (c) 2011, 2014 Atos, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *   Arthur Daussy (Atos) - Initial API and implementation
  *   Arthur Daussy - 371712 : 372745: [ActivityDiagram] Major refactoring group framework
+ *   Christian W. Damus (CEA) - bug 410346
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.activitygroup.utils;
@@ -25,8 +26,6 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
@@ -37,8 +36,7 @@ import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.uml.diagram.activity.activitygroup.predicates.DescendantsFilter;
 import org.eclipse.papyrus.uml.diagram.activity.activitygroup.request.IGroupRequest;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
+import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
@@ -176,27 +174,16 @@ public class Utils {
 		return Sets.filter(all, new DescendantsFilter(all));
 	}
 
-	private static UMLItemProviderAdapterFactory adapter = new UMLItemProviderAdapterFactory();
-
-	static AdapterFactoryLabelProvider factory = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	static AdapterFactoryLabelProvider factory = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	public static String getCorrectLabel(Object object) {
 		if(object instanceof EObject) {
-			if(object instanceof Element) {
-				Object provider = adapter.adapt(object, IItemLabelProvider.class);
-				if(provider instanceof IItemLabelProvider) {
-					IItemLabelProvider labelProvider = (IItemLabelProvider)provider;
-					return labelProvider.getText(object);
-				}
-			} else {
-				return factory.getText(object);
-			}
+			return factory.getText(object);
 		} else if(object instanceof EReference) {
 			return ((EReference)object).getName();
 		} else {
-			return object.toString();
+			return String.valueOf(object); // null safe
 		}
-		return "Error in getting name";////$NON-NLS-1$
 	}
 
 	public static String getCorrectLabel(IAdaptable object) {

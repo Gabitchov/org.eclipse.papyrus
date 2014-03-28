@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 410346
  */
 package org.eclipse.papyrus.uml.diagram.clazz.custom.ui;
 
@@ -126,7 +127,7 @@ public class AbstractTemplateParameterConfigurationDialog extends Dialog {
 			public void widgetSelected(SelectionEvent e) {
 			}
 		});
-		choosePararameteredElementButton.setImage(Activator.getPluginIconImage("org.eclipse.papyrus.icons.uml", "resource/gif/Package.gif"));
+		choosePararameteredElementButton.setImage(Activator.getPluginIconImage("org.eclipse.papyrus.uml.icons", "resource/gif/Package.gif"));
 		choosePararameteredElementButton.setBounds(322, 10, 68, 23);
 		choosePararameteredElementButton.setText("...");
 		parameteredElementLabel = new CLabel(composite_1, SWT.NONE);
@@ -150,7 +151,7 @@ public class AbstractTemplateParameterConfigurationDialog extends Dialog {
 		composite.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
 		xpndtmSetTheDefault.setControl(composite);
 		chooseDefaultParameterButton = new Button(composite, SWT.NONE);
-		chooseDefaultParameterButton.setImage(Activator.getPluginIconImage("org.eclipse.papyrus.icons.uml", "resource/gif/Package.gif"));
+		chooseDefaultParameterButton.setImage(Activator.getPluginIconImage("org.eclipse.papyrus.uml.icons", "resource/gif/Package.gif"));
 		chooseDefaultParameterButton.setBounds(322, 10, 68, 23);
 		chooseDefaultParameterButton.setText("...");
 		defaultElementLabel = new CLabel(composite, SWT.NONE);
