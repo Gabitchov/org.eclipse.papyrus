@@ -18,13 +18,27 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 
-
+/**
+ * 
+ * Command to remove all styleSheets from the resource.
+ * 
+ * @author Mickael ADAM
+ *
+ */
 public class RemoveAllModelStyleSheetValueCommand extends RecordingCommand {
 
 	private Collection<?> values;
 
 	private Resource resource;
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param domain
+	 * @param resource
+	 * @param values
+	 */
 	public RemoveAllModelStyleSheetValueCommand(TransactionalEditingDomain domain, Resource resource, Collection<?> values) {
 		super(domain);
 		this.resource = resource;

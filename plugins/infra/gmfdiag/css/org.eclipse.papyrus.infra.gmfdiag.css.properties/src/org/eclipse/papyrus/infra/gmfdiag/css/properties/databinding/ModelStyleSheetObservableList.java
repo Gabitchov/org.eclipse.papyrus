@@ -8,12 +8,14 @@
  *
  * Contributors:
  *  Mickaël Adam (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding;
 
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
@@ -26,30 +28,64 @@ import org.eclipse.gmf.runtime.notation.EObjectListValueStyle;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 
-public class ModelStyleSheetObservableList extends EMFObservableList {
+
+/**
+ * 
+ * EMFObservableList Containing stylesheet of the model.
+ * 
+ * @author Mickael ADAM
+ *
+ */
+public class ModelStyleSheetObservableList extends EMFObservableList implements IChangeListener {
 
 	private Resource notationResource;
 
 	private EditingDomain domain;
 
+	private CustomModelStyleSheetListener listener;
+
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param notationResource
+	 * @param wrappedList
+	 * @param domain
+	 * @param source
+	 * @param feature
+	 */
 	public ModelStyleSheetObservableList(Resource notationResource, List<?> wrappedList, EditingDomain domain, EObject source, EStructuralFeature feature) {
 		super(wrappedList, domain, source, feature);
 		this.notationResource = notationResource;
 		this.domain = domain;
+
+		source.eAdapters().add(listener = new CustomModelStyleSheetListener(notationResource, source, this));
 	}
 
+	/**
+	 * 
+	 * Used to add manually.
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#getAddAllCommand(java.util.Collection)
+	 *
+	 * @param values
+	 * @return
+	 */
 	@Override
 	public Command getAddAllCommand(Collection<?> values) {
-		CompoundCommand compoundCommand = new CompoundCommand();
-
-		compoundCommand.append(super.getAddAllCommand(values));
-		compoundCommand.append(new AddAllModelStyleSheetCommand((TransactionalEditingDomain)domain, notationResource, values));
-
-		return compoundCommand;
+		return new AddAllModelStyleSheetCommand((TransactionalEditingDomain)domain, notationResource, values);
 	}
 
+	/**
+	 * 
+	 * Used to remove manually styleSheet.
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#getRemoveCommand(java.lang.Object)
+	 *
+	 * @param value
+	 * @return
+	 */
 	@Override
-	//For manual remove
 	public Command getRemoveCommand(Object value) {
 		CompoundCommand compoundCommand = new CompoundCommand();
 
@@ -78,9 +114,24 @@ public class ModelStyleSheetObservableList extends EMFObservableList {
 		return compoundCommand;
 	}
 
+	/**
+	 * Used to remove all StyleSheets before replace the new list.
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#getRemoveAllCommand(java.util.Collection)
+	 *
+	 * @param values
+	 * @return
+	 */
 	@Override
-	//Used to remove all Stylesheet before replace the new list
 	public Command getRemoveAllCommand(Collection<?> values) {
 		return new RemoveAllModelStyleSheetValueCommand((TransactionalEditingDomain)domain, notationResource, values);
+	}
+
+	@Override
+	public void dispose() {
+		source.eAdapters().remove(listener);
+		listener.dispose();
+		listener = null;
+		super.dispose();
 	}
 }

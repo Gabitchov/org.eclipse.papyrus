@@ -52,6 +52,7 @@ public class ModelCSSEngine extends ExtendedCSSEngineImpl {
 
 		public void resourceChanged(IResourceChangeEvent event) {
 			ModelCSSEngine.this.reset();
+			//FIXME Only the current diagram is refresh, need to refresh manually the others 
 			DiagramHelper.setNeedsRefresh();
 			Display.getDefault().asyncExec(new Runnable() {
 

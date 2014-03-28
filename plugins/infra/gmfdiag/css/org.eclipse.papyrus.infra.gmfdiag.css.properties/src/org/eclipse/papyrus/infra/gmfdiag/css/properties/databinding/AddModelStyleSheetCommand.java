@@ -17,12 +17,27 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
+
+/**
+ * Command to add a object to the resource
+ * 
+ * @author Mickael ADAM
+ *
+ */
 public class AddModelStyleSheetCommand extends RecordingCommand {
 
 	private Resource resource;
 
 	private EObject object;
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param domain
+	 * @param resource
+	 * @param object
+	 */
 	public AddModelStyleSheetCommand(TransactionalEditingDomain domain, Resource resource, EObject object) {
 		super(domain);
 		this.resource = resource;
@@ -30,7 +45,6 @@ public class AddModelStyleSheetCommand extends RecordingCommand {
 	}
 
 	public void doExecute() {
-		//add ModelSteelSheet
 		resource.getContents().add(object);
 	}
 }
