@@ -291,7 +291,10 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 				}
 			}
 		}
-
+		//if the stereotype is not applied, we return null.
+		if(stereotypeApplication == null) {
+			return null;
+		}
 		solvedValue = valueSolver.deduceValueFromString(prop, newValue);
 		steApFeature = stereotypeApplication.eClass().getEStructuralFeature(prop.getName());
 		if(prop.getType() instanceof Enumeration) {//Enumeration AND not EnumerationLiteral
