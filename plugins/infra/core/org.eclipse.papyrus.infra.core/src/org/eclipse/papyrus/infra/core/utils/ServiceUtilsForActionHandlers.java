@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 LIFL & CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.infra.core.utils;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
@@ -23,8 +24,8 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * Set of utility methods for accessing core Services. This class provide
@@ -34,9 +35,9 @@ import org.eclipse.ui.PlatformUI;
  * All methods from this class rely on the Eclipse Active Editor, which should
  * be an instance of {@link IMultiDiagramEditor}. If this is not the case,
  * methods throw an exception {@link ServiceException}.
- * 
+ *
  * @author cedric dumoulin
- * 
+ *
  * @deprecated 0.10: Use org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers instead
  */
 @Deprecated
@@ -50,7 +51,7 @@ public class ServiceUtilsForActionHandlers {
 
 	/**
 	 * Get the singleton instance of the class.
-	 * 
+	 *
 	 * @return
 	 */
 	public static final ServiceUtilsForActionHandlers getInstance() {
@@ -59,33 +60,26 @@ public class ServiceUtilsForActionHandlers {
 
 	/**
 	 * Get the service registry from the specified parameter.
-	 * 
+	 *
 	 * @param from
 	 * @return
 	 */
 	public ServicesRegistry getServiceRegistry() throws ServiceException {
-
-		IEditorPart editor;
-		try {
-			editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		IEditorPart editor = WorkbenchPartHelper.getCurrentActiveEditorPart();
+		if(editor != null) {
 			ServicesRegistry serviceRegistry = (ServicesRegistry)editor.getAdapter(ServicesRegistry.class);
 			if(serviceRegistry != null) {
 				return serviceRegistry;
 			}
-		} catch (NullPointerException e) {
-			// Can't get the active editor
-			throw new ServiceNotFoundException("Can't get the current Eclipse Active Editor. No ServiceRegistry found.");
 		}
-
 
 		// Not found
 		throw new ServiceNotFoundException("Can't get the ServiceRegistry from current Eclipse Active Editor");
-
 	}
 
 	/**
 	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}.
-	 * 
+	 *
 	 * @return
 	 * @throws ServiceException
 	 *         If an error occurs while getting the requested service.
@@ -96,11 +90,11 @@ public class ServiceUtilsForActionHandlers {
 
 	/**
 	 * Gets the {@link IPageMngr} registered in the {@link ServicesRegistry}.
-	 * 
+	 *
 	 * @return
 	 * @throws ServiceException
 	 *         If an error occurs while getting the requested service.
-	 * 
+	 *
 	 * @deprecated Use {@link #getIPageManager} instead
 	 */
 	@Deprecated
@@ -110,7 +104,7 @@ public class ServiceUtilsForActionHandlers {
 
 	/**
 	 * Gets the {@link IPageManager} registered in the {@link ServicesRegistry}.
-	 * 
+	 *
 	 * @return
 	 * @throws ServiceException
 	 *         If an error occurs while getting the requested service.
@@ -121,7 +115,7 @@ public class ServiceUtilsForActionHandlers {
 
 	/**
 	 * Gets the {@link IPageMngr} registered in the {@link ServicesRegistry}.
-	 * 
+	 *
 	 * @return
 	 * @throws ServiceException
 	 *         If an error occurs while getting the requested service.
@@ -132,7 +126,7 @@ public class ServiceUtilsForActionHandlers {
 
 	/**
 	 * Gets the {@link ILifeCycleEventsProvider} registered in the {@link ServicesRegistry}.
-	 * 
+	 *
 	 * @param from
 	 * @return
 	 * @throws ServiceException
@@ -144,7 +138,7 @@ public class ServiceUtilsForActionHandlers {
 
 	/**
 	 * Gets the {@link ISashWindowsContainer} registered in the {@link ServicesRegistry}.
-	 * 
+	 *
 	 * @param from
 	 * @return
 	 * @throws ServiceException
@@ -156,7 +150,7 @@ public class ServiceUtilsForActionHandlers {
 
 	/**
 	 * Gets the {@link IEditorPart} of the currently nested active editor.
-	 * 
+	 *
 	 * @param from
 	 * @return
 	 * @throws ServiceException
