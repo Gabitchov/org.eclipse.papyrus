@@ -14,8 +14,6 @@ package org.eclipse.papyrus.uml.diagram.clazz.edit.policies;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
-import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.NestedClassForComponentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.NestedDataTypeForComponentCreateCommand;
@@ -45,58 +43,34 @@ public class ComponentNestedClassifierCompartmentItemSemanticEditPolicyCN extend
 		if (requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
-		IElementType baseElementType = requestElementType;
-		boolean isExtendedType = false;
-		if (requestElementType instanceof IExtendedHintedElementType) {
-			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if (baseElementType != null) {
-				isExtendedType = true;
-			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType) requestElementType);
-				isExtendedType = true;
-			}
-		}
 
-		if (UMLElementTypes.Class_3004 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
+		if (UMLElementTypes.Class_3004 == requestElementType) {
+
 			return getGEFWrapper(new NestedClassForComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.Interface_3037 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
+		if (UMLElementTypes.Interface_3037 == requestElementType) {
+
 			return getGEFWrapper(new NestedInterfaceForComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.Enumeration_3053 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
+		if (UMLElementTypes.Enumeration_3053 == requestElementType) {
+
 			return getGEFWrapper(new NestedEnumerationForComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.PrimitiveType_3046 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
+		if (UMLElementTypes.PrimitiveType_3046 == requestElementType) {
+
 			return getGEFWrapper(new NestedPrimitiveTypeForComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.DataType_3045 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
+		if (UMLElementTypes.DataType_3045 == requestElementType) {
+
 			return getGEFWrapper(new NestedDataTypeForComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.Signal_3051 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
+		if (UMLElementTypes.Signal_3051 == requestElementType) {
+
 			return getGEFWrapper(new NestedSignalForComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}

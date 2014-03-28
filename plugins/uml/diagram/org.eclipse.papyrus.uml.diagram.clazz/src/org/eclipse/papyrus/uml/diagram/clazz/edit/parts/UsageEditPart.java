@@ -62,12 +62,10 @@ public class UsageEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof UsageNameEditPart) {
 			((UsageNameEditPart) childEditPart).setLabel(
 					getPrimaryShape().getNameLabel());
-			return true;
 		}
 		if (childEditPart instanceof AppliedStereotypeUsageEditPart) {
 			((AppliedStereotypeUsageEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
 		}
 		return false;
 	}

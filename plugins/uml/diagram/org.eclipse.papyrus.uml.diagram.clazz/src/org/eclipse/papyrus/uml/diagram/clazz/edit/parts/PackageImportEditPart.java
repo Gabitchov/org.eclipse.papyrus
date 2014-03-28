@@ -60,7 +60,6 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof AppliedStereotypePackageImportEditPart) {
 			((AppliedStereotypePackageImportEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
 		}
 		return false;
 	}

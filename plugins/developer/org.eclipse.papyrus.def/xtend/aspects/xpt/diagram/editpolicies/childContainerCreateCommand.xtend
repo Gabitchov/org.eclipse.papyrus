@@ -40,18 +40,7 @@ import metamodel.MetaModel
 		if(requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
-		org.eclipse.gmf.runtime.emf.type.core.IElementType baseElementType = requestElementType;
-		boolean isExtendedType = false;
-		if(requestElementType instanceof org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType) {
-			baseElementType = org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if(baseElementType != null) {
-				isExtendedType = true;
-			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils.findClosestNonExtendedElementType((org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType)requestElementType);
-				isExtendedType = true;
-			}
-		}
+
 
 	«FOR n : nodes»
 		«IF !n.sansDomain»
@@ -63,23 +52,21 @@ import metamodel.MetaModel
 	«ENDIF»
 	'''
 
-def childNodeCreateCommand(TypeModelFacet it,GenNode node)'''
-if («accessElementType(node)» == baseElementType) {
-	«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size>0»
-	// adjust the containment feature
-	org.eclipse.emf.ecore.EReference containmentFeature = «MetaFeature(it.childMetaFeature)»;
-	req.setContainmentFeature(containmentFeature);
-	«ENDIF»
-	if(isExtendedType) {
-		return getExtendedTypeCreationCommand(req, (org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType)requestElementType);
+	def childNodeCreateCommand(TypeModelFacet it,GenNode node)'''
+	if («accessElementType(node)» == requestElementType) {
+		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size>0»
+		// adjust the containment feature
+		org.eclipse.emf.ecore.EReference containmentFeature = «MetaFeature(it.childMetaFeature)»;
+		req.setContainmentFeature(containmentFeature);
+		«ENDIF»
+
+		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size>0»
+		return getGEFWrapper(getSemanticCreationCommand(req));
+		«ELSE»
+		return getGEFWrapper(new «node.getCreateCommandQualifiedClassName()»(req, org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getDiagramFrom(getHost())));
+		«ENDIF»
+		
 	}
-	«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size>0»
-	return getGEFWrapper(getSemanticCreationCommand(req));
-	«ELSE»
-	return getGEFWrapper(new «node.getCreateCommandQualifiedClassName()»(req, org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getDiagramFrom(getHost())));
-	«ENDIF»
-	
-}
-'''
+	'''
 
 }

@@ -62,12 +62,10 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof AppliedStereotypeSubstitutionEditPart) {
 			((AppliedStereotypeSubstitutionEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
 		}
 		if (childEditPart instanceof SubstitutionNameEditPart) {
 			((SubstitutionNameEditPart) childEditPart).setLabel(
 					getPrimaryShape().getNameLabel());
-			return true;
 		}
 		return false;
 	}

@@ -60,7 +60,6 @@ public class ContextLinkEditPart extends ConnectionEditPart
 		if (childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
 			((ContextLinkAppliedStereotypeEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
 		}
 		return false;
 	}

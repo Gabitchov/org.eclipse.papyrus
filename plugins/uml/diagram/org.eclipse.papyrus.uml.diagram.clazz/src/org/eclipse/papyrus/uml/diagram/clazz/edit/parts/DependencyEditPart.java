@@ -60,12 +60,10 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof DependencyNameEditPart) {
 			((DependencyNameEditPart) childEditPart).setLabel(
 					getPrimaryShape().getNameLabel());
-			return true;
 		}
 		if (childEditPart instanceof AppliedStereotypeDependencyEditPart) {
 			((AppliedStereotypeDependencyEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
 		}
 		return false;
 	}

@@ -60,7 +60,6 @@ public class PackageMergeEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof AppliedStereotypePackageMergeEditPart) {
 			((AppliedStereotypePackageMergeEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
 		}
 		return false;
 	}
