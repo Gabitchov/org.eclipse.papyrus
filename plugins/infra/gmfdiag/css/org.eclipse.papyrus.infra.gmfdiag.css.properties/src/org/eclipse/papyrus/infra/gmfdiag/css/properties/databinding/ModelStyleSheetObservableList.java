@@ -14,7 +14,6 @@ package org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -26,9 +25,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.EObjectListValueStyle;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
-import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
-import org.eclipse.swt.widgets.Display;
 
 public class ModelStyleSheetObservableList extends EMFObservableList implements IChangeListener {
 
@@ -43,6 +40,16 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	}
 
 	@Override
+	public Command getAddAllCommand(Collection<?> values) {
+		CompoundCommand compoundCommand = new CompoundCommand();
+
+		compoundCommand.append(super.getAddAllCommand(values));
+		compoundCommand.append(new AddAllModelStyleSheetCommand((TransactionalEditingDomain)domain, notationResource, values));
+
+		return compoundCommand;
+	}
+
+	@Override
 	//For manual remove
 	public Command getRemoveCommand(Object value) {
 		CompoundCommand compoundCommand = new CompoundCommand();
@@ -52,7 +59,7 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 		//Retrieve all instance of EObjectListValueStyleImpl on all CSSDiagramImpl to 
 		EList<EObject> objectsFromRessource = notationResource.getContents();
 		for(Object objectFromRessource : objectsFromRessource) {
-			//For each CSSDiagramImpl of the ressource look for EObjectListValueStyleImpl
+			//For each CSSDiagramImpl of the resource look for EObjectListValueStyleImpl
 			if(objectFromRessource instanceof CSSDiagram) {
 				EList<EObject> objectsFromDiagram = ((CSSDiagram)objectFromRessource).getStyles();
 				for(Object objectFromDiagram : objectsFromDiagram) {
@@ -78,17 +85,17 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 		return new RemoveAllModelStyleSheetValueCommand((TransactionalEditingDomain)domain, notationResource, values);
 	}
 
-	@Override
-	//FIXME Refresh don't  work 
-	public void handleChange(ChangeEvent event) {
-		Display.getDefault().syncExec(new Runnable() {
-
-			public void run() {
-				//((CSSDiagram)source).getEngine().resetCache();
-				DiagramHelper.setNeedsRefresh();
-				DiagramHelper.refreshDiagrams();
-			}
-		});
-	}
+	//	@Override
+	//	//FIXME Refresh don't  work 
+	//	public void handleChange(ChangeEvent event) {
+	//		Display.getDefault().syncExec(new Runnable() {
+	//
+	//			public void run() {
+	//				//((CSSDiagram)source).getEngine().resetCache();
+	//				DiagramHelper.setNeedsRefresh();
+	//				DiagramHelper.refreshDiagrams();
+	//			}
+	//		});
+	//	}
 
 }
