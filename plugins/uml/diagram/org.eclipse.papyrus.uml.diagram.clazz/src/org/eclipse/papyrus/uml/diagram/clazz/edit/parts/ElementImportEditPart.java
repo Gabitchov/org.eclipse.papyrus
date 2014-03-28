@@ -60,12 +60,10 @@ public class ElementImportEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof ElementImportAliasEditPart) {
 			((ElementImportAliasEditPart) childEditPart).setLabel(
 					getPrimaryShape().getNameLabel());
-			return true;
 		}
 		if (childEditPart instanceof AppliedStereotypeElementImportEditPart) {
 			((AppliedStereotypeElementImportEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
 		}
 		return false;
 	}

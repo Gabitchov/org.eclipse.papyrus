@@ -62,12 +62,10 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof AbstractionNameEditPart) {
 			((AbstractionNameEditPart) childEditPart).setLabel(
 					getPrimaryShape().getNameLabel());
-			return true;
 		}
 		if (childEditPart instanceof AppliedStereotypeAbstractionEditPart) {
 			((AppliedStereotypeAbstractionEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
 		}
 		return false;
 	}

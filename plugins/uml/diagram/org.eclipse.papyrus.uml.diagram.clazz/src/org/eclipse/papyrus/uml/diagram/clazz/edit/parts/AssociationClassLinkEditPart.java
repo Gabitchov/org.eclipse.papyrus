@@ -59,12 +59,10 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart
 		if (childEditPart instanceof AssociationClassRoleSourceEditPart) {
 			((AssociationClassRoleSourceEditPart) childEditPart).setLabel(
 					getPrimaryShape().getRoleSourceLabel());
-			return true;
 		}
 		if (childEditPart instanceof AssociationClassRoleTargetEditPart) {
 			((AssociationClassRoleTargetEditPart) childEditPart).setLabel(
 					getPrimaryShape().getRoleTargetLabel());
-			return true;
 		}
 		return false;
 	}

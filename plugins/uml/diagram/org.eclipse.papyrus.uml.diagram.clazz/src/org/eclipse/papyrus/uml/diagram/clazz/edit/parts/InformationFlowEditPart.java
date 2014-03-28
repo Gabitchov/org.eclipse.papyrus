@@ -57,12 +57,10 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof InformationFlowConveyedLabelEditPart) {
 			((InformationFlowConveyedLabelEditPart) childEditPart).setLabel(
 					getPrimaryShape().getConveyedLabel());
-			return true;
 		}
 		if (childEditPart instanceof InformationFlowAppliedStereotypeEditPart) {
 			((InformationFlowAppliedStereotypeEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
 		}
 		return false;
 	}

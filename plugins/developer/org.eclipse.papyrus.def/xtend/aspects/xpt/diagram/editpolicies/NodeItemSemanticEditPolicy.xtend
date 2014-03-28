@@ -23,6 +23,7 @@ import org.eclipse.gmf.codegen.gmfgen.TypeLinkModelFacet
 import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService
 import utils.UtilsItemSemanticEditPolicy
 import xpt.Common
+import xpt.diagram.editpolicies.childContainerCreateCommand
 import xpt.editor.VisualIDRegistry
 
 /**
