@@ -115,6 +115,10 @@
 		</command>
 	</menuContribution>
  <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+    <separator
+          name="newelements"
+          visible="false">
+    </separator>
     <menu id="org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild" label="New Child">
     </menu>
     <menu
@@ -203,8 +207,12 @@
           visible="true">
     </separator>
     <separator
-          name="addition"
+          name="others"
           visible="true">
+    </separator>
+    <separator
+          name="additions"
+          visible="false">
     </separator>
  </menuContribution>
 	<!-- ModelExplorer Contextual menu -->       
