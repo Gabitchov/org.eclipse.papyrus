@@ -135,19 +135,19 @@
           </and>
        </visibleWhen>
     </command>
-    <separator name="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.separator0" visible="true">
+    <separator name="rename" visible="true">
     </separator>
     <command commandId="org.eclipse.ui.edit.rename" icon="icons/etool16/rename.gif" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.rename" label="&amp;Rename" style="push" tooltip="Rename the element">
        <visibleWhen checkEnabled="true">
        </visibleWhen>
     </command>
-    <separator name="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.separator1" visible="true">
+    <separator name="command" visible="true">
     </separator>
     <command commandId="org.eclipse.ui.edit.undo" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.undo" label="&amp;Undo" style="push">
     </command>
     <command commandId="org.eclipse.ui.edit.redo" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.redo" label="&amp;Redo" style="push">
     </command>
-    <separator name="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.separator2" visible="true">
+    <separator name="diagramedit" visible="true">
     </separator>
     <command commandId="org.eclipse.papyrus.views.modelexplorer.popup.open.command" icon="icons/etool16/forward.gif" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.open" label="&amp;Open" style="push" tooltip="Open">
        <visibleWhen checkEnabled="true">
@@ -169,7 +169,7 @@
        <visibleWhen checkEnabled="true">
        </visibleWhen>
     </command>
-    <separator name="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.separator3" visible="true">
+    <separator name="edition" visible="true">
     </separator>
     <command commandId="org.eclipse.ui.edit.cut" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.cut" label="Cu&amp;t" style="push">
        <visibleWhen checkEnabled="false">
@@ -198,6 +198,14 @@
           </with>
        </visibleWhen>
     </command>
+    <separator
+          name="tools"
+          visible="true">
+    </separator>
+    <separator
+          name="addition"
+          visible="true">
+    </separator>
  </menuContribution>
 	<!-- ModelExplorer Contextual menu -->       
        

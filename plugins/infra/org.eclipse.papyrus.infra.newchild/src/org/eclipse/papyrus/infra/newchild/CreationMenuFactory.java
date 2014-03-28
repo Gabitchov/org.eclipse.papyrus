@@ -45,6 +45,7 @@ import org.eclipse.swt.widgets.MenuItem;
  *
  */
 public class CreationMenuFactory {
+
 	private TransactionalEditingDomain editingDomain;
 
 	/**
@@ -60,64 +61,66 @@ public class CreationMenuFactory {
 
 	/**
 	 * construct a menu from a folder, this is a recursion
-	 * @param menu the current menu
-	 * @param folder the folder
-	 * @param selectedObject the current selection
+	 * 
+	 * @param menu
+	 *        the current menu
+	 * @param folder
+	 *        the folder
+	 * @param selectedObject
+	 *        the current selection
 	 * @return true if sub-menu has been added
 	 */
-	public boolean populateMenu(Menu menu, Folder folder, EObject selectedObject){
-		if(selectedObject!=null && folder!=null){
-			org.eclipse.swt.widgets.MenuItem topMenuItem = new MenuItem(menu,SWT.CASCADE );
+	public boolean populateMenu(Menu menu, Folder folder, EObject selectedObject, int index) {
+		if(selectedObject != null && folder != null) {
+			org.eclipse.swt.widgets.MenuItem topMenuItem = new MenuItem(menu, SWT.CASCADE, index);
 			topMenuItem.setText(folder.getLabel());
-			if(folder.getIcon()!=null){
+			if(folder.getIcon() != null) {
 				URL url;
 				try {
 					url = new URL(folder.getIcon());
-					ImageDescriptor imgDesc=ImageDescriptor.createFromURL(url);
+					ImageDescriptor imgDesc = ImageDescriptor.createFromURL(url);
 					topMenuItem.setImage(imgDesc.createImage());
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}
 			}
-			Menu topMenu=new Menu(menu);
+			Menu topMenu = new Menu(menu);
 			topMenuItem.setMenu(topMenu);
-			boolean oneDisplayedMenu=false;
+			boolean oneDisplayedMenu = false;
 			for(org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu currentMenu : folder.getMenu()) {
-				boolean result=false;
-				if( currentMenu instanceof Folder){
-					 result=populateMenu(topMenu, (Folder) currentMenu, selectedObject);
-					
+				boolean result = false;
+				if(currentMenu instanceof Folder) {
+					result = populateMenu(topMenu, (Folder)currentMenu, selectedObject, topMenu.getItemCount());
+
 
 				}
 
-				if( currentMenu instanceof CreationMenu){
-					CreationMenu currentCreationMenu=(CreationMenu)currentMenu;
-					EReference reference=null;
-					String role=currentCreationMenu.getRole();
+				if(currentMenu instanceof CreationMenu) {
+					CreationMenu currentCreationMenu = (CreationMenu)currentMenu;
+					EReference reference = null;
+					String role = currentCreationMenu.getRole();
 					//the role is precised
-					if( role!=null){
-						EStructuralFeature feature= selectedObject.eClass().getEStructuralFeature(role);
-						if( feature instanceof EReference){
-							reference=(EReference)feature;
-							 result =constructMenu(selectedObject, topMenu, currentCreationMenu, reference);
+					if(role != null) {
+						EStructuralFeature feature = selectedObject.eClass().getEStructuralFeature(role);
+						if(feature instanceof EReference) {
+							reference = (EReference)feature;
+							result = constructMenu(selectedObject, topMenu, currentCreationMenu, reference);
 						}
-					}
-					else{//no precisison
-						//test if all roles must be displayed
-						if(currentCreationMenu.isDisplayAllRoles()){
-							 result  = constructMenu(selectedObject, topMenu, currentCreationMenu);
-						}
-						else{
+					} else {//no precisison
+							//test if all roles must be displayed
+						if(currentCreationMenu.isDisplayAllRoles()) {
+							result = constructMenu(selectedObject, topMenu, currentCreationMenu);
+						} else {
 
-							result  = constructMenu(selectedObject, topMenu, currentCreationMenu, reference);
+							result = constructMenu(selectedObject, topMenu, currentCreationMenu, reference);
 						}
 					}
 				}
-				if(result){
-					oneDisplayedMenu=true;
+				if(result) {
+					oneDisplayedMenu = true;
 				}
 			}
-			if(!oneDisplayedMenu){
+			if(!oneDisplayedMenu) {
 				topMenuItem.dispose();
 			}
 			return oneDisplayedMenu;
@@ -129,18 +132,21 @@ public class CreationMenuFactory {
 
 	/**
 	 * create menu by displaying if possible different roles
-	 * @param selectedObject the current object
-	 * @param menu the current menu in creation
-	 * @param currentCreationMenu 
+	 * 
+	 * @param selectedObject
+	 *        the current object
+	 * @param menu
+	 *        the current menu in creation
+	 * @param currentCreationMenu
 	 * @return true if sub-menu has been created
 	 */
 	protected boolean constructMenu(EObject selectedObject, Menu menu, CreationMenu currentCreationMenu) {
 		//find the feature between children and owner
 		ArrayList<EStructuralFeature> possibleEFeatures = getEreferences(selectedObject, currentCreationMenu);
 
-		if(possibleEFeatures.size()==1){
-			Command cmd=buildCommand(null, selectedObject, currentCreationMenu.getElementTypeIdRef());
-			if( cmd.canExecute()){
+		if(possibleEFeatures.size() == 1) {
+			Command cmd = buildCommand(null, selectedObject, currentCreationMenu.getElementTypeIdRef());
+			if(cmd.canExecute()) {
 				MenuItem item = new MenuItem(menu, SWT.NONE);
 				fillIcon(currentCreationMenu, item);
 				item.setEnabled(true);
@@ -149,58 +155,59 @@ public class CreationMenuFactory {
 				return true;
 			}
 			return false;
-		}
-		else if(possibleEFeatures.size()>1){
-			org.eclipse.swt.widgets.MenuItem topMenuItem = new MenuItem(menu,SWT.CASCADE );
+		} else if(possibleEFeatures.size() > 1) {
+			org.eclipse.swt.widgets.MenuItem topMenuItem = new MenuItem(menu, SWT.CASCADE);
 			topMenuItem.setText(currentCreationMenu.getLabel());
-			Menu topMenu=new Menu(menu);
+			Menu topMenu = new Menu(menu);
 			topMenuItem.setMenu(topMenu);
 			for(EStructuralFeature eStructuralFeature : possibleEFeatures) {
 
-				Command cmd=buildCommand((EReference)eStructuralFeature, selectedObject, currentCreationMenu.getElementTypeIdRef());
-				if( cmd.canExecute()){
+				Command cmd = buildCommand((EReference)eStructuralFeature, selectedObject, currentCreationMenu.getElementTypeIdRef());
+				if(cmd.canExecute()) {
 					MenuItem item = new MenuItem(topMenu, SWT.NONE);
 					fillIcon(currentCreationMenu, item);
 					item.setEnabled(true);
-					item.setText("As "+eStructuralFeature.getName());
+					item.setText("As " + eStructuralFeature.getName());
 					item.addSelectionListener(new CreationMenuListener(cmd, editingDomain));
 				}
 
 			}
-			if(topMenu.getItemCount()==0){
+			if(topMenu.getItemCount() == 0) {
 				topMenu.dispose();
 				return false;
-			}
-			else{
+			} else {
 				return true;
 			}
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
+
 	/**
 	 * display an icon from a specified url or from Element type
+	 * 
 	 * @param currentCreationMenu
 	 * @param item
 	 */
 	protected void fillIcon(CreationMenu currentCreationMenu, MenuItem item) {
-		if(currentCreationMenu.getIcon()!=null && !"".equals(currentCreationMenu.getIcon())){
+		if(currentCreationMenu.getIcon() != null && !"".equals(currentCreationMenu.getIcon())) {
 			URL url;
 			try {
 				url = new URL(currentCreationMenu.getIcon());
-				ImageDescriptor imgDesc=ImageDescriptor.createFromURL(url);
+				ImageDescriptor imgDesc = ImageDescriptor.createFromURL(url);
 				item.setImage(imgDesc.createImage());
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
-		}else{
+		} else {
 			createIconFromElementType(currentCreationMenu, item);
 		}
 	}
+
 	/**
 	 * it is used in order calculate all roles that can play an element to another
-	 * @param selectedObject 
+	 * 
+	 * @param selectedObject
 	 * @param currentCreationMenu
 	 * @return return the list of Ereference that can be calculated
 	 */
@@ -213,8 +220,8 @@ public class CreationMenuFactory {
 			if(eStructuralFeature instanceof EReference) {
 				EReference ref = (EReference)eStructuralFeature;
 				if(ref.isContainment()) {
-					IElementType menuType =  getElementType(currentCreationMenu.getElementTypeIdRef());
-					if(menuType!=null && isSubClass(ref.getEType(), menuType.getEClass())) {
+					IElementType menuType = getElementType(currentCreationMenu.getElementTypeIdRef());
+					if(menuType != null && isSubClass(ref.getEType(), menuType.getEClass())) {
 						possibleEFeatures.add(eStructuralFeature);
 					}
 				}
@@ -246,29 +253,35 @@ public class CreationMenuFactory {
 
 	/**
 	 * associate the icon from the element type
-	 * @param currentCreationMenu 
-	 * @param item the current menu
+	 * 
+	 * @param currentCreationMenu
+	 * @param item
+	 *        the current menu
 	 */
 	protected void createIconFromElementType(CreationMenu currentCreationMenu, MenuItem item) {
-		if(getElementType(currentCreationMenu.getElementTypeIdRef()).getIconURL()!=null){
-			ImageDescriptor imgDesc=ImageDescriptor.createFromURL(getElementType(currentCreationMenu.getElementTypeIdRef()).getIconURL());
+		if(getElementType(currentCreationMenu.getElementTypeIdRef()).getIconURL() != null) {
+			ImageDescriptor imgDesc = ImageDescriptor.createFromURL(getElementType(currentCreationMenu.getElementTypeIdRef()).getIconURL());
 			item.setImage(imgDesc.createImage());
 		}
 	}
 
 	/**
-	 * create a submenu 
-	 * @param selectedObject the selected object
-	 * @param topMenu the menu when will add menus
+	 * create a submenu
+	 * 
+	 * @param selectedObject
+	 *        the selected object
+	 * @param topMenu
+	 *        the menu when will add menus
 	 * @param currentCreationMenu
-	 * @param reference the role of the new element
+	 * @param reference
+	 *        the role of the new element
 	 * @return true if the menu can be created
 	 */
-	protected boolean constructMenu(EObject selectedObject, Menu topMenu,  CreationMenu currentCreationMenu, EReference reference) {
-		boolean oneDisplayedMenu=false;
-		Command cmd=buildCommand(reference, selectedObject, currentCreationMenu.getElementTypeIdRef());
-		if( cmd.canExecute()){
-			oneDisplayedMenu=true;
+	protected boolean constructMenu(EObject selectedObject, Menu topMenu, CreationMenu currentCreationMenu, EReference reference) {
+		boolean oneDisplayedMenu = false;
+		Command cmd = buildCommand(reference, selectedObject, currentCreationMenu.getElementTypeIdRef());
+		if(cmd.canExecute()) {
+			oneDisplayedMenu = true;
 			MenuItem item = new MenuItem(topMenu, SWT.NONE);
 			fillIcon(currentCreationMenu, item);
 			item.setEnabled(true);
@@ -280,17 +293,24 @@ public class CreationMenuFactory {
 
 	/**
 	 * get the IelementType from a string
-	 * @param extendedType the string that represents the element type
+	 * 
+	 * @param extendedType
+	 *        the string that represents the element type
 	 * @return the element type or null
 	 */
-	protected IElementType getElementType(String extendedType){
-		return  ElementTypeRegistry.getInstance().getType(extendedType);
+	protected IElementType getElementType(String extendedType) {
+		return ElementTypeRegistry.getInstance().getType(extendedType);
 	}
+
 	/**
 	 * Construct a command of creation
-	 * @param reference the role of the element that will be created (maybe null)
-	 * @param container the container of the created elements
-	 * @param extendedType the extended type of the created element 
+	 * 
+	 * @param reference
+	 *        the role of the element that will be created (maybe null)
+	 * @param container
+	 *        the container of the created elements
+	 * @param extendedType
+	 *        the extended type of the created element
 	 * @return a command that can be executed by the domain
 	 */
 	protected Command buildCommand(EReference reference, EObject container, String extendedType) {
@@ -308,16 +328,16 @@ public class CreationMenuFactory {
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 	/**
 	 * 
 	 * @return
 	 *         the creation request to use in this handler
 	 */
 	protected CreateElementRequest buildRequest(EReference reference, EObject container, String extendedType) {
-		if(reference==null){
-			return new CreateElementRequest(editingDomain, container,  getElementType(extendedType)) ;
+		if(reference == null) {
+			return new CreateElementRequest(editingDomain, container, getElementType(extendedType));
 		}
-		return new CreateElementRequest(editingDomain, container,  getElementType(extendedType), reference);
+		return new CreateElementRequest(editingDomain, container, getElementType(extendedType), reference);
 	}
 }
-

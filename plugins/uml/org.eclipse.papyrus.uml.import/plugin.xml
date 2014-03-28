@@ -25,7 +25,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?before=org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild">
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=tools">
          <menu
                icon="icons/import_wiz_16x16-papyrusColor.gif"
                id="org.eclipse.papyrus.uml.import.menu"

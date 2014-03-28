@@ -489,7 +489,7 @@
 <extension point="org.eclipse.ui.menus">
 
 	<!-- Sub-menu declaration -->	 
-	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup" allPopups="false">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?before=org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram" allPopups="false">
 		<menu id="org.eclipse.papyrus.views.modelexplorer.popupmenu.createsysmlchild"
 			label="New SysML Child">
 		</menu>

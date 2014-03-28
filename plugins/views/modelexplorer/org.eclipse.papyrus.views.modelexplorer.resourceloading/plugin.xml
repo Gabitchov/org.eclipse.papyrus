@@ -5,7 +5,7 @@
 	<!-- ModelExplorer Contextual menu -->  
   <menuContribution
        allPopups="false"
-       locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.paste">
+       locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=tools">
     <separator
           name="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.loadSeparator"
           visible="true">
