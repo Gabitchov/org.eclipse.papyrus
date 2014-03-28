@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2010, 2012 Mia-Software.
+ * Copyright (c) 2009, 2014 Mia-Software, CEA, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,8 @@
  *      Gregoire Dupe (Mia-Software) - Bug 371367 - Hierarchical FacetSets
  *      Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *      Gregoire Dupe (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
+ *      Christian W. Damus (CEA) - bug 410346
+ *      
  *******************************************************************************/
 package org.eclipse.papyrus.emf.facet.util.emf.core;
 
@@ -162,11 +164,18 @@ public final class ModelUtils {
 	 */
 	//Copied from org.eclipse.papyrus.emf.facet.infra.common.core.internal.utils.ModelUtils.getName(EObject)
 	public static String getName(final EObject eObject) {
-		IItemLabelProvider itemLabelProvider = (IItemLabelProvider) new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE).adapt(eObject, IItemLabelProvider.class);
-		if (itemLabelProvider != null) {
-			return itemLabelProvider.getText(eObject);
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
+		try {
+			IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(eObject, IItemLabelProvider.class);
+			if(itemLabelProvider != null) {
+				return itemLabelProvider.getText(eObject);
+			}
+		} finally {
+			// Dispose the adapter factory because it added an adapter that would leak, as it will never be reused
+			adapterFactory.dispose();
 		}
+
 		return ModelUtils.getDefaultName(eObject);
 	}
 

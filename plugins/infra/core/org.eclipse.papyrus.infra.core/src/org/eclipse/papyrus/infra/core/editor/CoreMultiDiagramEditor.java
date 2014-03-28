@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2013 CEA LIST.
+ * Copyright (c) 2008, 2014 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
+ *  Christian W. Damus (CEA) - bug 410346
  *
  *****************************************************************************/
 
@@ -28,6 +29,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -65,6 +67,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.internal.EditorLifecycleManagerImpl;
 import org.eclipse.papyrus.infra.core.services.internal.InternalEditorLifecycleManager;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorActionBarContributor;
@@ -529,8 +532,22 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// register a basic label provider
 		// adapter factory used by EMF objects
-		AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		AdapterFactory factory = null;
+		try {
+			EditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(servicesRegistry);
+			if(domain instanceof AdapterFactoryEditingDomain) {
+				// Use the adapter factory already provided by this editing domain
+				factory = ((AdapterFactoryEditingDomain)domain).getAdapterFactory();
+			}
+		} catch (ServiceException e) {
+			// OK, there's no editing domain. That's fine
+		}
 
+		if(factory == null) {
+			// Must create a new adapter factory
+			factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		}
+		
 		/** label provider for EMF objects */
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(factory) {
 

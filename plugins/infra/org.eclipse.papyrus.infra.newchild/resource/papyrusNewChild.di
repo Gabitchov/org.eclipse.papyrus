@@ -44,6 +44,15 @@
         <children>
           <emfPageIdentifier href="papyrusNewChild.notation#_Fo2BgFXeEeOW-JPqZK_EZg"/>
         </children>
+        <children>
+          <emfPageIdentifier href="papyrusNewChild.notation#_v4laILXYEeOcibS9c7ohwg"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="papyrusNewChild.notation#_tJT7ALXZEeOcibS9c7ohwg"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="ElementCreationMenuModel.notation#_VJWf0FXPEeOhVe6k7yzS3A"/>
+        </children>
       </children>
     </windows>
   </sashModel>

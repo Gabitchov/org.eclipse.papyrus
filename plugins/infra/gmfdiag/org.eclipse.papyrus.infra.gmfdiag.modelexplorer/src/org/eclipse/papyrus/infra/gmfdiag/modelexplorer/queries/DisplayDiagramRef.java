@@ -28,13 +28,17 @@ import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
-public class IsDiagramContainer extends AbstractEditorContainerQuery implements IJavaQuery2<EObject, Boolean> {
+public class DisplayDiagramRef extends AbstractEditorContainerQuery implements IJavaQuery2<EObject, Boolean> {
 
 	/**
-	 * Return true if the element is a Diagram Container 
+	 * Return true if the element is a Diagram Container and the Ereference is diagrams
 	 */
 
 	public Boolean evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
+		ParameterValue parameterValue= (ParameterValue)parameterValues.getParameterValueByName("eStructuralFeature");
+		EStructuralFeature eStructuralFeature=(EStructuralFeature)parameterValue.getValue();
+		if((eStructuralFeature instanceof FacetReference)&&("diagrams".equals((eStructuralFeature).getName()))){
+
 			Iterator<EObject> roots = NavigatorUtils.getNotationRoots(source);
 			if(roots == null) {
 				return false;
@@ -49,5 +53,7 @@ public class IsDiagramContainer extends AbstractEditorContainerQuery implements 
 				}
 			}
 			return false;
+		}
+		return true;
 	}
 }

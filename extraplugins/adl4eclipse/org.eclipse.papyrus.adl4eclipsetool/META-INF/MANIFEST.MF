@@ -15,7 +15,7 @@ Export-Package: org.eclipse.papyrus.adltool,
  org.eclipse.papyrus.adltool.designer.wizard
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.adltool.Activator

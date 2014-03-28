@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2011 Mia-Software.
+ *  Copyright (c) 2011, 2014 Mia-Software, CEA, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,7 @@
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *      Gregoire Dupe (Mia-Software) - Bug 375087 - [Table] ITableWidget.addColumn(List<ETypedElement>, List<FacetSet>)
  *      Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
+ *      Christian W. Damus (CEA) - bug 410346
  */
 package org.eclipse.papyrus.emf.facet.custom.ui.internal.query;
 
@@ -47,16 +48,21 @@ public class LabelQuery implements IJavaQuery2<EObject, String> {
 		if (sfParam == null) {
 			final ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
 					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-			final IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory
-					.adapt(source, IItemLabelProvider.class);
-			// We don't want to use a ReflectiveItemProvider because it provides
-			// a string prefixed with the eObject's meta-class name.
-			if (itemLabelProvider instanceof ReflectiveItemProvider) {
-				result = LabelQuery.getDefaultName(source);
-			} else if (itemLabelProvider == null) {
-				result = ModelUtils.getDefaultName(source);
-			} else {
-				result = itemLabelProvider.getText(source);
+			
+			try {
+				final IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(source, IItemLabelProvider.class);
+				// We don't want to use a ReflectiveItemProvider because it provides
+				// a string prefixed with the eObject's meta-class name.
+				if(itemLabelProvider instanceof ReflectiveItemProvider) {
+					result = LabelQuery.getDefaultName(source);
+				} else if(itemLabelProvider == null) {
+					result = ModelUtils.getDefaultName(source);
+				} else {
+					result = itemLabelProvider.getText(source);
+				}
+			} finally {
+				// Dispose the adapter factory because it added an adapter that would leak, as nobody else will ever use it
+				adapterFactory.dispose();
 			}
 		} else {
 			try {

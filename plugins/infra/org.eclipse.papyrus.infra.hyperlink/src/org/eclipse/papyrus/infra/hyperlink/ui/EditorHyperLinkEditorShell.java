@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2014 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 431397
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
@@ -26,8 +27,8 @@ import org.eclipse.papyrus.infra.hyperlink.helper.EditorHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -89,9 +90,9 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 			getTooltipInputText().setText(getObjectLabeltext().getText());
 		}
 		// add listener "use default button"
-		getUseDefaultCheckBox().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
+		getUseDefaultCheckBox().addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
 				usedefaultTooltip = getUseDefaultCheckBox().getSelection();
 				if(usedefaultTooltip) {
 					getTooltipInputText().setEditable(false);
@@ -100,21 +101,12 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 					getTooltipInputText().setEditable(true);
 				}
 			}
-
-			public void mouseDown(MouseEvent e) {
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-			}
 		});
 
 		// launch a new editor to choose or create diagrams
-		getChooseDiagramButton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
+		getChooseDiagramButton().addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
 				EditorLookForEditorShell editorLookForDiagram = new EditorLookForEditorShell(editorRegistry, amodel);
 				editorLookForDiagram.open();
 				Object selection = editorLookForDiagram.getSelectedEditor();
@@ -141,33 +133,20 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 					}
 				}
 			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-			}
 		});
 
 		// listener to cancel
-		this.getCancelButton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
+		this.getCancelButton().addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
 				hyperLinkEditor = null;
 				getEditHyperlinkShell().close();
 			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-			}
 		});
 		// listener to click on OK
-		this.getOkButton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
-
+		this.getOkButton().addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
 				if(hyperLinkEditor != null) {
 					hyperLinkEditor.setTooltipText(getTooltipInputText().getText().trim());
 					// if diagram is null, maybe bad selection or other it
@@ -177,9 +156,6 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 					}
 				}
 				getEditHyperlinkShell().close();
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
 			}
 		});
 	}

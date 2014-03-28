@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2014 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,19 +9,24 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 410346
+ *  Christian W. Damus (CEA) - bug 431397
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -45,6 +50,8 @@ import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.util.EditorListContentProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -234,7 +241,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		// SemanticEMFContentProvider(amodel)); //This content provider will
 		// only display the selected element, instead of the root element
 		// FIXME:  Use a standard, non-deprecated content
-		treeViewer.setContentProvider(new SemanticEMFContentProvider() {
+		treeViewer.setContentProvider(new SemanticEMFContentProvider(null, null, new EObject[] {EcoreUtil.getRootContainer(amodel)}) {
 
 			@Override
 			public boolean hasChildren(Object element) {
@@ -252,12 +259,12 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 			//TODO the best correction we be able to manage applied facet, because if we get diagram twice it is probably because there are 2 facets with the same behavior applied
 			@Override
 			public Object[] getChildren(Object parentElement) {
-				List<Object> alreadyVisited = new ArrayList<Object>();
+				Set<Object> alreadyVisited = new HashSet<Object>();
 				List<Object> returnedChildren = new ArrayList<Object>();
 				Object[] children = super.getChildren(parentElement);
 				for(Object current : children) {
-					if(current instanceof IAdaptable) {
-						EObject el = EMFHelper.getEObject(current);
+					EObject el = EMFHelper.getEObject(current);
+					if(el != null) {
 						if(!alreadyVisited.contains(el)) {
 							returnedChildren.add(current);
 							alreadyVisited.add(el);
@@ -384,6 +391,17 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 			}
 		});
 
+		// dispose the adapter factory when the shell is closed
+		getLookforShell().addDisposeListener(new DisposeListener() {
+			
+			public void widgetDisposed(DisposeEvent e) {
+				// we created the adapter factory, so we should dispose it
+				if(adapterFactory instanceof IDisposable) {
+					((IDisposable)adapterFactory).dispose();
+				}
+			}
+		});
+		
 	}
 
 	/**

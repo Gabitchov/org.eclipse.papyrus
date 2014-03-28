@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012, 2014 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 429422
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 
@@ -30,11 +30,11 @@ import org.w3c.dom.Element;
 /**
  * An extended CSS Engine for an EMF Resource (A Model). This engine
  * is a child of the WorkspaceCSSEngine.
- * 
+ *
  * It should not be used directly.
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  * @see DiagramCSSEngine
  */
 @SuppressWarnings("restriction")
@@ -44,19 +44,23 @@ public class ModelCSSEngine extends ExtendedCSSEngineImpl {
 
 	/**
 	 * Creates a ModelCSSEngine for the requested resource.
-	 * 
+	 *
 	 * @param model
 	 */
 	public ModelCSSEngine(Resource model) {
-		super(getProjectCSSEngine(model));
+		super(getParentCSSEngine(model));
 		this.model = model;
 	}
 
-	private static ExtendedCSSEngine getProjectCSSEngine(Resource resource) {
+	private static ExtendedCSSEngine getParentCSSEngine(Resource resource) {
+		ExtendedCSSEngine result;
 		if(resource instanceof CSSNotationResource) {
-			return ((CSSNotationResource)resource).getProjectEngine();
+			result = ((CSSNotationResource)resource).getProjectEngine();
+		} else {
+			result = ProjectCSSEngine.createEngine(resource);
 		}
-		return ProjectCSSEngine.createEngine(resource);
+
+		return result == null ? WorkspaceCSSEngine.instance : result;
 	}
 
 	@Override

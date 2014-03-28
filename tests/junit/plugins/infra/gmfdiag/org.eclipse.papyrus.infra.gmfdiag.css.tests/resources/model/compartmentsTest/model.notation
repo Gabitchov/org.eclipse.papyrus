@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:css="http://www.eclipse.org/papyrus/infra/gmfdiag/css" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:css="http://www.eclipse.org/papyrus/infra/gmfdiag/css" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <notation:Diagram xmi:id="_4EGG0ImVEeOGN4dVepS-Uw" type="PapyrusUMLClassDiagram" name="compartments" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_Cz4qUImWEeOGN4dVepS-Uw" type="2008">
       <children xmi:type="notation:DecorationNode" xmi:id="_Cz4qUomWEeOGN4dVepS-Uw" type="5029"/>
@@ -166,7 +166,7 @@
         <styles xmi:type="notation:FilteringStyle" xmi:id="_61R_nImWEeOGN4dVepS-Uw"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_61R_nYmWEeOGN4dVepS-Uw"/>
       </children>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_61R_nomWEeOGN4dVepS-Uw" type="7019">
+      <children xmi:type="notation:BasicCompartment" xmi:id="_61R_nomWEeOGN4dVepS-Uw" visible="false" type="7019">
         <styles xmi:type="notation:TitleStyle" xmi:id="_61R_n4mWEeOGN4dVepS-Uw"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_61R_oImWEeOGN4dVepS-Uw"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_61R_oYmWEeOGN4dVepS-Uw"/>
@@ -202,12 +202,12 @@
     <children xmi:type="notation:Shape" xmi:id="_Tfr8cYmaEeOGN4dVepS-Uw" type="2012">
       <children xmi:type="notation:DecorationNode" xmi:id="_Tfr8c4maEeOGN4dVepS-Uw" type="5038"/>
       <element xmi:type="uml:Comment" href="model.uml#_Tfr8cImaEeOGN4dVepS-Uw"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Tfr8comaEeOGN4dVepS-Uw" x="852" y="85" width="167"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Tfr8comaEeOGN4dVepS-Uw" x="997" y="72" width="167"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_TlMukYmaEeOGN4dVepS-Uw" type="2012">
       <children xmi:type="notation:DecorationNode" xmi:id="_TlV4gImaEeOGN4dVepS-Uw" type="5038"/>
       <element xmi:type="uml:Comment" href="model.uml#_TlMukImaEeOGN4dVepS-Uw"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TlMukomaEeOGN4dVepS-Uw" x="859" y="248" width="149"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TlMukomaEeOGN4dVepS-Uw" x="881" y="248" width="149"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_4EGG0YmVEeOGN4dVepS-Uw"/>
     <styles xmi:type="notation:EObjectListValueStyle" xmi:id="_OgIPAImWEeOGN4dVepS-Uw" name="css_stylesheets" eObjectListValue="_OgIPAYmWEeOGN4dVepS-Uw"/>
@@ -239,16 +239,20 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_YgJloYmaEeOGN4dVepS-Uw"/>
       <element xsi:nil="true"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YgJloomaEeOGN4dVepS-Uw" points="[-74, -6, 126, 1]$[-192, 45, 8, 52]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_yWTbwLXCEeOtu7CRWiD6kg" id="(0.0,0.4)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_yWTbwbXCEeOtu7CRWiD6kg" id="(1.0,0.56)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_Y5mAYImaEeOGN4dVepS-Uw" type="4013" source="_Tfr8cYmaEeOGN4dVepS-Uw" target="_DZrfAYmWEeOGN4dVepS-Uw">
       <styles xmi:type="notation:FontStyle" xmi:id="_Y5mAYYmaEeOGN4dVepS-Uw"/>
       <element xsi:nil="true"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Y5mAYomaEeOGN4dVepS-Uw" points="[-83, -1, 122, -8]$[-198, -48, 7, -55]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_yOHJELXCEeOtu7CRWiD6kg" id="(0.0,0.47)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_yOHJEbXCEeOtu7CRWiD6kg" id="(1.0,0.5)"/>
     </edges>
   </notation:Diagram>
   <notation:Diagram xmi:id="_8JDKAImVEeOGN4dVepS-Uw" type="PapyrusUMLClassDiagram" name="labels" measurementUnit="Pixel">
     <styles xmi:type="notation:DiagramStyle" xmi:id="_8JDKAYmVEeOGN4dVepS-Uw"/>
     <element xmi:type="uml:Model" href="model.uml#_4DWgNImVEeOGN4dVepS-Uw"/>
   </notation:Diagram>
-  <css:StyleSheetReference xmi:id="_OgIPAYmWEeOGN4dVepS-Uw" path="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.css.tests/resources/stylesheets/compartments.css"/>
+  <css:StyleSheetReference xmi:id="_OgIPAYmWEeOGN4dVepS-Uw" path="../../stylesheets/compartments.css"/>
 </xmi:XMI>

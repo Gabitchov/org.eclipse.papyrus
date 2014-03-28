@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 410346
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.providers.strategy;
 
@@ -23,8 +25,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.papyrus.emf.facet.custom.core.internal.CustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -89,6 +91,18 @@ public class SemanticEMFContentProvider extends CustomizedTreeContentProvider im
 
 	public SemanticEMFContentProvider(EObject editedEObject, EStructuralFeature feature, ResourceSet root) {
 		this(editedEObject, feature, getRoots(root));
+	}
+	
+	@Override
+	public void dispose() {
+		try {
+			// Because we created this adapter factory, we must dispose it
+			if(factory instanceof IDisposable) {
+				((IDisposable)factory).dispose();
+			}
+		} finally {
+			super.dispose();
+		}
 	}
 
 	protected static EObject[] getRoots(ResourceSet root) {

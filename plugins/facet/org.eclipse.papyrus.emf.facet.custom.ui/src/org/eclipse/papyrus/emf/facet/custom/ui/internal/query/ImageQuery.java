@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2011, 2012 Mia-Software.
+ *  Copyright (c) 2011, 2014 Mia-Software, CEA, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  *      Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *      Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *      Gregoire Dupe (Mia-Software) - Bug 424122 - [Table] Images, fonts and colors are not shared between the instances of table
+ *      Christian W. Damus (CEA) - bug 410346
  */
 package org.eclipse.papyrus.emf.facet.custom.ui.internal.query;
 
@@ -19,10 +20,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
-import org.eclipse.papyrus.emf.facet.custom.ui.internal.Activator;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.ImageProvider;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.custompt.ImageWrapper;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
@@ -31,9 +30,6 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribu
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
-import org.eclipse.papyrus.emf.facet.util.swt.imageprovider.IImageProvider;
-import org.eclipse.papyrus.emf.facet.util.swt.imageprovider.IImageProviderFactory;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
 import org.eclipse.swt.graphics.Image;
 
@@ -61,21 +57,25 @@ public class ImageQuery implements IJavaQuery2<EObject, IImage> {
 		IImage result = null;
 		final ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		final IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory
-				.adapt(source, IItemLabelProvider.class);
-		if (itemLabelProvider != null) {
-			Object imageObject = itemLabelProvider.getImage(source);
-			Image image = ExtendedImageRegistry.getInstance().getImage(imageObject);
-			result = new ImageWrapper(image);
-////			final ImageDescriptor imgDescriptor = ExtendedImageRegistry
-////					.getInstance().getImageDescriptor(source);
-//			final IImageProvider imgProvider = IImageProviderFactory.DEFAULT
-//					.createIImageProvider(Activator.getDefault());
-//			if (imgDescriptor != null) {
-//				final Image image = imgProvider.getImage(imgDescriptor);
-//				result = new ImageWrapper(image);
-//			}
+		
+		try {
+			final IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(source, IItemLabelProvider.class);
+			if(itemLabelProvider != null) {
+				Object imageObject = itemLabelProvider.getImage(source);
+				Image image = ExtendedImageRegistry.getInstance().getImage(imageObject);
+				result = new ImageWrapper(image);
+////			final ImageDescriptor imgDescriptor = ExtendedImageRegistry.getInstance().getImageDescriptor(source);
+//				final IImageProvider imgProvider = IImageProviderFactory.DEFAULT.createIImageProvider(Activator.getDefault());
+//				if(imgDescriptor != null) {
+//					final Image image = imgProvider.getImage(imgDescriptor);
+//					result = new ImageWrapper(image);
+//				}
+			}
+		} finally {
+			// Dispose the adapter factory because it added an adapter that would leak, as it will never be reused
+			adapterFactory.dispose();
 		}
+		
 		return result;
 	}
 

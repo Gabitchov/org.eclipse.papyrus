@@ -34,9 +34,6 @@ public class IsTableContainer extends AbstractEditorContainerQuery implements IJ
 	 */
 
 	public Boolean evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
-		ParameterValue parameterValue = (ParameterValue) parameterValues.getParameterValueByName("eStructuralFeature");
-		EStructuralFeature eStructuralFeature = (EStructuralFeature) parameterValue.getValue();
-		if ((eStructuralFeature instanceof FacetReference) && ("diagrams".equals((eStructuralFeature).getName()))) {
 
 			Iterator<EObject> roots = NavigatorUtils.getNotationRoots(source);
 			if (roots == null) {
@@ -51,8 +48,6 @@ public class IsTableContainer extends AbstractEditorContainerQuery implements IJ
 					}
 				}
 			}
-			return false;
-		}
-		return true;
+		return false;
 	}
 }
