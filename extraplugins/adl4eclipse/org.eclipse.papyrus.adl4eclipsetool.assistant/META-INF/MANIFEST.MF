@@ -21,4 +21,5 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipsetool.assistant;sin
  gleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Description: This plugin has in charge to connect the tool to model eclipse plugins withe the eclipse UI. The plugins that allow the modelization is or.eclipse.papyrus.adl4eclipsetool. More details can be found in the docs directory of or.eclipse.papyrus.adl4eclipsetool.
 
