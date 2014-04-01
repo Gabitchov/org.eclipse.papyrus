@@ -79,13 +79,13 @@
             </source>
             <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/C_Cpp/1#//External/name"/>
           </thenExpression>
-          <elseExpression xsi:type="ocl.ecore:OperationCallExp">
+          <elseExpression xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/+">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <source xsi:type="ocl.ecore:OperationCallExp">
+            <source xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/+">
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-              <source xsi:type="ocl.ecore:OperationCallExp">
+              <source xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/+">
                 <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                <source xsi:type="ocl.ecore:OperationCallExp">
+                <source xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/+">
                   <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
                   <source xsi:type="mtl:QueryInvocation">
                     <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
@@ -101,7 +101,6 @@
                   <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="/">
                     <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
                   </argument>
-                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/+"/>
                 </source>
                 <argument xsi:type="ocl.ecore:PropertyCallExp">
                   <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
@@ -110,12 +109,10 @@
                   </source>
                   <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
                 </argument>
-                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/+"/>
               </source>
               <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=".">
                 <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
               </argument>
-              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/+"/>
             </source>
             <argument xsi:type="mtl:QueryInvocation">
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
@@ -124,7 +121,6 @@
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
               </argument>
             </argument>
-            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/+"/>
           </elseExpression>
         </elseExpression>
       </expression>
@@ -196,6 +192,13 @@
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eAnnotations>
+      <eOperations name="+">
+        <eAnnotations source="MTL non-standard"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="other">
+          <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+        </eParameters>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Integer_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
