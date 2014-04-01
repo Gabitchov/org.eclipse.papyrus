@@ -82,13 +82,39 @@ public class WorkspaceThemesHelper {
 
 	}
 
+	public void saveWorkspaceThemesPreferenceResource(Theme theme) {
+		Resource themeFile = theme.eResource();
+
+		saveResource(themeFile);
+	}
+
+	/**
+	 * Save style sheets EMF Resource.
+	 * 
+	 * @param styleSheetsResource
+	 * 
+	 */
+	private void saveResource(Resource styleSheetsResource) {
+		// Save theme preference file
+		if(styleSheetsResource != null) {
+			try {
+				Map<String, Object> options = new HashMap<String, Object>();
+				options.put(XMIResource.XMI_ID, Boolean.TRUE);
+				styleSheetsResource.save(options);
+			} catch (IOException e) {
+				Activator.log.error(e);
+			}
+		}
+	}
+
+
 	/**
 	 * Save theme in workspace preferences.
 	 * 
 	 * @param theme
 	 *        Theme to save
 	 */
-	public void saveThemeWorkspacePreference(Theme theme) {
+	public void saveNewThemeWorkspacePreference(Theme theme) {
 		Resource themeFile = theme.eResource();
 
 		if(themeFile == null) {
@@ -107,16 +133,7 @@ public class WorkspaceThemesHelper {
 		// Add created theme 
 		workspaceThemes.getThemes().add(theme);
 
-		// Save theme preference file
-		if(themeFile != null) {
-			try {
-				Map<String, Object> options = new HashMap<String, Object>();
-				options.put(XMIResource.XMI_ID, Boolean.TRUE);
-				themeFile.save(options);
-			} catch (IOException e) {
-				Activator.log.error(e);
-			}
-		}
+		saveResource(themeFile);
 
 	}
 
