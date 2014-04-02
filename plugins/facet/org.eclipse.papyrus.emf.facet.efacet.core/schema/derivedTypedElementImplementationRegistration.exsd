@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.efacet.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.efacet.core" id="derivedTypedElementImplementationRegistration" name="Derived Typed Element Evaluator Registration"/>
+      </appinfo>
+      <documentation>
+         Allow the registration of an IderivedTypedElementImplementationFactory, that instantiates IDerivedTypedElementImplementation that conform to the EMF Facet framework.
+The IDerivedTypedElementImplementation provides an implementation for a given type of queries (e.g. Java queries, OCL queries, ...)
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element deprecated="true" replacement="queryImplementationRegistration" />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="derivedTypedElementImplementationRegistration" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="derivedTypedElementImplementationRegistration">
+      <annotation>
+         <appinfo>
+            <meta.element deprecated="true"/>
+         </appinfo>
+      </annotation>
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Provides an implementation for a IDerivedTypedElementImplementationFactory, which instantiates IDerivedTypedElementImplementation for a given type of queries.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.efacet.core.query.IDerivedTypedElementImplementationFactory"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         0.2.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         &lt;pre&gt;
+   &lt;extension point=&quot;org.eclipse.papyrus.emf.facet.efacet.core.derivedTypedElementImplementationRegistration&quot;&gt;
+      &lt;derivedTypedElementImplementationRegistration
+            class=&quot;org.eclipse.papyrus.emf.facet.efacet.core.tests.internal.DummyQueryEvaluatorFactory&quot;&gt;
+      &lt;/derivedTypedElementImplementationRegistration&gt;
+   &lt;/extension&gt;
+&lt;/pre&gt;
+      </documentation>
+   </annotation>
+
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         &lt;p&gt;
+See plug-ins:
+&lt;ul&gt;
+&lt;li&gt;org.eclipse.papyrus.emf.facet.query.java.core
+&lt;/ul&gt;
+&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright (c) 2011 Mia-Software.
+
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+   Nicolas Bros (Mia-Software) - Bug 362191 - [Restructuring] Query mechanism for eFacet2
+      </documentation>
+   </annotation>
+
+</schema>

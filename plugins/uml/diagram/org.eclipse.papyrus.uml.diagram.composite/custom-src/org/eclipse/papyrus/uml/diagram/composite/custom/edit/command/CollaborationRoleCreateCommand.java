@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 410346
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.command;
@@ -16,13 +17,13 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.edit.command;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.composite.custom.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.composite.custom.ui.CollaborationRoleValidator;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.CollaborationRoleCreateCommandCN;
@@ -49,8 +50,8 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 	 * @param req
 	 *        the creation request
 	 */
-	public CollaborationRoleCreateCommand(CreateElementRequest req) {
-		super(req);
+	public CollaborationRoleCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 	}
 
 	/**
@@ -61,8 +62,8 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 	 * @param eObject
 	 *        the element to edit
 	 */
-	public CollaborationRoleCreateCommand(CreateElementRequest req, EObject eObject) {
-		super(req, eObject);
+	public CollaborationRoleCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		super(req, eObject, diagram);
 	}
 
 	/**
@@ -74,8 +75,8 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 	 *        the element to edit
 	 * @return the new creation command for CollaborationRole
 	 */
-	public static CollaborationRoleCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new CollaborationRoleCreateCommand(req, eObject);
+	public static CollaborationRoleCreateCommand create(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		return new CollaborationRoleCreateCommand(req, eObject, diagram);
 	}
 
 	/**
@@ -93,22 +94,26 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 		Collaboration owner = (Collaboration)getElementToEdit();
 
 		// Create and open the selection dialog
-		AdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		Shell currentShell = new Shell(Display.getCurrent(), SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
 		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(currentShell, new AdapterFactoryLabelProvider(adapterFactory), new AdapterFactoryContentProvider(adapterFactory));
 
-		// Set dialog parameters
-		dialog.setTitle(Messages.CollaborationRoleSelectionDialog_Title);
-		dialog.setMessage(Messages.CollaborationRoleSelectionDialog_Message);
-		dialog.setAllowMultiple(false);
-		dialog.setHelpAvailable(false);
-		// ConnectableElement from the whole model can be selected as role.
-		dialog.setInput(owner.getModel());
-		// CollaborationRoleValidator ensures that an the selected element is a ConnectableElement.
-		dialog.setValidator(new CollaborationRoleValidator());
+		try {
+			// Set dialog parameters
+			dialog.setTitle(Messages.CollaborationRoleSelectionDialog_Title);
+			dialog.setMessage(Messages.CollaborationRoleSelectionDialog_Message);
+			dialog.setAllowMultiple(false);
+			dialog.setHelpAvailable(false);
+			// ConnectableElement from the whole model can be selected as role.
+			dialog.setInput(owner.getModel());
+			// CollaborationRoleValidator ensures that an the selected element is a ConnectableElement.
+			dialog.setValidator(new CollaborationRoleValidator());
 
-		dialog.open();
-
+			dialog.open();
+		} finally {
+			adapterFactory.dispose();
+		}
+		
 		// If a ConnectableElement has been selected, complete command execution
 		// using selection as the "newly created" element and make the edited
 		// Collaboration reference it in the CollaborationRoles eReference.

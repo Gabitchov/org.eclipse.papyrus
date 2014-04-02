@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText=" Copyright (c) 2011 Mia-Software.&#xD;&#xA; &#xD;&#xA; All rights reserved. This program and the accompanying materials&#xD;&#xA; are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA; which accompanies this distribution, and is available at&#xD;&#xA; http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA; &#xD;&#xA; Contributors:&#xD;&#xA;&#x9;Gregoire Dupe (Mia-Software) - Design&#xD;&#xA;&#x9;Nicolas Guyomar (Mia-Software) - Implementation&#xD;&#xA; "
+    modelDirectory="/org.eclipse.papyrus.emf.facet.efacet/src" modelPluginID="org.eclipse.papyrus.emf.facet.efacet"
+    modelName="Efacet" nonNLSMarkers="true" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" runtimeVersion="2.6" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>efacet.ecore</foreignModel>
+  <genPackages prefix="EFacet" basePackage="org.eclipse.papyrus.emf.facet" disposableProviderFactory="true"
+      extensibleProviderFactory="true" ecorePackage="efacet.ecore#/">
+    <genDataTypes ecoreDataType="efacet.ecore#//JavaException"/>
+    <genClasses ecoreClass="efacet.ecore#//FacetAttribute"/>
+    <genClasses ecoreClass="efacet.ecore#//FacetReference"/>
+    <genClasses ecoreClass="efacet.ecore#//FacetOperation"/>
+    <genClasses ecoreClass="efacet.ecore#//FacetSet">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efacet.ecore#//FacetSet/facets"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efacet.ecore#//FacetSet/categories"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacet.ecore#//FacetSet/extendedEPackage"/>
+    </genClasses>
+    <genClasses ecoreClass="efacet.ecore#//Facet">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference efacet.ecore#//Facet/facetSet"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efacet.ecore#//Facet/conformanceQuery"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacet.ecore#//Facet/extendedMetaclass"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efacet.ecore#//Facet/facetElements"/>
+    </genClasses>
+    <genClasses ecoreClass="efacet.ecore#//Query">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacet.ecore#//Query/scope"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efacet.ecore#//Query/hasSideEffect"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efacet.ecore#//Query/canBeCached"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efacet.ecore#//Query/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="efacet.ecore#//QueryResult">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacet.ecore#//QueryResult/query"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacet.ecore#//QueryResult/scope"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efacet.ecore#//QueryResult/parameterValues"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efacet.ecore#//QueryResult/result"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efacet.ecore#//QueryResult/exception"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacet.ecore#//QueryResult/source"/>
+    </genClasses>
+    <genClasses ecoreClass="efacet.ecore#//Category"/>
+    <genClasses ecoreClass="efacet.ecore#//FacetElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacet.ecore#//FacetElement/categories"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference efacet.ecore#//FacetElement/facet"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacet.ecore#//FacetElement/override"/>
+    </genClasses>
+    <genClasses ecoreClass="efacet.ecore#//QueryFacetElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efacet.ecore#//QueryFacetElement/query"/>
+    </genClasses>
+    <genClasses ecoreClass="efacet.ecore#//OppositeReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacet.ecore#//OppositeReference/fOpposite"/>
+    </genClasses>
+    <genClasses ecoreClass="efacet.ecore#//QuerySet">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efacet.ecore#//QuerySet/queries"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efacet.ecore#//QuerySet/name"/>
+    </genClasses>
+    <genClasses ecoreClass="efacet.ecore#//Literal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efacet.ecore#//Literal/value"/>
+    </genClasses>
+    <genClasses ecoreClass="efacet.ecore#//TypedElementRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacet.ecore#//TypedElementRef/typedElement"/>
+    </genClasses>
+    <genClasses ecoreClass="efacet.ecore#//Parameter"/>
+    <genClasses ecoreClass="efacet.ecore#//ParameterValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacet.ecore#//ParameterValue/parameter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efacet.ecore#//ParameterValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="efacet.ecore#//QueryContext">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacet.ecore#//QueryContext/selectedModelElements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efacet.ecore#//QueryContext/selectedModels"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

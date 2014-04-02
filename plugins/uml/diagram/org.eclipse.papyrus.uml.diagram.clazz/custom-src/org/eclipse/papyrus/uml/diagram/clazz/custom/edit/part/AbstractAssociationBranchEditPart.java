@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.AssociationFigure;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.CustomMultiAssociationHelper;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
@@ -46,9 +46,9 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPa
 	 * add listener
 	 */
 	protected void addAssociationEndListeners() {
-		if(resolveSemanticElement() instanceof Association) {
-			Property targetEnd = MultiAssociationHelper.getPropertyToListen(((Edge)getModel()), (Association)resolveSemanticElement());
-			if(targetEnd != null) {
+		if (resolveSemanticElement() instanceof Association) {
+			Property targetEnd = CustomMultiAssociationHelper.getPropertyToListen(((Edge) getModel()), (Association) resolveSemanticElement());
+			if (targetEnd != null) {
 				addListenerFilter("AssociationEndListenersTarget", this, targetEnd); //$NON-NLS-1$
 			}
 		}
@@ -76,7 +76,7 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPa
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 		// set the good ends for the association figure
-		if(((View)getModel()).isSetElement()) {
+		if (((View) getModel()).isSetElement()) {
 			refreshVisuals();
 		}
 	}
@@ -87,22 +87,22 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPa
 	 */
 	@Override
 	protected void refreshVisuals() {
-		if(resolveSemanticElement() != null) {
-			if(resolveSemanticElement() instanceof Association) {
-				Property target = MultiAssociationHelper.getPropertyToListen(((Edge)getModel()), (Association)resolveSemanticElement());
-				if(target != null && target.getOwner() != null) {
+		if (resolveSemanticElement() != null) {
+			if (resolveSemanticElement() instanceof Association) {
+				Property target = CustomMultiAssociationHelper.getPropertyToListen(((Edge) getModel()), (Association) resolveSemanticElement());
+				if (target != null && target.getOwner() != null) {
 					int sourceType = 0;
 					int targetType = 0;
 					// aggregation?
-					if(target.getAggregation() == AggregationKind.SHARED_LITERAL) {
+					if (target.getAggregation() == AggregationKind.SHARED_LITERAL) {
 						targetType += AssociationFigure.aggregation;
 					}
 					// composite?
-					if(target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
+					if (target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
 						targetType += AssociationFigure.composition;
 					}
 					// navigable?
-					if(target.isNavigable()) {
+					if (target.isNavigable()) {
 						targetType += AssociationFigure.navigable;
 					}
 					getPrimaryShape().setEnd(sourceType, targetType);

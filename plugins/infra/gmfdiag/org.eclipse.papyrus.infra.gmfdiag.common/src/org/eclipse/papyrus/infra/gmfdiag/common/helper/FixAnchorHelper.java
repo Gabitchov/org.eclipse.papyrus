@@ -209,7 +209,7 @@ public class FixAnchorHelper {
 	 *        if <code>true</code> we are fixing the source anchor if <code>false</code> we are fixing the target anchor
 	 * @return
 	 */
-	private Command getFixAnchorCommand(final INodeEditPart nodeEditPart, final PrecisionRectangle oldNodeBounds, final PrecisionRectangle newNodeBounds, final AbstractConnectionEditPart targetConnectionEP, final Point move, final Dimension sizeDelta, final boolean fixSource) {
+	public Command getFixAnchorCommand(final INodeEditPart nodeEditPart, final PrecisionRectangle oldNodeBounds, final PrecisionRectangle newNodeBounds, final AbstractConnectionEditPart targetConnectionEP, final Point move, final Dimension sizeDelta, final boolean fixSource) {
 		final Point realAnchorPoint = getRealAnchorPoint(targetConnectionEP, fixSource);
 
 		final IFigure fig = nodeEditPart.getFigure();

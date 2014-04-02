@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.LifelineUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.LifelineUtils.LifelineType;
 import org.eclipse.papyrus.uml.diagram.timing.edit.commands.CompactLifelineCreateCommandCN;
@@ -28,7 +29,7 @@ public class CustomInteractionCompartmentItemSemanticEditPolicy extends Interact
 	protected Command getCreateCommand(final CreateElementRequest req) {
 		final IElementType elementType = req.getElementType();
 		if(UMLElementTypes.Lifeline_19 == elementType) {
-			return getGEFWrapper(new FullLifelineCreateCommandCN(req) {
+			return getGEFWrapper(new FullLifelineCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())) {
 
 				@Override
 				protected void doConfigure(final Lifeline newElement, final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -38,7 +39,7 @@ public class CustomInteractionCompartmentItemSemanticEditPolicy extends Interact
 			});
 		}
 		if(UMLElementTypes.Lifeline_20 == elementType) {
-			return getGEFWrapper(new CompactLifelineCreateCommandCN(req) {
+			return getGEFWrapper(new CompactLifelineCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())) {
 
 				@Override
 				protected void doConfigure(final Lifeline newElement, final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {

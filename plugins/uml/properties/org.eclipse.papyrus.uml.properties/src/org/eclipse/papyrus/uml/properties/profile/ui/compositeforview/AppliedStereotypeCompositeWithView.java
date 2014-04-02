@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositeforview;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -24,7 +26,6 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleReferenceEditor;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
@@ -50,7 +51,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 
 	/**
 	 * The Constructor.
-	 * 
+	 *
 	 * @param parent
 	 *        the parent
 	 */
@@ -61,12 +62,12 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 
 	/**
 	 * Creates the content.
-	 * 
+	 *
 	 * @param parent
 	 *        the parent
 	 * @param factory
 	 *        the factory
-	 * 
+	 *
 	 * @return the composite
 	 */
 	@Override
@@ -83,7 +84,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 
 	/**
 	 * Sets the selection.
-	 * 
+	 *
 	 * @param selection
 	 *        the selection
 	 */
@@ -93,7 +94,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 
 	/**
 	 * Sets the diagram element.
-	 * 
+	 *
 	 * @param diagramElement
 	 *        the diagram element
 	 */
@@ -104,7 +105,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 
 	/**
 	 * Sets the property composite associated to this stereotype composite
-	 * 
+	 *
 	 * @param propertyComposite
 	 *        the composite associated to this stereotype composite used for stereotype property display.
 	 */
@@ -114,7 +115,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 
 	/**
 	 * Gets the selected.
-	 * 
+	 *
 	 * @return the selected
 	 * @deprecated
 	 */
@@ -132,84 +133,13 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 		super.addButtonPressed();
 	}
 
-	/**
-	 * Display the stereotype once it is applied
-	 * 
-	 * @param st
-	 *        the stereotype to add
-	 */
-	@Override
-	public void applyStereotype(final Element elt, final Stereotype st) {
-		super.applyStereotype(elt, st);
-		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if(diagramElement == null) {
-			return;
-		}
-		try {
-			final TransactionalEditingDomain domain = getEditingDomain(elt);
-			domain.runExclusive(new Runnable() {
 
-				public void run() {
 
-					Display.getCurrent().asyncExec(new Runnable() {
 
-						public void run() {
-
-							String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
-							RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
-							domain.getCommandStack().execute(command);
-						}
-					});
-				}
-			});
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	/**
-	 * Remove a stereotype from the list of stereotypes to display.
-	 * 
-	 * @param st
-	 *        the stereotype to remove
-	 */
-	@Override
-	protected void unapplyStereotype(final Element elt, final Stereotype st) {
-		super.unapplyStereotype(elt, st);
-		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if(diagramElement == null) {
-			return;
-		}
-
-		final TransactionalEditingDomain domain = getEditingDomain(elt);
-
-		try {
-			domain.runExclusive(new Runnable() {
-
-				public void run() {
-
-					Display.getCurrent().asyncExec(new Runnable() {
-
-						public void run() {
-							String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
-							RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
-
-							domain.getCommandStack().execute(command);
-						}
-					});
-				}
-			});
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.cea.papyrus.profile.ui.composites.StereotypeComposite#removeButtonPressed()
 	 */
 	@Override
@@ -226,12 +156,69 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 
 	/**
 	 * Selection changed.
-	 * 
+	 *
 	 * @param event
 	 *        the event
 	 */
 	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
 		propertySelectionChangeListener.selectionChanged(event);
+	}
+
+	/**
+	 *
+	 * @see org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel.AppliedStereotypeCompositeOnModel#getApplyStereotypeCommmand(org.eclipse.uml2.uml.Element,
+	 *      org.eclipse.uml2.uml.Stereotype, org.eclipse.emf.transaction.TransactionalEditingDomain)
+	 *
+	 * @param elt
+	 * @param st
+	 * @param domain
+	 * @return
+	 */
+	@Override
+	protected Command getApplyStereotypeCommmand(Element elt, Stereotype st, TransactionalEditingDomain domain) {
+		CompoundCommand compoundCommand = new CompoundCommand("applyStereotypeCommand");
+
+		Command parentCommmand = super.getApplyStereotypeCommmand(elt, st, domain);
+		compoundCommand.append(parentCommmand);
+
+		//Fix regression / Bug 431258
+		//The graphical element is not necessarily available (e.g. Selection in ModelExplorer)
+		if(diagramElement != null) {
+			String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
+			RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
+
+			compoundCommand.append(command);
+		}
+
+		return parentCommmand;
+	}
+
+	/**
+	 *
+	 * @see org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel.AppliedStereotypeCompositeOnModel#getUnapplyStereotypeCommand(org.eclipse.uml2.uml.Element,
+	 *      org.eclipse.uml2.uml.Stereotype, org.eclipse.emf.transaction.TransactionalEditingDomain)
+	 *
+	 * @param elt
+	 * @param st
+	 * @param domain
+	 * @return
+	 */
+	@Override
+	protected Command getUnapplyStereotypeCommand(Element elt, Stereotype st, TransactionalEditingDomain domain) {
+		CompoundCommand compoundCommand = new CompoundCommand("UnapplyStereotypeCommand");
+
+		Command parentCommand = super.getUnapplyStereotypeCommand(elt, st, domain);
+		compoundCommand.append(parentCommand);
+
+		//Fix regression / Bug 431258
+		//The graphical element is not necessarily available (e.g. Selection in ModelExplorer)
+		if(diagramElement != null) {
+			String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
+			RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
+			compoundCommand.append(command);
+		}
+
+		return compoundCommand;
 	}
 }

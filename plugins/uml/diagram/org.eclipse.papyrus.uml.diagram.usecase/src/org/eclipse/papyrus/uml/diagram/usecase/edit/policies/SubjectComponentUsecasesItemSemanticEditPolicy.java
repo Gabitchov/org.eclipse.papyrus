@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.CommentCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ConstraintInComponentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.UseCaseInComponentCreateCommand;
@@ -59,19 +60,19 @@ public class SubjectComponentUsecasesItemSemanticEditPolicy extends UMLBaseItemS
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new UseCaseInComponentCreateCommand(req));
+			return getGEFWrapper(new UseCaseInComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Comment_3015 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new CommentCreateCommandCN(req));
+			return getGEFWrapper(new CommentCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.Constraint_3017 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ConstraintInComponentCreateCommand(req));
+			return getGEFWrapper(new ConstraintInComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

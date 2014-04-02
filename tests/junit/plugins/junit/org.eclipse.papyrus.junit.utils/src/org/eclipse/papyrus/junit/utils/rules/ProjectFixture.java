@@ -12,6 +12,10 @@
  */
 package org.eclipse.papyrus.junit.utils.rules;
 
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.fail;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -22,6 +26,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -120,6 +126,39 @@ public class ProjectFixture implements TestRule {
 		if(attr.isReadOnly()) {
 			attr.setReadOnly(false);
 			resource.setResourceAttributes(attr);
+		}
+	}
+
+	public void setReadOnly(String projectRelativePath) {
+		setReadOnly(new Path(projectRelativePath));
+	}
+
+	public void setReadOnly(IPath projectRelativePath) {
+		setReadOnly(project.findMember(projectRelativePath));
+	}
+
+	public void setReadOnly(Resource resource) {
+		IFile file = WorkspaceSynchronizer.getFile(resource);
+		assertThat("Cannot set non-workspace resource read-only", file, notNullValue());
+		setReadOnly(file);
+	}
+	
+	public void setReadOnly(IResource resource) {
+		setReadOnly(resource, true);
+	}
+
+	public void setReadOnly(IResource resource, boolean readOnly) {
+		ResourceAttributes attr = resource.getResourceAttributes();
+
+		if(attr.isReadOnly() != readOnly) {
+			attr.setReadOnly(readOnly);
+
+			try {
+				resource.setResourceAttributes(attr);
+			} catch (CoreException e) {
+				e.getLocalizedMessage();
+				fail(String.format("Failed to make workspace resource %s: %s", readOnly ? "read-only" : "writable", e.getLocalizedMessage()));
+			}
 		}
 	}
 }

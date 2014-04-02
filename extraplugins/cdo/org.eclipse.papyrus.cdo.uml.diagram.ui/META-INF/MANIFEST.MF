@@ -1,4 +1,8 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.cdo.uml.diagram.internal.ui;x-internal:=true,
+ org.eclipse.papyrus.cdo.uml.diagram.internal.ui.handlers;x-internal:=true,
+ org.eclipse.papyrus.cdo.uml.diagram.internal.ui.l10n;x-internal:=true,
+ org.eclipse.papyrus.cdo.uml.diagram.internal.ui.wizards;x-internal:=true
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
@@ -6,18 +10,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.cdo.ui;bundle-version="1.0.0",
  org.eclipse.papyrus.uml.diagram.wizards;bundle-version="1.0.0",
  com.google.guava;bundle-version="11.0.0"
-Export-Package: org.eclipse.papyrus.cdo.uml.diagram.internal.ui;x-internal:=true,
- org.eclipse.papyrus.cdo.uml.diagram.internal.ui.handlers;x-internal:=true,
- org.eclipse.papyrus.cdo.uml.diagram.internal.ui.l10n;x-internal:=true,
- org.eclipse.papyrus.cdo.uml.diagram.internal.ui.wizards;x-internal:=true
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.cdo.uml.diagram.internal.ui.Acti
  vator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.cdo.uml.diagram.ui;singleton:
  =true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

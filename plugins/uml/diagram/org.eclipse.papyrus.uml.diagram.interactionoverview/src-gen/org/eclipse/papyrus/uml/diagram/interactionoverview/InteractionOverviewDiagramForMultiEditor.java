@@ -1,11 +1,16 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *		
+ *	 CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 392301
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.interactionoverview;
@@ -20,6 +25,7 @@ import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.part.InteractionOverviewDiagramEditor;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
@@ -45,6 +51,8 @@ public class InteractionOverviewDiagramForMultiEditor extends InteractionOvervie
 
 	/** The editor splitter. */
 	private Composite splitter;
+	
+	private Image titleImage;
 
 	/**
 	 * Constructor for SashSystem v2. Context and required objects are retrieved
@@ -65,7 +73,18 @@ public class InteractionOverviewDiagramForMultiEditor extends InteractionOvervie
 	public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
 		super.init(site, input);
 		setPartName(getDiagram().getName());
-		setTitleImage(DIAG_IMG_DESC.createImage());
+		titleImage = DIAG_IMG_DESC.createImage();
+		setTitleImage(titleImage);
+	}
+
+	@Override
+	public void dispose() {
+		if(titleImage != null) {
+			titleImage.dispose();
+			titleImage = null;
+		}
+		
+		super.dispose();
 	}
 
 	/**

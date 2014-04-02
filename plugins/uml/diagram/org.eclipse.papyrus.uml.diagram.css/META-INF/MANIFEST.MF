@@ -15,8 +15,8 @@ Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: UML-Specific CSS concepts (Incubation)
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.css.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.css;singleton:=tr
  ue
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

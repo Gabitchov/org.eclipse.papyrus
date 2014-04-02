@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.common.commands.SupplementCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Association;
@@ -44,8 +45,8 @@ public class CreateAssociationSupplement extends SupplementCommand {
 	 * @param target
 	 *        the target of the association (Type)
 	 */
-	public CreateAssociationSupplement(EObject container, EObject source, EObject target) {
-		super(container, source, target);
+	public CreateAssociationSupplement(EObject container, EObject source, EObject target, Diagram diagram) {
+		super(container, source, target, diagram);
 	}
 
 	/**

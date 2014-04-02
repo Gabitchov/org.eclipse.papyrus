@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL 
+ * Copyright (c) 2009, 2014 LIFL, CEA LIST, and others. 
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 392301
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple;
@@ -62,4 +63,7 @@ public class FakePageModel implements IPageModel {
 		return null;
 	}
 
+	public void dispose() {
+		// Pass
+	}
 }

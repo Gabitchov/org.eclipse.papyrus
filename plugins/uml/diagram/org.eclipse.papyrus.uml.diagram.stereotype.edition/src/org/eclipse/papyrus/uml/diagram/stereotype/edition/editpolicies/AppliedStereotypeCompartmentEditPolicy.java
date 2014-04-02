@@ -73,7 +73,12 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 		}
 	}
 
-
+/**
+ * this method has in charge to calculate if a compartment must be displayed.
+ * To know that it computes if a property of stereotype is displayed  into it.
+ * @param applicationOfStereotype the eobject that represent the stereotype application
+ * @return true if the compartment  display a property of sterotype
+ */
 	protected boolean hasToDisplayCompartment(EObject applicationOfStereotype) {
 		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View)getHost().getModel());
 		String stereotypesLocalizationToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization((View)getHost().getModel());

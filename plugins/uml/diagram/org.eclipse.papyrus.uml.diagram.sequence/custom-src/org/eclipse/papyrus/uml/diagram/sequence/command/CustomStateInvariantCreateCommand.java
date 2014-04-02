@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.StateInvariantCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
@@ -36,8 +37,8 @@ public class CustomStateInvariantCreateCommand extends StateInvariantCreateComma
 	 * @param req
 	 * @param eObject
 	 */
-	public CustomStateInvariantCreateCommand(CreateElementRequest req, EObject eObject) {
-		super(req, eObject);
+	public CustomStateInvariantCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
+		super(req, eObject, diagram);
 	}
 
 	/**
@@ -45,8 +46,8 @@ public class CustomStateInvariantCreateCommand extends StateInvariantCreateComma
 	 * 
 	 * @param req
 	 */
-	public CustomStateInvariantCreateCommand(CreateElementRequest req) {
-		super(req);
+	public CustomStateInvariantCreateCommand(CreateElementRequest req, Diagram diagram) {
+		super(req, diagram);
 	}
 
 	/**

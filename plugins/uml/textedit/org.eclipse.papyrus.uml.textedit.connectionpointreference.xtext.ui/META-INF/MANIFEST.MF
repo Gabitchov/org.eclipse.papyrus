@@ -31,7 +31,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.connectionpointrefe
  rence.xtext.ui.internal.UMLConnectionPointReferenceActivator
+Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.connectionpointr
  eference.xtext.ui;singleton:=true
-Import-Package: org.apache.log4j
 

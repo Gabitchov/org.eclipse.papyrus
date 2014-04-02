@@ -62,7 +62,9 @@ public abstract class ResizeableListCompartmentEditPart extends ListCompartmentE
 		if(NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
-		super.handleNotificationEvent(notification);
+		if( resolveSemanticElement()!=null){
+			super.handleNotificationEvent(notification);
+		}
 	}
 
 	@Override

@@ -4,23 +4,23 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Arthur Daussy <a href="mailto:arthur.daussy@atos.net"> - initial API and implementation
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.controlmode.util.ControlHelper;
 
 /**
  * Tester used to test control elements property
- * 
+ *
  * @author adaussy
- * 
+ *
  */
 public class IsControlledFragmentTester extends org.eclipse.core.expressions.PropertyTester {
 
@@ -73,18 +73,12 @@ public class IsControlledFragmentTester extends org.eclipse.core.expressions.Pro
 
 	/**
 	 * Retrieve a EObject from an object
-	 * 
+	 *
 	 * @param selectedElement
 	 * @return
 	 */
 	public static EObject getSemanticObject(Object selectedElement) {
-		EObject semanticObject = null;
-		if(selectedElement instanceof IAdaptable) {
-			semanticObject = (EObject)((IAdaptable)selectedElement).getAdapter(EObject.class);
-		}
-		if(selectedElement instanceof EObject) {
-			semanticObject = (EObject)selectedElement;
-		}
+		EObject semanticObject = EMFHelper.getEObject(selectedElement);
 		if(selectedElement == null || selectedElement instanceof EReference || semanticObject instanceof EReference) {
 			return null;
 		}

@@ -23,7 +23,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
  * This handler allows to Open Diagrams and Tables
@@ -76,7 +79,9 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 		final List<EObject> pagesToOpen = new LinkedList<EObject>();
 		List<EObject> pagesToSelect = new LinkedList<EObject>();
 		for(EObject selected : selectedProperties) {
-			if(!pageManager.isOpen(selected) || isDuplicateDiagramAllowed) {
+			if (!canOpenByPolicy(selected))
+				continue;
+			if (!pageManager.isOpen(selected) || isDuplicateDiagramAllowed) {
 				pagesToOpen.add(selected);
 			} else {
 				pagesToSelect.add(selected);
@@ -97,7 +102,21 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 	}
 
 	/**
-	 *
+	 * Determines whether the current policy allows this object to be opened
+	 * @param selection The object to open
+	 * @return <code>true</code> if the object can be opened
+	 */
+	private boolean canOpenByPolicy(EObject selection) {
+		if (selection instanceof Diagram) {
+			Diagram diagram = (Diagram)selection;
+			ViewPrototype proto = DiagramUtils.getPrototype(diagram);
+			return (proto != ViewPrototype.UNAVAILABLE_VIEW && proto != ViewPrototype.UNAVAILABLE_DIAGRAM);
+		}
+		return true;
+	}
+	
+	/**
+	 * 
 	 * @see org.eclipse.core.runtime.IExecutableExtension#setInitializationData(org.eclipse.core.runtime.IConfigurationElement, java.lang.String,
 	 *      java.lang.Object)
 	 *

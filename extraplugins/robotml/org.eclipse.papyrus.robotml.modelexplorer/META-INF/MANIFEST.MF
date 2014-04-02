@@ -8,10 +8,10 @@ Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %Bundle-Name
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.robotml.modelexplorer.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.robotml.modelexplorer;singlet
  on:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

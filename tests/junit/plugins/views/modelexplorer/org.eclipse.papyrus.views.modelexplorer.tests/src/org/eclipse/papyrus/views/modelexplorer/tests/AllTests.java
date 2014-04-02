@@ -18,7 +18,11 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ DeleteHandlerTest.class, ModelExplorerViewTests.class })
+@SuiteClasses({ 
+	ModelExplorerViewTests.class,
+	DeleteHandlerTest.class,
+	ModelExplorerViewTests.class,
+	OpendiagramTest.class })
 public class AllTests {
 	// JUnit 4 test suite
 }

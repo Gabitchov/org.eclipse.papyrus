@@ -19,9 +19,9 @@ Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: CSS Debug view (Incubation)
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.debug.Activato
  r
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.debug;singl
  eton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

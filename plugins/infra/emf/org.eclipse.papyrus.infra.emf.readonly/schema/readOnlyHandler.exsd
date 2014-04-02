@@ -49,6 +49,9 @@
 
    <element name="readOnlyHandler">
       <complexType>
+         <sequence>
+            <element ref="affinity" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
          <attribute name="class" type="string">
             <annotation>
                <documentation>
@@ -72,6 +75,31 @@
                   optional id that can be used if this read only handler can be overriden.
                </documentation>
             </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="affinity">
+      <annotation>
+         <documentation>
+            Declaration of a handler&apos;s affinity with a particular read-only axis.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="axis" use="required">
+            <annotation>
+               <documentation>
+                  The read-only axis (as enumerated in the &lt;tt&gt;ReadOnlyAxis&lt;/tt&gt; type) to which handler is applicable.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="discretion">
+                  </enumeration>
+                  <enumeration value="permission">
+                  </enumeration>
+               </restriction>
+            </simpleType>
          </attribute>
       </complexType>
    </element>

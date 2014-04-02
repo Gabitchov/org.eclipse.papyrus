@@ -22,9 +22,9 @@ import org.eclipse.papyrus.infra.core.Activator;
 
 /**
  * An IModel which is an abstraction for a set of consistent EMF Resources
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public abstract class EMFLogicalModel extends AbstractBaseModel implements IEMFModel {
 

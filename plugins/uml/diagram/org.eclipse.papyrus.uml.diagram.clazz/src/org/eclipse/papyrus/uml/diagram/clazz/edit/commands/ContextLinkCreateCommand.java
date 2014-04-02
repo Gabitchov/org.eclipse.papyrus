@@ -1,15 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+/*
+ * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Boutheina Bannour (CEA LIST) boutheina.bannour@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -51,33 +50,37 @@ public class ContextLinkCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(source == null && target == null) {
+		if (source == null && target == null) {
 			return false;
 		}
-		if(source != null && false == source instanceof Constraint) {
+		if (source != null && false == source instanceof Constraint) {
 			return false;
 		}
-		if(target != null && false == target instanceof Namespace) {
+		if (target != null && false == target instanceof Namespace) {
 			return false;
 		}
-		if(getSource() == null) {
+		if (getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateConstraintContext_8500(getSource(), resolveTargetNamespace());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateConstraintContext_8500(getSource(), getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
+		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		if(getSource() != null && resolveTargetNamespace() != null) {
-			getSource().setContext(resolveTargetNamespace());
+
+		if (getSource() != null && getTarget() != null) {
+			getSource().setContext(
+					getTarget()
+					);
 		}
 		return CommandResult.newOKCommandResult();
+
 	}
 
 	/**
@@ -91,13 +94,13 @@ public class ContextLinkCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Constraint getSource() {
-		return (Constraint)source;
+		return (Constraint) source;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Namespace resolveTargetNamespace() {
-		return (Namespace)target;
+	protected Namespace getTarget() {
+		return (Namespace) target;
 	}
 }

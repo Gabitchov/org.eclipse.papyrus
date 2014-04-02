@@ -1,0 +1,11 @@
+Projects must have a written ramp down policy by M6, at the latest, and provide link. The plan should describe when the project plans to be feature complete, have API frozen, and similar. The EMF Facet Ramp Down conforms to the [http://wiki.eclipse.org/Modeling_Project_Ramp_Down_Policy|Modeling Project Ramp Down Policy]
+ 
+The EMF Facet Ramp Down is described in the [http://www.eclipse.org/projects/project-plan.php?projectid=modeling.emft.emf-facet#release_milestones|Project Plan].
+
+<font size="-2">
+Copyright (c) 2012 Mia-Software.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html.
+</font>

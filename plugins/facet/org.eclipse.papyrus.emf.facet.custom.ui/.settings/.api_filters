@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.emf.facet.custom.ui" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="Only internal APIs have been modified." id="924844039">
+            <message_arguments>
+                <message_argument value="0.2.0"/>
+                <message_argument value="0.2.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="META-INF/MANIFEST.MF" type="org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.dialog.ILoadCustomizationsDialogListener">
+        <filter comment="Only internal API have be modified" id="305324134">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.dialog.ILoadCustomizationsDialogListener"/>
+                <message_argument value="org.eclipse.papyrus.emf.facet.custom.ui_0.2.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

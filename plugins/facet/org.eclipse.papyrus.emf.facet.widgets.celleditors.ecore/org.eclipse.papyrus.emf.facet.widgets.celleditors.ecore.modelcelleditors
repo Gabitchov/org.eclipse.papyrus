@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modelCellEditor:ModelCellEditorDeclarations xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:modelCellEditor="http://www.eclipse.org/papyrus/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor">
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="float_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EFloatCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="floatObject_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EFloatCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EFloatObject"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="multiString_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EStringMultiCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="char_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.ECharCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EChar"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="charObject_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.ECharCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ECharacterObject"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="boolean_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EBooleanCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="booleanObject_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EBooleanCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="double_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EDoubleCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="doubleObject_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EDoubleCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="int_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EIntCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="intObject_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EIntCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="long_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.ELongCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="longObject_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.ELongCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="bigInteger_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EBigIntegerCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="bigDecimal_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EBigDecimalCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="byte_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EByteCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EByte"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="byteObject_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EByteCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EByteObject"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="short_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EShortCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EShort"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="shortObject_cell" basicCellEditorImpl="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.EShortCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EShortObject"/>
+  </modelCellEditors>
+</modelCellEditor:ModelCellEditorDeclarations>

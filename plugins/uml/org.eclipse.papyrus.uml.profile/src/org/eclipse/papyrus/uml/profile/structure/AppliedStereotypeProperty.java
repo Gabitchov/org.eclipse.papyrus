@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.profile.structure;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.impl.BasicEObjectImpl;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
@@ -23,8 +24,9 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 /**
  * this is a data structure to manipulate value of Applied stereotype properties
  *
+ * The extension of BasicEObjectImpl is only done, since xtext (context object) expects an EObject.
  */
-public class AppliedStereotypeProperty {
+public class AppliedStereotypeProperty extends BasicEObjectImpl {
 	
 	protected EObject stereotypeApplication=null;
 	protected Property stereotypeProperty=null;

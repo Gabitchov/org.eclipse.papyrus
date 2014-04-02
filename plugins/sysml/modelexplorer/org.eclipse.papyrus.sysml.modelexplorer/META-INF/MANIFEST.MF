@@ -1,7 +1,5 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.facet.infra.common.core,
- org.eclipse.emf.facet.infra.query.core,
  org.eclipse.uml2.uml,
  org.eclipse.papyrus.sysml;bundle-version="1.0.0",
  org.eclipse.swt,
@@ -12,7 +10,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.views.modelexplorer;bundle-version="1.0.0",
  org.eclipse.ui.navigator;bundle-version="3.5.0",
  org.eclipse.papyrus.sysml.diagram.common;bundle-version="1.0.0",
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.200",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.ui.ide;bundle-version="3.8.0",
@@ -23,16 +20,20 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
- org.eclipse.papyrus.uml.modelexplorer;bundle-version="1.0.0"
+ org.eclipse.papyrus.uml.modelexplorer;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.query.java.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="1.0.0",
+ org.eclipse.emf.edit.ui
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
 Bundle-Version: 1.0.0.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.sysml.modelexplorer.Activator
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.sysml.modelexplorer.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.modelexplorer;singleton
  :=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

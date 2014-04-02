@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 410346
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.providers.strategy;
 
@@ -23,8 +25,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
+import org.eclipse.emf.edit.provider.IDisposable;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider;
@@ -32,7 +35,7 @@ import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 
 
-public class SemanticEMFContentProvider extends CustomizableModelContentProvider implements IAdaptableContentProvider, IHierarchicContentProvider, IStaticContentProvider {
+public class SemanticEMFContentProvider extends CustomizedTreeContentProvider implements IAdaptableContentProvider, IHierarchicContentProvider, IStaticContentProvider {
 
 	protected EObject[] roots;
 
@@ -50,7 +53,7 @@ public class SemanticEMFContentProvider extends CustomizableModelContentProvider
 		super(Activator.getDefault().getCustomizationManager());
 	}
 
-	public SemanticEMFContentProvider(EObject editedEObject, EStructuralFeature feature, EObject[] roots, CustomizationManager customizationManager) {
+	public SemanticEMFContentProvider(EObject editedEObject, EStructuralFeature feature, EObject[] roots, ICustomizationManager customizationManager) {
 		super(customizationManager);
 		this.roots = roots;
 
@@ -78,7 +81,7 @@ public class SemanticEMFContentProvider extends CustomizableModelContentProvider
 		this(null, null, roots);
 	}
 
-	public SemanticEMFContentProvider(EObject[] roots, CustomizationManager customizationManager) {
+	public SemanticEMFContentProvider(EObject[] roots, ICustomizationManager customizationManager) {
 		this(null, null, roots, customizationManager);
 	}
 
@@ -88,6 +91,18 @@ public class SemanticEMFContentProvider extends CustomizableModelContentProvider
 
 	public SemanticEMFContentProvider(EObject editedEObject, EStructuralFeature feature, ResourceSet root) {
 		this(editedEObject, feature, getRoots(root));
+	}
+	
+	@Override
+	public void dispose() {
+		try {
+			// Because we created this adapter factory, we must dispose it
+			if(factory instanceof IDisposable) {
+				((IDisposable)factory).dispose();
+			}
+		} finally {
+			super.dispose();
+		}
 	}
 
 	protected static EObject[] getRoots(ResourceSet root) {

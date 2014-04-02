@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated configuration -->
+      <wizard
+            id="org.eclipse.papyrus.infra.viewpoints.configuration.presentation.ConfigurationModelWizardID"
+            name="%_UI_ConfigurationModelWizard_label"
+            class="org.eclipse.papyrus.infra.viewpoints.configuration.presentation.ConfigurationModelWizard"
+            category="org.eclipse.papyrus.wizards.category"
+            icon="icons/full/obj16/ConfigurationModelFile.png">
+         <description>%_UI_ConfigurationModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated configuration -->
+      <editor
+            id="org.eclipse.papyrus.infra.viewpoints.configuration.presentation.ConfigurationEditorID"
+            name="%_UI_ConfigurationEditor_label"
+            icon="icons/full/obj16/ConfigurationModelFile.png"
+            extensions="configuration"
+            class="org.eclipse.papyrus.infra.viewpoints.configuration.presentation.ConfigurationEditor"
+            contributorClass="org.eclipse.papyrus.infra.viewpoints.configuration.presentation.ConfigurationActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

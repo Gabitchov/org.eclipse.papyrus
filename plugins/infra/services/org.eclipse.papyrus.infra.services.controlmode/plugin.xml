@@ -21,7 +21,7 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=tools">
          <command
                commandId="org.eclipse.papyrus.infra.services.controlmode.createsubmodel"
                icon="icons/CreateSubModel_16.png"

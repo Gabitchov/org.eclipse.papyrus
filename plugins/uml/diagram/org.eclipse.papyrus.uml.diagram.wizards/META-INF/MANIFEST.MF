@@ -1,4 +1,9 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.diagram.wizards,
+ org.eclipse.papyrus.uml.diagram.wizards.category,
+ org.eclipse.papyrus.uml.diagram.wizards.kind,
+ org.eclipse.papyrus.uml.diagram.wizards.pages,
+ org.eclipse.papyrus.uml.diagram.wizards.utils
 Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
  org.eclipse.emf.edit.ui;bundle-version="2.4.0",
  org.eclipse.emf.ecore.edit;bundle-version="2.4.0",
@@ -14,19 +19,15 @@ Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.papyrus.uml.tools;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.0.0",
  org.eclipse.core.expressions;bundle-version="3.4.0"
-Export-Package: org.eclipse.papyrus.uml.diagram.wizards,
- org.eclipse.papyrus.uml.diagram.wizards.category,
- org.eclipse.papyrus.uml.diagram.wizards.kind,
- org.eclipse.papyrus.uml.diagram.wizards.pages,
- org.eclipse.papyrus.uml.diagram.wizards.utils
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
+Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.wizards.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.wizards;singleton
  :=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

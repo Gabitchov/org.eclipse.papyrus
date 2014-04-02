@@ -17,10 +17,11 @@ Require-Bundle: org.eclipse.ui,
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.views.tracepoints.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.views.tracepoints;singleton:=true
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.views.tracepoints;singleton:=
+ true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

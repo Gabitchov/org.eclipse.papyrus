@@ -10,6 +10,6 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:EnumRadio input="{Binding}" property="notation:TextStyle:textAlignment"></ppe:EnumRadio>
+		<ppe:EnumCombo input="{Binding}" property="notation:TextStyle:textAlignment"></ppe:EnumCombo>
 	</Composite>
 </Composite>

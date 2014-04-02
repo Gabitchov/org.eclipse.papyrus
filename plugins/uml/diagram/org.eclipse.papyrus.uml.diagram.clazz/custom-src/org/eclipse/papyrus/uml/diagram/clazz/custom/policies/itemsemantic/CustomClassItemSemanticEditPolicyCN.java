@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationReorientCommand;
@@ -53,10 +54,10 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
-			return getGEFWrapper(new org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget(), DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
-			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget(), DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return getGEFWrapper(new CTemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
@@ -89,10 +90,10 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
-			return getGEFWrapper(new org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget(), DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
-			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget(), DiagramUtils.getDiagramFrom(getHost())));
 		}
 		//forbid creation of association branch from it.
 		if(UMLElementTypes.Association_4019 == req.getElementType()) {

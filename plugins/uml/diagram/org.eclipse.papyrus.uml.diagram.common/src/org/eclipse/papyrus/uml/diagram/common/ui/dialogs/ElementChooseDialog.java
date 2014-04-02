@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 410346
  */
 package org.eclipse.papyrus.uml.diagram.common.ui.dialogs;
 
@@ -20,6 +21,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -28,8 +30,10 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ParameterableElement;
@@ -161,26 +165,31 @@ public class ElementChooseDialog extends AbstractChooseElement {
 
 			}
 		});
-		btnSelect.addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
+		btnSelect.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
 				getParent().close();
 			}
-
-			public void mouseDown(MouseEvent e) {}
-			public void mouseDoubleClick(MouseEvent e) {}
 		});
 
-		btnCancel.addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
+		btnCancel.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
 				result=null;
 				selectedElement=null;
 				getParent().close();
 			}
-
-			public void mouseDown(MouseEvent e) {}
-			public void mouseDoubleClick(MouseEvent e) {}
+		});
+		
+		getParent().addDisposeListener(new DisposeListener() {
+			
+			@Override
+			public void widgetDisposed(DisposeEvent e) {
+				// Remove the adapters created by this factory
+				if(adapterFactory instanceof IDisposable) {
+					((IDisposable)adapterFactory).dispose();
+				}
+			}
 		});
 	}
 	

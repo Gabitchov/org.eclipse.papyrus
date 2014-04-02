@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 429826
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.handlers;
@@ -37,7 +38,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
@@ -94,7 +96,7 @@ public class DeleteFromModelCommandHandler extends GraphicalCommandHandler imple
 	@Override
 	protected boolean computeEnabled() {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-		IReadOnlyHandler readOnly = ReadOnlyManager.getReadOnlyHandler(editingDomain);
+		IReadOnlyHandler2 readOnly = ReadOnlyManager.getReadOnlyHandler(editingDomain);
 
 		for(IGraphicalEditPart editPart : getSelectedElements()) {
 			EObject semantic = EMFHelper.getEObject(editPart);
@@ -117,7 +119,7 @@ public class DeleteFromModelCommandHandler extends GraphicalCommandHandler imple
 					uris.add(EcoreUtil.getURI(graphical));
 				}
 
-				Optional<Boolean> result = readOnly.anyReadOnly(uris.toArray(new URI[uris.size()]));
+				Optional<Boolean> result = readOnly.anyReadOnly(ReadOnlyAxis.anyAxis(), uris.toArray(new URI[uris.size()]));
 				if(result.isPresent() && result.get()) {
 					return false;
 				}

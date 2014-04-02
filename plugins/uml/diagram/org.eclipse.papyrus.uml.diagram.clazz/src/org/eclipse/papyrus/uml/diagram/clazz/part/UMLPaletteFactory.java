@@ -1,14 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.part;
 
@@ -26,399 +25,356 @@ import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreat
  * @generated
  */
 public class UMLPaletteFactory extends PaletteFactory.Adapter {
+	//RS: New Palette generation
 
+	//Generates the ID for the tool elements
+	//Generate the tool factory (if(ID) createtool...)
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_CLASS = "clazz.tool.class"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_CLASS = "clazz.tool.class";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_CLASSIFIERTEMPLATEPARAMETER = "clazz.tool.classifiertemplateparameter"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_CLASSIFIERTEMPLATEPARAMETER = "clazz.tool.classifiertemplateparameter";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_COMMENT = "clazz.tool.comment"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_COMMENT = "clazz.tool.comment";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_COMPONENT = "clazz.tool.component"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_COMPONENT = "clazz.tool.component";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_CONSTRAINT = "clazz.tool.constraint"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_CONSTRAINT = "clazz.tool.constraint";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_DATATYPE = "clazz.tool.datatype"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_DATATYPE = "clazz.tool.datatype";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CREATEDURATIONOBSERVATION7CREATIONTOOL = "createDurationObservation7CreationTool"; //$NON-NLS-1$
-
+	private final static String CREATEDURATIONOBSERVATION7CREATIONTOOL = "createDurationObservation7CreationTool";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_ENUMERATION = "clazz.tool.enumeration"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_ENUMERATION = "clazz.tool.enumeration";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_ENUMERATIONLITERAL = "clazz.tool.enumerationliteral"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_ENUMERATIONLITERAL = "clazz.tool.enumerationliteral";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_INTERFACE = "clazz.tool.interface"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_INTERFACE = "clazz.tool.interface";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_INSTANCESPECIFICATION = "clazz.tool.instancespecification"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_INSTANCESPECIFICATION = "clazz.tool.instancespecification";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_INFORMATIONITEM = "clazz.tool.informationitem"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_INFORMATIONITEM = "clazz.tool.informationitem";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_PRIMITIVETYPE = "clazz.tool.primitivetype"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_PRIMITIVETYPE = "clazz.tool.primitivetype";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_MODEL = "clazz.tool.model"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_MODEL = "clazz.tool.model";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_OPERATION = "clazz.tool.operation"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_OPERATION = "clazz.tool.operation";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_OPERATIONTEMPLATEPARAMETER = "clazz.tool.OperationTemplateParameter"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_OPERATIONTEMPLATEPARAMETER = "clazz.tool.OperationTemplateParameter";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_PACKAGE = "clazz.tool.package"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_PACKAGE = "clazz.tool.package";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_PROPERTY = "clazz.tool.property"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_PROPERTY = "clazz.tool.property";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_RECEPTION = "clazz.tool.reception"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_RECEPTION = "clazz.tool.reception";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_REDEFINABLETEMPLATESIGNATURE = "clazz.tool.redefinabletemplatesignature"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_REDEFINABLETEMPLATESIGNATURE = "clazz.tool.redefinabletemplatesignature";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_SIGNAL = "clazz.tool.signal"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_SIGNAL = "clazz.tool.signal";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_SLOT = "clazz.tool.slot"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_SLOT = "clazz.tool.slot";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_TEMPLATEPARAMETER = "clazz.tool.templateparameter"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_TEMPLATEPARAMETER = "clazz.tool.templateparameter";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_TEMPLATESIGNATURE = "clazz.tool.templatesignature"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_TEMPLATESIGNATURE = "clazz.tool.templatesignature";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CREATETIMEOBSERVATION22CREATIONTOOL = "createTimeObservation22CreationTool"; //$NON-NLS-1$
-
+	private final static String CREATETIMEOBSERVATION22CREATIONTOOL = "createTimeObservation22CreationTool";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_CONNECTABLEELEMENTTEMPLATEPARAMETER = "clazz.tool.connectableelementtemplateparameter"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_CONNECTABLEELEMENTTEMPLATEPARAMETER = "clazz.tool.connectableelementtemplateparameter";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_ABSTRACTION = "clazz.tool.abstraction"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_ABSTRACTION = "clazz.tool.abstraction";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_ASSOCIATION = "clazz.tool.association"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_ASSOCIATION = "clazz.tool.association";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_ASSOCIATIONBRANCH = "clazz.tool.associationbranch"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_ASSOCIATIONBRANCH = "clazz.tool.associationbranch";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_ASSOCIATIONCLASS = "clazz.tool.associationclass"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_ASSOCIATIONCLASS = "clazz.tool.associationclass";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_CONTAINMENTLINK = "clazz.tool.containmentlink"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_CONTAINMENTLINK = "clazz.tool.containmentlink";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_DEPENDENCY = "clazz.tool.dependency"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_DEPENDENCY = "clazz.tool.dependency";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_DEPENDENCYBRANCH = "clazz.tool.dependencybranch"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_DEPENDENCYBRANCH = "clazz.tool.dependencybranch";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_ELEMENTIMPORT = "clazz.tool.elementimport"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_ELEMENTIMPORT = "clazz.tool.elementimport";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_GENERALIZATION = "clazz.tool.generalization"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_GENERALIZATION = "clazz.tool.generalization";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_GENERALIZATIONSET = "clazz.tool.generalizationset"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_GENERALIZATIONSET = "clazz.tool.generalizationset";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_INFORMATIONFLOWLINK = "clazz.tool.informationflowlink"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_INFORMATIONFLOWLINK = "clazz.tool.informationflowlink";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_INSTANCESPECIFICATIONLINK = "clazz.tool.instancespecificationlink"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_INSTANCESPECIFICATIONLINK = "clazz.tool.instancespecificationlink";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_INTERFACEREALIZATION = "clazz.tool.interfacerealization"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_INTERFACEREALIZATION = "clazz.tool.interfacerealization";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_LINK = "clazz.tool.link"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_LINK = "clazz.tool.link";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_PACKAGEIMPORT = "clazz.tool.packageimport"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_PACKAGEIMPORT = "clazz.tool.packageimport";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_PACKAGEMERGE = "clazz.tool.packagemerge"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_PACKAGEMERGE = "clazz.tool.packagemerge";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_PROFILEAPPLICATION = "clazz.tool.profileapplication"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_PROFILEAPPLICATION = "clazz.tool.profileapplication";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_REALIZATION = "clazz.tool.realization"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_REALIZATION = "clazz.tool.realization";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_SUBSTITUTION = "clazz.tool.substitution"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_SUBSTITUTION = "clazz.tool.substitution";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_USAGE = "clazz.tool.usage"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_USAGE = "clazz.tool.usage";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_TEMPLATEBINDING = "clazz.tool.templatebinding"; //$NON-NLS-1$
-
+	private final static String CLAZZ_TOOL_TEMPLATEBINDING = "clazz.tool.templatebinding";//$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	private final static String CREATECONTEXTLINK22CREATIONTOOL = "createContextLink22CreationTool"; //$NON-NLS-1$
+	private final static String CREATECONTEXTLINK22CREATIONTOOL = "createContextLink22CreationTool";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
+
 	}
 
 	/**
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if(toolId.equals(CLAZZ_TOOL_CLASS)) {
+		if (toolId.equals(CLAZZ_TOOL_CLASS)) {
 			return createClass1CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_CLASSIFIERTEMPLATEPARAMETER)) {
+		if (toolId.equals(CLAZZ_TOOL_CLASSIFIERTEMPLATEPARAMETER)) {
 			return createClassifierTemplateParameter2CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_COMMENT)) {
+		if (toolId.equals(CLAZZ_TOOL_COMMENT)) {
 			return createComment5CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_COMPONENT)) {
+		if (toolId.equals(CLAZZ_TOOL_COMPONENT)) {
 			return createComponent4CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_CONSTRAINT)) {
+		if (toolId.equals(CLAZZ_TOOL_CONSTRAINT)) {
 			return createConstraint5CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_DATATYPE)) {
+		if (toolId.equals(CLAZZ_TOOL_DATATYPE)) {
 			return createDataType6CreationTool();
 		}
-		if(toolId.equals(CREATEDURATIONOBSERVATION7CREATIONTOOL)) {
+		if (toolId.equals(CREATEDURATIONOBSERVATION7CREATIONTOOL)) {
 			return createDurationObservation7CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_ENUMERATION)) {
+		if (toolId.equals(CLAZZ_TOOL_ENUMERATION)) {
 			return createEnumeration8CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_ENUMERATIONLITERAL)) {
+		if (toolId.equals(CLAZZ_TOOL_ENUMERATIONLITERAL)) {
 			return createEnumerationliteral9CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_INTERFACE)) {
+		if (toolId.equals(CLAZZ_TOOL_INTERFACE)) {
 			return createInterface10CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATION)) {
+		if (toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATION)) {
 			return createInstanceSpecification11CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_INFORMATIONITEM)) {
+		if (toolId.equals(CLAZZ_TOOL_INFORMATIONITEM)) {
 			return createInformationItem12CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_PRIMITIVETYPE)) {
+		if (toolId.equals(CLAZZ_TOOL_PRIMITIVETYPE)) {
 			return createPrimitiveType13CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_MODEL)) {
+		if (toolId.equals(CLAZZ_TOOL_MODEL)) {
 			return createModel14CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_OPERATION)) {
+		if (toolId.equals(CLAZZ_TOOL_OPERATION)) {
 			return createOperation15CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_OPERATIONTEMPLATEPARAMETER)) {
+		if (toolId.equals(CLAZZ_TOOL_OPERATIONTEMPLATEPARAMETER)) {
 			return createOperationTemplateParameterCreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_PACKAGE)) {
+		if (toolId.equals(CLAZZ_TOOL_PACKAGE)) {
 			return createPackage17CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_PROPERTY)) {
+		if (toolId.equals(CLAZZ_TOOL_PROPERTY)) {
 			return createProperty18CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_RECEPTION)) {
+		if (toolId.equals(CLAZZ_TOOL_RECEPTION)) {
 			return createReception19CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_REDEFINABLETEMPLATESIGNATURE)) {
+		if (toolId.equals(CLAZZ_TOOL_REDEFINABLETEMPLATESIGNATURE)) {
 			return createRedefinableTemplateSignature20CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_SIGNAL)) {
+		if (toolId.equals(CLAZZ_TOOL_SIGNAL)) {
 			return createSignal21CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_SLOT)) {
+		if (toolId.equals(CLAZZ_TOOL_SLOT)) {
 			return createSlot22CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_TEMPLATEPARAMETER)) {
+		if (toolId.equals(CLAZZ_TOOL_TEMPLATEPARAMETER)) {
 			return createTemplateParameter23CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_TEMPLATESIGNATURE)) {
+		if (toolId.equals(CLAZZ_TOOL_TEMPLATESIGNATURE)) {
 			return createTemplateSignatureCreationTool();
 		}
-		if(toolId.equals(CREATETIMEOBSERVATION22CREATIONTOOL)) {
+		if (toolId.equals(CREATETIMEOBSERVATION22CREATIONTOOL)) {
 			return createTimeObservation22CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_CONNECTABLEELEMENTTEMPLATEPARAMETER)) {
+		if (toolId.equals(CLAZZ_TOOL_CONNECTABLEELEMENTTEMPLATEPARAMETER)) {
 			return createConnectableElementTemplateParameter26CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_ABSTRACTION)) {
+		if (toolId.equals(CLAZZ_TOOL_ABSTRACTION)) {
 			return createAbstraction1CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_ASSOCIATION)) {
+		if (toolId.equals(CLAZZ_TOOL_ASSOCIATION)) {
 			return createAssociation2CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_ASSOCIATIONBRANCH)) {
+		if (toolId.equals(CLAZZ_TOOL_ASSOCIATIONBRANCH)) {
 			return createAssociationBranch3CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_ASSOCIATIONCLASS)) {
+		if (toolId.equals(CLAZZ_TOOL_ASSOCIATIONCLASS)) {
 			return createAssociationClass4CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_CONTAINMENTLINK)) {
+		if (toolId.equals(CLAZZ_TOOL_CONTAINMENTLINK)) {
 			return createContainmentLink5CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_DEPENDENCY)) {
+		if (toolId.equals(CLAZZ_TOOL_DEPENDENCY)) {
 			return createDependency6CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_DEPENDENCYBRANCH)) {
+		if (toolId.equals(CLAZZ_TOOL_DEPENDENCYBRANCH)) {
 			return createDependencyBranch7CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_ELEMENTIMPORT)) {
+		if (toolId.equals(CLAZZ_TOOL_ELEMENTIMPORT)) {
 			return createElementImport8CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_GENERALIZATION)) {
+		if (toolId.equals(CLAZZ_TOOL_GENERALIZATION)) {
 			return createGeneralization9CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_GENERALIZATIONSET)) {
+		if (toolId.equals(CLAZZ_TOOL_GENERALIZATIONSET)) {
 			return createGeneralizationSet10CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_INFORMATIONFLOWLINK)) {
+		if (toolId.equals(CLAZZ_TOOL_INFORMATIONFLOWLINK)) {
 			return createInformationFlowLinkCreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATIONLINK)) {
+		if (toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATIONLINK)) {
 			return createInstanceSpecificationLinkCreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_INTERFACEREALIZATION)) {
+		if (toolId.equals(CLAZZ_TOOL_INTERFACEREALIZATION)) {
 			return createInterfaceRealization13CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_LINK)) {
+		if (toolId.equals(CLAZZ_TOOL_LINK)) {
 			return createLink14CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_PACKAGEIMPORT)) {
+		if (toolId.equals(CLAZZ_TOOL_PACKAGEIMPORT)) {
 			return createPackageImport15CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_PACKAGEMERGE)) {
+		if (toolId.equals(CLAZZ_TOOL_PACKAGEMERGE)) {
 			return createPackageMerge16CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_PROFILEAPPLICATION)) {
+		if (toolId.equals(CLAZZ_TOOL_PROFILEAPPLICATION)) {
 			return createProfileApplication17CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_REALIZATION)) {
+		if (toolId.equals(CLAZZ_TOOL_REALIZATION)) {
 			return createRealization18CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_SUBSTITUTION)) {
+		if (toolId.equals(CLAZZ_TOOL_SUBSTITUTION)) {
 			return createSubstitution19CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_USAGE)) {
+		if (toolId.equals(CLAZZ_TOOL_USAGE)) {
 			return createUsage20CreationTool();
 		}
-		if(toolId.equals(CLAZZ_TOOL_TEMPLATEBINDING)) {
+		if (toolId.equals(CLAZZ_TOOL_TEMPLATEBINDING)) {
 			return createTemplateBinding21CreationTool();
 		}
-		if(toolId.equals(CREATECONTEXTLINK22CREATIONTOOL)) {
+		if (toolId.equals(CREATECONTEXTLINK22CREATIONTOOL)) {
 			return createContextLink22CreationTool();
 		}
 		// default return: null
@@ -429,6 +385,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Object getTemplate(String templateId) {
+
 		// default return: null
 		return null;
 	}
@@ -956,4 +913,5 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
+
 }

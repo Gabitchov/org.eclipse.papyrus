@@ -15,5 +15,8 @@
       <strategy
             strategy="org.eclipse.papyrus.uml.diagram.dnd.lifeline.ClassifierToInteractionDropStrategy">
       </strategy>
+       <strategy
+            strategy="org.eclipse.papyrus.uml.diagram.dnd.strategy.constraint.NamespaceToConstraintDropStrategy">
+      </strategy>
    </extension>
 </plugin>

@@ -12,6 +12,7 @@
  */
 package org.eclipse.papyrus.infra.emf.readonly;
 
+import static org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis.discretionAxes;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -124,8 +125,8 @@ public class ReferencedModelReadOnlyHandlerTest {
 	public void testCrossReferencedWorkspaceModelElementsMadeWritable() {
 		Property ssn = person.getAttribute("ssn", null);
 		assumeReadOnly(ssn.getType());
-		assertThat(fixture.canMakeWritable(ssn.getType()).or(false), is(true));
-		assertThat(fixture.makeWritable(ssn.getType()).or(false), is(true));
+		assertThat(fixture.canMakeWritable(discretionAxes(), ssn.getType()).or(false), is(true));
+		assertThat(fixture.makeWritable(discretionAxes(), ssn.getType()).or(false), is(true));
 		assertNotReadOnly(ssn.getType());
 		assertNotReadOnly(person.getAttribute("registered", null).getType());
 	}
@@ -174,8 +175,8 @@ public class ReferencedModelReadOnlyHandlerTest {
 	public void testObjectURIsWithFragment() {
 		Property ssn = person.getAttribute("ssn", null);
 		URI uri = EcoreUtil.getURI(ssn);
-		assertThat(fixture.anyReadOnly(new URI[]{ uri }).or(false), is(false));
-		assertThat(fixture.canMakeWritable(new URI[]{ uri }).or(true), is(false));
+		assertThat(fixture.anyReadOnly(discretionAxes(), new URI[]{ uri }).or(false), is(false));
+		assertThat(fixture.canMakeWritable(discretionAxes(), new URI[]{ uri }).or(true), is(false));
 	}
 	
 	//
@@ -310,17 +311,17 @@ public class ReferencedModelReadOnlyHandlerTest {
 	}
 
 	void assertReadOnly(EObject object) {
-		Optional<Boolean> status = fixture.isReadOnly(object);
+		Optional<Boolean> status = fixture.isReadOnly(discretionAxes(), object);
 		assertThat("Not read-only", status.or(false), is(true));
 	}
 
 	void assertNotReadOnly(EObject object) {
-		Optional<Boolean> status = fixture.isReadOnly(object);
+		Optional<Boolean> status = fixture.isReadOnly(discretionAxes(), object);
 		assertThat("Should not be either read-only or definitely writable", status.isPresent(), is(false));
 	}
 
 	void assumeReadOnly(EObject object) {
-		Optional<Boolean> status = fixture.isReadOnly(object);
+		Optional<Boolean> status = fixture.isReadOnly(discretionAxes(), object);
 		assumeThat("Not read-only", status.or(false), is(true));
 	}
 

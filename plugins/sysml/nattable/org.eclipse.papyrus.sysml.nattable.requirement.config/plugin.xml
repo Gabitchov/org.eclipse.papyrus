@@ -4,7 +4,8 @@
    <extension
          point="org.eclipse.papyrus.infra.nattable.configuration">
       <configuration
-            file="configs/requirement.nattableconfiguration">
+            file="configs/requirement.nattableconfiguration"
+            type="PapyrusSysMLRequirementTable">
       </configuration>
    </extension>
    <extension

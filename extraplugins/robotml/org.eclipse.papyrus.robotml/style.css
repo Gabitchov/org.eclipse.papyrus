@@ -1,0 +1,14 @@
+* {
+	elementIcon:false;
+	
+}
+
+Stereotype > Compartment[kind="operation"] {
+	visible:false;
+}
+Class{
+	fontHeight:12;
+}
+Attribute{
+	fontHeight:10;
+}

@@ -26,10 +26,9 @@ import org.eclipse.uml2.uml.Slot;
 public class RoleInstanceSpecificationLinkSourceParser implements IParser {
 
 	public String getEditString(IAdaptable element, int flags) {
-		InstanceSpecification instanceSpecification = ((InstanceSpecification)((EObjectAdapter)element).getRealObject());
-		if(instanceSpecification.getClassifiers().size() > 0) {
-			if(instanceSpecification.getClassifiers().get(0) instanceof Association) {
-				Association association = (Association)instanceSpecification.getClassifiers().get(0);
+		InstanceSpecification instanceSpecification = ((InstanceSpecification) ((EObjectAdapter) element).getRealObject());
+		if (instanceSpecification.getClassifiers().size() > 0) {
+			if (instanceSpecification.getClassifiers().get(0) instanceof Association) {
 				Slot slotSource = instanceSpecification.getSlots().get(0);
 				return slotSource.getValues().get(0).getType().getName();
 			}
@@ -48,10 +47,9 @@ public class RoleInstanceSpecificationLinkSourceParser implements IParser {
 	}
 
 	public String getPrintString(IAdaptable element, int flags) {
-		InstanceSpecification instanceSpecification = ((InstanceSpecification)((EObjectAdapter)element).getRealObject());
-		if(instanceSpecification.getClassifiers().size() > 0) {
-			if(instanceSpecification.getClassifiers().get(0) instanceof Association) {
-				Association association = (Association)instanceSpecification.getClassifiers().get(0);
+		InstanceSpecification instanceSpecification = ((InstanceSpecification) ((EObjectAdapter) element).getRealObject());
+		if (instanceSpecification.getClassifiers().size() > 0) {
+			if (instanceSpecification.getClassifiers().get(0) instanceof Association) {
 				Slot slotSource = instanceSpecification.getSlots().get(0);
 				return slotSource.getValues().get(0).getType().getName();
 			}

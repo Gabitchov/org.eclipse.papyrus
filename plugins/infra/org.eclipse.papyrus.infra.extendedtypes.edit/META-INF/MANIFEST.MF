@@ -1,7 +1,4 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.provider,
- org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.provider,
- org.eclipse.papyrus.infra.extendedtypes.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.extendedtypes;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
@@ -11,15 +8,18 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml;visibility:=reexport,
  org.eclipse.uml2.uml.edit;visibility:=reexport,
  org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0"
+Export-Package: org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.provider,
+ org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.provider,
+ org.eclipse.papyrus.infra.extendedtypes.provider
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.extendedtypes.provider.Ext
  endedTypesEditPlugin$Implementation
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.extendedtypes.edit;sing
  leton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

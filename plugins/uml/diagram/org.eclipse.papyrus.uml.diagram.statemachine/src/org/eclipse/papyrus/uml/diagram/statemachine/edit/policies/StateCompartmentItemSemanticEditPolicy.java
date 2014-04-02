@@ -5,6 +5,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ConnectionPointReferenceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.RegionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
@@ -45,13 +46,13 @@ public class StateCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new RegionCreateCommand(req));
+			return getGEFWrapper(new RegionCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.ConnectionPointReference_18000 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ConnectionPointReferenceCreateCommand(req));
+			return getGEFWrapper(new ConnectionPointReferenceCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

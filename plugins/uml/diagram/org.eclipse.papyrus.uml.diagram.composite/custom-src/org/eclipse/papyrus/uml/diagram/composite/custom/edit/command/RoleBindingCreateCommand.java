@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 410346
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.command;
@@ -16,7 +17,6 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.edit.command;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -78,21 +78,25 @@ public class RoleBindingCreateCommand extends org.eclipse.papyrus.uml.diagram.co
 		CollaborationUse graphicalSource = (CollaborationUse)getSource();
 
 		// Create and open the selection dialog
-		AdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		Shell currentShell = new Shell(Display.getCurrent(), SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
 		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(currentShell, new AdapterFactoryLabelProvider(adapterFactory), new CollaborationRoleTreeContentProvider());
 
-		// Set dialog parameters
-		dialog.setTitle(Messages.RoleBindingRoleSelectionDialog_Title);
-		dialog.setMessage(Messages.RoleBindingRoleSelectionDialog_Message);
-		dialog.setAllowMultiple(false);
-		dialog.setHelpAvailable(false);
-		// The source CollaborationUse is set as input for the selection dialog,
-		// the CollaborationRoleTreeContentProvider provides the roles that can possibly be
-		// selected.
-		dialog.setInput(graphicalSource);
+		try {
+			// Set dialog parameters
+			dialog.setTitle(Messages.RoleBindingRoleSelectionDialog_Title);
+			dialog.setMessage(Messages.RoleBindingRoleSelectionDialog_Message);
+			dialog.setAllowMultiple(false);
+			dialog.setHelpAvailable(false);
+			// The source CollaborationUse is set as input for the selection dialog,
+			// the CollaborationRoleTreeContentProvider provides the roles that can possibly be
+			// selected.
+			dialog.setInput(graphicalSource);
 
-		dialog.open();
+			dialog.open();
+		} finally {
+			adapterFactory.dispose();
+		}
 
 		// If a ConnectableElement has been selected, complete command execution
 		// using selection as the "newly created" element and make the edited

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos.
+ * Copyright (c) 2011, 2014 Atos, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Hemery (Atos) - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 430701
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands.wrappers;
@@ -18,7 +19,9 @@ import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.commands.Activator;
+import org.eclipse.papyrus.commands.INonDirtying;
 
 /**
  * A GEF Command that wraps an undoable operation. Each method is redirected to the operation. <br>
@@ -40,6 +43,20 @@ public class OperationToGEFCommandWrapper extends Command {
 		super(baseOperation.getLabel());
 		operation = baseOperation;
 		Assert.isNotNull(operation);
+	}
+	
+	/**
+	 * Wraps the given {@code operation}, accounting for possible non-dirty state.
+	 * 
+	 * @param operation
+	 *        an operation to wrap
+	 * @return the best wrapper for the {@code operation}
+	 */
+	public static Command wrap(IUndoableOperation operation) {
+		if(operation instanceof INonDirtying) {
+			return new NonDirtying(operation);
+		}
+		return new OperationToGEFCommandWrapper(operation);
 	}
 
 	/**
@@ -118,5 +135,24 @@ public class OperationToGEFCommandWrapper extends Command {
 	@Override
 	public String getLabel() {
 		return operation.getLabel();
+	}
+	
+	//
+	// Nested types
+	//
+	
+	/**
+	 * A non-dirtying wrapper for non-dirtying commands.
+	 */
+	public static class NonDirtying extends OperationToGEFCommandWrapper implements INonDirtying {
+
+		public NonDirtying(IUndoableOperation operation) {
+			super(operation);
+
+			if(!(operation instanceof INonDirtying)) {
+				throw new IllegalArgumentException("Wrapped operation is not non-dirtying"); //$NON-NLS-1$
+			}
+		}
+		
 	}
 }

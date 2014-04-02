@@ -21,11 +21,11 @@ import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.uml.properties.expression.ExpressionList;
 import org.eclipse.papyrus.uml.properties.expression.ExpressionList.Expression;
-import org.eclipse.papyrus.uml.properties.messages.Messages;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;
 import org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
@@ -48,8 +48,6 @@ public class ExpressionEditor extends AbstractPropertyEditor implements Listener
 
 	private final ExpressionLanguageEditor languageEditor;
 
-	private final Composite bodyEditorContainer;
-
 	private IObservableList bodies;
 
 	private Expression currentExpression = null;
@@ -67,12 +65,18 @@ public class ExpressionEditor extends AbstractPropertyEditor implements Listener
 	public ExpressionEditor(Composite parent, int style) {
 
 		languageEditor = new ExpressionLanguageEditor(parent, SWT.NONE);
-
-		bodyEditorContainer = new Composite(parent, SWT.NONE);
-		bodyEditorContainer.setLayout(new FillLayout());
-
-		bodyEditor = new DynamicBodyEditor(bodyEditorContainer, style);
-		bodyEditor.setLabel(Messages.ExpressionEditor_BodyLabel);
+		
+		GridLayout l = new GridLayout(2, false);
+		parent.setLayout(l);
+		
+		GridData gridData = new GridData(SWT.LEFT, SWT.TOP, true, true);
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.horizontalAlignment = GridData.FILL;
+		gridData.verticalAlignment = GridData.FILL;
+		
+		bodyEditor = new DynamicBodyEditor(parent, style);
+		bodyEditor.setLayoutData(gridData);
+		
 		bodyEditor.addChangeListener(this);
 
 		languageEditor.getViewer().addSelectionChangedListener(this);
@@ -136,7 +140,7 @@ public class ExpressionEditor extends AbstractPropertyEditor implements Listener
 		}
 
 		//Force the layout of the widget after the new widget has been displayed
-		bodyEditorContainer.getParent().layout();
+		bodyEditor.getParent().layout();
 	}
 
 	@Override

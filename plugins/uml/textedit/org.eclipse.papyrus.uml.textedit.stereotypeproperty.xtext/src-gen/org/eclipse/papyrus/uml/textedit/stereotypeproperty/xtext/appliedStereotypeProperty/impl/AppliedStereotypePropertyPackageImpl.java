@@ -15,8 +15,6 @@ import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereoty
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule;
 
-import org.eclipse.uml2.uml.UMLPackage;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
@@ -89,7 +87,6 @@ public class AppliedStereotypePropertyPackageImpl extends EPackageImpl implement
 
     // Initialize simple dependencies
     AlfPackage.eINSTANCE.eClass();
-    UMLPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theAppliedStereotypePropertyPackage.createPackageContents();
@@ -121,19 +118,9 @@ public class AppliedStereotypePropertyPackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAppliedStereotypePropertyRule_Property()
-  {
-    return (EReference)appliedStereotypePropertyRuleEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getAppliedStereotypePropertyRule_Value()
   {
-    return (EReference)appliedStereotypePropertyRuleEClass.getEStructuralFeatures().get(1);
+    return (EReference)appliedStereotypePropertyRuleEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -187,7 +174,6 @@ public class AppliedStereotypePropertyPackageImpl extends EPackageImpl implement
 
     // Create classes and their features
     appliedStereotypePropertyRuleEClass = createEClass(APPLIED_STEREOTYPE_PROPERTY_RULE);
-    createEReference(appliedStereotypePropertyRuleEClass, APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY);
     createEReference(appliedStereotypePropertyRuleEClass, APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE);
 
     expressionValueRuleEClass = createEClass(EXPRESSION_VALUE_RULE);
@@ -219,7 +205,6 @@ public class AppliedStereotypePropertyPackageImpl extends EPackageImpl implement
     setNsURI(eNS_URI);
 
     // Obtain other dependent packages
-    UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
     AlfPackage theAlfPackage = (AlfPackage)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI);
 
     // Create type parameters
@@ -230,7 +215,6 @@ public class AppliedStereotypePropertyPackageImpl extends EPackageImpl implement
 
     // Initialize classes and features; add operations and parameters
     initEClass(appliedStereotypePropertyRuleEClass, AppliedStereotypePropertyRule.class, "AppliedStereotypePropertyRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAppliedStereotypePropertyRule_Property(), theUMLPackage.getProperty(), null, "property", null, 0, 1, AppliedStereotypePropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAppliedStereotypePropertyRule_Value(), this.getExpressionValueRule(), null, "value", null, 0, 1, AppliedStereotypePropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionValueRuleEClass, ExpressionValueRule.class, "ExpressionValueRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

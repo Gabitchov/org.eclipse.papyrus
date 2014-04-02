@@ -1,5 +1,4 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.java.generator.jdtsynchronizer
 Require-Bundle: org.eclipse.uml2.uml,
  org.eclipse.m2m.qvt.oml,
  org.eclipse.papyrus.java.generator.metamodel.jdt;bundle-version="1.0.0",
@@ -9,11 +8,12 @@ Require-Bundle: org.eclipse.uml2.uml,
  org.eclipse.jface.text,
  org.eclipse.jdt.launching,
  org.eclipse.core.resources
+Export-Package: org.eclipse.papyrus.java.generator.jdtsynchronizer
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.java.generator.jdtsynchronize
  r;singleton:=true

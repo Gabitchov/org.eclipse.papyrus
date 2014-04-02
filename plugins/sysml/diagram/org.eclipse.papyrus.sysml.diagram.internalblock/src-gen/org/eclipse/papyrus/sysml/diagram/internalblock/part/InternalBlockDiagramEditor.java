@@ -16,7 +16,7 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.part;
 import java.util.EventObject;
 import java.util.Set;
 
-import org.eclipse.core.commands.operations.IUndoableOperation;
+import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -39,6 +39,7 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentPro
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.papyrus.commands.util.OperationHistoryDirtyState;
 import org.eclipse.papyrus.gmf.diagram.common.compatibility.DiagramVersioningUtils;
 import org.eclipse.papyrus.gmf.diagram.common.compatibility.IDiagramVersionUpdater;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
@@ -88,7 +89,7 @@ public class InternalBlockDiagramEditor extends UmlGmfDiagramEditor implements I
 	/**
 	 * @generated
 	 */
-	private IUndoableOperation savedOperation = null;
+	private OperationHistoryDirtyState dirtyState;
 
 	/**
 	 * @generated
@@ -260,15 +261,37 @@ public class InternalBlockDiagramEditor extends UmlGmfDiagramEditor implements I
 	 */
 	public void doSave(IProgressMonitor progressMonitor) {
 		// The saving of the resource is done by the CoreMultiDiagramEditor
-		savedOperation = getOperationHistory().getUndoOperation(getUndoContext());
+		getDirtyState().saved();
 	}
 
 	/**
 	 * @generated
 	 */
+	protected OperationHistoryDirtyState getDirtyState() {
+		if(dirtyState == null) {
+			dirtyState = OperationHistoryDirtyState.newInstance(getUndoContext(), getOperationHistory());
+		}
+		return dirtyState;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected void setUndoContext(IUndoContext context) {
+		if(dirtyState != null) {
+			dirtyState.dispose();
+			dirtyState = null;
+		}
+		
+		super.setUndoContext(context);
+	}
+	
+	/**
+	 * @generated
+	 */
 	public boolean isDirty() {
-		IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
-		return savedOperation != op;
+		return getDirtyState().isDirty();
 	}
 
 	/**
@@ -289,6 +312,11 @@ public class InternalBlockDiagramEditor extends UmlGmfDiagramEditor implements I
 		// remove preference listener
 		PapyrusPaletteService.getInstance().removeProviderChangeListener(this);
 
+		if(dirtyState != null) {
+			dirtyState.dispose();
+			dirtyState = null;
+		}
+		
 		super.dispose();
 	}
 

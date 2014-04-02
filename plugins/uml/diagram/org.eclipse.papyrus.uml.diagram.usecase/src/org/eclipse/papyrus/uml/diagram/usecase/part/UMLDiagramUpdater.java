@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009, 2014 Atos Origin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 410909
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.part;
@@ -18,12 +19,11 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AbstractionEditPart;
@@ -1141,16 +1141,16 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getActor_2011IncomingLinks(View view) {
 		Actor modelElement = (Actor)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1159,16 +1159,16 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getActor_2012IncomingLinks(View view) {
 		Actor modelElement = (Actor)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1177,18 +1177,18 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getUseCase_2013IncomingLinks(View view) {
 		UseCase modelElement = (UseCase)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Include_4008(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Extend_4009(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Include_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Extend_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1197,18 +1197,18 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getUseCase_2014IncomingLinks(View view) {
 		UseCase modelElement = (UseCase)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Include_4008(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Extend_4009(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Include_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Extend_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1217,16 +1217,16 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getClassifier_2015IncomingLinks(View view) {
 		Classifier modelElement = (Classifier)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1235,16 +1235,16 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getPackage_2016IncomingLinks(View view) {
 		Package modelElement = (Package)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_PackageMerge_4018(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_PackageImport_4019(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_PackageMerge_4018(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_PackageImport_4019(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1253,14 +1253,14 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getConstraint_2017IncomingLinks(View view) {
 		Constraint modelElement = (Constraint)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1269,10 +1269,10 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getComment_2018IncomingLinks(View view) {
 		Comment modelElement = (Comment)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1288,14 +1288,14 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getNamedElement_2022IncomingLinks(View view) {
 		NamedElement modelElement = (NamedElement)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1304,14 +1304,14 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getNamedElement_2023IncomingLinks(View view) {
 		NamedElement modelElement = (NamedElement)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1334,18 +1334,18 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getUseCase_3009IncomingLinks(View view) {
 		UseCase modelElement = (UseCase)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Include_4008(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Extend_4009(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Include_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Extend_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1354,16 +1354,16 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getComponent_3016IncomingLinks(View view) {
 		Component modelElement = (Component)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1372,10 +1372,10 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getComment_3015IncomingLinks(View view) {
 		Comment modelElement = (Comment)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1384,14 +1384,14 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getConstraint_3017IncomingLinks(View view) {
 		Constraint modelElement = (Constraint)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1400,16 +1400,16 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getActor_3018IncomingLinks(View view) {
 		Actor modelElement = (Actor)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1418,14 +1418,14 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getConstraint_3010IncomingLinks(View view) {
 		Constraint modelElement = (Constraint)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1434,16 +1434,16 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getActor_3011IncomingLinks(View view) {
 		Actor modelElement = (Actor)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1452,18 +1452,18 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getUseCase_3012IncomingLinks(View view) {
 		UseCase modelElement = (UseCase)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Include_4008(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Extend_4009(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Include_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Extend_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1472,16 +1472,16 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getComponent_3013IncomingLinks(View view) {
 		Component modelElement = (Component)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1490,16 +1490,16 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getPackage_3014IncomingLinks(View view) {
 		Package modelElement = (Package)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_PackageMerge_4018(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_PackageImport_4019(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_PackageMerge_4018(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_PackageImport_4019(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1508,14 +1508,14 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getInclude_4008IncomingLinks(View view) {
 		Include modelElement = (Include)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1524,14 +1524,14 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getExtend_4009IncomingLinks(View view) {
 		Extend modelElement = (Extend)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1540,10 +1540,10 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getGeneralization_4010IncomingLinks(View view) {
 		Generalization modelElement = (Generalization)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1552,16 +1552,16 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getAssociation_4011IncomingLinks(View view) {
 		Association modelElement = (Association)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4010(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1570,14 +1570,14 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getDependency_4013IncomingLinks(View view) {
 		Dependency modelElement = (Dependency)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1586,14 +1586,14 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getAbstraction_4015IncomingLinks(View view) {
 		Abstraction modelElement = (Abstraction)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1602,14 +1602,14 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getUsage_4016IncomingLinks(View view) {
 		Usage modelElement = (Usage)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1618,14 +1618,14 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getRealization_4017IncomingLinks(View view) {
 		Realization modelElement = (Realization)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1634,10 +1634,10 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getPackageMerge_4018IncomingLinks(View view) {
 		PackageMerge modelElement = (PackageMerge)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1646,10 +1646,10 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getPackageImport_4019IncomingLinks(View view) {
 		PackageImport modelElement = (PackageImport)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -2354,9 +2354,9 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Include_4008(UseCase target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Include_4008(UseCase target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getInclude_Addition() || false == setting.getEObject() instanceof Include) {
 				continue;
@@ -2374,9 +2374,9 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Extend_4009(UseCase target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Extend_4009(UseCase target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getExtend_ExtendedCase() || false == setting.getEObject() instanceof Extend) {
 				continue;
@@ -2394,9 +2394,9 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Generalization_4010(Classifier target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Generalization_4010(Classifier target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getGeneralization_General() || false == setting.getEObject() instanceof Generalization) {
 				continue;
@@ -2414,9 +2414,9 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Association_4011(Type target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Association_4011(Type target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getAssociation_EndType() || false == setting.getEObject() instanceof Association) {
 				continue;
@@ -2439,9 +2439,9 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(Element target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(Element target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
 				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintConstrainedElement_4012, ConstraintConstrainedElementEditPart.VISUAL_ID));
@@ -2453,9 +2453,9 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Dependency_4013(NamedElement target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Dependency_4013(NamedElement target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier() || false == setting.getEObject() instanceof Dependency) {
 				continue;
@@ -2478,9 +2478,9 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(Element target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(Element target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
 				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.CommentAnnotatedElement_4014, CommentAnnotatedElementEditPart.VISUAL_ID));
@@ -2492,9 +2492,9 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Abstraction_4015(NamedElement target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Abstraction_4015(NamedElement target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier() || false == setting.getEObject() instanceof Abstraction) {
 				continue;
@@ -2517,9 +2517,9 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Usage_4016(NamedElement target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Usage_4016(NamedElement target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier() || false == setting.getEObject() instanceof Usage) {
 				continue;
@@ -2542,9 +2542,9 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Realization_4017(NamedElement target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Realization_4017(NamedElement target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier() || false == setting.getEObject() instanceof Realization) {
 				continue;
@@ -2567,9 +2567,9 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_PackageMerge_4018(Package target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_PackageMerge_4018(Package target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getPackageMerge_MergedPackage() || false == setting.getEObject() instanceof PackageMerge) {
 				continue;
@@ -2587,9 +2587,9 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_PackageImport_4019(Package target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_PackageImport_4019(Package target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getPackageImport_ImportedPackage() || false == setting.getEObject() instanceof PackageImport) {
 				continue;

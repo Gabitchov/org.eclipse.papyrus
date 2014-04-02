@@ -7,8 +7,8 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.properties.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.properties;singleton:=t
  rue
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

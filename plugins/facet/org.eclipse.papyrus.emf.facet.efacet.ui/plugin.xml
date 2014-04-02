@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?>
+<!--
+    Copyright (c) 2011, 2012 Mia-Software
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+   
+    Contributors:
+        Nicolas Guyomar (Mia-Software) - initial API and implementation
+        Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
+        Gregoire Dupe (Mia-Software) - Bug 377782 - The command 'Navigation' and 'View in table' must not be unable in all menu.
+ -->
+
+<plugin>
+   <extension-point id="queryFactoryWizardPageRegistration" name="%extension-point.name" schema="schema/queryFactoryWizardPageRegistration.exsd"/>
+   <extension-point id="eTypedElementResultDisplay" name="%ETypedElementResult_Display" schema="schema/eTypedElementResultDisplay.exsd"/>
+  
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.papyrus.emf.facet.efacet.ui.internal.preferences.PreferencesInitializer">
+      </initializer>
+   </extension>
+</plugin>

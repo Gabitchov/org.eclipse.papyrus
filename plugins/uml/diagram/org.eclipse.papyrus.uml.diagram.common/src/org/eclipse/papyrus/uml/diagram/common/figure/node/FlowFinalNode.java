@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,8 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 392301
+ *  
  */
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
@@ -18,7 +20,7 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
@@ -48,8 +50,8 @@ public class FlowFinalNode extends PapyrusNodeFigure implements IPapyrusNodeUMLE
 		graphics.setForegroundColor(getForegroundColor());
 		Rectangle r = getBounds().getCopy().crop(new Insets(0, 0, 1, 1));
 		if(isUsingGradient()) {
-			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-			// graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+			graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
+			// graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
 		} else {
 			graphics.setBackgroundColor(getBackgroundColor());
 			// graphics.setForegroundColor(getForegroundColor());

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc topic="mediawiki/new_and_noteworthy.html" label="new_and_noteworthy">
+	<topic href="mediawiki/new_and_noteworthy.html" label="New and Noteworthy">
+		<topic href="mediawiki/new_and_noteworthy.html#0.1" label="0.1">
+			<topic href="mediawiki/new_and_noteworthy.html#Table_Model_Editor" label="Table Model Editor"></topic>
+			<topic href="mediawiki/new_and_noteworthy.html#Generic_EMF_serialization_mechanism" label="Generic EMF serialization mechanism"></topic>
+		</topic>
+		<topic href="mediawiki/new_and_noteworthy.html#0.3" label="0.3"></topic>
+	</topic>
+</toc>

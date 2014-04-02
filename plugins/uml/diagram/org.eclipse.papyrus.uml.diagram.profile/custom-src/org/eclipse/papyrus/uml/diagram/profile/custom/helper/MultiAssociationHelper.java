@@ -49,6 +49,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.common.commands.DeleteLinkDuringCreationCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
@@ -374,7 +375,7 @@ public class MultiAssociationHelper extends ElementHelper {
 			// 3.1 creation of the property
 			CreateElementRequest request = new CreateElementRequest(getEditingDomain(), association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 			request.setParameter("type", newSemanticElement); //$NON-NLS-1$
-			EditElementCommand propertyCreateCommand = new PropertyCommandForAssociation(request);
+			EditElementCommand propertyCreateCommand = new PropertyCommandForAssociation(request, DiagramUtils.getDiagramFrom(sourceEditPart));
 			propertyCreateCommand.setReuseParentTransaction(true);
 			((CompoundCommand)command).add(new ICommandProxy(propertyCreateCommand));
 
@@ -456,7 +457,7 @@ public class MultiAssociationHelper extends ElementHelper {
 			// 0. add semantic
 			CreateElementRequest request = new CreateElementRequest(getEditingDomain(), association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 			request.setParameter("type", newSemanticElement); //$NON-NLS-1$
-			EditElementCommand propertyCreateCommand = new PropertyCommandForAssociation(request);
+			EditElementCommand propertyCreateCommand = new PropertyCommandForAssociation(request, DiagramUtils.getDiagramFrom(sourceEditPart));
 			((CompoundCommand)command).add(new ICommandProxy(propertyCreateCommand));
 
 			//System.err.println("0. add semantic, can execute?" + command.canExecute());

@@ -68,7 +68,7 @@ public class CustomAssociationCreateCommand extends org.eclipse.papyrus.uml.diag
 		}
 		if(source instanceof Type && target instanceof Type && container instanceof Package) {
 
-			Association newElement = (Association)ProfileDiagramAssociationHelper.createAssociation(getEditingDomain(), (Type)source, (Type)target, container);
+			Association newElement = (Association) ProfileDiagramAssociationHelper.createAssociation(getEditingDomain(), (Type) source, (Type) target, container, null);
 			((CreateElementRequest)getRequest()).setNewElement(newElement);
 			return CommandResult.newOKCommandResult(newElement);
 		}

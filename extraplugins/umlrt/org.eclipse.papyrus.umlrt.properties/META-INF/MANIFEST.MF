@@ -7,8 +7,8 @@ Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: UML RealTime Properties (Incubation)
-Bundle-Activator: org.eclipse.papyrus.umlrt.properties.Activator
 Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.umlrt.properties.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.umlrt.properties;singleton:=t
  rue
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

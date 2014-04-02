@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2014 CEA LIST, Atos Origin, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Atos Origin - Enable extending with a composite figure, by adding overrideable methods.
+ *  Christian W. Damus (CEA) - bug 392301
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
@@ -20,7 +21,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
@@ -202,8 +203,8 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 		if(isUsingGradient()) {
 			applyTransparency(graphics);
 			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
-			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-			graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+			graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
+			graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
 			graphics.fillGradient(rectangle, isVertical);
 		} else {
 			graphics.setBackgroundColor(getBackgroundColor());

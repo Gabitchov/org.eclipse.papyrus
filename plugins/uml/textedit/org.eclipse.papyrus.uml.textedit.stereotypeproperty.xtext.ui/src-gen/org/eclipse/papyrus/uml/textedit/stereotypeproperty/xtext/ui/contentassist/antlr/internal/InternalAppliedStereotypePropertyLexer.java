@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalAppliedStereotypePropertyLexer extends Lexer {
-    public static final int RULE_ID=6;
+    public static final int RULE_ID=8;
     public static final int T__29=29;
     public static final int T__28=28;
     public static final int T__27=27;
@@ -24,11 +24,11 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
     public static final int RULE_ANY_OTHER=11;
     public static final int T__21=21;
     public static final int T__20=20;
-    public static final int RULE_INTEGER_VALUE=7;
+    public static final int RULE_INTEGER_VALUE=6;
     public static final int EOF=-1;
     public static final int T__93=93;
-    public static final int T__19=19;
     public static final int T__94=94;
+    public static final int T__19=19;
     public static final int T__91=91;
     public static final int T__92=92;
     public static final int T__16=16;
@@ -55,7 +55,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
     public static final int T__89=89;
     public static final int T__88=88;
     public static final int RULE_ML_COMMENT=4;
-    public static final int RULE_STRING=8;
+    public static final int RULE_STRING=7;
     public static final int T__71=71;
     public static final int T__72=72;
     public static final int T__70=70;
@@ -2166,460 +2166,33 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
     }
     // $ANTLR end "T__109"
 
-    // $ANTLR start "RULE_INTEGER_VALUE"
-    public final void mRULE_INTEGER_VALUE() throws RecognitionException {
-        try {
-            int _type = RULE_INTEGER_VALUE;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:20: ( ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* ) )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
-            {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
-            int alt13=4;
-            int LA13_0 = input.LA(1);
-
-            if ( (LA13_0=='0') ) {
-                switch ( input.LA(2) ) {
-                case 'B':
-                case 'b':
-                    {
-                    alt13=2;
-                    }
-                    break;
-                case 'X':
-                case 'x':
-                    {
-                    alt13=3;
-                    }
-                    break;
-                case '0':
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '_':
-                    {
-                    alt13=4;
-                    }
-                    break;
-                default:
-                    alt13=1;}
-
-            }
-            else if ( ((LA13_0>='1' && LA13_0<='9')) ) {
-                alt13=1;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 13, 0, input);
-
-                throw nvae;
-            }
-            switch (alt13) {
-                case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
-                    {
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
-                    int alt3=2;
-                    int LA3_0 = input.LA(1);
-
-                    if ( (LA3_0=='0') ) {
-                        alt3=1;
-                    }
-                    else if ( ((LA3_0>='1' && LA3_0<='9')) ) {
-                        alt3=2;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 3, 0, input);
-
-                        throw nvae;
-                    }
-                    switch (alt3) {
-                        case 1 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:24: '0'
-                            {
-                            match('0'); 
-
-                            }
-                            break;
-                        case 2 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:28: '1' .. '9' ( ( '_' )? '0' .. '9' )*
-                            {
-                            matchRange('1','9'); 
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:37: ( ( '_' )? '0' .. '9' )*
-                            loop2:
-                            do {
-                                int alt2=2;
-                                int LA2_0 = input.LA(1);
-
-                                if ( ((LA2_0>='0' && LA2_0<='9')||LA2_0=='_') ) {
-                                    alt2=1;
-                                }
-
-
-                                switch (alt2) {
-                            	case 1 :
-                            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:38: ( '_' )? '0' .. '9'
-                            	    {
-                            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:38: ( '_' )?
-                            	    int alt1=2;
-                            	    int LA1_0 = input.LA(1);
-
-                            	    if ( (LA1_0=='_') ) {
-                            	        alt1=1;
-                            	    }
-                            	    switch (alt1) {
-                            	        case 1 :
-                            	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:38: '_'
-                            	            {
-                            	            match('_'); 
-
-                            	            }
-                            	            break;
-
-                            	    }
-
-                            	    matchRange('0','9'); 
-
-                            	    }
-                            	    break;
-
-                            	default :
-                            	    break loop2;
-                                }
-                            } while (true);
-
-
-                            }
-                            break;
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:55: ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )*
-                    {
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:55: ( '0b' | '0B' )
-                    int alt4=2;
-                    int LA4_0 = input.LA(1);
-
-                    if ( (LA4_0=='0') ) {
-                        int LA4_1 = input.LA(2);
-
-                        if ( (LA4_1=='b') ) {
-                            alt4=1;
-                        }
-                        else if ( (LA4_1=='B') ) {
-                            alt4=2;
-                        }
-                        else {
-                            NoViableAltException nvae =
-                                new NoViableAltException("", 4, 1, input);
-
-                            throw nvae;
-                        }
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 4, 0, input);
-
-                        throw nvae;
-                    }
-                    switch (alt4) {
-                        case 1 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:56: '0b'
-                            {
-                            match("0b"); 
-
-
-                            }
-                            break;
-                        case 2 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:61: '0B'
-                            {
-                            match("0B"); 
-
-
-                            }
-                            break;
-
-                    }
-
-                    matchRange('0','1'); 
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:76: ( ( '_' )? '0' .. '1' )*
-                    loop6:
-                    do {
-                        int alt6=2;
-                        int LA6_0 = input.LA(1);
-
-                        if ( ((LA6_0>='0' && LA6_0<='1')||LA6_0=='_') ) {
-                            alt6=1;
-                        }
-
-
-                        switch (alt6) {
-                    	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:77: ( '_' )? '0' .. '1'
-                    	    {
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:77: ( '_' )?
-                    	    int alt5=2;
-                    	    int LA5_0 = input.LA(1);
-
-                    	    if ( (LA5_0=='_') ) {
-                    	        alt5=1;
-                    	    }
-                    	    switch (alt5) {
-                    	        case 1 :
-                    	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:77: '_'
-                    	            {
-                    	            match('_'); 
-
-                    	            }
-                    	            break;
-
-                    	    }
-
-                    	    matchRange('0','1'); 
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop6;
-                        }
-                    } while (true);
-
-
-                    }
-                    break;
-                case 3 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:93: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
-                    {
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:93: ( '0x' | '0X' )
-                    int alt7=2;
-                    int LA7_0 = input.LA(1);
-
-                    if ( (LA7_0=='0') ) {
-                        int LA7_1 = input.LA(2);
-
-                        if ( (LA7_1=='x') ) {
-                            alt7=1;
-                        }
-                        else if ( (LA7_1=='X') ) {
-                            alt7=2;
-                        }
-                        else {
-                            NoViableAltException nvae =
-                                new NoViableAltException("", 7, 1, input);
-
-                            throw nvae;
-                        }
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 7, 0, input);
-
-                        throw nvae;
-                    }
-                    switch (alt7) {
-                        case 1 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:94: '0x'
-                            {
-                            match("0x"); 
-
-
-                            }
-                            break;
-                        case 2 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:99: '0X'
-                            {
-                            match("0X"); 
-
-
-                            }
-                            break;
-
-                    }
-
-                    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
-                        input.consume();
-
-                    }
-                    else {
-                        MismatchedSetException mse = new MismatchedSetException(null,input);
-                        recover(mse);
-                        throw mse;}
-
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:134: ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
-                    loop9:
-                    do {
-                        int alt9=2;
-                        int LA9_0 = input.LA(1);
-
-                        if ( ((LA9_0>='0' && LA9_0<='9')||(LA9_0>='A' && LA9_0<='F')||LA9_0=='_'||(LA9_0>='a' && LA9_0<='f')) ) {
-                            alt9=1;
-                        }
-
-
-                        switch (alt9) {
-                    	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:135: ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
-                    	    {
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:135: ( '_' )?
-                    	    int alt8=2;
-                    	    int LA8_0 = input.LA(1);
-
-                    	    if ( (LA8_0=='_') ) {
-                    	        alt8=1;
-                    	    }
-                    	    switch (alt8) {
-                    	        case 1 :
-                    	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:135: '_'
-                    	            {
-                    	            match('_'); 
-
-                    	            }
-                    	            break;
-
-                    	    }
-
-                    	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
-                    	        input.consume();
-
-                    	    }
-                    	    else {
-                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
-                    	        recover(mse);
-                    	        throw mse;}
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop9;
-                        }
-                    } while (true);
-
-
-                    }
-                    break;
-                case 4 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:171: '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )*
-                    {
-                    match('0'); 
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:175: ( '_' )?
-                    int alt10=2;
-                    int LA10_0 = input.LA(1);
-
-                    if ( (LA10_0=='_') ) {
-                        alt10=1;
-                    }
-                    switch (alt10) {
-                        case 1 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:175: '_'
-                            {
-                            match('_'); 
-
-                            }
-                            break;
-
-                    }
-
-                    matchRange('0','7'); 
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:189: ( ( '_' )? '0' .. '7' )*
-                    loop12:
-                    do {
-                        int alt12=2;
-                        int LA12_0 = input.LA(1);
-
-                        if ( ((LA12_0>='0' && LA12_0<='7')||LA12_0=='_') ) {
-                            alt12=1;
-                        }
-
-
-                        switch (alt12) {
-                    	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:190: ( '_' )? '0' .. '7'
-                    	    {
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:190: ( '_' )?
-                    	    int alt11=2;
-                    	    int LA11_0 = input.LA(1);
-
-                    	    if ( (LA11_0=='_') ) {
-                    	        alt11=1;
-                    	    }
-                    	    switch (alt11) {
-                    	        case 1 :
-                    	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18813:190: '_'
-                    	            {
-                    	            match('_'); 
-
-                    	            }
-                    	            break;
-
-                    	    }
-
-                    	    matchRange('0','7'); 
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop12;
-                        }
-                    } while (true);
-
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "RULE_INTEGER_VALUE"
-
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18815:9: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' ) )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18815:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18733:9: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' ) )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18733:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' )
             {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18815:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' )
-            int alt16=2;
-            int LA16_0 = input.LA(1);
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18733:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' )
+            int alt3=2;
+            int LA3_0 = input.LA(1);
 
-            if ( ((LA16_0>='A' && LA16_0<='Z')||LA16_0=='_'||(LA16_0>='a' && LA16_0<='z')) ) {
-                alt16=1;
+            if ( ((LA3_0>='A' && LA3_0<='Z')||LA3_0=='_'||(LA3_0>='a' && LA3_0<='z')) ) {
+                alt3=1;
             }
-            else if ( (LA16_0=='\'') ) {
-                alt16=2;
+            else if ( (LA3_0=='\'') ) {
+                alt3=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 16, 0, input);
+                    new NoViableAltException("", 3, 0, input);
 
                 throw nvae;
             }
-            switch (alt16) {
+            switch (alt3) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18815:12: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18733:12: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
                     {
                     if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                         input.consume();
@@ -2630,18 +2203,18 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18815:36: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
-                    loop14:
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18733:36: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    loop1:
                     do {
-                        int alt14=2;
-                        int LA14_0 = input.LA(1);
+                        int alt1=2;
+                        int LA1_0 = input.LA(1);
 
-                        if ( ((LA14_0>='0' && LA14_0<='9')||(LA14_0>='A' && LA14_0<='Z')||LA14_0=='_'||(LA14_0>='a' && LA14_0<='z')) ) {
-                            alt14=1;
+                        if ( ((LA1_0>='0' && LA1_0<='9')||(LA1_0>='A' && LA1_0<='Z')||LA1_0=='_'||(LA1_0>='a' && LA1_0<='z')) ) {
+                            alt1=1;
                         }
 
 
-                        switch (alt14) {
+                        switch (alt1) {
                     	case 1 :
                     	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:
                     	    {
@@ -2659,7 +2232,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop14;
+                    	    break loop1;
                         }
                     } while (true);
 
@@ -2667,26 +2240,26 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18815:70: '\\'' ( options {greedy=false; } : . )* '\\''
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18733:70: '\\'' ( options {greedy=false; } : . )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18815:75: ( options {greedy=false; } : . )*
-                    loop15:
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18733:75: ( options {greedy=false; } : . )*
+                    loop2:
                     do {
-                        int alt15=2;
-                        int LA15_0 = input.LA(1);
+                        int alt2=2;
+                        int LA2_0 = input.LA(1);
 
-                        if ( (LA15_0=='\'') ) {
-                            alt15=2;
+                        if ( (LA2_0=='\'') ) {
+                            alt2=2;
                         }
-                        else if ( ((LA15_0>='\u0000' && LA15_0<='&')||(LA15_0>='(' && LA15_0<='\uFFFF')) ) {
-                            alt15=1;
+                        else if ( ((LA2_0>='\u0000' && LA2_0<='&')||(LA2_0>='(' && LA2_0<='\uFFFF')) ) {
+                            alt2=1;
                         }
 
 
-                        switch (alt15) {
+                        switch (alt2) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18815:103: .
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18733:103: .
                     	    {
                     	    matchAny(); 
 
@@ -2694,7 +2267,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop15;
+                    	    break loop2;
                         }
                     } while (true);
 
@@ -2721,27 +2294,27 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18817:13: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18817:15: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18735:13: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18735:15: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18817:19: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
-            loop17:
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18735:19: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+            loop4:
             do {
-                int alt17=3;
-                int LA17_0 = input.LA(1);
+                int alt4=3;
+                int LA4_0 = input.LA(1);
 
-                if ( (LA17_0=='\\') ) {
-                    alt17=1;
+                if ( (LA4_0=='\\') ) {
+                    alt4=1;
                 }
-                else if ( ((LA17_0>='\u0000' && LA17_0<='!')||(LA17_0>='#' && LA17_0<='[')||(LA17_0>=']' && LA17_0<='\uFFFF')) ) {
-                    alt17=2;
+                else if ( ((LA4_0>='\u0000' && LA4_0<='!')||(LA4_0>='#' && LA4_0<='[')||(LA4_0>=']' && LA4_0<='\uFFFF')) ) {
+                    alt4=2;
                 }
 
 
-                switch (alt17) {
+                switch (alt4) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18817:20: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18735:20: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2757,7 +2330,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18817:61: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18735:61: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2773,7 +2346,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop17;
+            	    break loop4;
                 }
             } while (true);
 
@@ -2794,8 +2367,8 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18819:17: ( '/*' ~ ( '@' ) ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18819:19: '/*' ~ ( '@' ) ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18737:17: ( '/*' ~ ( '@' ) ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18737:19: '/*' ~ ( '@' ) ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
@@ -2808,32 +2381,32 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18819:31: ( options {greedy=false; } : . )*
-            loop18:
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18737:31: ( options {greedy=false; } : . )*
+            loop5:
             do {
-                int alt18=2;
-                int LA18_0 = input.LA(1);
+                int alt5=2;
+                int LA5_0 = input.LA(1);
 
-                if ( (LA18_0=='*') ) {
-                    int LA18_1 = input.LA(2);
+                if ( (LA5_0=='*') ) {
+                    int LA5_1 = input.LA(2);
 
-                    if ( (LA18_1=='/') ) {
-                        alt18=2;
+                    if ( (LA5_1=='/') ) {
+                        alt5=2;
                     }
-                    else if ( ((LA18_1>='\u0000' && LA18_1<='.')||(LA18_1>='0' && LA18_1<='\uFFFF')) ) {
-                        alt18=1;
+                    else if ( ((LA5_1>='\u0000' && LA5_1<='.')||(LA5_1>='0' && LA5_1<='\uFFFF')) ) {
+                        alt5=1;
                     }
 
 
                 }
-                else if ( ((LA18_0>='\u0000' && LA18_0<=')')||(LA18_0>='+' && LA18_0<='\uFFFF')) ) {
-                    alt18=1;
+                else if ( ((LA5_0>='\u0000' && LA5_0<=')')||(LA5_0>='+' && LA5_0<='\uFFFF')) ) {
+                    alt5=1;
                 }
 
 
-                switch (alt18) {
+                switch (alt5) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18819:59: .
+            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18737:59: .
             	    {
             	    matchAny(); 
 
@@ -2841,7 +2414,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop18;
+            	    break loop5;
                 }
             } while (true);
 
@@ -2863,25 +2436,25 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18821:17: ( '//' (~ ( ( '\\n' | '\\r' | '@' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18821:19: '//' (~ ( ( '\\n' | '\\r' | '@' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18739:17: ( '//' (~ ( ( '\\n' | '\\r' | '@' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18739:19: '//' (~ ( ( '\\n' | '\\r' | '@' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18821:24: (~ ( ( '\\n' | '\\r' | '@' ) ) )*
-            loop19:
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18739:24: (~ ( ( '\\n' | '\\r' | '@' ) ) )*
+            loop6:
             do {
-                int alt19=2;
-                int LA19_0 = input.LA(1);
+                int alt6=2;
+                int LA6_0 = input.LA(1);
 
-                if ( ((LA19_0>='\u0000' && LA19_0<='\t')||(LA19_0>='\u000B' && LA19_0<='\f')||(LA19_0>='\u000E' && LA19_0<='?')||(LA19_0>='A' && LA19_0<='\uFFFF')) ) {
-                    alt19=1;
+                if ( ((LA6_0>='\u0000' && LA6_0<='\t')||(LA6_0>='\u000B' && LA6_0<='\f')||(LA6_0>='\u000E' && LA6_0<='?')||(LA6_0>='A' && LA6_0<='\uFFFF')) ) {
+                    alt6=1;
                 }
 
 
-                switch (alt19) {
+                switch (alt6) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18821:24: ~ ( ( '\\n' | '\\r' | '@' ) )
+            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18739:24: ~ ( ( '\\n' | '\\r' | '@' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='?')||(input.LA(1)>='A' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2897,31 +2470,31 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop19;
+            	    break loop6;
                 }
             } while (true);
 
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18821:44: ( ( '\\r' )? '\\n' )?
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18739:44: ( ( '\\r' )? '\\n' )?
+            int alt8=2;
+            int LA8_0 = input.LA(1);
 
-            if ( (LA21_0=='\n'||LA21_0=='\r') ) {
-                alt21=1;
+            if ( (LA8_0=='\n'||LA8_0=='\r') ) {
+                alt8=1;
             }
-            switch (alt21) {
+            switch (alt8) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18821:45: ( '\\r' )? '\\n'
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18739:45: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18821:45: ( '\\r' )?
-                    int alt20=2;
-                    int LA20_0 = input.LA(1);
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18739:45: ( '\\r' )?
+                    int alt7=2;
+                    int LA7_0 = input.LA(1);
 
-                    if ( (LA20_0=='\r') ) {
-                        alt20=1;
+                    if ( (LA7_0=='\r') ) {
+                        alt7=1;
                     }
-                    switch (alt20) {
+                    switch (alt7) {
                         case 1 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18821:45: '\\r'
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18739:45: '\\r'
                             {
                             match('\r'); 
 
@@ -2953,24 +2526,24 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18823:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18823:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18741:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18741:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18823:12: ( '0' .. '9' )+
-            int cnt22=0;
-            loop22:
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18741:12: ( '0' .. '9' )+
+            int cnt9=0;
+            loop9:
             do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
+                int alt9=2;
+                int LA9_0 = input.LA(1);
 
-                if ( ((LA22_0>='0' && LA22_0<='9')) ) {
-                    alt22=1;
+                if ( ((LA9_0>='0' && LA9_0<='9')) ) {
+                    alt9=1;
                 }
 
 
-                switch (alt22) {
+                switch (alt9) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18823:13: '0' .. '9'
+            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18741:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2978,12 +2551,12 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt22 >= 1 ) break loop22;
+            	    if ( cnt9 >= 1 ) break loop9;
                         EarlyExitException eee =
-                            new EarlyExitException(22, input);
+                            new EarlyExitException(9, input);
                         throw eee;
                 }
-                cnt22++;
+                cnt9++;
             } while (true);
 
 
@@ -2997,15 +2570,442 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
     }
     // $ANTLR end "RULE_INT"
 
+    // $ANTLR start "RULE_INTEGER_VALUE"
+    public final void mRULE_INTEGER_VALUE() throws RecognitionException {
+        try {
+            int _type = RULE_INTEGER_VALUE;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:20: ( ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* ) )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
+            {
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
+            int alt22=4;
+            int LA22_0 = input.LA(1);
+
+            if ( (LA22_0=='0') ) {
+                switch ( input.LA(2) ) {
+                case 'B':
+                case 'b':
+                    {
+                    alt22=2;
+                    }
+                    break;
+                case 'X':
+                case 'x':
+                    {
+                    alt22=3;
+                    }
+                    break;
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '_':
+                    {
+                    alt22=4;
+                    }
+                    break;
+                default:
+                    alt22=1;}
+
+            }
+            else if ( ((LA22_0>='1' && LA22_0<='9')) ) {
+                alt22=1;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 22, 0, input);
+
+                throw nvae;
+            }
+            switch (alt22) {
+                case 1 :
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
+                    {
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
+                    int alt12=2;
+                    int LA12_0 = input.LA(1);
+
+                    if ( (LA12_0=='0') ) {
+                        alt12=1;
+                    }
+                    else if ( ((LA12_0>='1' && LA12_0<='9')) ) {
+                        alt12=2;
+                    }
+                    else {
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 12, 0, input);
+
+                        throw nvae;
+                    }
+                    switch (alt12) {
+                        case 1 :
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:24: '0'
+                            {
+                            match('0'); 
+
+                            }
+                            break;
+                        case 2 :
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:28: '1' .. '9' ( ( '_' )? '0' .. '9' )*
+                            {
+                            matchRange('1','9'); 
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:37: ( ( '_' )? '0' .. '9' )*
+                            loop11:
+                            do {
+                                int alt11=2;
+                                int LA11_0 = input.LA(1);
+
+                                if ( ((LA11_0>='0' && LA11_0<='9')||LA11_0=='_') ) {
+                                    alt11=1;
+                                }
+
+
+                                switch (alt11) {
+                            	case 1 :
+                            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:38: ( '_' )? '0' .. '9'
+                            	    {
+                            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:38: ( '_' )?
+                            	    int alt10=2;
+                            	    int LA10_0 = input.LA(1);
+
+                            	    if ( (LA10_0=='_') ) {
+                            	        alt10=1;
+                            	    }
+                            	    switch (alt10) {
+                            	        case 1 :
+                            	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:38: '_'
+                            	            {
+                            	            match('_'); 
+
+                            	            }
+                            	            break;
+
+                            	    }
+
+                            	    matchRange('0','9'); 
+
+                            	    }
+                            	    break;
+
+                            	default :
+                            	    break loop11;
+                                }
+                            } while (true);
+
+
+                            }
+                            break;
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:55: ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )*
+                    {
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:55: ( '0b' | '0B' )
+                    int alt13=2;
+                    int LA13_0 = input.LA(1);
+
+                    if ( (LA13_0=='0') ) {
+                        int LA13_1 = input.LA(2);
+
+                        if ( (LA13_1=='b') ) {
+                            alt13=1;
+                        }
+                        else if ( (LA13_1=='B') ) {
+                            alt13=2;
+                        }
+                        else {
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 13, 1, input);
+
+                            throw nvae;
+                        }
+                    }
+                    else {
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 13, 0, input);
+
+                        throw nvae;
+                    }
+                    switch (alt13) {
+                        case 1 :
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:56: '0b'
+                            {
+                            match("0b"); 
+
+
+                            }
+                            break;
+                        case 2 :
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:61: '0B'
+                            {
+                            match("0B"); 
+
+
+                            }
+                            break;
+
+                    }
+
+                    matchRange('0','1'); 
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:76: ( ( '_' )? '0' .. '1' )*
+                    loop15:
+                    do {
+                        int alt15=2;
+                        int LA15_0 = input.LA(1);
+
+                        if ( ((LA15_0>='0' && LA15_0<='1')||LA15_0=='_') ) {
+                            alt15=1;
+                        }
+
+
+                        switch (alt15) {
+                    	case 1 :
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:77: ( '_' )? '0' .. '1'
+                    	    {
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:77: ( '_' )?
+                    	    int alt14=2;
+                    	    int LA14_0 = input.LA(1);
+
+                    	    if ( (LA14_0=='_') ) {
+                    	        alt14=1;
+                    	    }
+                    	    switch (alt14) {
+                    	        case 1 :
+                    	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:77: '_'
+                    	            {
+                    	            match('_'); 
+
+                    	            }
+                    	            break;
+
+                    	    }
+
+                    	    matchRange('0','1'); 
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop15;
+                        }
+                    } while (true);
+
+
+                    }
+                    break;
+                case 3 :
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:93: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
+                    {
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:93: ( '0x' | '0X' )
+                    int alt16=2;
+                    int LA16_0 = input.LA(1);
+
+                    if ( (LA16_0=='0') ) {
+                        int LA16_1 = input.LA(2);
+
+                        if ( (LA16_1=='x') ) {
+                            alt16=1;
+                        }
+                        else if ( (LA16_1=='X') ) {
+                            alt16=2;
+                        }
+                        else {
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 16, 1, input);
+
+                            throw nvae;
+                        }
+                    }
+                    else {
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 16, 0, input);
+
+                        throw nvae;
+                    }
+                    switch (alt16) {
+                        case 1 :
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:94: '0x'
+                            {
+                            match("0x"); 
+
+
+                            }
+                            break;
+                        case 2 :
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:99: '0X'
+                            {
+                            match("0X"); 
+
+
+                            }
+                            break;
+
+                    }
+
+                    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
+                        input.consume();
+
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        recover(mse);
+                        throw mse;}
+
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:134: ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
+                    loop18:
+                    do {
+                        int alt18=2;
+                        int LA18_0 = input.LA(1);
+
+                        if ( ((LA18_0>='0' && LA18_0<='9')||(LA18_0>='A' && LA18_0<='F')||LA18_0=='_'||(LA18_0>='a' && LA18_0<='f')) ) {
+                            alt18=1;
+                        }
+
+
+                        switch (alt18) {
+                    	case 1 :
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:135: ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+                    	    {
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:135: ( '_' )?
+                    	    int alt17=2;
+                    	    int LA17_0 = input.LA(1);
+
+                    	    if ( (LA17_0=='_') ) {
+                    	        alt17=1;
+                    	    }
+                    	    switch (alt17) {
+                    	        case 1 :
+                    	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:135: '_'
+                    	            {
+                    	            match('_'); 
+
+                    	            }
+                    	            break;
+
+                    	    }
+
+                    	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
+                    	        input.consume();
+
+                    	    }
+                    	    else {
+                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
+                    	        recover(mse);
+                    	        throw mse;}
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop18;
+                        }
+                    } while (true);
+
+
+                    }
+                    break;
+                case 4 :
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:171: '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )*
+                    {
+                    match('0'); 
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:175: ( '_' )?
+                    int alt19=2;
+                    int LA19_0 = input.LA(1);
+
+                    if ( (LA19_0=='_') ) {
+                        alt19=1;
+                    }
+                    switch (alt19) {
+                        case 1 :
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:175: '_'
+                            {
+                            match('_'); 
+
+                            }
+                            break;
+
+                    }
+
+                    matchRange('0','7'); 
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:189: ( ( '_' )? '0' .. '7' )*
+                    loop21:
+                    do {
+                        int alt21=2;
+                        int LA21_0 = input.LA(1);
+
+                        if ( ((LA21_0>='0' && LA21_0<='7')||LA21_0=='_') ) {
+                            alt21=1;
+                        }
+
+
+                        switch (alt21) {
+                    	case 1 :
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:190: ( '_' )? '0' .. '7'
+                    	    {
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:190: ( '_' )?
+                    	    int alt20=2;
+                    	    int LA20_0 = input.LA(1);
+
+                    	    if ( (LA20_0=='_') ) {
+                    	        alt20=1;
+                    	    }
+                    	    switch (alt20) {
+                    	        case 1 :
+                    	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18743:190: '_'
+                    	            {
+                    	            match('_'); 
+
+                    	            }
+                    	            break;
+
+                    	    }
+
+                    	    matchRange('0','7'); 
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop21;
+                        }
+                    } while (true);
+
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_INTEGER_VALUE"
+
     // $ANTLR start "RULE_WS"
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18825:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18825:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18745:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18745:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18825:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18745:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt23=0;
             loop23:
             do {
@@ -3059,8 +3059,8 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18827:16: ( . )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18827:18: .
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18747:16: ( . )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:18747:18: .
             {
             matchAny(); 
 
@@ -3075,7 +3075,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | RULE_INTEGER_VALUE | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_INT | RULE_WS | RULE_ANY_OTHER )
+        // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_INT | RULE_INTEGER_VALUE | RULE_WS | RULE_ANY_OTHER )
         int alt24=106;
         alt24 = dfa24.predict(input);
         switch (alt24) {
@@ -3766,44 +3766,44 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                 }
                 break;
             case 99 :
-                // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:608: RULE_INTEGER_VALUE
-                {
-                mRULE_INTEGER_VALUE(); 
-
-                }
-                break;
-            case 100 :
-                // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:627: RULE_ID
+                // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:608: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 101 :
-                // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:635: RULE_STRING
+            case 100 :
+                // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:616: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 102 :
-                // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:647: RULE_ML_COMMENT
+            case 101 :
+                // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:628: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 103 :
-                // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:663: RULE_SL_COMMENT
+            case 102 :
+                // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:644: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 104 :
-                // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:679: RULE_INT
+            case 103 :
+                // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:660: RULE_INT
                 {
                 mRULE_INT(); 
+
+                }
+                break;
+            case 104 :
+                // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:1:669: RULE_INTEGER_VALUE
+                {
+                mRULE_INTEGER_VALUE(); 
 
                 }
                 break;
@@ -3831,66 +3831,66 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
     static final String DFA24_eotS =
         "\1\uffff\1\63\1\67\1\72\1\74\2\101\1\105\1\110\1\113\1\117\1\121"+
         "\2\uffff\12\101\1\156\1\161\1\163\1\165\4\uffff\1\173\2\uffff\1"+
-        "\101\3\uffff\3\101\2\u0086\1\uffff\2\60\16\uffff\1\u008e\2\101\1"+
+        "\101\3\uffff\3\101\1\uffff\2\60\2\u0088\16\uffff\1\u008e\2\101\1"+
         "\u0092\1\uffff\1\101\1\uffff\1\u0095\2\uffff\1\u0098\6\uffff\1\u009c"+
         "\5\uffff\2\101\1\u009f\10\101\1\u00ab\7\101\1\u00b6\4\101\22\uffff"+
-        "\2\101\3\uffff\3\101\1\uffff\1\u0086\1\uffff\1\u0086\2\uffff\2\101"+
-        "\1\uffff\3\101\1\uffff\1\101\2\uffff\1\u00c8\6\uffff\2\101\1\uffff"+
-        "\1\101\1\u00cd\11\101\1\uffff\10\101\1\u00df\1\101\1\uffff\5\101"+
-        "\1\u00e6\1\u00e7\2\101\1\u0086\6\101\2\uffff\1\u00f0\1\u00f1\2\101"+
-        "\1\uffff\1\u00f4\4\101\1\u00f9\12\101\1\u0104\1\uffff\5\101\1\u010a"+
-        "\2\uffff\10\101\2\uffff\1\u0113\1\101\1\uffff\4\101\1\uffff\4\101"+
-        "\1\u011d\5\101\1\uffff\5\101\1\uffff\1\u0128\1\u0129\1\101\1\u012b"+
-        "\4\101\1\uffff\1\u0130\7\101\1\u0138\1\uffff\1\u0139\1\u013a\1\u013b"+
-        "\1\u013c\1\u013d\3\101\1\u0141\1\101\2\uffff\1\101\1\uffff\1\u0144"+
-        "\2\101\1\u0147\1\uffff\3\101\1\u014b\2\101\1\u014e\6\uffff\1\u014f"+
-        "\1\u0150\1\101\1\uffff\2\101\1\uffff\1\u0154\1\u0155\1\uffff\2\101"+
-        "\1\u0158\1\uffff\2\101\3\uffff\1\101\1\u015c\1\101\2\uffff\2\101"+
-        "\1\uffff\3\101\1\uffff\1\u0163\1\u0164\1\u0165\1\101\1\u0167\1\101"+
-        "\3\uffff\1\u0169\1\uffff\1\101\1\uffff\1\u016b\1\uffff";
+        "\2\101\3\uffff\3\101\3\uffff\2\u0088\1\uffff\2\101\1\uffff\3\101"+
+        "\1\uffff\1\101\2\uffff\1\u00c8\6\uffff\2\101\1\uffff\1\101\1\u00cd"+
+        "\11\101\1\uffff\10\101\1\u00df\1\101\1\uffff\5\101\1\u00e6\1\u00e7"+
+        "\2\101\1\u0088\6\101\2\uffff\1\u00f0\1\u00f1\2\101\1\uffff\1\u00f4"+
+        "\4\101\1\u00f9\12\101\1\u0104\1\uffff\5\101\1\u010a\2\uffff\10\101"+
+        "\2\uffff\1\u0113\1\101\1\uffff\4\101\1\uffff\4\101\1\u011d\5\101"+
+        "\1\uffff\5\101\1\uffff\1\u0128\1\u0129\1\101\1\u012b\4\101\1\uffff"+
+        "\1\u0130\7\101\1\u0138\1\uffff\1\u0139\1\u013a\1\u013b\1\u013c\1"+
+        "\u013d\3\101\1\u0141\1\101\2\uffff\1\101\1\uffff\1\u0144\2\101\1"+
+        "\u0147\1\uffff\3\101\1\u014b\2\101\1\u014e\6\uffff\1\u014f\1\u0150"+
+        "\1\101\1\uffff\2\101\1\uffff\1\u0154\1\u0155\1\uffff\2\101\1\u0158"+
+        "\1\uffff\2\101\3\uffff\1\101\1\u015c\1\101\2\uffff\2\101\1\uffff"+
+        "\3\101\1\uffff\1\u0163\1\u0164\1\u0165\1\101\1\u0167\1\101\3\uffff"+
+        "\1\u0169\1\uffff\1\101\1\uffff\1\u016b\1\uffff";
     static final String DFA24_eofS =
         "\u016c\uffff";
     static final String DFA24_minS =
         "\1\0\1\53\1\55\2\75\1\146\1\141\1\74\1\75\1\57\1\52\1\75\2\uffff"+
         "\1\150\2\141\3\145\1\154\1\156\1\143\1\141\1\46\2\75\1\72\4\uffff"+
-        "\1\56\2\uffff\1\145\3\uffff\1\145\1\150\1\162\2\60\1\uffff\2\0\16"+
+        "\1\56\2\uffff\1\145\3\uffff\1\145\1\150\1\162\1\uffff\2\0\2\60\16"+
         "\uffff\1\60\1\145\1\125\1\60\1\uffff\1\163\1\uffff\1\75\2\uffff"+
         "\1\75\5\uffff\1\0\1\100\5\uffff\1\165\1\151\1\60\1\154\1\162\1\157"+
         "\1\145\1\141\1\154\1\163\1\146\1\60\1\154\1\160\1\151\1\144\1\151"+
         "\1\163\1\145\1\60\1\163\1\154\1\143\1\162\22\uffff\1\154\1\167\3"+
-        "\uffff\1\164\1\151\1\145\1\uffff\1\60\1\uffff\1\60\2\uffff\1\164"+
-        "\1\151\1\uffff\1\162\1\154\1\156\1\uffff\1\164\2\uffff\1\75\6\uffff"+
-        "\1\145\1\163\1\uffff\1\163\1\60\1\155\2\141\1\163\1\154\1\145\1"+
-        "\164\1\145\1\141\1\uffff\2\145\1\164\1\145\2\165\1\163\1\145\1\60"+
-        "\1\145\1\uffff\1\165\1\111\1\145\1\141\1\154\2\60\1\154\1\141\1"+
-        "\60\1\141\1\156\2\141\1\151\1\171\2\uffff\2\60\1\145\1\154\1\uffff"+
-        "\1\60\1\164\1\162\1\163\1\145\1\60\2\162\1\165\1\143\1\162\3\143"+
-        "\1\162\1\164\1\60\1\uffff\2\162\1\156\1\160\1\154\1\60\2\uffff\1"+
-        "\145\1\153\1\156\1\145\2\164\1\161\1\160\2\uffff\1\60\1\154\1\uffff"+
-        "\1\145\1\101\1\151\1\143\1\uffff\1\157\1\155\1\154\1\164\1\60\1"+
-        "\150\1\164\1\145\1\156\1\163\1\uffff\2\145\1\163\1\164\1\154\1\uffff"+
-        "\2\60\1\143\1\60\2\145\1\165\1\145\1\uffff\1\60\1\114\1\163\1\146"+
-        "\1\164\1\171\1\151\1\164\1\60\1\uffff\5\60\2\144\1\164\1\60\1\145"+
-        "\2\uffff\1\145\1\uffff\1\60\1\144\1\145\1\60\1\uffff\1\151\1\163"+
-        "\1\171\1\60\1\114\1\156\1\60\6\uffff\2\60\1\141\1\uffff\1\154\1"+
-        "\157\1\uffff\2\60\1\uffff\1\156\1\157\1\60\1\uffff\1\151\1\145\3"+
-        "\uffff\1\156\1\60\1\146\2\uffff\1\153\1\143\1\uffff\1\156\1\144"+
-        "\1\143\1\uffff\3\60\1\153\1\60\1\145\3\uffff\1\60\1\uffff\1\163"+
-        "\1\uffff\1\60\1\uffff";
+        "\uffff\1\164\1\151\1\145\3\uffff\2\60\1\uffff\1\164\1\151\1\uffff"+
+        "\1\162\1\154\1\156\1\uffff\1\164\2\uffff\1\75\6\uffff\1\145\1\163"+
+        "\1\uffff\1\163\1\60\1\155\2\141\1\163\1\154\1\145\1\164\1\145\1"+
+        "\141\1\uffff\2\145\1\164\1\145\2\165\1\163\1\145\1\60\1\145\1\uffff"+
+        "\1\165\1\111\1\145\1\141\1\154\2\60\1\154\1\141\1\60\1\141\1\156"+
+        "\2\141\1\151\1\171\2\uffff\2\60\1\145\1\154\1\uffff\1\60\1\164\1"+
+        "\162\1\163\1\145\1\60\2\162\1\165\1\143\1\162\3\143\1\162\1\164"+
+        "\1\60\1\uffff\2\162\1\156\1\160\1\154\1\60\2\uffff\1\145\1\153\1"+
+        "\156\1\145\2\164\1\161\1\160\2\uffff\1\60\1\154\1\uffff\1\145\1"+
+        "\101\1\151\1\143\1\uffff\1\157\1\155\1\154\1\164\1\60\1\150\1\164"+
+        "\1\145\1\156\1\163\1\uffff\2\145\1\163\1\164\1\154\1\uffff\2\60"+
+        "\1\143\1\60\2\145\1\165\1\145\1\uffff\1\60\1\114\1\163\1\146\1\164"+
+        "\1\171\1\151\1\164\1\60\1\uffff\5\60\2\144\1\164\1\60\1\145\2\uffff"+
+        "\1\145\1\uffff\1\60\1\144\1\145\1\60\1\uffff\1\151\1\163\1\171\1"+
+        "\60\1\114\1\156\1\60\6\uffff\2\60\1\141\1\uffff\1\154\1\157\1\uffff"+
+        "\2\60\1\uffff\1\156\1\157\1\60\1\uffff\1\151\1\145\3\uffff\1\156"+
+        "\1\60\1\146\2\uffff\1\153\1\143\1\uffff\1\156\1\144\1\143\1\uffff"+
+        "\3\60\1\153\1\60\1\145\3\uffff\1\60\1\uffff\1\163\1\uffff\1\60\1"+
+        "\uffff";
     static final String DFA24_maxS =
         "\1\uffff\1\75\2\76\1\75\1\164\1\141\1\75\1\76\3\75\2\uffff\3\162"+
         "\1\157\1\167\1\145\1\170\1\162\1\163\1\141\1\75\1\174\1\75\1\72"+
-        "\4\uffff\1\56\2\uffff\1\165\3\uffff\1\145\1\150\1\162\2\71\1\uffff"+
-        "\2\uffff\16\uffff\1\172\1\145\1\157\1\172\1\uffff\1\163\1\uffff"+
-        "\1\75\2\uffff\1\76\5\uffff\1\uffff\1\100\5\uffff\1\165\1\151\1\172"+
-        "\1\154\1\162\1\157\2\145\1\154\1\163\1\164\1\172\1\154\1\160\1\151"+
-        "\1\164\1\151\1\163\1\145\1\172\1\163\1\154\1\143\1\162\22\uffff"+
-        "\1\154\1\167\3\uffff\1\164\1\151\1\145\1\uffff\1\71\1\uffff\1\71"+
-        "\2\uffff\1\164\1\151\1\uffff\1\162\1\154\1\156\1\uffff\1\164\2\uffff"+
+        "\4\uffff\1\56\2\uffff\1\165\3\uffff\1\145\1\150\1\162\1\uffff\2"+
+        "\uffff\1\170\1\137\16\uffff\1\172\1\145\1\157\1\172\1\uffff\1\163"+
+        "\1\uffff\1\75\2\uffff\1\76\5\uffff\1\uffff\1\100\5\uffff\1\165\1"+
+        "\151\1\172\1\154\1\162\1\157\2\145\1\154\1\163\1\164\1\172\1\154"+
+        "\1\160\1\151\1\164\1\151\1\163\1\145\1\172\1\163\1\154\1\143\1\162"+
+        "\22\uffff\1\154\1\167\3\uffff\1\164\1\151\1\145\3\uffff\2\137\1"+
+        "\uffff\1\164\1\151\1\uffff\1\162\1\154\1\156\1\uffff\1\164\2\uffff"+
         "\1\75\6\uffff\1\145\1\163\1\uffff\1\163\1\172\1\155\2\141\1\163"+
         "\1\154\1\145\1\164\1\145\1\141\1\uffff\2\145\1\164\1\145\2\165\1"+
         "\163\1\145\1\172\1\145\1\uffff\1\165\1\111\1\145\1\141\1\154\2\172"+
-        "\1\154\1\141\1\71\1\141\1\156\2\141\1\151\1\171\2\uffff\2\172\1"+
+        "\1\154\1\141\1\137\1\141\1\156\2\141\1\151\1\171\2\uffff\2\172\1"+
         "\145\1\154\1\uffff\1\172\1\164\1\162\1\163\1\145\1\172\2\162\1\165"+
         "\1\143\1\162\3\143\1\162\1\164\1\172\1\uffff\2\162\1\156\1\160\1"+
         "\154\1\172\2\uffff\1\145\1\153\1\156\1\145\2\164\1\161\1\160\2\uffff"+
@@ -3906,31 +3906,31 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         "\3\uffff\1\172\1\uffff\1\163\1\uffff\1\172\1\uffff";
     static final String DFA24_acceptS =
         "\14\uffff\1\24\1\25\16\uffff\1\63\1\65\1\66\1\67\1\uffff\1\77\1"+
-        "\100\1\uffff\1\110\1\111\1\120\5\uffff\1\144\2\uffff\1\151\1\152"+
+        "\100\1\uffff\1\110\1\111\1\120\3\uffff\1\143\4\uffff\1\151\1\152"+
         "\1\1\1\47\1\16\1\2\1\50\1\101\1\17\1\3\1\64\1\46\1\4\1\23\4\uffff"+
-        "\1\144\1\uffff\1\11\1\uffff\1\7\1\12\1\uffff\1\10\1\51\1\116\1\20"+
+        "\1\143\1\uffff\1\11\1\uffff\1\7\1\12\1\uffff\1\10\1\51\1\116\1\20"+
         "\1\53\2\uffff\1\21\1\52\1\22\1\24\1\25\30\uffff\1\54\1\72\1\75\1"+
         "\55\1\71\1\73\1\56\1\74\1\62\1\70\1\63\1\65\1\66\1\67\1\112\1\76"+
-        "\1\77\1\100\2\uffff\1\110\1\111\1\120\3\uffff\1\143\1\uffff\1\150"+
-        "\1\uffff\1\145\1\151\2\uffff\1\133\3\uffff\1\122\1\uffff\1\57\1"+
-        "\13\1\uffff\1\60\1\14\1\114\1\146\1\117\1\147\2\uffff\1\141\13\uffff"+
-        "\1\131\12\uffff\1\124\20\uffff\1\61\1\15\4\uffff\1\132\21\uffff"+
-        "\1\41\6\uffff\1\107\1\121\10\uffff\1\26\1\105\2\uffff\1\140\4\uffff"+
-        "\1\126\12\uffff\1\123\5\uffff\1\104\10\uffff\1\27\11\uffff\1\106"+
-        "\12\uffff\1\130\1\134\1\uffff\1\115\4\uffff\1\37\7\uffff\1\33\1"+
-        "\125\1\34\1\102\1\135\1\40\3\uffff\1\136\2\uffff\1\36\2\uffff\1"+
-        "\6\3\uffff\1\35\2\uffff\1\127\1\142\1\44\3\uffff\1\42\1\103\2\uffff"+
-        "\1\137\3\uffff\1\45\6\uffff\1\5\1\30\1\32\1\uffff\1\43\1\uffff\1"+
-        "\31\1\uffff\1\113";
+        "\1\77\1\100\2\uffff\1\110\1\111\1\120\3\uffff\1\144\1\150\1\147"+
+        "\2\uffff\1\151\2\uffff\1\133\3\uffff\1\122\1\uffff\1\57\1\13\1\uffff"+
+        "\1\60\1\14\1\114\1\145\1\117\1\146\2\uffff\1\141\13\uffff\1\131"+
+        "\12\uffff\1\124\20\uffff\1\61\1\15\4\uffff\1\132\21\uffff\1\41\6"+
+        "\uffff\1\107\1\121\10\uffff\1\26\1\105\2\uffff\1\140\4\uffff\1\126"+
+        "\12\uffff\1\123\5\uffff\1\104\10\uffff\1\27\11\uffff\1\106\12\uffff"+
+        "\1\130\1\134\1\uffff\1\115\4\uffff\1\37\7\uffff\1\33\1\125\1\34"+
+        "\1\102\1\135\1\40\3\uffff\1\136\2\uffff\1\36\2\uffff\1\6\3\uffff"+
+        "\1\35\2\uffff\1\127\1\142\1\44\3\uffff\1\42\1\103\2\uffff\1\137"+
+        "\3\uffff\1\45\6\uffff\1\5\1\30\1\32\1\uffff\1\43\1\uffff\1\31\1"+
+        "\uffff\1\113";
     static final String DFA24_specialS =
-        "\1\2\54\uffff\1\1\1\3\36\uffff\1\0\u011e\uffff}>";
+        "\1\1\52\uffff\1\3\1\2\40\uffff\1\0\u011e\uffff}>";
     static final String[] DFA24_transitionS = {
-            "\11\60\2\57\2\60\1\57\22\60\1\57\1\4\1\56\1\60\1\14\1\13\1"+
-            "\30\1\55\1\35\1\36\1\11\1\1\1\34\1\2\1\40\1\12\1\52\11\53\1"+
-            "\33\1\46\1\7\1\3\1\10\1\37\1\60\32\54\1\41\1\60\1\42\1\32\1"+
-            "\54\1\60\1\26\1\51\1\20\1\21\1\24\1\17\1\54\1\6\1\5\2\54\1\47"+
-            "\1\54\1\43\1\25\1\27\1\54\1\23\1\22\1\16\2\54\1\50\3\54\1\44"+
-            "\1\31\1\45\1\15\uff81\60",
+            "\11\60\2\57\2\60\1\57\22\60\1\57\1\4\1\54\1\60\1\14\1\13\1\30"+
+            "\1\53\1\35\1\36\1\11\1\1\1\34\1\2\1\40\1\12\1\55\11\56\1\33"+
+            "\1\46\1\7\1\3\1\10\1\37\1\60\32\52\1\41\1\60\1\42\1\32\1\52"+
+            "\1\60\1\26\1\51\1\20\1\21\1\24\1\17\1\52\1\6\1\5\2\52\1\47\1"+
+            "\52\1\43\1\25\1\27\1\52\1\23\1\22\1\16\2\52\1\50\3\52\1\44\1"+
+            "\31\1\45\1\15\uff81\60",
             "\1\61\21\uffff\1\62",
             "\1\64\17\uffff\1\65\1\66",
             "\1\70\1\71",
@@ -3972,11 +3972,12 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             "\1\u0083",
             "\1\u0084",
             "\1\u0085",
-            "\10\u0087\2\u0088",
-            "\12\u0089",
             "",
             "\0\101",
-            "\0\u008a",
+            "\0\u0086",
+            "\10\u0089\12\uffff\1\u0087\25\uffff\1\u0087\6\uffff\1\u0087"+
+            "\2\uffff\1\u0087\25\uffff\1\u0087",
+            "\12\u008a\45\uffff\1\u0087",
             "",
             "",
             "",
@@ -4067,10 +4068,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             "\1\u00be",
             "\1\u00bf",
             "",
-            "\10\u00c0\2\u0088",
             "",
-            "\12\u0089",
             "",
+            "\10\u00c0\47\uffff\1\u0087",
+            "\12\u008a\45\uffff\1\u0087",
             "",
             "\1\u00c1",
             "\1\u00c2",
@@ -4124,7 +4125,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             "\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
             "\1\u00e8",
             "\1\u00e9",
-            "\10\u00c0\2\u0088",
+            "\10\u00c0\47\uffff\1\u0087",
             "\1\u00ea",
             "\1\u00eb",
             "\1\u00ec",
@@ -4328,7 +4329,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             this.transition = DFA24_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | RULE_INTEGER_VALUE | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_INT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_INT | RULE_INTEGER_VALUE | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
@@ -4345,16 +4346,6 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA24_45 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA24_45>='\u0000' && LA24_45<='\uFFFF')) ) {s = 65;}
-
-                        else s = 48;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
                         int LA24_0 = input.LA(1);
 
                         s = -1;
@@ -4440,15 +4431,15 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
 
                         else if ( (LA24_0=='b') ) {s = 41;}
 
-                        else if ( (LA24_0=='0') ) {s = 42;}
+                        else if ( ((LA24_0>='A' && LA24_0<='Z')||LA24_0=='_'||LA24_0=='g'||(LA24_0>='j' && LA24_0<='k')||LA24_0=='m'||LA24_0=='q'||(LA24_0>='u' && LA24_0<='v')||(LA24_0>='x' && LA24_0<='z')) ) {s = 42;}
 
-                        else if ( ((LA24_0>='1' && LA24_0<='9')) ) {s = 43;}
+                        else if ( (LA24_0=='\'') ) {s = 43;}
 
-                        else if ( ((LA24_0>='A' && LA24_0<='Z')||LA24_0=='_'||LA24_0=='g'||(LA24_0>='j' && LA24_0<='k')||LA24_0=='m'||LA24_0=='q'||(LA24_0>='u' && LA24_0<='v')||(LA24_0>='x' && LA24_0<='z')) ) {s = 44;}
+                        else if ( (LA24_0=='\"') ) {s = 44;}
 
-                        else if ( (LA24_0=='\'') ) {s = 45;}
+                        else if ( (LA24_0=='0') ) {s = 45;}
 
-                        else if ( (LA24_0=='\"') ) {s = 46;}
+                        else if ( ((LA24_0>='1' && LA24_0<='9')) ) {s = 46;}
 
                         else if ( ((LA24_0>='\t' && LA24_0<='\n')||LA24_0=='\r'||LA24_0==' ') ) {s = 47;}
 
@@ -4456,11 +4447,21 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
-                    case 3 : 
-                        int LA24_46 = input.LA(1);
+                    case 2 : 
+                        int LA24_44 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA24_46>='\u0000' && LA24_46<='\uFFFF')) ) {s = 138;}
+                        if ( ((LA24_44>='\u0000' && LA24_44<='\uFFFF')) ) {s = 134;}
+
+                        else s = 48;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA24_43 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA24_43>='\u0000' && LA24_43<='\uFFFF')) ) {s = 65;}
 
                         else s = 48;
 

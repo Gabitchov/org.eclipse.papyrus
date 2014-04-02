@@ -1,4 +1,12 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.sysml.service.types,
+ org.eclipse.papyrus.sysml.service.types.command,
+ org.eclipse.papyrus.sysml.service.types.element,
+ org.eclipse.papyrus.sysml.service.types.handlers,
+ org.eclipse.papyrus.sysml.service.types.helper,
+ org.eclipse.papyrus.sysml.service.types.matcher,
+ org.eclipse.papyrus.sysml.service.types.menu,
+ org.eclipse.papyrus.sysml.service.types.utils
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.uml2.uml;bundle-version="5.0.0",
@@ -12,21 +20,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.tools;bundle-version="1.0.0",
  org.eclipse.papyrus.uml.diagram.common;bundle-version="1.0.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0"
-Export-Package: org.eclipse.papyrus.sysml.service.types,
- org.eclipse.papyrus.sysml.service.types.command,
- org.eclipse.papyrus.sysml.service.types.element,
- org.eclipse.papyrus.sysml.service.types.handlers,
- org.eclipse.papyrus.sysml.service.types.helper,
- org.eclipse.papyrus.sysml.service.types.matcher,
- org.eclipse.papyrus.sysml.service.types.menu,
- org.eclipse.papyrus.sysml.service.types.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.sysml.service.types.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.service.types;singleton
  :=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

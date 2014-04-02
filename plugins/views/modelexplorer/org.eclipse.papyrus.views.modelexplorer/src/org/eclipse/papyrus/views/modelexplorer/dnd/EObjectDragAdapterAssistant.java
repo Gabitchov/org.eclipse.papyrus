@@ -17,11 +17,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.ui.navigator.CommonDragAdapterAssistant;
@@ -61,12 +61,10 @@ public class EObjectDragAdapterAssistant extends CommonDragAdapterAssistant {
 
 		while(iter.hasNext()) {
 			Object current = iter.next();
-			if(current instanceof IAdaptable) {
-				EObject eobject = (EObject)((IAdaptable)current).getAdapter(EObject.class);
+				EObject eobject =EMFHelper.getEObject(current);
 				if(eobject != null) {
 					selectedElements.add(eobject);
 				}
-			}
 		}
 
 		if(!selectedElements.isEmpty()) {

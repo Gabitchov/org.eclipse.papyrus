@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2013 CEA LIST.&#xD;&#xA;&#xD;&#xA; All rights reserved. This program and the accompanying materials&#xD;&#xA; are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA; which accompanies this distribution, and is available at&#xD;&#xA; http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA; &#xD;&#xA; Contributors:&#xD;&#xA; Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation&#xD;&#xA; &#xD;&#xA;"
+    modelDirectory="/org.eclipse.papyrus.infra.viewpoints.configuration/src"
+    modelPluginID="org.eclipse.papyrus.infra.viewpoints.configuration" modelName="Configuration"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.infra.viewpoints.iso42010/model/iso42010.genmodel#//iso42010"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>configuration.ecore</foreignModel>
+  <genPackages prefix="Configuration" basePackage="org.eclipse.papyrus.infra.viewpoints"
+      disposableProviderFactory="true" ecorePackage="configuration.ecore#/">
+    <genClasses ecoreClass="configuration.ecore#//PapyrusConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference configuration.ecore#//PapyrusConfiguration/defaultStakeholder"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference configuration.ecore#//PapyrusConfiguration/metamodel"/>
+    </genClasses>
+    <genClasses ecoreClass="configuration.ecore#//PapyrusViewpoint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference configuration.ecore#//PapyrusViewpoint/parent"/>
+    </genClasses>
+    <genClasses ecoreClass="configuration.ecore#//PapyrusView"/>
+    <genClasses ecoreClass="configuration.ecore#//PapyrusDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference configuration.ecore#//PapyrusDiagram/creationRules"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference configuration.ecore#//PapyrusDiagram/modelRules"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference configuration.ecore#//PapyrusDiagram/paletteRules"/>
+    </genClasses>
+    <genClasses ecoreClass="configuration.ecore#//DiagramCreationRule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference configuration.ecore#//DiagramCreationRule/element"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute configuration.ecore#//DiagramCreationRule/multiplicity"/>
+    </genClasses>
+    <genClasses ecoreClass="configuration.ecore#//ModelRule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference configuration.ecore#//ModelRule/element"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference configuration.ecore#//ModelRule/origin"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference configuration.ecore#//ModelRule/insertionPath"/>
+    </genClasses>
+    <genClasses ecoreClass="configuration.ecore#//PaletteRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute configuration.ecore#//PaletteRule/element"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="configuration.ecore#//Rule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute configuration.ecore#//Rule/permit"/>
+    </genClasses>
+    <genClasses ecoreClass="configuration.ecore#//PathElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference configuration.ecore#//PathElement/feature"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference configuration.ecore#//PathElement/origin"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference configuration.ecore#//PathElement/target"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

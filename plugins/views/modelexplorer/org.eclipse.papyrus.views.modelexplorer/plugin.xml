@@ -2,7 +2,16 @@
 <?eclipse version="3.4"?>
 
 <plugin>
+<extension point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+  <modeldeclaration file="resources/OpenedPage.custom"/>
+</extension>
    <extension-point id="actionHandler" name="actionHandler" schema="schema/org.eclipse.papyrus.views.modelexplorer.actionHandler.exsd"/>
+   <extension
+         point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+      <modeldeclaration
+            file="resources/ReadOnlyElement.custom">
+      </modeldeclaration>
+   </extension>
    <extension point="org.eclipse.ui.views">
       <view category="org.eclipse.papyrus.views.category" class="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView" icon="icons/ModelExplorer.gif" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer" name="Model Explorer" restorable="true">
       </view>
@@ -36,7 +45,7 @@
             <or>
                <instanceof value="org.eclipse.gmf.runtime.notation.impl.DiagramImpl">
                </instanceof>
-               <instanceof value="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem"/>
+               <instanceof value="org.eclipse.emf.ecore.EObject"/>
             </or>
          </possibleChildren>
          <actionProvider class="org.eclipse.papyrus.views.modelexplorer.actionprovider.GenericTransformActionProvider" id="org.eclipse.papyrus.views.modelexplorer.actionprovider.GenericTransformActionProvider">
@@ -44,6 +53,9 @@
                <or>
                   <adapt type="org.eclipse.emf.ecore.EObject">
                   </adapt>
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
                </or>
             </enablement>
          </actionProvider>
@@ -55,8 +67,9 @@
                      <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
                      </instanceof>
                   </not>
-                  <adapt type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
                </and>
             </enablement>
          </actionProvider>
@@ -65,8 +78,9 @@
                <or>
                   <instanceof value="org.eclipse.gmf.runtime.notation.impl.DiagramImpl">
                   </instanceof>
-                  <adapt type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
                </or>
             </possibleDropTargets>
          </dropAssistant>
@@ -101,35 +115,43 @@
 		</command>
 	</menuContribution>
  <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+    <separator
+          name="newelements"
+          visible="false">
+    </separator>
     <menu id="org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild" label="New Child">
     </menu>
-    <menu id="org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram" label="New Diagram">
+    <menu
+          icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/NewDiagram.gif"
+          id="org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram"
+          label="New Diagram">
     </menu>
     <command commandId="org.eclipse.ui.edit.delete" disabledIcon="IMG_TOOL_DELETE_DISABLED" icon="IMG_TOOL_DELETE" label="Delete" style="push" tooltip="Delete">
        <visibleWhen checkEnabled="true">
           <and>
              <with variable="selection">
                 <iterate>
-                   <adapt type="org.eclipse.emf.ecore.EObject">
-                   </adapt>
+                   <instanceof
+                         value="org.eclipse.emf.ecore.EObject">
+                   </instanceof>
                 </iterate>
              </with>
           </and>
        </visibleWhen>
     </command>
-    <separator name="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.separator0" visible="true">
+    <separator name="rename" visible="true">
     </separator>
     <command commandId="org.eclipse.ui.edit.rename" icon="icons/etool16/rename.gif" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.rename" label="&amp;Rename" style="push" tooltip="Rename the element">
        <visibleWhen checkEnabled="true">
        </visibleWhen>
     </command>
-    <separator name="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.separator1" visible="true">
+    <separator name="command" visible="true">
     </separator>
     <command commandId="org.eclipse.ui.edit.undo" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.undo" label="&amp;Undo" style="push">
     </command>
     <command commandId="org.eclipse.ui.edit.redo" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.redo" label="&amp;Redo" style="push">
     </command>
-    <separator name="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.separator2" visible="true">
+    <separator name="diagramedit" visible="true">
     </separator>
     <command commandId="org.eclipse.papyrus.views.modelexplorer.popup.open.command" icon="icons/etool16/forward.gif" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.open" label="&amp;Open" style="push" tooltip="Open">
        <visibleWhen checkEnabled="true">
@@ -151,7 +173,7 @@
        <visibleWhen checkEnabled="true">
        </visibleWhen>
     </command>
-    <separator name="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.separator3" visible="true">
+    <separator name="edition" visible="true">
     </separator>
     <command commandId="org.eclipse.ui.edit.cut" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.cut" label="Cu&amp;t" style="push">
        <visibleWhen checkEnabled="false">
@@ -180,6 +202,18 @@
           </with>
        </visibleWhen>
     </command>
+    <separator
+          name="tools"
+          visible="true">
+    </separator>
+    <separator
+          name="others"
+          visible="true">
+    </separator>
+    <separator
+          name="additions"
+          visible="false">
+    </separator>
  </menuContribution>
 	<!-- ModelExplorer Contextual menu -->       
        
@@ -234,22 +268,6 @@
 
 <!-- This handler is activated when deleteInModelExplorer variable is valid.
   -->
-<extension point="org.eclipse.ui.handlers">
-	<handler class="org.eclipse.papyrus.views.modelexplorer.handler.DeleteCommandHandler" commandId="org.eclipse.ui.edit.delete">
-		<activeWhen>
-     <with variable="selection">
-        <and>
-           <with variable="activePart">
-              <instanceof value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
-              </instanceof>
-           </with>
-           <test forcePluginActivation="true" property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject" value="true">
-           </test>
-        </and>
-     </with>
-		</activeWhen>
-	</handler>
-</extension>
 <extension point="org.eclipse.ui.commands">
    <command categoryId="org.eclipse.papyrus.editor.category" description="The command to open in a tab" id="org.eclipse.papyrus.views.modelexplorer.popup.open.command" name="Open Command">
    </command>
@@ -364,6 +382,72 @@
          </and>
       </activeWhen>
    </handler>
+   <handler
+         class="org.eclipse.papyrus.views.modelexplorer.handler.DeleteCommandHandler"
+         commandId="org.eclipse.ui.edit.delete">
+      <activeWhen>
+         <with
+               variable="selection">
+            <and>
+               <with
+                     variable="activePart">
+                  <instanceof
+                        value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
+                  </instanceof>
+               </with>
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
+                     value="true">
+               </test>
+            </and>
+         </with>
+      </activeWhen>
+   </handler>
+   <handler
+         class="org.eclipse.papyrus.views.modelexplorer.handler.CopyHandler"
+         commandId="org.eclipse.ui.edit.copy">
+      <activeWhen>
+         <and>
+            <with
+                  variable="activePart">
+               <instanceof
+                     value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
+               </instanceof>
+            </with>
+            <with
+                  variable="selection">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+    <handler
+          class="org.eclipse.papyrus.views.modelexplorer.handler.PasteHandler"
+          commandId="org.eclipse.ui.edit.paste">
+       <activeWhen>
+          <and>
+             <with
+                   variable="activePart">
+                <instanceof
+                      value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
+                </instanceof>
+             </with>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
+                      value="true">
+                </test>
+             </with>
+          </and>
+       </activeWhen>
+    </handler>   
 </extension>
 <extension point="org.eclipse.core.expressions.propertyTesters">
       <!-- the property tester is used to enabled/disabled handler -->
@@ -372,27 +456,29 @@
    <propertyTester class="org.eclipse.papyrus.views.modelexplorer.provider.PropertyTester" id="org.eclipse.papyrus.views.modelexplorer.tester.view" namespace="org.eclipse.papyrus.views.modelexplorer.tester.view" properties="isModelExplorer" type="org.eclipse.ui.IWorkbenchPart">
    </propertyTester>
 </extension>
-
-   <extension point="org.eclipse.emf.facet.infra.query.registration">
+<!-- 
+TODO: PAPYRUS EMF-FACET update uiCustom Here
+   <extension point="org.eclipse.papyrus.emf.facet.infra.query.registration">
       <modelqueryset file="resources/PapyrusEcoreBrowserQuery.querySet"/>
    </extension>
-   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resources/PapyrusEcoreBrowser.uiCustom"/>
    </extension>
-   <extension point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
-      <context description="The ModelExplorer labelProvider context" id="org.eclipse.papyrus.views.modelexplorer.labelProvider.context">
-      </context>
-   </extension>
-   <extension point="org.eclipse.emf.facet.infra.facet.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.facet.registration">
       <facetset file="resources/PapyrusPages.facetSet"/>
    </extension>
-   <extension point="org.eclipse.emf.facet.infra.query.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.query.registration">
       <modelqueryset file="resources/PapyrusPages.querySet"/>
    </extension>
-   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization
             file="resources/PapyrusPages.uiCustom"
             loadByDefault="true"/>
+   </extension>
+   -->
+   <extension point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <context description="The ModelExplorer labelProvider context" id="org.eclipse.papyrus.views.modelexplorer.labelProvider.context">
+      </context>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.services.navigation.navigationContributor">

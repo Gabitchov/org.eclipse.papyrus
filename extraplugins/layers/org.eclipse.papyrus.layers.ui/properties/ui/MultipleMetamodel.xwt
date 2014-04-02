@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:j="clr-namespace:java.lang"
+	xmlns="http://www.eclipse.org/xwt/presentation">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="layers:Metamodel:isTypeValid"></ppe:BooleanRadio>
+	</Composite>
+</Composite>

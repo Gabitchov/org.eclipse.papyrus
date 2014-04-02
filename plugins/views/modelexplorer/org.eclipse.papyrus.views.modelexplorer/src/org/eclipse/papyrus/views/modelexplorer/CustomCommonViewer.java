@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ColumnViewerEditor;
 import org.eclipse.jface.viewers.ColumnViewerEditorActivationEvent;
 import org.eclipse.jface.viewers.ColumnViewerEditorActivationStrategy;
@@ -20,6 +22,9 @@ import org.eclipse.jface.viewers.FocusCellHighlighter;
 import org.eclipse.jface.viewers.IElementComparer;
 import org.eclipse.jface.viewers.TreeViewerEditor;
 import org.eclipse.jface.viewers.TreeViewerFocusCellManager;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
+import org.eclipse.papyrus.views.modelexplorer.matching.HashCodeCalculus;
 import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.IReferencable;
 import org.eclipse.swt.SWT;
@@ -43,6 +48,16 @@ public class CustomCommonViewer extends CommonViewer {
 		setComparer(new IElementComparer() {
 
 			public int hashCode(Object element) {
+				if(element instanceof EObjectTreeElement) {
+					EObject eObject = ((EObjectTreeElement)element).getEObject();
+					return HashCodeCalculus.getHashCode(eObject);
+				}
+				
+				if(element instanceof EReferenceTreeElement) {
+					EObject eParent=((EReferenceTreeElement) element).getParent().getEObject();
+					EReference eref=((EReferenceTreeElement) element).getEReference();
+					return HashCodeCalculus.getHashCode(eParent, eref);
+				}
 				if(element instanceof IReferencable) {
 					IReferencable ref = (IReferencable)element;
 					return ref.getElementBehind().hashCode();

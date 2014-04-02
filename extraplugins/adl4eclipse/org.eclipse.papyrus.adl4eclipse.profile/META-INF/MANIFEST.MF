@@ -1,16 +1,17 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.adl4eclipse.org
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.osgi.profile
-Export-Package: org.eclipse.papyrus.adl4eclipse.org
+ org.eclipse.papyrus.osgi.profile;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 1.0.0.qualifier
 Bundle-localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.adl4eclipse.org.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipse.profile;singleton
  :=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Description: This plugin contains adl4 eclipse profile used to  model eclipse plugins.The plugins that allow the modelization is or.eclipse.papyrus.adl4eclipsetool. More details can be found in the docs directory of or.eclipse.papyrus.adl4eclipsetool.
 

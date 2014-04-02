@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2010 Atos Origin, CEA, and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *		
+ *	 Atos Origin - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 392301
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.services.resourceloading.editor;
 
 
@@ -40,6 +54,10 @@ public class UnloadResourcesEditorModel implements IEditorModel {
 		name = "Unresolved tab";
 	}
 
+	public void dispose() {
+		// Pass. The tab icon is a workbench-shared image
+	}
+	
 	/**
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel#getTabTitle()
 	 *

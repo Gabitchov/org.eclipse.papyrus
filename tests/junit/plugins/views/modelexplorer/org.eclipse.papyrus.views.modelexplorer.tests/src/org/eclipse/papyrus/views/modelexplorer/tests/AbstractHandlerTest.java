@@ -15,6 +15,7 @@ package org.eclipse.papyrus.views.modelexplorer.tests;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.Command;
@@ -24,20 +25,21 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
-import org.eclipse.emf.facet.util.core.internal.exported.FileUtils;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeElement;
+import org.eclipse.papyrus.emf.facet.util.core.internal.exported.FileUtils;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPage;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
@@ -58,7 +60,6 @@ import org.eclipse.ui.part.IPage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.internal.runners.statements.RunAfters;
 import org.osgi.framework.Bundle;
 
 //TODO a part of this plugin should be moved in an upper test plugin
@@ -77,30 +78,30 @@ public abstract class AbstractHandlerTest {
 	protected static final String FILE_NAME = "model"; //$NON-NLS-1$
 
 	/** the name of the project used to test the handler */
-	private static final String PROJECT_NAME = "Project Handler Test"; //$NON-NLS-1$
+	protected static final String PROJECT_NAME = "Project Handler Test"; //$NON-NLS-1$
 
 	/** the id of the model explorer */
 	public static final String viewId = "org.eclipse.papyrus.views.modelexplorer.modelexplorer"; //$NON-NLS-1$
 
 	/** the root of the model */
-	private EObject modelRoot;
+	protected EObject modelRoot;
 
-	private ModelExplorerView modelExplorerView;
+	protected ModelExplorerView modelExplorerView;
 
 	protected Command testedCommand;
 
-	private CommonViewer commonViewer;
+	protected CommonViewer commonViewer;
 
-	private ISelectionService selectionService;
+	protected ISelectionService selectionService;
 
-	private final String commandId;
+	protected final String commandId;
 
-	private CoreMultiDiagramEditor editor;
+	protected CoreMultiDiagramEditor editor;
 
 	/**
 	 * the bundle to use to get the model to test
 	 */
-	private final Bundle bundle;
+	protected final Bundle bundle;
 
 	/**
 	 * 
@@ -167,7 +168,7 @@ public abstract class AbstractHandlerTest {
 				setResult(activePart);
 			}
 		});
-		
+
 		Assert.assertTrue("The active part is not the ModelExplorer", activePartRunnable.getResult() instanceof ModelExplorerPageBookView); //$NON-NLS-1$
 	}
 
@@ -191,9 +192,7 @@ public abstract class AbstractHandlerTest {
 		IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
 		Assert.assertEquals("Only one element should be selected", 1, currentSelection.size()); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
-		if(obj instanceof IAdaptable) {
-			obj = ((IAdaptable)obj).getAdapter(EObject.class);
-		}
+		obj = EMFHelper.getEObject(obj);
 		Assert.assertSame("the current selected element is not the wanted element", elementToSelect, obj); //$NON-NLS-1$
 	}
 
@@ -204,7 +203,7 @@ public abstract class AbstractHandlerTest {
 	 * @param elementToSelect
 	 *        the element to select
 	 */
-	protected void selectElementInTheModelexplorer(final ITreeElement elementToSelect) {
+	protected void selectElementInTheModelexplorer(final TreeElement elementToSelect) {
 		Display.getDefault().syncExec(new Runnable() {
 
 			public void run() {
@@ -296,10 +295,19 @@ public abstract class AbstractHandlerTest {
 
 				// store the root of the model
 				Object[] visibleElement = commonViewer.getVisibleExpandedElements();
-				if(visibleElement[0] instanceof IAdaptable) {
-					modelRoot = (EObject)((IAdaptable)visibleElement[0]).getAdapter(EObject.class);
-				}
+				modelRoot = EMFHelper.getEObject(visibleElement[0]);
 
+				List<Customization> appliedCustomizations=org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations();
+				Customization SimpleUML=null;
+				Iterator<?>iter=appliedCustomizations.iterator();
+				while(iter.hasNext()) {
+					Customization custo = (Customization)iter.next();
+					if( custo.getName().equals("SimpleUML")){
+						SimpleUML=custo;
+					}
+				}
+				org.junit.Assert.assertNotNull("Custom SimpleUML not found", SimpleUML);
+				org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations().add(0, SimpleUML);
 				setStatus(Status.OK_STATUS);
 			}
 		});

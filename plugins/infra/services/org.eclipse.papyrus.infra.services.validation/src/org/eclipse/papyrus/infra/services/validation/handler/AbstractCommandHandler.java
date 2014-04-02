@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -78,7 +79,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 		// Treat non-null selected object (try to adapt and return EObject)
 		if(selection != null) {
 			if(selection instanceof IAdaptable) {
-				selection = ((IAdaptable)selection).getAdapter(EObject.class);
+				selection = EMFHelper.getEObject(selection);
 			}
 
 			Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selection);
@@ -112,14 +113,14 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 			for(Object current : structuredSelection.toArray()) {
 				// Adapt current selection to EObject
 				if(current instanceof IAdaptable) {
-					selectedEObjects.add((EObject)((IAdaptable)current).getAdapter(EObject.class));
+					selectedEObjects.add(EMFHelper.getEObject(current));
 				}
 			}
 		} else { // Not a IStructuredSelection
 			if(selection != null) {
 				// Adapt current selection to EObject
 				if(selection instanceof IAdaptable) {
-					selectedEObjects.add((EObject)((IAdaptable)selection).getAdapter(EObject.class));
+					selectedEObjects.add(EMFHelper.getEObject(selection));
 				}
 			}
 		}

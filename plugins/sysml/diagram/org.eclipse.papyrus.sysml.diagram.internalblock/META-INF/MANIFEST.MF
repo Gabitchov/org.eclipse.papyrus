@@ -1,4 +1,18 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.sysml.diagram.internalblock,
+ org.eclipse.papyrus.sysml.diagram.internalblock.compatibility,
+ org.eclipse.papyrus.sysml.diagram.internalblock.dnd.helper,
+ org.eclipse.papyrus.sysml.diagram.internalblock.edit.part,
+ org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy,
+ org.eclipse.papyrus.sysml.diagram.internalblock.factory,
+ org.eclipse.papyrus.sysml.diagram.internalblock.handler,
+ org.eclipse.papyrus.sysml.diagram.internalblock.helper.advice,
+ org.eclipse.papyrus.sysml.diagram.internalblock.messages,
+ org.eclipse.papyrus.sysml.diagram.internalblock.part,
+ org.eclipse.papyrus.sysml.diagram.internalblock.preferences,
+ org.eclipse.papyrus.sysml.diagram.internalblock.provider,
+ org.eclipse.papyrus.sysml.diagram.internalblock.ui,
+ org.eclipse.papyrus.sysml.diagram.internalblock.utils
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.sysml;bundle-version="1.0.0",
@@ -26,33 +40,23 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0",
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
  org.eclipse.gmf.tooling.runtime;bundle-version="3.1.0",
- org.eclipse.papyrus.infra.tools;bundle-version="1.0.0"
-Export-Package: org.eclipse.papyrus.sysml.diagram.internalblock,
- org.eclipse.papyrus.sysml.diagram.internalblock.compatibility,
- org.eclipse.papyrus.sysml.diagram.internalblock.dnd.helper,
- org.eclipse.papyrus.sysml.diagram.internalblock.edit.part,
- org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy,
- org.eclipse.papyrus.sysml.diagram.internalblock.factory,
- org.eclipse.papyrus.sysml.diagram.internalblock.handler,
- org.eclipse.papyrus.sysml.diagram.internalblock.helper.advice,
- org.eclipse.papyrus.sysml.diagram.internalblock.messages,
- org.eclipse.papyrus.sysml.diagram.internalblock.part,
- org.eclipse.papyrus.sysml.diagram.internalblock.preferences,
- org.eclipse.papyrus.sysml.diagram.internalblock.provider,
- org.eclipse.papyrus.sysml.diagram.internalblock.ui,
- org.eclipse.papyrus.sysml.diagram.internalblock.utils
+ org.eclipse.papyrus.infra.tools;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.viewpoints.configuration;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.internalblock.Acti
  vator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.internalblock;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

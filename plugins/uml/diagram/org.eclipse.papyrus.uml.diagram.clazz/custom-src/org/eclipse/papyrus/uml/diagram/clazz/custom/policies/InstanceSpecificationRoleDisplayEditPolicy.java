@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -34,6 +35,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * It is used to refresh the label of the role in the instance specification link
  */
+@SuppressWarnings("restriction")
 public abstract class InstanceSpecificationRoleDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
 
 	public static String INSTANCE_SPECIFICATION_ROLE_DISPLAY = "INSTANCE_SPECIFICATION_ROLE_DISPLAY";
@@ -52,7 +54,7 @@ public abstract class InstanceSpecificationRoleDisplayEditPolicy extends Graphic
 	 * @return the view controlled by the host edit part
 	 */
 	protected View getView() {
-		return (View)getHost().getModel();
+		return (View) getHost().getModel();
 	}
 
 	/**
@@ -61,7 +63,7 @@ public abstract class InstanceSpecificationRoleDisplayEditPolicy extends Graphic
 	 * @return the element linked to the edit policy
 	 */
 	protected Element initSemanticElement() {
-		return (Element)getView().getElement();
+		return (Element) getView().getElement();
 	}
 
 	/**
@@ -70,8 +72,8 @@ public abstract class InstanceSpecificationRoleDisplayEditPolicy extends Graphic
 	 * @return the diagram event broker
 	 */
 	protected DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(theEditingDomain != null) {
+		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		if (theEditingDomain != null) {
 			return DiagramEventBroker.getInstance(theEditingDomain);
 		}
 		return null;
@@ -84,15 +86,15 @@ public abstract class InstanceSpecificationRoleDisplayEditPolicy extends Graphic
 	public void activate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if(view == null) {
+		if (view == null) {
 			return;
 		}
 		hostSemanticElement = initSemanticElement();
-		if(hostSemanticElement != null) {
+		if (hostSemanticElement != null) {
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
-			if(getInterestingProperty() != null) {
+			if (getInterestingProperty() != null) {
 				getDiagramEventBroker().addNotificationListener(getInterestingProperty(), this);
 			}
 			refreshDisplay();
@@ -108,13 +110,13 @@ public abstract class InstanceSpecificationRoleDisplayEditPolicy extends Graphic
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if(view == null) {
+		if (view == null) {
 			return;
 		}
 		// remove notification on element and view
 		getDiagramEventBroker().removeNotificationListener(view, this);
 		getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
-		if(getInterestingProperty() != null) {
+		if (getInterestingProperty() != null) {
 			getDiagramEventBroker().removeNotificationListener(getInterestingProperty(), this);
 		}
 		// removes the reference to the semantic element
@@ -134,28 +136,28 @@ public abstract class InstanceSpecificationRoleDisplayEditPolicy extends Graphic
 	 * @return the property
 	 */
 	public Property getInterestingProperty() {
-		if(interestingProperty != null) {
+		if (interestingProperty != null) {
 			return interestingProperty;
 		}
-		if(hostSemanticElement != null) {
-			ArrayList<Property> array = new ArrayList<Property>();
-			InstanceSpecification instanceSpecification = (InstanceSpecification)hostSemanticElement;
-			if(instanceSpecification.getClassifiers().size() > 0) {
-				if(instanceSpecification.getClassifiers().get(0) instanceof Association) {
-					Association association = (Association)instanceSpecification.getClassifiers().get(0);
+		if (hostSemanticElement != null) {
+			List<Property> array = new ArrayList<Property>();
+			InstanceSpecification instanceSpecification = (InstanceSpecification) hostSemanticElement;
+			if (instanceSpecification.getClassifiers().size() > 0) {
+				if (instanceSpecification.getClassifiers().get(0) instanceof Association) {
+					Association association = (Association) instanceSpecification.getClassifiers().get(0);
 					InstanceSpecification sourceElt = getEnd();
 					Iterator<Property> iterator = association.getMemberEnds().iterator();
-					while(iterator.hasNext()) {
+					while (iterator.hasNext()) {
 						Property property = iterator.next();
-						if(sourceElt.getClassifiers().contains(property.getType())) {
+						if (sourceElt.getClassifiers().contains(property.getType())) {
 							array.add(property);
 						}
 					}
 				}
 			}
-			if(array.size() == 1) {
+			if (array.size() == 1) {
 				interestingProperty = array.get(0);
-			} else if(array.size() > 1) {
+			} else if (array.size() > 1) {
 				interestingProperty = getprefvalue(array);
 			}
 		}
@@ -166,18 +168,18 @@ public abstract class InstanceSpecificationRoleDisplayEditPolicy extends Graphic
 	 * get the property that are interesting from a list for example for a source or label
 	 * 
 	 * @param array
-	 *        the list of properties
+	 *            the list of properties
 	 * @return the property
 	 */
-	protected abstract Property getprefvalue(ArrayList<Property> array);
+	protected abstract Property getprefvalue(List<Property> array);
 
 	/**
 	 * refresh the display
 	 */
 	protected void refreshDisplay() {
-		if(hostSemanticElement != null) {
-			if(getInterestingProperty() != null) {
-				((WrappingLabel)getHostFigure()).setText(getInterestingProperty().getName());
+		if (hostSemanticElement != null) {
+			if (getInterestingProperty() != null) {
+				((WrappingLabel) getHostFigure()).setText(getInterestingProperty().getName());
 			}
 		}
 	}

@@ -1871,6 +1871,12 @@
 		inheritance="all" typeId="org.eclipse.papyrus.uml.OccurrenceSpecification">
 	</adviceBinding>
 	
+    <!-- Helper advice for Parameter -->
+    <adviceBinding id="org.eclipse.papyrus.uml.advice.Parameter"
+        class="org.eclipse.papyrus.uml.service.types.helper.advice.ParameterHelperAdvice"
+        inheritance="all" typeId="org.eclipse.papyrus.uml.Parameter">
+    </adviceBinding>
+    
 	<!-- Helper advice for PartDecomposition -->
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.PartDecomposition"
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.PartDecompositionHelperAdvice"
@@ -2196,6 +2202,7 @@
 		<advice ref="org.eclipse.papyrus.uml.advice.NamedElement" />
 		<advice ref="org.eclipse.papyrus.uml.advice.NamedElementNameInitializer" />
 		<advice ref="org.eclipse.papyrus.uml.advice.OccurrenceSpecification" />
+		<advice ref="org.eclipse.papyrus.uml.advice.Parameter" />
 		<advice ref="org.eclipse.papyrus.uml.advice.PartDecomposition" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Property" />
 		<advice ref="org.eclipse.papyrus.uml.advice.StructuredClassifier" />

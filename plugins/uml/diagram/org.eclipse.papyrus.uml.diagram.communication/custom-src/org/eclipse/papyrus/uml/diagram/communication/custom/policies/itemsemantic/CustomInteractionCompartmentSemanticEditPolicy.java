@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.communication.custom.policies.itemsemant
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.communication.custom.commands.CustomDurationObservationCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.communication.custom.commands.CustomTimeObservationCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.policies.InteractionCompartmentItemSemanticEditPolicy;
@@ -35,10 +36,10 @@ public class CustomInteractionCompartmentSemanticEditPolicy extends InteractionC
 	protected Command getCreateCommand(CreateElementRequest req) {
 
 		if(UMLElementTypes.TimeObservation_8006 == req.getElementType()) {
-			return getGEFWrapper(new CustomTimeObservationCreateCommandCN(req));
+			return getGEFWrapper(new CustomTimeObservationCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.DurationObservation_8007 == req.getElementType()) {
-			return getGEFWrapper(new CustomDurationObservationCreateCommandCN(req));
+			return getGEFWrapper(new CustomDurationObservationCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 
 		return super.getCreateCommand(req);

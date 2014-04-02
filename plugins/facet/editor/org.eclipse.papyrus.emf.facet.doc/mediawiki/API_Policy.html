@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8' ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>API_Policy</title>
+	</head>
+	<body>
+		<h1 id="API_Policy">API Policy</h1>
+		<p>This policy defines rules which give some guarantees to adopters about the EMF Facet API stability. </p>
+		<p>We consider EMF Facet API as the union of Java API, Eclipse Extension points, and also Models. </p>
+		<p>Indeed, since the EMF Facet project addresses Model-Driven Reverse Engineering, it proposes various metamodels definitions and conforming models to support the end-user use cases. </p>
+		<h2 id="Declared_API">Declared API</h2>
+		<p>Declared API is public API that EMF Facet has committed to supporting for several releases. It should be clean and contain adequate javadoc. Declared API may evolve in the first few milestones, but it must be frozen by the release API freeze date and will not change throughout the remainder of the release or the corresponding maintenance releases. </p>
+		<p>In following releases, API may sometimes be deprecated due to the normal evolution of EMF Facet. Deprecations must contain information on a migration path for existing adopters. Deprecated API may not be removed for at least 1 major release (and preferably longer), and after notifying the community.</p>
+		<h2 id="Provisional_API">Provisional API</h2>
+		<p>Provisional API is a work in progress towards fully Declared API and can be used when committers want to gather community feedback before declaring API, or when there are known problems with a new API that cannot be addressed by API freeze date. Provisional API status is meant to be a temporary state and API should not remain provisional for an undue length of time. </p>
+		<p>Provisional Java API should be marked at the class or member level with the following javadoc comment: </p>
+		<pre>/** Provisional API: This class/interface is part of an interim API
+* that is still under development and expected to
+* change before reaching stability.
+*/
+</pre>
+		<p> 
+			Provisional Model API should be marked at the ecore level with a metamodel identifier mentioning "incubation" (e.g. "
+			<a href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java">http://www.eclipse.org/MoDisco/Java/0.2.incubation/java</a>" as nsURI identifier of an ecore definition). Java model API, because it is generated from ecore model, shouldn't have to be marked as provisional accordingly to the ecore definition.
+		</p>
+		<p>Provisional Extension Point API should be marked as "incubation" in extension point naming.</p>
+		<h2 id="Examples_API">Examples API</h2>
+		<p>The project delivers some examples plugins for various EMF Facet features. It includes some models conforming to EMF Facet infrastructure and technologies layers, and some Java API. Those components might be used as a starting point for the end-user reverse engineering process. But Examples API is not as stable as declared API and is expected to change. </p>
+		<p>Any resource included in a plugin whose name indicates 'examples' should be considered of Internal API kind.</p>
+		<p>The examples APIs are not stable. They can change without any notice (including in a service release).</p>
+		<h2 id="Test_API">Test API</h2>
+		<p>In addition the project delivers some tests plugins for various EMF Facet features. It also includes some models and Java classes, which are not as stable as declared API.</p>
+		<p>Any resource included in a plugin whose name indicates 'test' should be also considered of Internal API kind.</p>
+		<p>The test APIs are not stable. They can change without any notice (including in a service release).</p>
+		<h2 id="Internal_Use">Internal Use</h2>
+		<p>Internal code is everything else. EMF Facet reserves the right to change internal code at any time (including in a service release). </p>
+		<p>The internal packages should contain 'internal' in the package name.
+			The internal packages should not appear in "Exported Packages" in manifest file. 
+			<i>Note : within EMF Facet components, x-friends|x-internal can be used in the manifest to give 'internal' access to any plugin from the same layer that requires it, in such a case it is accurate to write a API.readme.txt file at the top level of the project to justify why one of its internal package is exposed.</i>
+		</p>
+		<p>Internal extension points should be indicated by 'internal' in the extension point name. </p>
+		<p>Internal model API (rare) should be indicated by 'internal' in the identifier. </p>
+		<p>If adopters require the use of internal code and do not want to be continually broken, they should open bugzilla enhancement requests for API. These bugs will be triaged and will help drive the creation of new declared or provisional API.</p>
+		<h2 id="Deprecated_API_declaration">Deprecated API declaration</h2>
+		<p>When an API need to be declared deprecated, the contributor has to:</p>
+		<ul>
+			<li>Add the @Deprecated tag in the Java code.</li>
+			<li>Open a bug:
+				<ul>
+					<li>having a summary starting with 
+						<a href="Deprecated">Deprecated</a>,
+					</li>
+					<li>specifying in which version the API will be removed.</li>
+				</ul>
+			</li>
+			<li>Copy the bug URL in the Java code of the deprecated API.</li>
+			<li>Add in the Javadoc comment using the @deprecated tag:
+				<ul>
+					<li>an explanation of what to do when we are using the deprecated API,</li>
+					<li>the version number of the deprecation,</li>
+					<li>the bug URL.</li>
+				</ul>
+			</li>
+		</ul>
+		<p><font size="-2">
+			Copyright &#169; 2012 Mia-Software.
+			All rights reserved. This program and the accompanying materials
+			are made available under the terms of the Eclipse Public License v1.0
+			which accompanies this distribution, and is available at
+
+			<a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.
+</font>
+		</p>
+	</body>
+</html>

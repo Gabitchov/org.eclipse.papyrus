@@ -25,14 +25,17 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationClassCreateCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyBranchEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.AssociationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
@@ -40,7 +43,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * this a specialization to manage creation of association and associationClass
  */
-public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus.uml.diagram.clazz.edit.policies.AssociationItemSemanticEditPolicy {
+public class CustomAssociationItemSemanticEditPolicy extends AssociationItemSemanticEditPolicy {
 
 	/**
 	 * 
@@ -48,10 +51,10 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
-			return getGEFWrapper(new org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new CAssociationCreateCommand(req, req.getSource(), req.getTarget(), DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
-			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget(), DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return UnexecutableCommand.INSTANCE;
@@ -108,10 +111,10 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
-			return getGEFWrapper(new org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget(), DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
-			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget(), DiagramUtils.getDiagramFrom(getHost())));
 		}
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return UnexecutableCommand.INSTANCE;

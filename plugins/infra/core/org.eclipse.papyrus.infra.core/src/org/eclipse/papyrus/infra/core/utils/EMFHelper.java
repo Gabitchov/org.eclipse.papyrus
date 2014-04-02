@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - filter out EObjects that are Resources (CDO)
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
+ *  Christian W. Damus (CEA) - bug 426732
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
@@ -19,6 +20,7 @@ import java.util.Collections;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 
 /**
@@ -45,14 +47,15 @@ public class EMFHelper {
 		if(crossReferencer == null) {
 			// try to register a cross referencer at the highest level
 			crossReferencer = new ECrossReferenceAdapter();
-			if(source.eResource() != null) {
-				if(source.eResource().getResourceSet() != null) {
-					crossReferencer.setTarget(source.eResource().getResourceSet());
+			Resource resource = source.eResource();
+			if(resource != null) {
+				if(resource.getResourceSet() != null) {
+					resource.getResourceSet().eAdapters().add(crossReferencer);
 				} else {
-					crossReferencer.setTarget(source.eResource());
+					resource.eAdapters().add(crossReferencer);
 				}
 			} else {
-				crossReferencer.setTarget(source);
+				source.eAdapters().add(crossReferencer);
 			}
 		}
 

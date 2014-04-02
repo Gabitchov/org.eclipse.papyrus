@@ -102,6 +102,15 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 		this(source, feature, null);
 	}
 
+	/**
+	 * 
+	 * @param source
+	 *        The edited {@link EObject} (Should be either a UML Element or a StereotypeApplication)
+	 * @param feature
+	 *        The edited {@link EStructuralFeature}
+	 * @param stereotype
+	 *        The {@link Stereotype} of the source EObject. May be null if the source is not a StereotypeApplication
+	 */
 	public UMLContentProvider(final EObject source, final EStructuralFeature feature, final Stereotype stereotype) {
 		this(source, feature, stereotype, null);
 	}
@@ -114,6 +123,8 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 	 *        The edited {@link EStructuralFeature}
 	 * @param stereotype
 	 *        The {@link Stereotype} of the source EObject. May be null if the source is not a StereotypeApplication
+	 * @param root
+	 *        The resource set in which the objects could be found. If null, derive resource set automatically
 	 */
 	public UMLContentProvider(final EObject source, final EStructuralFeature feature, final Stereotype stereotype, ResourceSet root) {
 		this.eObject = source;

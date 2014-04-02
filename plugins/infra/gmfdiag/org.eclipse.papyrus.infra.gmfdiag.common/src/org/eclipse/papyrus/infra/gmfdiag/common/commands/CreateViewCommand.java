@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 /**
  * A replacement for CreateCommand that avoids that takes into account the incorrect
@@ -46,7 +47,7 @@ public class CreateViewCommand extends CreateCommand {
 		}
 
 		// Try to adapt the descriptor ElementAdapter in EObject
-		EObject element = (EObject)viewDescriptor.getElementAdapter().getAdapter(EObject.class);
+		EObject element = EMFHelper.getEObject(viewDescriptor.getElementAdapter());
 		IElementType elementType = (IElementType)viewDescriptor.getElementAdapter().getAdapter(IElementType.class);
 
 		SemanticElementAdapter semanticAdapter = new SemanticElementAdapter(element, elementType);

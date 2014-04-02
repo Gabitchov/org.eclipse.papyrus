@@ -1,14 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
@@ -27,7 +26,9 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.AssociationBranchItem
 /**
  * @generated
  */
-public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
+public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
+		implements ITreeBranchEditPart
+{
 
 	/**
 	 * @generated
@@ -55,13 +56,13 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationBranchRoleEditPart) {
-			((AssociationBranchRoleEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
-			return true;
+		if (childEditPart instanceof AssociationBranchRoleEditPart) {
+			((AssociationBranchRoleEditPart) childEditPart).setLabel(
+					getPrimaryShape().getRoleSourceLabel());
 		}
-		if(childEditPart instanceof AssociationBranchMutliplicityEditPart) {
-			((AssociationBranchMutliplicityEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
-			return true;
+		if (childEditPart instanceof AssociationBranchMutliplicityEditPart) {
+			((AssociationBranchMutliplicityEditPart) childEditPart).setLabel(
+					getPrimaryShape().getMultiplicitySourceLabel());
 		}
 		return false;
 	}
@@ -70,7 +71,7 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -80,10 +81,10 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationBranchRoleEditPart) {
+		if (childEditPart instanceof AssociationBranchRoleEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationBranchMutliplicityEditPart) {
+		if (childEditPart instanceof AssociationBranchMutliplicityEditPart) {
 			return true;
 		}
 		return false;
@@ -93,7 +94,7 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -115,6 +116,7 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 * @generated
 	 */
 	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure)getFigure();
+		return (AssociationFigure) getFigure();
 	}
+
 }

@@ -20,6 +20,7 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleReferenceEditor;
 import org.eclipse.papyrus.uml.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.uml.properties.profile.ui.compositeforview.AppliedStereotypeCompositeWithView;
@@ -127,8 +128,8 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 			return (EObject) object;
 		} else if (object instanceof IAdaptable) {
 			IAdaptable adaptable = (IAdaptable) object;
-			if (adaptable.getAdapter(EObject.class) != null) {
-				return (EObject) adaptable.getAdapter(EObject.class);
+			if( EMFHelper.getEObject(adaptable) != null) {
+				return EMFHelper.getEObject(adaptable);
 			}
 		}
 		return null;

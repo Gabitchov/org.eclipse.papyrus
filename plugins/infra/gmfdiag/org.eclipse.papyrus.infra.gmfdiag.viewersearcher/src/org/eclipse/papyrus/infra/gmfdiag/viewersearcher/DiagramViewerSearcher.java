@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 426732
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.viewersearcher;
@@ -19,6 +20,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -46,7 +48,7 @@ public class DiagramViewerSearcher extends AbstractViewerSearcher {
 
 		for(ModelSet modelSet : modelSets) {
 
-			Map<EObject, Collection<Setting>> references = EcoreUtil.UsageCrossReferencer.findAll(modelElements, modelSet);
+			Map<EObject, Collection<Setting>> references = crossReference(modelElements, modelSet);
 
 			for(Object semanticElement : references.keySet()) {
 				for(Setting setting : references.get(semanticElement)) {
@@ -68,5 +70,25 @@ public class DiagramViewerSearcher extends AbstractViewerSearcher {
 		}
 
 		return results;
+	}
+	
+	private Map<EObject, Collection<Setting>> crossReference(Collection<?> modelElements, ModelSet modelSet) {
+		Map<EObject, Collection<Setting>> result;
+		
+		final ECrossReferenceAdapter xrefs = ECrossReferenceAdapter.getCrossReferenceAdapter(modelSet);
+		if (xrefs == null) {
+			// one-off usage cross referencer
+			result = EcoreUtil.UsageCrossReferencer.findAll(modelElements, modelSet);
+		} else {
+			result = new HashMap<EObject, Collection<Setting>>();
+			for(Object next : modelElements) {
+				if (next instanceof EObject) {
+					EObject eObject = (EObject)next;
+					result.put(eObject, xrefs.getInverseReferences(eObject));
+				}
+			}
+		}
+		
+		return result;
 	}
 }

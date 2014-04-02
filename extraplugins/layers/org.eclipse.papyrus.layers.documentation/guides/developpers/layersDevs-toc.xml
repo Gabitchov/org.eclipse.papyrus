@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc topic="guides/developpers/layersDevs.html" label="layersDevs">
+	<topic href="guides/developpers/layersDevs.html" label="Layers Developpers"></topic>
+	<topic href="guides/developpers/layersDevs.html#General_Architecture" label="General Architecture"></topic>
+	<topic href="guides/developpers/layersDevs.html#Plugins" label="Plugins"></topic>
+</toc>

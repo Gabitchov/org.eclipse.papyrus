@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2010, 2014 Atos Origin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 410346
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
@@ -114,13 +115,15 @@ public class SequenceNodeKeywordEditPart extends PapyrusCompartmentEditPart impl
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
+	
+	private IPropertyChangeListener preferenceListener;
 
 	/**
 	 * @generated NOT Add propertyChange Listener
 	 */
 	public SequenceNodeKeywordEditPart(View view) {
 		super(view);
-		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
+		preferenceListener = new IPropertyChangeListener() {
 
 			public void propertyChange(PropertyChangeEvent event) {
 				if(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_SEQUENCE_NODE.equals(event.getProperty())) {
@@ -129,7 +132,7 @@ public class SequenceNodeKeywordEditPart extends PapyrusCompartmentEditPart impl
 					}
 				}
 			}
-		});
+		};
 	}
 
 	/**
@@ -730,11 +733,12 @@ public class SequenceNodeKeywordEditPart extends PapyrusCompartmentEditPart impl
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public void activate() {
 		super.activate();
 		addOwnerElementListeners();
+		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().addPropertyChangeListener(preferenceListener);
 	}
 
 	/**
@@ -745,9 +749,10 @@ public class SequenceNodeKeywordEditPart extends PapyrusCompartmentEditPart impl
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public void deactivate() {
+		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().removePropertyChangeListener(preferenceListener);
 		removeOwnerElementListeners();
 		super.deactivate();
 	}

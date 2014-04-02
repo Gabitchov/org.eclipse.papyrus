@@ -115,6 +115,9 @@
             class="org.eclipse.papyrus.uml.profile.readonly.AppliedProfileReadOnlyHandler"
             id="org.eclipse.papyrus.uml.profile.readonly.AppliedProfileReadOnlyHandler"
             priority="15">
+         <affinity
+               axis="discretion">
+         </affinity>
       </readOnlyHandler>
    </extension>
    <extension
@@ -160,6 +163,12 @@
             priority="45"
             provider="org.eclipse.papyrus.uml.profile.providers.ProfileDefinitionLabelProvider">
       </labelProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.viewpoints.policy.profilehelper">
+      <helper
+            class="org.eclipse.papyrus.uml.profile.UMLProfileHelper">
+      </helper>
    </extension>
 
 </plugin>

@@ -16,11 +16,11 @@ package org.eclipse.papyrus.uml.modelexplorer.tests;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.tests.AbstractHandlerTest;
 import org.eclipse.swt.widgets.Display;
@@ -66,9 +66,7 @@ public class ModelExplorerViewTests extends AbstractHandlerTest {
 		final IStructuredSelection currentSelection = getCurrentSelection();
 		Assert.assertEquals("Only one element should be selected", 1, currentSelection.size()); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
-		if(obj instanceof IAdaptable) {
-			obj = ((IAdaptable)obj).getAdapter(EObject.class);
-		}
+			obj =EMFHelper.getEObject(obj);
 
 		Assert.assertEquals("The function revealSemanticElement seems doesn't work on the root of the model", getRootOfTheModel(), obj);
 	}
@@ -106,9 +104,7 @@ public class ModelExplorerViewTests extends AbstractHandlerTest {
 			final IStructuredSelection currentSelection = getCurrentSelection();
 			Assert.assertTrue("Only one element should be selected", currentSelection.size() == 1); //$NON-NLS-1$
 			Object obj = currentSelection.getFirstElement();
-			if(obj instanceof IAdaptable) {
-				obj = ((IAdaptable)obj).getAdapter(EObject.class);
-			}
+			obj =org.eclipse.papyrus.infra.emf.utils.EMFHelper.getEObject(obj);
 			Assert.assertTrue("The function revealSemanticElement seems doesn't work with children", obj == current);
 		}
 	}
@@ -176,9 +172,7 @@ public class ModelExplorerViewTests extends AbstractHandlerTest {
 			final IStructuredSelection currentSelection = getCurrentSelection();
 			Assert.assertEquals("I don't get the correct selection", 1, currentSelection.size()); //$NON-NLS-1$
 			Object obj = currentSelection.getFirstElement();
-			if(obj instanceof IAdaptable) {
-				obj = ((IAdaptable)obj).getAdapter(EObject.class);
-			}
+			obj =EMFHelper.getEObject(obj);
 			Assert.assertEquals("The function revealSemanticElement seems doesn't work with importedPackage", current, obj);
 		}
 	}
@@ -226,3 +220,4 @@ public class ModelExplorerViewTests extends AbstractHandlerTest {
 		Assert.assertEquals("I don't get the current selection for revealSemanticElement_importedPackageList", 1, currentSelection.size()); //$NON-NLS-1$
 	}
 }
+

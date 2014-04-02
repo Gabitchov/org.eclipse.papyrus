@@ -412,13 +412,10 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 					@Override
 					public void run() {
 						Object newElement = referenceFactory.createObject(MultipleValueEditor.this, context);
-						if(newElement == null) {
-							// Cancel the operation
-							throw new OperationCanceledException();
+						if(newElement != null) {
+							modelProperty.add(newElement);
+							commit();
 						}
-						
-						modelProperty.add(newElement);
-						commit();
 					}
 				}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
 			}
@@ -469,7 +466,9 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	@Override
 	protected void commit() {
 		super.commit();
-		treeViewer.refresh();
+		if(!isDisposed()){
+			treeViewer.refresh();
+		}
 	}
 
 	/**
@@ -601,7 +600,9 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param event
 	 */
 	public void handleChange(ChangeEvent event) {
-		treeViewer.refresh();
+		if(!isDisposed()) {
+			treeViewer.refresh();
+		}
 	}
 
 	@Override

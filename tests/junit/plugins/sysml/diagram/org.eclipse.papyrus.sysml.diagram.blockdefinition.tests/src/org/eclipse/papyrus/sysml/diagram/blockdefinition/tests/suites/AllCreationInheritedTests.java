@@ -35,11 +35,11 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ 
-	TestNodeCreationOnComment.class, 
-	TestNodeCreationOnCommentCN.class,
-	TestNodeCreationOnConstraint.class,
-	TestNodeCreationOnConstraintCN.class, 
-	TestNodeCreationOnInstanceSpecification.class,
+	//TestNodeCreationOnComment.class, 
+	//TestNodeCreationOnCommentCN.class,
+	//TestNodeCreationOnConstraint.class,
+	//TestNodeCreationOnConstraintCN.class, 
+	//TestNodeCreationOnInstanceSpecification.class,
 	TestNodeCreationOnInstanceSpecificationCN.class,
 	TestNodeCreationOnInstanceSpecificationCompartment.class,
 	TestNodeCreationOnInstanceSpecificationCompartmentCN.class,

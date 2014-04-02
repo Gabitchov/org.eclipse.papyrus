@@ -31,6 +31,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
@@ -41,11 +42,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
@@ -63,7 +67,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
 import org.eclipse.papyrus.junit.utils.rules.Condition;
 import org.eclipse.papyrus.junit.utils.rules.ConditionRule;
 import org.eclipse.papyrus.junit.utils.rules.Conditional;
@@ -77,7 +80,9 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.UseCase;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -101,6 +106,8 @@ public class ReadOnlyObjectEditAdviceTest {
 
 	private static final IClientContext PAPYRUS_CONTEXT = ClientContextManager.getInstance().getClientContext("org.eclipse.papyrus.infra.services.edit.TypeContext"); //$NON-NLS-1$
 
+	private static IAdapterFactory readOnlyHandlerAdapterFactory;
+	
 	@Parameter
 	public ResourceMode resourceMode;
 
@@ -435,6 +442,19 @@ public class ReadOnlyObjectEditAdviceTest {
 		return resourceMode.isAdviceEnabled();
 	}
 
+	@BeforeClass
+	public static void registerReadOnlyHandlerAdapterFactory() throws Exception {
+		// Cannot add dependency on read-only plug-in because that would induce a cycle
+		readOnlyHandlerAdapterFactory = (IAdapterFactory)Platform.getBundle("org.eclipse.papyrus.infra.emf.readonly").loadClass("org.eclipse.papyrus.infra.emf.readonly.ReadOnlyAdapterFactory").newInstance();
+		Platform.getAdapterManager().registerAdapters(readOnlyHandlerAdapterFactory, EditingDomain.class);
+	}
+
+	@AfterClass
+	public static void deregisterReadOnlyHandlerAdapterFactory() {
+		Platform.getAdapterManager().unregisterAdapters(readOnlyHandlerAdapterFactory, EditingDomain.class);
+		readOnlyHandlerAdapterFactory = null;
+	}
+	
 	@Before
 	public void createFixture() throws Exception {
 		project = ResourcesPlugin.getWorkspace().getRoot().getProject(String.format("%s_%d", getClass().getSimpleName(), resourceMode.ordinal())); //$NON-NLS-1$
@@ -485,7 +505,10 @@ public class ReadOnlyObjectEditAdviceTest {
 		Package result = null;
 
 		if(domain == null) {
-			domain = TransactionalEditingDomainManager.createTransactionalEditingDomain(new ResourceSetImpl());
+			// Use an editing domain that doesn't implement its own read-only checking in order not
+			// to interfere with the advice's read-only check
+			domain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain(new ResourceSetImpl());
+			((AdapterFactoryEditingDomain)domain).setResourceToReadOnlyMap(null);
 		}
 
 		Resource res = domain.getResourceSet().createResource(uri);

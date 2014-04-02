@@ -77,7 +77,7 @@ public class NewchildManager {
 		constraintEngine = new MenuConstraintEngine();
 		try {
 			//TODO : Load that from extension point
-			NewchildConfiguration configuration = (NewchildConfiguration)EMFHelper.loadEMFModel(null, URI.createPlatformPluginURI("org.eclipse.papyrus.infra.emf.newchild/Model/NewchildConfiguration.xmi", true));
+			NewchildConfiguration configuration = (NewchildConfiguration)EMFHelper.loadEMFModel(null, URI.createPlatformPluginURI("/org.eclipse.papyrus.emf.facet.editor/newChild/NewchildConfiguration.xmi", true));
 			constraintEngine.addConfiguration(configuration);
 		} catch (IOException ex) {
 			Activator.log.error(ex);

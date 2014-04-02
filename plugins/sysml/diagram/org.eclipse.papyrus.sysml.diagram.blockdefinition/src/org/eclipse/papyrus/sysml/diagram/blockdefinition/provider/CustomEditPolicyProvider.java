@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010-2012 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,6 @@
  * Contributors:
  *		
  *		CEA LIST - Initial API and implementation
- *		Arthur Daussy - arthur.daussy@atos.net - 395920: [Block Diagram Definition] All element contained by a block should be able to be linked to constraint or comment
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;

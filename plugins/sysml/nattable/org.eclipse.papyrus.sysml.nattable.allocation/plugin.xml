@@ -40,58 +40,5 @@
          </class>
       </handler>
    </extension>
-   <extension
-         id="create.table.menus"
-         name="Create Table Menus"
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.infra.nattable.popupmenu.createnattable">
-         <command
-               commandId="org.eclipse.papyrus.sysml.nattable.allocation.create.command"
-               style="push">
-            <visibleWhen>
-               <with
-                     variable="activeEditorId">
-                  <equals
-                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
-                  </equals>
-               </with>
-            </visibleWhen>
-         </command>
-      </menuContribution>
-      <menuContribution
-            allPopups="false"
-            locationURI="menu:org.eclipse.papyrus.infra.nattable.menu.createnattable">
-         <command
-               commandId="org.eclipse.papyrus.sysml.nattable.allocation.create.command"
-               style="push">
-            <visibleWhen>
-               <with
-                     variable="activeEditorId">
-                  <equals
-                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
-                  </equals>
-               </with>
-            </visibleWhen>
-         </command>
-      </menuContribution>
-      <menuContribution
-            allPopups="false"
-            locationURI="toolbar:org.eclipse.papyrus.infra.nattable.toolbar.createnattable">
-         <command
-               commandId="org.eclipse.papyrus.sysml.nattable.allocation.create.command"
-               style="push">
-            <visibleWhen>
-               <with
-                     variable="activeEditorId">
-                  <equals
-                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
-                  </equals>
-               </with>
-            </visibleWhen>
-         </command>
-      </menuContribution>
-   </extension>
 
 </plugin>

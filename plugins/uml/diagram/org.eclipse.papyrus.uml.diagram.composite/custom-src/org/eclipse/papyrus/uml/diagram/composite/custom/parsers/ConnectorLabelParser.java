@@ -1,14 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
- *		CEA LIST - Initial API and implementation
+ *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.parsers;
@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -37,7 +38,7 @@ public class ConnectorLabelParser extends NamedElementLabelParser {
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 		String result = "";
-		EObject eObject = (EObject)element.getAdapter(EObject.class);
+		EObject eObject = EMFHelper.getEObject(element);
 
 		if((eObject != null) && (eObject instanceof Connector)) {
 

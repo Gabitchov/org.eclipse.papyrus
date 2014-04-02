@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 AtoS.
+ * Copyright (c) 2011, 2014 AtoS, CEA, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Tristan FAURE (AtoS) tristan.faure@atos.net - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 410346
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.palette.customaction.utils;
 
@@ -17,6 +19,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.papyrus.infra.core.modelsetquery.ModelSetQuery;
 import org.eclipse.swt.widgets.Shell;
@@ -40,7 +43,16 @@ public class ConditionalElementListDialog<T extends EObject> extends ElementList
 	}
 	
 	public ConditionalElementListDialog(Shell parent, Predicate<T> condition, Collection<T> elements) {
-		super(parent, new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		super(parent, new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)) {
+			@Override
+			public void dispose() {
+				if(adapterFactory instanceof IDisposable) {
+					// We created this adapter factory, so we must dispose it
+					((IDisposable)adapterFactory).dispose();
+				}
+				super.dispose();
+			}
+		});
 		setMultipleSelection(false);
 		List<T> result = Lists.newArrayList(Iterables.filter(elements, condition));
 		setTitle("Choose Elements");

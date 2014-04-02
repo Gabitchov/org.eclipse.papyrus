@@ -31,7 +31,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.message.xtext.ui.in
  ternal.UmlMessageActivator
+Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.message.xtext.ui
  ;singleton:=true
-Import-Package: org.apache.log4j
 

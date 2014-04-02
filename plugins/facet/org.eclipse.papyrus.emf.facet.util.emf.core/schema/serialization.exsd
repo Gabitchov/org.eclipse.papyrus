@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.widgets.celleditors" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.widgets.celleditors" id="serialization" name="Serialization"/>
+      </appInfo>
+      <documentation>
+         This extension point is used to specify an implementation for serializing specific types.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="serializer" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="serializer">
+      <annotation>
+         <documentation>
+            Defines a serializer.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A class that implements the interface ISerializer to provide an implementation for the serialization of a type.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.util.emf.core.ISerializer"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         0.1.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;p&gt;
+A serializer can be registered like this:
+&lt;pre&gt;
+   &lt;extension point=&quot;org.eclipse.papyrus.emf.facet.util.emf.core.serialization&quot;&gt;
+      &lt;serializer class=&quot;com.example.MyTypeSerializer&quot;/&gt;
+   &lt;/extension&gt;
+&lt;/pre&gt;
+&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiinfo"/>
+      </appInfo>
+      <documentation>
+         &lt;p&gt;
+A serializer must implement the interface ISerializer&lt;T&gt; :
+&lt;ul&gt;
+&lt;li&gt;getType : return the type that can be serialized by this serializer (this is required for loading the class from the correct bundle).
+&lt;li&gt;serialize : takes a value and serializes it to a String
+&lt;li&gt;deserialize : takes a String and deserializes it back to a value
+&lt;/ul&gt;
+&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         &lt;p&gt;See default serializers registered in plug-in &quot;org.eclipse.papyrus.emf.facet.util.emf.core&quot;, defined in package &quot;org.eclipse.papyrus.emf.facet.util.emf.core.serialization&quot;.&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2011 Mia-Software.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+   Nicolas Bros (Mia-Software) - initial API and implementation
+      </documentation>
+   </annotation>
+
+</schema>

@@ -59,14 +59,14 @@ import com.google.common.collect.Lists;
 
 /**
  * Utility method for Model Navigator.
- * 
+ *
  * @author Jerome Benois
  */
 public class NavigatorUtils {
 
 	/**
 	 * Gets the roots of the notations resources related to the given object
-	 * 
+	 *
 	 * @param element
 	 *        The object from which to retrieve the notation resources
 	 * @return An iterator of notation resources' roots, or <code>null</code> if none cannot be resolved
@@ -89,7 +89,7 @@ public class NavigatorUtils {
 
 	/**
 	 * Represents an iterator on all the roots of a set of resources of a ResourceSet
-	 * 
+	 *
 	 * @author Laurent Wouters
 	 */
 	private static class RootsIterator implements Iterator<EObject> {
@@ -153,7 +153,7 @@ public class NavigatorUtils {
 
 	/**
 	 * Gets the notation resources related to the given object
-	 * 
+	 *
 	 * @param element
 	 *        The object from which to retrieve the notation resources
 	 * @return An iterator of notation resources, or <code>null</code> if none cannot be resolved
@@ -166,7 +166,7 @@ public class NavigatorUtils {
 
 		IAdaptable input = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getInput();
 		if(input != null) {
-			EObject obj = (EObject)input.getAdapter(EObject.class);
+			EObject obj = EMFHelper.getEObject(input);
 			return tryGetResources(obj, fileExtension);
 		}
 		return null;
@@ -176,7 +176,7 @@ public class NavigatorUtils {
 
 	/**
 	 * Tries to get the notation resources related to the given object
-	 * 
+	 *
 	 * @param element
 	 *        The object from which to retrieve the notation resources
 	 * @return An iterator of notation resources, or <code>null</code> if none cannot be resolved
@@ -196,7 +196,7 @@ public class NavigatorUtils {
 
 	/**
 	 * Represents an iterator over the notation resources of a ResourceSet
-	 * 
+	 *
 	 * @author Laurent Wouters
 	 */
 	private static class ResourcesIterator implements Iterator<Resource> {
@@ -243,10 +243,10 @@ public class NavigatorUtils {
 
 	/**
 	 * Find a <IViewPart> by it's id string.
-	 * 
+	 *
 	 * @param viewID
 	 *        the view id
-	 * 
+	 *
 	 * @return the i view part
 	 */
 	public static IViewPart findViewPart(final String viewID) {
@@ -281,10 +281,10 @@ public class NavigatorUtils {
 	/**
 	 * Unwraps selection. Gets <EObject>s from <EditPart>s, from <View>s or from
 	 * <EObject>s
-	 * 
+	 *
 	 * @param selection
 	 *        the selection
-	 * 
+	 *
 	 * @return the i selection
 	 */
 	public static ISelection unwrapSelection(ISelection selection) {
@@ -323,12 +323,12 @@ public class NavigatorUtils {
 
 	/**
 	 * Finds the <EditPart>s for the <EObject>s in the selection.
-	 * 
+	 *
 	 * @param selection
 	 *        the selection
 	 * @param viewer
 	 *        the viewer
-	 * 
+	 *
 	 * @return the edits the parts from selection
 	 */
 	public static List<EditPart> getEditPartsFromSelection(ISelection selection, IDiagramGraphicalViewer viewer) {
@@ -364,10 +364,10 @@ public class NavigatorUtils {
 
 	/**
 	 * Gets the given <EObject> views.
-	 * 
+	 *
 	 * @param element
 	 *        the element
-	 * 
+	 *
 	 * @return the e object views
 	 */
 	// @unused
@@ -446,7 +446,7 @@ public class NavigatorUtils {
 
 	/**
 	 * Opens a view part in the workbench with the specified ID.
-	 * 
+	 *
 	 * @param viewPartID
 	 */
 	// @unused
@@ -469,12 +469,19 @@ public class NavigatorUtils {
 	}
 
 	/**
-	 * Use the IAdaptable mecanisme
-	 * 
+	 * Use the IAdaptable mechanism
+	 *
 	 * @param o
 	 * @param theClass
 	 * @return
+	 *
+	 * @deprecated This method doesn't work with EMF Facet >= 0.2, for retrieving EObjects.
+	 *             Use {@link EMFHelper#getEObject(Object)} instead
+	 *             Note: If used for anything else than EObject.class, the method is still OK.
+	 *             But it seems that it was its only usage
 	 */
+	@Deprecated
+	@SuppressWarnings("unchecked")
 	public static <T> T getElement(Object o, Class<T> theClass) {
 		T result = null;
 		if(o instanceof IAdaptable) {
@@ -494,13 +501,13 @@ public class NavigatorUtils {
 	 * Tests whether at least one elements matches the given Predicate in the resource set
 	 * This doesn't rely on the CrossReferencer. Instead, it will browse all the objects of the given Type
 	 * in the ResourceSet.
-	 * 
+	 *
 	 * If "search all contents" is false, it will restrict the search to root elements
 	 * of the same EPackage as the researched Type.
-	 * 
+	 *
 	 * For example, if we're looking for GMF Diagrams (type == Diagram), we will only look for root elements
 	 * from the Notation metamodel (Excluding the underlying semantic model.
-	 * 
+	 *
 	 * @param referencedElement
 	 *        The referenced element
 	 * @param type
@@ -509,8 +516,8 @@ public class NavigatorUtils {
 	 *        If false, the research will be restricted to the root elements of the same EPackage as "type"
 	 * @param predicate
 	 *        The predicate used to determine whether an object of type "type" has a reference to the "referencedElement"
-	 * 
-	 * 
+	 *
+	 *
 	 * @return
 	 *         True if at least one object matches the predicate and targets the referencedElement
 	 */
@@ -564,7 +571,7 @@ public class NavigatorUtils {
 	/**
 	 * Search all the elements referencing the context,
 	 * filter the results by the predicate
-	 * 
+	 *
 	 * @return
 	 */
 	//@unused for efficiency issues
@@ -585,7 +592,7 @@ public class NavigatorUtils {
 	/**
 	 * Search all the elements referencing the context,
 	 * filter the results by the predicate and apply the function to return the desired types
-	 * 
+	 *
 	 * @return
 	 */
 	public static <T> Collection<T> findFilterAndApply(EObject toFind, Predicate<Setting> predicate, Function<Setting, T> function) {

@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.emf.facet.custom.sdk.core,
+ org.eclipse.papyrus.emf.facet.custom.sdk.core.internal.validation;x-internal:=true
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.validation;bundle-version="1.4.0",
+ org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.common.sdk.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.util.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.util.pde.core;bundle-version="1.0.0"
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Activator: org.eclipse.papyrus.emf.facet.custom.sdk.core.intern
+ al.Activator
+Bundle-ManifestVersion: 2
+Import-Package: org.eclipse.emf.edit.command,
+ org.eclipse.emf.edit.domain
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.custom.sdk.core;sin
+ gleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

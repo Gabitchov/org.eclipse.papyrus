@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 LIFL & CEA LIST.
+ * Copyright (c) 2011, 2014 LIFL, CEA LIST, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,8 @@
  * Contributors:
  *  Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
+ *  Christian W. Damus (CEA) - bug 392301
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.factory;
 
@@ -100,6 +102,8 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		 * The raw model stored in the SashProvider.
 		 */
 		private Table rawModel;
+		
+		private Image tabIcon;
 
 		/**
 		 * 
@@ -191,12 +195,14 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		 * 
 		 */
 		public Image getTabIcon() {
-			ImageDescriptor imageDescriptor = getEditorDescriptor().getIcon();
-			if(imageDescriptor == null) {
-				return null;
+			if(tabIcon == null) {
+				ImageDescriptor imageDescriptor = getEditorDescriptor().getIcon();
+				if(imageDescriptor != null) {
+					tabIcon = imageDescriptor.createImage();
+				}
 			}
-
-			return imageDescriptor.createImage();
+			
+			return tabIcon;
 		}
 
 		/**
@@ -208,6 +214,13 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		 */
 		public String getTabTitle() {
 			return this.rawModel.getName();
+		}
+
+		public void dispose() {
+			if(tabIcon != null) {
+				tabIcon.dispose();
+				tabIcon = null;
+			}
 		}
 	}
 }

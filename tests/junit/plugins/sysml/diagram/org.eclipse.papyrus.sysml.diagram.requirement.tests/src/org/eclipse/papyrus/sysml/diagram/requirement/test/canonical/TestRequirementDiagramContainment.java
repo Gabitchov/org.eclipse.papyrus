@@ -36,6 +36,11 @@ public class TestRequirementDiagramContainment extends TestContainmentLink {
 		return IRequirementDiagramTestsConstants.FILE_NAME;
 	}
 
+	@Override
+	protected String[] getRequiredProfiles() {
+		return IRequirementDiagramTestsConstants.PROFILES;
+	}
+
 	/**
 	 * Test to manage containmentLink.
 	 */

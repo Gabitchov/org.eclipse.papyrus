@@ -465,6 +465,16 @@
                   removeFromToolbar="true"
                   toolbarPath="/toolbarFilterGroup">
             </partPredefinedItem>
+            <partPredefinedItem
+                  id="fontNameContributionItem"
+                  removeFromMenubar="false"
+                  removeFromToolbar="true">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="fontSizeContributionItem"
+                  removeFromMenubar="false"
+                  removeFromToolbar="true">
+            </partPredefinedItem>
          </partContribution>
          <popupContribution
                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *     CEA LIST - initial API and implementation
+ *     Christian W. Damus (CEA) - bug 392301
+ *     
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.emftree;
 
@@ -109,6 +111,8 @@ public class EmfTreeDiagramEditorFactory implements IPluggableEditorFactory {
 
 		private ServicesRegistry servicesRegistry;
 
+		private Image tabIcon;
+		
 		/**
 		 * 
 		 * Constructor.
@@ -188,12 +192,14 @@ public class EmfTreeDiagramEditorFactory implements IPluggableEditorFactory {
 		 * 
 		 */
 		public Image getTabIcon() {
-			ImageDescriptor imageDescriptor = editorDescriptor.getIcon();
-			if(imageDescriptor == null) {
-				return null;
+			if(tabIcon == null) {
+				ImageDescriptor imageDescriptor = editorDescriptor.getIcon();
+				if(imageDescriptor != null) {
+					tabIcon = imageDescriptor.createImage();
+				}
 			}
-
-			return imageDescriptor.createImage();
+			
+			return tabIcon;
 		}
 
 		/**
@@ -204,6 +210,13 @@ public class EmfTreeDiagramEditorFactory implements IPluggableEditorFactory {
 		 */
 		public String getTabTitle() {
 			return "EmfTree";
+		}
+
+		public void dispose() {
+			if(tabIcon != null) {
+				tabIcon.dispose();
+				tabIcon = null;
+			}
 		}
 
 	}

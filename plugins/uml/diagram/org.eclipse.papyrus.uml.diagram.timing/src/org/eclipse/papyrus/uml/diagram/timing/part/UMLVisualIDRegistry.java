@@ -159,17 +159,8 @@ public class UMLVisualIDRegistry {
 		return Integer.toString(visualID);
 	}
 
-	/**
-	 * @generated
-	 */
 	public static int getDiagramVisualID(final EObject domainElement) {
-		if(domainElement == null) {
-			return -1;
-		}
-		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package)domainElement)) {
-			return TimingDiagramEditPart.VISUAL_ID;
-		}
-		return -1;
+		return TimingDiagramEditPart.VISUAL_ID;
 	}
 
 	/**

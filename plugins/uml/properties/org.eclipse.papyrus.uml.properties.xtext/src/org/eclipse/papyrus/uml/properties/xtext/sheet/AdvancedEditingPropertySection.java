@@ -30,6 +30,7 @@ import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorCo
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.properties.xtext.UndoRedoStack;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.StyledTextXtextAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
@@ -50,6 +51,10 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
+/**
+ * Attention: class has been deactivated, since the additional tab is redundant with the
+ * body editor in the standard UML property tab.
+ */
 public class AdvancedEditingPropertySection extends
 		AbstractModelerPropertySection implements IContextElementProvider {
 
@@ -106,6 +111,7 @@ public class AdvancedEditingPropertySection extends
 	@Override
 	public void dispose() {
 		super.dispose();
+		ModelListener.currentEditor = null;
 		if (toolkit != null)
 			toolkit.dispose();
 	}

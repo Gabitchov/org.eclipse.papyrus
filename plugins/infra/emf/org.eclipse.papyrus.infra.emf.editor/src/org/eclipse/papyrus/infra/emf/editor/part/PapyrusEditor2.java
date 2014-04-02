@@ -21,13 +21,6 @@ import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
-import org.eclipse.emf.facet.custom.core.ICustomizationCatalogManager;
-import org.eclipse.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.core.ICustomizationManagerFactory;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.custom.ui.ICustomizedContentProviderFactory;
-import org.eclipse.emf.facet.custom.ui.IResolvingCustomizedLabelProviderFactory;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
@@ -38,7 +31,13 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedContentProviderFactory;
+import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.editor.actions.MoDiscoDropAdapter;
+import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
@@ -268,21 +267,23 @@ public class PapyrusEditor2 extends EcoreEditor implements ITabbedPropertySheetP
 	}
 
 	protected ICustomizationManager getCustomizationManager() {
-		if(customizationManager == null) {
-			customizationManager = ICustomizationManagerFactory.DEFAULT.getOrCreateICustomizationManager(getResourceSet());
-		}
-		return customizationManager;
+		return org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager();
+//		if(customizationManager == null) {
+//			customizationManager = ICustomizationManagerFactory.DEFAULT.getOrCreateICustomizationManager(getResourceSet());
+//		}
+//		return customizationManager;
 	}
 
 	protected void initializeCustomizationCatalogManager() {
-		ICustomizationCatalogManager customCatalog = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(getResourceSet());
-		List<Customization> allCustomizations = customCatalog.getRegisteredCustomizations();
-		for(Customization customization : allCustomizations) {
-			if(customization.isMustBeLoadedByDefault()) {
-				System.out.println("Apply default customization: " + customization.getName());
-				getCustomizationManager().getManagedCustomizations().add(customization);
-			}
-		}
+//		ICustomizationCatalogManager customCatalog = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(getResourceSet());
+//		ICustomizationCatalogManager customCatalog = Activator.getDefault().getCustomizationManager()
+//		List<Customization> allCustomizations = customCatalog.getRegisteredCustomizations();
+//		for(Customization customization : allCustomizations) {
+//			if(customization.isMustBeLoadedByDefault()) {
+//				System.out.println("Apply default customization: " + customization.getName());
+//				getCustomizationManager().getManagedCustomizations().add(customization);
+//			}
+//		}
 	}
 
 	protected IStructuredContentProvider createContentProvider() {
@@ -294,7 +295,8 @@ public class PapyrusEditor2 extends EcoreEditor implements ITabbedPropertySheetP
 	}
 
 	protected ILabelProvider createLabelProvider() {
-		return IResolvingCustomizedLabelProviderFactory.DEFAULT.createCustomizedLabelProvider(getCustomizationManager());
+//		return IResolvingCustomizedLabelProviderFactory.DEFAULT.createCustomizedLabelProvider(getCustomizationManager());
+		return new EMFLabelProvider();
 	}
 
 	public void commandStackChanged(EventObject event) {

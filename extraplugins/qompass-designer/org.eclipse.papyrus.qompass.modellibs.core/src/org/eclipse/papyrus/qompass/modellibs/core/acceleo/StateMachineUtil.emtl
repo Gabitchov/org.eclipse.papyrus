@@ -30,6 +30,9 @@
       </expression>
       <type xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
     </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Comment">
+      <body startPosition="314" endPosition="345" value=" called by acceptableEvents.mtl"/>
+    </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Query" name="declareDependencyToOperationIDs" visibility="Public">
       <parameter name="pkg">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
@@ -49,6 +52,35 @@
           <part xsi:type="ocl.ecore:CollectionItem">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
             <item xsi:type="ocl.ecore:VariableExp" name="pkg" referredVariable="/0/declareDependencyToOperationIDs/pkg">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+            </item>
+          </part>
+        </argument>
+      </expression>
+      <type xsi:type="ocl.ecore:VoidType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclVoid"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Comment">
+      <body startPosition="596" endPosition="627" value=" called by acceptableEvents.mtl"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="declareDependencyToSignalIDs" visibility="Public">
+      <parameter name="pkg">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/OclAny_Class/invoke">
+        <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/11">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        </source>
+        <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="org.eclipse.papyrus.qompass.modellibs.core.acceleo.StateMachineUtil">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </argument>
+        <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="declareDependencyToSignalIDs(org.eclipse.uml2.uml.Package)">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </argument>
+        <argument xsi:type="ocl.ecore:CollectionLiteralExp" eType="/4/Sequence(Package)" kind="Sequence">
+          <part xsi:type="ocl.ecore:CollectionItem">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+            <item xsi:type="ocl.ecore:VariableExp" name="pkg" referredVariable="/0/declareDependencyToSignalIDs/pkg">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
             </item>
           </part>
@@ -92,6 +124,16 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/declareDependencyToOperationIDs"/>
+        <eType xsi:type="ocl.ecore:VoidType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclVoid"/>
+        <eParameters name="pkg">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="declareDependencyToSignalIDs">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/declareDependencyToSignalIDs"/>
         <eType xsi:type="ocl.ecore:VoidType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclVoid"/>
         <eParameters name="pkg">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
@@ -174,6 +216,15 @@
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/boundPackageRef">
       <details key="start" value="98"/>
@@ -215,44 +266,94 @@
       <details key="end" value="299"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.8" references="/0/declareDependencyToOperationIDs">
+    <eAnnotations source="positions.8" references="/0/%">
       <details key="start" value="306"/>
-      <details key="end" value="544"/>
-      <details key="line" value="9"/>
-    </eAnnotations>
-    <eAnnotations source="positions.9" references="/0/declareDependencyToOperationIDs/pkg">
-      <details key="start" value="352"/>
-      <details key="end" value="365"/>
-      <details key="line" value="9"/>
-    </eAnnotations>
-    <eAnnotations source="positions.10" references="/0/declareDependencyToOperationIDs/%">
-      <details key="start" value="380"/>
-      <details key="end" value="541"/>
+      <details key="end" value="347"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.11" references="/0/declareDependencyToOperationIDs/%/self">
+    <eAnnotations source="positions.9" references="/0/declareDependencyToOperationIDs">
+      <details key="start" value="348"/>
+      <details key="end" value="586"/>
+      <details key="line" value="10"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/declareDependencyToOperationIDs/pkg">
+      <details key="start" value="394"/>
+      <details key="end" value="407"/>
+      <details key="line" value="10"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/declareDependencyToOperationIDs/%">
+      <details key="start" value="422"/>
+      <details key="end" value="583"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/declareDependencyToOperationIDs/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.12" references="/0/declareDependencyToOperationIDs/%/%">
-      <details key="start" value="387"/>
-      <details key="end" value="456"/>
+    <eAnnotations source="positions.13" references="/0/declareDependencyToOperationIDs/%/%">
+      <details key="start" value="429"/>
+      <details key="end" value="498"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.13" references="/0/declareDependencyToOperationIDs/%/%.1">
-      <details key="start" value="460"/>
-      <details key="end" value="523"/>
+    <eAnnotations source="positions.14" references="/0/declareDependencyToOperationIDs/%/%.1">
+      <details key="start" value="502"/>
+      <details key="end" value="565"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.14" references="/0/declareDependencyToOperationIDs/%/%.2">
-      <details key="start" value="527"/>
-      <details key="end" value="540"/>
+    <eAnnotations source="positions.15" references="/0/declareDependencyToOperationIDs/%/%.2">
+      <details key="start" value="569"/>
+      <details key="end" value="582"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.15" references="/0/declareDependencyToOperationIDs/%/%.2/%/pkg">
-      <details key="start" value="536"/>
-      <details key="end" value="539"/>
+    <eAnnotations source="positions.16" references="/0/declareDependencyToOperationIDs/%/%.2/%/pkg">
+      <details key="start" value="578"/>
+      <details key="end" value="581"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/%.1">
+      <details key="start" value="588"/>
+      <details key="end" value="629"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/declareDependencyToSignalIDs">
+      <details key="start" value="630"/>
+      <details key="end" value="862"/>
+      <details key="line" value="16"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/declareDependencyToSignalIDs/pkg">
+      <details key="start" value="673"/>
+      <details key="end" value="686"/>
+      <details key="line" value="16"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/declareDependencyToSignalIDs/%">
+      <details key="start" value="701"/>
+      <details key="end" value="859"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/declareDependencyToSignalIDs/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/declareDependencyToSignalIDs/%/%">
+      <details key="start" value="708"/>
+      <details key="end" value="777"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/declareDependencyToSignalIDs/%/%.1">
+      <details key="start" value="781"/>
+      <details key="end" value="841"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/declareDependencyToSignalIDs/%/%.2">
+      <details key="start" value="845"/>
+      <details key="end" value="858"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/declareDependencyToSignalIDs/%/%.2/%/pkg">
+      <details key="start" value="854"/>
+      <details key="end" value="857"/>
       <details key="line" value="0"/>
     </eAnnotations>
   </ecore:EAnnotation>

@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ExtensionPointInRectangleCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 
@@ -57,7 +58,7 @@ public class UseCasePointsInRectangleItemSemanticEditPolicy extends UMLBaseItemS
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ExtensionPointInRectangleCreateCommand(req));
+			return getGEFWrapper(new ExtensionPointInRectangleCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

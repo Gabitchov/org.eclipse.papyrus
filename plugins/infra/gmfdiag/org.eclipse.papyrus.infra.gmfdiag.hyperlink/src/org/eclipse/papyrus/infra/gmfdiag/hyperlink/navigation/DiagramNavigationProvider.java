@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 430726
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.navigation;
 
@@ -15,7 +17,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
@@ -31,7 +32,7 @@ import org.eclipse.papyrus.infra.services.navigation.service.NavigationContribut
 public class DiagramNavigationProvider implements NavigationContributor {
 
 	public List<NavigableElement> getNavigableElements(Object fromElement) {
-		if(fromElement instanceof IAdaptable) {
+		if(fromElement != null) {
 			//Find pages under the element (isPageContainer)
 			//Alt1: Find diagrams under the element (+ all Tables in a separate provider)
 
@@ -43,7 +44,7 @@ public class DiagramNavigationProvider implements NavigationContributor {
 			}
 			return navigableElements;
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	protected List<Diagram> getOwnedDiagrams(Object fromElement) {

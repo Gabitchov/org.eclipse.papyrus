@@ -33,7 +33,3 @@ Enumeration > Compartment {
 Enumeration > Compartment[kind=LiteRalS]{ /* Case insensitive */
 	collapsed: false;
 }
-
-Compartment {
-	showTitle: true;
-}

@@ -31,6 +31,7 @@ import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.ISelectionService;
@@ -127,21 +128,14 @@ public class SimplePluginImport extends Wizard implements IImportWizard {
 			Iterator selectedobjectIteractor = ((IStructuredSelection)selection).iterator();
 			while (selectedobjectIteractor.hasNext()) {
 				Object currentSelection = selectedobjectIteractor.next();
-				if(currentSelection instanceof GraphicalEditPart) {
-					Object graphicalElement = ((GraphicalEditPart)currentSelection).getModel();
-					if((graphicalElement instanceof View) && ((View)graphicalElement).getElement() instanceof org.eclipse.uml2.uml.Element) {
-						selectedSet.add( (org.eclipse.uml2.uml.Element)((View)graphicalElement).getElement());
-					}
-				}
-				else if(currentSelection instanceof IAdaptable) {
-					EObject selectedEObject = (EObject)((IAdaptable)currentSelection).getAdapter(EObject.class);
+				
+					EObject selectedEObject = EMFHelper.getEObject(currentSelection);
 					if (selectedEObject instanceof org.eclipse.uml2.uml.Element){
 						selectedSet.add((Element)selectedEObject);
 					}
 				}
 			}
 
-		}
 		return selectedSet;
 	}
 

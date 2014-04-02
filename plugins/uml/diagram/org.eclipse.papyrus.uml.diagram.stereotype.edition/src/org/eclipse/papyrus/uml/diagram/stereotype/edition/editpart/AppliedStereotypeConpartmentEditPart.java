@@ -139,7 +139,11 @@ public class AppliedStereotypeConpartmentEditPart extends ResizeableListCompartm
 		if(NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
-		super.handleNotificationEvent(notification);
+		
+		// before to be suppressed by its owner, the associate EObject can be UNSET, so refresh is prevented 
+		if(resolveSemanticElement()!=null){
+			super.handleNotificationEvent(notification);
+		}
 	}
 
 	@Override

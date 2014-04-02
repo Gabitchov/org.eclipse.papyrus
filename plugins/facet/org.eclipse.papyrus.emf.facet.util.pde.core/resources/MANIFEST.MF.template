@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: {projectName}
+Bundle-SymbolicName: {packageName};singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: {activator}
+Bundle-Vendor: bundle vendor
+Require-Bundle: org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: {javaVersion}
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,bin

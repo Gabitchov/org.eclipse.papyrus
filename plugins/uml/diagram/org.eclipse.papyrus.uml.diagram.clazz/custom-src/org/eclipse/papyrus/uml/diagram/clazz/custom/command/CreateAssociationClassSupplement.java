@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.PropertyForComponentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
@@ -40,20 +41,20 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class CreateAssociationClassSupplement extends SupplementCommand {
 
-	private CreateRelationshipRequest request;
+	// private CreateRelationshipRequest request;
 
 	/**
 	 * this is the constructor of the supplement command for the association
 	 * 
 	 * @param container
-	 *        the container of the association (package)
+	 *            the container of the association (package)
 	 * @param source
-	 *        the source of the association (Type)
+	 *            the source of the association (Type)
 	 * @param target
-	 *        the target of the association (Type)
+	 *            the target of the association (Type)
 	 */
-	public CreateAssociationClassSupplement(EObject container, EObject source, EObject target) {
-		super(container, source, target);
+	public CreateAssociationClassSupplement(EObject container, EObject source, EObject target, Diagram diagram) {
+		super(container, source, target, diagram);
 	}
 
 	/**
@@ -82,7 +83,7 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 		AssociationClass association = UMLFactory.eINSTANCE.createAssociationClass();
 		// create target property
 		CreateElementRequest request = new CreateElementRequest(domain, getSource(), UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
-		EditElementCommand c = new PropertyForComponentCreateCommand(request);
+		EditElementCommand c = new PropertyForComponentCreateCommand(request, diagram);
 		try {
 			c.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
@@ -91,14 +92,14 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 		}
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
-		Property targetProperty = (Property)c.getCommandResult().getReturnValue();
-		targetProperty.setType((Type)getTarget());
-		targetProperty.setName(((Type)getTarget()).getName().toLowerCase());
+		Property targetProperty = (Property) c.getCommandResult().getReturnValue();
+		targetProperty.setType((Type) getTarget());
+		targetProperty.setName(((Type) getTarget()).getName().toLowerCase());
 		targetProperty.setLower(1);
 		targetProperty.setUpper(1);
 		// create source property
 		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
-		c = new PropertyCommandForAssociation(request);
+		c = new PropertyCommandForAssociation(request, diagram);
 		try {
 			c.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
@@ -107,29 +108,29 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 		}
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
-		Property sourceProperty = (Property)c.getCommandResult().getReturnValue();
-		sourceProperty.setType((Type)getSource());
-		sourceProperty.setName(((Type)getSource()).getName().toLowerCase());
+		Property sourceProperty = (Property) c.getCommandResult().getReturnValue();
+		sourceProperty.setType((Type) getSource());
+		sourceProperty.setName(((Type) getSource()).getName().toLowerCase());
 		sourceProperty.setLower(1);
 		sourceProperty.setUpper(1);
 		List<Property> memberEnds = association.getMemberEnds();
-		if((memberEnds.indexOf(((Property)sourceProperty)) >= 0)) {
-			association.getMemberEnds().move(0, ((Property)sourceProperty));
+		if ((memberEnds.indexOf(((Property) sourceProperty)) >= 0)) {
+			association.getMemberEnds().move(0, ((Property) sourceProperty));
 		} else {
-			association.getMemberEnds().add(0, ((Property)sourceProperty));
+			association.getMemberEnds().add(0, ((Property) sourceProperty));
 		}
-		if((memberEnds.indexOf(((Property)targetProperty)) >= 0)) {
-			association.getMemberEnds().move(1, ((Property)targetProperty));
+		if ((memberEnds.indexOf(((Property) targetProperty)) >= 0)) {
+			association.getMemberEnds().move(1, ((Property) targetProperty));
 		} else {
-			association.getMemberEnds().add(1, ((Property)targetProperty));
+			association.getMemberEnds().add(1, ((Property) targetProperty));
 		}
-		((Package)getContainer()).getPackagedElements().add(association);
+		((Package) getContainer()).getPackagedElements().add(association);
 		ElementInitializers.getInstance().init_AssociationClass_2013(association);
 		// ////////////////////////////////////////////////////////////////////
 		return association;
 	}
 
 	public void setRequest(CreateRelationshipRequest request) {
-		this.request = request;
+		// this.request = request;
 	}
 }

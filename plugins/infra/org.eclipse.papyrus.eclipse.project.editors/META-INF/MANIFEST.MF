@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.eclipse.project.editors.file,
+ org.eclipse.papyrus.eclipse.project.editors.interfaces,
+ org.eclipse.papyrus.eclipse.project.editors.project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
@@ -7,17 +10,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
  org.eclipse.emf.facet.infra.facet,
  org.eclipse.pde.ui;bundle-version="3.6.100"
-Export-Package: org.eclipse.papyrus.eclipse.project.editors.file,
- org.eclipse.papyrus.eclipse.project.editors.interfaces,
- org.eclipse.papyrus.eclipse.project.editors.project
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.eclipse.project.editors.Activato
  r
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.eclipse.project.editors
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

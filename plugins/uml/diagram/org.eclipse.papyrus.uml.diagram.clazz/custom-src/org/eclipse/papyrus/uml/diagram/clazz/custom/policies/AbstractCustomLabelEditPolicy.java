@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Property;
 
 /**
  * Edit policy for specific Label
@@ -46,11 +45,11 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 	public void activate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if(view == null) {
+		if (view == null) {
 			return;
 		}
 		Element element = getUMLElement();
-		if(getUMLElement() != null) {
+		if (getUMLElement() != null) {
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(element, this);
@@ -73,13 +72,13 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if(view == null) {
+		if (view == null) {
 			return;
 		}
 		Element element = getUMLElement();
 		// remove notification on element and view
 		getDiagramEventBroker().removeNotificationListener(view, this);
-		if(element == null) {
+		if (element == null) {
 			return;
 		}
 		getDiagramEventBroker().removeNotificationListener(element, this);
@@ -100,8 +99,8 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 	 * @return the diagram event broker
 	 */
 	protected DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(theEditingDomain != null) {
+		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		if (theEditingDomain != null) {
 			return DiagramEventBroker.getInstance(theEditingDomain);
 		}
 		return null;
@@ -113,9 +112,9 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 	 * @return the uml element controlled by the host edit part
 	 */
 	protected Element getUMLElement() {
-		// be sure to have a UML element 
-		if(getView().getElement() instanceof Element) {
-			return (Element)getView().getElement();
+		// be sure to have a UML element
+		if (getView().getElement() instanceof Element) {
+			return (Element) getView().getElement();
 		}
 		return null;
 	}
@@ -126,7 +125,7 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 	 * @return the view controlled by the host edit part
 	 */
 	protected View getView() {
-		return (View)getHost().getModel();
+		return (View) getHost().getModel();
 	}
 
 	/**

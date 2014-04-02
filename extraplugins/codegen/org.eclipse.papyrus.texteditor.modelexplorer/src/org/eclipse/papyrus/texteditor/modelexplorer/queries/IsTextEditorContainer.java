@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.papyrus.infra.viewpoints.policy.NotationUtils;
 import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel;
-import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
 /** Returns true if the element contains a Table */
@@ -33,18 +33,14 @@ public class IsTextEditorContainer extends AbstractEditorContainerQuery implemen
 	 * {@inheritDoc}
 	 */
 	public Boolean evaluate(final EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
-		if(roots == null) {
+		Iterator<EObject> roots = NotationUtils.getNotationRoots(context);
+		if (roots == null)
 			return false;
-		}
-
-		while(roots.hasNext()) {
-			EObject root = roots.next();
-			if(root instanceof TextEditorModel) {
-				if(EcoreUtil.equals(((TextEditorModel)root).getEditedObject(), context)) {
+		while (roots.hasNext()) {
+			EObject inner = roots.next();
+			if (inner instanceof TextEditorModel)
+				if (EcoreUtil.equals(((TextEditorModel)inner).getEditedObject(), context))
 					return true;
-				}
-			}
 		}
 		return false;
 	}

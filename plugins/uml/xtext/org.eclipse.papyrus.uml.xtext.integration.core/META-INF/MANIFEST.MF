@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.xtext;bundle-version="2.4.2"
 Export-Package: org.eclipse.papyrus.uml.xtext.integration.core
+Require-Bundle: org.eclipse.xtext;bundle-version="2.4.2"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: XText integration Core (Incubation)

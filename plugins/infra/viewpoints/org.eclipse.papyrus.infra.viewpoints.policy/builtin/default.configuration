@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration:PapyrusConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" defaultStakeholder="//@stakeholders.0">
+  <stakeholders name="Default Modeler" viewpoints="//@viewpoints.0"/>
+  <viewpoints xsi:type="configuration:PapyrusViewpoint" name="Default Papyrus Viewpoint">
+    <modelKinds xsi:type="configuration:PapyrusDiagram" name="UML Inner Class Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Diagram_Class.gif" implementationID="PapyrusUMLClassDiagram" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
+        <origin href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <insertionPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Class/nestedClassifier"/>
+        </insertionPath>
+      </childRules>
+      <childRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Comment"/>
+        <origin href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <insertionPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/ownedComment"/>
+        </insertionPath>
+      </childRules>
+      <paletteRules element="clazz.tool.class"/>
+      <paletteRules element="clazz.tool.comment"/>
+      <paletteRules element="clazz.tool.interface"/>
+      <paletteRules element="clazz.tool.abstraction"/>
+      <paletteRules element="clazz.tool.association"/>
+      <paletteRules element="clazz.tool.generalization"/>
+      <paletteRules element="clazz.tool.generalizationset"/>
+      <paletteRules permit="false" element="clazz.tool.*"/>
+      <paletteRules element=""/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" name="UML Package Diagram" icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/Diagram_Package.gif" implementationID="PapyrusUMLClassDiagram" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules/>
+      <paletteRules element="clazz.tool.comment"/>
+      <paletteRules element="clazz.tool.constraint"/>
+      <paletteRules element="clazz.tool.model"/>
+      <paletteRules element="clazz.tool.package"/>
+      <paletteRules element="clazz.tool.abstraction"/>
+      <paletteRules element="clazz.tool.dependency"/>
+      <paletteRules element="clazz.tool.packageimport"/>
+      <paletteRules element="clazz.tool.link"/>
+      <paletteRules permit="false" element="clazz.tool.*"/>
+      <paletteRules element=""/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="PapyrusUMLActivityDiagram" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Activity">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Activity">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Activity">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+        </newModelPath>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="PapyrusUMLClassDiagram" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="PapyrusUMLCommunicationDiagram" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Interaction">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Interaction">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Interaction">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+        </newModelPath>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="PapyrusUMLComponentDiagram" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="PapyrusUMLComponentDiagram" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
+        <origin href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        <insertionPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Class/nestedClassifier"/>
+        </insertionPath>
+      </childRules>
+      <childRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Comment"/>
+        <origin href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        <insertionPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/ownedComment"/>
+        </insertionPath>
+      </childRules>
+      <childRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Constraint"/>
+        <origin href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        <insertionPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Namespace/ownedRule"/>
+        </insertionPath>
+      </childRules>
+      <childRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Port"/>
+        <origin href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        <insertionPath>
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//EncapsulatedClassifier/ownedPort"/>
+        </insertionPath>
+      </childRules>
+      <paletteRules permit="false" element="component.tool.model"/>
+      <paletteRules permit="false" element="component.tool.package"/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="CompositeStructure" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="CompositeStructure" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="CompositeStructure" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Collaboration"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Collaboration"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="PapyrusUMLDeploymentDiagram" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="PapyrusUMLProfileDiagram" categories="//@categories.2">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Profile"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Profile"/>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="PapyrusUMLSequenceDiagram" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Interaction">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Interaction">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Interaction">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+        </newModelPath>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="PapyrusUMLStateMachineDiagram" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.StateMachine">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.StateMachine">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.StateMachine">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+        </newModelPath>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="PapyrusUMLTimingDiagram" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="UseCase" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="PapyrusUMLInteractionOverviewDiagram" categories="//@categories.0">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Activity">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Activity">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <newModelPath creationType="org.eclipse.papyrus.uml.Activity">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+        </newModelPath>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="BlockDefinition" categories="//@categories.1">
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows"/>
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="InternalBlock" categories="//@categories.1">
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <stereotypes href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <stereotypes href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <newModelPath creationType="org.eclipse.papyrus.sysml.Block">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+        </newModelPath>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="Parametric" categories="//@categories.1">
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows"/>
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="Parametric" categories="//@categories.1">
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows"/>
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//constraints"/>
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <stereotypes href="http://www.eclipse.org/papyrus/0.7.0/SysML#//constraints/ConstraintBlock"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <stereotypes href="http://www.eclipse.org/papyrus/0.7.0/SysML#//constraints/ConstraintBlock"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules/>
+      <paletteRules permit="false" element="parametric.tool.blockpropertycomposite"/>
+      <paletteRules permit="false" element="parametric.tool.reference"/>
+      <paletteRules permit="false" element="parametric.tool.value"/>
+      <paletteRules element=""/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="Parametric" categories="//@categories.1">
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows"/>
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <stereotypes href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <stereotypes href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" implementationID="RequirementDiagram" categories="//@categories.1">
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules/>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusSyncTable" name="View Table" icon="platform:/plugin/org.eclipse.papyrus.infra.nattable.views.config/icons/nattablepageeditor.png" implementationID="PapyrusViewsTable" categories="//@categories.3">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+      </owningRules>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusSyncTable" name="Generic Table" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" implementationID="PapyrusGenericTable" categories="//@categories.3">
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+      </owningRules>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusSyncTable" name="SysML Allocation Table" icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.allocation.config/icons/table_SysML_Allocation.png" implementationID="PapyrusSysMLAllocationTable" categories="//@categories.1">
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//allocations"/>
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+    </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusSyncTable" name="SysML Requirement Table" icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/icons/table_SysML_Requirement.png" implementationID="PapyrusSysMLRequirementTable" categories="//@categories.1">
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <modelRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <stereotypes href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements/Requirement"/>
+      </modelRules>
+      <owningRules>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+    </modelKinds>
+  </viewpoints>
+  <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+  <categories name="uml"/>
+  <categories name="sysml"/>
+  <categories name="profile"/>
+  <categories name="generic"/>
+</configuration:PapyrusConfiguration>

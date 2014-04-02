@@ -30,7 +30,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.common.xtext.ui.int
  ernal.UmlCommonActivator
+Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.common.xtext.ui;
  singleton:=true
-Import-Package: org.apache.log4j
 

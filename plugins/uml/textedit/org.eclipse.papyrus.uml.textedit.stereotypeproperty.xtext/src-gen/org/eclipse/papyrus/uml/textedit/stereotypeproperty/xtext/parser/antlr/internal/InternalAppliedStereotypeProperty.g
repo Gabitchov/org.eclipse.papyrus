@@ -78,38 +78,25 @@ ruleAppliedStereotypePropertyRule returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
 (
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getAppliedStereotypePropertyRuleRule());
-	        }
-        }
-	otherlv_0=RULE_ID
-	{
-		newLeafNode(otherlv_0, grammarAccess.getAppliedStereotypePropertyRuleAccess().getPropertyPropertyCrossReference_0_0()); 
-	}
-
-)
-)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionValueRuleParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionValueRuleParserRuleCall_0()); 
 	    }
-		lv_value_1_0=ruleExpressionValueRule		{
+		lv_value_0_0=ruleExpressionValueRule		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAppliedStereotypePropertyRuleRule());
 	        }
        		set(
        			$current, 
        			"value",
-        		lv_value_1_0, 
+        		lv_value_0_0, 
         		"ExpressionValueRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))
+)
 ;
 
 
@@ -7333,8 +7320,6 @@ ruleAssignmentOperator returns [Enumerator current=null]
 
 
 
-RULE_INTEGER_VALUE : (('0'|'1'..'9' ('_'? '0'..'9')*)|('0b'|'0B') '0'..'1' ('_'? '0'..'1')*|('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F') ('_'? ('0'..'9'|'a'..'f'|'A'..'F'))*|'0' '_'? '0'..'7' ('_'? '0'..'7')*);
-
 RULE_ID : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'\'' ( options {greedy=false;} : . )*'\'');
 
 RULE_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
@@ -7344,6 +7329,8 @@ RULE_ML_COMMENT : '/*' ~('@') ( options {greedy=false;} : . )*'*/';
 RULE_SL_COMMENT : '//' ~(('\n'|'\r'|'@'))* ('\r'? '\n')?;
 
 RULE_INT : ('0'..'9')+;
+
+RULE_INTEGER_VALUE : (('0'|'1'..'9' ('_'? '0'..'9')*)|('0b'|'0B') '0'..'1' ('_'? '0'..'1')*|('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F') ('_'? ('0'..'9'|'a'..'f'|'A'..'F'))*|'0' '_'? '0'..'7' ('_'? '0'..'7')*);
 
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 

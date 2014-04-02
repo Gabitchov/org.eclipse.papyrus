@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    copyrightText=" Copyright (c) 2012 Mia-Software.&#xD;&#xA; &#xD;&#xA; All rights reserved. This program and the accompanying materials&#xD;&#xA; are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA; which accompanies this distribution, and is available at&#xD;&#xA; http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA; Contributors:&#xD;&#xA; &#x9;Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model&#xD;&#xA; &#x9;Vincent Lorenzo (CEA-LIST)   - Bug 372644 - Create Customizable tooltips for the TreeViewer using a CustomizableLabelProvider&#xD;&#xA; "
+    modelDirectory="/org.eclipse.papyrus.emf.facet.custom.metamodel/src" modelPluginID="org.eclipse.papyrus.emf.facet.custom.metamodel"
+    modelName="Custom_primitive_types-0.2" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" runtimeVersion="2.6">
+  <foreignModel>custom_primitive_types-0.2.0.ecore</foreignModel>
+  <genPackages prefix="Custompt" basePackage="org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0"
+      disposableProviderFactory="true" ecorePackage="custom_primitive_types-0.2.0.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="custom_primitive_types-0.2.0.ecore#//Shadow">
+      <genEnumLiterals ecoreEnumLiteral="custom_primitive_types-0.2.0.ecore#//Shadow/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="custom_primitive_types-0.2.0.ecore#//Shadow/IN"/>
+      <genEnumLiterals ecoreEnumLiteral="custom_primitive_types-0.2.0.ecore#//Shadow/OUT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="custom_primitive_types-0.2.0.ecore#//Alignment">
+      <genEnumLiterals ecoreEnumLiteral="custom_primitive_types-0.2.0.ecore#//Alignment/LEFT"/>
+      <genEnumLiterals ecoreEnumLiteral="custom_primitive_types-0.2.0.ecore#//Alignment/CENTER"/>
+      <genEnumLiterals ecoreEnumLiteral="custom_primitive_types-0.2.0.ecore#//Alignment/RIGHT"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="custom_primitive_types-0.2.0.ecore#//Image"/>
+    <genDataTypes ecoreDataType="custom_primitive_types-0.2.0.ecore#//Color"/>
+  </genPackages>
+</genmodel:GenModel>

@@ -17,12 +17,10 @@ import org.eclipse.papyrus.uml.alf.alf.AlfPackage;
 import org.eclipse.papyrus.uml.alf.alf.NameExpression;
 import org.eclipse.papyrus.uml.profile.structure.AppliedStereotypeProperty;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypePropertyEditorUtil;
-import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyPackage;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementUtil;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.xtext.validation.Check;
 
 public class AppliedStereotypePropertyJavaValidator extends AbstractAppliedStereotypePropertyJavaValidator {
@@ -35,12 +33,7 @@ public class AppliedStereotypePropertyJavaValidator extends AbstractAppliedStere
 	public void checkAppliedStereotypePropertyRule_property(AppliedStereotypePropertyRule appliedStereotypePropertyRule) {
 		AppliedStereotypeProperty contextElement = (AppliedStereotypeProperty) ContextElementUtil
 				.getContextElement(appliedStereotypePropertyRule.eResource());
-		Property property = appliedStereotypePropertyRule.getProperty();
-		Property propertyContext = contextElement.getStereotypeProperty();
-		if (!(property.equals(contextElement.getStereotypeProperty()))) {
-			error("bad property",
-					AppliedStereotypePropertyPackage.eINSTANCE.getAppliedStereotypePropertyRule_Property());
-		}
+		// nothing to do any more - property has been removed
 	}
 
 	@Check

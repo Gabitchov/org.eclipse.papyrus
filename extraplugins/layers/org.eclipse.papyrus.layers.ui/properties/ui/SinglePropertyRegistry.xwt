@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:IntegerEditor input="{Binding}"
+			property="layers:PropertyRegistry:propertiesCount" readOnly="true"></ppe:IntegerEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="layers:PropertyRegistry:typeRegistry" readOnly="true"></ppe:ReferenceDialog>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="layers:PropertyRegistry:properties" readOnly="true"></ppe:MultiReference>
+	</Composite>
+</Composite>

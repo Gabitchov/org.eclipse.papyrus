@@ -1,25 +1,27 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.adltool,
- org.eclipse.papyrus.adltool.command,
- org.eclipse.papyrus.adltool.designer,
- org.eclipse.papyrus.adltool.designer.bundle,
- org.eclipse.papyrus.adltool.designer.wizard
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.transaction,
  org.eclipse.uml2.uml,
  org.eclipse.pde.core,
- org.eclipse.papyrus.uml.extensionpoints,
- org.eclipse.papyrus.uml.tools.utils,
- org.eclipse.papyrus.adl4eclipse.profile,
- org.eclipse.papyrus.osgi.profile
+ org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0",
+ org.eclipse.papyrus.adl4eclipse.profile;bundle-version="1.0.0",
+ org.eclipse.papyrus.osgi.profile;bundle-version="1.0.0"
+Export-Package: org.eclipse.papyrus.adltool,
+ org.eclipse.papyrus.adltool.command,
+ org.eclipse.papyrus.adltool.designer,
+ org.eclipse.papyrus.adltool.designer.bundle,
+ org.eclipse.papyrus.adltool.designer.wizard
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 1.0.0.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.adltool.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipsetool;singleton:=true
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipsetool;singleton:=tr
+ ue
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Description: The purpose of this plugin is to model the architecture of eclipse-plugin into UML by using OSGI and ADL4Eclipse profile. More details can be found in the docs directory.
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 430077
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
@@ -17,10 +18,13 @@ import java.util.Collections;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.uml.tools.namereferences.NameReferencesHelper;
 import org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider;
 import org.eclipse.papyrus.uml.tools.util.UMLProviderHelper;
+import org.eclipse.papyrus.views.properties.creation.CreationContext;
+import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.widgets.StringMultilineWithReferences;
@@ -44,18 +48,27 @@ public class CommentBodyEditor extends StringMultilineWithReferences {
 		super.doBinding();
 
 		ModelElement element = getInput().getModelElement(getProperty());
+		ResourceSet resourceSet = null;
 		Resource baseResource = null;
 		if(element instanceof EMFModelElement) {
-			EObject editedElement = ((EMFModelElement)element).getSource();
-			if(editedElement != null) {
-				baseResource = editedElement.eResource();
+			EMFModelElement emfElement = (EMFModelElement)element;
+			EObject editedElement = emfElement.getSource();
+			resourceSet = (emfElement.getDomain() == null) ? null : emfElement.getDomain().getResourceSet();
+			baseResource = editedElement.eResource();
+			
+			if(baseResource == null) {
+				// Editing an object that is not yet added to the model? Try to locate the creation context
+				CreationContext creationContext = EcorePropertyEditorFactory.getCreationContext(editedElement, false);
+				if(creationContext != null) {
+					baseResource = ((EObject)creationContext.getCreationContextElement()).eResource();
+				}
 			}
-
-			if(baseResource != null) {
-				SemanticUMLContentProvider semanticProvider = new SemanticUMLContentProvider(editedElement, UMLPackage.eINSTANCE.getComment_Body());
+			
+			if(resourceSet != null) {
+				SemanticUMLContentProvider semanticProvider = new SemanticUMLContentProvider(editedElement, UMLPackage.eINSTANCE.getComment_Body(), resourceSet);
 				semanticProvider.setWantedMetaclasses(Collections.singletonList(UMLPackage.eINSTANCE.getNamedElement()));
 
-				EMFGraphicalContentProvider provider = UMLProviderHelper.encapsulateProvider(semanticProvider, editedElement, UMLPackage.eINSTANCE.getComment_Body(), baseResource.getResourceSet());
+				EMFGraphicalContentProvider provider = UMLProviderHelper.encapsulateProvider(semanticProvider, editedElement, UMLPackage.eINSTANCE.getComment_Body(), resourceSet);
 				setContentProvider(provider);
 
 				setLabelProvider(element.getLabelProvider(propertyPath));

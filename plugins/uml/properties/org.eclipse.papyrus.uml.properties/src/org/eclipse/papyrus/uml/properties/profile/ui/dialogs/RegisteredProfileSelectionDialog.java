@@ -98,7 +98,7 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 		// User selection
 		Object[] selection = this.getResult();
 
-		ResourceSet resourceSet = Util.getSharedResourceSet();
+		ResourceSet resourceSet = Util.createTemporaryResourceSet();
 
 		if(selection == null) { // Cancel was selected
 			return new ArrayList<Profile>();

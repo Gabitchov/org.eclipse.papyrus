@@ -59,7 +59,7 @@ public class «itemSemanticEditPolicyClassName» extends «getBaseItemSemanticEd
 «ENDDEFINE»
 «DEFINE childNodeCreateCommand(gmfgen::GenNode node) FOR gmfgen::TypeModelFacet-»
 		if («node.getDiagram().getElementTypesQualifiedClassName()».«node.getUniqueIdentifier()» == req.getElementType()) {
-			return getGEFWrapper(«node.getCreateCommandQualifiedClassName()».create(req, canvasElement));
+			return getGEFWrapper(«node.getCreateCommandQualifiedClassName()».create(req, canvasElement, org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getDiagramFrom(getHost())));
 		}
 «ENDDEFINE»
 «REM» Mutating canvas Switch to create command «ENDREM»

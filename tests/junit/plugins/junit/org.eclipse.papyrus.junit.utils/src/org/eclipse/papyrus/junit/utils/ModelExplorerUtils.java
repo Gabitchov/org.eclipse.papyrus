@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 386118
  *
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils;
@@ -23,14 +24,13 @@ import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPage;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
@@ -102,10 +102,9 @@ public class ModelExplorerUtils {
 		final Iterator<?> iter = currentSelection.iterator();
 		while(iter.hasNext()) {
 			final Object current = iter.next();
-			if(current instanceof IAdaptable) {
-				final EObject adaptedObject = (EObject)((IAdaptable)current).getAdapter(EObject.class);
-				Assert.assertNotNull(NLS.bind("The object {0} can't be adapted to EObject", current), adaptedObject);
-				selection.add(adaptedObject);
+			EObject eObject = EMFHelper.getEObject(current);
+			if(eObject != null) {
+				selection.add(eObject);
 			} else {
 				selection.add(current);
 			}
@@ -128,8 +127,8 @@ public class ModelExplorerUtils {
 		// store the root of the model
 		final Object[] visibleElement = view.getCommonViewer().getVisibleExpandedElements();
 		EObject modelRoot = null;
-		if(visibleElement[0] instanceof IAdaptable) {
-			modelRoot = (EObject)((IAdaptable)visibleElement[0]).getAdapter(EObject.class);
+		if(visibleElement.length > 0) {
+			modelRoot = EMFHelper.getEObject(visibleElement[0]);
 		}
 		Assert.assertNotNull(modelRoot);
 		while(modelRoot.eContainer() != null) {

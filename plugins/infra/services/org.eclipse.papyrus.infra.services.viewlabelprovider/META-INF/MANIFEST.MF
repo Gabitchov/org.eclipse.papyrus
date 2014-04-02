@@ -10,11 +10,11 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-Vendor: %vendorName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.services.viewlabelprovider
  .Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.viewlabelprovi
  der;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -592,4 +592,40 @@
       </Priority>
    </editpolicyProvider>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.pasteStrategy">
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.paste.StereotypePasteStrategy">
+   </strategy>
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.paste.DefaultPasteStrategy">
+   </strategy>
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.paste.RenamePasteStrategy">
+   </strategy>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.copyStrategy">
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.copy.AllContentCopyStrategy">
+   </strategy>
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.copy.RootOnlyCopyStrategy">
+   </strategy>
+</extension>
+<extension
+      point="org.eclipse.ui.preferencePages">
+   <page
+         category="org.eclipse.papyrus.infra.gmfdiag.paste.preferences"
+         class="org.eclipse.papyrus.uml.diagram.common.preferences.StereotypePasteStrategyPreferencePage"
+         id="org.eclipse.papyrus.uml.diagram.common.StereotypePasteStrategyPreferencePage"
+         name="Stereotype Strategy">
+   </page>
+</extension>
+<extension
+      point="org.eclipse.core.runtime.preferences">
+   <initializer
+         class="org.eclipse.papyrus.uml.diagram.common.preferences.StereotypePasteStrategyPreferenceInitializer">
+   </initializer>
+</extension>
 </plugin>

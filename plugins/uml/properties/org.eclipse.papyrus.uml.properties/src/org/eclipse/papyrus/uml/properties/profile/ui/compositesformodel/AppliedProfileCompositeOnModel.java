@@ -651,8 +651,8 @@ public class AppliedProfileCompositeOnModel extends Composite {
 			return (EObject)object;
 		} else if(object instanceof IAdaptable) {
 			IAdaptable adaptable = (IAdaptable)object;
-			if(adaptable.getAdapter(EObject.class) != null) {
-				return (EObject)adaptable.getAdapter(EObject.class);
+			if(EMFHelper.getEObject(adaptable) != null) {
+				return EMFHelper.getEObject(adaptable);
 			}
 		}
 		return null;

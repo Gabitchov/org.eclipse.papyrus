@@ -15,19 +15,17 @@ package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassi
 
 import java.util.Iterator;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.gef.EditPart;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.PopupXtextEditorHelper;
 import org.eclipse.papyrus.infra.widgets.providers.HierarchicToFlatContentProvider;
 import org.eclipse.papyrus.uml.profile.structure.AppliedStereotypeProperty;
+import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.StringConstants;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule;
-import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.StringConstants;
+import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contributions.StereotypePropertyEditorConfigurationContribution;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.xtext.integration.CompletionProposalUtils;
 import org.eclipse.uml2.uml.NamedElement;
@@ -50,10 +48,10 @@ public class AppliedStereotypePropertyProposalProvider extends AbstractAppliedSt
 
 	public void completeNameExpression_Path(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 
-		EditPart contextEObject = ((EditPart)PopupXtextEditorHelper.getHostEditPart());
-		if(contextEObject instanceof IAdaptable) {
-
-			AppliedStereotypeProperty appliedStereotypeProperty = (AppliedStereotypeProperty)contextEObject.getAdapter(AppliedStereotypeProperty.class);
+		AppliedStereotypeProperty appliedStereotypeProperty = StereotypePropertyEditorConfigurationContribution.getAppliedStereoProperty();
+		
+		if(appliedStereotypeProperty != null) {
+			
 			if((model instanceof ExpressionValueRule) && ((appliedStereotypeProperty.getStereotypeProperty().getUpper() == 1)) || (!(model instanceof ExpressionValueRule))) {
 				EClass stereotypeApplication = appliedStereotypeProperty.getStereotypeApplication().eClass();
 
@@ -124,9 +122,9 @@ public class AppliedStereotypePropertyProposalProvider extends AbstractAppliedSt
 				super.completeKeyword(keyword, contentAssistContext, acceptor);
 		} else {
 			//take in account cardinalities and type of the properties
-			EditPart contextEObject = ((EditPart)PopupXtextEditorHelper.getHostEditPart());
-			if(contextEObject instanceof IAdaptable) {
-				AppliedStereotypeProperty appliedStereotypeProperty = (AppliedStereotypeProperty)contextEObject.getAdapter(AppliedStereotypeProperty.class);
+			AppliedStereotypeProperty appliedStereotypeProperty = StereotypePropertyEditorConfigurationContribution.getAppliedStereoProperty();
+			
+			if(appliedStereotypeProperty != null) {
 				completeBooleanKeyWord(keyword, contentAssistContext, acceptor, appliedStereotypeProperty);
 				//collection
 				if(appliedStereotypeProperty.getStereotypeProperty().getUpper() == -1 || appliedStereotypeProperty.getStereotypeProperty().getUpper() > 1) {
@@ -145,10 +143,7 @@ public class AppliedStereotypePropertyProposalProvider extends AbstractAppliedSt
 						addKeyWord(keyword, contentAssistContext, acceptor);
 					}
 				}
-
 			}
 		}
 	}
-
-
 }

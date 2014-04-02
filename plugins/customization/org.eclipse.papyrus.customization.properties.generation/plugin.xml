@@ -17,7 +17,7 @@
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelectionPackage"
-            genModel="Model/Properties.genmodel"
+            genModel="model/FieldSelection.genmodel"
             uri="http://www.eclipse.org/papyrus/properties/fieldSelection">
       </package>
    </extension>
