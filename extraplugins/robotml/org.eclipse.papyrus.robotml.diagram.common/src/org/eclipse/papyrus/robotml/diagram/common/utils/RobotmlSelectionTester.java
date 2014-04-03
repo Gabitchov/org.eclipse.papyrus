@@ -20,13 +20,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelsReader;
-import org.eclipse.papyrus.infra.core.resource.NotFoundException;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
-import org.eclipse.papyrus.robotml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
@@ -138,13 +134,9 @@ public class RobotmlSelectionTester extends PropertyTester {
 					}
 				}
 
-			} catch (ServiceException e) {
-				//Ignored: The selection cannot be used to retrieve the ServicesRegistry
-			} catch (NotFoundException e) {
-				Activator.log.error(e);
-			} catch (ModelMultiException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (Exception e) {
+				//Ignored: The selection cannot be used to retrieve the ServicesRegistry.
+				//Do not log exceptions: this is just not a Papyrus/RobotML model
 			}
 		}
 
