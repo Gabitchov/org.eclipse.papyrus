@@ -183,7 +183,13 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 				bound.width = container.width;
 			} else {
 				bound.x = container.x + 3;
-				bound.y = container.y + ((container.height - totalHeight) / 2);
+				// in the case where the content is grater than the container
+				// it is forbidden to change the y coordinate
+				if(((container.height - totalHeight) / 2)>0 ){
+					bound.y = container.y + ((container.height - totalHeight) / 2);}
+				else{
+					bound.y = container.y;
+				}
 				bound.width = container.width;
 			}
 			child.setBounds(bound);
