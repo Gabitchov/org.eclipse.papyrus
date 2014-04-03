@@ -460,14 +460,6 @@
       <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/5.0.0/S201403101212">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
-    </rm:provider>
-    
-    <!-- EMF Facet -->
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-      <!-- updateFrom("EMF Facet",0) -->
-      <rm:uri format="{0}/facet/updates/integration/0.4.0/I201402271523/">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
     </rm:provider>    
     
     <!-- MoDisco -->
