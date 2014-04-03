@@ -20,7 +20,7 @@ import org.eclipse.papyrus.C_Cpp.ConstInit;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Class;
@@ -44,7 +44,7 @@ public class BindingUtils {
 	 * @param operation The operation template
 	 * @return
 	 */
-	public static Operation instantiateOperation(Copy copy, Element actual, Operation operation) {
+	public static Operation instantiateOperation(LazyCopier copy, Element actual, Operation operation) {
 		try {
 			Operation newOperation = copy.getCopy(operation);
 			if(actual instanceof Operation) {
@@ -76,7 +76,7 @@ public class BindingUtils {
 	 * @return instantiated (bound) behavior.
 	 * @throws TransformationException
 	 */
-	public static OpaqueBehavior instantiateBehavior(Copy copy, Element actual, OpaqueBehavior opaqueBehavior) throws TransformationException {
+	public static OpaqueBehavior instantiateBehavior(LazyCopier copy, Element actual, OpaqueBehavior opaqueBehavior) throws TransformationException {
 		OpaqueBehavior newBehavior = copy.getCopy(opaqueBehavior);
 		if(actual instanceof NamedElement) {
 			String newName = AcceleoDriverWrapper.evaluate(opaqueBehavior.getName(), actual, null);

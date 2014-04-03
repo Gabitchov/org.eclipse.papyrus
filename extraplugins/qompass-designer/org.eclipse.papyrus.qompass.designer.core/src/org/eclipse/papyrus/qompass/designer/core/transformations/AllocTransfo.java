@@ -31,7 +31,7 @@ public class AllocTransfo {
 	 * @param composite A composite. We analyze the allocations of the properties within this
 	 *	Composite. The composite must be an element of the target model that can be modified.
 	 */
-	public void transformAllocs(Copy copy, Class composite) {
+	public void transformAllocs(LazyCopier copy, Class composite) {
 		EList<Property> attributeList = new BasicEList<Property>();
 		attributeList.addAll(composite.getOwnedAttributes());	// use a copy, since the loop eventually destroys an element of the list.
 		for (Property attribute : attributeList) {

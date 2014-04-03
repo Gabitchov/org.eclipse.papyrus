@@ -15,15 +15,12 @@ package org.eclipse.papyrus.diagram.stereotypeproperty;
 
 import java.util.ArrayList;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
@@ -31,11 +28,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IShapeCompartmentEditPart;
-import org.eclipse.papyrus.uml.appearance.commands.AddAppliedStereotypePropertiesToDisplayCommand;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
@@ -47,7 +42,6 @@ import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereo
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
@@ -97,7 +91,6 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 1);
 		//1 element element due to the reference to the profile
-		EList<Profile> list = ((Model)getRootSemanticModel()).getAllAppliedProfiles();
 		assertTrue(CREATION + INITIALIZATION_TEST, ((Model)getRootSemanticModel()).getAllAppliedProfiles().size() == 1);
 
 
@@ -185,6 +178,7 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 		RegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("TestProfile");
 		final Model root = ((Model)getDiagramEditPart().resolveSemanticElement());
 		URI modelUri = registeredProfile.uri;
+		@SuppressWarnings("deprecation")
 		final Resource modelResource = Util.getResourceSet(root).getResource(modelUri, true);
 		final Profile profile = (Profile)modelResource.getContents().get(0);
 		//	PackageUtil.applyProfile(root,profile, false);

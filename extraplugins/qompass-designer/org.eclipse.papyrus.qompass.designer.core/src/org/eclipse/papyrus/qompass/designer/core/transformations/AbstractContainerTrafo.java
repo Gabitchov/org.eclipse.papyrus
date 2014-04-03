@@ -85,7 +85,7 @@ public abstract class AbstractContainerTrafo {
 	/**
 	 * Copy class from source to target model
 	 */
-	protected Copy copy;
+	protected LazyCopier copier;
 
 
 	/**

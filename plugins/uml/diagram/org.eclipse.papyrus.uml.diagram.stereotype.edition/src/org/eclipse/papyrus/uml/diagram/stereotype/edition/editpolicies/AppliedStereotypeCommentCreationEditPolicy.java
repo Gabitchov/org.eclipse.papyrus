@@ -41,6 +41,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNode
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.command.CreateAppliedStereotypeCommentViewCommand;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentLinkEditPart;
 import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -77,9 +78,20 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 				}
 			}
 		}
+		
+		//test if the comment has to be removed
 		if(getAppliedStereotypeCommentNode() != null) {
 			View commentNode = getAppliedStereotypeCommentNode();
-			if(!stereotypeLocalizationToDisplay.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION) || getvisisbleAppliedStereotypeCompartment(commentNode, getUMLElement()) == 0) {
+			
+			//1. the  display is not comment
+			if(!stereotypeLocalizationToDisplay.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION) ) {
+				final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
+				executeAppliedStereotypeCommentDeletion(domain, commentNode);
+			}
+			
+			//the result of properties to display is null so no compartment will be created
+			String todisplay = StereotypeUtil.getPropertiesValues(stereotypePropertiesToDisplay, getUMLElement()); 
+			if("".equals(todisplay.trim())) {
 				final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
 				executeAppliedStereotypeCommentDeletion(domain, commentNode);
 			}
