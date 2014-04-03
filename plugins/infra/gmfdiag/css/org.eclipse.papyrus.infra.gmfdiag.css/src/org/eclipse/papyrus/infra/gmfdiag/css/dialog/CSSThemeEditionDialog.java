@@ -13,9 +13,11 @@ package org.eclipse.papyrus.infra.gmfdiag.css.dialog;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Assert;
@@ -25,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -42,9 +45,14 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes;
+import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
+import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
+import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
@@ -53,6 +61,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -66,6 +75,18 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  *
  */
 public class CSSThemeEditionDialog extends Dialog {
+
+	/** ID of delete button. */
+	private static final int DELETE_BUTTON_ID = 15;
+
+	/** ID of add button. */
+	private static final int ADD_BUTTON_ID = 14;
+
+	/** ID of browse buton. */
+	private static final int BROWSE_BUTTON_ID = 16;
+
+	/** Title for add action dialog. */
+	private static final String ADD_DIALOG_TITLE = "Style sheets selection";
 
 	/** Icon for delete action button. */
 	private static final Image DELETE_ICON = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "icons/Delete_12x12.gif").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
@@ -97,6 +118,8 @@ public class CSSThemeEditionDialog extends Dialog {
 	/** Workspace themes from preference file. */
 	private WorkspaceThemes workspaceThemes = null;
 
+	/** Map of button actions. */
+	private Map<Integer, Button> buttonsMap = new HashMap<Integer, Button>();
 
 	/** Initial selection in workspace. */
 	private List<StyleSheet> selectedStyleSheetsList = null;
@@ -106,6 +129,9 @@ public class CSSThemeEditionDialog extends Dialog {
 
 	/** Current edited theme. */
 	private Theme currentTheme = null;
+
+	/**  */
+	private LabelProvider labelProvider = null;
 
 
 	/**
@@ -183,6 +209,8 @@ public class CSSThemeEditionDialog extends Dialog {
 		createThemeLabelPart(container);
 		createThemeIconPart(container);
 		createThemeStyleSheetsPart(container);
+
+		refreshDialogContent(null);
 
 		return container;
 	}
@@ -306,48 +334,93 @@ public class CSSThemeEditionDialog extends Dialog {
 	 *        Parent composite where components will be added
 	 */
 	private void createThemeIconPart(Composite parent) {
-		Label lblIcon = new Label(parent, SWT.NONE);
-		lblIcon.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
-		lblIcon.setText(THEME_ICON_LABEL);
+		Label iconLabel = new Label(parent, SWT.NONE);
+		iconLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
+		iconLabel.setText(THEME_ICON_LABEL);
 
 		iconPathfield = new Text(parent, SWT.BORDER);
 		iconPathfield.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
-		Button btnBrowse = new Button(parent, SWT.NONE);
-		btnBrowse.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
-		btnBrowse.setText(BROWSE_BUTTON_LABEL);
+		Button browseButton = new Button(parent, SWT.NONE);
+		browseButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
+		browseButton.setText(BROWSE_BUTTON_LABEL);
+		browseButton.setData(new Integer(16));
+		browseButton.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				buttonPressed(((Integer)event.widget.getData()).intValue());
+			}
+		});
+		buttonsMap.put(BROWSE_BUTTON_ID, browseButton);
 	}
 
 	/**
-	 * @param container
+	 * Open file dialog to choose icon.
 	 */
-	private void createThemeStyleSheetsPart(Composite container) {
-		themeStyleSheetsViewer = new TreeViewer(container, SWT.BORDER);
+	private void browseIconAction() {
+		FileDialog fileDialog = new FileDialog(getParentShell());
+		fileDialog.setFileName(iconPathfield.getText());
+		String resultDialog = fileDialog.open();
+
+		if(resultDialog != null) {
+			iconPathfield.setText(resultDialog);
+		}
+
+	}
+
+	/**
+	 * Create theme style sheets part.
+	 * 
+	 * @param parent
+	 *        Parent composite where components will be added
+	 */
+	private void createThemeStyleSheetsPart(Composite parent) {
+
+		// Create viewer
+		themeStyleSheetsViewer = new TreeViewer(parent, SWT.BORDER);
+
+		// Set standard collection content provider
 		themeStyleSheetsViewer.setContentProvider(CollectionContentProvider.instance);
 
-		themeStyleSheetsViewer.setLabelProvider(new LabelProvider() {
+		labelProvider = new LabelProvider() {
 
+			/**
+			 * @see org.eclipse.jface.viewers.LabelProvider#getText(java.lang.Object)
+			 *
+			 * @param element
+			 * @return
+			 */
 			@Override
 			public String getText(Object element) {
 
+				// Use ancestor result as default
 				String text = super.getText(element);
 
+				// Display path of style sheet reference
 				if(element instanceof StyleSheetReference) {
 					text = ((StyleSheetReference)element).getPath();
+				} else if(element instanceof EmbeddedStyleSheet) {
+					text = ((EmbeddedStyleSheet)element).getLabel();
 				}
 
 				return text;
 			}
-		});
+		};
+		themeStyleSheetsViewer.setLabelProvider(labelProvider);
 
+		// Set layout
 		Tree tree = themeStyleSheetsViewer.getTree();
 		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 
-		createTreeActionButtons(container);
+		createTreeActionButtons(parent);
 	}
 
 	/**
+	 * Create actions associate to tree viewer.
+	 * 
 	 * @param parent
+	 *        Composite where action buttons will be added
 	 */
 	private void createTreeActionButtons(Composite parent) {
 		Composite buttonsPanel = new Composite(parent, SWT.NONE);
@@ -355,14 +428,125 @@ public class CSSThemeEditionDialog extends Dialog {
 		buttonsPanel.setLayoutData(new GridData(SWT.CENTER, SWT.FILL, false, false));
 
 
-		Button addButton = new Button(buttonsPanel, SWT.NONE);
-		addButton.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
-		addButton.setImage(ADD_ICON);
+		createActionButton(buttonsPanel, ADD_BUTTON_ID, ADD_ICON);
+		createActionButton(buttonsPanel, DELETE_BUTTON_ID, DELETE_ICON);
 
-		Button deleteButton = new Button(buttonsPanel, SWT.NONE);
-		deleteButton.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
-		deleteButton.setImage(DELETE_ICON);
 	}
+
+
+	/**
+	 * 
+	 * Create a button with an ID and an icon.
+	 * 
+	 * @param parent
+	 *        Composite where button will be added
+	 * @param id
+	 *        Id of the button
+	 * @param icon
+	 *        Icon to set to button
+	 */
+	private void createActionButton(Composite parent, int id, Image icon) {
+
+		Button button = new Button(parent, SWT.PUSH);
+		button.setFont(JFaceResources.getDialogFont());
+		button.setData(new Integer(id));
+		button.setImage(icon);
+		button.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				buttonPressed(((Integer)event.widget.getData()).intValue());
+			}
+		});
+
+
+		button.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+		buttonsMap.put(id, button);
+
+	}
+
+	/**
+	 * Delete current selection of tree viewer.
+	 */
+	private void deleteAction() {
+		ISelection selection = themeStyleSheetsViewer.getSelection();
+
+		if(selection instanceof IStructuredSelection) {
+			Object selectedElement = ((IStructuredSelection)selection).getFirstElement();
+			if(selectedElement instanceof StyleSheet) {
+				currentTheme.getStylesheets().remove(selectedElement);
+			}
+
+			themeStyleSheetsViewer.setInput(currentTheme.getStylesheets());
+			refreshTreeviewer(currentTheme);
+		}
+
+	}
+
+
+	/**
+	 * Open a dialog to add a style sheet to current selected theme.
+	 */
+	private void addAction() {
+
+
+		ReferenceSelector selector = new ReferenceSelector(true);
+		selector.setContentProvider(new EMFContentProvider(currentTheme, StylesheetsPackage.eINSTANCE.getTheme_Stylesheets()) {
+
+			@Override
+			protected IStructuredContentProvider getSemanticProvider(final EObject editedEObject, final EStructuralFeature feature) {
+
+				// Use a standard content provider
+				return new AbstractStaticContentProvider() {
+
+					public Object[] getElements() {
+						List<Object> result = new LinkedList<Object>();
+						if(editedEObject instanceof Theme) {
+							result.addAll(currentTheme.getStylesheets());
+						}
+						return result.toArray();
+					}
+				};
+			}
+		});
+		selector.setLabelProvider(labelProvider);
+
+		// Use common component for add dialog and parameterize it
+		MultipleValueSelectorDialog vDialog = new MultipleValueSelectorDialog(getShell(), selector, ADD_DIALOG_TITLE);
+		vDialog.setContextElement(currentTheme);
+		vDialog.setLabelProvider(labelProvider);
+		vDialog.setFactory(new EcorePropertyEditorFactory(StylesheetsPackage.Literals.THEME__STYLESHEETS));
+
+		// Handle dialog result
+		int result = vDialog.open();
+		if(result == Dialog.OK) {
+
+			Object[] resultArray = vDialog.getResult();
+			refreshStyleSheets(resultArray);
+
+		}
+	}
+
+
+	/**
+	 * Fill style sheets viewer with selected style sheets.
+	 * 
+	 * @param result
+	 *        Result from dialog selection
+	 */
+	private void refreshStyleSheets(Object[] result) {
+
+		// Complete current theme with dialog result
+		for(Object object : result) {
+
+			// Check if this is a style sheet
+			if(object instanceof StyleSheet)
+				currentTheme.getStylesheets().add((StyleSheet)object);
+		}
+
+		refreshTreeviewer(currentTheme);
+	}
+
 
 	/**
 	 * Refresh content of tree viewer according to selected theme/
@@ -372,39 +556,68 @@ public class CSSThemeEditionDialog extends Dialog {
 	 */
 	private void refreshTreeviewer(Theme currentTheme) {
 
-		// Create mirroring list
-		List<StyleSheet> mirrorList = new ArrayList<StyleSheet>();
 
 
-		EList<StyleSheet> themeStyleSheetsList = currentTheme.getStylesheets();
-		mirrorList.addAll(themeStyleSheetsList);
+		if(currentTheme != null) {
 
-		// For each selected reference, check match with existing reference in theme
-		for(StyleSheet basereference : selectedStyleSheetsList) {
+			EList<StyleSheet> themeStyleSheetsList = currentTheme.getStylesheets();
 
-			// Flag for search
-			boolean found = false;
-			int i = 0;
 
-			// Explore theme style s
-			while(i < themeStyleSheetsList.size() && !found) {
+			// For each selected reference, check match with existing reference in theme
+			for(StyleSheet basereference : selectedStyleSheetsList) {
 
-				// Use own comparator to determine if style sheet reference exist
-				found = StylesheetsComparator.instance.compare(themeStyleSheetsList.get(i), basereference) == 0;
-				i++;
+				// Flag for search
+				boolean found = false;
+				int i = 0;
+
+				// Explore theme style s
+				while(i < themeStyleSheetsList.size() && !found) {
+
+					// Use own comparator to determine if style sheet reference exist
+					found = StylesheetsComparator.instance.compare(themeStyleSheetsList.get(i), basereference) == 0;
+					i++;
+				}
+
+				// Add selected reference only if it don't exist in theme
+				if(!found) {
+					themeStyleSheetsList.add(basereference);
+				}
 			}
 
-			// Add selected reference only if it don't exist in theme
-			if(!found) {
-				mirrorList.add(basereference);
-			}
+			// Set mirroring list as viewer input
+			themeStyleSheetsViewer.setInput(themeStyleSheetsList);
 		}
 
-		// Set mirroring list as viewer input
-		themeStyleSheetsViewer.setInput(mirrorList);
+		updateButtons(currentTheme);
 
 	}
 
+
+	/**
+	 * 
+	 * Update state of dialog buttons.
+	 * 
+	 * @param currentTheme
+	 *        Selected theme which determine state of differrent buttons.
+	 */
+	private void updateButtons(Theme currentTheme) {
+		boolean editionEnable = currentTheme != null;
+		for(int buttonId : buttonsMap.keySet()) {
+			switch(buttonId) {
+			case ADD_BUTTON_ID:
+			case BROWSE_BUTTON_ID:
+				buttonsMap.get(buttonId).setEnabled(editionEnable);
+				break;
+			case DELETE_BUTTON_ID:
+				buttonsMap.get(buttonId).setEnabled(editionEnable && !currentTheme.getStylesheets().isEmpty());
+				break;
+			default:
+				break;
+			}
+
+		}
+
+	}
 
 	/**
 	 * Refresh dialog area according to combo selection.
@@ -426,11 +639,26 @@ public class CSSThemeEditionDialog extends Dialog {
 			}
 		}
 
-		// Refresh text field (label, icon path, ...)
-		themeLabelField.setText(currentTheme.getLabel());
-		iconPathfield.setText(currentTheme.getIcon());
 
-		// 
+
+		boolean editionEnable = currentTheme != null;
+		themeLabelField.setEditable(editionEnable);
+		iconPathfield.setEditable(editionEnable);
+
+		if(editionEnable) {
+			// Refresh text field (label, icon path, ...)
+			String themeLabel = currentTheme.getLabel();
+			if(themeLabel != null) {
+				themeLabelField.setText(themeLabel);
+			}
+
+			String iconPath = currentTheme.getIcon();
+			if(iconPath != null) {
+				iconPathfield.setText(iconPath);
+			}
+		}
+
+		// Tree viewer
 		refreshTreeviewer(currentTheme);
 
 	}
@@ -448,6 +676,30 @@ public class CSSThemeEditionDialog extends Dialog {
 	}
 
 	/**
+	 * @see org.eclipse.jface.dialogs.Dialog#buttonPressed(int)
+	 *
+	 * @param buttonId
+	 */
+	@Override
+	protected void buttonPressed(int buttonId) {
+		switch(buttonId) {
+		case ADD_BUTTON_ID:
+			addAction();
+			break;
+		case DELETE_BUTTON_ID:
+			deleteAction();
+			break;
+		case BROWSE_BUTTON_ID:
+			browseIconAction();
+		default:
+			super.buttonPressed(buttonId);
+		}
+	}
+
+
+
+
+	/**
 	 * Return the initial size of the dialog.
 	 */
 	@Override
@@ -463,39 +715,6 @@ public class CSSThemeEditionDialog extends Dialog {
 	@Override
 	protected boolean isResizable() {
 		return true;
-	}
-
-	/**
-	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
-	 *
-	 */
-	@Override
-	protected void okPressed() {
-		setReturnTheme();
-		super.okPressed();
-	}
-
-
-
-	/**
-	 * Save dialog contents in current theme.
-	 */
-	private void setReturnTheme() {
-		Object inputViewer = themeStyleSheetsViewer.getInput();
-
-		// Update style sheets list of current theme
-		currentTheme.getStylesheets().clear();
-		if(inputViewer instanceof List<?>) {
-			for(Object inputEntry : (List<?>)inputViewer) {
-
-				// Verify if entry is a style sheet
-				if(inputEntry instanceof StyleSheet) {
-					currentTheme.getStylesheets().add((StyleSheet)inputEntry);
-				}
-			}
-		}
-
-
 	}
 
 	/**
