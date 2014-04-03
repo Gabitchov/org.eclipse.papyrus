@@ -78,7 +78,7 @@ public class MainModelTrafo {
 	 * @param tmCDP
 	 *        deployment plan in target model
 	 */
-	public MainModelTrafo(Copy copy, Package tmCDP) {
+	public MainModelTrafo(LazyCopier copy, Package tmCDP) {
 		nodeHandled = new HashMap<InstanceSpecification, Boolean>();
 		this.copy = copy;
 		this.tmCDP = tmCDP;
@@ -463,7 +463,7 @@ public class MainModelTrafo {
 	/**
 	 * Copier from source to target model
 	 */
-	protected Copy copy;	
+	protected LazyCopier copy;	
 	
 	/**
 	 * deployment plan within target model

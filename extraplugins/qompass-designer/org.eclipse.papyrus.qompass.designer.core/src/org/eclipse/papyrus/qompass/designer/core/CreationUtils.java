@@ -16,7 +16,7 @@ package org.eclipse.papyrus.qompass.designer.core;
 
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
@@ -55,7 +55,7 @@ public class CreationUtils {
 			if(pkg == null) {
 				// package does not exist => create it.
 				pkg = root.createNestedPackage(ns.getName());
-				Copy.copyID(ns, pkg);
+				LazyCopier.copyID(ns, pkg);
 				// copy stereotype to create package
 				StUtils.copyStereotypes(ns, pkg);
 			}

@@ -84,8 +84,8 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	 * @param tmCDP
 	 *        deployment plan within target model
 	 */
-	public ContainerTrafo(Copy copy, Package tmCDP, InstanceSpecification executorIS) {
-		this.copy = copy;
+	public ContainerTrafo(LazyCopier copier, Package tmCDP, InstanceSpecification executorIS) {
+		this.copier = copier;
 		this.tmCDP = tmCDP;
 		this.executorIS = executorIS;
 		portInfo = new HashMap<Property, Port>();
@@ -121,11 +121,11 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		if (isSingleton) {
 			StereotypeUtil.apply(tmContainerImpl, Singleton.class);
 		}
-		Copy.copyID(tmComponent, tmContainerImpl, containerPostfix);
+		LazyCopier.copyID(tmComponent, tmContainerImpl, containerPostfix);
 
 		// add part and slot corresponding to component;
 		executorPart = tmContainerImpl.createOwnedAttribute(executorPartName, tmComponent);
-		Copy.copyID(tmComponent, executorPart, "e"); //$NON-NLS-1$
+		LazyCopier.copyID(tmComponent, executorPart, "e"); //$NON-NLS-1$
 
 		executorPart.setIsComposite(true);
 
@@ -142,7 +142,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 
 				// create delegation for application port
 				Connector containerDelegation = tmContainerImpl.createOwnedConnector("delegation " + port.getName()); //$NON-NLS-1$
-				Copy.copyID(tmContainerImpl, containerDelegation);
+				LazyCopier.copyID(tmContainerImpl, containerDelegation);
 				ConnectorEnd end1 = containerDelegation.createEnd();
 				end1.setRole(newPort);
 				ConnectorEnd end2 = containerDelegation.createEnd();
@@ -175,7 +175,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	public void createHwContainer(Class tmComponent) throws TransformationException {
 		Package tmPkgOwner = (Package)tmComponent.getOwner();
 		tmContainerImpl = tmPkgOwner.createOwnedClass(tmComponent.getName() + hwContainerPostfix, false);
-		Copy.copyID(tmComponent, tmContainerImpl, hwContainerPostfix);
+		LazyCopier.copyID(tmComponent, tmContainerImpl, hwContainerPostfix);
 
 		// register created container
 		containers.put(tmComponent, this);
@@ -262,7 +262,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 			slotCopy.setDefiningFeature(slot.getDefiningFeature());
 			// copy values (use CopyTo.copyTo(slot, containerIS) instead?)
 			for (ValueSpecification value : slot.getValues()) {
-				Copy.copyValue(value, slotCopy);
+				LazyCopier.copyValue(value, slotCopy);
 			}
 		}
 		return containerIS;
@@ -333,9 +333,9 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 					Property extensionPart =
 						expandAggregationExtension(part, extOrInterceptor, tmComponent);
 					// register relation to facilitate connector copy
-					copy.setPackageTemplate(smContainerRule.getBase_Class(), tmContainerImpl);
-					copy.putPair(part, extensionPart);
-					copy.setPackageTemplate(null, null);
+					copier.setPackageTemplate(smContainerRule.getBase_Class(), tmContainerImpl);
+					copier.putPair(part, extensionPart);
+					copier.setPackageTemplate(null, null);
 				}
 			}
 		}
@@ -347,7 +347,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		// the types of the referenced parts).
 		// [main issue here: properties of container rule are not copies in the sense of identical
 		// copies]
-		copy.setPackageTemplate(smContainerRule.getBase_Class(), tmContainerImpl);
+		copier.setPackageTemplate(smContainerRule.getBase_Class(), tmContainerImpl);
 
 		for(Connector connector : smContainerRule.getBase_Class().getOwnedConnectors()) {
 			Property ruleInterceptorPart = null;
@@ -364,25 +364,25 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 				for(Property interceptorPart : interceptorPartsMap.get(ruleInterceptorPart)) {
 					// map an interceptor part within rule successively to to an interceptor part
 					// within the container
-					copy.putPair(ruleInterceptorPart, interceptorPart);
-					copy.removeForCopy(connector);
-					copy.getCopy(connector);
+					copier.putPair(ruleInterceptorPart, interceptorPart);
+					copier.removeForCopy(connector);
+					copier.getCopy(connector);
 				}
 			}
 			else {
 				// check whether FCM connector
 				org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.getConnector(connector);
 				if(fcmConn != null) {
-					ConnectorReification.reifyConnector(copy, tmContainerImpl,
+					ConnectorReification.reifyConnector(copier, tmContainerImpl,
 						UMLTool.varName(connector), connector, executorIS, null);
 				}
 				else {
-					copy.remove(connector);
-					copy.getCopy(connector);
+					copier.remove(connector);
+					copier.getCopy(connector);
 				}
 			}
 		}
-		copy.setPackageTemplate(null, null);
+		copier.setPackageTemplate(null, null);
 		
 		TemplateUtils.retargetConnectors(tmContainerImpl);
 	}
@@ -401,7 +401,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		TemplateSignature signature = TemplateUtils.getSignature(smContainerExtImpl);
 		if(signature == null) {
 			// no template signature, just copy the container extension into the target model
-			tmContainerExtImpl = copy.getCopy(smContainerExtImpl);
+			tmContainerExtImpl = copier.getCopy(smContainerExtImpl);
 		}
 		else {
 			// template signature found, instantiate container extension via template binding mechanism
@@ -417,9 +417,9 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 			}
 			// template signature and instantiate container extension via the
 			// template binding mechanism, use executor component as actual
-			TemplateBinding binding = TemplateUtils.fixedBinding(copy.target, smContainerExtImpl, actual);
+			TemplateBinding binding = TemplateUtils.fixedBinding(copier.target, smContainerExtImpl, actual);
 			Object[] args = new Object[]{};
-			TemplateInstantiation ti = new TemplateInstantiation(copy, binding, args);
+			TemplateInstantiation ti = new TemplateInstantiation(copier, binding, args);
 			tmContainerExtImpl = (Class)ti.bindNamedElement(smContainerExtImpl);
 		}
 
@@ -441,7 +441,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 							throw new TransformationException(Messages.ContainerTrafo_RecursiveLWnotSupported);
 						}
 						else {
-							containerTrafo = new ContainerTrafo(copy, tmCDP, null);
+							containerTrafo = new ContainerTrafo(copier, tmCDP, null);
 						}
 						containerTrafo.createContainer(smContainerExtImpl, tmContainerExtImpl);
 					}
@@ -463,8 +463,8 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 
 		// Copy.copyID(tmComponent, extensionPart, "a");
 		extensionPart.setAggregation(smExtensionPart.getAggregation());
-		Copy.copyMultElemModifiers(smExtensionPart, extensionPart);
-		Copy.copyFeatureModifiers(smExtensionPart, extensionPart);
+		LazyCopier.copyMultElemModifiers(smExtensionPart, extensionPart);
+		LazyCopier.copyFeatureModifiers(smExtensionPart, extensionPart);
 	
 		return extensionPart;
 	}
@@ -547,7 +547,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 			Object[] args = new Object[]{ executorIS, port };
 			TransformationContext.instance = executorIS;
 			TransformationContext.port = port;
-			connectorPart = ConnectorReification.reifyConnector(copy, tmContainerImpl, UMLTool.varName(interceptionConnector), interceptionConnector, executorIS, args);
+			connectorPart = ConnectorReification.reifyConnector(copier, tmContainerImpl, UMLTool.varName(interceptionConnector), interceptionConnector, executorIS, args);
 			connectorParts.add(connectorPart);
 			TransformationContext.port = null;
 			portInfo.put(connectorPart, port);

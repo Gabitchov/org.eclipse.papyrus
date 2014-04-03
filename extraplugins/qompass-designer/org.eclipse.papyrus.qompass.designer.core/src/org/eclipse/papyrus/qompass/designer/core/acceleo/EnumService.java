@@ -135,6 +135,7 @@ public class EnumService {
 	}
 
 	public static void createEnumPackage(Package root) {
+		init();
 		enumPkg = root.createNestedPackage(GLOBALENUMS);
 	}
 

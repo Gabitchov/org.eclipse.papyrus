@@ -24,7 +24,7 @@ import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.uml2.uml.Classifier;
@@ -228,7 +228,7 @@ public class TemplateUtils {
 	 * @param sat
 	 * @param binding
 	 */
-	public static void adaptActualsToTargetModel(Copy copy, TemplateBinding binding) {
+	public static void adaptActualsToTargetModel(LazyCopier copy, TemplateBinding binding) {
 		for(TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
 			substitution.setActual(copy.getCopy(substitution.getActual()));
 		}

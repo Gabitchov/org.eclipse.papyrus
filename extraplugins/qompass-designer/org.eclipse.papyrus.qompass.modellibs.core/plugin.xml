@@ -141,6 +141,14 @@
 			class="org.eclipse.papyrus.qompass.modellibs.core.bindinghelpers.BindOperation">
 		</client>
 	</extension>
+ <extension
+       id="BindCppIncludeToFirstActual"
+       point="org.eclipse.papyrus.fcm.profile.fcmBindingHelper">
+    <client
+          bindingHelperName="BindCppIncludeToFirstActual"
+          class="org.eclipse.papyrus.qompass.modellibs.core.bindinghelpers.BindCppIncludeToFirstActual">
+    </client>
+ </extension>
 	<extension point="org.eclipse.help.toc">
 		<toc file="help/modellibs-core-examples.xml"/>
 		<toc file="help/modellibs-core-library.xml"/>
