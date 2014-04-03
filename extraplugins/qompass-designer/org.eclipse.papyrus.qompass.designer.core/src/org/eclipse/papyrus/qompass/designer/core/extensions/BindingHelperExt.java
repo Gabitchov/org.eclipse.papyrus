@@ -18,8 +18,9 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.FCM.BindingHelper;
 import org.eclipse.papyrus.FCM.util.IBindingHelper;
-import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.listeners.PostCopyListener;
+import org.eclipse.papyrus.qompass.designer.core.listeners.PreCopyListener;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.TemplateBinding;
@@ -39,15 +40,32 @@ public class BindingHelperExt {
 	 *        containing composite (container)
 	 * @param instance
 	 */
-	public static EObject applyHelper(BindingHelper helper, Copy copy, TemplateBinding binding, EObject sourceEObj) {
+	public static EObject applyPreHelper(BindingHelper helper, LazyCopier copier, TemplateBinding binding, EObject sourceEObj) {
 		IBindingHelper ihelper = getBindingHelper(helper.getBase_Class().getName());
 		if (sourceEObj instanceof Element) {
 			ihelper.handleElement(binding, (Element) sourceEObj);
 		}
-		if(ihelper instanceof CopyListener) {
-			return ((CopyListener) ihelper).copyEObject(copy, sourceEObj);
+		if(ihelper instanceof PreCopyListener) {
+			return ((PreCopyListener) ihelper).preCopyEObject(copier, sourceEObj);
 		}
 		return sourceEObj;
+	}
+	
+	/**
+	 * 
+	 * @param iConfiguratorName
+	 * @param component
+	 *        containing composite (container)
+	 * @param instance
+	 */
+	public static void applyPostHelper(BindingHelper helper, LazyCopier copier, TemplateBinding binding, EObject targetEObj) {
+		IBindingHelper ihelper = getBindingHelper(helper.getBase_Class().getName());
+		if (targetEObj instanceof Element) {
+			ihelper.handleElement(binding, (Element) targetEObj);
+		}
+		if(ihelper instanceof PostCopyListener) {
+			((PostCopyListener) ihelper).postCopyEObject(copier, targetEObj);
+		}
 	}
 
 	public static IBindingHelper getBindingHelper(BindingHelper helper) {

@@ -17,8 +17,8 @@ package org.eclipse.papyrus.qompass.designer.core.transformations.filters;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.listeners.PreCopyListener;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
@@ -29,7 +29,7 @@ import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
 
 
-public class FilterStateMachines implements CopyListener {
+public class FilterStateMachines implements PreCopyListener {
 
 	public static FilterStateMachines getInstance() {
 		if(instance == null) {
@@ -38,7 +38,7 @@ public class FilterStateMachines implements CopyListener {
 		return instance;
 	}
 
-	public EObject copyEObject(Copy copy, EObject sourceEObj) {
+	public EObject preCopyEObject(LazyCopier copy, EObject sourceEObj) {
 		if(sourceEObj instanceof StateMachine) {
 			StateMachine sm = (StateMachine)sourceEObj;
 			Class tmClass = getTargetClass(copy, sm);
@@ -62,7 +62,7 @@ public class FilterStateMachines implements CopyListener {
 		return sourceEObj;
 	}
 
-	public Class getTargetClass(Copy copy, StateMachine sm) {
+	public Class getTargetClass(LazyCopier copy, StateMachine sm) {
 		Element smOwner = sm.getOwner();
 		EObject tmOwner = copy.getMap(smOwner).get(smOwner);
 		if(tmOwner instanceof Class) {

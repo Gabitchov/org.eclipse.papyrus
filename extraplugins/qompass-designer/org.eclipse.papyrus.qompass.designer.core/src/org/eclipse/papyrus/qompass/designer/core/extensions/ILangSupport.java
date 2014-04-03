@@ -45,6 +45,8 @@ public interface ILangSupport {
 	 *        the project (must already been initialized)
 	 */
 	public void setProject(IProject project);
+	
+	public IProject getProject();
 
 	/**
 	 * Re-create the project settings from model information

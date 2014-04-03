@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.FCM.BindingHelper;
 import org.eclipse.papyrus.FCM.Template;
 import org.eclipse.papyrus.qompass.designer.core.extensions.BindingHelperExt;
-import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.listeners.PreCopyListener;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.OpaqueBehavior;
@@ -29,20 +29,19 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 /**
  * Template instantiation is implemented by means of an CopyListener that
  * evaluates the template stereotype.
- * This is a pre-copy listener.
  */
 
-public class TemplateInstantiationListener implements CopyListener {
+public class PreTemplateInstantiationListener implements PreCopyListener {
 
-	public static TemplateInstantiationListener getInstance() {
-		if(templateInstantiationListener == null) {
-			templateInstantiationListener = new TemplateInstantiationListener();
-			templateInstantiationListener.treatTemplate = false;
+	public static PreTemplateInstantiationListener getInstance() {
+		if(preTemplateInstantiationListener == null) {
+			preTemplateInstantiationListener = new PreTemplateInstantiationListener();
+			preTemplateInstantiationListener.treatTemplate = false;
 		}
-		return templateInstantiationListener;
+		return preTemplateInstantiationListener;
 	}
 
-	public void init(Copy copy, TemplateBinding binding, Object[] args) {
+	public void init(LazyCopier copy, TemplateBinding binding, Object[] args) {
 		this.binding = binding;
 	}
 
@@ -50,9 +49,9 @@ public class TemplateInstantiationListener implements CopyListener {
 
 	private boolean treatTemplate;
 
-	private static TemplateInstantiationListener templateInstantiationListener;
+	private static PreTemplateInstantiationListener preTemplateInstantiationListener;
 
-	public EObject copyEObject(Copy copy, EObject sourceEObj) {
+	public EObject preCopyEObject(LazyCopier copy, EObject sourceEObj) {
 		if(treatTemplate) {
 			return sourceEObj;
 		}
@@ -62,7 +61,7 @@ public class TemplateInstantiationListener implements CopyListener {
 		return targetEObj;
 	}
 
-	protected EObject checkEObject(Copy copy, EObject sourceEObj) {
+	protected EObject checkEObject(LazyCopier copy, EObject sourceEObj) {
 			
 		// Specific treatment of OpaqueBehaviors: Template instantiations are typically managed
 		// by the associated operation which instantiates operation and behavior. In this case, the
@@ -84,7 +83,7 @@ public class TemplateInstantiationListener implements CopyListener {
 			if((template != null)) {
 				BindingHelper helper = template.getHelper();
 				if (helper != null) {
-					return BindingHelperExt.applyHelper(helper, copy, binding, sourceEObj);
+					return BindingHelperExt.applyPreHelper(helper, copy, binding, sourceEObj);
 				}
 			}
 		}

@@ -15,24 +15,21 @@
 package org.eclipse.papyrus.qompass.designer.core.listeners;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 
 /**
- * Interface for listeners that are notified for the addition of a classifier
- * via copy
- * 
- * @see org.eclipse.papyrus.qompass.designer.core.transformations.Copy
+ * Interface for listeners that are notified when an eObject
+ * is copied
+ *
+ * @see org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier
  */
-public interface CopyListener {
+public interface PostCopyListener {
 
 	/**
-	 * Is called for each EObject that is copied. If it returns null, the
-	 * indicated object should not be copied. If it returns a different object
-	 * than the passed EObject, this object is used (the returned object of the
-	 * first listener is used).
-	 * 
-	 * @param sourceEObj
-	 *        the added classifier
+	 * Is called for each EObject after is has been copied.
+	* 
+	 * @param targetEObj
+	 *        the EObject that has been copied
 	 */
-	public EObject copyEObject(Copy copy, EObject sourceEObj);
+	public void postCopyEObject(LazyCopier copy, EObject targetEObj);
 }

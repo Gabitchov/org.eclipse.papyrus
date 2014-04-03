@@ -33,7 +33,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
+import org.eclipse.papyrus.qompass.designer.core.listeners.PostCopyListener;
+import org.eclipse.papyrus.qompass.designer.core.listeners.PreCopyListener;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -75,10 +76,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * A shallow copy can be transformed into a "real" copy
  * by explicitly copying it.
  * 
- * @author ansgar
- * 
  */
-public class Copy extends Copier {
+public class LazyCopier extends Copier {
 
 	public enum CopyStatus {
 		/**
@@ -106,13 +105,20 @@ public class Copy extends Copier {
 		SHALLOW
 	}
 	
-	public Copy(Package source_, Package target_, boolean copyExtResources_) {
-		source = source_;
-		target = target_;
+	/**
+	 * 
+	 * @param source source package (root)
+	 * @param target target package (root)
+	 * @param copyExtResources_ copy elements that are not within the same resource instead of referencing them.
+	 * @param copyID copyID true, if XML IDs should be copied as well.
+	 */
+	public LazyCopier(Package source, Package target, boolean copyExtResources_, boolean copyID) {
+		this.source = source;
+		this.target = target;
 		// useOriginalReferences = false;
 		copyExtReferences = copyExtResources_;
-		preCopyListeners = new BasicEList<CopyListener>();
-		postCopyListeners = new BasicEList<CopyListener>();
+		preCopyListeners = new BasicEList<PreCopyListener>();
+		postCopyListeners = new BasicEList<PostCopyListener>();
 		templateMapInfo = new HashMap<EObject, Map<EObject, EObject>>();
 		standardMap = new HashMap<EObject, EObject>();
 		statusMap = new HashMap<EObject, CopyStatus>();
@@ -126,6 +132,10 @@ public class Copy extends Copier {
 		else {
 			put(source, target);
 			setStatus(target, CopyStatus.SHALLOW);
+		}
+		this.copyID = copyID;
+		if (copyID) {
+			copyID(source, target);
 		}
 	};
 
@@ -154,28 +164,30 @@ public class Copy extends Copier {
 	/**
 	 * Bound package template
 	 */
-	private Namespace boundPackage;
+	protected Namespace boundPackage;
 
 	/**
 	 * Map to identify target objects when given source objects
 	 */
-	private Map<EObject, EObject> standardMap;
+	protected Map<EObject, EObject> standardMap;
 
 	/**
 	 * Map to identify target objects when given source objects
 	 */
-	private Map<EObject, EObject> templateMap;
+	protected Map<EObject, EObject> templateMap;
 
 	/**
 	 * Set of maps for template instantiations
 	 */
-	private Map<EObject, Map<EObject, EObject>> templateMapInfo;
+	protected Map<EObject, Map<EObject, EObject>> templateMapInfo;
 
 	/**
 	 * Map using a target EObject as key
 	 */
-	private Map<EObject, CopyStatus> statusMap;
+	protected Map<EObject, CopyStatus> statusMap;
 
+	protected boolean copyID;
+	
 	/**
 	 * Elements within package templates must be treated differently, we have to ensure that:
 	 * (1) several instantiations with same binding of the same package template do not lead to double copies
@@ -439,8 +451,8 @@ public class Copy extends Copier {
 			return sourceEObj;
 		}
 
-		for(CopyListener listener : preCopyListeners) {
-			EObject result = listener.copyEObject(this, sourceEObj);
+		for(PreCopyListener listener : preCopyListeners) {
+			EObject result = listener.preCopyEObject(this, sourceEObj);
 			if(result != sourceEObj) {
 				return result;
 			}
@@ -470,7 +482,9 @@ public class Copy extends Copier {
 			targetEObj = createCopy(sourceEObj);
 			put(sourceEObj, targetEObj);
 			setStatus(targetEObj, CopyStatus.INPROGRESS);
-
+			if (copyID) {
+				copyID(sourceEObj, targetEObj);
+			}
 			// creates a shallow copy of the container. This container will update containment references (such as packagedElement)
 			// and thus update links
 			createShallowContainer(sourceEObj);
@@ -507,17 +521,25 @@ public class Copy extends Copier {
 					}
 				}
 			}
+			else if ((eStructuralFeature instanceof EReference)) {
+				if (eStructuralFeature.getName().equals("clientDependency")) { //$NON-NLS-1$
+				Object feature = sourceEObj.eGet(eStructuralFeature);
+				
+				if(feature instanceof Element) {
+					copy((Element)feature);
+				} else if(feature instanceof EList) {
+					copyAll((EList<Object>)feature);
+				}
+				}
+			}
 		}
 		copyProxyURI(sourceEObj, targetEObj);
 		copyID(sourceEObj, targetEObj);
 		copyStereotypes(sourceEObj);
 		setStatus(targetEObj, CopyStatus.FULL);
 
-		for(CopyListener listener : postCopyListeners) {
-			EObject result = listener.copyEObject(this, targetEObj);
-			if(result != targetEObj) {
-				return result;
-			}
+		for(PostCopyListener listener : postCopyListeners) {
+			listener.postCopyEObject(this, targetEObj);
 		}
 
 		return targetEObj;
@@ -715,6 +737,9 @@ public class Copy extends Copier {
 			targetEObj = createCopy(sourceEObj);
 			put(sourceEObj, targetEObj);
 			setStatus(targetEObj, CopyStatus.SHALLOW);
+			if (copyID) {
+				copyID(sourceEObj, targetEObj);
+			}
 			first = true;
 		}
 		else if(getStatus(targetEObj) == CopyStatus.FULL) {
@@ -754,9 +779,9 @@ public class Copy extends Copier {
 		return (T)copy(source);
 	}
 
-	public EList<CopyListener> preCopyListeners;
+	public EList<PreCopyListener> preCopyListeners;
 
-	public EList<CopyListener> postCopyListeners;
+	public EList<PostCopyListener> postCopyListeners;
 
 	/**
 	 * Called to handle the copying of a cross reference;

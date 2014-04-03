@@ -12,41 +12,37 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.qompass.designer.core.templates;
+package org.eclipse.papyrus.qompass.modellibs.core.bindinghelpers;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.C_Cpp.Include;
+import org.eclipse.papyrus.FCM.util.IBindingHelper;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
-import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.listeners.PostCopyListener;
+import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * Instantiate the text within a C++Include tag.
- * TODO: this function is C++ specific and should not be here
+ * Instantiate (bind Acceleo template) the text within a C++Include stereotype.
+ * 
+ * The actual is the first actual within the template binding. This function does not check
+ * whether the classifier has the template stereotype.
+ * 
+ * Note: this function is C++ specific, but many parts of the model library are C++ specific as well
  * 
  */
-public class InstantiateCppInclude implements CopyListener {
+public class BindCppIncludeToFirstActual implements PostCopyListener, IBindingHelper {
 
-	public static InstantiateCppInclude getInstance() {
-		if(instance == null) {
-			instance = new InstantiateCppInclude();
-		}
-		return instance;
-	}
-
-	public void init(TemplateBinding binding, Object[] args) {
-		this.binding = binding;
-	}
-
-	public EObject copyEObject(Copy copy, EObject targetEObj) {
+	public void postCopyEObject(LazyCopier copy, EObject targetEObj) {
 		// if (copy.get(sourceEObj) isWithinTemplate)
 		if(targetEObj instanceof Classifier) {
-			// TODO: C++ specific code!
+			
 			Classifier targetCl = (Classifier)targetEObj;
 			try {
 				Classifier actual = TemplateUtils.getFirstActualFromBinding(binding);
@@ -65,12 +61,12 @@ public class InstantiateCppInclude implements CopyListener {
 				throw new RuntimeException(e);
 			}
 		}
-		return targetEObj;
 	}
 
-	private static InstantiateCppInclude instance = null;
+	protected TemplateBinding binding;
 
-	private TemplateBinding binding;
-
-	// private Copy copy;
+	@Override
+	public void handleElement(TemplateBinding binding, Element object) {
+		this.binding = binding;
+	}
 }

@@ -30,7 +30,7 @@ import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.UMLTool;
 import org.eclipse.papyrus.qompass.designer.core.transformations.CompImplTrafos;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.PrefixConstants;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
@@ -77,7 +77,7 @@ public class BootLoaderGen {
 	 * @param The
 	 *        package in which the bootloader should be created
 	 */
-	public BootLoaderGen(Copy copy, int nodeIndex, int numberOfNodes)
+	public BootLoaderGen(LazyCopier copy, int nodeIndex, int numberOfNodes)
 		throws TransformationException {
 		// Class composite = (Class) ut.getClassifier (mainInstance);
 		// place in root (getModel()) to avoid the problem that the declaration of the bootLoader
@@ -300,7 +300,7 @@ public class BootLoaderGen {
 	 * @param containerSlot
 	 * @return
 	 */
-	public static boolean hasUnconnectedStartRoutine(Copy copy, Class implementation, Slot containerSlot) {
+	public static boolean hasUnconnectedStartRoutine(LazyCopier copy, Class implementation, Slot containerSlot) {
 		if(implementation != null) {
 			Port startPort = AllocUtils.getStartPort(implementation);
 			if (startPort != null) {
@@ -320,7 +320,7 @@ public class BootLoaderGen {
 	 * @param name
 	 * @return
 	 */
-	public static boolean hasUnconnectedLifeCycle(Copy copy, Class implementation, Slot containerSlot) {
+	public static boolean hasUnconnectedLifeCycle(LazyCopier copy, Class implementation, Slot containerSlot) {
 		if(implementation != null) {
 			Element lcPortElem = Utils.getNamedElementFromList(implementation.getAllAttributes(), "lc"); //$NON-NLS-1$
 			if(lcPortElem instanceof Port) {
@@ -344,7 +344,7 @@ public class BootLoaderGen {
 	 * @Param a port that is checked for being connected
 	 * @return true, if connected
 	 */
-	private static boolean isConnected(Copy copy, Slot containerSlot, Port port) {
+	private static boolean isConnected(LazyCopier copy, Slot containerSlot, Port port) {
 		if(containerSlot != null) {
 			StructuralFeature sf = containerSlot.getDefiningFeature();
 			if(sf instanceof Property) {
@@ -523,7 +523,7 @@ public class BootLoaderGen {
 	/**
 	 * copy variable (instances still point to non-copied classes)
 	 */
-	private Copy m_copy;
+	private LazyCopier m_copy;
 	
 	/**
 	 * Store a map with index values to manage configuration of arrays
