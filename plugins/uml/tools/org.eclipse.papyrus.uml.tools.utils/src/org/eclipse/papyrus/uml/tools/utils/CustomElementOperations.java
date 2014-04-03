@@ -55,6 +55,22 @@ public class CustomElementOperations extends ElementOperations {
 
 	/**
 	 * 
+	 * @param parentElement
+	 *        the parent of the element (required because the element is probably to yet attached to its parent
+	 * @param element
+	 *        the element on which we want apply a stereotype
+	 * @param stereotype
+	 *        the stereotype to apply
+	 * @return
+	 *         <code>true</code> if the stereotype can be applied on this element
+	 */
+	public static boolean isStereotypeApplicable(final Element parentElement, Element element, Stereotype stereotype) {
+		return getDefinition(parentElement, stereotype) != null && getExtension(element, stereotype) != null;
+
+	}
+
+	/**
+	 * 
 	 * @param element
 	 * @param stereotype
 	 * @return
