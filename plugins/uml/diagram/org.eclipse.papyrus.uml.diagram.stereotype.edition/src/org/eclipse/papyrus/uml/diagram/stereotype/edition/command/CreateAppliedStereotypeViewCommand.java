@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeConpartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCompartmentEditPart;
 
 /**
  * the goal of this command is to create a basic compartment in the notation that represent a compartment of stereotypes
@@ -62,7 +62,7 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 		ts.setShowTitle(true);
 		compartment.getStyles().add(ts);
 		compartment.setElement(StereotypeApplication);
-		compartment.setType(AppliedStereotypeConpartmentEditPart.ID);
+		compartment.setType(AppliedStereotypeCompartmentEditPart.ID);
 		ViewUtil.insertChildView(owner, compartment, ViewUtil.APPEND, false);
 		compartment.setMutable(true);
 	}

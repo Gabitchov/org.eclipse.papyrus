@@ -29,7 +29,7 @@ import org.junit.Test;
 public class TestProfileApplication extends AbstractPapyrusTestCase {
 
 	@Test
-	public void testToManageModel() throws ServiceException {
+	public void testProfileApplicationOnModel() throws ServiceException {
 		RegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("TestProfile");
 		final Model root = ((Model)getDiagramEditPart().resolveSemanticElement());
 		assertTrue("Registered profile not found", registeredProfile != null);

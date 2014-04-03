@@ -38,11 +38,11 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * this compartment is the an editpart associated to an applied stereotype
  */
 
-public class AppliedStereotypeConpartmentEditPart extends ResizeableListCompartmentEditPart {
+public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartmentEditPart {
 
-	public static String ID = "AppliedStereotypeCompartement";
+	public static String ID = "AppliedStereotypeCompartment";
 
-	public AppliedStereotypeConpartmentEditPart(View view) {
+	public AppliedStereotypeCompartmentEditPart(View view) {
 		super(view);
 	}
 
