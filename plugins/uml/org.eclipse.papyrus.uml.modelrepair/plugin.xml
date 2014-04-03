@@ -57,5 +57,11 @@
             name="Switch profile">
       </command>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.emf.dependencyUpdateParticipant">
+      <replaceParticipant
+            class="org.eclipse.papyrus.uml.modelrepair.internal.participants.StereotypeApplicationRepairParticipant">
+      </replaceParticipant>
+   </extension>
 
 </plugin>

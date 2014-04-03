@@ -11,9 +11,11 @@
  Contributors:
    CEA - Initial API and implementation
    Christian W. Damus (CEA) - bug 323802
+   Christian W. Damus (CEA) - bug 408491
    
 -->
 <plugin>
+   <extension-point id="dependencyUpdateParticipant" name="Dependency Update Participants" schema="schema/dependencyUpdateParticipant.exsd"/>
    <extension
          point="org.eclipse.papyrus.infra.core.service">
       <service

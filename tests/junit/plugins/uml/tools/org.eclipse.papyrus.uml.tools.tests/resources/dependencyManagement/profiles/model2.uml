@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Profile="http:///schemas/Profile/_Hgf9kLviEeO05aJbEZ9Fzw/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/Profile/_Hgf9kLviEeO05aJbEZ9Fzw/2 p3/profile3.profile.uml#_HghywLviEeO05aJbEZ9Fzw">
+  <uml:Model xmi:id="_kh5U8PtrEeKiosy8GwIZjA" name="model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_wgyI0PtrEeKiosy8GwIZjA" name="Class1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wn1zEPtrEeKiosy8GwIZjA" name="Class2">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_GhQ4sLvjEeO05aJbEZ9Fzw" name="Operation1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_w5nfkPtrEeKiosy8GwIZjA" name="Class3"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_wP_TwPtrEeKiosy8GwIZjA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_wQuTkPtrEeKiosy8GwIZjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="p3/profile3.profile.uml#_HghywLviEeO05aJbEZ9Fzw"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="p3/profile3.profile.uml#_oA-q8PtrEeKiosy8GwIZjA"/>
+    </profileApplication>
+  </uml:Model>
+  <Profile:Stereotype1 xmi:id="_itmoELviEeO05aJbEZ9Fzw" base_Class="_wgyI0PtrEeKiosy8GwIZjA" Attribute1="EnumerationLiteral3"/>
+  <Profile:Stereotype2 xmi:id="_itn2MLviEeO05aJbEZ9Fzw" base_Class="_wn1zEPtrEeKiosy8GwIZjA" operation="_GhQ4sLvjEeO05aJbEZ9Fzw"/>
+  <Profile:Stereotype3 xmi:id="_itodQLviEeO05aJbEZ9Fzw" base_Class="_w5nfkPtrEeKiosy8GwIZjA"/>
+</xmi:XMI>

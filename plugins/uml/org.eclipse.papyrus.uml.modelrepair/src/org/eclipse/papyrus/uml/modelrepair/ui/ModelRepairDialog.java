@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 408491
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelrepair.ui;
 
@@ -16,7 +18,6 @@ import java.io.IOException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.TrayDialog;
@@ -25,7 +26,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.emf.resource.DependencyManagementHelper;
+import org.eclipse.papyrus.infra.emf.resource.DependencyManager;
 import org.eclipse.papyrus.uml.modelrepair.Activator;
 import org.eclipse.papyrus.uml.modelrepair.ui.providers.ResourceLabelProvider;
 import org.eclipse.papyrus.uml.modelrepair.ui.providers.ResourceLinksContentProvider;
@@ -54,13 +55,10 @@ public class ModelRepairDialog extends TrayDialog {
 
 	private ModelSet modelSet;
 
-	private EditingDomain editingDomain;
-
-	public ModelRepairDialog(Shell shell, ModelSet modelSet, EditingDomain domain) {
+	public ModelRepairDialog(Shell shell, ModelSet modelSet) {
 		super(shell);
 
 		this.modelSet = modelSet;
-		this.editingDomain = domain;
 	}
 
 	protected TreeViewer viewer;
@@ -264,11 +262,13 @@ public class ModelRepairDialog extends TrayDialog {
 			return;
 		}
 
+		DependencyManager dependencyManager;
 		if(fromResource == null) {
-			DependencyManagementHelper.updateDependencies(uriToReplace, newURI, modelSet, editingDomain);
+			dependencyManager = new DependencyManager(modelSet);
 		} else {
-			DependencyManagementHelper.updateDependencies(uriToReplace, newURI, fromResource, editingDomain);
+			dependencyManager = new DependencyManager(fromResource);
 		}
+		dependencyManager.updateDependencies(uriToReplace, newURI, null, null);
 	}
 
 	@Override

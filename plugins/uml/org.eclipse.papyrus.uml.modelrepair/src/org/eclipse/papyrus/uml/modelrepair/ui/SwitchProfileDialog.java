@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 429826
+ *  Christian W. Damus (CEA) - bug 408491
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelrepair.ui;
@@ -25,6 +25,12 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -35,6 +41,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -53,8 +60,9 @@ import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
-import org.eclipse.papyrus.infra.emf.resource.DependencyManagementHelper;
+import org.eclipse.papyrus.infra.emf.resource.DependencyManager;
 import org.eclipse.papyrus.infra.emf.resource.Replacement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
@@ -76,7 +84,11 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.eclipse.ui.statushandlers.IStatusAdapterConstants;
+import org.eclipse.ui.statushandlers.StatusAdapter;
+import org.eclipse.ui.statushandlers.StatusManager;
 import org.eclipse.uml2.uml.Profile;
 
 /**
@@ -262,22 +274,46 @@ public class SwitchProfileDialog extends SelectionDialog {
 			@Override
 			protected void doExecute() {
 
-				Collection<Replacement> allReplacements = new LinkedList<Replacement>();
+				final Collection<Replacement> allReplacements = new LinkedList<Replacement>();
+				final BasicDiagnostic diagnostics = new BasicDiagnostic(Activator.PLUGIN_ID, 0, "Problems in switching profile", null);
+				
+				IRunnableWithProgress runnable = TransactionHelper.createPrivilegedRunnableWithProgress(editingDomain, new IRunnableWithProgress() {
 
-				for(Entry<Resource, Resource> replacementEntry : profilesToEdit.entrySet()) {
-					URI uriToReplace = replacementEntry.getKey().getURI();
-					URI targetURI = replacementEntry.getValue().getURI();
+					public void run(IProgressMonitor monitor) {
+						SubMonitor subMonitor = SubMonitor.convert(monitor, profilesToEdit.size());
 
-					if(uriToReplace.equals(targetURI)) {
-						continue;
+						for(Entry<Resource, Resource> replacementEntry : profilesToEdit.entrySet()) {
+							URI uriToReplace = replacementEntry.getKey().getURI();
+							URI targetURI = replacementEntry.getValue().getURI();
+
+							if(uriToReplace.equals(targetURI)) {
+								continue;
+							}
+
+							Collection<Replacement> result = new DependencyManager(modelSet).updateDependencies(uriToReplace, targetURI, diagnostics, subMonitor.newChild(1));
+							allReplacements.addAll(result);
+						}
+
+						subMonitor.done();
 					}
-
-					Collection<Replacement> result = DependencyManagementHelper.updateDependencies(uriToReplace, targetURI, modelSet, editingDomain);
-					allReplacements.addAll(result);
+				});
+				
+				try {
+					PlatformUI.getWorkbench().getProgressService().busyCursorWhile(runnable);
+				} catch (Exception e) {
+					StatusManager.getManager().handle(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to execute profile switch."), StatusManager.SHOW);
 				}
 
 				if(allReplacements.isEmpty()) {
 					MessageDialog.openWarning(getShell(), "Nothing changed", "Nothing to change");
+				} else {
+					if(diagnostics.getSeverity() > Diagnostic.OK) {
+						StatusAdapter statusAdapter = new StatusAdapter(BasicDiagnostic.toIStatus(diagnostics));
+						statusAdapter.setProperty(IStatusAdapterConstants.TIMESTAMP_PROPERTY, System.currentTimeMillis());
+						statusAdapter.setProperty(IStatusAdapterConstants.TITLE_PROPERTY, "Problems in Switching Profiles");
+						statusAdapter.setProperty(IStatusAdapterConstants.EXPLANATION_PROPERTY, "Some incompatible differences in the target profile likely resulted in loss or transformation of data in stereotype applications. Please review the specific details and take any corrective action that may be required.");
+						StatusManager.getManager().handle(statusAdapter, StatusManager.SHOW);
+					}
 				}
 			}
 		});
