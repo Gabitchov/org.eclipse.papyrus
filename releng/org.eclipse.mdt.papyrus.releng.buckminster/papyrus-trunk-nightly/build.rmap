@@ -306,7 +306,7 @@
       </rm:uri>
     </rm:provider>
     
-    <!-- PAYURYS EMF FACET-->
+    <!-- PAPYRUS EMF FACET-->
      <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/plugins/facet/{1}">
         <bc:propertyRef key="local.repository"/>
