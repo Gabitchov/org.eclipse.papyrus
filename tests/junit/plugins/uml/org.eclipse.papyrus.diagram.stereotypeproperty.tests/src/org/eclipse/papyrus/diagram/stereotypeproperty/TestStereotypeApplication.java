@@ -55,6 +55,9 @@ import org.junit.Test;
 public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 
 
+	protected static final String ST_LEFT = String.valueOf("\u00AB");
+
+	protected static final String ST_RIGHT = String.valueOf("\u00BB");
 	private static final String TEST_PROFILE_STEREOTYPE1 = "testProfile::Stereotype1";
 
 	@Test
@@ -157,7 +160,7 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 			//get the label
 			org.eclipse.draw2d.Label stereotypeLabel=((ClassifierFigure)nodePlate.getChildren().get(0)).getStereotypesLabel();
 			assertTrue( "stereotype label must be not null" ,stereotypeLabel!=null);
-			assertTrue( "text of stereotype label be equals to «stereotype1» " ,stereotypeLabel.getText().equals("«stereotype1»"));
+			assertTrue( "text of stereotype label be equals to" +ST_LEFT+"stereotype1"+ST_RIGHT ,stereotypeLabel.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
 		}
 
 		{//test display of property of stereotype in compartment 
@@ -285,7 +288,7 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 			//get the label
 			org.eclipse.draw2d.Label stereotypeLabel=((PackageFigure)nodePlate.getChildren().get(0)).getStereotypesLabel();
 			assertTrue( "stereotype label must be not null" ,stereotypeLabel!=null);
-			assertTrue( "text of stereotype label be equals to «stereotype1» " ,stereotypeLabel.getText().equals("«stereotype1»"));
+			assertTrue( "text of stereotype label be equals to "+ST_LEFT+"stereotype1"+ST_RIGHT ,stereotypeLabel.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
 		}
 
 		{//test display of property of stereotype in compartment 
@@ -303,7 +306,7 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 			assertNotNull( "the editpart of the applied stereotype compartment must be created", stereotypeCompartmentEdipart);
 			assertNotNull( "the editpart of the applied stereotype property must be created", stereotypePropertyEdipart);
 			EditingFlowPage textarea=(EditingFlowPage)stereotypePropertyEdipart.getFigure();
-			assertTrue( "text of stereotype label be equals to «stereotype1» " ,((TextFlowEx)textarea.getChildren().get(0)).getText().equals("testInt=0"));
+			assertTrue( "text of stereotype label be equals to "+ST_LEFT+"stereotype1"+ST_RIGHT ,((TextFlowEx)textarea.getChildren().get(0)).getText().equals("testInt=0"));
 		}
 	}
 

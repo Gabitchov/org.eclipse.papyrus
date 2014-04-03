@@ -68,7 +68,10 @@ import org.junit.Test;
  */
 public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 
+	protected static final String ST_LEFT = String.valueOf("\u00AB");
 
+	protected static final String ST_RIGHT = String.valueOf("\u00BB");
+	
 	private static final String TEST_PROFILE_STEREOTYPE1 = "testProfile::Stereotype1";
 
 	@Test
@@ -242,8 +245,8 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			//get the label
 			org.eclipse.draw2d.Label stereotypeLabel=((ClassifierFigure)nodePlate.getChildren().get(0)).getStereotypesLabel();
 			assertTrue( "stereotype label must be not null" ,stereotypeLabel!=null);
-			assertTrue( "text of stereotype label be equals to «stereotype1» " ,stereotypeLabel.getText().equals("«stereotype1»"));
-		}
+			assertTrue( "text of stereotype label be equals to "+ST_LEFT+"stereotype1"+ST_RIGHT ,stereotypeLabel.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
+			}
 
 		{//test about the layout
 			org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure nodePlate=(org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure)((BorderedNodeFigure)classEditPart.getFigure()).getChildren().get(0);
@@ -269,7 +272,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The label of the Class has not the good Y coordinate",stereotypelabelClass.getBounds().y==3);
 			assertTrue("The label of the Class has not the good width coordinate",stereotypelabelClass.getBounds().width==200);
 			assertTrue("The label of the Class has not the good heightcoordinate",stereotypelabelClass.getBounds().height==15);
-			assertTrue("The label of the Class does not display «stereotype1»",stereotypelabelClass.getText().equals("«stereotype1»"));
+			assertTrue("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
 
 
 			//wrappingLabel for name
@@ -373,7 +376,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The label of the Class has not the good Y coordinate",stereotypelabelClass.getBounds().y==3);
 			assertTrue("The label of the Class has not the good width coordinate",stereotypelabelClass.getBounds().width==200);
 			assertTrue("The label of the Class has not the good heightcoordinate",stereotypelabelClass.getBounds().height==15);
-			assertTrue("The label of the Class does not display «stereotype1»",stereotypelabelClass.getText().equals("«stereotype1»"));
+			assertTrue("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
 
 
 			//wrappingLabel for name
@@ -594,7 +597,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			//get the label
 			org.eclipse.draw2d.Label stereotypeLabel=((ClassifierFigure)nodePlate.getChildren().get(0)).getStereotypesLabel();
 			assertTrue( "stereotype label must be not null" ,stereotypeLabel!=null);
-			assertTrue( "text of stereotype label be equals to «stereotype1» " ,stereotypeLabel.getText().equals("«stereotype1»"));
+			assertTrue( "text of stereotype label be equals to "+ST_LEFT+"stereotype1"+ST_RIGHT ,stereotypeLabel.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
 		}
 
 		{//test about the layout
@@ -621,7 +624,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The label of the Class has not the good Y coordinate",stereotypelabelClass.getBounds().y==3);
 			assertTrue("The label of the Class has not the good width coordinate",stereotypelabelClass.getBounds().width==200);
 			assertTrue("The label of the Class has not the good heightcoordinate",stereotypelabelClass.getBounds().height==15);
-			assertTrue("The label of the Class does not display «stereotype1»",stereotypelabelClass.getText().equals("«stereotype1»"));
+			assertTrue("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
 
 
 			//wrappingLabel for name
@@ -725,7 +728,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The label of the Class has not the good Y coordinate",stereotypelabelClass.getBounds().y==3);
 			assertTrue("The label of the Class has not the good width coordinate",stereotypelabelClass.getBounds().width==200);
 			assertTrue("The label of the Class has not the good heightcoordinate",stereotypelabelClass.getBounds().height==15);
-			assertTrue("The label of the Class does not display «stereotype1»",stereotypelabelClass.getText().equals("«stereotype1»"));
+			assertTrue("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
 
 
 			//wrappingLabel for name
