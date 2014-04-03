@@ -21,7 +21,8 @@ Require-Bundle: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.0.0",
  org.eclipse.papyrus.marte.vsl;bundle-version="1.0.0",
  org.eclipse.papyrus.marte.vsl.ui;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="1.0.0"
+ org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
