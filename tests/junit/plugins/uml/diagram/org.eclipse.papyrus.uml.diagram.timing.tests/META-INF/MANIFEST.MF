@@ -24,5 +24,5 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.timing.tests.Activat
  or
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.timing.tests
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 
