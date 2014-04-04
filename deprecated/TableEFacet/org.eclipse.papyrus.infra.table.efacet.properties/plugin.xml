@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><?eclipse version="3.4"?>
-<plugin>
-<extension point="org.eclipse.papyrus.views.properties.context"><context contextModel="/propertyView/papyrustable/papyrustable.ctx"/></extension>
-<extension
-      point="org.eclipse.papyrus.views.properties.environment">
-   <environment
-         environmentModel="propertyView/environment.xmi">
-   </environment>
-</extension></plugin>

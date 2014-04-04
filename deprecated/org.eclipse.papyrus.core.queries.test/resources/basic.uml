@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_VkWgoc-4Ed-U3ZF7RVMhSQ" name="Basic">
-  <packagedElement xmi:type="uml:Class" xmi:id="_Lu5-EdLwEd-6TavSQh_bww" name="BasicClass"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_MTK9sdaeEd-FMq7PqN83sg" name="SecondClass"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_zPKCoNbJEd-FMq7PqN83sg" name="ThirdBasicClass"/>
-</uml:Model>

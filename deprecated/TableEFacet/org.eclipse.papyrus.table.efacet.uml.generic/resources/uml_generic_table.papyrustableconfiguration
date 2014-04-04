@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration:PapyrusTableConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet" xmlns:org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration="http://www.eclipse.org/Papyrus/PapyrusTableConfiguration/0.9.0/papyrustableconfiguration">
-  <tableConfiguration>
-  </tableConfiguration>
-</org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration:PapyrusTableConfiguration>

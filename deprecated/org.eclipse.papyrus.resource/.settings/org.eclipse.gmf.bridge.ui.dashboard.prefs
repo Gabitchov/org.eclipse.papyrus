@@ -1,7 +1,0 @@
-#Thu Oct 01 11:12:06 CEST 2009
-eclipse.preferences.version=1
-gmf_dashboard/domainGenerationModel=platform\:/resource/org.eclipse.papyrus.sysml/model/SysML.profile.genmodel
-gmf_dashboard/domainModel=platform\:/resource/org.eclipse.papyrus.sysml/model/sysml.ecore
-gmf_dashboard/graphicalDefinitionModel=platform\:/resource/org.eclipse.papyrus.sysml/model/sysml.gmfgraph
-gmf_dashboard/mappingModel=platform\:/resource/org.eclipse.papyrus.sysml/model/sysm1.gmfmap
-gmf_dashboard/toolingDefinitionModel=platform\:/resource/org.eclipse.papyrus.sysml/model/sysml.gmftool
