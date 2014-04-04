@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?NLS TYPE="org.eclipse.help.toc"?>
-
-<toc link_to="../org.eclipse.papyrus.doc/toc.xml#PapyrusDocDev" label="Papyrus 1.12 to Papyrus MDT diagram conversion" >
-	<topic label="Diagram conversion from Papyrus 1.12" href="doc/TutorialConversion.html#devGuide"/>
-</toc>
-
