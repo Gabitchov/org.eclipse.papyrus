@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.tests.sysml.feature" label="Tests SysML Feature (Incubation)" provider-name="Eclipse Modeling Project" version="1.0.0.qualifier">
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.tests.sysml.feature"
+      label="Tests SysML Feature (Incubation)"
+      version="1.0.0.qualifier"
+      provider-name="Eclipse Modeling Project">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -12,8 +17,27 @@
       [Enter License Description here.]
    </license>
 
-   <plugin download-size="0" fragment="true" id="org.eclipse.papyrus.sysml.service.types.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.sysml.service.types.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.sysml.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.sysml.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.sysml.modelexplorer.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
 
 </feature>
