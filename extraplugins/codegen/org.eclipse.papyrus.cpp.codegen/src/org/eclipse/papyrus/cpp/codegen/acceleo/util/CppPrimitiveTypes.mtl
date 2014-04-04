@@ -22,8 +22,8 @@
 [template public CppPrimitiveTypeDefinition(primitiveType : PrimitiveType)]
 [CppElementDoc()/]
 [if (hasStereotype(Typedef))]
-typedef [getApplication(Typedef).oclAsType(Typedef).definition.replaceAll('typeName', primitiveType.name)
-	/][if (not getApplication(Typedef).oclAsType(Typedef).definition.contains('typeName'))] [primitiveType.name/][/if];
+typedef [getApplication(Typedef).oclAsType(Typedef).definition.oclAsType(String).replaceAll('typeName', primitiveType.name)
+	/][if (not getApplication(Typedef).oclAsType(Typedef).definition.oclAsType(String).contains('typeName'))] [primitiveType.name/][/if];
 [else]
 [getStdtypes(primitiveType)/];
 [/if]
