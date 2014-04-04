@@ -9,10 +9,15 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - add support for conditional tests
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils.classification;
 
+import java.lang.annotation.Annotation;
+import java.util.Arrays;
+import java.util.List;
+
+import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.junit.utils.rules.ConditionRule;
 import org.eclipse.papyrus.junit.utils.rules.Conditional;
 import org.junit.runner.Description;
@@ -38,14 +43,16 @@ import org.junit.runners.model.InitializationError;
 public class ClassificationRunner extends BlockJUnit4ClassRunner {
 
 	private final ThreadLocal<Object> preparedTest = new ThreadLocal<Object>();
-	
+
 	public ClassificationRunner(Class<?> klass) throws InitializationError {
 		super(klass);
 	}
 
 	@Override
 	protected void runChild(FrameworkMethod method, RunNotifier notifier) {
-		if(ClassificationConfig.shouldRun(method.getAnnotations()) && conditionSatisfied(method)) {
+		List<Annotation> allAnnotations = ListHelper.asList(method.getAnnotations());
+		allAnnotations.addAll(Arrays.asList(method.getMethod().getDeclaringClass().getAnnotations()));
+		if(ClassificationConfig.shouldRun(allAnnotations.toArray(new Annotation[allAnnotations.size()])) && conditionSatisfied(method)) {
 			super.runChild(method, notifier);
 		} else {
 			Description description = describeChild(method);
@@ -66,22 +73,22 @@ public class ClassificationRunner extends BlockJUnit4ClassRunner {
 
 		return result;
 	}
-	
+
 	protected final Object basicCreateTest() throws Exception {
 		return super.createTest();
 	}
-	
+
 	protected final Object prepareTest() throws Exception {
 		// Prepare the test instance and stash it to return on the next invocation
 		Object result = basicCreateTest();
 		preparedTest.set(result);
 		return result;
 	}
-	
+
 	protected final void clearPreparedTest() {
 		preparedTest.remove();
 	}
-	
+
 	private boolean conditionSatisfied(FrameworkMethod method) {
 		boolean result = true;
 
@@ -102,7 +109,7 @@ public class ClassificationRunner extends BlockJUnit4ClassRunner {
 				}
 			}
 		}
-		
+
 		return result;
 	}
 }

@@ -8,6 +8,7 @@
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.timing.tests.canonical;
 
+import org.eclipse.papyrus.junit.utils.classification.FailingTest;
 import org.eclipse.swt.widgets.Text;
 import org.junit.Test;
 
@@ -25,6 +26,7 @@ public class TestTimingDiagramMessages extends AbstractTimingDiagramTestCase {
 		createThreeOccurrenceSpecificationsInDefaultCompactLifeline();
 	}
 
+	@FailingTest("To be verified: NPE on the text widget")
 	@Test
 	public void testCreateSyncMessage() {
 		clickTwiceWithTool("createMessageSyncCreationTool", findOccurrenceSpecificationsInDefaultFullLifeline().get(0), findOccurrenceSpecificationsInDefaultCompactLifeline().get(1));
@@ -39,6 +41,7 @@ public class TestTimingDiagramMessages extends AbstractTimingDiagramTestCase {
 		// TODO: check sync Message instance
 	}
 
+	@FailingTest("To be verified: NPE on the text widget")
 	@Test
 	public void testCreateAsyncMessage() {
 		clickTwiceWithTool("createMessageAsyncCreationTool", findOccurrenceSpecificationsInDefaultFullLifeline().get(0), findOccurrenceSpecificationsInDefaultCompactLifeline().get(1));

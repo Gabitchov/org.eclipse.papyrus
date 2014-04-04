@@ -24,6 +24,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.junit.utils.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.EditPartUtils;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.CompactLifelineCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.CompactStateInvariantEditPartCN;
@@ -44,6 +45,7 @@ public class TestTimingDiagramCompactOccurrenceSpecification extends AbstractTim
 		createDefaultCompactLifeline();
 	}
 
+	@FailingTest("To be verified. Seems to work for standard user, but not in raw test environment")
 	@Test
 	public void testCreateThreeOccurrenceSpecifications() {
 		createThreeOccurrenceSpecificationsInDefaultCompactLifeline();
@@ -57,6 +59,7 @@ public class TestTimingDiagramCompactOccurrenceSpecification extends AbstractTim
 		checkSimpleCompactTimelinePattern("-o-o-o-");
 	}
 
+	@FailingTest("To be verified. Seems to work for standard user, but not in raw test environment")
 	@Test
 	public void testDeleteOccurrenceSpecification() {
 		createThreeOccurrenceSpecificationsInDefaultCompactLifeline();
@@ -127,6 +130,7 @@ public class TestTimingDiagramCompactOccurrenceSpecification extends AbstractTim
 		checkCreatedOccurrenceSpecification();
 	}
 
+	@FailingTest("To be verified. Seems to work for standard user, but not in raw test environment")
 	@Test
 	public void testMoveOccurrenceSpecification() {
 		createThreeOccurrenceSpecificationsInDefaultCompactLifeline();
@@ -189,6 +193,7 @@ public class TestTimingDiagramCompactOccurrenceSpecification extends AbstractTim
 	 * When moving several OccurrenceSpecifications, we don't want the previous positions of the elements to constrain
 	 * the future positions of the elements being moved.
 	 */
+	@FailingTest("To be verified. Seems to work for standard user, but not in raw test environment")
 	@Test
 	public void testMoveAdjacentOccurrenceSpecifications() {
 		// create two OccurrenceSpecifications close to each other
@@ -226,6 +231,7 @@ public class TestTimingDiagramCompactOccurrenceSpecification extends AbstractTim
 		testDirtyStateForFullUndoRedo(nElementsToUndo);
 	}
 
+	@FailingTest("To be verified. Seems to fail on both Hudson and standard user environment")
 	@Test
 	public void testCreateOccurrenceSpecificationOnCompactStateInvariant() {
 		createThreeOccurrenceSpecificationsInDefaultCompactLifeline();

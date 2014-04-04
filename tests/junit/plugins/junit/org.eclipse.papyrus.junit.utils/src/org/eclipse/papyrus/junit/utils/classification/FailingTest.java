@@ -16,21 +16,22 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+
 /**
- * Indicates that a test may fail because it is not properly implemented
- * (e.g. not compatible with Hudson, because it opens some blocking dialogs)
+ * Indicates that a test currently fails. It can be used to sort new (unidentified) regressions
+ * from known (reported) issues.
  *
  * This annotation must be used with the {@link ClassificationRule}
- *
+ * 
  * @author Camille Letavernier
  *
  */
 @Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface InvalidTest {
+public @interface FailingTest {
 
 	/**
-	 * A specific message explaining why this test may be invalid
+	 * A specific message explaining why this test is failing
 	 *
 	 * @return
 	 */

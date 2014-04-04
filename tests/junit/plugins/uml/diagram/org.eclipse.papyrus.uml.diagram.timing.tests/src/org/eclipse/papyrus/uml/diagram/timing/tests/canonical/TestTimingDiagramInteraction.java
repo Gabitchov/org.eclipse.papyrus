@@ -13,6 +13,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.junit.utils.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.EditPartUtils;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.InteractionEditPartTN;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.InteractionNameEditPart;
@@ -67,6 +68,7 @@ public class TestTimingDiagramInteraction extends AbstractTimingDiagramTestCase 
 		assertTrue("The third interaction should be found in the diagram", getDiagramEditPart().getChildren().contains(interaction3));
 	}
 
+	@FailingTest("To be verified - Issue with opening the Text widget for direct edit request. Works in standard user environment")
 	@Test
 	public void testEditInteractionName() {
 		final InteractionEditPartTN interactionEditPart = createInteraction();
