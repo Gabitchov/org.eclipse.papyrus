@@ -13,11 +13,9 @@ package org.eclipse.papyrus.infra.gmfdiag.css.dialog;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Assert;
@@ -27,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -51,8 +48,6 @@ import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
@@ -76,6 +71,14 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  */
 public class CSSThemeEditionDialog extends Dialog {
 
+
+
+	/** Id of down button. */
+	private static final int DOWN_BUTTON_ID = 18;
+
+	/** Id of up button. */
+	private static final int UP_BUTTON_ID = 17;
+
 	/** ID of delete button. */
 	private static final int DELETE_BUTTON_ID = 15;
 
@@ -85,6 +88,9 @@ public class CSSThemeEditionDialog extends Dialog {
 	/** ID of browse buton. */
 	private static final int BROWSE_BUTTON_ID = 16;
 
+	/** Array of all id's buttons which were added in dialog. */
+	private static int[] actionIdList = new int[]{ DOWN_BUTTON_ID, UP_BUTTON_ID, DELETE_BUTTON_ID, ADD_BUTTON_ID, BROWSE_BUTTON_ID };
+
 	/** Title for add action dialog. */
 	private static final String ADD_DIALOG_TITLE = "Style sheets selection";
 
@@ -93,6 +99,15 @@ public class CSSThemeEditionDialog extends Dialog {
 
 	/** Icon for add action button. */
 	private static final Image ADD_ICON = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "icons/Add_12x12.gif").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
+
+	/** Icon for up action button. */
+	private static final Image UP_ICON = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "icons/Up_12x12.gif").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
+
+	/** Icon for down action button. */
+	private static final Image DOWN_ICON = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "icons/Down_12x12.gif").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
+
+	/** Text for style sheets list label. */
+	private static final String STYLE_SHEETS_LABEL = "Style sheets";
 
 	/** Text for browse button. */
 	private static final String BROWSE_BUTTON_LABEL = "Browse...";
@@ -118,19 +133,17 @@ public class CSSThemeEditionDialog extends Dialog {
 	/** Workspace themes from preference file. */
 	private WorkspaceThemes workspaceThemes = null;
 
-	/** Map of button actions. */
-	private Map<Integer, Button> buttonsMap = new HashMap<Integer, Button>();
-
 	/** Initial selection in workspace. */
 	private List<StyleSheet> selectedStyleSheetsList = null;
 
 	/** Viewer for style sheets of current theme. */
 	private TreeViewer themeStyleSheetsViewer = null;
 
+
 	/** Current edited theme. */
 	private Theme currentTheme = null;
 
-	/**  */
+	/** Label provider for different composites. */
 	private LabelProvider labelProvider = null;
 
 
@@ -203,11 +216,12 @@ public class CSSThemeEditionDialog extends Dialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite container = (Composite)super.createDialogArea(parent);
-		container.setLayout(new GridLayout(4, false));
+		container.setLayout(new GridLayout(2, false));
 
 		createEditedThemeComposite(container);
 		createThemeLabelPart(container);
 		createThemeIconPart(container);
+		createTreeActionButtons(container);
 		createThemeStyleSheetsPart(container);
 
 		refreshDialogContent(null);
@@ -225,7 +239,7 @@ public class CSSThemeEditionDialog extends Dialog {
 
 		// Label for combo of themes
 		Label themeLabel = new Label(parent, SWT.NONE);
-		themeLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
+		themeLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 		themeLabel.setText(THEME_COMBO_LABEL);
 
 		// Create a combo so that user can choice theme to edit
@@ -305,7 +319,7 @@ public class CSSThemeEditionDialog extends Dialog {
 
 		comboViewer.setInput(workspaceThemes.getThemes());
 		Combo combo = comboViewer.getCombo();
-		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 	}
 
 	/**
@@ -318,12 +332,12 @@ public class CSSThemeEditionDialog extends Dialog {
 
 		// Create label for label field
 		Label themeNameLabel = new Label(parent, SWT.NONE);
-		themeNameLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
+		themeNameLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 		themeNameLabel.setText(THEME_NAME_LABEL);
 
 		// Add theme label field
 		themeLabelField = new Text(parent, SWT.BORDER);
-		GridData gd_text = new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1);
+		GridData gd_text = new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1);
 		themeLabelField.setLayoutData(gd_text);
 	}
 
@@ -335,24 +349,13 @@ public class CSSThemeEditionDialog extends Dialog {
 	 */
 	private void createThemeIconPart(Composite parent) {
 		Label iconLabel = new Label(parent, SWT.NONE);
-		iconLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
+		iconLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 		iconLabel.setText(THEME_ICON_LABEL);
 
 		iconPathfield = new Text(parent, SWT.BORDER);
 		iconPathfield.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
-		Button browseButton = new Button(parent, SWT.NONE);
-		browseButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
-		browseButton.setText(BROWSE_BUTTON_LABEL);
-		browseButton.setData(new Integer(16));
-		browseButton.addSelectionListener(new SelectionAdapter() {
-
-			@Override
-			public void widgetSelected(SelectionEvent event) {
-				buttonPressed(((Integer)event.widget.getData()).intValue());
-			}
-		});
-		buttonsMap.put(BROWSE_BUTTON_ID, browseButton);
+		createButton(parent, BROWSE_BUTTON_ID, BROWSE_BUTTON_LABEL, false);
 	}
 
 	/**
@@ -413,7 +416,7 @@ public class CSSThemeEditionDialog extends Dialog {
 		Tree tree = themeStyleSheetsViewer.getTree();
 		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 
-		createTreeActionButtons(parent);
+
 	}
 
 	/**
@@ -423,45 +426,68 @@ public class CSSThemeEditionDialog extends Dialog {
 	 *        Composite where action buttons will be added
 	 */
 	private void createTreeActionButtons(Composite parent) {
+		Label labelViewer = new Label(parent, SWT.NONE);
+		labelViewer.setText(STYLE_SHEETS_LABEL);
+
 		Composite buttonsPanel = new Composite(parent, SWT.NONE);
 		buttonsPanel.setLayout(new GridLayout());
-		buttonsPanel.setLayoutData(new GridData(SWT.CENTER, SWT.FILL, false, false));
+		buttonsPanel.setLayoutData(new GridData(SWT.RIGHT, SWT.FILL, true, false, 2, 1));
 
-
-		createActionButton(buttonsPanel, ADD_BUTTON_ID, ADD_ICON);
-		createActionButton(buttonsPanel, DELETE_BUTTON_ID, DELETE_ICON);
+		createButton(buttonsPanel, ADD_BUTTON_ID, ADD_ICON, false);
+		createButton(buttonsPanel, DELETE_BUTTON_ID, DELETE_ICON, false);
+		createButton(buttonsPanel, UP_BUTTON_ID, UP_ICON, false);
+		createButton(buttonsPanel, DOWN_BUTTON_ID, DOWN_ICON, false);
 
 	}
 
 
 	/**
+	 * Override method to create a button with an icon and no label.
 	 * 
-	 * Create a button with an ID and an icon.
+	 * @see org.eclipse.jface.dialogs.Dialog#createButton(Composite, int, String, boolean)
 	 * 
 	 * @param parent
-	 *        Composite where button will be added
 	 * @param id
-	 *        Id of the button
 	 * @param icon
-	 *        Icon to set to button
+	 * @return
 	 */
-	private void createActionButton(Composite parent, int id, Image icon) {
-
-		Button button = new Button(parent, SWT.PUSH);
-		button.setFont(JFaceResources.getDialogFont());
-		button.setData(new Integer(id));
+	protected Button createButton(Composite parent, int id, Image icon, boolean defaultButton) {
+		Button button = super.createButton(parent, id, "", defaultButton);
 		button.setImage(icon);
-		button.addSelectionListener(new SelectionAdapter() {
+		return button;
+	}
 
-			@Override
-			public void widgetSelected(SelectionEvent event) {
-				buttonPressed(((Integer)event.widget.getData()).intValue());
-			}
-		});
+	/**
+	 * 
+	 * Override method to define specific data layout for own dialog's buttons.
+	 * 
+	 * @see org.eclipse.jface.dialogs.Dialog#setButtonLayoutData(org.eclipse.swt.widgets.Button)
+	 *
+	 * @param button
+	 */
+	@Override
+	protected void setButtonLayoutData(Button button) {
 
+		// Determine id of button
+		Object data = button.getData();
+		int buttonId = -1;
+		if(data instanceof Integer) {
+			buttonId = (Integer)data;
+		}
 
-		button.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
-		buttonsMap.put(id, button);
+		//Filter specific button to set data layout
+		switch(buttonId) {
+		case ADD_BUTTON_ID:
+		case DELETE_BUTTON_ID:
+		case UP_BUTTON_ID:
+		case DOWN_BUTTON_ID:
+			button.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+			break;
+		default:
+			super.setButtonLayoutData(button);
+			break;
+		}
+
 
 	}
 
@@ -529,6 +555,58 @@ public class CSSThemeEditionDialog extends Dialog {
 
 
 	/**
+	 * Move up the selected style sheet in list.
+	 */
+	private void upAction() {
+
+		// Handle selection to extract selected style sheet
+		ISelection selection = themeStyleSheetsViewer.getSelection();
+		if(selection instanceof IStructuredSelection) {
+			Object selectedElement = ((IStructuredSelection)selection).getFirstElement();
+
+			if(selectedElement instanceof StyleSheet) {
+
+				// Get index of selected style sheet in list
+				EList<StyleSheet> stylesheetsList = currentTheme.getStylesheets();
+				int index = stylesheetsList.indexOf(selectedElement);
+
+				// Check if selected style sheet is not at top of list
+				if(index > 0) {
+					stylesheetsList.move(--index, (StyleSheet)selectedElement);
+					themeStyleSheetsViewer.setInput(stylesheetsList);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Move down the selected style sheet in list.
+	 */
+	private void downAction() {
+
+		// Handle selection to extract selected style sheet
+		ISelection selection = themeStyleSheetsViewer.getSelection();
+
+		if(selection instanceof IStructuredSelection) {
+			Object selectedElement = ((IStructuredSelection)selection).getFirstElement();
+
+			if(selectedElement instanceof StyleSheet) {
+
+				// Get index of selected style sheet in list
+				EList<StyleSheet> stylesheetsList = currentTheme.getStylesheets();
+				int index = stylesheetsList.indexOf(selectedElement);
+
+				// Check if selected style sheet is not at bottom of list
+				if(index < stylesheetsList.size() - 1) {
+					stylesheetsList.move(++index, (StyleSheet)selectedElement);
+					themeStyleSheetsViewer.setInput(stylesheetsList);
+				}
+			}
+		}
+	}
+
+
+	/**
 	 * Fill style sheets viewer with selected style sheets.
 	 * 
 	 * @param result
@@ -555,8 +633,6 @@ public class CSSThemeEditionDialog extends Dialog {
 	 *        Current theme
 	 */
 	private void refreshTreeviewer(Theme currentTheme) {
-
-
 
 		if(currentTheme != null) {
 
@@ -598,19 +674,23 @@ public class CSSThemeEditionDialog extends Dialog {
 	 * Update state of dialog buttons.
 	 * 
 	 * @param currentTheme
-	 *        Selected theme which determine state of differrent buttons.
+	 *        Selected theme which determine state of different buttons.
 	 */
 	private void updateButtons(Theme currentTheme) {
 		boolean editionEnable = currentTheme != null;
-		for(int buttonId : buttonsMap.keySet()) {
+
+		for(int buttonId : actionIdList) {
 			switch(buttonId) {
 			case ADD_BUTTON_ID:
 			case BROWSE_BUTTON_ID:
-				buttonsMap.get(buttonId).setEnabled(editionEnable);
+				getButton(buttonId).setEnabled(editionEnable);
 				break;
 			case DELETE_BUTTON_ID:
-				buttonsMap.get(buttonId).setEnabled(editionEnable && !currentTheme.getStylesheets().isEmpty());
+				getButton(buttonId).setEnabled(editionEnable && !currentTheme.getStylesheets().isEmpty());
 				break;
+			case UP_BUTTON_ID:
+			case DOWN_BUTTON_ID:
+				getButton(buttonId).setEnabled(editionEnable && (currentTheme.getStylesheets().size() > 1));
 			default:
 				break;
 			}
@@ -691,11 +771,17 @@ public class CSSThemeEditionDialog extends Dialog {
 			break;
 		case BROWSE_BUTTON_ID:
 			browseIconAction();
+			break;
+		case UP_BUTTON_ID:
+			upAction();
+			break;
+		case DOWN_BUTTON_ID:
+			downAction();
+			break;
 		default:
 			super.buttonPressed(buttonId);
 		}
 	}
-
 
 
 
