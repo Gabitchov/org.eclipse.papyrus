@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -38,7 +41,7 @@ import org.junit.Test;
 /**
  * Cannot reduce dimensions of Behavior Execution Specification box. The minimal height is 20.
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=384572
- * 
+ *
  */
 public class TestExecutionSpecificationDimension_384572 extends TestTopNode {
 
@@ -58,7 +61,7 @@ public class TestExecutionSpecificationDimension_384572 extends TestTopNode {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Test
 	public void testResizeActionExecutionNorth() {
 		resizeNorth(UMLElementTypes.ActionExecutionSpecification_3006);

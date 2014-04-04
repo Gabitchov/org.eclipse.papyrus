@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.pro20130916;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -22,6 +24,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.junit.Before;
 import org.junit.Test;
 
 
@@ -34,12 +37,12 @@ public class TimeConstraintStereotypesTest extends BaseStereotypesTest {
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7.AbstractNodeTest#setUp()
-	 * 
+	 *
 	 * @throws Exception
 	 */
-
+	@Before
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		EditPart lifeline = createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
 		AbstractExecutionSpecificationEditPart es = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, new Point(131, 100), null);

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,11 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.tests.canonical;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +40,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * The Class TestLinkWithParent  use to test link between elements with parent.
+ * The Class TestLinkWithParent use to test link between elements with parent.
  */
 public abstract class TestLinkWithParent extends TestLink {
 
@@ -94,7 +99,7 @@ public abstract class TestLinkWithParent extends TestLink {
 	/**
 	 * @see org.eclipse.papyrus.diagram.tests.canonical.TestLink#installEnvironment(org.eclipse.gmf.runtime.emf.type.core.IElementType,
 	 *      org.eclipse.gmf.runtime.emf.type.core.IElementType)
-	 * 
+	 *
 	 * @param sourceType
 	 * @param targetType
 	 */
@@ -118,14 +123,14 @@ public abstract class TestLinkWithParent extends TestLink {
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		// FIXME : get(0) : header; get(1) : container
 		List<GraphicalEditPart> children = parent.getChildren();
-		source = (GraphicalEditPart)children.get(2);
+		source = children.get(2);
 	}
 
 
 
 	/**
 	 * Check that the link is impossible to create
-	 * 
+	 *
 	 * @param sourceType
 	 *        the source type
 	 * @param targetType
@@ -144,7 +149,7 @@ public abstract class TestLinkWithParent extends TestLink {
 	 * @see org.eclipse.papyrus.diagram.tests.canonical.TestLink#testToManageLink(org.eclipse.gmf.runtime.emf.type.core.IElementType,
 	 *      org.eclipse.gmf.runtime.emf.type.core.IElementType, org.eclipse.gmf.runtime.emf.type.core.IElementType,
 	 *      org.eclipse.gmf.runtime.emf.type.core.IElementType, boolean)
-	 * 
+	 *
 	 * @param sourceType
 	 * @param targetType
 	 * @param linkType
@@ -187,7 +192,7 @@ public abstract class TestLinkWithParent extends TestLink {
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.tests.canonical.TestLink#testToCreateALink(org.eclipse.gmf.runtime.emf.type.core.IElementType)
-	 * 
+	 *
 	 * @param linkType
 	 */
 
@@ -216,7 +221,7 @@ public abstract class TestLinkWithParent extends TestLink {
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.tests.canonical.TestLink#testDestroy(org.eclipse.gmf.runtime.emf.type.core.IElementType)
-	 * 
+	 *
 	 * @param type
 	 */
 
@@ -249,7 +254,7 @@ public abstract class TestLinkWithParent extends TestLink {
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.tests.canonical.TestLink#testViewDeletion(org.eclipse.gmf.runtime.emf.type.core.IElementType)
-	 * 
+	 *
 	 * @param type
 	 */
 
@@ -276,7 +281,7 @@ public abstract class TestLinkWithParent extends TestLink {
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.tests.canonical.TestLink#testDrop(org.eclipse.gmf.runtime.emf.type.core.IElementType)
-	 * 
+	 *
 	 * @param type
 	 */
 
@@ -313,7 +318,7 @@ public abstract class TestLinkWithParent extends TestLink {
 
 	/**
 	 * test the drop of a link where the source and the target are the same objects.
-	 * 
+	 *
 	 * @param linkType
 	 *        the link type
 	 * @param allowed
@@ -352,7 +357,7 @@ public abstract class TestLinkWithParent extends TestLink {
 
 	/**
 	 * test the creation of a link where the source and the target are the same objects.
-	 * 
+	 *
 	 * @param linkType
 	 *        the link type
 	 * @param allowed

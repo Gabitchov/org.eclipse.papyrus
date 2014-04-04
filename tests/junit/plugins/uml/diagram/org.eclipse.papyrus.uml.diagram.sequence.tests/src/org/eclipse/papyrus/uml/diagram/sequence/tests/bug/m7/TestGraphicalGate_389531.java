@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,11 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -52,7 +57,7 @@ import org.junit.Test;
 /**
  * Graphical Presentation of Gate with In/Out
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
- * 
+ *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class TestGraphicalGate_389531 extends AbstractNodeTest {
@@ -174,7 +179,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 
 	/**
 	 * Create a Gate on given type parent.
-	 * 
+	 *
 	 * @param parentType
 	 * @param parentLocation
 	 * @param parentSize
@@ -197,6 +202,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		return es;
 	}
 
+	@Override
 	protected EditPart createNode(IElementType type, EditPart parentPart, Point location, Dimension size) {
 		EditPart editPart = super.createNode(type, parentPart, location, size);
 		assertNotNull("create failed: " + type.getDisplayName(), editPart);

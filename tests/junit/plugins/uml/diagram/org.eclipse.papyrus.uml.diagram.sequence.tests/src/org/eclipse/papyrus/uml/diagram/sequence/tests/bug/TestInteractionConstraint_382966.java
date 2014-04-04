@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Collections;
 
@@ -55,7 +58,7 @@ import org.junit.Test;
  * Minint and Maxint values are allways visible on the diagram, even when the guard of a loop combined fragment is deleted and also when these values
  * are not defined. This interval shall not appear on the diagram when it is not defined in the model.
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=382966
- * 
+ *
  */
 public class TestInteractionConstraint_382966 extends TestTopNode {
 
@@ -65,7 +68,7 @@ public class TestInteractionConstraint_382966 extends TestTopNode {
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return ISequenceDiagramTestsConstants.PROJECT_NAME;
@@ -94,7 +97,7 @@ public class TestInteractionConstraint_382966 extends TestTopNode {
 			}
 		}, true);
 		waitForComplete();
-		
+
 		//introduced a guard edit part for displaying operand label.
 		WrappingLabel label = op instanceof CustomInteractionOperandEditPart ? ((CustomInteractionOperandEditPart)op).getInteractionConstraintLabel() : op.getPrimaryShape().getInteractionConstraintLabel();
 		assertTrue(TEST_THE_EXECUTION, label.getText().equals(""));
@@ -118,7 +121,7 @@ public class TestInteractionConstraint_382966 extends TestTopNode {
 			}
 		}, true);
 		waitForComplete();
-		
+
 		WrappingLabel label = op instanceof CustomInteractionOperandEditPart ? ((CustomInteractionOperandEditPart)op).getInteractionConstraintLabel() : op.getPrimaryShape().getInteractionConstraintLabel();
 		assertTrue(TEST_THE_EXECUTION, label.getText().equals(""));
 	}
@@ -126,7 +129,7 @@ public class TestInteractionConstraint_382966 extends TestTopNode {
 
 	/**
 	 * Execute a EMF command without history
-	 * 
+	 *
 	 * @param editingDomain
 	 *        The editing domain
 	 * @param command

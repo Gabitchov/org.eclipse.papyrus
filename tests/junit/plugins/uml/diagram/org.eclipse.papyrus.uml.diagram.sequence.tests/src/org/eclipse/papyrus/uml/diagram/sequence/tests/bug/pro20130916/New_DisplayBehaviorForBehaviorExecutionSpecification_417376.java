@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,11 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.pro20130916;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
@@ -33,12 +38,13 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.junit.Before;
 import org.junit.Test;
 
 
 /**
  * Display behavior as a label: https://bugs.eclipse.org/bugs/show_bug.cgi?id=417376
- * 
+ *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class New_DisplayBehaviorForBehaviorExecutionSpecification_417376 extends AbstractNodeTest {
@@ -108,12 +114,12 @@ public class New_DisplayBehaviorForBehaviorExecutionSpecification_417376 extends
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7.AbstractNodeTest#setUp()
-	 * 
+	 *
 	 * @throws Exception
 	 */
-
+	@Before
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		EditPart lifeline = createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull("lifeline", lifeline);

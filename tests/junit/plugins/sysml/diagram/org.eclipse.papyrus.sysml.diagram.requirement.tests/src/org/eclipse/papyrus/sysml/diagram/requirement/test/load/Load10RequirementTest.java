@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,9 @@
  *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
  /*****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.test.load;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -44,7 +47,7 @@ public class Load10RequirementTest extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test to create a node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */

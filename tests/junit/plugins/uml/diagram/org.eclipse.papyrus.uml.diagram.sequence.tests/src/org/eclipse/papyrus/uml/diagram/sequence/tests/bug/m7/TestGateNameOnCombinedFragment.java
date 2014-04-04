@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,10 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -47,7 +51,7 @@ import org.junit.Test;
 
 /**
  * Test the name of a Gate which created automatically on CombinedFragment when adding a Message.
- * 
+ *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
@@ -185,6 +189,7 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 		return null;
 	}
 
+	@Override
 	protected EditPart createLink(IElementType elementType, EditPartViewer currentViewer, Point startLocation, EditPart sourceEditPart, Point endLocation, EditPart targetEditPart) {
 		final EditPart linkEditPart = super.createLink(elementType, currentViewer, startLocation, sourceEditPart, endLocation, targetEditPart);
 		if(linkEditPart instanceof AbstractMessageEditPart) {
@@ -207,7 +212,7 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 		label.translateToAbsolute(b);
 		req.setLocation(b.getCenter());
 		req.getExtendedData().put(SequenceRequestConstant.DIRECT_EDIT_AFTER_CREATION, true);
-//		messageEditPart.performRequest(req);
+		//		messageEditPart.performRequest(req);
 
 		waitForComplete();
 
@@ -215,7 +220,7 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 		Control control = messageEditPart.getViewer().getControl();
 		control.setFocus();
 		Control focusControl = control.getDisplay().getFocusControl();
-		
+
 		waitForComplete();
 	}
 
@@ -228,7 +233,7 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 		GateEditPart gateEditPart = createGate(cfEditPart, new Point(cfBounds.right() - 1, cfBounds.y + cfBounds.height / 2));
 		assertNotNull("Gate on CombinedFragment creation", gateEditPart);
 
-		Gate gate = (Gate)((GateEditPart)gateEditPart).resolveSemanticElement();
+		Gate gate = (Gate)gateEditPart.resolveSemanticElement();
 		changeName(getEditingDomain(), gate, gateName);
 		assertEquals("Check gate name when creation", gateName, gate.getLabel());
 		//2. Create Lifeline

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,8 +9,12 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -55,10 +59,10 @@ public class AbstractTestActivityAffixedChildNode extends AbstractPapyrusTestCas
 	protected String getFileName() {
 		return IActivityDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Before
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		projectCreation();
 
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
@@ -68,7 +72,7 @@ public class AbstractTestActivityAffixedChildNode extends AbstractPapyrusTestCas
 
 	/**
 	 * Test to create a node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -96,7 +100,7 @@ public class AbstractTestActivityAffixedChildNode extends AbstractPapyrusTestCas
 
 	/**
 	 * Test view deletion.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -125,7 +129,7 @@ public class AbstractTestActivityAffixedChildNode extends AbstractPapyrusTestCas
 
 	/**
 	 * Test destroy.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -153,7 +157,7 @@ public class AbstractTestActivityAffixedChildNode extends AbstractPapyrusTestCas
 
 	/**
 	 * Test drop.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -186,7 +190,7 @@ public class AbstractTestActivityAffixedChildNode extends AbstractPapyrusTestCas
 
 	/**
 	 * Test to manage child node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType

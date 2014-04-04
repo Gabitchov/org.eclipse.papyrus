@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.tests.canonical;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -84,7 +87,7 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.c
 
 	/**
 	 * Test view deletion.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -121,7 +124,7 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.c
 
 	/**
 	 * Test destroy.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -158,7 +161,7 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.c
 
 	/**
 	 * Test drop.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -199,7 +202,7 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.c
 
 	/**
 	 * Test change container.
-	 * 
+	 *
 	 * @param topNodeType
 	 *        the top node type
 	 * @param type
@@ -260,7 +263,7 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.c
 
 	/**
 	 * Test to create a node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -295,7 +298,7 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.c
 
 	/**
 	 * Test to create a top node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -315,7 +318,7 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.c
 
 	/**
 	 * Gets the top edit part.
-	 * 
+	 *
 	 * @return the top edit part
 	 */
 	public GraphicalEditPart getTopEditPart() {
@@ -324,7 +327,7 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.c
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#getRootSemanticModel()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -335,7 +338,7 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.c
 
 	/**
 	 * Test to manage top node.
-	 * 
+	 *
 	 * @param topNodeType
 	 *        the top node type
 	 * @param type

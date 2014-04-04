@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,11 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -46,23 +51,12 @@ import org.eclipse.ui.part.IPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class TestGuardVisibility_402966 extends AbstractNodeTest {
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7.AbstractNodeTest#setUp()
-	 * 
-	 * @throws Exception
-	 */
-	@Before
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
 
 	@Override
 	protected String getProjectName() {
@@ -73,7 +67,7 @@ public class TestGuardVisibility_402966 extends AbstractNodeTest {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Test
 	public void testPreferencePage() {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();

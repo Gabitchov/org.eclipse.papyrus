@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.pro20130916;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
@@ -20,8 +22,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.junit.Before;
 import org.junit.Test;
-
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -38,12 +40,12 @@ public class InteractionStereotypesTest extends BaseStereotypesTest {
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7.AbstractNodeTest#setUp()
-	 * 
+	 *
 	 * @throws Exception
 	 */
-
+	@Before
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		interaction = (InteractionEditPart)getRootEditPart().getParent();
 		assertNotNull(interaction);

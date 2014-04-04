@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,10 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.test.canonical;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -41,7 +45,7 @@ import org.junit.Test;
  * test in order to verify if the drop respect the order of the selection
  * Create an enumeration, create subenumerationliterals, select them, drop into the diagram
  * the order of enumeration list has to be the same that as the list in the request drop.
- * 
+ *
  */
 public class TestDropfunction extends TestChildLabel {
 
@@ -101,7 +105,7 @@ public class TestDropfunction extends TestChildLabel {
 
 	/**
 	 * Test drop.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType

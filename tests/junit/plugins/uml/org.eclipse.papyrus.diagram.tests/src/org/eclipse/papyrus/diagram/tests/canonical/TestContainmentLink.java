@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.tests.canonical;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.ConnectionEditPart;
@@ -34,7 +37,7 @@ public abstract class TestContainmentLink extends TestLink {
 
 	/**
 	 * Test view deletion.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -65,7 +68,7 @@ public abstract class TestContainmentLink extends TestLink {
 
 	/**
 	 * Test destroy.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -96,7 +99,7 @@ public abstract class TestContainmentLink extends TestLink {
 
 	/**
 	 * Test drop.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -112,7 +115,7 @@ public abstract class TestContainmentLink extends TestLink {
 
 	/**
 	 * Test to create a link.
-	 * 
+	 *
 	 * @param linkType
 	 *        the type
 	 */
@@ -217,7 +220,7 @@ public abstract class TestContainmentLink extends TestLink {
 
 	/**
 	 * Test to manage top node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType

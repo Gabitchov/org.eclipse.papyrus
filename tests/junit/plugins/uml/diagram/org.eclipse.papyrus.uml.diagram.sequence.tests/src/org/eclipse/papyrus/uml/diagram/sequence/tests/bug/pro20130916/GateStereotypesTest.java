@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.pro20130916;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -24,8 +27,8 @@ import org.eclipse.gef.requests.CreationFactory;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.uml2.uml.Gate;
+import org.junit.Before;
 import org.junit.Test;
-
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -36,12 +39,12 @@ public class GateStereotypesTest extends BaseStereotypesTest {
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7.AbstractNodeTest#setUp()
-	 * 
+	 *
 	 * @throws Exception
 	 */
-
+	@Before
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		gate = createGate(getRootEditPart().getParent(), new Point(0, 100));
 		assertNotNull(gate);

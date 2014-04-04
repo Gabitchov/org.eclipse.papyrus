@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,12 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.pro20130916;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.junit.Before;
 import org.junit.Test;
 
 
@@ -31,12 +34,12 @@ public class TimeObservationStereotypesTest extends BaseStereotypesTest {
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7.AbstractNodeTest#setUp()
-	 * 
+	 *
 	 * @throws Exception
 	 */
-
+	@Before
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		timeObservation = (TimeObservationEditPart)createNode(UMLElementTypes.TimeObservation_3020, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(timeObservation);

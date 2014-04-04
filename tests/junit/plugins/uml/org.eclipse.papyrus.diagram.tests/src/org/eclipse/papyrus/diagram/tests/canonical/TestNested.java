@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.tests.canonical;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -34,7 +37,7 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 
 	/**
 	 * Test to create a nested classifier node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -69,7 +72,7 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 
 	/**
 	 * Test to create a node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -107,7 +110,7 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 
 	/**
 	 * Gets the root semantic modelchild.
-	 * 
+	 *
 	 * @return the root semantic modelchild
 	 */
 	private Element getRootSemanticModelchild() {
@@ -116,7 +119,7 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 
 	/**
 	 * Test to create a top node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -136,7 +139,7 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 
 	/**
 	 * Gets the top edit part.
-	 * 
+	 *
 	 * @return the top edit part
 	 */
 	public GraphicalEditPart getTopEditPart() {
@@ -145,7 +148,7 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 
 	/**
 	 * Gets the Child edit part.
-	 * 
+	 *
 	 * @return the Child edit part
 	 */
 	public GraphicalEditPart getChildEditPart() {
@@ -154,7 +157,7 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#getRootSemanticModel()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -164,7 +167,7 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 
 	/**
 	 * Test to manage top node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType

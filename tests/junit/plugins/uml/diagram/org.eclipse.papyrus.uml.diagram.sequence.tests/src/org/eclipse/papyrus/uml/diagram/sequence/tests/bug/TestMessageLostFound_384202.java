@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.AbstractPointListShape;
 import org.eclipse.draw2d.Connection;
@@ -50,7 +53,7 @@ import org.junit.Test;
 /**
  * Within the sequence diagram editor, it not possible to model lost message,found message or general ordering.
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=384202
- * 
+ *
  */
 public class TestMessageLostFound_384202 extends TestLink {
 
@@ -68,7 +71,7 @@ public class TestMessageLostFound_384202 extends TestLink {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Test
 	public void testMessageFound() {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
@@ -180,7 +183,7 @@ public class TestMessageLostFound_384202 extends TestLink {
 
 	/**
 	 * Get the extremity of a connection edit part
-	 * 
+	 *
 	 * @param connection
 	 *        the connection edit part to find extremity
 	 * @param isStart

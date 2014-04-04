@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.pro20130916;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
@@ -23,10 +25,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7.AbstractNodeTest;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.junit.Test;
 
-
 /**
  * Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=417373
- * 
+ *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class Fixbug_EditorCrashesWhenMovingGeneralOrdering_417373 extends AbstractNodeTest {

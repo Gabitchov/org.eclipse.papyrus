@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
@@ -74,7 +77,7 @@ public class TestAdvancedDragDrop_364696 extends TestTopNode {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Override
 	protected void projectCreation() {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
