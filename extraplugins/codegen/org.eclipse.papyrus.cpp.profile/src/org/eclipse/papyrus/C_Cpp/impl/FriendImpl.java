@@ -13,16 +13,12 @@
 package org.eclipse.papyrus.C_Cpp.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.C_Cpp.C_CppPackage;
 import org.eclipse.papyrus.C_Cpp.Friend;
-
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Operation;
 
@@ -40,7 +36,7 @@ import org.eclipse.uml2.uml.Operation;
  *
  * @generated
  */
-public class FriendImpl extends EObjectImpl implements Friend {
+public class FriendImpl extends MinimalEObjectImpl.Container implements Friend {
 	/**
 	 * The cached value of the '{@link #getBase_dependency() <em>Base dependency</em>}' reference.
 	 * <!-- begin-user-doc -->

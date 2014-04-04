@@ -49,7 +49,7 @@
          <adviceBinding
                class="org.eclipse.papyrus.infra.emf.advice.DeletePageAdvice"
                id="org.eclipse.papyrus.infra.emf.deletePageAdvice"
-               inheritance="none"
+               inheritance="all"
                typeId="*">
          </adviceBinding>
          <metamodelType
@@ -75,9 +75,6 @@
          <elementType
                ref="org.eclipse.papyrus.infra.emf.page">
          </elementType>
-      </binding>
-      <binding
-            context="org.eclipse.gmf.runtime.emf.type.core.defaultContext">
          <elementType
                ref="org.eclipse.papyrus.infra.emf.deletePageAdvice">
          </elementType>

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,30 +17,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.ExpressionValueRule;
 import org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.StereotypeApplicationRule;
 import org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.StereotypeApplicationsRule;
 import org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.TagSpecificationRule;
 import org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.internal.StereotypeApplicationWithVSLActivator;
-import org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.validation.SemanticValidator;
 import org.eclipse.papyrus.marte.vsl.extensions.VSLSerializationUtil;
 import org.eclipse.papyrus.marte.vsl.ui.contentassist.VSLProposalUtils;
 import org.eclipse.papyrus.marte.vsl.vSL.CollectionOrTuple;
 import org.eclipse.papyrus.marte.vsl.vSL.Expression;
 import org.eclipse.papyrus.marte.vsl.vSL.NameOrChoiceOrBehaviorCall;
 import org.eclipse.papyrus.marte.vsl.validation.VSLJavaValidator;
+import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.NamedElement;
@@ -54,81 +52,11 @@ import com.google.inject.Injector;
 
 /**
  * @author CEA LIST
- * 
- * 
+ *
+ *
  */
-public class StereotypeApplicationPopupEditorConfigurationContribution extends PopupEditorConfiguration {
+public class StereotypeApplicationPopupEditorConfigurationContribution extends DefaultXtextDirectEditorConfiguration implements ICustomDirectEditorConfiguration {
 
-	private Element stereotypedElement = null;
-
-	private StereotypeApplicationsRule stereotypeApplicationsObject = null;
-
-	private Injector injector = null;
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#createPopupEditorHelper(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
-	 */
-
-	@Override
-	public IPopupEditorHelper createPopupEditorHelper(Object editPart) {
-
-		// resolves the edit part, and the associated semantic element
-		IGraphicalEditPart graphicalEditPart = null;
-		if(!(editPart instanceof IGraphicalEditPart)) {
-			return null;
-		}
-		graphicalEditPart = (IGraphicalEditPart)editPart;
-
-		if(!(graphicalEditPart.resolveSemanticElement() instanceof Element)) {
-			return null;
-		}
-		stereotypedElement = (Element)graphicalEditPart.resolveSemanticElement();
-
-		// initializes VSL editor
-		VSLJavaValidator.init(stereotypedElement);
-
-		// retrieves the XText injector
-		injector = StereotypeApplicationWithVSLActivator.getInstance().getInjector("org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.StereotypeApplicationWithVSL");
-		//VSLJavaValidator.eInstance = injector.getInstance(VSLJavaValidator.class) ;
-
-		// builds the text content and extension for a temporary file, to be edited by the xtext editor
-		String textToEdit = "" + this.getTextToEdit(graphicalEditPart.resolveSemanticElement());
-		String fileExtension = "" + ".StereotypeApplicationWithVSL";
-
-		// builds a new IXtextEMFReconciler.
-		// Its purpose is to extract any relevant information from the textual specification,
-		// and then merge it in the context UML model if necessary
-		IXtextEMFReconciler reconciler = new IXtextEMFReconciler() {
-
-			public void reconcile(EObject modelObject, EObject xtextObject) {
-				// first: retrieves / determines if the xtextObject is a TransitionRule object
-				EObject modifiedObject = xtextObject;
-				if(!(modelObject instanceof Element)) {
-					return;
-				}
-				while(xtextObject != null && !(xtextObject instanceof StereotypeApplicationsRule)) {
-					modifiedObject = modifiedObject.eContainer();
-				}
-				if(modifiedObject == null) {
-					return;
-				}
-				stereotypeApplicationsObject = (StereotypeApplicationsRule)xtextObject;
-
-				// Creates and executes the update command
-				UpdateStereotypeApplicationsCommand updateCommand = new UpdateStereotypeApplicationsCommand(stereotypedElement);
-
-				try {
-					OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
-				} catch (ExecutionException e) {
-					System.out.println(e);
-				}
-			}
-		};
-		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension, new SemanticValidator());
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -234,12 +162,14 @@ public class StereotypeApplicationPopupEditorConfigurationContribution extends P
 
 	/**
 	 * @author CEA LIST
-	 * 
+	 *
 	 *         A command for updating the context UML model
 	 */
 	protected class UpdateStereotypeApplicationsCommand extends AbstractTransactionalCommand {
 
 		private Element stereotypedElement;
+
+		private StereotypeApplicationsRule stereotypeApplicationsObject;
 
 		/*
 		 * (non-Javadoc)
@@ -335,9 +265,37 @@ public class StereotypeApplicationPopupEditorConfigurationContribution extends P
 			return CommandResult.newOKCommandResult(stereotypedElement);
 		}
 
-		public UpdateStereotypeApplicationsCommand(Element stereotypedElement) {
-			super(EditorUtils.getTransactionalEditingDomain(), "Stereotype Applications Update", getWorkspaceFiles(stereotypedElement));
+		public UpdateStereotypeApplicationsCommand(Element stereotypedElement, StereotypeApplicationsRule stereotypeApplicationsObject) {
+			super((TransactionalEditingDomain)EMFHelper.resolveEditingDomain(stereotypedElement), "Stereotype Applications Update", getWorkspaceFiles(stereotypedElement));
 			this.stereotypedElement = stereotypedElement;
+			this.stereotypeApplicationsObject = stereotypeApplicationsObject;
 		}
+	}
+
+	@Override
+	public Injector getInjector() {
+		return StereotypeApplicationWithVSLActivator.getInstance().getInjector(StereotypeApplicationWithVSLActivator.ORG_ECLIPSE_PAPYRUS_MARTE_TEXTEDIT_STEREOTYPEAPPLICATIONWITHVSL_XTEXT_STEREOTYPEAPPLICATIONWITHVSL);
+	}
+
+	@Override
+	protected ICommand getParseCommand(EObject modelObject, EObject xtextObject) {
+		// first: retrieves / determines if the xtextObject is a TransitionRule object
+		EObject modifiedObject = xtextObject;
+		if(!(modelObject instanceof Element)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		while(xtextObject != null && !(xtextObject instanceof StereotypeApplicationsRule)) {
+			modifiedObject = modifiedObject.eContainer();
+		}
+		if(modifiedObject == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
+		Element stereotypedElement = (Element)modelObject;
+		StereotypeApplicationsRule stereotypeApplicationsObject = (StereotypeApplicationsRule)xtextObject;
+
+		// Creates and executes the update command
+		UpdateStereotypeApplicationsCommand updateCommand = new UpdateStereotypeApplicationsCommand(stereotypedElement, stereotypeApplicationsObject);
+		return updateCommand;
 	}
 }
