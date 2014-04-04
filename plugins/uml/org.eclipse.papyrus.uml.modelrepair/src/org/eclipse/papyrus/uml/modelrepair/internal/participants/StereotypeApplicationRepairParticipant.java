@@ -13,7 +13,6 @@
 package org.eclipse.papyrus.uml.modelrepair.internal.participants;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -25,8 +24,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -35,7 +34,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.infra.emf.resource.IDependencyReplacementParticipant;
 import org.eclipse.papyrus.infra.emf.resource.Replacement;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -233,33 +231,10 @@ public class StereotypeApplicationRepairParticipant extends PackageOperations im
 		}
 
 		@Override
-		protected EClass getTarget(EClass eClass) {
-			NamedElement namedElement = getNamedElement(eClass, profile);
-			NamedElement newNamedElement = getSameNamedElement(namedElement, profile);
-			EClass definition = (newNamedElement == null) ? null : (EClass)profile.getDefinition(newNamedElement);
-
-			if(definition != null) {
-				return definition;
-			} else {
-				String qname = (namedElement != null) ? getQualifiedName(namedElement) : getQualifiedName(eClass, NamedElement.SEPARATOR);
-				throw new IllegalStateException(String.format("Definition for stereotype/class '%s' not found in profile '%s'", //$NON-NLS-1$
-					qname, getQualifiedName(profile)));
-			}
-		}
-
-		@Override
-		protected EStructuralFeature getTarget(EStructuralFeature eStructuralFeature) {
-			NamedElement namedElement = getNamedElement(eStructuralFeature, profile);
-			NamedElement newNamedElement = getSameNamedElement(namedElement, profile);
-			EStructuralFeature definition = (newNamedElement == null) ? null : (EStructuralFeature)profile.getDefinition(newNamedElement);
-
-			if(definition != null) {
-				return definition;
-			} else {
-				String qname = (namedElement != null) ? getQualifiedName(namedElement) : getQualifiedName(eStructuralFeature, NamedElement.SEPARATOR);
-				throw new IllegalStateException(String.format("Definition for property '%s' not found in profile '%s'", //$NON-NLS-1$
-					qname, getQualifiedName(profile)));
-			}
+		protected ENamedElement getDefinition(NamedElement element) {
+			// Look for the same named element in the new profile (assuming that the incoming element
+			// is from the old profile) and get the Ecore definition of that
+			return super.getDefinition(getSameNamedElement(element, profile));
 		}
 
 		protected NamedElement getSameNamedElement(NamedElement namedElement, Package package_) {
@@ -270,155 +245,13 @@ public class StereotypeApplicationRepairParticipant extends PackageOperations im
 			return findNamedElement(package_, namedElement.getQualifiedName(), namedElement.eClass());
 		}
 
-		// FIXME: Add overrideable handleException() method to the superclass
 		@Override
-		protected void copyAttribute(EAttribute eAttribute, EObject eObject, EObject copyEObject) {
-
-			if(!eAttribute.isUnsettable() || eObject.eIsSet(eAttribute)) {
-
-				try {
-					if(eAttribute.getEType().eClass().getClassifierID() == EcorePackage.EENUM) {
-						copyEEnumAttribute(eAttribute, eObject, copyEObject);
-					} else {
-						copyEDataTypeAttribute(eAttribute, eObject, copyEObject);
-					}
-				} catch (Exception e) {
-					// target EClass does not have this attribute in the profile
-					if(diagnostics != null) {
-						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, e.getLocalizedMessage(), null));
-					}
-				}
-			}
-		}
-
-		// FIXME: Add overrideable handleException() method to the superclass
-		@Override
-		protected void copyContainment(EReference eReference, EObject eObject, EObject copyEObject) {
-
-			if(eObject.eIsSet(eReference)) {
-				Object value = eObject.eGet(eReference);
-
-				try {
-					EReference targetEReference = (EReference)getTarget(eReference);
-
-					if(targetEReference != null && targetEReference.isChangeable()) {
-
-						if(targetEReference.isMany()) {
-							@SuppressWarnings("unchecked")
-							EList<EObject> copyValues = (EList<EObject>)copyEObject.eGet(targetEReference);
-
-							if(eReference.isMany()) {
-								@SuppressWarnings("unchecked")
-								EList<EObject> values = (EList<EObject>)value;
-								copyValues.addAll(copyAll(values));
-							} else if(value != null) {
-								copyValues.add(copy((EObject)value));
-							}
-						} else {
-
-							if(eReference.isMany()) {
-								@SuppressWarnings("unchecked")
-								EList<EObject> values = (EList<EObject>)value;
-								copyEObject.eSet(targetEReference, copy(values.get(0)));
-							} else {
-								copyEObject.eSet(targetEReference, copy((EObject)value));
-							}
-						}
-					}
-				} catch (Exception e) {
-					// target EClass does not have this containment reference in the profile
-					if(diagnostics != null) {
-						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, e.getLocalizedMessage(), null));
-					}
-				}
-			}
-		}
-
-		// FIXME: Add overrideable handleException() method to the superclass
-		@Override
-		protected void copyReference(EReference eReference, EObject eObject, EObject copyEObject) {
-
-			if(eObject.eIsSet(eReference)) {
-				Object value = eObject.eGet(eReference);
-
-				try {
-					EReference targetEReference = (EReference)getTarget(eReference);
-
-					if(targetEReference != null && targetEReference.isChangeable()) {
-
-						if(targetEReference.isMany()) {
-							@SuppressWarnings("unchecked")
-							InternalEList<EObject> copyValues = (InternalEList<EObject>)copyEObject.eGet(targetEReference);
-
-							if(eReference.isMany()) {
-								EReference targetEOpposite = targetEReference.getEOpposite();
-								int index = 0;
-
-								@SuppressWarnings("unchecked")
-								Iterator<EObject> v = ((EList<EObject>)value).iterator();
-
-								while(v.hasNext()) {
-									value = v.next();
-									EObject copyValue = get(value);
-
-									if(copyValue == null) {
-
-										if(targetEOpposite == null) {
-											copyValues.addUnique(index++, (EObject)value);
-										}
-									} else {
-
-										if(targetEOpposite != null) {
-											int position = copyValues.indexOf(copyValue);
-
-											if(position == -1) {
-												copyValues.addUnique(index++, copyValue);
-											} else if(position != index) {
-												copyValues.move(index++, copyValue);
-											}
-										} else {
-											copyValues.addUnique(index++, copyValue);
-										}
-									}
-								}
-							} else if(value != null) {
-								EObject copyValue = get(value);
-
-								if(copyValue == null) {
-
-									if(targetEReference.getEOpposite() == null) {
-										copyValues.addUnique((EObject)value);
-									}
-								} else {
-									copyValues.addUnique(copyValue);
-								}
-							}
-						} else {
-
-							if(eReference.isMany()) {
-								@SuppressWarnings("unchecked")
-								EList<EObject> values = (EList<EObject>)value;
-								value = values.get(0);
-							}
-
-							Object copyValue = get(value);
-
-							if(copyValue == null) {
-
-								if(targetEReference.getEOpposite() == null) {
-									copyEObject.eSet(targetEReference, value);
-								}
-							} else {
-								copyEObject.eSet(targetEReference, copyValue);
-							}
-						}
-					}
-				} catch (Exception e) {
-					// target EClass does not have this reference in the profile
-					if(diagnostics != null) {
-						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, e.getLocalizedMessage(), null));
-					}
-				}
+		protected void handleException(Exception exception) {
+			// target EClass does not exist in the profile or target EClass does not have this attribute in the profile
+			if(diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, exception.getLocalizedMessage(), null));
+			} else {
+				super.handleException(exception);
 			}
 		}
 
