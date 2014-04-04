@@ -1,7 +1,0 @@
-# Tracing options for the org.eclipse.papyrus.sysml.diagram.blockdiagram plug-in
-
-# Common issues
-org.eclipse.papyrus.sysml.diagram.blockdiagram/debug=false
-
-# Visual IDs
-org.eclipse.papyrus.sysml.diagram.blockdiagram/debug/visualID=false
