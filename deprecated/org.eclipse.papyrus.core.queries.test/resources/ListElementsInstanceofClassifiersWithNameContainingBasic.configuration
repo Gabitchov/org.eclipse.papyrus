@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration:ModiscoQueryConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/core/queries/0.7" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="ListElementsInstanceofClassifiersWithNameContainingBasic" query="query:JavaModelQuery CoreQueriesTest.querySet#ListElementsInstanceofClassifiers">
-  <parameterValues xsi:type="configuration:QueryExecutionValue" parameter="CoreQueriesTest.querySet#elementList" configuration="configuration:ModiscoQueryConfiguration ListElementsWithNameBasic.configuration#/"/>
-</configuration:ModiscoQueryConfiguration>
