@@ -130,19 +130,60 @@ public class PortPositionLocator implements IBorderItemLocator {
 			realLocation.y = yMax;
 		}
 
+		//commented by V. Lorenzo to allow to create port on the top of a figure
+		//replaced by the next block of code
+		
 		// Ensure the port is positioned on its parent borders and not in the middle.
 		// Modify position if needed.
-		if((realLocation.y != yMin) && (realLocation.y != yMax)) {
-			if((realLocation.x != xMin) && (realLocation.x != xMax)) {
-
-				if(realLocation.x <= (xMin + (parentRec.width / 2))) {
-					realLocation.x = xMin;
-				} else {
-					realLocation.x = xMax;
-				}
-			}
+		//		if((realLocation.y != yMin) && (realLocation.y != yMax)) {
+		//			if((realLocation.x != xMin) && (realLocation.x != xMax)) {
+		//
+		//				if(realLocation.x <= (xMin + (parentRec.width / 2))) {
+		//					realLocation.x = xMin;
+		//				} else {
+		//					realLocation.x = xMax;
+		//				}
+		//			}
+		//		}
+		
+		//this code replaces the previous commented lines
+		final Rectangle maxRect = parentRec.getCopy();
+		maxRect.shrink(-borderItemOffset, -borderItemOffset);
+		while(maxRect.contains(realLocation.getLocation())) {
+			maxRect.shrink(1, 1);
 		}
-
+		int pos = maxRect.getPosition(realLocation.getLocation());
+		switch(pos) {
+		case PositionConstants.NORTH:
+			realLocation.y = yMin;
+			break;
+		case PositionConstants.SOUTH:
+			realLocation.y = yMax;
+			break;
+		case PositionConstants.EAST:
+			realLocation.x = xMax;
+			break;
+		case PositionConstants.WEST:
+			realLocation.x = xMin;
+			break;
+		case PositionConstants.NORTH_EAST:
+			realLocation.x = xMax;
+			realLocation.y = yMin;
+			break;
+		case PositionConstants.NORTH_WEST:
+			realLocation.x = xMin;
+			realLocation.y = yMin;
+			break;
+		case PositionConstants.SOUTH_EAST:
+			realLocation.x = xMax;
+			realLocation.y = yMax;
+			break;
+		case PositionConstants.SOUTH_WEST:
+			realLocation.x = xMin;
+			realLocation.y = yMax;
+			break;
+		}
+		
 		// Return constrained location
 		return realLocation;
 	}

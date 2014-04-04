@@ -332,6 +332,9 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 		}
 	}
 
+	/**a string used as key to register the initial position for creation in the parameters map of the CreateRequest*/
+	public static final String INITIAL_MOUSE_LOCATION_FOR_CREATION = "initialMouseLocationForCreation";
+	
 	/**
 	 * 
 	 * @see org.eclipse.gef.tools.CreationTool#updateTargetRequest()
@@ -340,6 +343,12 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	protected void updateTargetRequest() {
 		super.updateTargetRequest();
 		CreateRequest createRequest = getCreateRequest();
+		
+		//in some case with snap to grid, we need to know the real location (for affixed child node for example)
+		@SuppressWarnings("unchecked")
+		Map<Object, Object> params = createRequest.getExtendedData();
+		params.put(INITIAL_MOUSE_LOCATION_FOR_CREATION, getLocation());
+		
 		//see bug 427129: Figures newly created via the palette should be snapped to grid if "snap to grid" is activated
 		if(!isInState(STATE_DRAG_IN_PROGRESS) && !getCurrentInput().isModKeyDown(MODIFIER_NO_SNAPPING)) {
 			//allow to do a snap to grid for creation with one click
