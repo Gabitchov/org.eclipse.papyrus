@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -27,7 +27,6 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure
 public class AssociationClassDashedLinkEditPart extends ConnectionEditPart
 		implements ITreeBranchEditPart
 {
-
 	/**
 	 * @generated
 	 */
@@ -68,5 +67,4 @@ public class AssociationClassDashedLinkEditPart extends ConnectionEditPart
 	public SimpleDashedEdgeFigure getPrimaryShape() {
 		return (SimpleDashedEdgeFigure) getFigure();
 	}
-
 }

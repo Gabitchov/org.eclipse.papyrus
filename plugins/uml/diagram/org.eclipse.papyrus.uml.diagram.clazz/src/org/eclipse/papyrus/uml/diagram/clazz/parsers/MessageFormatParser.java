@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -30,7 +30,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
  * @generated
  */
 public class MessageFormatParser extends AbstractAttributeParser {
-
 	/**
 	 * @generated
 	 */
@@ -39,17 +38,14 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	 * @generated
 	 */
 	private String defaultEditablePattern;
-
 	/**
 	 * @generated
 	 */
 	private MessageFormat viewProcessor;
-
 	/**
 	 * @generated
 	 */
 	private MessageFormat editorProcessor;
-
 	/**
 	 * @generated
 	 */
@@ -201,5 +197,4 @@ public class MessageFormatParser extends AbstractAttributeParser {
 		EObject element = (EObject) adapter.getAdapter(EObject.class);
 		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
-
 }

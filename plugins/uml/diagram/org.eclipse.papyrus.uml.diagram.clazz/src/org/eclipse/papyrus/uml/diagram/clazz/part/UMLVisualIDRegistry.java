@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -30,7 +30,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class UMLVisualIDRegistry {
-
 	/**
 	 * @generated
 	 */
@@ -2053,5 +2052,4 @@ public class UMLVisualIDRegistry {
 			return org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
 		}
 	};
-
 }

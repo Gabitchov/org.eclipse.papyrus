@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -31,7 +31,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 public class AssociationEditPart extends AbstractAssociationEditPart
 		implements ITreeBranchEditPart
 {
-
 	/**
 	 * @generated
 	 */
@@ -62,26 +61,32 @@ public class AssociationEditPart extends AbstractAssociationEditPart
 		if (childEditPart instanceof AppliedStereotypeAssociationEditPart) {
 			((AppliedStereotypeAssociationEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeAssociationLabel());
+			return true;
 		}
 		if (childEditPart instanceof AssociationNameEditPart) {
 			((AssociationNameEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAssociationNameLabel());
+			return true;
 		}
 		if (childEditPart instanceof AssociationTargetNameEditPart) {
 			((AssociationTargetNameEditPart) childEditPart).setLabel(
 					getPrimaryShape().getRoleTargetLabel());
+			return true;
 		}
 		if (childEditPart instanceof AssociationSourceNameEditPart) {
 			((AssociationSourceNameEditPart) childEditPart).setLabel(
 					getPrimaryShape().getRoleSourceLabel());
+			return true;
 		}
 		if (childEditPart instanceof AssociationMultiplicitySourceEditPart) {
 			((AssociationMultiplicitySourceEditPart) childEditPart).setLabel(
 					getPrimaryShape().getMultiplicitySourceLabel());
+			return true;
 		}
 		if (childEditPart instanceof AssociationMultiplicityTargetEditPart) {
 			((AssociationMultiplicityTargetEditPart) childEditPart).setLabel(
 					getPrimaryShape().getMultiplicityTargetLabel());
+			return true;
 		}
 		return false;
 	}
@@ -149,5 +154,4 @@ public class AssociationEditPart extends AbstractAssociationEditPart
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure) getFigure();
 	}
-
 }

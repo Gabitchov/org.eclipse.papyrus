@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -30,7 +30,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 public class ContextLinkEditPart extends ConnectionEditPart
 		implements ITreeBranchEditPart
 {
-
 	/**
 	 * @generated
 	 */
@@ -60,6 +59,7 @@ public class ContextLinkEditPart extends ConnectionEditPart
 		if (childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
 			((ContextLinkAppliedStereotypeEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
+			return true;
 		}
 		return false;
 	}
@@ -112,5 +112,4 @@ public class ContextLinkEditPart extends ConnectionEditPart
 	public CustomContextLinkFigure getPrimaryShape() {
 		return (CustomContextLinkFigure) getFigure();
 	}
-
 }

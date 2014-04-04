@@ -1,16 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.composite.providers;
 
 import java.util.HashSet;
@@ -34,7 +32,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class UMLElementTypes {
-
 	/**
 	 * @generated
 	 */
@@ -45,612 +42,438 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	private static Map<IElementType, ENamedElement> elements;
-
 	/**
 	 * @generated
 	 */
 	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
-
 	/**
 	 * @generated
 	 */
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Package_1000 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Package_1000"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Activity_2060 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Activity_2060"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Interaction_2061 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Interaction_2061"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType ProtocolStateMachine_2062 = getElementType("org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_2062"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType StateMachine_2063 = getElementType("org.eclipse.papyrus.uml.diagram.composite.StateMachine_2063"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType FunctionBehavior_2064 = getElementType("org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_2064"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType OpaqueBehavior_2065 = getElementType("org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_2065"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Component_2069 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Component_2069"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Device_2070 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Device_2070"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType ExecutionEnvironment_2071 = getElementType("org.eclipse.papyrus.uml.diagram.composite.ExecutionEnvironment_2071"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_2072 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Node_2072"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Class_2073 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Class_2073"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Collaboration_2075 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Collaboration_2075"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Interface_2076 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Interface_2076"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType PrimitiveType_2066 = getElementType("org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_2066"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Enumeration_2067 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Enumeration_2067"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DataType_2068 = getElementType("org.eclipse.papyrus.uml.diagram.composite.DataType_2068"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Actor_2077 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Actor_2077"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DeploymentSpecification_2078 = getElementType("org.eclipse.papyrus.uml.diagram.composite.DeploymentSpecification_2078"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Artifact_2079 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Artifact_2079"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType InformationItem_2080 = getElementType("org.eclipse.papyrus.uml.diagram.composite.InformationItem_2080"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Signal_2081 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Signal_2081"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType UseCase_2082 = getElementType("org.eclipse.papyrus.uml.diagram.composite.UseCase_2082"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType SignalEvent_2083 = getElementType("org.eclipse.papyrus.uml.diagram.composite.SignalEvent_2083"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType CallEvent_2084 = getElementType("org.eclipse.papyrus.uml.diagram.composite.CallEvent_2084"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType AnyReceiveEvent_2085 = getElementType("org.eclipse.papyrus.uml.diagram.composite.AnyReceiveEvent_2085"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType ChangeEvent_2088 = getElementType("org.eclipse.papyrus.uml.diagram.composite.ChangeEvent_2088"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeEvent_2089 = getElementType("org.eclipse.papyrus.uml.diagram.composite.TimeEvent_2089"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationObservation_2093 = getElementType("org.eclipse.papyrus.uml.diagram.composite.DurationObservation_2093"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeObservation_2094 = getElementType("org.eclipse.papyrus.uml.diagram.composite.TimeObservation_2094"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType LiteralBoolean_2095 = getElementType("org.eclipse.papyrus.uml.diagram.composite.LiteralBoolean_2095"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType LiteralInteger_2096 = getElementType("org.eclipse.papyrus.uml.diagram.composite.LiteralInteger_2096"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType LiteralNull_2097 = getElementType("org.eclipse.papyrus.uml.diagram.composite.LiteralNull_2097"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType LiteralString_2098 = getElementType("org.eclipse.papyrus.uml.diagram.composite.LiteralString_2098"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType LiteralUnlimitedNatural_2099 = getElementType("org.eclipse.papyrus.uml.diagram.composite.LiteralUnlimitedNatural_2099"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType StringExpression_2100 = getElementType("org.eclipse.papyrus.uml.diagram.composite.StringExpression_2100"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType OpaqueExpression_2101 = getElementType("org.eclipse.papyrus.uml.diagram.composite.OpaqueExpression_2101"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeExpression_2102 = getElementType("org.eclipse.papyrus.uml.diagram.composite.TimeExpression_2102"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Expression_2103 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Expression_2103"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Duration_2104 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Duration_2104"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeInterval_2105 = getElementType("org.eclipse.papyrus.uml.diagram.composite.TimeInterval_2105"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationInterval_2106 = getElementType("org.eclipse.papyrus.uml.diagram.composite.DurationInterval_2106"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Interval_2107 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Interval_2107"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType InstanceValue_2108 = getElementType("org.eclipse.papyrus.uml.diagram.composite.InstanceValue_2108"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Comment_2109 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Comment_2109"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationConstraint_2110 = getElementType("org.eclipse.papyrus.uml.diagram.composite.DurationConstraint_2110"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeConstraint_2111 = getElementType("org.eclipse.papyrus.uml.diagram.composite.TimeConstraint_2111"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType IntervalConstraint_2112 = getElementType("org.eclipse.papyrus.uml.diagram.composite.IntervalConstraint_2112"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType InteractionConstraint_2113 = getElementType("org.eclipse.papyrus.uml.diagram.composite.InteractionConstraint_2113"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Constraint_2114 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Constraint_2114"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_3121 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Node_3121"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Port_3069 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Port_3069"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Parameter_3088 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Parameter_3088"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Property_3070 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Property_3070"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType ConnectableElement_3115 = getElementType("org.eclipse.papyrus.uml.diagram.composite.prototype.CollaborationRole_3115"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType CollaborationUse_3071 = getElementType("org.eclipse.papyrus.uml.diagram.composite.CollaborationUse_3071"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Activity_3072 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Activity_3072"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Interaction_3073 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Interaction_3073"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType ProtocolStateMachine_3074 = getElementType("org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_3074"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType StateMachine_3075 = getElementType("org.eclipse.papyrus.uml.diagram.composite.StateMachine_3075"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType FunctionBehavior_3076 = getElementType("org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_3076"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType OpaqueBehavior_3077 = getElementType("org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_3077"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Component_3081 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Component_3081"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Device_3082 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Device_3082"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType ExecutionEnvironment_3083 = getElementType("org.eclipse.papyrus.uml.diagram.composite.ExecutionEnvironment_3083"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_3084 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Node_3084"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Class_3085 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Class_3085"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Collaboration_3086 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Collaboration_3086"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Interface_3087 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Interface_3087"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType PrimitiveType_3078 = getElementType("org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_3078"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Enumeration_3079 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Enumeration_3079"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DataType_3080 = getElementType("org.eclipse.papyrus.uml.diagram.composite.DataType_3080"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Actor_3091 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Actor_3091"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DeploymentSpecification_3092 = getElementType("org.eclipse.papyrus.uml.diagram.composite.DeploymentSpecification_3092"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Artifact_3093 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Artifact_3093"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType InformationItem_3094 = getElementType("org.eclipse.papyrus.uml.diagram.composite.InformationItem_3094"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Signal_3095 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Signal_3095"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType UseCase_3096 = getElementType("org.eclipse.papyrus.uml.diagram.composite.UseCase_3096"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Comment_3097 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Comment_3097"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationConstraint_3116 = getElementType("org.eclipse.papyrus.uml.diagram.composite.DurationConstraint_3116"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeConstraint_3117 = getElementType("org.eclipse.papyrus.uml.diagram.composite.TimeConstraint_3117"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType IntervalConstraint_3118 = getElementType("org.eclipse.papyrus.uml.diagram.composite.IntervalConstraint_3118"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType InteractionConstraint_3119 = getElementType("org.eclipse.papyrus.uml.diagram.composite.InteractionConstraint_3119"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Constraint_3120 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Constraint_3120"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Property_3101 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Property_3101"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Operation_3102 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Operation_3102"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Reception_3100 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Reception_3100"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType EnumerationLiteral_3066 = getElementType("org.eclipse.papyrus.uml.diagram.composite.EnumerationLiteral_3066"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Activity_3103 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Activity_3103"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Interaction_3104 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Interaction_3104"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ProtocolStateMachine_3105 = getElementType("org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_3105"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType StateMachine_3106 = getElementType("org.eclipse.papyrus.uml.diagram.composite.StateMachine_3106"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType FunctionBehavior_3107 = getElementType("org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_3107"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType OpaqueBehavior_3108 = getElementType("org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_3108"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Collaboration_3109 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Collaboration_3109"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Interface_3110 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Interface_3110"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Enumeration_3111 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Enumeration_3111"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType PrimitiveType_3112 = getElementType("org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_3112"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType DataType_3113 = getElementType("org.eclipse.papyrus.uml.diagram.composite.DataType_3113"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Class_3114 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Class_3114"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Link_4022 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Link_4022"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Link_4001 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Link_4001"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType CommentAnnotatedElement_4002 = getElementType("org.eclipse.papyrus.uml.diagram.composite.CommentAnnotatedElement_4002"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType ConstraintConstrainedElement_4003 = getElementType("org.eclipse.papyrus.uml.diagram.composite.ConstraintConstrainedElement_4003"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType ComponentRealization_4004 = getElementType("org.eclipse.papyrus.uml.diagram.composite.ComponentRealization_4004"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType InterfaceRealization_4005 = getElementType("org.eclipse.papyrus.uml.diagram.composite.InterfaceRealization_4005"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Substitution_4011 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Substitution_4011"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Realization_4006 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Realization_4006"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Manifestation_4012 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Manifestation_4012"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Abstraction_4007 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Abstraction_4007"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Usage_4008 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Usage_4008"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Deployment_4009 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Deployment_4009"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Dependency_4017 = getElementType("org.eclipse.papyrus.uml.diagram.composite.RoleBinding_4017"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Dependency_4010 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Dependency_4010"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Connector_4013 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Connector_4013"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Generalization_4015 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Generalization_4015"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeObservationEvent_4018 = getElementType("org.eclipse.papyrus.uml.diagram.composite.TimeObservationEvent_4018"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationObservationEvent_4019 = getElementType("org.eclipse.papyrus.uml.diagram.composite.DurationObservationEvent_4019"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType InformationItemRepresented_4020 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Representation_4020"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -689,9 +512,9 @@ public class UMLElementTypes {
 	 * 
 	 * @generated
 	 */
-	public static ENamedElement getElement(IAdaptable hint) {
+	public static synchronized ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
-		if(elements == null) {
+		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 			elements.put(Activity_2060, UMLPackage.eINSTANCE.getActivity());
@@ -778,20 +601,7 @@ public class UMLElementTypes {
 			elements.put(Constraint_3120, UMLPackage.eINSTANCE.getConstraint());
 			elements.put(Property_3101, UMLPackage.eINSTANCE.getProperty());
 			elements.put(Operation_3102, UMLPackage.eINSTANCE.getOperation());
-			elements.put(Reception_3100, UMLPackage.eINSTANCE.getReception());
 			elements.put(EnumerationLiteral_3066, UMLPackage.eINSTANCE.getEnumerationLiteral());
-			elements.put(Activity_3103, UMLPackage.eINSTANCE.getActivity());
-			elements.put(Interaction_3104, UMLPackage.eINSTANCE.getInteraction());
-			elements.put(ProtocolStateMachine_3105, UMLPackage.eINSTANCE.getProtocolStateMachine());
-			elements.put(StateMachine_3106, UMLPackage.eINSTANCE.getStateMachine());
-			elements.put(FunctionBehavior_3107, UMLPackage.eINSTANCE.getFunctionBehavior());
-			elements.put(OpaqueBehavior_3108, UMLPackage.eINSTANCE.getOpaqueBehavior());
-			elements.put(Collaboration_3109, UMLPackage.eINSTANCE.getCollaboration());
-			elements.put(Interface_3110, UMLPackage.eINSTANCE.getInterface());
-			elements.put(Enumeration_3111, UMLPackage.eINSTANCE.getEnumeration());
-			elements.put(PrimitiveType_3112, UMLPackage.eINSTANCE.getPrimitiveType());
-			elements.put(DataType_3113, UMLPackage.eINSTANCE.getDataType());
-			elements.put(Class_3114, UMLPackage.eINSTANCE.getClass_());
 			elements.put(CommentAnnotatedElement_4002, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 			elements.put(ConstraintConstrainedElement_4003, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 			elements.put(ComponentRealization_4004, UMLPackage.eINSTANCE.getComponentRealization());
@@ -811,7 +621,7 @@ public class UMLElementTypes {
 			elements.put(InformationItemRepresented_4020, UMLPackage.eINSTANCE.getInformationItem_Represented());
 			elements.put(InformationFlow_4021, UMLPackage.eINSTANCE.getInformationFlow());
 		}
-		return (ENamedElement)elements.get(type);
+		return (ENamedElement) elements.get(type);
 	}
 
 	/**
@@ -824,8 +634,8 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static boolean isKnownElementType(IElementType elementType) {
-		if(KNOWN_ELEMENT_TYPES == null) {
+	public static synchronized boolean isKnownElementType(IElementType elementType) {
+		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Package_1000);
 			KNOWN_ELEMENT_TYPES.add(Activity_2060);
@@ -913,20 +723,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Constraint_3120);
 			KNOWN_ELEMENT_TYPES.add(Property_3101);
 			KNOWN_ELEMENT_TYPES.add(Operation_3102);
-			KNOWN_ELEMENT_TYPES.add(Reception_3100);
 			KNOWN_ELEMENT_TYPES.add(EnumerationLiteral_3066);
-			KNOWN_ELEMENT_TYPES.add(Activity_3103);
-			KNOWN_ELEMENT_TYPES.add(Interaction_3104);
-			KNOWN_ELEMENT_TYPES.add(ProtocolStateMachine_3105);
-			KNOWN_ELEMENT_TYPES.add(StateMachine_3106);
-			KNOWN_ELEMENT_TYPES.add(FunctionBehavior_3107);
-			KNOWN_ELEMENT_TYPES.add(OpaqueBehavior_3108);
-			KNOWN_ELEMENT_TYPES.add(Collaboration_3109);
-			KNOWN_ELEMENT_TYPES.add(Interface_3110);
-			KNOWN_ELEMENT_TYPES.add(Enumeration_3111);
-			KNOWN_ELEMENT_TYPES.add(PrimitiveType_3112);
-			KNOWN_ELEMENT_TYPES.add(DataType_3113);
-			KNOWN_ELEMENT_TYPES.add(Class_3114);
 			KNOWN_ELEMENT_TYPES.add(Link_4022);
 			KNOWN_ELEMENT_TYPES.add(Link_4001);
 			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4002);
@@ -955,7 +752,7 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static IElementType getElementType(int visualID) {
-		switch(visualID) {
+		switch (visualID) {
 		case CompositeStructureDiagramEditPart.VISUAL_ID:
 			return Package_1000;
 		case ActivityCompositeEditPart.VISUAL_ID:
@@ -1128,34 +925,8 @@ public class UMLElementTypes {
 			return Property_3101;
 		case OperationEditPartCLN.VISUAL_ID:
 			return Operation_3102;
-		case ReceptionEditPartCLN.VISUAL_ID:
-			return Reception_3100;
 		case EnumerationLiteralEditPartCLN.VISUAL_ID:
 			return EnumerationLiteral_3066;
-		case ActivityEditPartCLN.VISUAL_ID:
-			return Activity_3103;
-		case InteractionEditPartCLN.VISUAL_ID:
-			return Interaction_3104;
-		case ProtocolStateMachineEditPartCLN.VISUAL_ID:
-			return ProtocolStateMachine_3105;
-		case StateMachineEditPartCLN.VISUAL_ID:
-			return StateMachine_3106;
-		case FunctionBehaviorEditPartCLN.VISUAL_ID:
-			return FunctionBehavior_3107;
-		case OpaqueBehaviorEditPartCLN.VISUAL_ID:
-			return OpaqueBehavior_3108;
-		case CollaborationEditPartCLN.VISUAL_ID:
-			return Collaboration_3109;
-		case InterfaceEditPartCLN.VISUAL_ID:
-			return Interface_3110;
-		case EnumerationEditPartCLN.VISUAL_ID:
-			return Enumeration_3111;
-		case PrimitiveTypeEditPartCLN.VISUAL_ID:
-			return PrimitiveType_3112;
-		case DataTypeEditPartCLN.VISUAL_ID:
-			return DataType_3113;
-		case ClassEditPartCLN.VISUAL_ID:
-			return Class_3114;
 		case BehaviorPortLinkEditPart.VISUAL_ID:
 			return Link_4022;
 		case LinkDescriptorEditPart.VISUAL_ID:
@@ -1204,10 +975,10 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(elementTypeImages) {
-
 		/**
 		 * @generated
 		 */
+		@Override
 		public boolean isKnownElementType(IElementType elementType) {
 			return org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.isKnownElementType(elementType);
 		}
@@ -1215,6 +986,7 @@ public class UMLElementTypes {
 		/**
 		 * @generated
 		 */
+		@Override
 		public IElementType getElementTypeForVisualId(int visualID) {
 			return org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.getElementType(visualID);
 		}
@@ -1222,6 +994,7 @@ public class UMLElementTypes {
 		/**
 		 * @generated
 		 */
+		@Override
 		public ENamedElement getDefiningNamedElement(IAdaptable elementTypeAdapter) {
 			return org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.getElement(elementTypeAdapter);
 		}

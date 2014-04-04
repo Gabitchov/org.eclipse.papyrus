@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -31,7 +31,6 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFi
 public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
 		implements ITreeBranchEditPart
 {
-
 	/**
 	 * @generated
 	 */
@@ -62,10 +61,12 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof AppliedStereotypeInterfaceRealizationEditPart) {
 			((AppliedStereotypeInterfaceRealizationEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
+			return true;
 		}
 		if (childEditPart instanceof InterfaceRealizationNameEditPart) {
 			((InterfaceRealizationNameEditPart) childEditPart).setLabel(
 					getPrimaryShape().getNameLabel());
+			return true;
 		}
 		return false;
 	}
@@ -121,5 +122,4 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
 	public InterfaceRealizationFigure getPrimaryShape() {
 		return (InterfaceRealizationFigure) getFigure();
 	}
-
 }

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -35,7 +35,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class ReceptionInInterfaceCreateCommand extends EditElementCommand {
-
+	/**
+	 * @generated
+	 */
 	private Diagram diagram = null;
 
 	/**
@@ -62,20 +64,16 @@ public class ReceptionInInterfaceCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		EObject target = getElementToEdit();
 		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getReception());
 		return data.isPermitted();
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		Reception newElement = UMLFactory.eINSTANCE.createReception();
-
 		EObject target = getElementToEdit();
 		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
 		if (data.isPermitted()) {
@@ -83,20 +81,15 @@ public class ReceptionInInterfaceCreateCommand extends EditElementCommand {
 				if (!data.execute(target, newElement))
 					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
 			} else {
-
 				Interface qualifiedTarget = (Interface) target;
 				qualifiedTarget.getOwnedReceptions()
 						.add(newElement);
-
 			}
 		} else {
 			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
 		}
-
 		ElementInitializers.getInstance().init_Reception_3039(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -114,5 +107,4 @@ public class ReceptionInInterfaceCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

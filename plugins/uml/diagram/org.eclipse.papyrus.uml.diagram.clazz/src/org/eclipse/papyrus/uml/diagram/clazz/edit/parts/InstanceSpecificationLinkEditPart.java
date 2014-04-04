@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -28,7 +28,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.InstanceSpecification
 public class InstanceSpecificationLinkEditPart extends ConnectionEditPart
 		implements ITreeBranchEditPart
 {
-
 	/**
 	 * @generated
 	 */
@@ -57,10 +56,12 @@ public class InstanceSpecificationLinkEditPart extends ConnectionEditPart
 		if (childEditPart instanceof SourceISLinkLabelEditPart) {
 			((SourceISLinkLabelEditPart) childEditPart).setLabel(
 					getPrimaryShape().getSourceLabel());
+			return true;
 		}
 		if (childEditPart instanceof TargetISLinkLabelEditPart) {
 			((TargetISLinkLabelEditPart) childEditPart).setLabel(
 					getPrimaryShape().getTargetLabel());
+			return true;
 		}
 		return false;
 	}
@@ -116,5 +117,4 @@ public class InstanceSpecificationLinkEditPart extends ConnectionEditPart
 	public InstanceSpecificationLinkFigure getPrimaryShape() {
 		return (InstanceSpecificationLinkFigure) getFigure();
 	}
-
 }

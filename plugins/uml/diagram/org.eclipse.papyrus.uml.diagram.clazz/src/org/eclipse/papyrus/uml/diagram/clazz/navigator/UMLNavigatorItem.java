@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.notation.View;
  * @generated
  */
 public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
-
 	/**
 	 * @generated
 	 */
@@ -29,7 +28,6 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 		@SuppressWarnings("rawtypes")
 		final Class[] supportedTypes = new Class[] { View.class, EObject.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
-
 			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem && (adapterType == View.class || adapterType == EObject.class)) {
@@ -44,12 +42,10 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 			}
 		}, org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem.class);
 	}
-
 	/**
 	 * @generated
 	 */
 	private View myView;
-
 	/**
 	 * @generated
 	 */
@@ -94,5 +90,4 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	public int hashCode() {
 		return EcoreUtil.getURI(getView()).hashCode();
 	}
-
 }

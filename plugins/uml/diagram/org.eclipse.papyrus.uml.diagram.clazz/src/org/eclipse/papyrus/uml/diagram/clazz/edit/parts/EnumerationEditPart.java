@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -30,12 +29,10 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.itemsemantic.CustomEnumerationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.EnumerationItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ClassifierEditPart;
@@ -46,7 +43,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayE
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.EnumerationFigure;
-import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -54,17 +50,14 @@ import org.eclipse.swt.graphics.Color;
  */
 public class EnumerationEditPart extends ClassifierEditPart
 {
-
 	/**
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 2006;
-
 	/**
 	 * @generated
 	 */
 	protected IFigure contentPane;
-
 	/**
 	 * @generated
 	 */
@@ -100,7 +93,6 @@ public class EnumerationEditPart extends ClassifierEditPart
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
-
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -126,7 +118,6 @@ public class EnumerationEditPart extends ClassifierEditPart
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -152,14 +143,12 @@ public class EnumerationEditPart extends ClassifierEditPart
 			((EnumerationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 		if (childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((EnumerationEnumerationLiteralCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -212,12 +201,7 @@ public class EnumerationEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "Enumeration";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 100);
 		return result;
 	}
 
@@ -230,12 +214,7 @@ public class EnumerationEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected NodeFigure createNodeFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape);
-		contentPane = setupContentPane(shape);
-		return figure;
+		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 	}
 
 	/**
@@ -308,5 +287,4 @@ public class EnumerationEditPart extends ClassifierEditPart
 		}
 		return super.getTargetEditPart(request);
 	}
-
 }

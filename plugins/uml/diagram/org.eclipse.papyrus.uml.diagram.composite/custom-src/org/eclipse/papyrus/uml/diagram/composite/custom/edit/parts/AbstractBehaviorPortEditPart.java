@@ -15,20 +15,19 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts;
 
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.dragtracker.NoScrollDragEditPartsTrackerEx;
 
 /**
  * this is an abstract edit part to prevent the behavior port to got out of the composite
  *
  */
-public abstract class AbstractBehaviorPortEditPart extends ShapeNodeEditPart {
-
+public abstract class AbstractBehaviorPortEditPart extends NodeEditPart {
 	public AbstractBehaviorPortEditPart(View view) {
 		super(view);
 	}
-	
+
 	public DragTracker getDragTracker(Request request) {
 		return new NoScrollDragEditPartsTrackerEx(this);
 	}

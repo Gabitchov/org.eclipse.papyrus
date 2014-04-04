@@ -1,22 +1,19 @@
-/*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.composite.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -38,32 +35,10 @@ import org.eclipse.uml2.uml.UseCase;
  * @generated
  */
 public class UseCaseCreateCommandCN extends EditElementCommand {
-
 	/**
 	 * @generated
 	 */
 	private Diagram diagram = null;
-
-	/**
-	 * @generated
-	 */
-	private EObject eObject = null;
-
-	/**
-	 * @generated
-	 */
-	public UseCaseCreateCommandCN(CreateElementRequest req, EObject eObject, Diagram diagram) {
-		super(req.getLabel(), null, req);
-		this.eObject = eObject;
-		this.diagram = diagram;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static UseCaseCreateCommandCN create(CreateElementRequest req, EObject eObject, Diagram diagram) {
-		return new UseCaseCreateCommandCN(req, eObject, diagram);
-	}
 
 	/**
 	 * @generated
@@ -75,18 +50,14 @@ public class UseCaseCreateCommandCN extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
-	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-		EObject container = ((CreateElementRequest)getRequest()).getContainer();
-		if(container instanceof View) {
-			container = ((View)container).getElement();
+		EObject container = ((CreateElementRequest) getRequest()).getContainer();
+		if (container instanceof View) {
+			container = ((View) container).getElement();
 		}
-		if(container != null) {
-			return container;
-		}
-		return eObject;
+		return container;
 	}
 
 	/**
@@ -105,20 +76,21 @@ public class UseCaseCreateCommandCN extends EditElementCommand {
 		UseCase newElement = UMLFactory.eINSTANCE.createUseCase();
 		EObject target = getElementToEdit();
 		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
-		if(data.isPermitted()) {
-			if(data.isPathDefined()) {
-				if(!data.execute(target, newElement))
+		if (data.isPermitted()) {
+			if (data.isPathDefined()) {
+				if (!data.execute(target, newElement))
 					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
 			} else {
-				Class qualifiedTarget = (Class)target;
-				qualifiedTarget.getNestedClassifiers().add(newElement);
+				Class qualifiedTarget = (Class) target;
+				qualifiedTarget.getNestedClassifiers()
+						.add(newElement);
 			}
 		} else {
 			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
 		}
 		ElementInitializers.getInstance().init_UseCase_3096(newElement);
 		doConfigure(newElement, monitor, info);
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
@@ -126,12 +98,12 @@ public class UseCaseCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	protected void doConfigure(UseCase newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if(configureCommand != null && configureCommand.canExecute()) {
+		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

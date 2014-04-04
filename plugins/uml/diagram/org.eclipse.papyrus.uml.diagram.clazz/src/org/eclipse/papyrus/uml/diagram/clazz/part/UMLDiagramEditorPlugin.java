@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -43,43 +43,35 @@ import org.osgi.framework.BundleContext;
  * @generated
  */
 public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
-
 	/**
 	 * @generated
 	 */
 	public static final String ID = "org.eclipse.papyrus.uml.diagram.clazz"; //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT =
 			new PreferencesHint(ID);
-
 	/**
 	 * @generated
 	 */
 	private static UMLDiagramEditorPlugin instance;
-
 	/**
 	 * @generated
 	 */
 	private ComposedAdapterFactory adapterFactory;
-
 	/**
 	 * @generated
 	 */
 	private UMLDocumentProvider documentProvider;
-
 	/**
 	 * @generated
 	 */
 	private UMLBaseItemSemanticEditPolicy.LinkConstraints linkConstraints;
-
 	/**
 	 * @generated
 	 */
 	private ElementInitializers initializers;
-
 	/**
 	 * @generated
 	 */
@@ -101,7 +93,6 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 		adapterFactory = createAdapterFactory();
 		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
 		diagramPreferenceInitializer.initializeDefaultPreferences();
-
 	}
 
 	/**

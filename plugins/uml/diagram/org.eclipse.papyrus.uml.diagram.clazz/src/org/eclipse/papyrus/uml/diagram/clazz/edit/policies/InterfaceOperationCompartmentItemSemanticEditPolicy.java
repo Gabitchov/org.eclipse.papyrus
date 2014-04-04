@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -23,7 +23,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
  * @generated
  */
 public class InterfaceOperationCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
-
 	/**
 	 * @generated
 	 */
@@ -39,18 +38,12 @@ public class InterfaceOperationCompartmentItemSemanticEditPolicy extends UMLBase
 		if (requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
-
 		if (UMLElementTypes.Operation_3007 == requestElementType) {
-
 			return getGEFWrapper(new OperationForInterfaceCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
 		if (UMLElementTypes.Reception_3039 == requestElementType) {
-
 			return getGEFWrapper(new ReceptionInInterfaceCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

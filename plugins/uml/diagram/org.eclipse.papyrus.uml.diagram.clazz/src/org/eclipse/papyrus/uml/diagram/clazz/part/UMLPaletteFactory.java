@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -26,7 +26,6 @@ import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreat
  */
 public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	//RS: New Palette generation
-
 	//Generates the ID for the tool elements
 	//Generate the tool factory (if(ID) createtool...)
 	/**
@@ -226,7 +225,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
-
 	}
 
 	/**
@@ -385,7 +383,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Object getTemplate(String templateId) {
-
 		// default return: null
 		return null;
 	}
@@ -913,5 +910,4 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
-
 }

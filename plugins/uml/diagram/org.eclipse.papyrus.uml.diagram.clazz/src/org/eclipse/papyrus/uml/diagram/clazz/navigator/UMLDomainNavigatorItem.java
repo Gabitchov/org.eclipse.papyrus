@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -23,7 +23,6 @@ import org.eclipse.ui.views.properties.IPropertySourceProvider;
  * @generated
  */
 public class UMLDomainNavigatorItem extends PlatformObject {
-
 	/**
 	 * @generated
 	 */
@@ -31,7 +30,6 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 		@SuppressWarnings("rawtypes")
 		final Class[] supportedTypes = new Class[] { EObject.class, IPropertySource.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
-
 			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) {
@@ -44,7 +42,6 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 						return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
 					}
 				}
-
 				return null;
 			}
 
@@ -54,17 +51,14 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 			}
 		}, org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem.class);
 	}
-
 	/**
 	 * @generated
 	 */
 	private Object myParent;
-
 	/**
 	 * @generated
 	 */
 	private EObject myEObject;
-
 	/**
 	 * @generated
 	 */
@@ -116,5 +110,4 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	public int hashCode() {
 		return EcoreUtil.getURI(getEObject()).hashCode();
 	}
-
 }

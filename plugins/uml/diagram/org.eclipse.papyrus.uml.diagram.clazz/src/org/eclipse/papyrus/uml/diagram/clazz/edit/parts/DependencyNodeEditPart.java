@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -27,7 +26,6 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -35,33 +33,28 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.DependencyNodeItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.DependencyNodeFigure;
-import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.swt.graphics.Color;
 
 /**
  * @generated
  */
-public class DependencyNodeEditPart extends AbstractBorderedShapeEditPart
+public class DependencyNodeEditPart extends NodeEditPart
 {
-
 	/**
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 2014;
-
 	/**
 	 * @generated
 	 */
 	protected IFigure contentPane;
-
 	/**
 	 * @generated
 	 */
@@ -92,13 +85,11 @@ public class DependencyNodeEditPart extends AbstractBorderedShapeEditPart
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
-
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View) child.getModel();
 				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case MultiDependencyLabelEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
-
 						protected List<?> createSelectionHandles() {
 							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 							mh.setBorder(null);
@@ -134,6 +125,7 @@ public class DependencyNodeEditPart extends AbstractBorderedShapeEditPart
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.DependencyNodeFigure
+	 * 
 	 * @generated
 	 */
 	public DependencyNodeFigure getPrimaryShape() {
@@ -158,12 +150,7 @@ public class DependencyNodeEditPart extends AbstractBorderedShapeEditPart
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "DependencyNode";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(10, 10);
 		return result;
 	}
 
@@ -176,18 +163,15 @@ public class DependencyNodeEditPart extends AbstractBorderedShapeEditPart
 	 * @generated
 	 */
 	protected NodeFigure createMainFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape);
-		contentPane = setupContentPane(shape);
-		return figure;
+		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 	}
 
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -235,5 +219,4 @@ public class DependencyNodeEditPart extends AbstractBorderedShapeEditPart
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(MultiDependencyLabelEditPart.VISUAL_ID));
 	}
-
 }

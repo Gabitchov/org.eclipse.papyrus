@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -20,7 +20,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
  * @generated
  */
 public class ConnectorTimeObservationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
-
 	/**
 	 * @generated
 	 */
@@ -34,5 +33,4 @@ public class ConnectorTimeObservationItemSemanticEditPolicy extends UMLBaseItemS
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return getGEFWrapper(new DestroyReferenceCommand(req));
 	}
-
 }

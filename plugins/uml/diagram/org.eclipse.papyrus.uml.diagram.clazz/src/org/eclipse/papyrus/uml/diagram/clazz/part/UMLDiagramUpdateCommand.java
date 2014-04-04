@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -30,7 +30,6 @@ import org.eclipse.ui.PlatformUI;
  * @generated
  */
 public class UMLDiagramUpdateCommand implements IHandler {
-
 	/**
 	 * @generated
 	 */
@@ -60,7 +59,6 @@ public class UMLDiagramUpdateCommand implements IHandler {
 					CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it.next();
 					nextEditPolicy.refresh();
 				}
-
 			}
 		}
 		return null;
@@ -85,5 +83,4 @@ public class UMLDiagramUpdateCommand implements IHandler {
 	 */
 	public void removeHandlerListener(IHandlerListener handlerListener) {
 	}
-
 }

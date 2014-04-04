@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -17,5 +17,4 @@ import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
  * @generated
  */
 public class UMLBaseEditHelper extends GeneratedEditHelperBase {
-
 }
