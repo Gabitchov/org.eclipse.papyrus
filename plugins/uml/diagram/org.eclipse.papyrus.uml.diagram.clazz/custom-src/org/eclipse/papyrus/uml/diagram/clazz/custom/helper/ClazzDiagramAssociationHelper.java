@@ -95,7 +95,7 @@ public class ClazzDiagramAssociationHelper {
 		}
 		container.getPackagedElements().add(association);
 		ElementInitializers.getInstance().init_Association_4001(association);
-		String associationName = NamedElementUtil.getDefaultNameWithIncrementFromBase(sourceString + "_" + targetString + "_", container.eContents());//$NON-NLS-1$ //$NON-NLS-2$
+		String associationName = NamedElementUtil.getDefaultNameWithIncrementFromBase("A_"+sourceString + "_" + targetString + "_", container.eContents());//$NON-NLS-1$ //$NON-NLS-2$
 		association.setName(associationName);
 		return association;
 	}
