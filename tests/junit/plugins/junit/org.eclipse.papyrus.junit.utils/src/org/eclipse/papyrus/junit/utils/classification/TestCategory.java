@@ -32,6 +32,16 @@ public enum TestCategory {
 	InvalidTest(InvalidTest.class),
 
 	/**
+	 * Test methods annotated with {@link FailingTest}
+	 */
+	FailingTest(FailingTest.class),
+
+	/**
+	 * Test methods annotated with {@link InteractiveTest}
+	 */
+	InteractiveTest(InteractiveTest.class),
+
+	/**
 	 * Test methods without any classification-related annotation
 	 */
 	Standard();

@@ -24,6 +24,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.junit.utils.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.EditPartUtils;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullLifelineTimelineCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullStateInvariantEditPartCN;
@@ -32,6 +33,7 @@ import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.StateInvariant;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class TestTimingDiagramFullOccurrenceSpecification extends AbstractTimingDiagramTestCase {
@@ -124,6 +126,7 @@ public class TestTimingDiagramFullOccurrenceSpecification extends AbstractTiming
 		checkCreatedOccurrenceSpecification();
 	}
 
+	@FailingTest("To be verified. Seems to work for standard user, but not in raw test environment")
 	@Test
 	public void testCreateOccurrenceSpecificationWithPaletteTool() {
 		// let GMF do its layout (in order for the Figure coordinates to be set)
@@ -148,6 +151,7 @@ public class TestTimingDiagramFullOccurrenceSpecification extends AbstractTiming
 		checkCreatedOccurrenceSpecification();
 	}
 
+	@FailingTest("To be verified. Seems to work for standard user, but not in raw test environment")
 	@Test
 	public void testMoveOccurrenceSpecification() {
 		createThreeOccurrenceSpecificationsInDefaultFullLifeline();
@@ -210,6 +214,7 @@ public class TestTimingDiagramFullOccurrenceSpecification extends AbstractTiming
 	 * When moving several OccurrenceSpecifications, we don't want the previous positions of the elements to constrain
 	 * the future positions of the elements being moved.
 	 */
+	@FailingTest("To be verified. Seems to work for standard user, but not in raw test environment")
 	@Test
 	public void testMoveAdjacentOccurrenceSpecifications() {
 		// create two OccurrenceSpecifications close to each other
@@ -239,6 +244,7 @@ public class TestTimingDiagramFullOccurrenceSpecification extends AbstractTiming
 		assertTrue("The second OccurrenceSpecification should always be before the third", boundsAfter.x < maxX);
 	}
 
+	@Ignore("Test is not implemented")
 	@Test
 	public void testMoveVerticalLine() {
 		// TODO: test that moving a vertical line moves the preceding occurrence specification
