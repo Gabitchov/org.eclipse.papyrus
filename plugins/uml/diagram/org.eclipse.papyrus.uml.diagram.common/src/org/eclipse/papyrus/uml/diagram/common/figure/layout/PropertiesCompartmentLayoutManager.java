@@ -37,8 +37,8 @@ public class PropertiesCompartmentLayoutManager extends AbstractLayout {
 		for(int i = 0; i < container.getChildren().size(); i++) {
 			
 			IFigure fig=((IFigure)container.getChildren().get(i));
-			if( container instanceof AppliedStereotypeCompartmentFigure){
-				if(((AppliedStereotypeCompartmentFigure)container).isExpanded()){
+			if( fig instanceof AppliedStereotypeCompartmentFigure){
+				if(((AppliedStereotypeCompartmentFigure)fig).isExpanded()){
 					minimumHeight = minimumHeight + fig.getPreferredSize(hint, hint2).height + MARGIN_Y;
 					minimumWith = Math.max(minimumWith, fig.getPreferredSize(hint, hint2).width);
 				}

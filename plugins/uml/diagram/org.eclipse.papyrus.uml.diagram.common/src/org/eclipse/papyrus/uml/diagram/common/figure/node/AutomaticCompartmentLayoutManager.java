@@ -175,7 +175,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 				((WrappingLabel) child).setTextJustification(PositionConstants.CENTER);
 				bound.setSize(child.getPreferredSize(container.width, -1));
 			} else {
-				bound.setSize(getPreferedSize(child));
+				bound.setSize(getPreferedSize(child,container.width));
 			}
 			if(previous != null) {
 				bound.y = previous.getBounds().getBottomLeft().y + 1;
@@ -204,12 +204,12 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	 *        A figure that contains a GMF compartment
 	 * @return The figure's preferred size
 	 */
-	private Dimension getPreferedSize(IFigure figure) {
-		Dimension dim = figure.getPreferredSize();
+	private Dimension getPreferedSize(IFigure figure,int width) {
+		Dimension dim = figure.getPreferredSize(width, -1);
 		if(!figure.getChildren().isEmpty()) {
 			Object compartment = figure.getChildren().get(0);
 			if(compartment instanceof ResizableCompartmentFigure) {
-				dim.height = ((ResizableCompartmentFigure)compartment).getPreferredSize().height + 10;
+				dim.height = ((ResizableCompartmentFigure)compartment).getPreferredSize(width,-1).height + 10;
 				if(dim.height < MINIMUM_COMPARTMENT_HEIGHT) {
 					dim.height = MINIMUM_COMPARTMENT_HEIGHT;
 				}
