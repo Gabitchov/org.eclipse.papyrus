@@ -14,12 +14,11 @@ package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 
 /**
  * this figure is fill circle
  */
-public class DependencyNodeFigure extends NodeFigure {
+public class DependencyNodeFigure extends PapyrusNodeFigure {
 
 	/**
 	 * {@inheritDoc}

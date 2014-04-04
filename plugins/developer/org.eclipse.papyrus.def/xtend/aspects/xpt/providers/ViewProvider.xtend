@@ -23,6 +23,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenChildNode
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel
+import org.eclipse.gmf.codegen.gmfgen.GenLabel
 import org.eclipse.gmf.codegen.gmfgen.GenLink
 import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel
 import org.eclipse.gmf.codegen.gmfgen.GenNode
@@ -466,7 +467,19 @@ import xpt.editor.VisualIDRegistry
 		return (org.eclipse.gmf.runtime.emf.type.core.IElementType) semanticAdapter.getAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType.class);
 	}
 	'''
-	
+	override initLabel(GenLabel it, String nodeVar, String prefStoreVar) '''
+		«var String labelVar = 'label' + it.visualID»
+		org.eclipse.gmf.runtime.notation.Node «labelVar» = createLabel(«nodeVar», «xptVisualIDRegistry.typeMethodCall(it)»);
+		«IF it.modelFacet !=null»
+		«xptViewStyles.addTextStyle(it.modelFacet, labelVar + '.getStyles()')»
+		«ENDIF»
+		«xptViewStyles.addCustomStyles(it, labelVar + '.getStyles()')»
+		«IF it.oclIsKindOf(typeof(GenExternalNodeLabel)) || it.oclIsKindOf(typeof(GenLinkLabel))»
+			«labelVar».setLayoutConstraint(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createLocation());
+			«xptViewStyles.offset(it, labelVar)»
+		«ENDIF»
+		«initializeStyles(it, labelVar, prefStoreVar, false, false, false)»
+	'''
 	 
 override additions(GenDiagram it)'''
 

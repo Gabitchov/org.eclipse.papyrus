@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -20,7 +20,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
  * @generated
  */
 public class UMLEditPartProvider extends DefaultEditPartProvider {
-
 	/**
 	 * @generated
 	 */
@@ -29,5 +28,4 @@ public class UMLEditPartProvider extends DefaultEditPartProvider {
 				UMLVisualIDRegistry.TYPED_INSTANCE,
 				ModelEditPart.MODEL_ID);
 	}
-
 }

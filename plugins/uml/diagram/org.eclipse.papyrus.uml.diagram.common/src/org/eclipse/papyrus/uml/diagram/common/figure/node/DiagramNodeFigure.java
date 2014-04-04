@@ -22,7 +22,6 @@ import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.SWT;
@@ -31,7 +30,7 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-public class DiagramNodeFigure extends NodeFigure {
+public class DiagramNodeFigure extends PapyrusNodeFigure {
 
 	/**
 	 * @deprecated use org.eclipse.papyrus.uml.diagram.common.figure.layout.

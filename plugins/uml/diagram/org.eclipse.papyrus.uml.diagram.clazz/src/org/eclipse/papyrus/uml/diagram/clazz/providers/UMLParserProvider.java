@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -42,7 +42,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class UMLParserProvider extends AbstractProvider implements IParserProvider {
-
 	/**
 	 * @generated
 	 */
@@ -2194,7 +2193,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private static class HintAdapter extends ParserHintAdapter {
-
 		/**
 		 * @generated
 		 */
@@ -2220,5 +2218,4 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return super.getAdapter(adapter);
 		}
 	}
-
 }

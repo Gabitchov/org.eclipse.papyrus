@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -30,15 +30,11 @@ import org.eclipse.gmf.runtime.notation.View;
  * @generated
  */
 public class ShortCutDiagramCreateCommand extends EditElementCommand {
-
-	private Diagram diagram = null;
-
 	/**
 	 * @generated
 	 */
 	public ShortCutDiagramCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
-		this.diagram = diagram;
 	}
 
 	/**
@@ -64,7 +60,6 @@ public class ShortCutDiagramCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		// Uncomment to put "phantom" objects into the diagram file.		
 		// org.eclipse.emf.ecore.resource.Resource resource = 
 		// 		((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).getContainer().eResource();
@@ -74,9 +69,7 @@ public class ShortCutDiagramCreateCommand extends EditElementCommand {
 		Resource resource = getElementToEdit().eResource();
 		Diagram newElement = NotationFactory.eINSTANCE.createDiagram();
 		resource.getContents().add(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -94,5 +87,4 @@ public class ShortCutDiagramCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

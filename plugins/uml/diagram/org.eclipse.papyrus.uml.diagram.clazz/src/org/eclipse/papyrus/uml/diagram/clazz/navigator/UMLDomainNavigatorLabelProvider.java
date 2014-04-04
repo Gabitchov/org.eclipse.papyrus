@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -23,7 +23,6 @@ import org.eclipse.ui.navigator.ICommonLabelProvider;
  * @generated
  */
 public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
-
 	/**
 	 * @generated
 	 */
@@ -101,5 +100,4 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	public String getDescription(Object anElement) {
 		return null;
 	}
-
 }

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -23,11 +23,9 @@ import org.eclipse.ui.IWorkbenchPage;
  * @generated
  */
 public class UMLDiagramActionBarContributor extends DiagramActionBarContributor {
-
 	/**
 	 * @generated
 	 */
-
 	protected Class<UMLDiagramEditor> getEditorClass() {
 		return UMLDiagramEditor.class;
 	}

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -15,7 +15,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -35,20 +34,17 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.AbstractObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.TimeObservationNodeFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ObservationLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.itemsemantic.CustomTimeObservationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.TimeObservationItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.swt.graphics.Color;
 
@@ -57,17 +53,14 @@ import org.eclipse.swt.graphics.Color;
  */
 public class TimeObservationEditPart extends AbstractObservationEditPart
 {
-
 	/**
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 2096;
-
 	/**
 	 * @generated
 	 */
 	protected IFigure contentPane;
-
 	/**
 	 * @generated
 	 */
@@ -101,14 +94,12 @@ public class TimeObservationEditPart extends AbstractObservationEditPart
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
-
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View) child.getModel();
 				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case TimeObservationNameEditPart.VISUAL_ID:
 				case TimeObservationStereotypeLabelEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
-
 						protected List<?> createSelectionHandles() {
 							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 							mh.setBorder(null);
@@ -154,7 +145,6 @@ public class TimeObservationEditPart extends AbstractObservationEditPart
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -192,12 +182,7 @@ public class TimeObservationEditPart extends AbstractObservationEditPart
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "TimeObservation";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		return result;
 	}
 
@@ -210,12 +195,7 @@ public class TimeObservationEditPart extends AbstractObservationEditPart
 	 * @generated
 	 */
 	protected NodeFigure createMainFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape);
-		contentPane = setupContentPane(shape);
-		return figure;
+		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 	}
 
 	/**
@@ -269,5 +249,4 @@ public class TimeObservationEditPart extends AbstractObservationEditPart
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeObservationNameEditPart.VISUAL_ID));
 	}
-
 }

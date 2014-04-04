@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
@@ -37,17 +36,14 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.itemsemantic.CustomShortcutDiagramItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ShortCutDiagramItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractShortCutDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShortCutDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.DiagramNodeFigure;
-import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -55,17 +51,14 @@ import org.eclipse.swt.graphics.Color;
  */
 public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart
 {
-
 	/**
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 2016;
-
 	/**
 	 * @generated
 	 */
 	protected IFigure contentPane;
-
 	/**
 	 * @generated
 	 */
@@ -97,13 +90,11 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
-
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View) child.getModel();
 				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case DiagramNameEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
-
 						protected List<?> createSelectionHandles() {
 							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 							mh.setBorder(null);
@@ -131,8 +122,9 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart
 	}
 
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 *
+	 * @generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		/*
@@ -149,7 +141,6 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -161,6 +152,7 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.DiagramNodeFigure
+	 * 
 	 * @generated
 	 */
 	public DiagramNodeFigure getPrimaryShape() {
@@ -185,12 +177,7 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "ShortCutDiagram";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(20, 20);
 		return result;
 	}
 
@@ -203,18 +190,15 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart
 	 * @generated
 	 */
 	protected NodeFigure createMainFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape);
-		contentPane = setupContentPane(shape);
-		return figure;
+		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 	}
 
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -262,5 +246,4 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DiagramNameEditPart.VISUAL_ID));
 	}
-
 }

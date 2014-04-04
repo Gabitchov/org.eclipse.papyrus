@@ -32,7 +32,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  * UML elements.
  */
 public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPolicy {
-
 	/**
 	 * Creates a new CollaborationUseLabelEditPolicy
 	 */
@@ -46,14 +45,12 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	@Override
 	public void addAdditionalListeners() {
 		super.addAdditionalListeners();
-
 		CollaborationUse collaborationUse = getUMLElement();
-		if(collaborationUse == null) {
+		if (collaborationUse == null) {
 			return;
 		}
-
 		// adds a listener to the element itself, and to linked elements, like Type
-		if(collaborationUse.getType() != null) {
+		if (collaborationUse.getType() != null) {
 			getDiagramEventBroker().addNotificationListener(getUMLElement().getType(), this);
 		}
 	}
@@ -69,7 +66,7 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getMaskLabel(int value) {
+	public String getMaskLabel(String value) {
 		return CollaborationUseLabelHelper.getInstance().getMaskLabel(value);
 	}
 
@@ -93,7 +90,7 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	 */
 	@Override
 	public CollaborationUse getUMLElement() {
-		return (CollaborationUse)super.getUMLElement();
+		return (CollaborationUse) super.getUMLElement();
 	}
 
 	/**
@@ -108,72 +105,66 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 		// - the annotation corresponding to the display of the stereotype changes
 		// - the stereotype application list has changed
 		Object object = notification.getNotifier();
-		CollaborationUse collaborationUse = (CollaborationUse)hostSemanticElement;
-
-		if((object == null) || (hostSemanticElement == null)) {
+		CollaborationUse collaborationUse = (CollaborationUse) hostSemanticElement;
+		if ((object == null) || (hostSemanticElement == null)) {
 			return;
 		}
-
-		if(object.equals(collaborationUse)) {
+		if (object.equals(collaborationUse)) {
 			notifyCollaborationUseChanged(collaborationUse, notification);
-		} else if(object.equals(collaborationUse.getType())) {
+		} else if (object.equals(collaborationUse.getType())) {
 			notifyCollaborationUseTypeChanged(collaborationUse.getType(), notification);
 		}
-
-		if(isMaskManagedAnnotation(object)) {
+		if (isMaskManagedAnnotation(object)) {
 			refreshDisplay();
 		}
-
-		if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
+		if (isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
 		}
-
 	}
 
 	/**
 	 * notifies that the CollaborationUse has changed.
 	 * 
 	 * @param collaborationUse
-	 *        the CollaborationUse that has changed
+	 *            the CollaborationUse that has changed
 	 * @param notification
-	 *        the notification send when the element has been changed
+	 *            the notification send when the element has been changed
 	 */
 	protected void notifyCollaborationUseChanged(CollaborationUse collaborationUse, Notification notification) {
-		switch(notification.getFeatureID(CollaborationUse.class)) {
+		switch (notification.getFeatureID(CollaborationUse.class)) {
 		case UMLPackage.COLLABORATION_USE__NAME:
 		case UMLPackage.COLLABORATION_USE__VISIBILITY:
 			refreshDisplay();
 			break;
 		case UMLPackage.COLLABORATION_USE__TYPE:
-
-			switch(notification.getEventType()) {
+			switch (notification.getEventType()) {
 			// if it is added => adds listener to the type element
 			case Notification.ADD:
-				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
+				getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
 				refreshDisplay();
 				// if it is removed => removes listener from the type element
 				break;
 			case Notification.ADD_MANY: // should never happen
-				if(notification.getNewValue() instanceof List<?>) {
-					List<?> addedElements = (List<?>)notification.getNewValue();
-					for(Object addedElement : addedElements) {
-						if(addedElement instanceof EObject) {
-							getDiagramEventBroker().addNotificationListener((EObject)addedElement, this);
+				if (notification.getNewValue() instanceof List<?>) {
+					List<?> addedElements = (List<?>) notification.getNewValue();
+					for (Object addedElement : addedElements) {
+						if (addedElement instanceof EObject) {
+							getDiagramEventBroker().addNotificationListener((EObject) addedElement, this);
 						}
 					}
 				}
 				refreshDisplay();
 				break;
 			case Notification.REMOVE:
-				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+				getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
 				refreshDisplay();
 				break;
 			case Notification.REMOVE_MANY: // should never happen
-				if(notification.getOldValue() instanceof List<?>) {
-					List<?> removedElements = (List<?>)notification.getOldValue();
-					for(Object removedElement : removedElements) {
-						if(removedElement instanceof EObject) {
-							getDiagramEventBroker().removeNotificationListener((EObject)removedElement, this);
+				if (notification.getOldValue() instanceof List<?>) {
+					List<?> removedElements = (List<?>) notification.getOldValue();
+					for (Object removedElement : removedElements) {
+						if (removedElement instanceof EObject) {
+							getDiagramEventBroker().removeNotificationListener((EObject) removedElement, this);
 						}
 					}
 				}
@@ -182,19 +173,16 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 			// if it is set, remove the old one and adds the new one. this is the method use when
 			// the type is set or removed...
 			case Notification.SET:
-				if(notification.getNewValue() != null) {
-					getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
+				if (notification.getNewValue() != null) {
+					getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
 				}
-				if(notification.getOldValue() != null) {
-					getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+				if (notification.getOldValue() != null) {
+					getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
 				}
 				refreshDisplay();
-
 			default:
 				break;
-
 			}
-
 			break;
 		default:
 			// does nothing in other cases
@@ -206,12 +194,12 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	 * notifies that the type of the CollaborationUse has changed.
 	 * 
 	 * @param type
-	 *        the type of the CollaborationUse that has changed
+	 *            the type of the CollaborationUse that has changed
 	 * @param notification
-	 *        the notification send when the element has been changed
+	 *            the notification send when the element has been changed
 	 */
 	protected void notifyCollaborationUseTypeChanged(Collaboration type, Notification notification) {
-		switch(notification.getFeatureID(CollaborationUse.class)) {
+		switch (notification.getFeatureID(CollaborationUse.class)) {
 		case UMLPackage.TYPE__NAME:
 			refreshDisplay(); // type name has changed => refresh the property display
 			break;
@@ -227,7 +215,7 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	@Override
 	public void refreshDisplay() {
 		// calls the helper for this edit Part
-		CollaborationUseLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart)getHost());
+		CollaborationUseLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart) getHost());
 	}
 
 	/**
@@ -237,11 +225,10 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	protected void removeAdditionalListeners() {
 		super.removeAdditionalListeners();
 		CollaborationUse collaborationUse = getUMLElement();
-		if(collaborationUse == null) {
+		if (collaborationUse == null) {
 			return;
 		}
-
-		if(collaborationUse.getType() != null) {
+		if (collaborationUse.getType() != null) {
 			getDiagramEventBroker().removeNotificationListener(collaborationUse.getType(), this);
 		}
 	}

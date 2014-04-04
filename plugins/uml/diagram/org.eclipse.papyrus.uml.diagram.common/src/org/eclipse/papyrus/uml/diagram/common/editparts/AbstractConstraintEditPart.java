@@ -44,8 +44,8 @@ import org.eclipse.uml2.uml.ValueSpecification;
 /**
  * This is an abstract edit-part to manage a constraint
  * (1) Automatically changes to context link tool after first creation. Since this class needs
- *     diagram-specific UMLElementType information, the constraint edit part of diagram must
- *     implement function "elementTypeOfToolAfterCreation"
+ * diagram-specific UMLElementType information, the constraint edit part of diagram must
+ * implement function "elementTypeOfToolAfterCreation"
  * (2) Does not filter direct-edit requests in function of selected (sub-) edit part
  */
 @SuppressWarnings("restriction")
@@ -58,7 +58,7 @@ public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 	public AbstractConstraintEditPart(View view) {
 		super(view);
 	}
-	
+
 	/**
 	 * assure that a specification change gets handled by the constraint body.
 	 */
@@ -71,7 +71,7 @@ public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 		}
 		super.handleNotificationEvent(event);
 	}
-	
+
 	@Override
 	protected void addSemanticListeners() {
 		super.addSemanticListeners();
@@ -79,10 +79,10 @@ public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 		if (semanicElement instanceof Constraint) {
 			ValueSpecification vs = ((Constraint) semanicElement).getSpecification();
 			// delegate to constraint-body, will refresh listeners by removing and adding semantic listeners again
-			addListenerFilter(SPECIFICATION, this, vs); 
+			addListenerFilter(SPECIFICATION, this, vs);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NodeEditPart#getPrimaryShape()
@@ -99,16 +99,16 @@ public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 	@Override
 	protected void refreshLabelsFont(Font font) {
 		super.refreshLabelsFont(font);
-		if(getPrimaryShape() instanceof ConstraintFigure) {
-			((ConstraintFigure)getPrimaryShape()).getTextFlow().setFont(font);
+		if (getPrimaryShape() instanceof ConstraintFigure) {
+			((ConstraintFigure) getPrimaryShape()).getTextFlow().setFont(font);
 		}
 	}
 
 	@Override
 	protected void refreshBackgroundColor() {
-		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
-		if(style != null) {
-			if(style.getGradient() == null || !supportsGradient()) {
+		FillStyle style = (FillStyle) getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if (style != null) {
+			if (style.getGradient() == null || !supportsGradient()) {
 				setBackgroundColor(DiagramColorRegistry.getInstance().getColor(new Integer(style.getFillColor())));
 			} else {
 				setGradient(style.getGradient());
@@ -123,8 +123,8 @@ public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected void refreshTransparency() {
-		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
-		if(style.getGradient() != null) {
+		FillStyle style = (FillStyle) getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if (style.getGradient() != null) {
 			setTransparency(style.getTransparency());
 		} else {
 			setTransparency(0);
@@ -138,11 +138,11 @@ public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 	@Override
 	protected void setFontColor(Color color) {
 		super.setFontColor(color);
-		if(getPrimaryShape() instanceof ConstraintFigure) {
-			((ConstraintFigure)getPrimaryShape()).getPageFlow().setForegroundColor(color);
+		if (getPrimaryShape() instanceof ConstraintFigure) {
+			((ConstraintFigure) getPrimaryShape()).getPageFlow().setForegroundColor(color);
 		}
 	}
-	
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#performDirectEditRequest(org.eclipse.gef.requests.DirectEditRequest)
 	 */
@@ -150,7 +150,7 @@ public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 	protected void performDirectEditRequest(Request request) {
 		if (resolveSemanticElement() instanceof Constraint) {
 			Constraint constraint = (Constraint) resolveSemanticElement();
-			if (first && constraint.getContext() == null)  {
+			if (first && constraint.getContext() == null) {
 				first = false;
 				// instead of editing, open link element tool
 				List<IElementType> elementTypes = new ArrayList<IElementType>();
@@ -176,13 +176,11 @@ public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 					});
 		} catch (InterruptedException e) {
 			Trace.catching(DiagramUIPlugin.getInstance(),
-				DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
-				"performDirectEditRequest", e); //$NON-NLS-1$
+					DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "performDirectEditRequest", e); //$NON-NLS-1$
 			Log.error(DiagramUIPlugin.getInstance(),
-				DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING,
-				"performDirectEditRequest", e); //$NON-NLS-1$
+					DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "performDirectEditRequest", e); //$NON-NLS-1$
 		}
-		if (editPart != null){
+		if (editPart != null) {
 			editPart.performRequest(request);
 		}
 	}
@@ -193,7 +191,7 @@ public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 	protected IElementType elementTypeOfToolAfterCreation() {
 		return null;
 	}
-	
+
 	protected boolean first = true;
 
 }

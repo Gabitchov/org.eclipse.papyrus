@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -31,7 +31,6 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.GeneralizationFigure;
 public class GeneralizationEditPart extends UMLConnectionNodeEditPart
 		implements ITreeBranchEditPart
 {
-
 	/**
 	 * @generated
 	 */
@@ -62,6 +61,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof AppliedStereotyperGeneralizationEditPart) {
 			((AppliedStereotyperGeneralizationEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
+			return true;
 		}
 		return false;
 	}
@@ -114,5 +114,4 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart
 	public GeneralizationFigure getPrimaryShape() {
 		return (GeneralizationFigure) getFigure();
 	}
-
 }

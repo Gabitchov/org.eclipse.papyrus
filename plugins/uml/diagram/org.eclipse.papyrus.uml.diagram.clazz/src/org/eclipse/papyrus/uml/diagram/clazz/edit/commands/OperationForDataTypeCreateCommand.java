@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -35,7 +35,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class OperationForDataTypeCreateCommand extends EditElementCommand {
-
+	/**
+	 * @generated
+	 */
 	private Diagram diagram = null;
 
 	/**
@@ -62,20 +64,16 @@ public class OperationForDataTypeCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		EObject target = getElementToEdit();
 		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getOperation());
 		return data.isPermitted();
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		Operation newElement = UMLFactory.eINSTANCE.createOperation();
-
 		EObject target = getElementToEdit();
 		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
 		if (data.isPermitted()) {
@@ -83,20 +81,15 @@ public class OperationForDataTypeCreateCommand extends EditElementCommand {
 				if (!data.execute(target, newElement))
 					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
 			} else {
-
 				DataType qualifiedTarget = (DataType) target;
 				qualifiedTarget.getOwnedOperations()
 						.add(newElement);
-
 			}
 		} else {
 			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
 		}
-
 		ElementInitializers.getInstance().init_Operation_3019(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -114,5 +107,4 @@ public class OperationForDataTypeCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

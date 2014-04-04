@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -44,17 +44,14 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
  * @generated
  */
 public class UMLNewDiagramFileWizard extends Wizard {
-
 	/**
 	 * @generated
 	 */
 	private WizardNewFileCreationPage myFileCreationPage;
-
 	/**
 	 * @generated
 	 */
 	private ModelElementSelectionPage diagramRootElementSelectionPage;
-
 	/**
 	 * @generated
 	 */
@@ -69,7 +66,6 @@ public class UMLNewDiagramFileWizard extends Wizard {
 		assert domainModelURI != null : "Domain model uri must be specified"; //$NON-NLS-1$
 		assert diagramRoot != null : "Doagram root element must be specified"; //$NON-NLS-1$
 		assert editingDomain != null : "Editing domain must be specified"; //$NON-NLS-1$
-
 		myFileCreationPage = new WizardNewFileCreationPage
 				(Messages.UMLNewDiagramFileWizard_CreationPageName, StructuredSelection.EMPTY);
 		myFileCreationPage.setTitle(Messages.UMLNewDiagramFileWizard_CreationPageTitle);
@@ -89,12 +85,10 @@ public class UMLNewDiagramFileWizard extends Wizard {
 		myFileCreationPage.setContainerFullPath(filePath);
 		myFileCreationPage.setFileName(UMLDiagramEditorUtil.getUniqueFileName(
 				filePath, fileName, "PapyrusUMLClass_diagram")); //$NON-NLS-1$
-
 		diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(Messages.UMLNewDiagramFileWizard_RootSelectionPageName);
 		diagramRootElementSelectionPage.setTitle(Messages.UMLNewDiagramFileWizard_RootSelectionPageTitle);
 		diagramRootElementSelectionPage.setDescription(Messages.UMLNewDiagramFileWizard_RootSelectionPageDescription);
 		diagramRootElementSelectionPage.setModelElement(diagramRoot);
-
 		myEditingDomain = editingDomain;
 	}
 
@@ -120,7 +114,6 @@ public class UMLNewDiagramFileWizard extends Wizard {
 		AbstractTransactionalCommand command =
 				new AbstractTransactionalCommand(
 						myEditingDomain, Messages.UMLNewDiagramFileWizard_InitDiagramCommand, affectedFiles) {
-
 					protected CommandResult doExecuteWithResult(
 							IProgressMonitor monitor, IAdaptable info)
 							throws ExecutionException {
@@ -157,7 +150,6 @@ public class UMLNewDiagramFileWizard extends Wizard {
 	 * @generated
 	 */
 	private static class DiagramRootElementSelectionPage extends ModelElementSelectionPage {
-
 		/**
 		 * @generated
 		 */

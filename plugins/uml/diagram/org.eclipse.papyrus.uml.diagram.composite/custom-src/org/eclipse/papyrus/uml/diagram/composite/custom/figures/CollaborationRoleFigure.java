@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.figures;
 
 import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.ImageFigure;
+import org.eclipse.draw2d.OrderedLayout;
 import org.eclipse.draw2d.Panel;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -39,7 +40,7 @@ public class CollaborationRoleFigure extends NodeNamedElementFigure {
 
 		// Set layout (Vertical ToolbarLayout)
 		ToolbarLayout layout = new ToolbarLayout();
-		layout.setVertical(true);
+		layout.setHorizontal(false);
 		layout.setStretchMinorAxis(true);
 		setLayoutManager(layout);
 
@@ -50,7 +51,7 @@ public class CollaborationRoleFigure extends NodeNamedElementFigure {
 		ImageFigure imgFig = new ImageFigure(imgRef.createImage());
 		panel.add(imgFig);
 		FlowLayout panelLayout = new FlowLayout(true);
-		panelLayout.setMajorAlignment(FlowLayout.ALIGN_RIGHTBOTTOM);
+		panelLayout.setMajorAlignment(OrderedLayout.ALIGN_BOTTOMRIGHT);
 		panel.setLayoutManager(panelLayout);
 		add(panel);
 	}

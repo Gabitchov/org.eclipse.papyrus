@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -18,17 +18,14 @@ import java.util.LinkedList;
  * @generated
  */
 public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
-
 	/**
 	 * @generated
 	 */
 	private String myGroupName;
-
 	/**
 	 * @generated
 	 */
 	private String myIcon;
-
 	/**
 	 * @generated
 	 */
@@ -104,5 +101,4 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	public int hashCode() {
 		return getGroupName().hashCode();
 	}
-
 }

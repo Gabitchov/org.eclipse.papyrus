@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -26,12 +26,10 @@ import org.eclipse.uml2.uml.TimeObservation;
  * @generated
  */
 public class ConnectorTimeObservationCreateCommand extends EditElementCommand {
-
 	/**
 	 * @generated
 	 */
 	protected final EObject source;
-
 	/**
 	 * @generated
 	 */
@@ -73,14 +71,12 @@ public class ConnectorTimeObservationCreateCommand extends EditElementCommand {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		if (getSource() != null && getTarget() != null) {
 			getSource().setEvent(
 					getTarget()
 					);
 		}
 		return CommandResult.newOKCommandResult();
-
 	}
 
 	/**

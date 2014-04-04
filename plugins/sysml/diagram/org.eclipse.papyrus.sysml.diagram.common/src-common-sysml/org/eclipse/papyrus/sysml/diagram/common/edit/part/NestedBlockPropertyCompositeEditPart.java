@@ -32,7 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.NestedBlockPropertyCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.figure.NestedBlockPropertyCompositeFigure;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
@@ -82,12 +82,12 @@ public class NestedBlockPropertyCompositeEditPart extends AbstractElementEditPar
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				if(child instanceof IBorderItemEditPart) {
+				if (child instanceof IBorderItemEditPart) {
 					return new BorderItemResizableEditPolicy();
 				}
 
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -109,19 +109,19 @@ public class NestedBlockPropertyCompositeEditPart extends AbstractElementEditPar
 	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
 
-		if(childEditPart instanceof PropertyNodeLabelEditPart) {
-			((PropertyNodeLabelEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof PropertyNodeLabelEditPart) {
+			((PropertyNodeLabelEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 
-		if(childEditPart instanceof FlowPortAffixedNodeEditPart) {
+		if (childEditPart instanceof FlowPortAffixedNodeEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((FlowPortAffixedNodeEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((FlowPortAffixedNodeEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		if(childEditPart instanceof PortAffixedNodeEditPart) {
+		if (childEditPart instanceof PortAffixedNodeEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((PortAffixedNodeEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((PortAffixedNodeEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 
@@ -131,16 +131,16 @@ public class NestedBlockPropertyCompositeEditPart extends AbstractElementEditPar
 	@Override
 	protected boolean removeFixedChild(EditPart childEditPart) {
 
-		if(childEditPart instanceof PropertyNodeLabelEditPart) {
+		if (childEditPart instanceof PropertyNodeLabelEditPart) {
 			return true;
 		}
 
-		if(childEditPart instanceof FlowPortAffixedNodeEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((FlowPortAffixedNodeEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof FlowPortAffixedNodeEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((FlowPortAffixedNodeEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof PortAffixedNodeEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((PortAffixedNodeEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof PortAffixedNodeEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((PortAffixedNodeEditPart) childEditPart).getFigure());
 			return true;
 		}
 
@@ -149,23 +149,23 @@ public class NestedBlockPropertyCompositeEditPart extends AbstractElementEditPar
 
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof IBorderItemEditPart) {
+		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 
 		return getContentPane();
 	}
 
-	//	public EditPart getTargetEditPart(Request request) {
-	//		if(request instanceof CreateViewAndElementRequest) {
-	//			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-	//			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-	//			if(type == CustomBlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN) {
-	//				return getChildBySemanticHint(CustomBlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT);
-	//			}
-	//		}
-	//		return super.getTargetEditPart(request);
-	//	}
+	// public EditPart getTargetEditPart(Request request) {
+	// if(request instanceof CreateViewAndElementRequest) {
+	// CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+	// IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
+	// if(type == CustomBlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN) {
+	// return getChildBySemanticHint(CustomBlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT);
+	// }
+	// }
+	// return super.getTargetEditPart(request);
+	// }
 
 	@Override
 	protected NodeFigure createNodeFigure() {
@@ -179,7 +179,7 @@ public class NestedBlockPropertyCompositeEditPart extends AbstractElementEditPar
 
 	@Override
 	public NestedBlockPropertyCompositeFigure getPrimaryShape() {
-		return (NestedBlockPropertyCompositeFigure)primaryShape;
+		return (NestedBlockPropertyCompositeFigure) primaryShape;
 	}
 
 	@Override
@@ -197,20 +197,20 @@ public class NestedBlockPropertyCompositeEditPart extends AbstractElementEditPar
 	protected void handleNotificationEvent(Notification event) {
 
 		// A visual refresh may also be needed when the following properties are changing : aggregation, type, or the related association.
-		if(resolveSemanticElement() != null) {
+		if (resolveSemanticElement() != null) {
 			EObject element = resolveSemanticElement();
 
-			if((element != null) && (element.equals(event.getNotifier())) && (element instanceof Property)) {
+			if ((element != null) && (element.equals(event.getNotifier())) && (element instanceof Property)) {
 
-				if(UMLPackage.eINSTANCE.getProperty_Aggregation().equals(event.getFeature())) {
+				if (UMLPackage.eINSTANCE.getProperty_Aggregation().equals(event.getFeature())) {
 					refreshVisuals();
 				}
 
-				if(UMLPackage.eINSTANCE.getTypedElement_Type().equals(event.getFeature())) {
+				if (UMLPackage.eINSTANCE.getTypedElement_Type().equals(event.getFeature())) {
 					refreshVisuals();
 				}
 
-				if(UMLPackage.eINSTANCE.getProperty_Association().equals(event.getFeature())) {
+				if (UMLPackage.eINSTANCE.getProperty_Association().equals(event.getFeature())) {
 					refreshVisuals();
 				}
 			}
@@ -232,19 +232,19 @@ public class NestedBlockPropertyCompositeEditPart extends AbstractElementEditPar
 		String tag = "property";
 		int lineStyle = Graphics.LINE_SOLID;
 
-		if(resolveSemanticElement() != null) {
+		if (resolveSemanticElement() != null) {
 			EObject eObject = resolveSemanticElement();
-			if(((ISpecializationType)SysMLElementTypes.PART_PROPERTY).getMatcher().matches(eObject)) {
+			if (((ISpecializationType) SysMLElementTypes.PART_PROPERTY).getMatcher().matches(eObject)) {
 				tag = "part";
 
-			} else if(((ISpecializationType)SysMLElementTypes.REFERENCE_PROPERTY).getMatcher().matches(eObject)) {
+			} else if (((ISpecializationType) SysMLElementTypes.REFERENCE_PROPERTY).getMatcher().matches(eObject)) {
 				tag = "reference";
 				lineStyle = Graphics.LINE_CUSTOM;
 
-			} else if(((ISpecializationType)SysMLElementTypes.ACTOR_PART_PROPERTY).getMatcher().matches(eObject)) {
+			} else if (((ISpecializationType) SysMLElementTypes.ACTOR_PART_PROPERTY).getMatcher().matches(eObject)) {
 				tag = "actor part";
 
-			} else if(((ISpecializationType)SysMLElementTypes.VALUE_PROPERTY).getMatcher().matches(eObject)) {
+			} else if (((ISpecializationType) SysMLElementTypes.VALUE_PROPERTY).getMatcher().matches(eObject)) {
 				tag = "value";
 
 			} else {

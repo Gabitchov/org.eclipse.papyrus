@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -18,7 +18,6 @@ import org.eclipse.emf.common.ui.URIEditorInput;
  * @generated
  */
 public class UMLUriEditorInputTester extends PropertyTester {
-
 	/**
 	 * @generated
 	 */
@@ -29,5 +28,4 @@ public class UMLUriEditorInputTester extends PropertyTester {
 		URIEditorInput editorInput = (URIEditorInput) receiver;
 		return "PapyrusUMLClass_diagram".equals(editorInput.getURI().fileExtension()); //$NON-NLS-1$
 	}
-
 }

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -32,12 +32,10 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
  * @generated
  */
 public class UMLOCLFactory {
-
 	/**
 	 * @generated
 	 */
 	private final UMLAbstractExpression[] expressions;
-
 	/**
 	 * @generated
 	 */
@@ -104,12 +102,10 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	private static class Expression extends UMLAbstractExpression {
-
 		/**
 		 * @generated
 		 */
 		private final org.eclipse.ocl.ecore.OCL oclInstance;
-
 		/**
 		 * @generated
 		 */

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -44,7 +44,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class ClassOperationCompartmentCanonicalEditPolicyCN extends CanonicalEditPolicy {
-
 	/**
 	 * @generated
 	 */
@@ -157,7 +156,6 @@ public class ClassOperationCompartmentCanonicalEditPolicyCN extends CanonicalEdi
 			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint());
 			viewDescriptors.add(descriptor);
 		}
-
 		boolean changed = deleteViews(orphaned.iterator());
 		//
 		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
@@ -177,7 +175,6 @@ public class ClassOperationCompartmentCanonicalEditPolicyCN extends CanonicalEdi
 			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
-
 		makeViewsImmutable(createdViews);
 	}
 }

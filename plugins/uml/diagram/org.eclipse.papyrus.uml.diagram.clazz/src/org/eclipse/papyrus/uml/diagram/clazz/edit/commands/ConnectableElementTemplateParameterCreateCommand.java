@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -34,7 +34,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class ConnectableElementTemplateParameterCreateCommand extends EditElementCommand {
-
+	/**
+	 * @generated
+	 */
 	private Diagram diagram = null;
 
 	/**
@@ -61,20 +63,16 @@ public class ConnectableElementTemplateParameterCreateCommand extends EditElemen
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		EObject target = getElementToEdit();
 		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getConnectableElementTemplateParameter());
 		return data.isPermitted();
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		ConnectableElementTemplateParameter newElement = UMLFactory.eINSTANCE.createConnectableElementTemplateParameter();
-
 		EObject target = getElementToEdit();
 		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
 		if (data.isPermitted()) {
@@ -82,22 +80,17 @@ public class ConnectableElementTemplateParameterCreateCommand extends EditElemen
 				if (!data.execute(target, newElement))
 					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
 			} else {
-
 				TemplateSignature qualifiedTarget = (TemplateSignature) target;
 				qualifiedTarget.getOwnedParameters()
 						.add(newElement);
-
 			}
 		} else {
 			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
 		}
-
 		TemplateSignature childHolder = (TemplateSignature) getElementToEdit();
 		childHolder.getParameters()
 				.add(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -115,5 +108,4 @@ public class ConnectableElementTemplateParameterCreateCommand extends EditElemen
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

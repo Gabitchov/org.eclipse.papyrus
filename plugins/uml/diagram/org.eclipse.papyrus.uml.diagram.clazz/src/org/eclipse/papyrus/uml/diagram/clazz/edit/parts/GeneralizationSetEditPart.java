@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -31,7 +31,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart
 		implements ITreeBranchEditPart
 {
-
 	/**
 	 * @generated
 	 */
@@ -62,10 +61,12 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof ConstraintLabelEditPart) {
 			((ConstraintLabelEditPart) childEditPart).setLabel(
 					getPrimaryShape().getConstraintLabel());
+			return true;
 		}
 		if (childEditPart instanceof AppliedStereotypeGeneralizationSetLabelEditPart) {
 			((AppliedStereotypeGeneralizationSetLabelEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
+			return true;
 		}
 		return false;
 	}
@@ -121,5 +122,4 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart
 	public GeneralizationSet getPrimaryShape() {
 		return (GeneralizationSet) getFigure();
 	}
-
 }
