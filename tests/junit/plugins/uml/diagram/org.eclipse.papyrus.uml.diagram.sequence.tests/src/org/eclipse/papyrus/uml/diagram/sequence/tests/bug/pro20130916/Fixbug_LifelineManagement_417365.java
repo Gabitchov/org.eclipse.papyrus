@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,10 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.pro20130916;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.PositionConstants;
@@ -34,8 +38,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.Message;
+import org.junit.Before;
 import org.junit.Test;
-
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -80,11 +84,12 @@ public class Fixbug_LifelineManagement_417365 extends BaseStereotypesTest {
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7.AbstractNodeTest#setUp()
-	 * 
+	 *
 	 * @throws Exception
 	 */
+	@Before
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		prepareDiagram();
 	}
@@ -304,7 +309,7 @@ public class Fixbug_LifelineManagement_417365 extends BaseStereotypesTest {
 	public void testResizeLifelineAfterStereotypeApplied() {
 		//Applied stereotype on lifeline1
 		doTestDisplayStereotypeInCompartment(lifeline4, lifeline4);
-		//resize down/up from bottom 
+		//resize down/up from bottom
 		resize(lifeline4, SequenceUtil.getAbsoluteBounds(lifeline4).getLocation(), PositionConstants.SOUTH, new Dimension(0, 30));
 		resize(lifeline4, SequenceUtil.getAbsoluteBounds(lifeline4).getLocation(), PositionConstants.NORTH, new Dimension(0, 30));
 

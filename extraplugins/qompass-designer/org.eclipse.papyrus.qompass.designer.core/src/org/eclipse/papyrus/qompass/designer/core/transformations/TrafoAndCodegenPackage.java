@@ -41,8 +41,6 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
 import org.eclipse.papyrus.qompass.designer.core.extensions.LanguageSupport;
 import org.eclipse.papyrus.qompass.designer.core.generate.GenerateCode;
-import org.eclipse.papyrus.qompass.designer.core.templates.InstantiateCppIncludeWOB;
-import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterComments;
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterTemplate;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -72,7 +70,7 @@ public class TrafoAndCodegenPackage {
 	 * @param pkg
 	 * @throws TransformationException
 	 */
-	public static void applyTrafo(Copy copy, Package pkg) throws TransformationException {
+	public static void applyTrafo(LazyCopier copy, Package pkg) throws TransformationException {
 		EList<PackageableElement> peList = new BasicEList<PackageableElement>();
 		peList.addAll(pkg.getPackagedElements());
 		for(PackageableElement element : peList) {
@@ -168,14 +166,10 @@ public class TrafoAndCodegenPackage {
 
 			EnumService.createEnumPackage(tmpModel);
 
-			Copy tmpCopy = new Copy(existingModel, tmpModel, false);
+			LazyCopier tmpCopy = new LazyCopier(existingModel, tmpModel, false, true);
 			tmpCopy.preCopyListeners.add(FilterTemplate.getInstance());
-			tmpCopy.preCopyListeners.add(FilterComments.getInstance());
-			tmpCopy.postCopyListeners.add(InstantiateCppIncludeWOB.getInstance());
 
-			Copy.copyID(existingModel, tmpModel);
-
-			// 1b: reify the connectors "into" the new model
+				// 1b: reify the connectors "into" the new model
 			monitor.subTask(Messages.InstantiateDepPlan_InfoExpandingConnectors);
 
 			// obtain reference to CDP in target model

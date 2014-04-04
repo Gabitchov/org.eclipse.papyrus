@@ -26,4 +26,5 @@ Bundle-Activator: org.eclipse.papyrus.infra.newchild.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.newchild;singleton:=tru
  e
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Description: The purpose of this plugin is to offer the model and means to create new menu in the model explorer. More documentation (models and file.doc) has been store in the docs directory. The plugin in charge to do the connection with the model explorer is org.eclipse.papyrus.view.modelexplorer.newchild
 

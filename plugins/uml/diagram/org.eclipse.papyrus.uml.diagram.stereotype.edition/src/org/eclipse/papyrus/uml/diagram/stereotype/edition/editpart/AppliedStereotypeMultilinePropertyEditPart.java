@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -286,7 +287,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 		if(getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		
+
 		// return getParser().getEditString(new SemanticAdapter((EObject) this.getAdapter(AppliedStereotypeProperty.class), getNotationView()), getParserOptions().intValue());
 		return getParser().getEditString(new SemanticAdapter(resolveSemanticElement(), getNotationView()), getParserOptions().intValue());
 	}
@@ -389,7 +390,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	 */
 	protected void performDirectEdit() {
 		BusyIndicator.showWhile(Display.getDefault(), new Runnable() {
-			
+
 			public void run() {
 				getManager().show();
 			}
@@ -446,7 +447,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 				Dialog dialog = null;
 				if (configuration instanceof ICustomDirectEditorConfiguration) {
 					setManager(((ICustomDirectEditorConfiguration) configuration)
-							.createDirectEditManager(this));
+						.createDirectEditManager(this));
 					initializeDirectEditManager(theRequest);
 					return;
 				}  else if(configuration instanceof IPopupEditorConfiguration) {
@@ -520,14 +521,14 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 				public void run() {
 					if (isActive() && isEditable()) {
 						if (request
-								.getExtendedData()
-								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							.getExtendedData()
+							.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request
-									.getExtendedData()
-									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+								.getExtendedData()
+								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else if ((request instanceof DirectEditRequest)
-								&& (getEditText().equals(getLabelText()))) {
+							&& (getEditText().equals(getLabelText()))) {
 							DirectEditRequest editRequest = (DirectEditRequest) request;
 							performDirectEdit(editRequest.getLocation());
 						} else {
@@ -540,7 +541,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#refreshVisuals()
@@ -868,12 +869,15 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	 */
 	@Override
 	public void activate() {
-		super.activate();
-		addOwnerElementListeners();
-		stereotypeApplication = ((View)getNotationView().eContainer()).getElement();
-		final Element umlElement = UMLUtil.getBaseElement(stereotypeApplication);
-		getDiagramEventBroker().addNotificationListener(stereotypeApplication, this);
-		getDiagramEventBroker().addNotificationListener(umlElement, this);
+		// before to be suppressed by its owner, the associate EObject can be UNSET, so refresh is prevented 
+		if(((View)getNotationView().eContainer()!=null)&&((View)getNotationView().eContainer()).getElement()!=null){
+			super.activate();
+			addOwnerElementListeners();
+			stereotypeApplication = ((View)getNotationView().eContainer()).getElement();
+			final Element umlElement = UMLUtil.getBaseElement(stereotypeApplication);
+			getDiagramEventBroker().addNotificationListener(stereotypeApplication, this);
+			getDiagramEventBroker().addNotificationListener(umlElement, this);
+		}
 	}
 
 	/**

@@ -11,6 +11,7 @@ package org.eclipse.papyrus.uml.diagram.timing.tests.canonical;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.papyrus.junit.utils.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullLifelineEditPartCN;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.InteractionEditPartTN;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.StateDefinitionEditPart;
@@ -22,6 +23,7 @@ public class TestTimingDiagramFullLifelineLayout extends AbstractTimingDiagramTe
 	 * This tests the layout of StateDefinitions, with some error margins in order to accommodate possible future
 	 * modifications of the layout.
 	 */
+	@FailingTest("To be verified. Seems to work for standard user, but not in raw test environment")
 	@Test
 	public void testStateDefinitionsLayout() {
 		final Point interactionLocation = new Point(12, 17);

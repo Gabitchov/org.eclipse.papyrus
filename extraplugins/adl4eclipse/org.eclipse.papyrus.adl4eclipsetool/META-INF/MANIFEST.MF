@@ -23,4 +23,5 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipsetool;singleton:=tr
  ue
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Description: The purpose of this plugin is to model the architecture of eclipse-plugin into UML by using OSGI and ADL4Eclipse profile. More details can be found in the docs directory.
 

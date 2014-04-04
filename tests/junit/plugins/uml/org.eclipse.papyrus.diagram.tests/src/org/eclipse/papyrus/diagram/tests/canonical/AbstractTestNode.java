@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,10 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.tests.canonical;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,19 +56,19 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#setUp()
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Before
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		testSemantic = isSemanticTest();
 	}
 
 	/**
 	 * Returns <code>true</code> if semantic tests should be also performed
-	 * 
+	 *
 	 * @return <code>true</code> if semantic tests should be also performed
 	 */
 	protected boolean isSemanticTest() {
@@ -73,9 +77,10 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#getRootView()
-	 * 
+	 *
 	 * @return
 	 */
+	@Override
 	protected abstract View getRootView();
 
 	/**
@@ -85,7 +90,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 
 	/**
 	 * Test to manage child node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -98,7 +103,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 		testToCreateANode(type, 1, 1, 1, 1);
 		// destroy the first element
 		testDestroy(type, 2, 2, 1, 1);
-		// destroy the second one 
+		// destroy the second one
 		testDestroy(type, 1, 1, 1, 1);
 		// the node has been destroyed, the UML element also. restore one element
 		undoOnUIThread();
@@ -114,7 +119,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 
 	/**
 	 * Test to manage child node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -127,7 +132,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 		testToCreateANode(type, 1, 1, 1, 1);
 		// destroy the first element
 		testDestroy(type, 2, 2, 1, 1);
-		// destroy the second one 
+		// destroy the second one
 		testDestroy(type, 1, 1, 1, 1);
 		// the node has been destroyed, the UML element also. restore one element
 		undoOnUIThread();
@@ -143,7 +148,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 
 	/**
 	 * Test to manage child node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -157,7 +162,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 
 	/**
 	 * Test destroy.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -167,7 +172,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 
 	/**
 	 * Test destroy.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -201,7 +206,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 
 	/**
 	 * Test drop.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -240,7 +245,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 
 	/**
 	 * Test change container.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -299,7 +304,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 
 	/**
 	 * Test to create a node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -342,7 +347,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 
 	/**
 	 * Test to create a node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -352,7 +357,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 
 	/**
 	 * Test view deletion.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -382,7 +387,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 		redoOnUIThread();
 		assertEquals(VIEW_DELETION + TEST_THE_REDO, 0, getContainerEditPart().getChildren().size());
 		if(testSemantic) {
-			//assertTrue(VIEW_DELETION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == numberOfRelatedSemanticElement);	
+			//assertTrue(VIEW_DELETION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == numberOfRelatedSemanticElement);
 		}
 	}
 

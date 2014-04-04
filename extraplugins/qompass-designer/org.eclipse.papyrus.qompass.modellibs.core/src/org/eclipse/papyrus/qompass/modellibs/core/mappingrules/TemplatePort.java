@@ -20,7 +20,7 @@ import org.eclipse.papyrus.FCM.util.ITemplateMappingRule;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FixTemplateSync;
 import org.eclipse.uml2.uml.Class;
@@ -124,7 +124,7 @@ public class TemplatePort implements ITemplateMappingRule {
 			try {
 				TemplateBinding binding =
 					TemplateUtils.fixedBinding(model, extendedPort, (Classifier)type);
-				Copy copy = new Copy(model, model, false);
+				LazyCopier copy = new LazyCopier(model, model, false, true);
 				TemplateInstantiation ti = new TemplateInstantiation(copy, binding);
 				// remove listener synchronizing implementation, since it would add derived
 				// elements for the extended port itself (e.g. provided operations)

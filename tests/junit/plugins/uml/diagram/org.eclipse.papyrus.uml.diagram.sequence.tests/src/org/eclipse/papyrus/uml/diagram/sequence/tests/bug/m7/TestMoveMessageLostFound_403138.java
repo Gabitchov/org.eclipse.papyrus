@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -28,7 +31,7 @@ import org.junit.Test;
 
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=403138
- * 
+ *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class TestMoveMessageLostFound_403138 extends AbstractNodeTest {
@@ -42,7 +45,7 @@ public class TestMoveMessageLostFound_403138 extends AbstractNodeTest {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Test
 	public void testMoveMessageFound() {
 		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(100, 300));

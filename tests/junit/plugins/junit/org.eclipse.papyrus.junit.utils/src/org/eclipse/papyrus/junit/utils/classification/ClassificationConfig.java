@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils.classification;
 
+import static org.eclipse.papyrus.junit.utils.classification.TestCategory.FailingTest;
+import static org.eclipse.papyrus.junit.utils.classification.TestCategory.InteractiveTest;
 import static org.eclipse.papyrus.junit.utils.classification.TestCategory.InvalidTest;
 import static org.eclipse.papyrus.junit.utils.classification.TestCategory.NotImplemented;
 
@@ -47,7 +49,11 @@ public class ClassificationConfig {
 	public static final Set<TestCategory> excludedTestCategories = new HashSet<TestCategory>();
 
 	static {
-		setExcludedTestCategories(NotImplemented, InvalidTest);
+		//Default on Hudson: exclude everything which is already identified as an issue (i.e. is not a (new) regression)
+		setExcludedTestCategories(NotImplemented, InvalidTest, FailingTest, InteractiveTest);
+
+		//Check whether identified regressions are still failing
+		//setIncludedTestCategories(FailingTest);
 	}
 
 	/**

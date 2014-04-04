@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -36,6 +39,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode;
+import org.junit.After;
 import org.junit.Test;
 
 /**
@@ -43,7 +47,7 @@ import org.junit.Test;
  * the user just wants to delete the combined fragment and keeping its content.
  * It would be useful to give the possibility to not delete the combined
  * fragment content. This would imply a refactoring of the model.
- * 
+ *
  */
 public class TestCombinedFragmentDeletion_364804 extends TestTopNode {
 
@@ -51,7 +55,7 @@ public class TestCombinedFragmentDeletion_364804 extends TestTopNode {
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return ISequenceDiagramTestsConstants.PROJECT_NAME;
@@ -210,8 +214,9 @@ public class TestCombinedFragmentDeletion_364804 extends TestTopNode {
 		}
 	}
 
+	@After
 	@Override
-	protected void tearDown() throws Exception {
+	public void tearDown() throws Exception {
 		page.closeAllEditors(false);
 		papyrusEditor = null;
 

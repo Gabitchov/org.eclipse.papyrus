@@ -26,26 +26,33 @@
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="typedef "/>
         <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/replaceAll">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          <source xsi:type="ocl.ecore:PropertyCallExp">
+          <source xsi:type="ocl.ecore:OperationCallExp">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <source xsi:type="ocl.ecore:OperationCallExp">
-              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef"/>
-              <source xsi:type="mtl:QueryInvocation">
-                <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-                <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getApplication"/>
-                <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/9">
-                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//PrimitiveType"/>
-                </argument>
+            <source xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ecore:EDataType" href="platform:/resource/org.eclipse.papyrus.cpp.profile/profiles/types.ecore#//String"/>
+              <source xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef"/>
+                <source xsi:type="mtl:QueryInvocation">
+                  <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+                  <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getApplication"/>
+                  <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/9">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//PrimitiveType"/>
+                  </argument>
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/7/Typedef">
+                    <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef"/>
+                  </argument>
+                </source>
                 <argument xsi:type="ocl.ecore:TypeExp" eType="/7/Typedef">
                   <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef"/>
                 </argument>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
               </source>
-              <argument xsi:type="ocl.ecore:TypeExp" eType="/7/Typedef">
-                <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef"/>
-              </argument>
-              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef/definition"/>
             </source>
-            <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef/definition"/>
+            <argument xsi:type="ocl.ecore:TypeExp" eType="/7/String">
+              <referredType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
           </source>
           <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="typeName">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
@@ -71,26 +78,33 @@
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
             <source xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/contains">
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
-              <source xsi:type="ocl.ecore:PropertyCallExp">
+              <source xsi:type="ocl.ecore:OperationCallExp">
                 <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                <source xsi:type="ocl.ecore:OperationCallExp">
-                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef"/>
-                  <source xsi:type="mtl:QueryInvocation">
-                    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-                    <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getApplication"/>
-                    <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/10">
-                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//PrimitiveType"/>
-                    </argument>
+                <source xsi:type="ocl.ecore:PropertyCallExp">
+                  <eType xsi:type="ecore:EDataType" href="platform:/resource/org.eclipse.papyrus.cpp.profile/profiles/types.ecore#//String"/>
+                  <source xsi:type="ocl.ecore:OperationCallExp">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef"/>
+                    <source xsi:type="mtl:QueryInvocation">
+                      <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+                      <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getApplication"/>
+                      <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/10">
+                        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//PrimitiveType"/>
+                      </argument>
+                      <argument xsi:type="ocl.ecore:TypeExp" eType="/7/Typedef">
+                        <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef"/>
+                      </argument>
+                    </source>
                     <argument xsi:type="ocl.ecore:TypeExp" eType="/7/Typedef">
                       <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef"/>
                     </argument>
+                    <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
                   </source>
-                  <argument xsi:type="ocl.ecore:TypeExp" eType="/7/Typedef">
-                    <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef"/>
-                  </argument>
-                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                  <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef/definition"/>
                 </source>
-                <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef/definition"/>
+                <argument xsi:type="ocl.ecore:TypeExp" eType="/7/String">
+                  <referredType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                </argument>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
               </source>
               <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="typeName">
                 <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
@@ -328,6 +342,9 @@
     <eClassifiers xsi:type="ocl.ecore:TypeType" name="Typedef">
       <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/C_Cpp/1#//Typedef"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="String">
+      <referredType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+    </eClassifiers>
   </ecore:EPackage>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//PrimitiveType"/>
@@ -355,7 +372,7 @@
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/CppPrimitiveTypeDefinition">
       <details key="start" value="1134"/>
-      <details key="end" value="1537"/>
+      <details key="end" value="1573"/>
       <details key="line" value="22"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/CppPrimitiveTypeDefinition/%">
@@ -375,7 +392,7 @@
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/CppPrimitiveTypeDefinition/%.2">
       <details key="start" value="1229"/>
-      <details key="end" value="1525"/>
+      <details key="end" value="1561"/>
       <details key="line" value="24"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/CppPrimitiveTypeDefinition/%.2/%">
@@ -385,160 +402,180 @@
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/CppPrimitiveTypeDefinition/%.2/%.1">
       <details key="start" value="1268"/>
-      <details key="end" value="1364"/>
+      <details key="end" value="1382"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.8" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%">
       <details key="start" value="1268"/>
-      <details key="end" value="1321"/>
+      <details key="end" value="1339"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.9" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%/%">
       <details key="start" value="1268"/>
-      <details key="end" value="1310"/>
+      <details key="end" value="1321"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%/%/%">
       <details key="start" value="1268"/>
+      <details key="end" value="1310"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%/%/%/%">
+      <details key="start" value="1268"/>
       <details key="end" value="1291"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.11" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%/%/%/self">
+    <eAnnotations source="positions.12" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%/%/%/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.12" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%/%/%/%">
+    <eAnnotations source="positions.13" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%/%/%/%/%">
       <details key="start" value="1283"/>
       <details key="end" value="1290"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.13" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%/%/%.1">
+    <eAnnotations source="positions.14" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%/%/%/%.1">
       <details key="start" value="1302"/>
       <details key="end" value="1309"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.14" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%.1">
-      <details key="start" value="1333"/>
-      <details key="end" value="1343"/>
+    <eAnnotations source="positions.15" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%/%.1">
+      <details key="start" value="1332"/>
+      <details key="end" value="1338"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.15" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%.2">
-      <details key="start" value="1345"/>
-      <details key="end" value="1363"/>
+    <eAnnotations source="positions.16" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%.1">
+      <details key="start" value="1351"/>
+      <details key="end" value="1361"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.16" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%.2/primitiveType">
-      <details key="start" value="1345"/>
-      <details key="end" value="1358"/>
+    <eAnnotations source="positions.17" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%.2">
+      <details key="start" value="1363"/>
+      <details key="end" value="1381"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.17" references="/0/CppPrimitiveTypeDefinition/%.2/%.2">
-      <details key="start" value="1368"/>
-      <details key="end" value="1480"/>
+    <eAnnotations source="positions.18" references="/0/CppPrimitiveTypeDefinition/%.2/%.1/%.2/primitiveType">
+      <details key="start" value="1363"/>
+      <details key="end" value="1376"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/CppPrimitiveTypeDefinition/%.2/%.2">
+      <details key="start" value="1386"/>
+      <details key="end" value="1516"/>
       <details key="line" value="26"/>
     </eAnnotations>
-    <eAnnotations source="positions.18" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%">
-      <details key="start" value="1453"/>
-      <details key="end" value="1454"/>
+    <eAnnotations source="positions.20" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%">
+      <details key="start" value="1489"/>
+      <details key="end" value="1490"/>
       <details key="line" value="26"/>
     </eAnnotations>
-    <eAnnotations source="positions.19" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.1">
-      <details key="start" value="1455"/>
-      <details key="end" value="1473"/>
+    <eAnnotations source="positions.21" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.1">
+      <details key="start" value="1491"/>
+      <details key="end" value="1509"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.20" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.1/primitiveType">
-      <details key="start" value="1455"/>
-      <details key="end" value="1468"/>
+    <eAnnotations source="positions.22" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.1/primitiveType">
+      <details key="start" value="1491"/>
+      <details key="end" value="1504"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.21" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2">
-      <details key="start" value="1372"/>
-      <details key="end" value="1452"/>
+    <eAnnotations source="positions.23" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2">
+      <details key="start" value="1390"/>
+      <details key="end" value="1488"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.22" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%">
-      <details key="start" value="1377"/>
-      <details key="end" value="1451"/>
+    <eAnnotations source="positions.24" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%">
+      <details key="start" value="1395"/>
+      <details key="end" value="1487"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.23" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%">
-      <details key="start" value="1377"/>
-      <details key="end" value="1430"/>
+    <eAnnotations source="positions.25" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%">
+      <details key="start" value="1395"/>
+      <details key="end" value="1466"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.24" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%/%">
-      <details key="start" value="1377"/>
-      <details key="end" value="1419"/>
+    <eAnnotations source="positions.26" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%/%">
+      <details key="start" value="1395"/>
+      <details key="end" value="1448"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.25" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%/%/%">
-      <details key="start" value="1377"/>
-      <details key="end" value="1400"/>
+    <eAnnotations source="positions.27" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%/%/%">
+      <details key="start" value="1395"/>
+      <details key="end" value="1437"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.26" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%/%/%/self">
+    <eAnnotations source="positions.28" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%/%/%/%">
+      <details key="start" value="1395"/>
+      <details key="end" value="1418"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%/%/%/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.27" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%/%/%/%">
-      <details key="start" value="1392"/>
-      <details key="end" value="1399"/>
+    <eAnnotations source="positions.30" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%/%/%/%/%">
+      <details key="start" value="1410"/>
+      <details key="end" value="1417"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.28" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%/%/%.1">
-      <details key="start" value="1411"/>
-      <details key="end" value="1418"/>
+    <eAnnotations source="positions.31" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%/%/%/%.1">
+      <details key="start" value="1429"/>
+      <details key="end" value="1436"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.29" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%.1">
-      <details key="start" value="1440"/>
-      <details key="end" value="1450"/>
+    <eAnnotations source="positions.32" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%/%.1">
+      <details key="start" value="1459"/>
+      <details key="end" value="1465"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.30" references="/0/CppPrimitiveTypeDefinition/%.2/%.3">
-      <details key="start" value="1480"/>
-      <details key="end" value="1482"/>
+    <eAnnotations source="positions.33" references="/0/CppPrimitiveTypeDefinition/%.2/%.2/%.2/%/%.1">
+      <details key="start" value="1476"/>
+      <details key="end" value="1486"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/CppPrimitiveTypeDefinition/%.2/%.3">
+      <details key="start" value="1516"/>
+      <details key="end" value="1518"/>
       <details key="line" value="26"/>
     </eAnnotations>
-    <eAnnotations source="positions.31" references="/0/CppPrimitiveTypeDefinition/%.2/%.4">
+    <eAnnotations source="positions.35" references="/0/CppPrimitiveTypeDefinition/%.2/%.4">
       <details key="start" value="1233"/>
       <details key="end" value="1257"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.32" references="/0/CppPrimitiveTypeDefinition/%.2/%.4/self">
+    <eAnnotations source="positions.36" references="/0/CppPrimitiveTypeDefinition/%.2/%.4/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.33" references="/0/CppPrimitiveTypeDefinition/%.2/%.4/%">
+    <eAnnotations source="positions.37" references="/0/CppPrimitiveTypeDefinition/%.2/%.4/%">
       <details key="start" value="1248"/>
       <details key="end" value="1255"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.34" references="/0/CppPrimitiveTypeDefinition/%.2/%.5">
-      <details key="start" value="1482"/>
-      <details key="end" value="1520"/>
+    <eAnnotations source="positions.38" references="/0/CppPrimitiveTypeDefinition/%.2/%.5">
+      <details key="start" value="1518"/>
+      <details key="end" value="1556"/>
       <details key="line" value="27"/>
     </eAnnotations>
-    <eAnnotations source="positions.35" references="/0/CppPrimitiveTypeDefinition/%.2/%.5/%">
-      <details key="start" value="1490"/>
-      <details key="end" value="1516"/>
+    <eAnnotations source="positions.39" references="/0/CppPrimitiveTypeDefinition/%.2/%.5/%">
+      <details key="start" value="1526"/>
+      <details key="end" value="1552"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.36" references="/0/CppPrimitiveTypeDefinition/%.2/%.5/%/primitiveType">
-      <details key="start" value="1502"/>
-      <details key="end" value="1515"/>
+    <eAnnotations source="positions.40" references="/0/CppPrimitiveTypeDefinition/%.2/%.5/%/primitiveType">
+      <details key="start" value="1538"/>
+      <details key="end" value="1551"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.37" references="/0/CppPrimitiveTypeDefinition/%.2/%.5/%.1">
-      <details key="start" value="1518"/>
-      <details key="end" value="1520"/>
+    <eAnnotations source="positions.41" references="/0/CppPrimitiveTypeDefinition/%.2/%.5/%.1">
+      <details key="start" value="1554"/>
+      <details key="end" value="1556"/>
       <details key="line" value="28"/>
     </eAnnotations>
-    <eAnnotations source="positions.38" references="/0/CppPrimitiveTypeDefinition/primitiveType">
+    <eAnnotations source="positions.42" references="/0/CppPrimitiveTypeDefinition/primitiveType">
       <details key="start" value="1178"/>
       <details key="end" value="1207"/>
       <details key="line" value="22"/>

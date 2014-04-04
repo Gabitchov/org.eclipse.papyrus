@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,10 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.pro20130916;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Iterator;
 import java.util.List;
@@ -94,7 +98,7 @@ public class BaseStereotypesTest extends AbstractNodeTest {
 		assertTrue("displayInCompartment", displayInCompartment);
 		final View node = ((GraphicalEditPart)editPart).getNotationView();
 		int i = 0;
-		//we go through all sub nodes 
+		//we go through all sub nodes
 		Node compartmentNode = null;
 		while(i < node.getChildren().size()) {
 			if((node.getChildren().get(i)) instanceof Node) {
@@ -314,7 +318,7 @@ public class BaseStereotypesTest extends AbstractNodeTest {
 		@SuppressWarnings("unchecked")
 		Iterator<Edge> edgeIterator = semanticView.getSourceEdges().iterator();
 		while(edgeIterator.hasNext()) {
-			Edge edge = (Edge)edgeIterator.next();
+			Edge edge = edgeIterator.next();
 			if(edge.getType().equals("AppliedStereotypesCommentLink")) {
 				appliedStereotypeLink = edge;
 			}

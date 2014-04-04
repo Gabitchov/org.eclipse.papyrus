@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Field;
 
@@ -34,7 +37,7 @@ import org.junit.Test;
 
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=402978
- * 
+ *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class TestMakeSameHeightForLifelines_402978 extends AbstractNodeTest {

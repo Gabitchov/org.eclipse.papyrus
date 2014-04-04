@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,11 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.tests.canonical;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -51,7 +56,7 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.diagram.te
 
 	/**
 	 * Test view deletion.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -79,7 +84,7 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.diagram.te
 
 	/**
 	 * Retrieves the TransactionalEditingDomain
-	 * 
+	 *
 	 * @return the editing domain (can be null)
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
@@ -97,7 +102,7 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.diagram.te
 
 	/**
 	 * Test destroy.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -129,7 +134,7 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.diagram.te
 
 	/**
 	 * Test drop.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -162,7 +167,7 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.diagram.te
 
 	/**
 	 * Test change container.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -217,7 +222,7 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.diagram.te
 
 	/**
 	 * Test to create a node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -247,7 +252,7 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.diagram.te
 
 	/**
 	 * Test to create a node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -280,7 +285,7 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.diagram.te
 
 	/**
 	 * Test to manage top node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -298,7 +303,7 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.diagram.te
 
 	/**
 	 * Test to manage top node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType

@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.dsml.validation
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.uml2.uml;bundle-version="5.0.0"
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier

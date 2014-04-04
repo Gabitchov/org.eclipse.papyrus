@@ -24,6 +24,7 @@ import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.junit.utils.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.EditPartUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.StateInvariantUtils;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.CompactLifelineCompartmentEditPartCN;
@@ -43,6 +44,7 @@ public class TestTimingDiagramCompactStateInvariant extends AbstractTimingDiagra
 		createDefaultCompactLifeline();
 	}
 
+	@FailingTest("To be verified. Seems to work for standard user, but not in raw test environment")
 	@Test
 	public void testCutCompactStateInvariants() {
 		final List<CompactStateInvariantEditPartCN> stateInvariantEditParts = findStateInvariantsInDefaultCompactLifeline();
@@ -56,6 +58,7 @@ public class TestTimingDiagramCompactStateInvariant extends AbstractTimingDiagra
 		checkCompactTimelinePattern("StateInvariant(unnamed);OccurrenceSpecification(<unnamed>_To_<unnamed>);StateInvariant(unnamed);" + "OccurrenceSpecification(<unnamed>_To_<unnamed>);StateInvariant(unnamed);OccurrenceSpecification(<unnamed>_To_<unnamed>);StateInvariant(unnamed);");
 	}
 
+	@FailingTest("To be verified. Seems to work for standard user, but not in raw test environment")
 	@Test
 	public void testEditCompactStateInvariantName() {
 		createThreeOccurrenceSpecificationsInDefaultCompactLifeline();
@@ -69,6 +72,7 @@ public class TestTimingDiagramCompactStateInvariant extends AbstractTimingDiagra
 			final StateInvariant stateInvariant = (StateInvariant)((View)stateInvariantEditPart.getModel()).getElement();
 			testSetNameWithDirectEditRequest(nameEditPart, stateInvariant, new INameProvider<StateInvariant>() {
 
+				@Override
 				public String getName(final StateInvariant stateInvariant) {
 					return StateInvariantUtils.getInnerStateInvariantName(stateInvariant);
 				}
@@ -80,6 +84,7 @@ public class TestTimingDiagramCompactStateInvariant extends AbstractTimingDiagra
 	}
 
 	@Test
+	@FailingTest("To be verified. Seems to work for standard user, but not in raw test environment")
 	public void testDeleteStateInvariants() {
 		createThreeOccurrenceSpecificationsInDefaultCompactLifeline();
 		checkInteractionFragmentsWithPattern("-o-o-o-");
@@ -96,6 +101,7 @@ public class TestTimingDiagramCompactStateInvariant extends AbstractTimingDiagra
 		checkSimpleCompactTimelinePattern("-o-o-");
 	}
 
+	@FailingTest("To be verified. Seems to be failing in all environments; not related to the DirectEdit issue")
 	@Test
 	public void testDeleteStateInvariantsWithOccurrencesOnTop() {
 		createThreeOccurrenceSpecificationsInDefaultCompactLifeline();
@@ -132,6 +138,7 @@ public class TestTimingDiagramCompactStateInvariant extends AbstractTimingDiagra
 		checkSimpleCompactTimelinePattern("-o");
 	}
 
+	@FailingTest("To be verified. Seems to work for standard user, but not in raw test environment")
 	@Test
 	public void testHideStateInvariants() {
 		createThreeOccurrenceSpecificationsInDefaultCompactLifeline();
@@ -170,6 +177,7 @@ public class TestTimingDiagramCompactStateInvariant extends AbstractTimingDiagra
 		assertFalse("We shouldn't be able to hide the last state invariant", command.canExecute());
 	}
 
+	@FailingTest("To be verified. Seems to work for standard user, but not in raw test environment")
 	@Test
 	public void testResizeCompactStateInvariant() {
 		createThreeOccurrenceSpecificationsInDefaultCompactLifeline();

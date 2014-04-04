@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.qompass.designer.core.sync;
 
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.Parameter;
@@ -36,7 +36,7 @@ public class SyncBehaviorParameters {
 			for (Parameter parameter : bf.getOwnedParameters()) {
 				Parameter newParameter = method.createOwnedParameter(parameter.getName(), parameter.getType());
 				newParameter.setDirection(parameter.getDirection());
-				Copy.copyMultElemModifiers(parameter, newParameter);
+				LazyCopier.copyMultElemModifiers(parameter, newParameter);
 				StUtils.copyStereotypes(parameter, newParameter);
 			}
 		}

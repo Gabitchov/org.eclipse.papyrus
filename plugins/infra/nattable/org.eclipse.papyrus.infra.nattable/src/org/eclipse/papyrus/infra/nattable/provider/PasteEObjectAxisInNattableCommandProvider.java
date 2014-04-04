@@ -273,6 +273,11 @@ public class PasteEObjectAxisInNattableCommandProvider {
 		sharedMap.put(Constants.PASTED_ELEMENT_CONTAINER_KEY, tableContext);
 		sharedMap.put(Constants.REFERENCES_TO_SET_KEY, new ArrayList<IValueSetter>());
 		sharedMap.put(Constants.CELLS_TO_ADD_KEY, new ArrayList<Cell>());
+		
+		//used to be able to apply stereotypes required by columns properties, in detached mode even if there is no post actions defined in the table configuration
+		//see bug 431691: [Table 2] Paste from Spreadsheet must be able to apply required stereotypes for column properties in all usecases
+		//https://bugs.eclipse.org/bugs/show_bug.cgi?id=431691
+		sharedMap.put(Constants.ADDITIONAL_POST_ACTIONS_TO_CONCLUDE_PASTE_KEY, new ArrayList<String>());
 
 		if(!useProgressMonitor) {
 			final ICommand pasteCommand = getPasteFromStringCommandInDetachedMode(contextEditingDomain, tableEditingDomain, new NullProgressMonitor(), sharedMap);
@@ -442,6 +447,14 @@ public class PasteEObjectAxisInNattableCommandProvider {
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				//initialize lists
 				final Collection<String> postActions = getPostActions();
+				
+				//we add the post actions added by cell manager
+				//see bug 431691: [Table 2] Paste from Spreadsheet must be able to apply required stereotypes for column properties in all usecases
+				//https://bugs.eclipse.org/bugs/show_bug.cgi?id=431691
+				@SuppressWarnings("unchecked")
+				final Collection<String> postActionsAddedByCellManagers = (Collection<String>)sharedMap.get(Constants.ADDITIONAL_POST_ACTIONS_TO_CONCLUDE_PASTE_KEY);
+				postActions.addAll(postActionsAddedByCellManagers);
+				
 				@SuppressWarnings("unchecked")
 				final List<Cell> cells = (List<Cell>)sharedMap.get(Constants.CELLS_TO_ADD_KEY);
 				@SuppressWarnings("unchecked")

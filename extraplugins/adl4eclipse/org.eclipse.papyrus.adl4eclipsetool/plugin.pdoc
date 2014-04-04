@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="The purpose of this plugin is to model the architecture of eclipse-plugin into UML by using OSGI and ADL4Eclipse profile.&#xD;&#xA;More details can be found in the docs directory.">
+  <implicitDependencies plugin="org.eclipse.papyrus.adl4eclipse.profile" comment="plugin that contains profile to model eclipse plugins"/>
+  <implicitDependencies plugin="org.eclipse.papyrus.osgi.profile" comment="plugin that contains profile to osgi bundles. "/>
+  <referent firstName="Patrick" lastName="Tessier" eMail="patrick.tessier@cea.fr" currentCompany="CEA LIST"/>
+</doc:Documentation>

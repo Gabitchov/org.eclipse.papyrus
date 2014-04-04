@@ -110,7 +110,7 @@ public class ConnectorReification {
 
 	/**
 	 * 
-	 * @param copy
+	 * @param copier
 	 * @param tmComponent
 	 * @param smConnectorPart
 	 *        Part representing the connector
@@ -122,7 +122,7 @@ public class ConnectorReification {
 	 *         connector
 	 * @throws TransformationException
 	 */
-	public static Property reifyConnector(Copy copy, Class tmComponent,
+	public static Property reifyConnector(LazyCopier copier, Class tmComponent,
 		Property smConnectorPart, InstanceSpecification tmIS, Object[] args)
 		throws TransformationException {
 		// 1st step: create part for the connector without actually changing the type.
@@ -143,14 +143,14 @@ public class ConnectorReification {
 		Class connectorImplem;
 
 		if(binding != null) {
-			TemplateUtils.adaptActualsToTargetModel(copy, binding);
-			TemplateInstantiation ti = new TemplateInstantiation(copy, binding, args);
+			TemplateUtils.adaptActualsToTargetModel(copier, binding);
+			TemplateInstantiation ti = new TemplateInstantiation(copier, binding, args);
 			connectorImplem = (Class)ti.bindNamedElement(connectorImplemTemplate);
 		} else {
 			// no binding, class is not a template => copy as it is
-			connectorImplem = copy.getCopy(connectorImplemTemplate);
+			connectorImplem = copier.getCopy(connectorImplemTemplate);
 		}
-		Property tmConnectorPart = copy.getCopy(smConnectorPart);
+		Property tmConnectorPart = copier.getCopy(smConnectorPart);
 		tmConnectorPart.setType(connectorImplem);
 		// now re-target connectors towards this part
 		TemplateUtils.retargetConnectors(tmComponent, tmConnectorPart);
@@ -160,8 +160,8 @@ public class ConnectorReification {
 	/**
 	 * Reify a connector
 	 * 
-	 * @param copy
-	 *        The copy obect (from source to target mode)
+	 * @param copier
+	 *        The coper from source to target mode
 	 * @param tmComponent
 	 *        containing composite in target target
 	 * @param name
@@ -173,11 +173,11 @@ public class ConnectorReification {
 	 *        (the part typed with the instantiated interaction component) should be created.
 	 *        The instance is only used to find a suitable implementation.
 	 * @param args
-	 *        addtion args for the Acceleo transformation
+	 *        additional arguments for the Acceleo transformation
 	 * @return the created part within tmComponent
 	 * @throws TransformationException
 	 */
-	public static Property reifyConnector(Copy copy, Class tmComponent,
+	public static Property reifyConnector(LazyCopier copier, Class tmComponent,
 		String name, Connector smConnector, InstanceSpecification tmIS, Object[] args)
 		throws TransformationException {
 
@@ -197,17 +197,17 @@ public class ConnectorReification {
 		Class connectorImplem;
 
 		if(binding != null) {
-			TemplateUtils.adaptActualsToTargetModel(copy, binding);
+			TemplateUtils.adaptActualsToTargetModel(copier, binding);
 			// make copy of bound package and restore it later. Required for nested template instantiations, in particular
 			// the bound package is set within container transformations and is (by default) restored to "null" afterwards.
 			// TODO: TemplateInstantiation should do this automatically
-			copy.pushPackageTemplate();
-			TemplateInstantiation ti = new TemplateInstantiation(copy, binding, args);
+			copier.pushPackageTemplate();
+			TemplateInstantiation ti = new TemplateInstantiation(copier, binding, args);
 			connectorImplem = (Class)ti.bindNamedElement(connectorImplemTemplate);
-			copy.popPackageTemplate();
+			copier.popPackageTemplate();
 		} else {
 			// no binding, class is not a template => copy as it is
-			connectorImplem = copy.getCopy(connectorImplemTemplate);
+			connectorImplem = copier.getCopy(connectorImplemTemplate);
 		}
 
 		if(connectorImplem == null) {
@@ -218,7 +218,7 @@ public class ConnectorReification {
 		Property tmConnectorPart = tmComponent.createOwnedAttribute(name,
 			connectorImplemTemplate);
 		// copy id, but prefix it with "p" (for part)
-		Copy.copyID(smConnector, tmConnectorPart, "p"); //$NON-NLS-1$
+		LazyCopier.copyID(smConnector, tmConnectorPart, "p"); //$NON-NLS-1$
 		tmConnectorPart.setIsComposite(true);
 
 		Log.log(Status.INFO, Log.TRAFO_CONNECTOR,
@@ -230,7 +230,7 @@ public class ConnectorReification {
 		for(ConnectorEnd smEnd : smConnector.getEnds()) {
 			Connector tmConnector = tmComponent.createOwnedConnector("c " //$NON-NLS-1$
 				+ name + " " + String.valueOf(i)); //$NON-NLS-1$
-			Copy.copyID(smConnector, tmConnector);
+			LazyCopier.copyID(smConnector, tmConnector);
 			i++;
 			// the new connector connects the existing end with an end of the
 			// reified connector (the newly created property.)
@@ -239,9 +239,9 @@ public class ConnectorReification {
 			// non-connector part)
 			ConnectorEnd tmEnd1 = tmConnector.createEnd();
 			Property smPartWithPort = smEnd.getPartWithPort();
-			Property tmPartWithPort = copy.getCopy(smPartWithPort);
+			Property tmPartWithPort = copier.getCopy(smPartWithPort);
 			ConnectableElement smRole = smEnd.getRole();
-			ConnectableElement tmRole = copy.getCopy(smRole);
+			ConnectableElement tmRole = copier.getCopy(smRole);
 			tmEnd1.setPartWithPort(tmPartWithPort);
 			tmEnd1.setRole(tmRole);
 

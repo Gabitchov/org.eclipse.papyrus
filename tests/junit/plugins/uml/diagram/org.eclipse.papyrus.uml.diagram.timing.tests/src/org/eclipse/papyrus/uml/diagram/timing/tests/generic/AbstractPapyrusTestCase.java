@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IOperationHistoryListener;
 import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -35,7 +36,9 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -66,6 +69,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
+import org.eclipse.gmf.runtime.diagram.ui.util.INotationType;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -76,6 +80,7 @@ import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
@@ -103,7 +108,7 @@ import org.junit.Before;
 
 // DiResourceSet is deprecated but we need it for CreateUMLModelCommand
 @SuppressWarnings({ "deprecation" })
-public abstract class AbstractPapyrusTestCase {
+public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 
 	protected PapyrusMultiDiagramEditor papyrusEditor;
 
@@ -125,6 +130,7 @@ public abstract class AbstractPapyrusTestCase {
 	public void setUp() throws Exception {
 		Runnable closeIntroRunnable = new Runnable() {
 
+			@Override
 			public void run() {
 				IIntroPart introPart = PlatformUI.getWorkbench().getIntroManager().getIntro();
 				PlatformUI.getWorkbench().getIntroManager().closeIntro(introPart);
@@ -135,6 +141,7 @@ public abstract class AbstractPapyrusTestCase {
 		// add a listener for failed operations
 		OperationHistoryFactory.getOperationHistory().addOperationHistoryListener(new IOperationHistoryListener() {
 
+			@Override
 			public void historyNotification(final OperationHistoryEvent event) {
 				if(event.getEventType() == OperationHistoryEvent.OPERATION_NOT_OK) {
 					AbstractPapyrusTestCase.this.operationFailed = true;
@@ -147,6 +154,7 @@ public abstract class AbstractPapyrusTestCase {
 		// maximize the workbench window
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				maximize();
 				// closeAllViewsAndEditors();
@@ -168,7 +176,7 @@ public abstract class AbstractPapyrusTestCase {
 	 * Asserts that no Command executed on the {@link IOperationHistory} since the last call to
 	 * {@link AbstractPapyrusTestCase#resetLastOperationFailedState resetLastOperationFailedState} returned
 	 * {@link OperationHistoryEvent#OPERATION_NOT_OK}.
-	 * 
+	 *
 	 */
 	protected void assertLastOperationSuccessful() {
 		assertFalse("The operation failed. Look at the log, or put a breakpoint on ExecutionException or DefaultOperationHistory#notifyNotOK to find the cause.", this.operationFailed);
@@ -194,6 +202,7 @@ public abstract class AbstractPapyrusTestCase {
 		this.papyrusEditor = null;
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				closeAllEditors();
 			}
@@ -256,6 +265,7 @@ public abstract class AbstractPapyrusTestCase {
 		}
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				try {
 					openPapyrusEditor();
@@ -292,7 +302,7 @@ public abstract class AbstractPapyrusTestCase {
 		assertTrue("The editor must be a " + PapyrusMultiDiagramEditor.class.getSimpleName() + " (Actual type: " + editorPart.getClass().getSimpleName() + ")", editorPart instanceof PapyrusMultiDiagramEditor);
 		// maximize the editor
 		final IWorkbenchPartReference reference = this.page.getReference(editorPart);
-//		editorPart.getSite().getPage().toggleZoom(reference);
+		//		editorPart.getSite().getPage().toggleZoom(reference);
 		this.papyrusEditor = ((PapyrusMultiDiagramEditor)editorPart);
 		Assert.assertNotNull(papyrusEditor);
 	}
@@ -300,12 +310,12 @@ public abstract class AbstractPapyrusTestCase {
 	/**
 	 * Create a view for the given type, plus the associated semantic element unless the given type is a notation-only
 	 * type.
-	 * 
+	 *
 	 * <ul>
 	 * <li>if type is an {@link INotationType}, then create a view using a {@link CreateViewRequest}
 	 * <li>otherwise, create a view and the corresponding semantic element using a CreateViewAndElementRequest
 	 * </ul>
-	 * 
+	 *
 	 * @param elementType
 	 *        the type for which to create a view (and possibly a model element)
 	 * @param parentEditPart
@@ -319,12 +329,12 @@ public abstract class AbstractPapyrusTestCase {
 	/**
 	 * Create a view for the given type, plus the associated semantic element unless the given type is a notation-only
 	 * type.
-	 * 
+	 *
 	 * <ul>
 	 * <li>if type is an {@link INotationType}, then create a view using a {@link CreateViewRequest}
 	 * <li>otherwise, create a view and the corresponding semantic element using a CreateViewAndElementRequest
 	 * </ul>
-	 * 
+	 *
 	 * @param elementType
 	 *        the type for which to create a view (and possibly a model element)
 	 * @param location
@@ -339,6 +349,7 @@ public abstract class AbstractPapyrusTestCase {
 		final View[] result = new View[1];
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				final CreateViewRequest createRequest = CreateViewRequestFactory.getCreateShapeRequest(elementType, getDiagramEditPart().getDiagramPreferencesHint());
 				if(size != null) {
@@ -432,7 +443,7 @@ public abstract class AbstractPapyrusTestCase {
 
 	/**
 	 * Send the given EditPart a "delete" request (which only deletes the View), and execute the returned command.
-	 * 
+	 *
 	 * @param editPart
 	 *        the EditPart to hide
 	 */
@@ -464,7 +475,7 @@ public abstract class AbstractPapyrusTestCase {
 
 	/**
 	 * Send the given EditPart a {@link DestroyElementRequest}, and execute the returned command.
-	 * 
+	 *
 	 * @param editPart
 	 *        the EditPart to destroy
 	 */
@@ -650,6 +661,7 @@ public abstract class AbstractPapyrusTestCase {
 	protected void testSetNameWithDirectEditRequest(final GraphicalEditPart editPart, final NamedElement namedElement) {
 		testSetNameWithDirectEditRequest(editPart, namedElement, new INameProvider<NamedElement>() {
 
+			@Override
 			public String getName(final NamedElement element) {
 				return element.getName();
 			}
@@ -660,7 +672,7 @@ public abstract class AbstractPapyrusTestCase {
 	 * Set the name of the given GraphicalEditPart (which must be a name edit part) using a DirectEditRequest. This sets
 	 * the name in the Text widget that appears as a result of the DirectEditRequest, and then closes the Text widget to
 	 * accept the changes.
-	 * 
+	 *
 	 * @param editPart
 	 *        the edit part on which to perform the DirectEditRequest.
 	 * @param newName
@@ -680,6 +692,7 @@ public abstract class AbstractPapyrusTestCase {
 	protected static void setText(final Text textWidget, final String newName) {
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				textWidget.setText(newName);
 				// change the focus in order to accept the text
@@ -696,6 +709,7 @@ public abstract class AbstractPapyrusTestCase {
 		final Text[] result = new Text[1];
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				// note: both operations need to be performed in the same display runnable
 				editPart.performRequest(directEditRequest);
@@ -708,7 +722,7 @@ public abstract class AbstractPapyrusTestCase {
 
 	/**
 	 * Click the palette tool with the given id on the center of the given EditPart's Figure.
-	 * 
+	 *
 	 * @param toolId
 	 *        the id of the tool to click
 	 * @param target
@@ -721,7 +735,7 @@ public abstract class AbstractPapyrusTestCase {
 
 	/**
 	 * Click the palette tool with the given id at the given location.
-	 * 
+	 *
 	 * @param toolId
 	 *        the id of the tool to click
 	 * @param point
@@ -731,6 +745,7 @@ public abstract class AbstractPapyrusTestCase {
 		final Tool tool = createTool(toolId);
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				tool.activate();
 				internalClickTool(tool, point);
@@ -749,6 +764,7 @@ public abstract class AbstractPapyrusTestCase {
 		final Tool tool = createTool(toolId);
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				tool.activate();
 				internalClickTool(tool, firstPoint);
@@ -766,6 +782,7 @@ public abstract class AbstractPapyrusTestCase {
 		assertNotNull("The tool with id " + toolId + " couldn't be created", tool); //$NON-NLS-2$
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				initializeTool(tool);
 			}
@@ -780,7 +797,7 @@ public abstract class AbstractPapyrusTestCase {
 
 	/**
 	 * Find a tool with the given id in the given palette container.
-	 * 
+	 *
 	 * @param toolId
 	 *        the id of the tool to return
 	 * @param paletteContainer
@@ -842,6 +859,7 @@ public abstract class AbstractPapyrusTestCase {
 		final Text[] result = new Text[1];
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				final Composite composite = (Composite)getDiagramEditor().getDiagramGraphicalViewer().getControl();
 				result[0] = findVisibleTextWidget(composite);
@@ -873,7 +891,7 @@ public abstract class AbstractPapyrusTestCase {
 	/**
 	 * Find the EditPart corresponding to the given View, or <code>null</code> if it doesn't exist, or is not registered
 	 * in the viewer's visual part map.
-	 * 
+	 *
 	 * @param view
 	 *        the view for which to find a corresponding EditPart
 	 * @return the EditPart corresponding to the View
@@ -889,6 +907,7 @@ public abstract class AbstractPapyrusTestCase {
 		final Display display = Display.getDefault();
 		display.syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				try {
 					while(display.readAndDispatch()) {
@@ -903,7 +922,7 @@ public abstract class AbstractPapyrusTestCase {
 
 	/**
 	 * Move the given EditPart in its parent.
-	 * 
+	 *
 	 * @param editPartToMove
 	 *        the EditPart to move
 	 * @param parentEditPart
@@ -917,7 +936,7 @@ public abstract class AbstractPapyrusTestCase {
 
 	/**
 	 * Resize the given EditPart in its parent.
-	 * 
+	 *
 	 * @param editPartToResize
 	 *        the EditPart to resize
 	 * @param parentEditPart
@@ -933,7 +952,7 @@ public abstract class AbstractPapyrusTestCase {
 
 	/**
 	 * Move the given EditParts in their parent.
-	 * 
+	 *
 	 * @param editPartsToMove
 	 *        the EditParts to move
 	 * @param parentEditPart
@@ -959,7 +978,7 @@ public abstract class AbstractPapyrusTestCase {
 
 	/**
 	 * Resize the given EditParts in their parent.
-	 * 
+	 *
 	 * @param editPartsToMove
 	 *        the EditParts to resize
 	 * @param parentEditPart
@@ -989,7 +1008,7 @@ public abstract class AbstractPapyrusTestCase {
 	/**
 	 * Compute a Location for the mouse pointer that would occur when dragging the center of the given EditPart by the
 	 * given translation vector.
-	 * 
+	 *
 	 * @param graphicalEditPart
 	 *        the EditPart being dragged
 	 * @param moveDelta
@@ -1021,7 +1040,7 @@ public abstract class AbstractPapyrusTestCase {
 	/**
 	 * Check that undo and redo work correctly after moving/resizing an EditPart (the EditPart must have been
 	 * moved/resized before calling this method).
-	 * 
+	 *
 	 * @param editPart
 	 *        an EditPart that was just moved/resized
 	 * @param boundsBefore
@@ -1045,7 +1064,7 @@ public abstract class AbstractPapyrusTestCase {
 
 	/**
 	 * Check the bounds of the given GraphicalEditPart's Figure
-	 * 
+	 *
 	 * @param graphicalEditPart
 	 *        The EditPart whose Figure's bounds to check
 	 * @param expectedPosition
@@ -1067,7 +1086,7 @@ public abstract class AbstractPapyrusTestCase {
 
 	/**
 	 * Check the bounds of the given GraphicalEditPart's Figure
-	 * 
+	 *
 	 * @param graphicalEditPart
 	 *        The EditPart whose Figure's bounds to check
 	 * @param expectedBounds
@@ -1101,7 +1120,7 @@ public abstract class AbstractPapyrusTestCase {
 
 	/**
 	 * Find the EditPart corresponding to the given View in the given parent EditPart's children.
-	 * 
+	 *
 	 * @param parentEditPart
 	 *        the EditPart in which the EditPart we are looking for should be found
 	 * @param view

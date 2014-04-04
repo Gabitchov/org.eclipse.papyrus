@@ -306,7 +306,7 @@
       </rm:uri>
     </rm:provider>
     
-    <!-- PAYURYS EMF FACET-->
+    <!-- PAPYRUS EMF FACET-->
      <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/plugins/facet/{1}">
         <bc:propertyRef key="local.repository"/>
@@ -460,7 +460,7 @@
       <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/5.0.0/S201403101212">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
-    </rm:provider>
+    </rm:provider>    
     
     <!-- EMF Facet -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">

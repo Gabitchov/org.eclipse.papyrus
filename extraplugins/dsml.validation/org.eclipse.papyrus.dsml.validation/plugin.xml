@@ -18,4 +18,18 @@
             provider="Eclipse Modeling Project">
       </profile>
    </extension>
+    <extension
+          point="org.eclipse.uml2.uml.dynamic_package">
+       <profile
+             location="pathmap://DSMLValidation_PROFILES/PapyrusValidationRuleDSML.uml#_0"
+             uri="pathmap://DSMLValidation_PROFILES/PapyrusValidationRuleDSML">
+       </profile>
+    </extension>
+    <extension
+          point="org.eclipse.emf.ecore.dynamic_package">
+       <resource
+             location="pathmap://DSMLValidation_PROFILES/PapyrusValidationRuleDSML.uml#_0"
+             uri="pathmap://DSMLValidation_PROFILES/PapyrusValidationRuleDSML">
+       </resource>
+    </extension>
 </plugin>

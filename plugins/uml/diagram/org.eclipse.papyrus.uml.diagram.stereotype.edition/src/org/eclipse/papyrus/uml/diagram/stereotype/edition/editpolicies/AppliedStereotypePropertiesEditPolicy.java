@@ -93,7 +93,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 			editPart.getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-					Display.getCurrent().asyncExec(new Runnable() {
+					Display.getCurrent().syncExec(new Runnable() {
 
 						public void run() {
 
@@ -181,7 +181,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 			editPart.getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-					Display.getCurrent().asyncExec(new Runnable() {
+					Display.getCurrent().syncExec(new Runnable() {
 
 						public void run() {
 							editPart.getEditingDomain().getCommandStack().execute(command);
@@ -227,7 +227,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 					editPart.getEditingDomain().runExclusive(new Runnable() {
 
 						public void run() {
-							Display.getCurrent().asyncExec(new Runnable() {
+							Display.getCurrent().syncExec(new Runnable() {
 
 								public void run() {
 									DeleteCommand command = new DeleteCommand((View)getHost().getModel());
@@ -278,7 +278,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 							editPart.getEditingDomain().runExclusive(new Runnable() {
 
 								public void run() {
-									Display.getCurrent().asyncExec(new Runnable() {
+									Display.getCurrent().syncExec(new Runnable() {
 
 										public void run() {
 											if(currentNode.eContainer() != null) {

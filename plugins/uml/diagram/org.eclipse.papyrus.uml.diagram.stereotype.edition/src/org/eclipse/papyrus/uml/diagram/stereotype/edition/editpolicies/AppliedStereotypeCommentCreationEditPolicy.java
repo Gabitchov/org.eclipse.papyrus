@@ -41,6 +41,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNode
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.command.CreateAppliedStereotypeCommentViewCommand;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentLinkEditPart;
 import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -57,6 +58,9 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 	public final static String APPLIED_STEREOTYPE_COMMENT = "Applied_Stereotype_Comment";
 
 
+	/**
+	 * This method has in charge to refresh the presence of the view that represent the comment
+	 */
 	protected void updateAppliedStereotypeCommentShape() {
 		String stereotypeLocalizationToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization((View)getHost().getModel());
 		String stereotypePropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View)getHost().getModel());
@@ -74,18 +78,36 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 				}
 			}
 		}
+		
+		//test if the comment has to be removed
 		if(getAppliedStereotypeCommentNode() != null) {
 			View commentNode = getAppliedStereotypeCommentNode();
-			if(!stereotypeLocalizationToDisplay.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION) || getvisisbleAppliedStereotypeCompartment(commentNode, getUMLElement()) == 0) {
+			
+			//1. the  display is not comment
+			if(!stereotypeLocalizationToDisplay.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION) ) {
 				final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
 				executeAppliedStereotypeCommentDeletion(domain, commentNode);
-
+			}
+			
+			//the result of properties to display is null so no compartment will be created
+			String todisplay = StereotypeUtil.getPropertiesValues(stereotypePropertiesToDisplay, getUMLElement()); 
+			if("".equals(todisplay.trim())) {
+				final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
+				executeAppliedStereotypeCommentDeletion(domain, commentNode);
 			}
 		}
+
 	}
 
+	/**
+	 * return the number of visible compartment that represent a stereotype
+	 * @param view the container view
+	 * @param eobject the eobject that represent the container
+	 * @return the number of visible stereotype compartment
+	 */
 	protected int getvisisbleAppliedStereotypeCompartment(View view, EObject eobject) {
 		int nbVisibleCompartment = 0;
+		@SuppressWarnings("unchecked")
 		Iterator<View> iteratorView = view.getChildren().iterator();
 		while(iteratorView.hasNext()) {
 			View subview = (View)iteratorView.next();
@@ -95,7 +117,9 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 		}
 		return nbVisibleCompartment;
 	}
-
+/**
+ * this method is use to copy all eAnnotation from the view to the comment in order to display properties of stereotype
+ */
 	protected void delegateEAnnotationInCommentShape() {
 		final Node appliedStereotypeComment = getAppliedStereotypeCommentNode();
 
@@ -119,7 +143,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 				}
 			};
 			
-			Display.getCurrent().asyncExec(new Runnable() {
+			Display.getCurrent().syncExec(new Runnable() {
 
 				public void run() {
 					//use to avoid to put it in the command stack
@@ -169,7 +193,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 	 *        the stereotype application
 	 */
 	protected void executeAppliedStereotypeCommentCreation(final EditPart editPart, final TransactionalEditingDomain domain, final EObject semanticElement) {
-		Display.getCurrent().asyncExec(new Runnable() {
+		Display.getCurrent().syncExec(new Runnable() {
 
 			public void run() {
 				int x = 200;
@@ -208,9 +232,14 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 
 		});
 	}
+	/**
+	 * method in oder to delete the comment
+	 * @param domain the transactional editing domain
+	 * @param commentNode the view that represent the comment of stereotype
+	 */
 
 	protected void executeAppliedStereotypeCommentDeletion(final TransactionalEditingDomain domain, final View commentNode) {
-		Display.getCurrent().asyncExec(new Runnable() {
+		Display.getCurrent().syncExec(new Runnable() {
 
 			public void run() {
 				//because it is asynchrone the comment node maybe become s null

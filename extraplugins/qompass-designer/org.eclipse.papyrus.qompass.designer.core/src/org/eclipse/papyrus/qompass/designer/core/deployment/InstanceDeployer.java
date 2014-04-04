@@ -16,7 +16,7 @@ package org.eclipse.papyrus.qompass.designer.core.deployment;
 
 import java.util.Stack;
 
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Slot;
@@ -39,7 +39,7 @@ public interface InstanceDeployer {
 	 * @param node
 	 *        the node onto which the allocation should be done.
 	 */
-	public void init(Copy sat, BootLoaderGen bootloader, InstanceSpecification node);
+	public void init(LazyCopier sat, BootLoaderGen bootloader, InstanceSpecification node);
 
 	/**
 	 * Deploy an instance and copy the required classes into the target model.

@@ -11,12 +11,10 @@
 
 package org.eclipse.papyrus.views.cpp;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.panels.CppAbstractPanel;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
@@ -78,22 +76,8 @@ public class CppPanelView extends AbstractCppPanelView {
 		}
 
 		// Retrieve selected object
-		Object currentObject = sSelection.getFirstElement();
-		// If the object is an edit part, try to get semantic bridge
-		if(currentObject instanceof GraphicalEditPart) {
-			GraphicalEditPart editPart = (GraphicalEditPart)currentObject;
-			if(editPart.getModel() instanceof View) {
-				View view = (View)editPart.getModel();
-				if(view.getElement() instanceof Element) {
-					currentObject = (Element)view.getElement();
-				}
-			}
-		}
-		else if(currentObject instanceof IAdaptable) {
-			// modisco ModelElementItem supports IAdaptable (cleaner than cast / dependency with modisco)
-			currentObject = ((IAdaptable)currentObject).getAdapter(EObject.class);
-		}
-
+		EObject currentObject = EMFHelper.getEObject(sSelection.getFirstElement());
+	
 		if(currentObject instanceof Element) {
 			if(currentTarget != currentObject) {
 				currentTarget = (Element)currentObject;

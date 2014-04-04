@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 
@@ -64,7 +67,7 @@ import org.junit.Test;
  * One should be able to only show the represented element type name, or its name, or both. When the type is not set, one should have the choice to
  * make it appear as undefined or to be systematically hidden.
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=383722
- * 
+ *
  */
 public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 
@@ -104,7 +107,7 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Test
 	public void testLabelAppearence1() {
 		final LifelineEditPart lifeline1 = setupLifeline();

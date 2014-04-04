@@ -46,7 +46,7 @@
         <body xsi:type="mtl:IfBlock">
           <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" = "/>
           <body xsi:type="ocl.ecore:PropertyCallExp">
-            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+            <eType xsi:type="ecore:EDataType" href="platform:/resource/org.eclipse.papyrus.cpp.profile/profiles/types.ecore#//Integer"/>
             <source xsi:type="ocl.ecore:OperationCallExp">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/C_Cpp/1#//CppInit"/>
               <source xsi:type="mtl:QueryInvocation">

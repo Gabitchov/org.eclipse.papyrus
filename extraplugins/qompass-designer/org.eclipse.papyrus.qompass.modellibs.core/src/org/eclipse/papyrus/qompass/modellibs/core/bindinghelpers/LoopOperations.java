@@ -5,10 +5,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.FCM.util.IBindingHelper;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
-import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
+import org.eclipse.papyrus.qompass.designer.core.listeners.PreCopyListener;
 import org.eclipse.papyrus.qompass.designer.core.templates.BindingUtils;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.qompass.modellibs.core.Activator;
 import org.eclipse.uml2.uml.Behavior;
@@ -21,11 +21,11 @@ import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.Type;
 
-public class LoopOperations implements IBindingHelper, CopyListener {
+public class LoopOperations implements IBindingHelper, PreCopyListener {
 
 	private TemplateBinding binding;
 	
-	public EObject copyEObject(Copy copy, EObject sourceEObj) {
+	public EObject preCopyEObject(LazyCopier copy, EObject sourceEObj) {
 		
 		if(sourceEObj instanceof Operation) {
 			Operation operation = (Operation)sourceEObj;

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<environment:Environment
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9">
-  <modelElementFactories
-      name="Papyrus Table ModelElementFactory"
-      factoryClass="org.eclipse.papyrus.infra.table.efacet.properties.modelelement.TableModelElementFactory"/>
-</environment:Environment>

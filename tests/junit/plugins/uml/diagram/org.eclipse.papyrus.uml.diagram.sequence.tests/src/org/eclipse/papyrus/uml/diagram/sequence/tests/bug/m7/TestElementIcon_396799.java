@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,10 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Field;
 import java.util.Collections;
@@ -60,18 +64,19 @@ import org.junit.Test;
 
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=396799
- * 
+ *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class TestElementIcon_396799 extends AbstractNodeTest {
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7.AbstractNodeTest#setUp()
-	 * 
+	 *
 	 * @throws Exception
 	 */
+	@Override
 	@Before
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 	}
 
@@ -84,7 +89,7 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	protected void replaceEannotation(EAnnotation annotation, EModelElement object) {
 		while(object.getEAnnotation(annotation.getSource()) != null) {
 			object.getEAnnotations().remove(object.getEAnnotation(annotation.getSource()));

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.pro20130916;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +39,9 @@ import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.junit.Test;
 
-
 /**
  * Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=417375
- * 
+ *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class Fixbug_OrderFragmentsAfterMessageReconnection_417375 extends AbstractNodeTest {

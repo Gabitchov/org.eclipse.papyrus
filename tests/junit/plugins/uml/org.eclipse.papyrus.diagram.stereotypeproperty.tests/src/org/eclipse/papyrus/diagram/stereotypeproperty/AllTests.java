@@ -24,7 +24,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 	// canonical
 TestProfileApplication.class,
-TestStereotypeApplication.class
+TestStereotypeApplication.class,
+TestLayoutWithStereotype.class
 
 })
 public class AllTests {

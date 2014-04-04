@@ -16,8 +16,8 @@ package org.eclipse.papyrus.qompass.designer.core.transformations.filters;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.FCM.RuleApplication;
-import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.listeners.PreCopyListener;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 
 /**
  * Filter the rule application stereotype. The rule application stereotype is not
@@ -25,7 +25,7 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
  * can contain interceptors which typically reference elements from package templates.
  * These elements should not should be copied into the target model.
  */
-public class FilterRuleApplication implements CopyListener {
+public class FilterRuleApplication implements PreCopyListener {
 
 	public static FilterRuleApplication getInstance() {
 		if(instance == null) {
@@ -34,7 +34,7 @@ public class FilterRuleApplication implements CopyListener {
 		return instance;
 	}
 
-	public EObject copyEObject(Copy copy, EObject sourceEObj) {
+	public EObject preCopyEObject(LazyCopier copy, EObject sourceEObj) {
 		if(sourceEObj instanceof RuleApplication) {
 			return null;
 		}

@@ -19,7 +19,7 @@ import java.util.Stack;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
 import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -48,7 +48,7 @@ public class Deploy {
 	 * @param instance
 	 * @throws TransformationException
 	 */
-	public Deploy(Copy copy, ILangSupport langSupport, InstanceSpecification node,
+	public Deploy(LazyCopier copy, ILangSupport langSupport, InstanceSpecification node,
 			int nodeIndex, int numberOfNodes)
 		throws TransformationException
 	{
@@ -71,7 +71,7 @@ public class Deploy {
 	 * distribute an instance, its contained sub-instances and the referenced
 	 * classifiers to a certain node
 	 * 
-	 * @param copy
+	 * @param copier
 	 * @param node
 	 * @param nodeIndex
 	 * @param numberOfNodes
@@ -181,5 +181,5 @@ public class Deploy {
 
 	protected InstanceDeployer depInstance;
 	
-	protected Copy copy;
+	protected LazyCopier copy;
 }

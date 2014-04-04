@@ -16,7 +16,7 @@ package org.eclipse.papyrus.qompass.designer.core.deployment;
 
 import java.util.Stack;
 
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.uml2.uml.Class;
@@ -46,7 +46,7 @@ import org.eclipse.uml2.uml.Slot;
  */
 public class PartialCopy implements InstanceDeployer {
 
-	public void init(Copy copy, BootLoaderGen bootloader,
+	public void init(LazyCopier copy, BootLoaderGen bootloader,
 		InstanceSpecification node) {
 		this.copy = copy;
 		this.node = node; // only needed for debug output
@@ -120,5 +120,5 @@ public class PartialCopy implements InstanceDeployer {
 
 	private InstanceSpecification node;
 
-	private Copy copy;
+	private LazyCopier copy;
 }

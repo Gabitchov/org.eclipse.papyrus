@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,12 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Collections;
 
@@ -94,7 +100,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	protected Event createMouseEvent(int x, int y, int button, int stateMask, int count) {
 		Event event = new Event();
 		event.time = (int)System.currentTimeMillis();
@@ -147,13 +153,14 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		menu.notifyListeners(SWT.Show, event);
 		menu.setVisible(true);
 		MenuItem[] items = menu.getItems();
-		for(MenuItem it : items)
+		for(MenuItem it : items) {
 			if(it.getText().toLowerCase().contains(itemText)) {
 				Event e = createEvent();
 				e.widget = it;
 
 				it.notifyListeners(SWT.Selection, e);
 			}
+		}
 		menu.notifyListeners(SWT.Hide, event);
 		menu.setVisible(false);
 		waitForComplete();
@@ -171,7 +178,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	}
 
 	@Test
-	// test property view of duration link 
+	// test property view of duration link
 	public void testDurationLinkProperty() {
 		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 100), null);
 		assertNotNull(lifeline);
@@ -323,7 +330,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 	@Test
 	public void testDurationMoveResize() {
-		// test move			
+		// test move
 		DurationConstraintEditPart dc = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(400, 200), null);
 		assertNotNull(dc);
 		moveEditPart(dc, new Point(50, 0));
@@ -508,7 +515,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	}
 
 	@Test
-	// duration link to message and execution 
+	// duration link to message and execution
 	public void testLinkingExecutionMessageOnTwoLifeline() {
 		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 80), null);
 		assertNotNull(lifeline1);
@@ -726,6 +733,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		assertTrue(MOVE + TEST_THE_REDO, after.equals(getAbsoluteBounds(lifelineEP)));
 	}
 
+	@Override
 	protected EditPartViewer.Conditional getTargetingConditional(final Request req) {
 		return new EditPartViewer.Conditional() {
 

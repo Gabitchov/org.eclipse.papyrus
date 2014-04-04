@@ -74,8 +74,8 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 	 * @param tmCDP
 	 *        deployment plan within target model
 	 */
-	public LWContainerTrafo(Copy copy, Package tmCDP) {
-		this.copy = copy;
+	public LWContainerTrafo(LazyCopier copy, Package tmCDP) {
+		this.copier = copy;
 		this.tmCDP = tmCDP;
 		interceptionOpMap = new HashMap<Operation, Operation>();
 	}
@@ -224,9 +224,9 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 					Property extensionPart =
 						expandAggregationExtension(part.getName(), extOrInterceptor, tmComponent);
 					// register relation to facilitate connector copy
-					copy.setPackageTemplate(smContainerRule.getBase_Class(), tmClass);
-					copy.put(part, extensionPart);
-					copy.setPackageTemplate(null, null);
+					copier.setPackageTemplate(smContainerRule.getBase_Class(), tmClass);
+					copier.put(part, extensionPart);
+					copier.setPackageTemplate(null, null);
 				}
 			}
 			else {
@@ -271,13 +271,13 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 		TemplateSignature signature = TemplateUtils.getSignature(smContainerExtImpl);
 		if(signature == null) {
 			// no template signature, just copy the container extension into the target model
-			tmContainerExtImpl = copy.getCopy(smContainerExtImpl);
+			tmContainerExtImpl = copier.getCopy(smContainerExtImpl);
 		} else {
 			// template signature found, instantiate container extension via the
 			// template binding mechanism
-			TemplateBinding binding = TemplateUtils.fixedBinding(copy.target, smContainerExtImpl, tmComponent);
+			TemplateBinding binding = TemplateUtils.fixedBinding(copier.target, smContainerExtImpl, tmComponent);
 			Object[] args = new Object[]{};
-			TemplateInstantiation ti = new TemplateInstantiation(copy, binding, args);
+			TemplateInstantiation ti = new TemplateInstantiation(copier, binding, args);
 			tmContainerExtImpl = (Class)ti.bindNamedElement(smContainerExtImpl);
 		}
 
@@ -293,7 +293,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 		throws TransformationException
 	{
 		for(Operation smOperation : operations) {
-			Operation tmOperation = copy.getCopy(smOperation);
+			Operation tmOperation = copier.getCopy(smOperation);
 			String interceptionBody = ""; //$NON-NLS-1$
 			for(Behavior behavior : interceptionOperationInRule.getMethods()) {
 				if(behavior instanceof OpaqueBehavior) {

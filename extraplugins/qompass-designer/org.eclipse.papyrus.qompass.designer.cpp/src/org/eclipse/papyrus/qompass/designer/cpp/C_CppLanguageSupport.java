@@ -98,6 +98,11 @@ public class C_CppLanguageSupport implements ILangSupport {
 	public void setProject(IProject project) {
 		m_project = project;
 	}
+	
+	@Override
+	public IProject getProject() {
+		return m_project;
+	}
 
 	public void setSettings(InstanceSpecification node) throws TransformationException
 	{
