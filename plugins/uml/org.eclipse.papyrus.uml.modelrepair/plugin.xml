@@ -5,38 +5,29 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=tools">
          <menu
                icon="icons/papyrus.png"
                id="org.eclipse.papyrus.uml.modelrepair.refactor"
                label="Refactor">
             <command
                   commandId="org.eclipse.papyrus.uml.modelrepair.switchprofiles"
-                  style="push">
+                  style="push"
+                  label="Switch Profiles...">
                <visibleWhen
                      checkEnabled="false">
                   <with
                         variable="selection">
+                     <test
+                           property="org.eclipse.papyrus.views.modelexplorer.tester.eClass"
+                           value="uml::Package">
+                     </test>
                      <iterate
-                           ifEmpty="false"
-                           operator="and">
-                        <adapt
-                              type="org.eclipse.core.resources.IFile">
-                           <or>
-                              <test
-                                    property="org.eclipse.core.resources.extension"
-                                    value="di">
-                              </test>
-                              <test
-                                    property="org.eclipse.core.resources.extension"
-                                    value="uml">
-                              </test>
-                              <test
-                                    property="org.eclipse.core.resources.extension"
-                                    value="notation">
-                              </test>
-                           </or>
-                        </adapt>
+                           operator="and"
+                           ifEmpty="false">
+                        <test
+                              property="org.eclipse.papyrus.uml.tools.isRoot">
+                        </test>
                      </iterate>
                   </with>
                </visibleWhen>
@@ -54,7 +45,7 @@
       <command
             defaultHandler="org.eclipse.papyrus.uml.modelrepair.handler.SwitchProfileHandler"
             id="org.eclipse.papyrus.uml.modelrepair.switchprofiles"
-            name="Switch profile">
+            name="Switch Profiles">
       </command>
    </extension>
    <extension

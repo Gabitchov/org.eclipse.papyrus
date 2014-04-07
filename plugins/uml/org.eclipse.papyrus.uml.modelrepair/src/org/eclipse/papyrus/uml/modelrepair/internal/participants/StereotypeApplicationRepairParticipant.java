@@ -207,6 +207,8 @@ public class StereotypeApplicationRepairParticipant extends PackageOperations im
 
 		private final DiagnosticChain diagnostics;
 
+		private EObject copying;
+
 		/**
 		 * @param profile
 		 * @param diagnostics
@@ -218,14 +220,36 @@ public class StereotypeApplicationRepairParticipant extends PackageOperations im
 		}
 
 		@Override
+		public EObject copy(EObject eObject) {
+			final EObject previousCopying = copying;
+			
+			try {
+				copying = eObject;
+				return super.copy(eObject);
+			} finally {
+				copying = previousCopying;
+			}
+		}
+		
+		@Override
+		protected void copyReference(EReference eReference, EObject eObject, EObject copyEObject) {
+			final EObject previousCopying = copying;
+			
+			try {
+				copying = eObject;
+				super.copyReference(eReference, eObject, copyEObject);
+			} finally {
+				copying = previousCopying;
+			}
+		}
+		
+		@Override
 		protected EObject createCopy(EObject eObject) {
 			try {
 				return super.createCopy(eObject);
 			} catch (IllegalStateException e) {
 				// target EClass does not exist in the profile
-				if(diagnostics != null) {
-					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, e.getLocalizedMessage(), null));
-				}
+				handleException(e);
 				return null;
 			}
 		}
@@ -249,7 +273,18 @@ public class StereotypeApplicationRepairParticipant extends PackageOperations im
 		protected void handleException(Exception exception) {
 			// target EClass does not exist in the profile or target EClass does not have this attribute in the profile
 			if(diagnostics != null) {
-				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, exception.getLocalizedMessage(), null));
+				Object[] data = null;
+
+				if(copying != null) {
+					Element base = (copying == null) ? null : getBaseElement(copying);
+					if(base != null) {
+						data = new Object[]{ base };
+					} else {
+						data = new Object[]{ copying.eResource() };
+					}
+				}
+
+				diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, Activator.PLUGIN_ID, 0, exception.getLocalizedMessage(), data));
 			} else {
 				super.handleException(exception);
 			}

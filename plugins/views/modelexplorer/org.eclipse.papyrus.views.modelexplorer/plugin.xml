@@ -451,7 +451,7 @@
 </extension>
 <extension point="org.eclipse.core.expressions.propertyTesters">
       <!-- the property tester is used to enabled/disabled handler -->
-   <propertyTester class="org.eclipse.papyrus.views.modelexplorer.provider.PropertyTester" id="org.eclipse.papyrus.views.modelexplorer.tester" namespace="org.eclipse.papyrus.views.modelexplorer.tester" properties="isEObject, isPage" type="org.eclipse.jface.viewers.IStructuredSelection">
+   <propertyTester class="org.eclipse.papyrus.views.modelexplorer.provider.PropertyTester" id="org.eclipse.papyrus.views.modelexplorer.tester" namespace="org.eclipse.papyrus.views.modelexplorer.tester" properties="isEObject,isPage,eClass" type="org.eclipse.jface.viewers.IStructuredSelection">
    </propertyTester>
    <propertyTester class="org.eclipse.papyrus.views.modelexplorer.provider.PropertyTester" id="org.eclipse.papyrus.views.modelexplorer.tester.view" namespace="org.eclipse.papyrus.views.modelexplorer.tester.view" properties="isModelExplorer" type="org.eclipse.ui.IWorkbenchPart">
    </propertyTester>
