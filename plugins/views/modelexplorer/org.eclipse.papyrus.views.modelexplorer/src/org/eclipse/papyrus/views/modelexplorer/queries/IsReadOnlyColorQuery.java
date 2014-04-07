@@ -31,7 +31,7 @@ public class IsReadOnlyColorQuery implements IJavaQuery2<EObject, IColor> {
 			final IParameterValueList2 parameterValues,
 			final IFacetManager facetManager)
 			throws DerivedTypedElementException {
-		return new Color(192,192,192);
+		return new Color(100,100,100);
 	}
 
 }
