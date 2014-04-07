@@ -296,7 +296,6 @@ public class CppGenUtils {
 
 	private static Namespace currentNS;
 
-	private static boolean visibilityStale = false;
 	private static VisibilityKind currVisibility = null;
 	private static final Pattern EmptySectionRegex = Pattern.compile("^\\s*$"); //$NON-NLS-1$
 
@@ -306,7 +305,6 @@ public class CppGenUtils {
 	 */
 	public static void resetVisibility(VisibilityKind v) {
 		currVisibility = v;
-		visibilityStale = false;
 	}
 
 	/**
@@ -314,9 +312,11 @@ public class CppGenUtils {
 	 * the previously declared visibility (if appropriate).  Ignore empty content.
 	 */
 	public static String getSection(VisibilityKind visibility, String content) {
+		// Bug 425208: Don't update the visibility until we know for sure that it
+		//             will be written to the output.
+		VisibilityKind newVisibility = null;
 		if (!visibility.equals(currVisibility)) {
-			currVisibility = visibility;
-			visibilityStale = true;
+			newVisibility = visibility;
 		}
 
 		// Filter out empty sections.
@@ -326,11 +326,11 @@ public class CppGenUtils {
 		}
 
 		// Don't write duplicate visibility modifiers.
-		if (!visibilityStale) {
+		if (newVisibility == null) {
 			return content;
 		}
 
-		visibilityStale = false;
+		currVisibility = newVisibility;
 		return currVisibility.toString() + ":\n" + content; //$NON-NLS-1$
 	}
 }
