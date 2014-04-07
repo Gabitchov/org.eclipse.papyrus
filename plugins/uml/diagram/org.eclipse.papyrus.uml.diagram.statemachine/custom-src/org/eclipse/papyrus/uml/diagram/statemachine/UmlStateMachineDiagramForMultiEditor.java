@@ -1,17 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2008, 2014 Atos Origin, CEA, and others.
- *
+/**
+ * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 392301
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine;
 
 import org.eclipse.core.runtime.CoreException;
@@ -44,22 +41,18 @@ import org.eclipse.ui.PartInitException;
  * 
  */
 public class UmlStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
-
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
 	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_StateMachine.gif";
-
 	/**
 	 * The image descriptor of the diagram icon
 	 */
 	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor(UmlStateMachineDiagramForMultiEditor.DIAG_IMG_PATH);
-
 	/** The editor splitter. */
 	private Composite splitter;
-
 	private Image titleImage;
-	
+
 	/**
 	 * Constructor for SashSystem v2. Context and required objects are retrieved
 	 * from the ServiceRegistry.
@@ -67,11 +60,9 @@ public class UmlStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 	 * @throws BackboneException
 	 * @throws ServiceException
 	 * 
-	 * @generated NOT
 	 */
 	public UmlStateMachineDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
-		
 		// see bug 401059: remove obsolete compartments from states
 		new FixNestedStateAndRegionOnOpening().fix(diagram);
 	}
@@ -106,21 +97,18 @@ public class UmlStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 
 	@Override
 	public void dispose() {
-		if(titleImage != null) {
+		if (titleImage != null) {
 			titleImage.dispose();
 			titleImage = null;
 		}
-		
 		super.dispose();
 	}
 
 	@Override
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
-
 		// Enable Drop
 		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
-
 			@Override
 			protected Object getJavaObject(TransferData data) {
 				return LocalSelectionTransfer.getTransfer().nativeToJava(data);
@@ -131,7 +119,6 @@ public class UmlStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 				return getEditingDomain();
 			}
 		});
-
 	}
 
 	/**

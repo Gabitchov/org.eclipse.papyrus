@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.parts;
 
 import java.util.Collections;
@@ -24,72 +35,69 @@ import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.Vertex;
 
-
-public class RegionCompartmentDiagramUpdater implements ICustomDiagramUpdater {
-
-	public List<?> getSemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+public class RegionCompartmentDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDescriptor> {
+	public List<UMLNodeDescriptor> getSemanticChildren(View view) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Region modelElement = (Region)containerView.getElement();
+		Region modelElement = (Region) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getSubvertices().iterator(); it.hasNext();) {
-			Vertex childElement = (Vertex)it.next();
+		for (Iterator<?> it = modelElement.getSubvertices().iterator(); it.hasNext();) {
+			Vertex childElement = (Vertex) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == PseudostateInitialEditPart.VISUAL_ID) {
+			if (visualID == PseudostateInitialEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == PseudostateJoinEditPart.VISUAL_ID) {
+			if (visualID == PseudostateJoinEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == PseudostateForkEditPart.VISUAL_ID) {
+			if (visualID == PseudostateForkEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == PseudostateChoiceEditPart.VISUAL_ID) {
+			if (visualID == PseudostateChoiceEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == PseudostateJunctionEditPart.VISUAL_ID) {
+			if (visualID == PseudostateJunctionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == PseudostateShallowHistoryEditPart.VISUAL_ID) {
+			if (visualID == PseudostateShallowHistoryEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == PseudostateDeepHistoryEditPart.VISUAL_ID) {
+			if (visualID == PseudostateDeepHistoryEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == PseudostateTerminateEditPart.VISUAL_ID) {
+			if (visualID == PseudostateTerminateEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == PseudostateEntryPointEditPart.VISUAL_ID) {
+			if (visualID == PseudostateEntryPointEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == PseudostateExitPointEditPart.VISUAL_ID) {
+			if (visualID == PseudostateExitPointEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == FinalStateEditPart.VISUAL_ID) {
+			if (visualID == FinalStateEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == StateEditPart.VISUAL_ID) {
+			if (visualID == StateEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
 		return result;
 	}
-
 }

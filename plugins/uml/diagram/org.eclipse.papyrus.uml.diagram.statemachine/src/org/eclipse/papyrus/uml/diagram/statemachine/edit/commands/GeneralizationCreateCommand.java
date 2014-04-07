@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -20,12 +31,10 @@ import org.eclipse.uml2.uml.UMLFactory;
  * @generated
  */
 public class GeneralizationCreateCommand extends EditElementCommand {
-
 	/**
 	 * @generated
 	 */
 	protected final EObject source;
-
 	/**
 	 * @generated
 	 */
@@ -44,16 +53,16 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(source == null && target == null) {
+		if (source == null && target == null) {
 			return false;
 		}
-		if(source != null && false == source instanceof Classifier) {
+		if (source != null && false == source instanceof Classifier) {
 			return false;
 		}
-		if(target != null && false == target instanceof Classifier) {
+		if (target != null && false == target instanceof Classifier) {
 			return false;
 		}
-		if(getSource() == null) {
+		if (getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
@@ -63,15 +72,33 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		if (!canExecute()) {
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+		}
+		Generalization newElement = UMLFactory.eINSTANCE.createGeneralization();
+		getSource().getGeneralizations()
+				.add(newElement);
+		newElement.setGeneral(
+				getTarget()
+				);
+		doConfigure(newElement, monitor, info);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
+	}
+
+	/**
+	 * @generated
+	 */
 	protected void doConfigure(Generalization newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
 		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if(configureCommand != null && configureCommand.canExecute()) {
+		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -79,36 +106,21 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
-		}
-		Generalization newElement = UMLFactory.eINSTANCE.createGeneralization();
-		getSource().getGeneralizations().add(newElement);
-		newElement.setGeneral(getTarget());
-		doConfigure(newElement, monitor, info);
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult(newElement);
+	protected void setElementToEdit(EObject element) {
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Classifier getSource() {
-		return (Classifier)source;
+		return (Classifier) source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Classifier getTarget() {
-		return (Classifier)target;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setElementToEdit(EObject element) {
-		throw new UnsupportedOperationException();
+		return (Classifier) target;
 	}
 }

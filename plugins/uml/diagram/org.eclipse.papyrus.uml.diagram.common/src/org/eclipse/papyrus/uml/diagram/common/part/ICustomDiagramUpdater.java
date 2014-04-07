@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.gmf.runtime.notation.View;
 
-public interface ICustomDiagramUpdater {
-
-	public List getSemanticChildren(View view);
+public interface ICustomDiagramUpdater<E> {
+	public List<E> getSemanticChildren(View view);
 }

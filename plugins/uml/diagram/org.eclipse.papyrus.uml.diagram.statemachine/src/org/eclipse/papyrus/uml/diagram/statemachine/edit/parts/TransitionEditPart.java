@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -14,8 +25,9 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.TransitionItem
 /**
  * @generated
  */
-public class TransitionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
-
+public class TransitionEditPart extends UMLConnectionNodeEditPart
+		implements ITreeBranchEditPart
+{
 	/**
 	 * @generated
 	 */
@@ -31,39 +43,6 @@ public class TransitionEditPart extends UMLConnectionNodeEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof TransitionStereotypeEditPart) {
-			((TransitionStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
-	protected Connection createConnectionFigure() {
-		return new TransitionFigure();
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new TransitionItemSemanticEditPolicy());
@@ -74,27 +53,61 @@ public class TransitionEditPart extends UMLConnectionNodeEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	public TransitionFigure getPrimaryShape() {
-		return (TransitionFigure)getFigure();
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof TransitionStereotypeEditPart) {
+			((TransitionStereotypeEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
+			return true;
+		}
+		return false;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.removeChildVisual(childEditPart);
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof TransitionStereotypeEditPart) {
+		if (childEditPart instanceof TransitionStereotypeEditPart) {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * 
+	 * @generated
+	 */
+	protected Connection createConnectionFigure() {
+		return new TransitionFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public TransitionFigure getPrimaryShape() {
+		return (TransitionFigure) getFigure();
 	}
 }
