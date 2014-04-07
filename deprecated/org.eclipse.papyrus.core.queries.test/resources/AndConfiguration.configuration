@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration:ModiscoQueryConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/core/queries/0.7" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="ANDConfiguration" query="query:JavaModelQuery CoreQueriesTest.querySet#AND">
-  <parameterValues xsi:type="configuration:QueryExecutionValue" parameter="CoreQueriesTest.querySet#AND_leftOperand" configuration="configuration:ModiscoQueryConfiguration IsNamedQueryConfiguration.configuration#/"/>
-  <parameterValues xsi:type="configuration:QueryExecutionValue" parameter="CoreQueriesTest.querySet#AND_rightOperand" configuration="configuration:ModiscoQueryConfiguration IsNameLongerThanQueryConfiguration1.configuration#/"/>
-</configuration:ModiscoQueryConfiguration>

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 
@@ -57,6 +60,7 @@ import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.junit.After;
 import org.junit.Test;
 
 
@@ -77,7 +81,7 @@ public class TestDecompositionCombinedFragment_364813 extends TestTopNode {
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return ISequenceDiagramTestsConstants.PROJECT_NAME;
@@ -178,8 +182,9 @@ public class TestDecompositionCombinedFragment_364813 extends TestTopNode {
 		assertTrue(CREATION + TEST_THE_EXECUTION, !cf2.getCovereds().contains(childLifeline.resolveSemanticElement()));
 	}
 
+	@After
 	@Override
-	protected void tearDown() throws Exception {
+	public void tearDown() throws Exception {
 		super.tearDown();
 		waitForComplete();
 		PopupUtil.removeDialogCloseHandler();

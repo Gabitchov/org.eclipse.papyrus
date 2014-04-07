@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -46,7 +49,8 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
+	@Override
 	protected EditPart createNode(IElementType type, EditPart parentPart, Point location, Dimension size) {
 		EditPart node = super.createNode(type, parentPart, location, size);
 		assertNotNull("Create Node Failed: " + type.getDisplayName(), node);

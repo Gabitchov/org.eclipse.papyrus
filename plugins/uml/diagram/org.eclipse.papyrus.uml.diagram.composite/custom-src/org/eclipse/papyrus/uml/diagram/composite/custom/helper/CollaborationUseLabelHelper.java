@@ -29,13 +29,12 @@ import org.eclipse.uml2.uml.CollaborationUse;
  * Helper for labels displaying {@link CollaborationUse} in Composite Diagram
  */
 public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
-
 	/** Single instance */
 	private static CollaborationUseLabelHelper labelHelper;
 
 	/** Single instance getter */
 	public static CollaborationUseLabelHelper getInstance() {
-		if(labelHelper == null) {
+		if (labelHelper == null) {
 			labelHelper = new CollaborationUseLabelHelper();
 		}
 		return labelHelper;
@@ -49,7 +48,7 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 	 *
 	 * @return the mask name or <code>null</code> if no masks has been found
 	 */
-	public String getMaskLabel(int value) {
+	public String getMaskLabel(String value) {
 		return masks.get(value);
 	}
 
@@ -87,13 +86,12 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 	@Override
 	protected String elementLabel(GraphicalEditPart editPart) {
 		Collection<String> displayValue = ICustomAppearance.DEFAULT_UML_PROPERTY;
-
-		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
-		if(policy != null) {
+		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy) editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		if (policy != null) {
 			displayValue = policy.getCurrentDisplayValue();
 		}
 		CollaborationUse elem = getUMLElement(editPart);
-		if(elem != null) {
+		if (elem != null) {
 			return CollaborationUseUtil.getCustomLabel(elem, displayValue);
 		}
 		return "";
@@ -105,10 +103,9 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 	@Override
 	public CollaborationUse getUMLElement(GraphicalEditPart editPart) {
 		EObject element = super.getUMLElement(editPart);
-		if(element instanceof CollaborationUse) {
-			return (CollaborationUse)element;
+		if (element instanceof CollaborationUse) {
+			return (CollaborationUse) element;
 		}
 		return null;
 	}
-
 }

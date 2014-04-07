@@ -28,7 +28,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.figure.BlockFigure;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
@@ -73,11 +73,11 @@ public class BlockEditPart extends AbstractElementEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				if(child instanceof IBorderItemEditPart) {
+				if (child instanceof IBorderItemEditPart) {
 					return new BorderItemResizableEditPolicy();
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -98,66 +98,66 @@ public class BlockEditPart extends AbstractElementEditPart {
 
 	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof BlockLabelNameEditPart) {
-			((BlockLabelNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof BlockLabelNameEditPart) {
+			((BlockLabelNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof FlowPortAffixedNodeEditPart) {
+		if (childEditPart instanceof FlowPortAffixedNodeEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((FlowPortAffixedNodeEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((FlowPortAffixedNodeEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		if(childEditPart instanceof PortAffixedNodeEditPart) {
+		if (childEditPart instanceof PortAffixedNodeEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((PortAffixedNodeEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((PortAffixedNodeEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		if(childEditPart instanceof BlockPropertyCompartmentEditPart) {
+		if (childEditPart instanceof BlockPropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getBlockPropertyCompartmentFigure();
 			setupContentPane(pane);
-			pane.add(((BlockPropertyCompartmentEditPart)childEditPart).getFigure());
+			pane.add(((BlockPropertyCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof PartPropertyCompartmentEditPart) {
+		if (childEditPart instanceof PartPropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPartPropertyCompartmentFigure();
 			setupContentPane(pane);
-			pane.add(((PartPropertyCompartmentEditPart)childEditPart).getFigure());
+			pane.add(((PartPropertyCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ReferencePropertyCompartmentEditPart) {
+		if (childEditPart instanceof ReferencePropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getReferencePropertyCompartmentFigure();
 			setupContentPane(pane);
-			pane.add(((ReferencePropertyCompartmentEditPart)childEditPart).getFigure());
+			pane.add(((ReferencePropertyCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof PortCompartmentEditPart) {
+		if (childEditPart instanceof PortCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPortCompartmentFigure();
 			setupContentPane(pane);
-			pane.add(((PortCompartmentEditPart)childEditPart).getFigure());
+			pane.add(((PortCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof FlowPortCompartmentEditPart) {
+		if (childEditPart instanceof FlowPortCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getFlowPortCompartmentFigure();
 			setupContentPane(pane);
-			pane.add(((FlowPortCompartmentEditPart)childEditPart).getFigure());
+			pane.add(((FlowPortCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof OperationCompartmentEditPart) {
+		if (childEditPart instanceof OperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane);
-			pane.add(((OperationCompartmentEditPart)childEditPart).getFigure());
+			pane.add(((OperationCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof BlockConstraintCompartmentEditPart) {
+		if (childEditPart instanceof BlockConstraintCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getBlockConstraintCompartmentFigure();
 			setupContentPane(pane);
-			pane.add(((BlockConstraintCompartmentEditPart)childEditPart).getFigure());
+			pane.add(((BlockConstraintCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ValuePropertyCompartmentEditPart) {
+		if (childEditPart instanceof ValuePropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getValuePropertyCompartmentFigure();
 			setupContentPane(pane);
-			pane.add(((ValuePropertyCompartmentEditPart)childEditPart).getFigure());
+			pane.add(((ValuePropertyCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -165,63 +165,63 @@ public class BlockEditPart extends AbstractElementEditPart {
 
 	@Override
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof BlockLabelNameEditPart) {
+		if (childEditPart instanceof BlockLabelNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof FlowPortAffixedNodeEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((FlowPortAffixedNodeEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof FlowPortAffixedNodeEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((FlowPortAffixedNodeEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof PortAffixedNodeEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((PortAffixedNodeEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof PortAffixedNodeEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((PortAffixedNodeEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof BlockPropertyCompartmentEditPart) {
+		if (childEditPart instanceof BlockPropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getBlockPropertyCompartmentFigure();
 			setupContentPane(pane);
-			pane.remove(((BlockPropertyCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((BlockPropertyCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof PartPropertyCompartmentEditPart) {
+		if (childEditPart instanceof PartPropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPartPropertyCompartmentFigure();
 			setupContentPane(pane);
-			pane.remove(((PartPropertyCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((PartPropertyCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ReferencePropertyCompartmentEditPart) {
+		if (childEditPart instanceof ReferencePropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getReferencePropertyCompartmentFigure();
 			setupContentPane(pane);
-			pane.remove(((ReferencePropertyCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((ReferencePropertyCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof PortCompartmentEditPart) {
+		if (childEditPart instanceof PortCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPortCompartmentFigure();
 			setupContentPane(pane);
-			pane.remove(((PortCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((PortCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof FlowPortCompartmentEditPart) {
+		if (childEditPart instanceof FlowPortCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getFlowPortCompartmentFigure();
 			setupContentPane(pane);
-			pane.remove(((FlowPortCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((FlowPortCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof OperationCompartmentEditPart) {
+		if (childEditPart instanceof OperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane);
-			pane.remove(((OperationCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((OperationCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof BlockConstraintCompartmentEditPart) {
+		if (childEditPart instanceof BlockConstraintCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getBlockConstraintCompartmentFigure();
 			setupContentPane(pane);
-			pane.remove(((BlockConstraintCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((BlockConstraintCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ValuePropertyCompartmentEditPart) {
+		if (childEditPart instanceof ValuePropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getValuePropertyCompartmentFigure();
 			setupContentPane(pane);
-			pane.remove(((ValuePropertyCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((ValuePropertyCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -229,46 +229,46 @@ public class BlockEditPart extends AbstractElementEditPart {
 
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof BlockPropertyCompartmentEditPart) {
+		if (editPart instanceof BlockPropertyCompartmentEditPart) {
 			return getPrimaryShape().getBlockPropertyCompartmentFigure();
 		}
-		if(editPart instanceof PartPropertyCompartmentEditPart) {
+		if (editPart instanceof PartPropertyCompartmentEditPart) {
 			return getPrimaryShape().getPartPropertyCompartmentFigure();
 		}
-		if(editPart instanceof ReferencePropertyCompartmentEditPart) {
+		if (editPart instanceof ReferencePropertyCompartmentEditPart) {
 			return getPrimaryShape().getReferencePropertyCompartmentFigure();
 		}
-		if(editPart instanceof PortCompartmentEditPart) {
+		if (editPart instanceof PortCompartmentEditPart) {
 			return getPrimaryShape().getPortCompartmentFigure();
 		}
-		if(editPart instanceof FlowPortCompartmentEditPart) {
+		if (editPart instanceof FlowPortCompartmentEditPart) {
 			return getPrimaryShape().getFlowPortCompartmentFigure();
 		}
-		if(editPart instanceof OperationCompartmentEditPart) {
+		if (editPart instanceof OperationCompartmentEditPart) {
 			return getPrimaryShape().getOperationCompartmentFigure();
 		}
-		if(editPart instanceof BlockConstraintCompartmentEditPart) {
+		if (editPart instanceof BlockConstraintCompartmentEditPart) {
 			return getPrimaryShape().getBlockConstraintCompartmentFigure();
 		}
-		if(editPart instanceof ValuePropertyCompartmentEditPart) {
+		if (editPart instanceof ValuePropertyCompartmentEditPart) {
 			return getPrimaryShape().getValuePropertyCompartmentFigure();
 		}
-		if(editPart instanceof IBorderItemEditPart) {
+		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
 	}
 
-	//	public EditPart getTargetEditPart(Request request) {
-	//		if(request instanceof CreateViewAndElementRequest) {
-	//			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-	//			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-	//			if(type == CustomBlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN) {
-	//				return getChildBySemanticHint(CustomBlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT);
-	//			}
-	//		}
-	//		return super.getTargetEditPart(request);
-	//	}
+	// public EditPart getTargetEditPart(Request request) {
+	// if(request instanceof CreateViewAndElementRequest) {
+	// CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+	// IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
+	// if(type == CustomBlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN) {
+	// return getChildBySemanticHint(CustomBlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT);
+	// }
+	// }
+	// return super.getTargetEditPart(request);
+	// }
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigure());
@@ -281,7 +281,7 @@ public class BlockEditPart extends AbstractElementEditPart {
 
 	@Override
 	public BlockFigure getPrimaryShape() {
-		return (BlockFigure)primaryShape;
+		return (BlockFigure) primaryShape;
 	}
 
 	@Override

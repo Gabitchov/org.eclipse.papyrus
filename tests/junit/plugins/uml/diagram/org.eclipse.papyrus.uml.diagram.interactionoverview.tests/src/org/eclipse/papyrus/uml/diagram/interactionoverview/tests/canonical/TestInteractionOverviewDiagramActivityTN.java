@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,8 +10,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.interactionoverview.tests.canonical;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityNameEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CustomActivityEditPartTN;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.EditPartUtils;
@@ -33,7 +37,7 @@ public class TestInteractionOverviewDiagramActivityTN extends AbstractInteractio
 		projectCreation();
 		createActivity();
 
-		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
+		assertTrue(AbstractPapyrusTestCase.CREATION + AbstractPapyrusTestCase.INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
 		GraphicalEditPart containerEditPart = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
 		rootCompartment = null;
 		int index = 0;

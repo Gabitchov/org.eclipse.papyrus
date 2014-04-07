@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -24,5 +24,4 @@ public class UMLNodeDescriptor extends UpdaterNodeDescriptor {
 	public UMLNodeDescriptor(EObject modelElement, int visualID) {
 		super(modelElement, visualID);
 	}
-
 }

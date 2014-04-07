@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -53,7 +53,6 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * @generated
  */
 public class ElementInitializers {
-
 	protected ElementInitializers() {
 		// use #getInstance to access cached instance
 	}
@@ -326,11 +325,9 @@ public class ElementInitializers {
 			instance.setLower(
 					0
 					);
-
 			instance.setUpper(
 					1
 					);
-
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}

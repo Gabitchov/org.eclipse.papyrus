@@ -1,7 +1,0 @@
-# Tracing options for the org.eclipse.papyrus.sysml.diagram.internalblock plug-in
-
-# Common issues
-org.eclipse.papyrus.sysml.diagram.internalblock/debug=false
-
-# Visual IDs
-org.eclipse.papyrus.sysml.diagram.internalblock/debug/visualID=false

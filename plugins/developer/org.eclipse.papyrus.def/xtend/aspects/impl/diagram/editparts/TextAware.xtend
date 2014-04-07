@@ -281,7 +281,7 @@ override getLabelIcon(GenCommonBase it,boolean useElementIcon, GenDiagram diagra
 	«««	START: PapyrusGenCode
 		java.util.List<org.eclipse.gmf.runtime.notation.View> views = org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for (org.eclipse.gmf.runtime.notation.View view : views) {
-			if (org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper.showLabelIcon(view)) {
+			if (org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper.showElementIcon(view)) {
 				return «diagram.getElementTypesQualifiedClassName()».getImage(parserElement.eClass());
 			}
 		}

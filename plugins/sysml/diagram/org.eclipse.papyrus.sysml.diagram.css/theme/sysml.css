@@ -67,7 +67,8 @@ InternalBlockDiagram Property > Compartment[kind=structure]{
 }
 
 ParametricDiagram Property > Compartment[kind=structure],
-ParametricDiagram [appliedStereotypes~="Block"] > Compartment[kind=structure]{
+ParametricDiagram [appliedStereotypes~="Block"] > Compartment[kind=structure],
+ParametricDiagram [appliedStereotypes~="ConstraintBlock"] > Compartment[kind=structure]{
 	visible: true;
 }
 

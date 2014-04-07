@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -26,7 +26,6 @@ import org.eclipse.swt.graphics.Image;
  * @generated
  */
 public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelProvider {
-
 	/**
 	 * @generated
 	 */
@@ -87,5 +86,4 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 		}
 		return null;
 	}
-
 }

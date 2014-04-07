@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.canonical;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.Request;
@@ -31,6 +34,7 @@ import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
+import org.junit.Before;
 
 
 /**
@@ -81,7 +85,7 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test view deletion.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -118,7 +122,7 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test destroy.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -151,7 +155,7 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test to create a node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -198,8 +202,9 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 		getDiagramCommandStack().execute(command);
 	}
 
+	@Before
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		createTopNode();
 	}
@@ -219,13 +224,13 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test to manage child node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
 	 *        the container type
 	 */
-	public void testToManageChildNode(IElementType type, IChildTestProvider provider) { //IElementType containerType, 
+	public void testToManageChildNode(IElementType type, IChildTestProvider provider) { //IElementType containerType,
 		testToCreateChildNode(type, provider);
 		// the node is still present
 		testDestroy(type, provider);

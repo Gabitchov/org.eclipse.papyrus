@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -28,7 +28,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 public class InformationFlowEditPart extends UMLConnectionNodeEditPart
 		implements ITreeBranchEditPart
 {
-
 	/**
 	 * @generated
 	 */
@@ -57,10 +56,12 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof InformationFlowConveyedLabelEditPart) {
 			((InformationFlowConveyedLabelEditPart) childEditPart).setLabel(
 					getPrimaryShape().getConveyedLabel());
+			return true;
 		}
 		if (childEditPart instanceof InformationFlowAppliedStereotypeEditPart) {
 			((InformationFlowAppliedStereotypeEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
+			return true;
 		}
 		return false;
 	}
@@ -116,5 +117,4 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart
 	public InformationFlowFigure getPrimaryShape() {
 		return (InformationFlowFigure) getFigure();
 	}
-
 }

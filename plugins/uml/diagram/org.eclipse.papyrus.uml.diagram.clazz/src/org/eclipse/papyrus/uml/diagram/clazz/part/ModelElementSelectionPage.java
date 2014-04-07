@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -18,7 +18,6 @@ import org.eclipse.gmf.tooling.runtime.part.DefaultModelElementSelectionPage;
  * @generated
  */
 public class ModelElementSelectionPage extends DefaultModelElementSelectionPage {
-
 	/**
 	 * @generated
 	 */
@@ -33,5 +32,4 @@ public class ModelElementSelectionPage extends DefaultModelElementSelectionPage 
 	protected String getSelectionTitle() {
 		return Messages.ModelElementSelectionPageMessage;
 	}
-
 }

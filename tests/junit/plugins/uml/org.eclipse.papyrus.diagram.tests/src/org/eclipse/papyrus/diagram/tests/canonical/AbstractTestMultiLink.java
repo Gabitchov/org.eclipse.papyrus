@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.tests.canonical;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -116,7 +119,7 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test view deletion.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -158,7 +161,7 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test destroy.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -183,7 +186,7 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test drop.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -221,12 +224,12 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test to create a node.
-	 * 
+	 *
 	 * @param branchType
 	 *        type of the branch to create
 	 * @param flow
 	 *        TODO
-	 * 
+	 *
 	 */
 	public void testToCreateAMultiLink(IElementType branchType, boolean flow) {
 		//test to create the branch for dependency to node
@@ -330,12 +333,12 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#setUp()
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Before
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		CreateViewRequest requestcreation = createViewRequestShapeContainer();
 		//1st node
@@ -397,7 +400,7 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#getRootView()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -407,7 +410,7 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test to manage child node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType

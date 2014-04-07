@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.util.Collections;
@@ -69,7 +72,7 @@ import org.junit.Test;
  * When the width of a lifeline has been manually modified, it should not be in autosize mode
  * (the size should not be modified when the Lifeline#represent property is set).
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=383723
- * 
+ *
  */
 public class TestLifelineAutoResize_383723 extends TestTopNode {
 
@@ -83,7 +86,7 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return ISequenceDiagramTestsConstants.PROJECT_NAME;
@@ -180,7 +183,7 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 
 	/**
 	 * Execute a EMF command without history
-	 * 
+	 *
 	 * @param editingDomain
 	 *        The editing domain
 	 * @param command

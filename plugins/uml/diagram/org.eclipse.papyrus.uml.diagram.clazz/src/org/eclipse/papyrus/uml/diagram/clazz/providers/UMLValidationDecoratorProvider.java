@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -33,7 +33,6 @@ import org.eclipse.papyrus.uml.diagram.common.providers.ValidationDecoratorProvi
 public class UMLValidationDecoratorProvider
 		extends ValidationDecoratorProvider
 		implements IDecoratorProvider {
-
 	/**
 	 * @generated
 	 */
@@ -71,5 +70,4 @@ public class UMLValidationDecoratorProvider
 				View.class);
 		return view != null && ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
-
 }

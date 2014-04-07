@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.canonical;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -117,7 +120,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * Get the bounds of an edit part
-	 * 
+	 *
 	 * @param part
 	 *        edit part to find bounds
 	 * @return part's bounds in absolute coordinates
@@ -155,7 +158,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test view deletion.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param provider
@@ -186,7 +189,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * Retrieves the TransactionalEditingDomain
-	 * 
+	 *
 	 * @return the editing domain (can be null)
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
@@ -204,7 +207,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test destroy.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param provider
@@ -240,7 +243,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test to create a link.
-	 * 
+	 *
 	 * @param linkType
 	 *        the type
 	 * @param provider
@@ -414,7 +417,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * Test to manage top node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param provider
@@ -439,7 +442,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 	/**
 	 * test the creation of a link where the source and the target are the same objects
-	 * 
+	 *
 	 * @param linkType
 	 * @param provider
 	 * @param allowed

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,11 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -34,7 +39,7 @@ import org.junit.Test;
 
 /**
  * Test Execution ends(one is MessageOccurrenceSpecification of linked message) when the message reconnected or deleted.
- * 
+ *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class TestExecutionEndsWithMessageOccurrenceSpecification extends AbstractNodeTest {

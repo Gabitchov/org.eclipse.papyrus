@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -64,7 +64,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
  * @generated
  */
 public class InstanceSpecificationLinkItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
-
 	/**
 	 * @generated
 	 */
@@ -81,7 +80,6 @@ public class InstanceSpecificationLinkItemSemanticEditPolicy extends UMLBaseItem
 		if (provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if (deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
@@ -328,5 +326,4 @@ public class InstanceSpecificationLinkItemSemanticEditPolicy extends UMLBaseItem
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

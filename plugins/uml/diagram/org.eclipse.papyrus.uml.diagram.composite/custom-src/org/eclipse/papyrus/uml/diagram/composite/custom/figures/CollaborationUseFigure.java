@@ -34,7 +34,7 @@ public class CollaborationUseFigure extends NodeNamedElementFigure {
 
 		// Set layout (Vertical ToolbarLayout)
 		ToolbarLayout layout = new ToolbarLayout();
-		layout.setVertical(true);
+		layout.setHorizontal(false);
 		setLayoutManager(layout);
 	}
 

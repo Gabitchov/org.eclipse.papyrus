@@ -1,7 +1,0 @@
-#Thu Dec 10 16:35:49 CET 2009
-eclipse.preferences.version=1
-gmf_dashboard/domainGenerationModel=platform\:/resource/org.eclipse.papyrus.sysml/model/sysml.genmodel
-gmf_dashboard/domainModel=platform\:/resource/org.eclipse.papyrus.sysml/model/sysml.ecore
-gmf_dashboard/graphicalDefinitionModel=platform\:/resource/org.eclipse.papyrus.sysml.diagram.internalblock/model/ibd.gmfgraph
-gmf_dashboard/mappingModel=platform\:/resource/org.eclipse.papyrus.sysml.diagram.internalblock/model/ibd.gmfmap
-gmf_dashboard/toolingDefinitionModel=platform\:/resource/org.eclipse.papyrus.sysml.diagram.internalblock/model/ibd.gmftool

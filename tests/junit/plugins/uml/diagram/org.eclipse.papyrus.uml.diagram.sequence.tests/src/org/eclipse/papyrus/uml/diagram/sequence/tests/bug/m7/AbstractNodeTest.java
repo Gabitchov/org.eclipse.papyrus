@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,10 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Collections;
 import java.util.List;
@@ -63,6 +67,7 @@ import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.junit.Before;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -83,7 +88,7 @@ public abstract class AbstractNodeTest extends TestTopNode {
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase#getDiagramCommandCreation()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -93,11 +98,12 @@ public abstract class AbstractNodeTest extends TestTopNode {
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode#setUp()
-	 * 
+	 *
 	 * @throws Exception
 	 */
+	@Before
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		Runnable runnable = new Runnable() {
 

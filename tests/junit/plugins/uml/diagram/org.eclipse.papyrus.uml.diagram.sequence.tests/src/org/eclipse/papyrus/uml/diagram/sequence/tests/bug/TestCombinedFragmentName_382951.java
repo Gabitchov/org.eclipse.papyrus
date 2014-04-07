@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,10 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
@@ -37,9 +41,9 @@ import org.junit.Test;
 
 /**
  * Combined fragment name shall be displayed at the right upper corner of the fragment.
- * 
+ *
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=382951
- * 
+ *
  */
 public class TestCombinedFragmentName_382951 extends TestTopNode {
 
@@ -54,7 +58,7 @@ public class TestCombinedFragmentName_382951 extends TestTopNode {
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return ISequenceDiagramTestsConstants.PROJECT_NAME;

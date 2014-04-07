@@ -1,16 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.composite.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -26,8 +24,9 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.policies.RoleBindingItemSe
 /**
  * @generated
  */
-public class RoleBindingEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
-
+public class RoleBindingEditPart extends UMLConnectionNodeEditPart
+		implements ITreeBranchEditPart
+{
 	/**
 	 * @generated
 	 */
@@ -53,12 +52,14 @@ public class RoleBindingEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof RoleBindingRoleNameEditPart) {
-			((RoleBindingRoleNameEditPart)childEditPart).setLabel(getPrimaryShape().getRoleLabel());
+		if (childEditPart instanceof RoleBindingRoleNameEditPart) {
+			((RoleBindingRoleNameEditPart) childEditPart).setLabel(
+					getPrimaryShape().getRoleLabel());
 			return true;
 		}
-		if(childEditPart instanceof RoleBindingAppliedStereotypeEditPart) {
-			((RoleBindingAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof RoleBindingAppliedStereotypeEditPart) {
+			((RoleBindingAppliedStereotypeEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -68,7 +69,7 @@ public class RoleBindingEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -78,10 +79,10 @@ public class RoleBindingEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof RoleBindingRoleNameEditPart) {
+		if (childEditPart instanceof RoleBindingRoleNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof RoleBindingAppliedStereotypeEditPart) {
+		if (childEditPart instanceof RoleBindingAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -91,7 +92,7 @@ public class RoleBindingEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -113,6 +114,6 @@ public class RoleBindingEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	public RoleBindingFigure getPrimaryShape() {
-		return (RoleBindingFigure)getFigure();
+		return (RoleBindingFigure) getFigure();
 	}
 }

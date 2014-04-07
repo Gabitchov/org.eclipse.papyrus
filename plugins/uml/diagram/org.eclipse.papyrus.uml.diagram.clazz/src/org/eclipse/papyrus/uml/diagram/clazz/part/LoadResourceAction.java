@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -25,5 +25,4 @@ public class LoadResourceAction extends DefaultLoadResourceAction {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		return super.execute(event);
 	}
-
 }

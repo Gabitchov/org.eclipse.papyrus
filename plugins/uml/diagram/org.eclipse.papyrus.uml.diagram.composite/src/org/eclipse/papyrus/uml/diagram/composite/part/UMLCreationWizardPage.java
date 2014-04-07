@@ -1,16 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.composite.part;
 
 import org.eclipse.core.runtime.IPath;
@@ -25,7 +23,6 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
  * @generated
  */
 public class UMLCreationWizardPage extends WizardNewFileCreationPage {
-
 	/**
 	 * @generated
 	 */
@@ -34,7 +31,8 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
-	public UMLCreationWizardPage(String pageName, IStructuredSelection selection, String fileExtension) {
+	public UMLCreationWizardPage(String pageName,
+			IStructuredSelection selection, String fileExtension) {
 		super(pageName, selection);
 		this.fileExtension = fileExtension;
 	}
@@ -60,11 +58,11 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	 */
 	protected IPath getFilePath() {
 		IPath path = getContainerFullPath();
-		if(path == null) {
+		if (path == null) {
 			path = new Path(""); //$NON-NLS-1$
 		}
 		String fileName = getFileName();
-		if(fileName != null) {
+		if (fileName != null) {
 			path = path.append(fileName);
 		}
 		return path;
@@ -75,7 +73,8 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	 */
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName(UMLDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), getFileName(), getExtension()));
+		setFileName(UMLDiagramEditorUtil.getUniqueFileName(
+				getContainerFullPath(), getFileName(), getExtension()));
 		setPageComplete(validatePage());
 	}
 
@@ -83,12 +82,13 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	 * @generated
 	 */
 	protected boolean validatePage() {
-		if(!super.validatePage()) {
+		if (!super.validatePage()) {
 			return false;
 		}
 		String extension = getExtension();
-		if(extension != null && !getFilePath().toString().endsWith("." + extension)) {
-			setErrorMessage(NLS.bind(Messages.UMLCreationWizardPageExtensionError, extension));
+		if (extension != null && !getFilePath().toString().endsWith("." + extension)) {
+			setErrorMessage(NLS.bind(
+					Messages.UMLCreationWizardPageExtensionError, extension));
 			return false;
 		}
 		return true;

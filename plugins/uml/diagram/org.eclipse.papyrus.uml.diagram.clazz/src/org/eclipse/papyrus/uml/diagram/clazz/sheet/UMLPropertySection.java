@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -18,7 +18,6 @@ import org.eclipse.ui.views.properties.IPropertySourceProvider;
  * @generated
  */
 public class UMLPropertySection extends DefaultPropertySection implements IPropertySourceProvider {
-
 	/**
 	 * Modify/unwrap selection.
 	 * @generated
@@ -28,5 +27,4 @@ public class UMLPropertySection extends DefaultPropertySection implements IPrope
 		selected = /*super.*/transformSelectionToDomain(selected);
 		return selected;
 	}
-
 }

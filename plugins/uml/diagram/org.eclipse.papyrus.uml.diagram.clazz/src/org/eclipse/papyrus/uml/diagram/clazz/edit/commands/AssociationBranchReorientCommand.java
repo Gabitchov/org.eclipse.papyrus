@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -27,17 +27,14 @@ import org.eclipse.uml2.uml.Type;
  * @generated
  */
 public class AssociationBranchReorientCommand extends EditElementCommand {
-
 	/**
 	 * @generated
 	 */
 	private final int reorientDirection;
-
 	/**
 	 * @generated
 	 */
 	private final EObject oldEnd;
-
 	/**
 	 * @generated
 	 */

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -24,7 +24,6 @@ import org.eclipse.ui.IWorkbenchPart;
  * @generated
  */
 public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider {
-
 	/**
 	 * @generated
 	 */
@@ -46,7 +45,6 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 		try {
 			TransactionUtil.getEditingDomain(
 					(EObject) getViewer().getContents().getModel()).runExclusive(new Runnable() {
-
 				public void run() {
 					ContributionItemService.getInstance().contributeToPopupMenu(
 							DiagramEditorContextMenuProvider.this, part);

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -28,7 +28,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.itemsemantic.Custom
 public class ContainmentSubLinkEditPart extends ConnectionEditPart
 		implements ITreeBranchEditPart
 {
-
 	/**
 	 * @generated
 	 */
@@ -70,5 +69,4 @@ public class ContainmentSubLinkEditPart extends ConnectionEditPart
 	public AddedLinkFigure getPrimaryShape() {
 		return (AddedLinkFigure) getFigure();
 	}
-
 }

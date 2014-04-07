@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,6 +13,9 @@
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -37,7 +40,8 @@ import org.eclipse.uml2.uml.Element;
 import org.junit.Before;
 
 /**
- * Set as deprecated. 
+ * Set as deprecated.
+ *
  * @use {@link AbstractTestActivityChildNode}
  */
 @Deprecated
@@ -48,7 +52,7 @@ public abstract class AbstractTestActivityChildwithOtherCreation extends org.ecl
 
 	/**
 	 * Gets the root compartment.
-	 * 
+	 *
 	 * @return the root compartment
 	 */
 	protected ShapeCompartmentEditPart getRootCompartment() {
@@ -60,7 +64,7 @@ public abstract class AbstractTestActivityChildwithOtherCreation extends org.ecl
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#getRootView()
-	 * 
+	 *
 	 * @return
 	 */
 
@@ -71,7 +75,7 @@ public abstract class AbstractTestActivityChildwithOtherCreation extends org.ecl
 
 	@Before
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		projectCreation();
 
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
@@ -89,7 +93,7 @@ public abstract class AbstractTestActivityChildwithOtherCreation extends org.ecl
 
 	/**
 	 * Test to manage child node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -113,7 +117,7 @@ public abstract class AbstractTestActivityChildwithOtherCreation extends org.ecl
 
 	/**
 	 * Test view deletion.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -142,7 +146,7 @@ public abstract class AbstractTestActivityChildwithOtherCreation extends org.ecl
 
 	/**
 	 * Test destroy.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -170,7 +174,7 @@ public abstract class AbstractTestActivityChildwithOtherCreation extends org.ecl
 
 	/**
 	 * Test drop.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -204,7 +208,7 @@ public abstract class AbstractTestActivityChildwithOtherCreation extends org.ecl
 
 	/**
 	 * Test to create a node.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -232,7 +236,7 @@ public abstract class AbstractTestActivityChildwithOtherCreation extends org.ecl
 
 	/**
 	 * Test change container.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 * @param containerType
@@ -280,7 +284,7 @@ public abstract class AbstractTestActivityChildwithOtherCreation extends org.ecl
 		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, compartment.getChildren().size() == 0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(CHANGE_CONTAINER + TEST_THE_REDO, getRootView().getChildren().size() == 1);
-		//Here there is a problem for activity diagram it is not clear 
+		//Here there is a problem for activity diagram it is not clear
 		//assertTrue(CHANGE_CONTAINER+TEST_THE_REDO,getRootSemanticModel().getOwnedElements().size()==1);
 		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, compartment.getChildren().size() == 1);
 	}

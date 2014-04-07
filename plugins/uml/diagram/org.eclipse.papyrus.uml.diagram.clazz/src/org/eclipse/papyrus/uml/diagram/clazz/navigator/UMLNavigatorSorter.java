@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -18,7 +18,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
  * @generated
  */
 public class UMLNavigatorSorter extends ViewerSorter {
-
 	/**
 	 * @generated
 	 */
@@ -34,5 +33,4 @@ public class UMLNavigatorSorter extends ViewerSorter {
 		}
 		return GROUP_CATEGORY;
 	}
-
 }

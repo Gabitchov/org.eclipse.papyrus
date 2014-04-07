@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,8 +8,8 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- * 
- * @Generated from SimpleBlock2 - Model 
+ *
+ * @Generated from SimpleBlock2 - Model
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste;
@@ -36,7 +36,7 @@ public class CopyPasteSimpleBlock2Test extends AbstractCopyPasteBlockTest {
 
 	/**
 	 * prepare the copy
-	 * 
+	 *
 	 * @throws Exception
 	 *         exception thrown in case of problems
 	 */
@@ -63,18 +63,7 @@ public class CopyPasteSimpleBlock2Test extends AbstractCopyPasteBlockTest {
 		copyCommand.executeWithChecks(new ExecutionEvent());
 
 		// check editor state (should be non dirty)
-		// Assert.assertFalse("Editor should not be dirty after copy", isEditorDirty());
-
-		// NOTE: save editor. The copy command should not dirty the model, the implementation of the copy command or the editor should be modified
-		Assert.assertTrue("Copy command is dirtying the model, whereas it should not. This assert is here to remember that the test code should be modified: Isdirty = false after copy...", isEditorDirty());
-		Display.getDefault().syncExec(new Runnable() {
-
-			public void run() {
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
-			}
-		});
-		Assert.assertFalse("Save command is non-dirtying the model, whereas it should. ", isEditorDirty());
-		// END NOTE
+		Assert.assertFalse("Editor should not be dirty after copy", isEditorDirty());
 	}
 
 	@Override
@@ -101,7 +90,7 @@ public class CopyPasteSimpleBlock2Test extends AbstractCopyPasteBlockTest {
 
 	/**
 	 * Test the copy /paste on P1
-	 * 
+	 *
 	 * @throws Exception
 	 *         exception thrown in case of problems
 	 */
@@ -112,7 +101,7 @@ public class CopyPasteSimpleBlock2Test extends AbstractCopyPasteBlockTest {
 
 	/**
 	 * Test the copy /paste on model
-	 * 
+	 *
 	 * @throws Exception
 	 *         exception thrown in case of problems
 	 */

@@ -1,16 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.composite.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -29,22 +27,18 @@ import org.eclipse.uml2.uml.TimeObservation;
  * @generated
  */
 public class TimeObservationEventReorientCommand extends EditElementCommand {
-
 	/**
 	 * @generated
 	 */
 	private final int reorientDirection;
-
 	/**
 	 * @generated
 	 */
 	private final EObject referenceOwner;
-
 	/**
 	 * @generated
 	 */
 	private final EObject oldEnd;
-
 	/**
 	 * @generated
 	 */
@@ -65,13 +59,13 @@ public class TimeObservationEventReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(false == referenceOwner instanceof TimeObservation) {
+		if (false == referenceOwner instanceof TimeObservation) {
 			return false;
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -81,7 +75,7 @@ public class TimeObservationEventReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if(!(oldEnd instanceof NamedElement && newEnd instanceof TimeObservation)) {
+		if (!(oldEnd instanceof NamedElement && newEnd instanceof TimeObservation)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistTimeObservationEvent_4018(getNewSource(), getOldTarget());
@@ -91,7 +85,7 @@ public class TimeObservationEventReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
+		if (!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistTimeObservationEvent_4018(getOldSource(), getNewTarget());
@@ -100,14 +94,16 @@ public class TimeObservationEventReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
+	protected CommandResult doExecuteWithResult(
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
+		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -117,8 +113,12 @@ public class TimeObservationEventReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().setEvent(null);
-		getNewSource().setEvent(getOldTarget());
+		getOldSource().setEvent(
+				null
+				);
+		getNewSource().setEvent(
+				getOldTarget()
+				);
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -126,7 +126,9 @@ public class TimeObservationEventReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().setEvent(getNewTarget());
+		getOldSource().setEvent(
+				getNewTarget()
+				);
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -134,27 +136,27 @@ public class TimeObservationEventReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected TimeObservation getOldSource() {
-		return (TimeObservation)referenceOwner;
+		return (TimeObservation) referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected TimeObservation getNewSource() {
-		return (TimeObservation)newEnd;
+		return (TimeObservation) newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getOldTarget() {
-		return (NamedElement)oldEnd;
+		return (NamedElement) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getNewTarget() {
-		return (NamedElement)newEnd;
+		return (NamedElement) newEnd;
 	}
 }

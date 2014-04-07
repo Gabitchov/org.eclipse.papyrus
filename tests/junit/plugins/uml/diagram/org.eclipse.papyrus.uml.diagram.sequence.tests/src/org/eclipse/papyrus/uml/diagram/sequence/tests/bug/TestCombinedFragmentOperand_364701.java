@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
@@ -46,7 +49,7 @@ import org.junit.Test;
  * Adding of operands is allowed, but it is not possible to delete an operand
  * from a combined fragment. Moreover, the resize of operands is also not
  * possible. https://bugs.eclipse.org/bugs/show_bug.cgi?id=364701
- * 
+ *
  */
 public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 
@@ -56,7 +59,7 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return ISequenceDiagramTestsConstants.PROJECT_NAME;

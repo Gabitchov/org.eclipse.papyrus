@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -42,12 +42,10 @@ import org.eclipse.ui.part.FileEditorInput;
  * @generated
  */
 public class UMLNavigatorActionProvider extends CommonActionProvider {
-
 	/**
 	 * @generated
 	 */
 	private boolean myContribute;
-
 	/**
 	 * @generated
 	 */
@@ -97,12 +95,10 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 	 * @generated
 	 */
 	private static class OpenDiagramAction extends Action {
-
 		/**
 		 * @generated
 		 */
 		private Diagram myDiagram;
-
 		/**
 		 * @generated
 		 */
@@ -145,7 +141,6 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 			if (myDiagram == null || myDiagram.eResource() == null) {
 				return;
 			}
-
 			IEditorInput editorInput = getEditorInput(myDiagram);
 			IWorkbenchPage page = myViewerSite.getPage();
 			try {
@@ -173,7 +168,5 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 			IEditorInput editorInput = new URIEditorInput(uri, editorName);
 			return editorInput;
 		}
-
 	}
-
 }

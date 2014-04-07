@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml;bundle-version="4.0.2",
  org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.gmf.runtime.diagram.ui,
- org.junit;bundle-version="4.10.0"
+ org.junit;bundle-version="4.10.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.uml.diagram.interactionoverview.te
  sts
 Bundle-Vendor: Eclipse Modeling Project

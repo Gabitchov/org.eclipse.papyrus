@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -39,7 +42,7 @@ import org.junit.Test;
  * All lifelines (except lifelines that are result of a create message) should be
  * aligned vertically and must remain aligned.
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=364688
- * 
+ *
  */
 public class TestLifelineAlignment_364688 extends TestLink {
 
@@ -49,7 +52,7 @@ public class TestLifelineAlignment_364688 extends TestLink {
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return ISequenceDiagramTestsConstants.PROJECT_NAME;

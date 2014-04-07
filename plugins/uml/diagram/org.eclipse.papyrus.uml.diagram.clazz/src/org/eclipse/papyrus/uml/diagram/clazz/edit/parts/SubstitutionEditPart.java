@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -31,7 +31,6 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 public class SubstitutionEditPart extends UMLConnectionNodeEditPart
 		implements ITreeBranchEditPart
 {
-
 	/**
 	 * @generated
 	 */
@@ -62,10 +61,12 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart
 		if (childEditPart instanceof AppliedStereotypeSubstitutionEditPart) {
 			((AppliedStereotypeSubstitutionEditPart) childEditPart).setLabel(
 					getPrimaryShape().getAppliedStereotypeLabel());
+			return true;
 		}
 		if (childEditPart instanceof SubstitutionNameEditPart) {
 			((SubstitutionNameEditPart) childEditPart).setLabel(
 					getPrimaryShape().getNameLabel());
+			return true;
 		}
 		return false;
 	}
@@ -121,5 +122,4 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure) getFigure();
 	}
-
 }

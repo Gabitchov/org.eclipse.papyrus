@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -21,7 +21,6 @@ import org.eclipse.ui.PartInitException;
  * @generated
  */
 public class UMLMatchingStrategy implements IEditorMatchingStrategy {
-
 	/**
 	 * @generated
 	 */
@@ -32,7 +31,6 @@ public class UMLMatchingStrategy implements IEditorMatchingStrategy {
 		} catch (PartInitException e) {
 			return false;
 		}
-
 		if (editorInput.equals(input)) {
 			return true;
 		}
@@ -41,5 +39,4 @@ public class UMLMatchingStrategy implements IEditorMatchingStrategy {
 		}
 		return false;
 	}
-
 }

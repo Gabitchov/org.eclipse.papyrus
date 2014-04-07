@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,6 +16,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.TestTopNode;
+import org.eclipse.papyrus.junit.utils.classification.InvalidTest;
 import org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand;
 import org.eclipse.papyrus.sysml.diagram.requirement.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.requirement.test.IRequirementDiagramTestsConstants;
@@ -25,6 +26,7 @@ import org.junit.Test;
 /**
  * The Class TestClassDiagramTopNode.
  */
+@InvalidTest("UML Diagram Canonical Tests are not compatible with profiled models")
 public class TestRequirementDiagramTopNode extends TestTopNode {
 
 	@Override

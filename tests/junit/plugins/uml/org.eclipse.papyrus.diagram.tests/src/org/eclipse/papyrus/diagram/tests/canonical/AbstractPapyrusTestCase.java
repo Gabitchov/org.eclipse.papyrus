@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,8 +15,6 @@ package org.eclipse.papyrus.diagram.tests.canonical;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
-
-import junit.framework.TestCase;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
@@ -47,6 +45,7 @@ import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
@@ -67,7 +66,7 @@ import org.junit.Before;
 /**
  * The Class AbstractPapyrusTestCase.
  */
-public abstract class AbstractPapyrusTestCase extends TestCase {
+public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 
 	protected boolean operationFailed = false;
 
@@ -136,19 +135,17 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 
 	/**
 	 * @see junit.framework.TestCase#setUp()
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Before
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	public void setUp() throws Exception {
 		projectCreation();
 	}
 
 	/**
 	 * Gets the root view.
-	 * 
+	 *
 	 * @return the root view
 	 */
 	protected View getRootView() {
@@ -157,7 +154,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 
 	/**
 	 * Gets the root semantic model.
-	 * 
+	 *
 	 * @return the root semantic model
 	 */
 	protected Element getRootSemanticModel() {
@@ -166,12 +163,11 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 
 	/**
 	 * @see junit.framework.TestCase#tearDown()
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@After
-	@Override
-	protected void tearDown() throws Exception {
+	public void tearDown() throws Exception {
 		RunnableWithResult<Boolean> runnable = new RunnableWithResult.Impl<Boolean>() {
 
 			public void run() {
@@ -193,13 +189,13 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 		};
 		Display.getDefault().syncExec(runnable);
 		if(!runnable.getResult()) {
-			fail("Cannot close the editor and delete the project");
+			Assert.fail("Cannot close the editor and delete the project");
 		}
 	}
 
 	/**
 	 * Gets the diagram edit part.
-	 * 
+	 *
 	 * @return the diagram edit part
 	 */
 	protected DiagramEditPart getDiagramEditPart() {
@@ -243,7 +239,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 					}
 				} catch (Exception ex) {
 					ex.printStackTrace(System.out);
-					fail(ex.getMessage());
+					Assert.fail(ex.getMessage());
 				}
 			}
 		};
@@ -252,12 +248,12 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 		root = workspace.getRoot();
 		/*
 		 * final String timestamp = Long.toString(System.currentTimeMillis());
-		 * 
+		 *
 		 * project = root.getProject("DiagramTestProject_" + timestamp); file =
 		 * project.getFile("DiagramTest_" + timestamp + ".di"); //$NON-NLS-2$
 		 */
 		project = root.getProject(getProjectName());
-		file = project.getFile(getFileName()); //$NON-NLS-2$
+		file = project.getFile(getFileName());
 		this.diResourceSet = new DiResourceSet();
 		// at this point, no resources have been created
 
@@ -322,7 +318,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 					page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 					papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), PapyrusMultiDiagramEditor.EDITOR_ID);
 				} catch (Exception ex) {
-					fail(ex.getMessage());
+					Assert.fail(ex.getMessage());
 					ex.printStackTrace(System.out);
 				}
 			}
@@ -365,7 +361,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	}
 
 	protected void assertLastOperationSuccessful() {
-		assertFalse("The operation failed. Look at the log, or put a breakpoint on ExecutionException or DefaultOperationHistory#notifyNotOK to find the cause.", this.operationFailed);
+		Assert.assertFalse("The operation failed. Look at the log, or put a breakpoint on ExecutionException or DefaultOperationHistory#notifyNotOK to find the cause.", this.operationFailed);
 	}
 
 	/**
@@ -387,7 +383,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	protected void undo() {
 		resetLastOperationFailedState();
 		final CommandStack commandStack = getCommandStack();
-		assertTrue("We should be able to undo", commandStack.canUndo());
+		Assert.assertTrue("We should be able to undo", commandStack.canUndo());
 		commandStack.undo();
 		assertLastOperationSuccessful();
 	}
@@ -396,7 +392,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	protected void redo() {
 		resetLastOperationFailedState();
 		final CommandStack commandStack = getCommandStack();
-		assertTrue("We should be able to redo", commandStack.canRedo());
+		Assert.assertTrue("We should be able to redo", commandStack.canRedo());
 		commandStack.redo();
 		assertLastOperationSuccessful();
 	}

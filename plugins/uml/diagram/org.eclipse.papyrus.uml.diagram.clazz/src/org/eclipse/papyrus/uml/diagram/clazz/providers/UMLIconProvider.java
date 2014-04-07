@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -18,12 +18,10 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultElementTypeIconProvider;
  * @generated
  */
 public class UMLIconProvider extends DefaultElementTypeIconProvider implements IIconProvider {
-
 	/**
 	 * @generated
 	 */
 	public UMLIconProvider() {
 		super(UMLElementTypes.TYPED_INSTANCE);
 	}
-
 }

@@ -17,7 +17,6 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.edit.command;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -48,35 +47,10 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 	 * Constructor
 	 * 
 	 * @param req
-	 *        the creation request
+	 *            the creation request
 	 */
 	public CollaborationRoleCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req, diagram);
-	}
-
-	/**
-	 * Constructor
-	 * 
-	 * @param req
-	 *        the creation request
-	 * @param eObject
-	 *        the element to edit
-	 */
-	public CollaborationRoleCreateCommand(CreateElementRequest req, EObject eObject, Diagram diagram) {
-		super(req, eObject, diagram);
-	}
-
-	/**
-	 * Creates an new {@link CollaborationRoleCreateCommand}
-	 * 
-	 * @param req
-	 *        the creation request
-	 * @param eObject
-	 *        the element to edit
-	 * @return the new creation command for CollaborationRole
-	 */
-	public static CollaborationRoleCreateCommand create(CreateElementRequest req, EObject eObject, Diagram diagram) {
-		return new CollaborationRoleCreateCommand(req, eObject, diagram);
 	}
 
 	/**
@@ -91,7 +65,7 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 
 		// Retrieve the edited Collaboration
-		Collaboration owner = (Collaboration)getElementToEdit();
+		Collaboration owner = (Collaboration) getElementToEdit();
 
 		// Create and open the selection dialog
 		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
@@ -113,21 +87,21 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 		} finally {
 			adapterFactory.dispose();
 		}
-		
+
 		// If a ConnectableElement has been selected, complete command execution
 		// using selection as the "newly created" element and make the edited
 		// Collaboration reference it in the CollaborationRoles eReference.
-		if(dialog.getReturnCode() == ElementTreeSelectionDialog.OK) {
-			ConnectableElement role = (ConnectableElement)dialog.getFirstResult();
+		if (dialog.getReturnCode() == ElementTreeSelectionDialog.OK) {
+			ConnectableElement role = (ConnectableElement) dialog.getFirstResult();
 
-			owner.getCollaborationRoles().add((ConnectableElement)role);
+			owner.getCollaborationRoles().add((ConnectableElement) role);
 
 			try {
-				doConfigure((ConnectableElement)role, monitor, info);
+				doConfigure((ConnectableElement) role, monitor, info);
 			} catch (ExecutionException e) {
 				e.printStackTrace();
 			}
-			((CreateElementRequest)getRequest()).setNewElement((ConnectableElement)role);
+			((CreateElementRequest) getRequest()).setNewElement((ConnectableElement) role);
 
 			return CommandResult.newOKCommandResult(role);
 		}
