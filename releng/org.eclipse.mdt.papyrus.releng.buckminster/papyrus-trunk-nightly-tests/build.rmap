@@ -278,7 +278,7 @@
     <!-- MDT UML2 -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MDT UML2",0) -->
-      <rm:uri format="{0}/modeling/mdt/uml2/updates/5.0milestones">
+      <rm:uri format="{0}/modeling/mdt/uml2/updates/5.0-I-builds">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
