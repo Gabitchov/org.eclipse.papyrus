@@ -142,14 +142,16 @@ public class FillInstanceItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		FillInstance fillInstance = (FillInstance)object;
-		return getString("_UI_FillInstance_type") + " " + fillInstance.getTransparency();
+		String propertyName = getInstancePropertyName(object);
+		return  ("".equals(propertyName)?getString("_UI_FillInstance_type"):"'" + propertyName+"'") + "=" + fillInstance.getTransparency();
 	}
 
+	
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.

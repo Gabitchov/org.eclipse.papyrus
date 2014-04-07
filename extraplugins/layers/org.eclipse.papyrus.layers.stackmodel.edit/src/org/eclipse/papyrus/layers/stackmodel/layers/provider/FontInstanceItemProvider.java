@@ -18,7 +18,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -28,7 +27,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.papyrus.layers.stackmodel.layers.FontInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 
@@ -178,14 +176,16 @@ public class FontInstanceItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((FontInstance)object).getFontName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_FontInstance_type") :
-			getString("_UI_FontInstance_type") + " " + label;
+
+		String propertyName = getInstancePropertyName(object);
+		return  ("".equals(propertyName)?getString("_UI_FontInstance_type") : "'" + propertyName+"'") 
+				+ "=" + label;
+
 	}
 
 	/**

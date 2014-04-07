@@ -18,7 +18,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -28,7 +27,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LineInstance;
 
@@ -132,12 +130,15 @@ public class LineInstanceItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		LineInstance lineInstance = (LineInstance)object;
-		return getString("_UI_LineInstance_type") + " " + lineInstance.getLineColor();
+		String propertyName = getInstancePropertyName(object);
+		return  ("".equals(propertyName)?getString("_UI_LineInstance_type"):"'" + propertyName+"'") 
+				+ " with=" + lineInstance.getLineWith()
+				+ ", color=" + lineInstance.getLineColor();
 	}
 
 	/**
