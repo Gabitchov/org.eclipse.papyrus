@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL 
- *
+ * Copyright (c) 2009, 2014 CEA LIST, LIFL, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.editor;
@@ -244,7 +244,7 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * Needed by MultiPageActionBarContributor and MultiPageSelectionProvider.
 	 */
 	public IEditorPart getActiveEditor() {
-		if(sashContainer.isDisposed()) {
+		if((sashContainer == null) || sashContainer.isDisposed()) {
 			return null;
 		}
 

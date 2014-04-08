@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.uml.search.internal.ui.query;
 
@@ -40,7 +42,6 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
@@ -196,11 +197,8 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 						ServicesRegistry services = new ServicesRegistry();
 						services.add(LabelProviderService.class, 10, new LabelProviderServiceImpl());
 						services.add(OpenElementService.class, 10, new CDOOpenElementService());
-						services.startRegistry();
-
 						services.add(ModelSet.class, 10, new CDOAwareModelSet(PapyrusRepositoryManager.INSTANCE));
-						services.add(ServiceUtilsForResourceInitializerService.class, 10, new ServiceUtilsForResourceInitializerService());
-						services.startServicesByClassKeys(ModelSet.class, ServiceUtilsForResourceInitializerService.class);
+						services.startRegistry();
 
 						// create our own transaction for the model-set
 						view = repo.getCDOView(repo.createTransaction(ServiceUtils.getInstance().getModelSet(services)));
