@@ -39,9 +39,9 @@ public class StereotypePasteStrategyPreferencePage extends FieldEditorPreference
 	@Override
 	protected void createFieldEditors() {
 		String[][] labelAndValues = new String[][]{ 
-//			{ "Ask before Aplying Profile", IStereotypePasteStrategyPreferenceConstant.ASK_POPUP }, 
-			{ "Always import missing profiles", IStereotypePasteStrategyPreferenceConstant.IMPORT_MISSING_PROFILE }, 
-			{ "Never import missing profiles", IStereotypePasteStrategyPreferenceConstant.IGNORE_MISSING_PROFILE }
+//TODO:			{ "Ask before Aplying Profile", IStereotypePasteStrategyPreferenceConstant.ASK_POPUP }, 
+			{ "Always apply missing profiles", IStereotypePasteStrategyPreferenceConstant.IMPORT_MISSING_PROFILE }, 
+			{ "Never apply missing profiles", IStereotypePasteStrategyPreferenceConstant.IGNORE_MISSING_PROFILE }
 		};
 		dblClkFieldEditor = new RadioGroupFieldEditor(
 			IStereotypePasteStrategyPreferenceConstant.PROFILE_STRATEGY, "Missing profiles strategy :", 1, 

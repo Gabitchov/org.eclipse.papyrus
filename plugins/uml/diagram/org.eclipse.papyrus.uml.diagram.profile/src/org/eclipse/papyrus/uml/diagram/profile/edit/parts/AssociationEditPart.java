@@ -1,16 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -60,27 +60,21 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof AssociationAppliedStereotypeEditPart) {
 			((AssociationAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
 		}
 		if(childEditPart instanceof AssociationNameEditPart) {
 			((AssociationNameEditPart)childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
-			return true;
 		}
 		if(childEditPart instanceof AssociationRoleTargetEditPart) {
 			((AssociationRoleTargetEditPart)childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
-			return true;
 		}
 		if(childEditPart instanceof AssociationRoleSourceEditPart) {
 			((AssociationRoleSourceEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
-			return true;
 		}
 		if(childEditPart instanceof AssociationMultiplicitySourceEditPart) {
 			((AssociationMultiplicitySourceEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
-			return true;
 		}
 		if(childEditPart instanceof AssociationMultiplicityTargetEditPart) {
 			((AssociationMultiplicityTargetEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
-			return true;
 		}
 		return false;
 	}
@@ -148,4 +142,5 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure)getFigure();
 	}
+
 }

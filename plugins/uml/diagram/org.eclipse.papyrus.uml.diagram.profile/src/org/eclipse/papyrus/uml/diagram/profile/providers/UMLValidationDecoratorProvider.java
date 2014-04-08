@@ -1,16 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.providers;
 
 import org.eclipse.gef.EditDomain;
@@ -68,4 +68,6 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 		View view = (View)decoratorTarget.getAdapter(View.class);
 		return view != null && ProfileDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
+
+
 }

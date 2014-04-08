@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.figures;
 
 import org.eclipse.draw2d.Border;
@@ -12,7 +23,6 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
 public class PseudostateShallowHistoryFigure extends PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure {
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -40,21 +50,15 @@ public class PseudostateShallowHistoryFigure extends PapyrusNodeFigure implement
 	 * {@inheritDoc}
 	 */
 	public void paintFigure(Graphics graphics) {
-
-		final int space = 5;
-		Rectangle f = Rectangle.SINGLETON;
-		//to be in adequation with the figure node plate
-		Rectangle r = getBounds().getCopy().crop(new Insets(1, 1, 1, 1));
+		// to be in adequation with the figure node plate
+		Rectangle r = getBounds().getCopy().shrink(new Insets(1, 1, 1, 1));
 		graphics.setLineWidth(1);
 		graphics.setBackgroundColor(getForegroundColor());
 		graphics.drawOval(r);
-
 		// 'H' letter
-		graphics.drawLine(bounds.getCenter().getTranslated((int)(-bounds.width * 0.15), (int)(-bounds.height * 0.25)), bounds.getCenter().getTranslated((int)(-bounds.width * 0.15), (int)(bounds.height * 0.25)));
-		graphics.drawLine(bounds.getCenter().getTranslated((int)(bounds.width * 0.15), (int)(-bounds.height * 0.25)), bounds.getCenter().getTranslated((int)(bounds.width * 0.15), (int)(bounds.height * 0.25)));
-		graphics.drawLine(bounds.getCenter().getTranslated((int)(-bounds.width * 0.15), 0), bounds.getCenter().getTranslated((int)(bounds.width * 0.15), 0));
-
-
+		graphics.drawLine(bounds.getCenter().getTranslated((int) (-bounds.width * 0.15), (int) (-bounds.height * 0.25)), bounds.getCenter().getTranslated((int) (-bounds.width * 0.15), (int) (bounds.height * 0.25)));
+		graphics.drawLine(bounds.getCenter().getTranslated((int) (bounds.width * 0.15), (int) (-bounds.height * 0.25)), bounds.getCenter().getTranslated((int) (bounds.width * 0.15), (int) (bounds.height * 0.25)));
+		graphics.drawLine(bounds.getCenter().getTranslated((int) (-bounds.width * 0.15), 0), bounds.getCenter().getTranslated((int) (bounds.width * 0.15), 0));
 	}
 
 	/**
@@ -62,7 +66,6 @@ public class PseudostateShallowHistoryFigure extends PapyrusNodeFigure implement
 	 */
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -70,7 +73,6 @@ public class PseudostateShallowHistoryFigure extends PapyrusNodeFigure implement
 	 */
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -78,7 +80,5 @@ public class PseudostateShallowHistoryFigure extends PapyrusNodeFigure implement
 	 */
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
 		// TODO Auto-generated method stub
-
 	}
-
 }

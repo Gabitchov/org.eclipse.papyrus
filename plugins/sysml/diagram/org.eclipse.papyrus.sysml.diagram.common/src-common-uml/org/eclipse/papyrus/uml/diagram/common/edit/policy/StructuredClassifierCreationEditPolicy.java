@@ -141,15 +141,12 @@ public class StructuredClassifierCreationEditPolicy extends CreationEditPolicy {
 		PortPositionLocator locator = new PortPositionLocator(getHostFigure(), PositionConstants.NONE);
 		final Rectangle preferredBounds = locator.getPreferredLocation(new Rectangle(requestedLocation, new Dimension(20, 20)));
 		Rectangle retainedBounds = preferredBounds.getCopy();
-		Rectangle parentBounds = getHostFigure().getBounds().getCopy();
-		getHostFigure().translateToAbsolute(parentBounds);
-
+		
 		//find the current side of the wanted position
-		while(parentBounds.contains(realWantedLocation)) {
-			parentBounds.shrink(1, 1);
-		}
-		int currentSide = parentBounds.getPosition(realWantedLocation);
-
+		final Rectangle parentBounds = getHostFigure().getBounds().getCopy();
+		//break all!!! getHostFigure().translateToAbsolute(parentBounds);
+		locator.setConstraint(preferredBounds.getCopy().translate(parentBounds.getLocation().getNegated()));
+		int currentSide = locator.getCurrentSideOfParent();
 		if(request.isSnapToEnabled() && currentSide != PositionConstants.NORTH_EAST && currentSide != PositionConstants.NORTH_WEST && currentSide != PositionConstants.SOUTH_EAST && currentSide != PositionConstants.SOUTH_WEST) { //request for snap port at the creation
 			//we find the best location with snap
 			Point wantedPoint = preferredBounds.getLocation();

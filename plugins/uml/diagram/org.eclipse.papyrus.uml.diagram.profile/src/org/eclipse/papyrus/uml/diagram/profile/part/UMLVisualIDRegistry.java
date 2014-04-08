@@ -1,16 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.part;
 
 import org.eclipse.core.runtime.Platform;
@@ -183,7 +183,10 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static int getDiagramVisualID(EObject domainElement) {
-		return ProfileDiagramEditPart.VISUAL_ID;
+		if(domainElement == null) {
+			return -1;
+		}
+		return 1000;
 	}
 
 	/**
@@ -279,6 +282,9 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getStereotype().isSuperTypeOf(domainElement.eClass())) {
+				return StereotypeEditPartCN.VISUAL_ID;
+			}
 			break;
 		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
@@ -304,6 +310,9 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getStereotype().isSuperTypeOf(domainElement.eClass())) {
+				return StereotypeEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ProfilePackageableElementCompartmentEditPartTN.VISUAL_ID:
@@ -728,6 +737,9 @@ public class UMLVisualIDRegistry {
 			if(DataTypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(StereotypeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
 			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -752,6 +764,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(DataTypeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(StereotypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1017,13 +1032,15 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * "User can change implementation of this method to handle some specific\n""situations not covered by default logic.\n"
+	 * User can change implementation of this method to handle some specific
+	 * situations not covered by default logic.
 	 * 
 	 * @generated
 	 */
 	private static boolean isDiagram(Profile element) {
 		return true;
 	}
+
 
 	/**
 	 * @generated
@@ -1103,6 +1120,7 @@ public class UMLVisualIDRegistry {
 		/**
 		 * @generated
 		 */
+		@Override
 		public int getVisualID(View view) {
 			return org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry.getVisualID(view);
 		}
@@ -1110,6 +1128,7 @@ public class UMLVisualIDRegistry {
 		/**
 		 * @generated
 		 */
+		@Override
 		public String getModelID(View view) {
 			return org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry.getModelID(view);
 		}
@@ -1117,6 +1136,7 @@ public class UMLVisualIDRegistry {
 		/**
 		 * @generated
 		 */
+		@Override
 		public int getNodeVisualID(View containerView, EObject domainElement) {
 			return org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		}
@@ -1124,6 +1144,7 @@ public class UMLVisualIDRegistry {
 		/**
 		 * @generated
 		 */
+		@Override
 		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
 			return org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
 		}
@@ -1131,6 +1152,7 @@ public class UMLVisualIDRegistry {
 		/**
 		 * @generated
 		 */
+		@Override
 		public boolean isCompartmentVisualID(int visualID) {
 			return org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry.isCompartmentVisualID(visualID);
 		}
@@ -1138,8 +1160,10 @@ public class UMLVisualIDRegistry {
 		/**
 		 * @generated
 		 */
+		@Override
 		public boolean isSemanticLeafVisualID(int visualID) {
 			return org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
 		}
 	};
+
 }

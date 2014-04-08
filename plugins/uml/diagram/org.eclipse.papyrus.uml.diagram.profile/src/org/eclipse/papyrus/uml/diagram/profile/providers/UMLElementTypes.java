@@ -1,16 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.providers;
 
 import java.util.HashSet;
@@ -335,50 +335,128 @@ public class UMLElementTypes {
 	 * 
 	 * @generated
 	 */
-	public static ENamedElement getElement(IAdaptable hint) {
+	public static synchronized ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if(elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
+
 			elements.put(Profile_1000, UMLPackage.eINSTANCE.getProfile());
+
+
 			elements.put(Dependency_2014, UMLPackage.eINSTANCE.getDependency());
+
+
 			elements.put(Association_2015, UMLPackage.eINSTANCE.getAssociation());
+
+
 			elements.put(Stereotype_1026, UMLPackage.eINSTANCE.getStereotype());
+
+
 			elements.put(Class_1031, UMLPackage.eINSTANCE.getClass_());
+
+
 			elements.put(Comment_1002, UMLPackage.eINSTANCE.getComment());
+
+
 			elements.put(Constraint_1014, UMLPackage.eINSTANCE.getConstraint());
+
+
 			elements.put(Model_2005, UMLPackage.eINSTANCE.getModel());
+
+
 			elements.put(Profile_1030, UMLPackage.eINSTANCE.getProfile());
+
+
 			elements.put(Package_2007, UMLPackage.eINSTANCE.getPackage());
+
+
 			elements.put(Enumeration_2006, UMLPackage.eINSTANCE.getEnumeration());
+
+
 			elements.put(PrimitiveType_2009, UMLPackage.eINSTANCE.getPrimitiveType());
+
+
 			elements.put(DataType_2010, UMLPackage.eINSTANCE.getDataType());
+
+
 			elements.put(Diagram_2016, NotationPackage.eINSTANCE.getDiagram());
+
+
 			elements.put(PrimitiveType_3026, UMLPackage.eINSTANCE.getPrimitiveType());
+
+
 			elements.put(Operation_3019, UMLPackage.eINSTANCE.getOperation());
+
+
 			elements.put(EnumerationLiteral_1037, UMLPackage.eINSTANCE.getEnumerationLiteral());
+
+
 			elements.put(Property_3018, UMLPackage.eINSTANCE.getProperty());
+
+
 			elements.put(Property_3002, UMLPackage.eINSTANCE.getProperty());
+
+
 			elements.put(Operation_3020, UMLPackage.eINSTANCE.getOperation());
+
+
 			elements.put(Stereotype_1023, UMLPackage.eINSTANCE.getStereotype());
+
+
 			elements.put(Class_3028, UMLPackage.eINSTANCE.getClass_());
+
+
 			elements.put(Comment_1007, UMLPackage.eINSTANCE.getComment());
+
+
 			elements.put(Model_1027, UMLPackage.eINSTANCE.getModel());
+
+
 			elements.put(Profile_1024, UMLPackage.eINSTANCE.getProfile());
+
+
 			elements.put(Package_1012, UMLPackage.eINSTANCE.getPackage());
+
+
 			elements.put(Constraint_1028, UMLPackage.eINSTANCE.getConstraint());
+
+
 			elements.put(Enumeration_3025, UMLPackage.eINSTANCE.getEnumeration());
+
+
 			elements.put(DataType_3027, UMLPackage.eINSTANCE.getDataType());
+
+
 			elements.put(Extension_1013, UMLPackage.eINSTANCE.getExtension());
+
+
 			elements.put(Association_4001, UMLPackage.eINSTANCE.getAssociation());
+
+
 			elements.put(ProfileApplication_1045, UMLPackage.eINSTANCE.getProfileApplication());
+
+
 			elements.put(Association_4019, UMLPackage.eINSTANCE.getAssociation());
+
+
 			elements.put(Generalization_4002, UMLPackage.eINSTANCE.getGeneralization());
+
+
 			elements.put(Dependency_4008, UMLPackage.eINSTANCE.getDependency());
+
+
 			elements.put(Dependency_4018, UMLPackage.eINSTANCE.getDependency());
+
+
 			elements.put(ElementImport_1064, UMLPackage.eINSTANCE.getElementImport());
+
+
 			elements.put(PackageImport_1065, UMLPackage.eINSTANCE.getPackageImport());
+
 			elements.put(CommentAnnotatedElement_1022, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
+
 			elements.put(ConstraintConstrainedElement_4014, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
+
 			elements.put(ConstraintContext_8500, UMLPackage.eINSTANCE.getConstraint_Context());
 		}
 		return (ENamedElement)elements.get(type);
@@ -394,7 +472,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static boolean isKnownElementType(IElementType elementType) {
+	public static synchronized boolean isKnownElementType(IElementType elementType) {
 		if(KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Profile_1000);
@@ -541,6 +619,7 @@ public class UMLElementTypes {
 		/**
 		 * @generated
 		 */
+		@Override
 		public boolean isKnownElementType(IElementType elementType) {
 			return org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes.isKnownElementType(elementType);
 		}
@@ -548,6 +627,7 @@ public class UMLElementTypes {
 		/**
 		 * @generated
 		 */
+		@Override
 		public IElementType getElementTypeForVisualId(int visualID) {
 			return org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes.getElementType(visualID);
 		}
@@ -555,8 +635,10 @@ public class UMLElementTypes {
 		/**
 		 * @generated
 		 */
+		@Override
 		public ENamedElement getDefiningNamedElement(IAdaptable elementTypeAdapter) {
 			return org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes.getElement(elementTypeAdapter);
 		}
 	};
+
 }

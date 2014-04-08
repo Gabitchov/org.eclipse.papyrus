@@ -69,7 +69,6 @@ Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.common.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.common;singleto
- n:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.common;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

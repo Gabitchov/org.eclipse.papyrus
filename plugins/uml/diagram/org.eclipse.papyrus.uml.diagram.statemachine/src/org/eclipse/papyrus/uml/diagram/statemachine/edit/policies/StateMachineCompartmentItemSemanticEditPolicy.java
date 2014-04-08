@@ -1,10 +1,19 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
-import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.PseudostateEntryPointCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.PseudostateExitPointCreateCommand;
@@ -15,7 +24,6 @@ import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
  * @generated
  */
 public class StateMachineCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
-
 	/**
 	 * @generated
 	 */
@@ -28,37 +36,16 @@ public class StateMachineCompartmentItemSemanticEditPolicy extends UMLBaseItemSe
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		IElementType requestElementType = req.getElementType();
-		if(requestElementType == null) {
+		if (requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
-		IElementType baseElementType = requestElementType;
-		boolean isExtendedType = false;
-		if(requestElementType instanceof IExtendedHintedElementType) {
-			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if(baseElementType != null) {
-				isExtendedType = true;
-			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
-				isExtendedType = true;
-			}
-		}
-		if(UMLElementTypes.Region_3000 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if (UMLElementTypes.Region_3000 == requestElementType) {
 			return getGEFWrapper(new RegionCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if(UMLElementTypes.Pseudostate_16000 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if (UMLElementTypes.Pseudostate_16000 == requestElementType) {
 			return getGEFWrapper(new PseudostateEntryPointCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if(UMLElementTypes.Pseudostate_17000 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if (UMLElementTypes.Pseudostate_17000 == requestElementType) {
 			return getGEFWrapper(new PseudostateExitPointCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
