@@ -9,15 +9,21 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 429826
+ *  Christian W. Damus (CEA) - bug 408491
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 
 import com.google.common.collect.Maps;
@@ -190,5 +196,53 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	public static boolean isInteractive(Transaction transaction) {
 		Object value = transaction.getOptions().get(TRANSACTION_OPTION_INTERACTIVE);
 		return (value instanceof Boolean) ? (Boolean)value : true;
+	}
+	
+	/**
+	 * Create a privileged runnable with progress, which is like a regular {@linkplain TransactionalEditingDomain#createPrivilegedRunnable(Runnable)
+	 * privileged runnable} except that it is given a progress monitor for progress reporting.
+	 * This enables execution of monitored runnables on the modal-context thread using the transaction borrowed from the UI thread.
+	 * 
+	 * @param domain
+	 *        an editing domain
+	 * @param runnable
+	 *        a runnable with progress that is to borrow the {@code domain}'s active transaction on the modal context thread
+	 * @return the privileged runnable, ready to pass into the progress service or other such API
+	 */
+	public static IRunnableWithProgress createPrivilegedRunnableWithProgress(TransactionalEditingDomain domain, final IRunnableWithProgress runnable) {
+		final IProgressMonitor monitorHolder[] = { null };
+
+		final Runnable privileged = domain.createPrivilegedRunnable(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					runnable.run(monitorHolder[0]);
+				} catch (Exception e) {
+					throw new WrappedException(e);
+				}
+			}
+		});
+
+		return new IRunnableWithProgress() {
+
+			@Override
+			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+				monitorHolder[0] = monitor;
+
+				try {
+					privileged.run();
+				} catch (WrappedException e) {
+					Exception unwrapped = e.exception();
+					if(unwrapped instanceof InvocationTargetException) {
+						throw (InvocationTargetException)unwrapped;
+					} else if(unwrapped instanceof InterruptedException) {
+						throw (InterruptedException)unwrapped;
+					} else {
+						throw e;
+					}
+				}
+			}
+		};
 	}
 }

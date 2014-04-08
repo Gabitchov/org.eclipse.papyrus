@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 408491
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelrepair.handler;
 
@@ -18,7 +20,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -49,7 +50,7 @@ public class ModelRepairHandler extends AbstractHandler {
 		if(selectedAdapter instanceof IFile) {
 			IFile selectedFile = (IFile)selectedAdapter;
 			ModelSet modelSet = new DiResourceSet();
-			EditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(modelSet);
+			TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(modelSet);
 
 			IPath workspacePath = selectedFile.getFullPath();
 
@@ -57,11 +58,13 @@ public class ModelRepairHandler extends AbstractHandler {
 
 			try {
 				modelSet.loadModels(workspaceURI);
-				ModelRepairDialog dialog = new ModelRepairDialog(HandlerUtil.getActiveShell(event), modelSet, editingDomain);
+				ModelRepairDialog dialog = new ModelRepairDialog(HandlerUtil.getActiveShell(event), modelSet);
 				dialog.open();
 				modelSet.unload();
 			} catch (ModelMultiException e) {
 				Activator.log.error(e);
+			} finally {
+				editingDomain.dispose();
 			}
 		}
 

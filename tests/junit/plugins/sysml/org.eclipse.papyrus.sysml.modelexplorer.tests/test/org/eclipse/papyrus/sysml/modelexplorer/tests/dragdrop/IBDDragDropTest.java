@@ -28,40 +28,7 @@ public class IBDDragDropTest extends AbstractDragDropTest {
 		testUnexecutableDropOfDiagram(iBD_B1_Diagram, iBD_B1_Diagram);
 		
 	}
-	
-	/**
-	 * Test on itself. Should do nothing
-	 */
-	@Test
-	public void testDragDropIBDonOtherBlock() throws Exception {
-		testUnexecutableDropOfDiagram(iBD_B1_Diagram, b1P1_P1_EObject);
-		
-	}
-	
-	/**
-	 * Test on itself. Should do nothing
-	 */
-	@Test
-	public void testDragDropIBDonSameBlock() throws Exception {
-		testUnexecutableDropOfDiagram(iBD_B1_Diagram, b1_EObject);
-	}
-	
-	/**
-	 * Test on itself. Should do nothing
-	 */
-	@Test
-	public void testDragDropIBDonPackage() throws Exception {
-		testUnexecutableDropOfDiagram(iBD_B1_Diagram, p1_EObject);
-	}
-	
-	/**
-	 * Test on itself. Should do nothing
-	 */
-	@Test
-	public void testDragDropBDDonSubPackage() throws Exception {
-		testExecutableDropOfDiagram(bDD_Main_Diagram, p1_EObject);
-	}
-	
+
 	/**
 	 * Test on itself. Should do nothing
 	 */

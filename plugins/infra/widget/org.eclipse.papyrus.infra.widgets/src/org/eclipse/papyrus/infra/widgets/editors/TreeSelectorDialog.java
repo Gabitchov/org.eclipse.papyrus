@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 408491
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -54,6 +56,8 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 
 	private TreeViewer treeViewer;
 
+	private String description;
+	
 	private Label descriptionLabel;
 
 	private Object input = null;
@@ -119,6 +123,10 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		descriptionLabel = new Label(getDialogArea(), SWT.WRAP);
 		descriptionLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
+		if(description != null) {
+			descriptionLabel.setText(description);
+		}
+		
 		treeViewer = new TreeViewer(getDialogArea(), SWT.BORDER);
 		//		treeViewer.setFilters(new ViewerFilter[]{ new PatternFilter() });
 
@@ -209,7 +217,11 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	 *        The description for this dialog
 	 */
 	public void setDescription(String description) {
-		descriptionLabel.setText(description);
+		this.description = description;
+
+		if((descriptionLabel != null) && !descriptionLabel.isDisposed()) {
+			descriptionLabel.setText(description == null ? "" : description); //$NON-NLS-1$
+		}
 	}
 
 	/**

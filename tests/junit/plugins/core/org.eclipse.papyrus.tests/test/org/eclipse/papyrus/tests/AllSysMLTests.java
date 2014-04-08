@@ -27,6 +27,7 @@ public class AllSysMLTests {
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.sysml.diagram.blockdefinition", "org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.suites.AllTests"));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.diagram.requirement.test.AllTests.class));
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.sysml.diagram.parametric", "org.eclipse.papyrus.sysml.diagram.parametric.tests.suites.AllTests"));
+		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.sysml.modelexplorer", "org.eclipse.papyrus.sysml.modelexplorer.tests.suites.AllTests"));
 	}
 
 
@@ -37,7 +38,7 @@ public class AllSysMLTests {
 
 		/**
 		 * Constructor.
-		 * 
+		 *
 		 * @param clazz
 		 *        the suite class � AllTests2
 		 * @throws InitializationError
@@ -51,7 +52,7 @@ public class AllSysMLTests {
 
 	/**
 	 * Returns the list of test classes
-	 * 
+	 *
 	 * @return the list of test classes
 	 */
 	private static Class<?>[] getSuites() {
