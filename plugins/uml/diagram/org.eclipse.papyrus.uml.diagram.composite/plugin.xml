@@ -41,8 +41,6 @@
             class="org.eclipse.papyrus.uml.diagram.composite.custom.preferences.CustomDiagramPreferencePage">
       </page>
       
-
-
       <page
             id="org.eclipse.papyrus.uml.diagram.composite.preferences.DiagramPrintingPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
@@ -1382,31 +1380,6 @@
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
-
-
-<!-- added by Remi Schnekenburger-->
-<extension
-      point="org.eclipse.ui.preferencePages">
-      			<?gmfgen generated="false"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.custom.preferences.PropertyPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.PropertyPreferencePage"
-            name="Property" />
- <page
-       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-       class="org.eclipse.papyrus.uml.diagram.composite.custom.preferences.ParameterPreferencePage"
-       id="org.eclipse.papyrus.uml.diagram.composite.preferences.ParameterPreferencePage"
-       name="Parameter">
- </page>
- <page
-       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-       class="org.eclipse.papyrus.uml.diagram.composite.custom.preferences.CollaborationUsePreferencePage"
-       id="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationUsePreferencePage"
-       name="CollaborationUse">
- </page>
-
-</extension>
-
 
 
 <extension

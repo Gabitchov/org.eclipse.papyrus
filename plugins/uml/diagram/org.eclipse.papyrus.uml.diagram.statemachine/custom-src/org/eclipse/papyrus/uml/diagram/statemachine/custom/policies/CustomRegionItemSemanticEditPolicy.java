@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.policies;
 
 import java.util.Iterator;
@@ -20,22 +31,21 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.RegionItemSema
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
 
 public class CustomRegionItemSemanticEditPolicy extends RegionItemSemanticEditPolicy {
-
 	@Override
 	protected Command addDeleteViewCommand(Command mainCommand, DestroyRequest completedRequest) {
-		Command deleteViewCommand = getGEFWrapper(new CustomRegionDeleteCommand(getEditingDomain(), (View)getHost().getModel()));
+		Command deleteViewCommand = getGEFWrapper(new CustomRegionDeleteCommand(getEditingDomain(), (View) getHost().getModel()));
 		return mainCommand == null ? deleteViewCommand : mainCommand.chain(deleteViewCommand);
 	}
 
 	protected void addDestroyChildNodesCommand(ICompositeCommand cmd) {
-		View view = (View)getHost().getModel();
-		for(Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
-			Node node = (Node)nit.next();
-			switch(UMLVisualIDRegistry.getVisualID(node)) {
+		View view = (View) getHost().getModel();
+		for (Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
+			Node node = (Node) nit.next();
+			switch (UMLVisualIDRegistry.getVisualID(node)) {
 			case RegionCompartmentEditPart.VISUAL_ID:
-				for(Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
-					Node cnode = (Node)cit.next();
-					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
+				for (Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
+					Node cnode = (Node) cit.next();
+					switch (UMLVisualIDRegistry.getVisualID(cnode)) {
 					}
 				}
 				break;
@@ -45,11 +55,11 @@ public class CustomRegionItemSemanticEditPolicy extends RegionItemSemanticEditPo
 
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		View view = (View)getHost().getModel();
+		View view = (View) getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if(annotation == null) {
+		if (annotation == null) {
 			// there are indirectly referenced children, need extra commands:
 			// false
 			addDestroyChildNodesCommand(cmd);
@@ -59,15 +69,13 @@ public class CustomRegionItemSemanticEditPolicy extends RegionItemSemanticEditPo
 		} else {
 			cmd.add(new CustomRegionDeleteCommand(getEditingDomain(), view));
 		}
-		View compartmentView = (View)view.eContainer();
+		View compartmentView = (View) view.eContainer();
 		// get and adaptable for it, to pass on to commands
-		IAdaptable adaptableForCompartmentView = (IAdaptable)new SemanticAdapter(null, compartmentView);
-		if(compartmentView.getChildren().size() == 1) {
+		IAdaptable adaptableForCompartmentView = (IAdaptable) new SemanticAdapter(null, compartmentView);
+		if (compartmentView.getChildren().size() == 1) {
 			SetPropertyCommand showCompartment = new SetPropertyCommand(getEditingDomain(), adaptableForCompartmentView, "notation.View.visible", "Visibility", false);
 			cmd.compose(showCompartment);
 		}
-
 		return getGEFWrapper(cmd.reduce());
 	}
-
 }

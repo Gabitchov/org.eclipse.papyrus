@@ -1,15 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2014 CEA List and others.
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *     CEA List - initial API and implementation
- *     Christian W. Damus (CEA) - bug 392301
- *     
- *******************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.figures;
 
 import org.eclipse.draw2d.Border;
@@ -29,7 +28,6 @@ import org.eclipse.swt.graphics.Image;
  * 
  */
 public class PseudostateTerminateFigure extends PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure {
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -56,21 +54,19 @@ public class PseudostateTerminateFigure extends PapyrusNodeFigure implements IPa
 	 * {@inheritDoc}
 	 */
 	public void paintFigure(Graphics graphics) {
-
 		graphics.setForegroundColor(getForegroundColor());
-		Rectangle r = getBounds().getCopy().crop(new Insets(0, 0, 1, 1));
-		if(isUsingGradient()) {
+		Rectangle r = getBounds().getCopy().shrink(new Insets(0, 0, 1, 1));
+		if (isUsingGradient()) {
 			graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-			//graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
+			// graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
 		} else {
 			graphics.setBackgroundColor(getBackgroundColor());
-			//graphics.setForegroundColor(getForegroundColor());
+			// graphics.setForegroundColor(getForegroundColor());
 		}
 		graphics.setLineWidth(1);
 		// intersection coordinates.
-		int x = (int)(r.width / (2 * Math.sqrt(2)));
-		int y = (int)(r.height / (2 * Math.sqrt(2)));
-
+		int x = (int) (r.width / (2 * Math.sqrt(2)));
+		int y = (int) (r.height / (2 * Math.sqrt(2)));
 		// cross.
 		graphics.drawLine(r.getCenter().translate(x, -y), r.getCenter().translate(-x, y));
 		graphics.drawLine(r.getCenter().translate(-x, -y), r.getCenter().translate(x, y));

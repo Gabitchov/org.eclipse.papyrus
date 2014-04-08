@@ -29,6 +29,7 @@ import xpt.Common
 import xpt.Common_qvto
 import xpt.GenModelUtils_qvto
 import xpt.diagram.updater.LinkDescriptor
+import xpt.diagram.updater.NodeDescriptor
 import xpt.diagram.updater.UpdaterLinkType
 import xpt.diagram.updater.Utils_qvto
 
@@ -39,6 +40,7 @@ import xpt.diagram.updater.Utils_qvto
 	@Inject extension GenModelUtils_qvto;
 	@Inject LinkDescriptor linkDescriptor;
 	@Inject VisualIDRegistry xptVisualIDRegistry;
+	@Inject NodeDescriptor nodeDescriptor;
 
 	@Inject MetaModel xptMetaModel;
 
@@ -93,6 +95,8 @@ import xpt.diagram.updater.Utils_qvto
 		}
 	'''
 
+	def CharSequence getICustomDiagramUpdater(GenContainerBase it) '''org.eclipse.papyrus.uml.diagram.common.part.ICustomDiagramUpdater<«nodeDescriptor.qualifiedClassName(it.diagramUpdater)»>'''
+
 	override getSemanticChildrenOfView(GenContainerBase it) '''
 		«IF it.eResource.allContents.filter(typeof(SpecificDiagramUpdater)).filter[v|v.genNode == it && v.classpath != null].
 			size != 0»
@@ -100,7 +104,7 @@ import xpt.diagram.updater.Utils_qvto
 			«FOR updater : it.eResource.allContents.filter(typeof(SpecificDiagramUpdater)).filter[v|
 			v.genNode == it && v.classpath != null].toIterable»
 				public static «listOfNodeDescriptors» «getSemanticChildrenMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
-					org.eclipse.papyrus.uml.diagram.common.part.ICustomDiagramUpdater customUpdater = new «updater.classpath»();
+					«getICustomDiagramUpdater(it)» customUpdater = new «updater.classpath»();
 					return customUpdater.getSemanticChildren(view);
 				}
 			«ENDFOR»	

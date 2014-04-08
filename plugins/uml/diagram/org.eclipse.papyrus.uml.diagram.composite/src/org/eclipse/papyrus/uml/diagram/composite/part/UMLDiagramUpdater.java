@@ -763,7 +763,7 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLNodeDescriptor> getProperty_3070SemanticChildren(View view) {
-		ICustomDiagramUpdater customUpdater = new PropertyDiagramUpdater();
+		ICustomDiagramUpdater<UMLNodeDescriptor> customUpdater = new PropertyDiagramUpdater();
 		return customUpdater.getSemanticChildren(view);
 	}
 

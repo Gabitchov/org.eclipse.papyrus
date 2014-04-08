@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.part;
 
 import org.eclipse.core.resources.IFile;
@@ -23,16 +34,36 @@ import org.eclipse.ui.IWorkbenchPart;
  * @generated
  */
 public class UMLInitDiagramFileAction implements IObjectActionDelegate {
-
 	/**
 	 * @generated
 	 */
 	private IWorkbenchPart targetPart;
-
 	/**
 	 * @generated
 	 */
 	private URI domainModelURI;
+
+	/**
+	 * @generated
+	 */
+	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+		this.targetPart = targetPart;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void selectionChanged(IAction action, ISelection selection) {
+		domainModelURI = null;
+		action.setEnabled(false);
+		if (selection instanceof IStructuredSelection == false || selection.isEmpty()) {
+			return;
+		}
+		IFile file =
+				(IFile) ((IStructuredSelection) selection).getFirstElement();
+		domainModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+		action.setEnabled(true);
+	}
 
 	/**
 	 * @generated
@@ -45,42 +76,27 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 	 * @generated
 	 */
 	public void run(IAction action) {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
+		TransactionalEditingDomain editingDomain =
+				GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		ResourceSet resourceSet = editingDomain.getResourceSet();
 		EObject diagramRoot = null;
 		try {
 			Resource resource = resourceSet.getResource(domainModelURI, true);
-			diagramRoot = (EObject)resource.getContents().get(0);
+			diagramRoot = (EObject) resource.getContents().get(0);
 		} catch (WrappedException ex) {
-			UMLDiagramEditorPlugin.getInstance().logError("Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
 		}
-		if(diagramRoot == null) {
-			MessageDialog.openError(getShell(), Messages.InitDiagramFile_ResourceErrorDialogTitle, Messages.InitDiagramFile_ResourceErrorDialogMessage);
+		if (diagramRoot == null) {
+			MessageDialog.openError(getShell(),
+					Messages.InitDiagramFile_ResourceErrorDialogTitle,
+					Messages.InitDiagramFile_ResourceErrorDialogMessage);
 			return;
 		}
 		Wizard wizard = new UMLNewDiagramFileWizard(domainModelURI, diagramRoot, editingDomain);
-		wizard.setWindowTitle(NLS.bind(Messages.InitDiagramFile_WizardTitle, PackageEditPart.MODEL_ID));
+		wizard.setWindowTitle(NLS.bind(
+				Messages.InitDiagramFile_WizardTitle,
+				PackageEditPart.MODEL_ID));
 		UMLDiagramEditorUtil.runWizard(getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	public void selectionChanged(IAction action, ISelection selection) {
-		domainModelURI = null;
-		action.setEnabled(false);
-		if(selection instanceof IStructuredSelection == false || selection.isEmpty()) {
-			return;
-		}
-		IFile file = (IFile)((IStructuredSelection)selection).getFirstElement();
-		domainModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
-		action.setEnabled(true);
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-		this.targetPart = targetPart;
 	}
 }

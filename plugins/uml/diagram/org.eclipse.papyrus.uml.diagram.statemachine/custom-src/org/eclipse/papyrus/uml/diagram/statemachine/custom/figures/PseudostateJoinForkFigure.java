@@ -1,17 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2011, 2014 CEA LIST and others.
- *
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *		
- *	 CEA LIST - Initial API and implementation
- *   Christian W. Damus (CEA) - bug 392301
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.figures;
 
 import org.eclipse.draw2d.Border;
@@ -27,7 +24,6 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
 public class PseudostateJoinForkFigure extends PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure {
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -54,13 +50,13 @@ public class PseudostateJoinForkFigure extends PapyrusNodeFigure implements IPap
 	 * {@inheritDoc}
 	 */
 	public void paintFigure(Graphics graphics) {
-		Rectangle r = getBounds().getCopy().crop(new Insets(0, 0, 1, 1));
-		if(isUsingGradient()) {
+		Rectangle r = getBounds().getCopy().shrink(new Insets(0, 0, 1, 1));
+		if (isUsingGradient()) {
 			graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-			//graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
+			// graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
 		} else {
 			graphics.setBackgroundColor(getBackgroundColor());
-			//graphics.setForegroundColor(getForegroundColor());
+			// graphics.setForegroundColor(getForegroundColor());
 		}
 		graphics.fillRectangle(r);
 		graphics.setLineWidth(1);
@@ -84,5 +80,4 @@ public class PseudostateJoinForkFigure extends PapyrusNodeFigure implements IPap
 	 */
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
 	}
-
 }

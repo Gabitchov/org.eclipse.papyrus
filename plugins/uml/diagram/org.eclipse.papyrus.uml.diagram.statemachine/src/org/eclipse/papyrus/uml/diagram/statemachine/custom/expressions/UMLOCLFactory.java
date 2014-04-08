@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.expressions;
 
 import java.util.Collections;
@@ -11,9 +22,9 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreFactory;
-import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
+import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
 
@@ -21,12 +32,10 @@ import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
  * @generated
  */
 public class UMLOCLFactory {
-
 	/**
 	 * @generated
 	 */
 	private final UMLAbstractExpression[] expressions;
-
 	/**
 	 * @generated
 	 */
@@ -37,10 +46,10 @@ public class UMLOCLFactory {
 	 */
 	protected UMLOCLFactory() {
 		this.expressions = new UMLAbstractExpression[4];
-		this.expressionBodies = new String[]{ "(kind = TransitionKind::internal) implies (source.oclIsKindOf (State) and source = target)", //$NON-NLS-1$
-		"if self.owner.oclIsKindOf(State)\r\nthen self.owner.oclAsType(State).exit->includes(self)\r\nelse false endif", //$NON-NLS-1$
-		"if self.owner.oclIsKindOf(State)\r\nthen self.owner.oclAsType(State).entry->includes(self)\r\nelse false endif", //$NON-NLS-1$
-		"if self.owner.oclIsKindOf(State)\r\nthen self.owner.oclAsType(State).doActivity->includes(self)\r\nelse false endif", //$NON-NLS-1$
+		this.expressionBodies = new String[] { "(kind = TransitionKind::internal) implies (source.oclIsKindOf (State) and source = target)", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(State)\r\nthen self.owner.oclAsType(State).exit->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(State)\r\nthen self.owner.oclAsType(State).entry->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(State)\r\nthen self.owner.oclAsType(State).doActivity->includes(self)\r\nelse false endif", //$NON-NLS-1$
 		};
 	}
 
@@ -49,7 +58,7 @@ public class UMLOCLFactory {
 	 */
 	private static UMLOCLFactory getInstance() {
 		UMLOCLFactory instance = UMLDiagramEditorPlugin.getInstance().getUMLOCLFactory();
-		if(instance == null) {
+		if (instance == null) {
 			UMLDiagramEditorPlugin.getInstance().setUMLOCLFactory(instance = new UMLOCLFactory());
 		}
 		return instance;
@@ -67,10 +76,10 @@ public class UMLOCLFactory {
 	 */
 	public static UMLAbstractExpression getExpression(int index, EClassifier context, Map<String, EClassifier> environment) {
 		UMLOCLFactory cached = getInstance();
-		if(index < 0 || index >= cached.expressions.length) {
+		if (index < 0 || index >= cached.expressions.length) {
 			throw new IllegalArgumentException();
 		}
-		if(cached.expressions[index] == null) {
+		if (cached.expressions[index] == null) {
 			cached.expressions[index] = getExpression(cached.expressionBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
 		return cached.expressions[index];
@@ -78,7 +87,6 @@ public class UMLOCLFactory {
 
 	/**
 	 * This is factory method, callers are responsible to keep reference to the return value if they want to reuse parsed expression
-	 * 
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context, Map<String, EClassifier> environment) {
@@ -87,7 +95,6 @@ public class UMLOCLFactory {
 
 	/**
 	 * This method will become private in the next release
-	 * 
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context) {
@@ -98,12 +105,10 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	private static class Expression extends UMLAbstractExpression {
-
 		/**
 		 * @generated
 		 */
 		private final org.eclipse.ocl.ecore.OCL oclInstance;
-
 		/**
 		 * @generated
 		 */
@@ -131,14 +136,14 @@ public class UMLOCLFactory {
 		 */
 		@SuppressWarnings("rawtypes")
 		protected Object doEvaluate(Object context, Map env) {
-			if(oclExpression == null) {
+			if (oclExpression == null) {
 				return null;
 			}
 			// on the first call, both evalEnvironment and extentMap are clear, for later we have finally, below.
 			EvaluationEnvironment<?, ?, ?, ?, ?> evalEnv = oclInstance.getEvaluationEnvironment();
 			// initialize environment
-			for(Object nextKey : env.keySet()) {
-				evalEnv.replace((String)nextKey, env.get(nextKey));
+			for (Object nextKey : env.keySet()) {
+				evalEnv.replace((String) nextKey, env.get(nextKey));
 			}
 			try {
 				Object result = oclInstance.evaluate(context, oclExpression);
@@ -155,7 +160,7 @@ public class UMLOCLFactory {
 		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv, Map<String, EClassifier> environment) {
 			// Use EObject as implicit root class for any object, to allow eContainer() and other EObject operations from OCL expressions
 			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv), EcorePackage.eINSTANCE.getEObject());
-			for(String varName : environment.keySet()) {
+			for (String varName : environment.keySet()) {
 				EClassifier varType = environment.get(varName);
 				ecoreEnv.addElement(varName, createVar(ecoreEnv, varName, varType), false);
 			}

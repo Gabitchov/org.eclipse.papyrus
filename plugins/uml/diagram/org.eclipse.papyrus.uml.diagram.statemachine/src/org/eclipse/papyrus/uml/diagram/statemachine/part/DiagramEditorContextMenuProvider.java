@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.part;
 
 import org.eclipse.emf.ecore.EObject;
@@ -13,7 +24,6 @@ import org.eclipse.ui.IWorkbenchPart;
  * @generated
  */
 public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider {
-
 	/**
 	 * @generated
 	 */
@@ -33,10 +43,11 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 	public void buildContextMenu(final IMenuManager menu) {
 		getViewer().flush();
 		try {
-			TransactionUtil.getEditingDomain((EObject)getViewer().getContents().getModel()).runExclusive(new Runnable() {
-
+			TransactionUtil.getEditingDomain(
+					(EObject) getViewer().getContents().getModel()).runExclusive(new Runnable() {
 				public void run() {
-					ContributionItemService.getInstance().contributeToPopupMenu(DiagramEditorContextMenuProvider.this, part);
+					ContributionItemService.getInstance().contributeToPopupMenu(
+							DiagramEditorContextMenuProvider.this, part);
 					menu.remove(ActionIds.ACTION_DELETE_FROM_MODEL);
 				}
 			});

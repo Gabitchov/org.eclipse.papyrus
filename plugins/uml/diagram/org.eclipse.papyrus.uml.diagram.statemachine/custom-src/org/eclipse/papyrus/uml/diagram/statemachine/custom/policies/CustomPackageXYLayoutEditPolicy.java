@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.policies;
 
 import java.util.Iterator;
@@ -26,52 +37,44 @@ import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomStateM
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineEditPart;
 
 public class CustomPackageXYLayoutEditPolicy extends XYLayoutEditPolicy {
-
 	/**
 	 * This method analyzes a resize and/or move request and routes the call to
 	 * the appropriate specific ResizeCommand either for a StateMachine
 	 * in other cases passes on the call to the super class method.
 	 * 
 	 * @param child
-	 *        the concerned EditPart
+	 *            the concerned EditPart
 	 * @param constraint
-	 *        the object embedding the constraint rectangle
+	 *            the object embedding the constraint rectangle
 	 * @param request
-	 *        the ChangeBoundsRequest
+	 *            the ChangeBoundsRequest
 	 * 
 	 * @return
 	 */
-
 	@Override
 	public Command createChangeConstraintCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
 		// precautionary test
-		if((request == null) || (child == null) || (constraint == null))
+		if ((request == null) || (child == null) || (constraint == null))
 			throw new IllegalArgumentException();
-
-		if(child instanceof StateMachineEditPart) {
-			View stateMachine = (View)child.getModel();
-
+		if (child instanceof StateMachineEditPart) {
+			View stateMachine = (View) child.getModel();
 			// retrieve the deltas of the resize request
 			int dx = request.getSizeDelta().width;
 			int dy = request.getSizeDelta().height;
-			if((dx == 0) && (dy == 0)) {
+			if ((dx == 0) && (dy == 0)) {
 				// nothing to do except move the state machine edit part
 				// all locations of embedded figures are relative to it
 				// and thus hold when their container is moved around
 				return super.createChangeConstraintCommand(request, child, constraint);
 			}
-
 			// now we face a resize command
-
-			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 			CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);
 			// a resize request, which we route to the specific ResizeCommand
 			IAdaptable adaptableForStateMachine = new SemanticAdapter(null, stateMachine);
-
-			CustomStateMachineResizeCommand resizeStateMachine = new CustomStateMachineResizeCommand(adaptableForStateMachine, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint(), editingDomain, DiagramUIMessages.CreateCommand_Label, request, (Rectangle)constraint, false);
-
+			CustomStateMachineResizeCommand resizeStateMachine = new CustomStateMachineResizeCommand(adaptableForStateMachine, ((IGraphicalEditPart) getHost()).getDiagramPreferencesHint(), editingDomain, DiagramUIMessages.CreateCommand_Label, request,
+					(Rectangle) constraint, false);
 			cc.add(resizeStateMachine);
-
 			return new ICommandProxy(cc.reduce());
 		}
 		return super.createChangeConstraintCommand(request, child, constraint);
@@ -81,12 +84,11 @@ public class CustomPackageXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	protected EditPolicy createChildEditPolicy(EditPart child) {
 		// specific resize edit policy which correct ghost figure management by
 		// GMF
-		if(child instanceof StateMachineEditPart) {
+		if (child instanceof StateMachineEditPart) {
 			ResizableEditPolicy policy = new ResizableEditPolicy() {
-
 				public void eraseSourceFeedback(Request request) {
-					if(RequestConstants.REQ_DROP.equals(request.getType()))
-						eraseChangeBoundsFeedback((ChangeBoundsRequest)request);
+					if (RequestConstants.REQ_DROP.equals(request.getType()))
+						eraseChangeBoundsFeedback((ChangeBoundsRequest) request);
 					else
 						super.eraseSourceFeedback(request);
 				}
@@ -100,24 +102,18 @@ public class CustomPackageXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	@Override
 	protected Command getCreateCommand(CreateRequest request) {
-		CreateViewRequest req = (CreateViewRequest)request;
-
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-
+		CreateViewRequest req = (CreateViewRequest) request;
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);
-		Iterator iter = req.getViewDescriptors().iterator();
-
-		final Rectangle BOUNDS = (Rectangle)getConstraintFor(request);
-
-		while(iter.hasNext()) {
-			CreateViewRequest.ViewDescriptor viewDescriptor = (CreateViewRequest.ViewDescriptor)iter.next();
+		Iterator<?> iter = req.getViewDescriptors().iterator();
+		final Rectangle BOUNDS = (Rectangle) getConstraintFor(request);
+		while (iter.hasNext()) {
+			CreateViewRequest.ViewDescriptor viewDescriptor = (CreateViewRequest.ViewDescriptor) iter.next();
 			Rectangle rect = getBoundsOffest(req, BOUNDS, viewDescriptor);
 			cc.compose(new CustomStateMachineSetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, rect));
 		}
-
-		if(cc.reduce() == null)
+		if (cc.reduce() == null)
 			return null;
-
 		return chainGuideAttachmentCommands(request, new ICommandProxy(cc.reduce()));
 	}
 }
