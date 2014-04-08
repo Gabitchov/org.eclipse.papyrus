@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  * 
- * @Generated from Reference - Model 
+ *  from Reference - Model 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste;
@@ -31,7 +31,7 @@ public abstract class AbstractCopyPasteReferenceTest extends AbstractCopyPasteTe
 
 	/**
      * {@inheritDoc}
-     * @generated
+     * 
  	 */
 	@Override
 	protected void initializeTest(Map<Object, Object> additionalChecks, EObject targetContainer, EObject copiedEObject) {
@@ -44,7 +44,7 @@ public abstract class AbstractCopyPasteReferenceTest extends AbstractCopyPasteTe
 
 	/**
 	 * {@inheritDoc}
-	 * @generated	
+	 * 	
 	 */
 	@Override
 	protected void postCopyAdditionalChecks(Map<?, ?> originalModel, List<EObject> newValues, List<EObject> delta) throws Exception {

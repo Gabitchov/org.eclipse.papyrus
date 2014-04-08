@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,8 +8,8 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- * 
- * @Generated from SimpleReference - Model 
+ *
+ *  from SimpleBlock - Model
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste;
@@ -20,6 +20,7 @@ import java.util.Map;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PlatformUI;
@@ -32,11 +33,11 @@ import org.junit.Test;
 /**
  * Test for Copy / Paste of a Part
  */
-public class CopyPasteSimpleReferenceTest extends AbstractCopyPasteReferenceTest {
+public class CopyPasteSimpleBlockTest extends AbstractCopyPasteBlockTest {
 
 	/**
 	 * prepare the copy
-	 * 
+	 *
 	 * @throws Exception
 	 *         exception thrown in case of problems
 	 */
@@ -50,13 +51,21 @@ public class CopyPasteSimpleReferenceTest extends AbstractCopyPasteReferenceTest
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
 			}
 		});
-
-		Assert.assertFalse("Editor should not be dirty at initialization", isEditorDirty());
 		// retrieve elements in the model explorer
-		selectAndReveal(rB2_B1_EObject);
+		selectAndReveal(b1_EObject);
 
 		// copy Paste
-		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
+		RunnableWithResult<ICommandService> runnable;
+		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<ICommandService>() {
+
+			public void run() {
+				ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
+				setResult(commandService);
+			}
+		});
+
+		ICommandService commandService = runnable.getResult();
+
 		commandService.refreshElements(IWorkbenchCommandConstants.EDIT_COPY, null);
 		org.eclipse.core.commands.Command copyCommand = commandService.getCommand(IWorkbenchCommandConstants.EDIT_COPY);
 		Assert.assertNotNull("Impossible to find copy command", copyCommand);
@@ -65,19 +74,7 @@ public class CopyPasteSimpleReferenceTest extends AbstractCopyPasteReferenceTest
 		copyCommand.executeWithChecks(new ExecutionEvent());
 
 		// check editor state (should be non dirty)
-		// Assert.assertFalse("Editor should not be dirty after copy", isEditorDirty());
-
-		// NOTE: save editor. The copy command should not dirty the model, the implementation of the copy command or the editor should be modified
-		Assert.assertFalse("Copy command is dirtying the model, whereas it should not. This assert is here to remember that the test code should be modified: Isdirty = false after copy...", isEditorDirty());
-		Display.getDefault().syncExec(new Runnable() {
-
-			public void run() {
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
-			}
-		});
-
-		Assert.assertFalse("Save command is non-dirtying the model, whereas it should. ", isEditorDirty());
-		// END NOTE
+		Assert.assertFalse("Editor should not be dirty after copy", isEditorDirty());
 	}
 
 	@Override
@@ -103,47 +100,25 @@ public class CopyPasteSimpleReferenceTest extends AbstractCopyPasteReferenceTest
 
 
 	/**
-	 * Test the copy /paste on B1
-	 * 
+	 * Test the copy /paste on P1
+	 *
 	 * @throws Exception
 	 *         exception thrown in case of problems
 	 */
 	@Test
-	public void testCopyPasteInB1() throws Exception {
-		testExecutableCopyPaste(b1_EObject, rB2_B1_EObject, "attribute", 1);
+	public void testCopyPasteInP1() throws Exception {
+		testExecutableCopyPaste(p1_EObject, b1_EObject, "ownedElement", 4);
 	}
 
 	/**
-	 * Test the copy /paste on B2
-	 * 
+	 * Test the copy /paste on model
+	 *
 	 * @throws Exception
 	 *         exception thrown in case of problems
 	 */
 	@Test
-	public void testCopyPasteInB2() throws Exception {
-		testExecutableCopyPaste(b2_EObject, rB2_B1_EObject, "attribute", 1);
-	}
-
-	/**
-	 * Test the copy /paste on B1P1
-	 * 
-	 * @throws Exception
-	 *         exception thrown in case of problems
-	 */
-	@Test
-	public void testCopyPasteInB1P1() throws Exception {
-		testExecutableCopyPaste(b1P1_P1_EObject, rB2_B1_EObject, "attribute", 1);
-	}
-
-	/**
-	 * Test the copy /paste on B2P1
-	 * 
-	 * @throws Exception
-	 *         exception thrown in case of problems
-	 */
-	@Test
-	public void testCopyPasteInB2P1() throws Exception {
-		testExecutableCopyPaste(b2P1_P1_EObject, rB2_B1_EObject, "attribute", 1);
+	public void testCopyPasteInmodel() throws Exception {
+		testExecutableCopyPaste(model_EObject, b1_EObject, "ownedElement", 4);
 	}
 
 

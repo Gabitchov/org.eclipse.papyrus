@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  * 
- * @Generated from Part - Model 
+ *  from Part - Model 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste;
@@ -30,7 +30,7 @@ public abstract class AbstractCopyPastePartTest extends AbstractCopyPasteTest {
 
 	/**
      * {@inheritDoc}
-     * @generated
+     * 
  	 */
 	@Override
 	protected void initializeTest(Map<Object, Object> additionalChecks, EObject targetContainer, EObject copiedEObject) {
@@ -43,14 +43,21 @@ public abstract class AbstractCopyPastePartTest extends AbstractCopyPasteTest {
 
 	/**
 	 * {@inheritDoc}
-	 * @generated	
+	 * 	
 	 */
 	@Override
 	protected void postCopyAdditionalChecks(Map<?, ?> originalModel, List<EObject> newValues, List<EObject> delta) throws Exception {
     super.postCopyAdditionalChecks(originalModel, newValues, delta);
     
       /* post copy checks */
-      Association newAssociation = ((Property)newValues.get(0)).getAssociation(); Assert.assertNotNull("New Part should have an association", newAssociation);
+
+    for(EObject newObject : newValues) {
+		if (newObject instanceof Property){
+			Property property = (Property) newObject;
+			Association newAssociation = property.getAssociation(); 
+			Assert.assertNotNull("New Part should have an association", newAssociation); //$NON-NLS-1$
+		}
+	} 
       /* END OF post copy checks */
   }
 
