@@ -133,7 +133,11 @@ public class ReferencedModelReadOnlyHandler extends AbstractReadOnlyHandler {
 				final boolean[] enableWrite = { !isInteractive() };
 				
 				if(isInteractive()) {
-					Display.getCurrent().syncExec(new Runnable() {
+					Display currentDisplay=Display.getCurrent();
+					if(currentDisplay==null){
+						currentDisplay=Display.getDefault();
+					}
+					currentDisplay.syncExec(new Runnable() {
 	
 						public void run() {
 							StringBuilder message = new StringBuilder(Messages.ReferencedModelReadOnlyHandler_promptMsg);
