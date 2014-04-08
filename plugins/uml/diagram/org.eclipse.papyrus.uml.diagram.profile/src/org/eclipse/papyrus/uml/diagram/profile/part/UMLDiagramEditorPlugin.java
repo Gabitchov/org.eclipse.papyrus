@@ -1,16 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
+/*
+ * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.part;
 
 import java.util.ArrayList;
@@ -89,7 +89,6 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
@@ -97,12 +96,12 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 		adapterFactory = createAdapterFactory();
 		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
 		diagramPreferenceInitializer.initializeDefaultPreferences();
+
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
@@ -122,11 +121,11 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IPreferenceStore getPreferenceStore() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		return store;
 	}
+
 
 	/**
 	 * @generated
@@ -170,8 +169,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * plug-in relative path.
 	 * 
 	 * @generated
-	 * @param path
-	 *        the path
+	 * @param path the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getBundledImageDescriptor(String path) {
@@ -184,8 +182,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * path, first segment is taken as id of plug-in with image
 	 * 
 	 * @generated
-	 * @param path
-	 *        the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
+	 * @param path the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor findImageDescriptor(String path) {
@@ -198,12 +195,11 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image for the image file at the given plug-in relative path.
+	 * Returns an image for the image file at the given plugin relative path.
 	 * Client do not need to dispose this image. Images will be disposed automatically.
 	 * 
 	 * @generated
-	 * @param path
-	 *        the path
+	 * @param path the path
 	 * @return image instance
 	 */
 	public Image getBundledImage(String path) {

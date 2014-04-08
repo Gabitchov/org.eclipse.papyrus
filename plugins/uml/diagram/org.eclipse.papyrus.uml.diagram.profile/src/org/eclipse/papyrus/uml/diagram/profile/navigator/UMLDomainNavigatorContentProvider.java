@@ -1,22 +1,23 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.navigator;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
@@ -75,15 +76,19 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 		myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain)editingDomain;
-		myEditingDomain.setResourceToReadOnlyMap(new HashMap() {
+		@SuppressWarnings("serial")
+		Map<Resource, Boolean> map = new HashMap<Resource, Boolean>() {
 
-			public Object get(Object key) {
+			public Boolean get(java.lang.Object key) {
 				if(!containsKey(key)) {
-					put(key, Boolean.TRUE);
+					if(key instanceof Resource) {
+						put((Resource)key, Boolean.TRUE);
+					}
 				}
 				return super.get(key);
 			}
-		});
+		};
+		myEditingDomain.setResourceToReadOnlyMap(map);
 		myViewerRefreshRunnable = new Runnable() {
 
 			public void run() {
@@ -98,7 +103,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 			}
 
 			public boolean handleResourceChanged(final Resource resource) {
-				for(Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+				for(Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 					Resource nextResource = (Resource)it.next();
 					nextResource.unload();
 				}
@@ -109,7 +114,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 			}
 
 			public boolean handleResourceDeleted(Resource resource) {
-				for(Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+				for(Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 					Resource nextResource = (Resource)it.next();
 					nextResource.unload();
 				}
@@ -120,7 +125,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 			}
 
 			public boolean handleResourceMoved(Resource resource, final URI newURI) {
-				for(Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+				for(Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 					Resource nextResource = (Resource)it.next();
 					nextResource.unload();
 				}
@@ -139,10 +144,12 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
 		myViewerRefreshRunnable = null;
-		for(Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+
+		for(Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 			Resource resource = (Resource)it.next();
 			resource.unload();
 		}
+
 		((TransactionalEditingDomain)myEditingDomain).dispose();
 		myEditingDomain = null;
 	}
@@ -152,6 +159,24 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	 */
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		myViewer = viewer;
+	}
+
+	/**
+	 * @generated
+	 */
+	void unloadAllResources() {
+		for(Resource nextResource : myEditingDomain.getResourceSet().getResources()) {
+			nextResource.unload();
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	void asyncRefresh() {
+		if(myViewer != null && !myViewer.getControl().isDisposed()) {
+			myViewer.getControl().getDisplay().asyncExec(myViewerRefreshRunnable);
+		}
 	}
 
 	/**
@@ -189,6 +214,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, true);
 			return wrapEObjects(myAdapterFctoryContentProvier.getChildren(resource), parentElement);
 		}
+
 		if(parentElement instanceof UMLDomainNavigatorItem) {
 			return wrapEObjects(myAdapterFctoryContentProvier.getChildren(((UMLDomainNavigatorItem)parentElement).getEObject()), parentElement);
 		}
@@ -199,7 +225,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	 * @generated
 	 */
 	public Object[] wrapEObjects(Object[] objects, Object parentElement) {
-		Collection result = new ArrayList();
+		Collection<UMLDomainNavigatorItem> result = new ArrayList<UMLDomainNavigatorItem>();
 		for(int i = 0; i < objects.length; i++) {
 			if(objects[i] instanceof EObject) {
 				result.add(new UMLDomainNavigatorItem((EObject)objects[i], parentElement, myAdapterFctoryContentProvier));
@@ -225,4 +251,5 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}
+
 }
