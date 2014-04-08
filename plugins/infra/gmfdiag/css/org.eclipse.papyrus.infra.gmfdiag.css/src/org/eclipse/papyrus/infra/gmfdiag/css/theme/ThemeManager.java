@@ -25,6 +25,7 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
@@ -45,6 +46,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ThemeImpl;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * A Singleton to manage CSS Themes. Reads Themes from an extension point
@@ -106,6 +108,71 @@ public class ThemeManager {
 		allThemes = null;
 	}
 
+	/**
+	 * Get icon from a theme. Icon can register with plugin URI or file URI.
+	 * 
+	 * @param theme
+	 *        Theme which can have an icon
+	 * @return Loaded image, otherwise <code>null</code>
+	 */
+	public Image getThemeIcon(Theme theme) {
+		Image icon = null;
+
+
+		String iconPath = theme.getIcon();
+		if(iconPath != null) {
+
+			// First : looking for theme in contribution
+			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+			icon = handleThemeDefinition(theme, config);
+
+			// Second : Try to load image from its path 
+			if(icon == null) {
+
+				// Test path to icon 
+				IPath path = new Path(iconPath);
+				if(path.toFile().exists()) {
+					icon = new Image(PlatformUI.getWorkbench().getDisplay(), iconPath);
+				}
+
+			}
+		}
+
+		return icon;
+	}
+
+	/**
+	 * Look for corresponding theme in theme definition contribution and load its image.
+	 * 
+	 * @param theme
+	 *        Theme to find in all contribution
+	 * @param config
+	 *        Configuration of all theme contribution
+	 * @return Loaded image if theme is came from contribution, otherwise <code>null</code>
+	 */
+	private Image handleThemeDefinition(Theme theme, IConfigurationElement[] config) {
+		Image icon = null;
+
+		for(IConfigurationElement themeContribution : config) {
+
+			// Verify that contribution is a theme definition
+			if(!themeContribution.getName().equals("themeDefinition")) {
+				continue;
+			}
+
+			// Get label and Id of definition to compare to parameter 
+			String themeId = themeContribution.getAttribute("id");
+			String themeLabel = themeContribution.getAttribute("label");
+
+			if(themeId != null && themeId.equals(theme.getId()) && themeLabel != null && themeLabel.equals(theme.getLabel())) {
+				//FIXME: Use the Papyrus Image service when it is available
+				icon = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(themeContribution.getContributor().getName(), theme.getIcon());
+			}
+		}
+
+		return icon;
+	}
+
 	private Map<String, Theme> getAllThemes() {
 		if(allThemes == null) {
 			allThemes = new LinkedHashMap<String, Theme>(); //Keep the themes ordered, to avoid nondeterministic behavior
@@ -150,11 +217,9 @@ public class ThemeManager {
 
 			String themeIcon = themeConfig.getAttribute("icon");
 			if(themeIcon != null) {
-				//FIXME: Use the Papyrus Image service when it is available
-				Image icon = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(themeConfig.getContributor().getName(), themeIcon);
-				if(icon != null) {
-					theme.setIcon(themeIcon);
-				}
+
+				theme.setIcon(themeIcon);
+
 			}
 
 			allThemes.put(themeId, theme);

@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.provider;
 
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
 import org.eclipse.papyrus.infra.gmfdiag.css.theme.ThemeManager;
 import org.eclipse.swt.graphics.Image;
@@ -35,8 +34,8 @@ public class CSSThemeLabelProvider extends LabelProvider {
 	public Image getImage(Object value) {
 		Theme theme = getTheme(value);
 		if(theme != null) {
-
-			return Activator.getDefault().getImageRegistry().getDescriptor(theme.getIcon()).createImage();
+			Image icon = ThemeManager.instance.getThemeIcon(theme);
+			return icon;
 		}
 		return super.getImage(value);
 	}

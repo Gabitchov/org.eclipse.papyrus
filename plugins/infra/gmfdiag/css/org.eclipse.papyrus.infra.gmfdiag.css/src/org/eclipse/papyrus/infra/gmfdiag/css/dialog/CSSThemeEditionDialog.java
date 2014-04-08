@@ -48,6 +48,8 @@ import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
@@ -343,6 +345,15 @@ public class CSSThemeEditionDialog extends Dialog {
 		themeLabelField = new Text(parent, SWT.BORDER);
 		GridData gd_text = new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1);
 		themeLabelField.setLayoutData(gd_text);
+
+		themeLabelField.addModifyListener(new ModifyListener() {
+
+			@Override
+			public void modifyText(ModifyEvent e) {
+				currentTheme.setLabel(themeLabelField.getText());
+
+			}
+		});
 	}
 
 	/**
@@ -358,7 +369,14 @@ public class CSSThemeEditionDialog extends Dialog {
 
 		iconPathfield = new Text(parent, SWT.BORDER);
 		iconPathfield.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		iconPathfield.addModifyListener(new ModifyListener() {
 
+			@Override
+			public void modifyText(ModifyEvent e) {
+				currentTheme.setIcon(iconPathfield.getText());
+
+			}
+		});
 		createButton(parent, BROWSE_BUTTON_ID, BROWSE_BUTTON_LABEL, false);
 	}
 
@@ -752,16 +770,20 @@ public class CSSThemeEditionDialog extends Dialog {
 		iconPathfield.setEditable(editionEnable);
 
 		if(editionEnable) {
+
 			// Refresh text field (label, icon path, ...)
 			String themeLabel = currentTheme.getLabel();
-			if(themeLabel != null) {
-				themeLabelField.setText(themeLabel);
+			if(themeLabel == null) {
+				themeLabel = "";
 			}
+			themeLabelField.setText(themeLabel);
+
 
 			String iconPath = currentTheme.getIcon();
-			if(iconPath != null) {
-				iconPathfield.setText(iconPath);
+			if(iconPath == null) {
+				iconPath = "";
 			}
+			iconPathfield.setText(iconPath);
 		}
 
 		// Tree viewer
