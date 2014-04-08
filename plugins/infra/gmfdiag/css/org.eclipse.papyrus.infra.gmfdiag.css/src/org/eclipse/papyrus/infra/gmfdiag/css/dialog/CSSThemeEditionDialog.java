@@ -71,7 +71,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  */
 public class CSSThemeEditionDialog extends Dialog {
 
-
+	/** Id of edit button. */
+	private static final int EDIT_BUTTON_ID = 19;
 
 	/** Id of down button. */
 	private static final int DOWN_BUTTON_ID = 18;
@@ -89,10 +90,12 @@ public class CSSThemeEditionDialog extends Dialog {
 	private static final int BROWSE_BUTTON_ID = 16;
 
 	/** Array of all id's buttons which were added in dialog. */
-	private static int[] actionIdList = new int[]{ DOWN_BUTTON_ID, UP_BUTTON_ID, DELETE_BUTTON_ID, ADD_BUTTON_ID, BROWSE_BUTTON_ID };
+	private static int[] actionIdList = new int[]{ DOWN_BUTTON_ID, UP_BUTTON_ID, DELETE_BUTTON_ID, ADD_BUTTON_ID, BROWSE_BUTTON_ID, EDIT_BUTTON_ID };
 
 	/** Title for add action dialog. */
 	private static final String ADD_DIALOG_TITLE = "Style sheets selection";
+
+	private static final Image EDIT_ICON = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "icons/Edit_12x12.gif").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/** Icon for delete action button. */
 	private static final Image DELETE_ICON = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "icons/Delete_12x12.gif").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
@@ -139,6 +142,8 @@ public class CSSThemeEditionDialog extends Dialog {
 	/** Viewer for style sheets of current theme. */
 	private TreeViewer themeStyleSheetsViewer = null;
 
+	/** Factory to edit contents of dialog. */
+	private EcorePropertyEditorFactory editorFactory = new EcorePropertyEditorFactory(StylesheetsPackage.eINSTANCE.getTheme_Stylesheets());
 
 	/** Current edited theme. */
 	private Theme currentTheme = null;
@@ -155,7 +160,6 @@ public class CSSThemeEditionDialog extends Dialog {
 	public CSSThemeEditionDialog(Shell parentShell, WorkspaceThemes themes, IStructuredSelection parentSelection) {
 		super(parentShell);
 		workspaceThemes = themes;
-
 		initialiseWithSelection(parentSelection);
 	}
 
@@ -437,6 +441,7 @@ public class CSSThemeEditionDialog extends Dialog {
 		createButton(buttonsPanel, DELETE_BUTTON_ID, DELETE_ICON, false);
 		createButton(buttonsPanel, UP_BUTTON_ID, UP_ICON, false);
 		createButton(buttonsPanel, DOWN_BUTTON_ID, DOWN_ICON, false);
+		createButton(buttonsPanel, EDIT_BUTTON_ID, EDIT_ICON, false);
 
 	}
 
@@ -481,6 +486,7 @@ public class CSSThemeEditionDialog extends Dialog {
 		case DELETE_BUTTON_ID:
 		case UP_BUTTON_ID:
 		case DOWN_BUTTON_ID:
+		case EDIT_BUTTON_ID:
 			button.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
 			break;
 		default:
@@ -607,6 +613,25 @@ public class CSSThemeEditionDialog extends Dialog {
 
 
 	/**
+	 * Edit action on selected style sheet in tree viewer.
+	 */
+	private void editAction() {
+
+		ISelection selection = themeStyleSheetsViewer.getSelection();
+
+		if(selection instanceof IStructuredSelection) {
+			Object selectedObject = ((IStructuredSelection)selection).getFirstElement();
+			if(selectedObject instanceof StyleSheet) {
+				// Use editor factory
+				editorFactory.edit(getContents(), selectedObject);
+			}
+		}
+
+
+	}
+
+
+	/**
 	 * Fill style sheets viewer with selected style sheets.
 	 * 
 	 * @param result
@@ -686,6 +711,7 @@ public class CSSThemeEditionDialog extends Dialog {
 				getButton(buttonId).setEnabled(editionEnable);
 				break;
 			case DELETE_BUTTON_ID:
+			case EDIT_BUTTON_ID:
 				getButton(buttonId).setEnabled(editionEnable && !currentTheme.getStylesheets().isEmpty());
 				break;
 			case UP_BUTTON_ID:
@@ -778,6 +804,8 @@ public class CSSThemeEditionDialog extends Dialog {
 		case DOWN_BUTTON_ID:
 			downAction();
 			break;
+		case EDIT_BUTTON_ID:
+			editAction();
 		default:
 			super.buttonPressed(buttonId);
 		}
