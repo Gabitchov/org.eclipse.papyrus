@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- * @generated
+ * 
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.suites;
 
@@ -23,7 +23,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * Tests suite for Copy/Paste
- * @generated
+ * 
  */
 @RunWith(Suite.class)
 @SuiteClasses({
