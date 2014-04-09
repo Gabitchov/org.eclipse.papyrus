@@ -192,6 +192,13 @@
          properties="isGmfDiagramContextActive"
          type="java.util.Collection">
    </propertyTester>
+   <propertyTester
+         class="org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramPropertyTester"
+         id="org.eclipse.papyrus.infra.gmfdiag.common.diagram.text.tester"
+         namespace="org.eclipse.papyrus.infra.gmfdiag.common.diagram.text.tester"
+         properties="isTextZone"
+         type="org.eclipse.swt.widgets.Shell">
+   </propertyTester>   
 </extension>
 <extension
       point="org.eclipse.ui.menus">

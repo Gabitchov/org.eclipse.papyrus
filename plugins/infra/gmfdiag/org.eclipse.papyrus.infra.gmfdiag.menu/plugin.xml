@@ -139,6 +139,14 @@
                         value="true">
                   </test>
                </with>
+               <with
+                     variable="activeShell">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.infra.gmfdiag.common.diagram.tester.isTextZone"
+                        value="false">
+                  </test>
+               </with>                 
             </and>
          </activeWhen>
       </handler>
@@ -162,6 +170,14 @@
                         value="true">
                   </test>
                </with>
+               <with
+                     variable="activeShell">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.infra.gmfdiag.common.diagram.tester.isTextZone"
+                        value="false">
+                  </test>
+               </with>                 
             </and>
          </activeWhen>
       </handler>             
