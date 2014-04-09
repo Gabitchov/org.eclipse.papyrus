@@ -159,10 +159,10 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			class1figure.setBounds(new Rectangle(0,0,200,200));
 			assertTrue("The figure of class1 is not an automaticCompartmentLayoutManager",class1figure.getLayoutManager() instanceof AutomaticCompartmentLayoutManager);
 			class1figure.getLayoutManager().layout(class1figure);
-			assertTrue("The figure of the Class has not the good X coordinate",class1figure.getBounds().x==0);
-			assertTrue("The figure of the Class has not the good Y coordinate",class1figure.getBounds().y==0);
-			assertTrue("The figure of the Class has not the good width coordinate",class1figure.getBounds().width==200);
-			assertTrue("The figure of the Class has not the good height coordinate",class1figure.getBounds().height==200);
+			assertEquals("The figure of the Class has not the good X coordinate",class1figure.getBounds().x==0);
+			assertEquals("The figure of the Class has not the good Y coordinate",class1figure.getBounds().y==0);
+			assertEquals("The figure of the Class has not the good width coordinate",class1figure.getBounds().width==200);
+			assertEquals("The figure of the Class has not the good height coordinate",class1figure.getBounds().height==200);
 
 			// At this moment the class figure must contain 4 sub-figures 1label+ 3compartments
 			assertTrue("The number of figure children must be equal to 4",class1figure.getChildren().size()==4);
@@ -171,41 +171,41 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The sub figure [0] is not a wrapping label",class1figure.getChildren().get(0) instanceof WrappingLabel);
 			WrappingLabel labelClass=(WrappingLabel)class1figure.getChildren().get(0);
 
-			assertTrue("The label of the Class has not the good X coordinate",labelClass.getBounds().x==1);
-			assertTrue("The label of the Class has not the good Y coordinate",labelClass.getBounds().y==3);
-			assertTrue("The label of the Class has not the good width coordinate",labelClass.getBounds().width==200);
-			assertTrue("The label of the Class has not the good heightcoordinate",labelClass.getBounds().height==16);
-			assertTrue("The label of the Class does not display Class1",labelClass.getText().equals("Class1"));
+			assertEquals("The label of the Class has not the good X coordinate",labelClass.getBounds().x,1);
+			assertEquals("The label of the Class has not the good Y coordinate",labelClass.getBounds().y,3);
+			assertEquals("The label of the Class has not the good width coordinate",labelClass.getBounds().width,200);
+			assertEquals("The label of the Class has not the good heightcoordinate",labelClass.getBounds().height,16);
+			assertEquals("The label of the Class does not display Class1",labelClass.getText().equals("Class1"));
 
 			assertTrue("The sub figure [0] is not a compartment",class1figure.getChildren().get(1) instanceof RectangleFigure);
 			RectangleFigure propertiesClass=(RectangleFigure)class1figure.getChildren().get(1);
 			assertTrue("The sub figure [0] is not the attribute compartment is not a ResizableCompartmentFigure",propertiesClass.getChildren().get(0) instanceof ResizableCompartmentFigure);
 
 			// compartment for attribute
-			assertTrue("The compartment attribute of the Class has not the good X coordinate",propertiesClass.getBounds().x==1);
-			assertTrue("The compartment attribute of the Class has not the good Y coordinate",propertiesClass.getBounds().y==20);
-			assertTrue("The compartment attribute of the Class has not the good width coordinate",propertiesClass.getBounds().width==200);
-			assertTrue("The compartment attribute of the Class has not the good height coordinate",propertiesClass.getBounds().height==59);
+			assertEquals("The compartment attribute of the Class has not the good X coordinate",propertiesClass.getBounds().x,1);
+			assertEquals("The compartment attribute of the Class has not the good Y coordinate",propertiesClass.getBounds().y,20);
+			assertEquals("The compartment attribute of the Class has not the good width coordinate",propertiesClass.getBounds().width,200);
+			assertEquals("The compartment attribute of the Class has not the good height coordinate",propertiesClass.getBounds().height,59);
 
 
 			//compartment for operation
 			assertTrue("The figure of class1 is not an automaticCompartmentLayoutManager",class1figure.getChildren().get(2) instanceof RectangleFigure);
 			RectangleFigure operationsClass=(RectangleFigure)class1figure.getChildren().get(2);
 			assertTrue("The sub figure [0] is not the operation compartment is not a ResizableCompartmentFigure",operationsClass.getChildren().get(0) instanceof ResizableCompartmentFigure);
-			assertTrue("The compartment operation of the Class has not the good X coordinate",operationsClass.getBounds().x==1);
-			assertTrue("The compartment operation of the Class has not the good y coordinate",operationsClass.getBounds().y==80);
-			assertTrue("The compartment operation of the Class has not the good width coordinate",operationsClass.getBounds().width==200);
-			assertTrue("The compartment operation of the Class has not the good height coordinate",operationsClass.getBounds().height==59);
+			assertEquals("The compartment operation of the Class has not the good X coordinate",operationsClass.getBounds().x,1);
+			assertEquals("The compartment operation of the Class has not the good y coordinate",operationsClass.getBounds().y,80);
+			assertEquals("The compartment operation of the Class has not the good width coordinate",operationsClass.getBounds().width,200);
+			assertEquals("The compartment operation of the Class has not the good height coordinate",operationsClass.getBounds().height,59);
 
 
 			// compartment for nested classifier
 			assertTrue("The figure of class1 is not an automaticCompartmentLayoutManager",class1figure.getChildren().get(3) instanceof RectangleFigure);
 			RectangleFigure innerclassifiersClass=(RectangleFigure)class1figure.getChildren().get(3);
 			assertTrue("The sub figure [0] is not the nested Classifier compartment is not a ResizableCompartmentFigure",innerclassifiersClass.getChildren().get(0) instanceof ResizableCompartmentFigure);
-			assertTrue("The compartment nested classifier of the Class has not the good X coordinate",innerclassifiersClass.getBounds().x==1);
-			assertTrue("The compartment nested classifier of the Class has not the good Y coordinate",innerclassifiersClass.getBounds().y==140);
-			assertTrue("The compartment nested classifier of the Class has not the good width coordinate",innerclassifiersClass.getBounds().width==200);
-			assertTrue("The compartment nested classifier of the Class has not the good Height coordinate",innerclassifiersClass.getBounds().height==59);
+			assertEquals("The compartment nested classifier of the Class has not the good X coordinate",innerclassifiersClass.getBounds().x,1);
+			assertEquals("The compartment nested classifier of the Class has not the good Y coordinate",innerclassifiersClass.getBounds().y,140);
+			assertEquals("The compartment nested classifier of the Class has not the good width coordinate",innerclassifiersClass.getBounds().width,200);
+			assertEquals("The compartment nested classifier of the Class has not the good Height coordinate",innerclassifiersClass.getBounds().height,59);
 
 		}
 
@@ -255,10 +255,10 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			class1figure.setBounds(new Rectangle(0,0,200,200));
 			assertTrue("The figure of «stereotype1»Class1 is not an automaticCompartmentLayoutManager",class1figure.getLayoutManager() instanceof AutomaticCompartmentLayoutManager);
 			class1figure.getLayoutManager().layout(class1figure);
-			assertTrue("The figure of the  «stereotype1»Class1 has not the good X coordinate",class1figure.getBounds().x==0);
-			assertTrue("The figure of the  «stereotype1»Class1 has not the good Y coordinate",class1figure.getBounds().y==0);
-			assertTrue("The figure of the  «stereotype1»Class1 has not the good width coordinate",class1figure.getBounds().width==200);
-			assertTrue("The figure of the  «stereotype1»Class1 has not the good height coordinate",class1figure.getBounds().height==200);
+			assertEquals("The figure of the  «stereotype1»Class1 has not the good X coordinate",class1figure.getBounds().x,0);
+			assertEquals("The figure of the  «stereotype1»Class1 has not the good Y coordinate",class1figure.getBounds().y,0);
+			assertEquals("The figure of the  «stereotype1»Class1 has not the good width coordinate",class1figure.getBounds().width,200);
+			assertEquals("The figure of the  «stereotype1»Class1 has not the good height coordinate",class1figure.getBounds().height,200);
 
 			// At this moment the class figure must contain 5 sub-figures 1 label for stereotype+ 1label for name+ 3compartments
 			assertTrue("The number of children «stereotype1»Class1 is not equals to 6",class1figure.getChildren().size()==5);
@@ -268,22 +268,22 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The sub figure [0] of «stereotype1»Class1 is not a label",class1figure.getChildren().get(0) instanceof Label);
 			Label stereotypelabelClass=(Label)class1figure.getChildren().get(0);
 
-			assertTrue("The label of the Class has not the good X coordinate",stereotypelabelClass.getBounds().x==1);
-			assertTrue("The label of the Class has not the good Y coordinate",stereotypelabelClass.getBounds().y==3);
-			assertTrue("The label of the Class has not the good width coordinate",stereotypelabelClass.getBounds().width==200);
-			//assertTrue("The label of the Class has not the good heightcoordinate",stereotypelabelClass.getBounds().height==15);
-			assertTrue("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
+			assertEquals("The label of the Class has not the good X coordinate",stereotypelabelClass.getBounds().x,1);
+			assertEquals("The label of the Class has not the good Y coordinate",stereotypelabelClass.getBounds().y,3);
+			assertEquals("The label of the Class has not the good width coordinate",stereotypelabelClass.getBounds().width,200);
+			assertEquals("The label of the Class has not the good heightcoordinate",stereotypelabelClass.getBounds().height,15);
+			assertEquals("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
 
 
 			//wrappingLabel for name
 			assertTrue("The sub figure [1] of «stereotype1»Class1 is not a wrapping label",class1figure.getChildren().get(1) instanceof WrappingLabel);
 			WrappingLabel labelClass=(WrappingLabel)class1figure.getChildren().get(1);
 
-			assertTrue("The label of the Class has not the good X coordinate",labelClass.getBounds().x==1);
-			assertTrue("The label of the Class has not the good Y coordinate",labelClass.getBounds().y==19);
-			assertTrue("The label of the Class has not the good width coordinate",labelClass.getBounds().width==200);
-			assertTrue("The label of the Class has not the good heightcoordinate",labelClass.getBounds().height==16);
-			assertTrue("The label of the Class does not display Class1",labelClass.getText().equals("Class1"));
+			assertEquals("The label of the Class has not the good X coordinate",labelClass.getBounds().x,1);
+			assertEquals("The label of the Class has not the good Y coordinate",labelClass.getBounds().y,19);
+			assertEquals("The label of the Class has not the good width coordinate",labelClass.getBounds().width,200);
+			assertEquals("The label of the Class has not the good heightcoordinate",labelClass.getBounds().height,16);
+			assertEquals("The label of the Class does not display Class1",labelClass.getText().equals("Class1"));
 
 			// compartment for property of stereotype
 			assertTrue("The sub figure [0] of «stereotype1»Class1 is not a compartment",class1figure.getChildren().get(2) instanceof RectangleFigure);
@@ -291,10 +291,10 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The sub figure [0] is not the attribute compartment is not a ResizableCompartmentFigure",stereotypePropertiesClass.getChildren().get(0) instanceof ResizableCompartmentFigure);
 
 
-			assertTrue("The compartment attribute of the Class has not the good X coordinate",stereotypePropertiesClass.getBounds().x==1);
-			assertTrue("The compartment attribute of the Class has not the good Y coordinate",stereotypePropertiesClass.getBounds().y==36);
-			assertTrue("The compartment attribute of the Class has not the good width coordinate",stereotypePropertiesClass.getBounds().width==200);
-			assertTrue("The compartment attribute of the Class has not the good height coordinate",stereotypePropertiesClass.getBounds().height==54);
+			assertEquals("The compartment attribute of the Class has not the good X coordinate",stereotypePropertiesClass.getBounds().x,1);
+			assertEquals("The compartment attribute of the Class has not the good Y coordinate",stereotypePropertiesClass.getBounds().y,36);
+			assertEquals("The compartment attribute of the Class has not the good width coordinate",stereotypePropertiesClass.getBounds().width,200);
+			assertEquals("The compartment attribute of the Class has not the good height coordinate",stereotypePropertiesClass.getBounds().height,54);
 
 
 			// compartment attribute
@@ -303,29 +303,29 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The sub figure [0] is not the attribute compartment is not a ResizableCompartmentFigure",propertiesClass.getChildren().get(0) instanceof ResizableCompartmentFigure);
 
 
-			assertTrue("The compartment attribute of the Class has not the good X coordinate",propertiesClass.getBounds().x==1);
-			assertTrue("The compartment attribute of the Class has not the good Y coordinate",propertiesClass.getBounds().y==36);
-			assertTrue("The compartment attribute of the Class has not the good width coordinate",propertiesClass.getBounds().width==200);
-			assertTrue("The compartment attribute of the Class has not the good height coordinate",propertiesClass.getBounds().height==54);
+			assertEquals("The compartment attribute of the Class has not the good X coordinate",propertiesClass.getBounds().x,1);
+			assertEquals("The compartment attribute of the Class has not the good Y coordinate",propertiesClass.getBounds().y,36);
+			assertEquals("The compartment attribute of the Class has not the good width coordinate",propertiesClass.getBounds().width,200);
+			assertEquals("The compartment attribute of the Class has not the good height coordinate",propertiesClass.getBounds().height,54);
 
 
 			//compartment for operation
 			assertTrue("The sub figure [2] of «stereotype1»Class1 is not a compartment",class1figure.getChildren().get(3) instanceof RectangleFigure);
 			RectangleFigure operationsClass=(RectangleFigure)class1figure.getChildren().get(3);
 			assertTrue("The sub figure [2] is not the operation compartment is not a ResizableCompartmentFigure",operationsClass.getChildren().get(0) instanceof ResizableCompartmentFigure);
-			assertTrue("The compartment operation of the Class has not the good X coordinate",operationsClass.getBounds().x==1);
-			assertTrue("The compartment operation of the Class has not the good y coordinate",operationsClass.getBounds().y==91);
-			assertTrue("The compartment operation of the Class has not the good width coordinate",operationsClass.getBounds().width==200);
-			assertTrue("The compartment operation of the Class has not the good height coordinate",operationsClass.getBounds().height==54);
+			assertEquals("The compartment operation of the Class has not the good X coordinate",operationsClass.getBounds().x,1);
+			assertEquals("The compartment operation of the Class has not the good y coordinate",operationsClass.getBounds().y,91);
+			assertEquals("The compartment operation of the Class has not the good width coordinate",operationsClass.getBounds().width,200);
+			assertEquals("The compartment operation of the Class has not the good height coordinate",operationsClass.getBounds().height,54);
 
 			//compartment for nested classifier
 			assertTrue("The figure of class1 is not an automaticCompartmentLayoutManager",class1figure.getChildren().get(4) instanceof RectangleFigure);
 			RectangleFigure innerclassifiersClass=(RectangleFigure)class1figure.getChildren().get(4);
 			assertTrue("The sub figure [0] is not the nested Classifier compartment is not a ResizableCompartmentFigure",innerclassifiersClass.getChildren().get(0) instanceof ResizableCompartmentFigure);
-			assertTrue("The compartment nested classifier of the Class has not the good X coordinate",innerclassifiersClass.getBounds().x==1);
-			assertTrue("The compartment nested classifier of the Class has not the good Y coordinate",innerclassifiersClass.getBounds().y==146);
-			assertTrue("The compartment nested classifier of the Class has not the good width coordinate",innerclassifiersClass.getBounds().width==200);
-			assertTrue("The compartment nested classifier of the Class has not the good Height coordinate",innerclassifiersClass.getBounds().height==54);
+			assertEquals("The compartment nested classifier of the Class has not the good X coordinate",innerclassifiersClass.getBounds().x,1);
+			assertEquals("The compartment nested classifier of the Class has not the good Y coordinate",innerclassifiersClass.getBounds().y,146);
+			assertEquals("The compartment nested classifier of the Class has not the good width coordinate",innerclassifiersClass.getBounds().width,200);
+			assertEquals("The compartment nested classifier of the Class has not the good Height coordinate",innerclassifiersClass.getBounds().height,54);
 
 		}
 
@@ -359,10 +359,10 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			class1figure.setBounds(new Rectangle(0,0,200,200));
 			assertTrue("The figure of «stereotype1»Class1 is not an automaticCompartmentLayoutManager",class1figure.getLayoutManager() instanceof AutomaticCompartmentLayoutManager);
 			class1figure.getLayoutManager().layout(class1figure);
-			assertTrue("The figure of the  «stereotype1»Class1 has not the good X coordinate",class1figure.getBounds().x==0);
-			assertTrue("The figure of the  «stereotype1»Class1 has not the good Y coordinate",class1figure.getBounds().y==0);
-			assertTrue("The figure of the  «stereotype1»Class1 has not the good width coordinate",class1figure.getBounds().width==200);
-			assertTrue("The figure of the  «stereotype1»Class1 has not the good height coordinate",class1figure.getBounds().height==200);
+			assertEquals("The figure of the  «stereotype1»Class1 has not the good X coordinate",class1figure.getBounds().x,0);
+			assertEquals("The figure of the  «stereotype1»Class1 has not the good Y coordinate",class1figure.getBounds().y,0);
+			assertEquals("The figure of the  «stereotype1»Class1 has not the good width coordinate",class1figure.getBounds().width,200);
+			assertEquals("The figure of the  «stereotype1»Class1 has not the good height coordinate",class1figure.getBounds().height,200);
 
 			// At this moment the class figure must contain 5 sub-figures 1 label for stereotype+ 1label for name+ compartment of stereotypes+ 3compartments
 			assertTrue("The number of children «stereotype1»Class1 is not equals to 6",class1figure.getChildren().size()==6);
@@ -372,22 +372,22 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The sub figure [0] of «stereotype1»Class1 is not a label",class1figure.getChildren().get(0) instanceof Label);
 			Label stereotypelabelClass=(Label)class1figure.getChildren().get(0);
 
-			assertTrue("The label of the Class has not the good X coordinate",stereotypelabelClass.getBounds().x==1);
-			assertTrue("The label of the Class has not the good Y coordinate",stereotypelabelClass.getBounds().y==3);
-			assertTrue("The label of the Class has not the good width coordinate",stereotypelabelClass.getBounds().width==200);
-			assertTrue("The label of the Class has not the good heightcoordinate",stereotypelabelClass.getBounds().height==15);
-			assertTrue("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
+			assertEquals("The label of the Class has not the good X coordinate",stereotypelabelClass.getBounds().x,1);
+			assertEquals("The label of the Class has not the good Y coordinate",stereotypelabelClass.getBounds().y,3);
+			assertEquals("The label of the Class has not the good width coordinate",stereotypelabelClass.getBounds().width,200);
+			assertEquals("The label of the Class has not the good heightcoordinate",stereotypelabelClass.getBounds().height,15);
+			assertEquals("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
 
 
 			//wrappingLabel for name
 			assertTrue("The sub figure [1] of «stereotype1»Class1 is not a wrapping label",class1figure.getChildren().get(1) instanceof WrappingLabel);
 			WrappingLabel labelClass=(WrappingLabel)class1figure.getChildren().get(1);
 
-			assertTrue("The label of the Class has not the good X coordinate",labelClass.getBounds().x==1);
-			assertTrue("The label of the Class has not the good Y coordinate",labelClass.getBounds().y==19);
-			assertTrue("The label of the Class has not the good width coordinate",labelClass.getBounds().width==200);
-			assertTrue("The label of the Class has not the good heightcoordinate",labelClass.getBounds().height==16);
-			assertTrue("The label of the Class does not display Class1",labelClass.getText().equals("Class1"));
+			assertEquals("The label of the Class has not the good X coordinate",labelClass.getBounds().x,1);
+			assertEquals("The label of the Class has not the good Y coordinate",labelClass.getBounds().y,19);
+			assertEquals("The label of the Class has not the good width coordinate",labelClass.getBounds().width,200);
+			assertEquals("The label of the Class has not the good heightcoordinate",labelClass.getBounds().height,16);
+			assertEquals("The label of the Class does not display Class1",labelClass.getText().equals("Class1"));
 
 
 			// compartment for property of stereotypes
@@ -400,39 +400,39 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			EditingFlowPage stereotypeProperty= (EditingFlowPage)compartmentFigure.getContentPane().getChildren().get(0);
 			assertTrue( "text of stereotype label be equals to «stereotype1» " ,((TextFlowEx)stereotypeProperty.getChildren().get(0)).getText().equals("testInt=0"));
 	
-			assertTrue("The compartment property of stereotypes of the Class has not the good X coordinate",sterotypesPropertiesClass.getBounds().x==1);
-			assertTrue("The compartment property of stereotypes of the Class has not the good Y coordinate",sterotypesPropertiesClass.getBounds().y==36);
-			assertTrue("The compartment property of stereotypes of the Class has not the good width coordinate",sterotypesPropertiesClass.getBounds().width==200);
-			assertTrue("The compartment property of stereotypes of the Class has not the good height coordinate",sterotypesPropertiesClass.getBounds().height==51);
+			assertEquals("The compartment property of stereotypes of the Class has not the good X coordinate",sterotypesPropertiesClass.getBounds().x,1);
+			assertEquals("The compartment property of stereotypes of the Class has not the good Y coordinate",sterotypesPropertiesClass.getBounds().y,36);
+			assertEquals("The compartment property of stereotypes of the Class has not the good width coordinate",sterotypesPropertiesClass.getBounds().width,200);
+			assertEquals("The compartment property of stereotypes of the Class has not the good height coordinate",sterotypesPropertiesClass.getBounds().height,51);
 			
 			//compartment for attribute
 			assertTrue("The sub figure [2] of «stereotype1»Class1 is not a compartment",class1figure.getChildren().get(3) instanceof RectangleFigure);
 			RectangleFigure propertiesClass=(RectangleFigure)class1figure.getChildren().get(3);
 			assertTrue("The sub figure [2] is not the attribute compartment is not a ResizableCompartmentFigure",propertiesClass.getChildren().get(0) instanceof ResizableCompartmentFigure);
 			
-			assertTrue("The compartment attribute of the Class has not the good X coordinate",propertiesClass.getBounds().x==1);
-			assertTrue("The compartment attribute of the Class has not the good Y coordinate",propertiesClass.getBounds().y==88);
-			assertTrue("The compartment attribute of the Class has not the good width coordinate",propertiesClass.getBounds().width==200);
-			assertTrue("The compartment attribute of the Class has not the good height coordinate",propertiesClass.getBounds().height==37);
+			assertEquals("The compartment attribute of the Class has not the good X coordinate",propertiesClass.getBounds().x,1);
+			assertEquals("The compartment attribute of the Class has not the good Y coordinate",propertiesClass.getBounds().y,88);
+			assertEquals("The compartment attribute of the Class has not the good width coordinate",propertiesClass.getBounds().width,200);
+			assertEquals("The compartment attribute of the Class has not the good height coordinate",propertiesClass.getBounds().height,37);
 
 
 			//compartment for operation
 			assertTrue("The sub figure [2] of «stereotype1»Class1 is not a compartment",class1figure.getChildren().get(4) instanceof RectangleFigure);
 			RectangleFigure operationsClass=(RectangleFigure)class1figure.getChildren().get(4);
 			assertTrue("The sub figure [2] is not the operation compartment is not a ResizableCompartmentFigure",operationsClass.getChildren().get(0) instanceof ResizableCompartmentFigure);
-			assertTrue("The compartment operation of the Class has not the good X coordinate",operationsClass.getBounds().x==1);
-			assertTrue("The compartment operation of the Class has not the good y coordinate",operationsClass.getBounds().y==126);
-			assertTrue("The compartment operation of the Class has not the good width coordinate",operationsClass.getBounds().width==200);
-			assertTrue("The compartment operation of the Class has not the good height coordinate",operationsClass.getBounds().height==37);
+			assertEquals("The compartment operation of the Class has not the good X coordinate",operationsClass.getBounds().x,1);
+			assertEquals("The compartment operation of the Class has not the good y coordinate",operationsClass.getBounds().y,126);
+			assertEquals("The compartment operation of the Class has not the good width coordinate",operationsClass.getBounds().width,200);
+			assertEquals("The compartment operation of the Class has not the good height coordinate",operationsClass.getBounds().height,37);
 
 			//compartment for nested classifier
 			assertTrue("The figure of class1 is not an automaticCompartmentLayoutManager",class1figure.getChildren().get(5) instanceof RectangleFigure);
 			RectangleFigure innerclassifiersClass=(RectangleFigure)class1figure.getChildren().get(5);
 			assertTrue("The sub figure [0] is not the nested Classifier compartment is not a ResizableCompartmentFigure",innerclassifiersClass.getChildren().get(0) instanceof ResizableCompartmentFigure);
-			assertTrue("The compartment nested classifier of the Class has not the good X coordinate",innerclassifiersClass.getBounds().x==1);
-			assertTrue("The compartment nested classifier of the Class has not the good Y coordinate",innerclassifiersClass.getBounds().y==164);
-			assertTrue("The compartment nested classifier of the Class has not the good width coordinate",innerclassifiersClass.getBounds().width==200);
-			assertTrue("The compartment nested classifier of the Class has not the good Height coordinate",innerclassifiersClass.getBounds().height==37);
+			assertEquals("The compartment nested classifier of the Class has not the good X coordinate",innerclassifiersClass.getBounds().x,1);
+			assertEquals("The compartment nested classifier of the Class has not the good Y coordinate",innerclassifiersClass.getBounds().y,164);
+			assertEquals("The compartment nested classifier of the Class has not the good width coordinate",innerclassifiersClass.getBounds().width,200);
+			assertEquals("The compartment nested classifier of the Class has not the good Height coordinate",innerclassifiersClass.getBounds().height,37);
 
 		}
 	}
@@ -527,7 +527,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The label of the Class has not the good Y coordinate",labelClass.getBounds().y==3);
 			assertTrue("The label of the Class has not the good width coordinate",labelClass.getBounds().width==200);
 			assertTrue("The label of the Class has not the good heightcoordinate",labelClass.getBounds().height==16);
-			assertTrue("The label of the Class does not display Class1",labelClass.getText().equals("Class1"));
+			assertEquals("The label of the Class does not display Class1",labelClass.getText(),"Class1");
 
 			assertTrue("The sub figure [0] is not a compartment",package1figure.getChildren().get(1) instanceof RectangleFigure);
 			RectangleFigure propertiesClass=(RectangleFigure)package1figure.getChildren().get(1);
@@ -624,7 +624,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The label of the Class has not the good Y coordinate",stereotypelabelClass.getBounds().y==3);
 			assertTrue("The label of the Class has not the good width coordinate",stereotypelabelClass.getBounds().width==200);
 			assertTrue("The label of the Class has not the good heightcoordinate",stereotypelabelClass.getBounds().height==15);
-			assertTrue("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
+			assertEquals("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText(),ST_LEFT+"stereotype1"+ST_RIGHT);
 
 
 			//wrappingLabel for name
@@ -635,7 +635,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The label of the Class has not the good Y coordinate",labelClass.getBounds().y==19);
 			assertTrue("The label of the Class has not the good width coordinate",labelClass.getBounds().width==200);
 			assertTrue("The label of the Class has not the good heightcoordinate",labelClass.getBounds().height==16);
-			assertTrue("The label of the Class does not display Class1",labelClass.getText().equals("Class1"));
+			assertEquals("The label of the Class does not display Class1",labelClass.getText(),"Class1");
 
 			// compartment for property of stereotype
 			assertTrue("The sub figure [0] of «stereotype1»Class1 is not a compartment",package1figure.getChildren().get(2) instanceof RectangleFigure);
@@ -728,7 +728,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The label of the Class has not the good Y coordinate",stereotypelabelClass.getBounds().y==3);
 			assertTrue("The label of the Class has not the good width coordinate",stereotypelabelClass.getBounds().width==200);
 			assertTrue("The label of the Class has not the good heightcoordinate",stereotypelabelClass.getBounds().height==15);
-			assertTrue("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
+			assertEquals("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText(),ST_LEFT+"stereotype1"+ST_RIGHT);
 
 
 			//wrappingLabel for name
@@ -739,7 +739,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The label of the Class has not the good Y coordinate",labelClass.getBounds().y==19);
 			assertTrue("The label of the Class has not the good width coordinate",labelClass.getBounds().width==200);
 			assertTrue("The label of the Class has not the good heightcoordinate",labelClass.getBounds().height==16);
-			assertTrue("The label of the Class does not display Class1",labelClass.getText().equals("Class1"));
+			assertEquals("The label of the Class does not display Class1",labelClass.getText(),"Class1");
 
 
 			// compartment for property of stereotypes
