@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.modelrepair,
  org.eclipse.papyrus.uml.modelrepair.handler,
  org.eclipse.papyrus.uml.modelrepair.internal.participants;x-internal:=true,
+ org.eclipse.papyrus.uml.modelrepair.internal.stereotypes;x-internal:=true,
  org.eclipse.papyrus.uml.modelrepair.ui,
  org.eclipse.papyrus.uml.modelrepair.ui.providers
 Require-Bundle: org.eclipse.ui,
