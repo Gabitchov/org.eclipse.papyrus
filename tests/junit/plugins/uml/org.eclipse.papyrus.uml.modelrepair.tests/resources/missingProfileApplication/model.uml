@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MyProfile="http:///schemas/MyProfile/_V3GxoMASEeOtPYrql1dzPg/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/MyProfile/_V3GxoMASEeOtPYrql1dzPg/0 platform:/plugin/org.eclipse.papyrus.uml.modelrepair.tests/resources/profile/myprofile.profile.uml#_7ruGMMA6EeONOZU5O_ye6g">
+  <uml:Model xmi:id="_dvVSIMASEeOtPYrql1dzPg" name="Model">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_dvVSIcASEeOtPYrql1dzPg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_eiqzkMASEeOtPYrql1dzPg" name="Class1">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_gM4SoMASEeOtPYrql1dzPg" name="Attribute1"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_xMJ3MMASEeOtPYrql1dzPg" name="Attribute2"/>
+    </packagedElement>
+  </uml:Model>
+  <MyProfile:Stereo xmi:id="_mPac0MASEeOtPYrql1dzPg" base_Class="_eiqzkMASEeOtPYrql1dzPg" alertLevel="yellow" appliesTo="_gM4SoMASEeOtPYrql1dzPg _xMJ3MMASEeOtPYrql1dzPg">
+    <tag>p2</tag>
+    <tag>silver</tag>
+    <name xmi:type="MyProfile:Name" xmi:id="_2vm4sMASEeOtPYrql1dzPg" lastName="Damus" firstName="Christian">
+      <initials>W</initials>
+    </name>
+  </MyProfile:Stereo>
+</xmi:XMI>

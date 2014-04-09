@@ -19,14 +19,18 @@ import static org.junit.Assert.fail;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
@@ -61,6 +65,8 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 	private T domain;
 
+	private ResourceSet resourceSet;
+	
 	private Model model;
 
 	public AbstractModelFixture() {
@@ -86,6 +92,10 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 	public T getEditingDomain() {
 		return domain;
+	}
+
+	public ResourceSet getResourceSet() {
+		return resourceSet;
 	}
 
 	/**
@@ -115,8 +125,12 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 	@Override
 	protected void starting(Description description) {
 		domain = createEditingDomain();
-
-		Resource res = domain.getResourceSet().createResource(project.getURI("model.uml"));
+		resourceSet = domain.getResourceSet();
+		
+		Resource res = resourceSet.createResource(project.getURI("model.uml"));
+		if(resourceSet instanceof ModelSet) {
+			((ModelSet)resourceSet).getInternal().setPrimaryModelResourceURI(res.getURI());
+		}
 
 		try {
 			InputStream input = getResourceURL(description).openStream();
@@ -136,8 +150,6 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 	@Override
 	protected void finished(Description description) {
-		ResourceSet rset = domain.getResourceSet();
-
 		model = null;
 
 		if(domain instanceof TransactionalEditingDomain) {
@@ -145,13 +157,15 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 		}
 		domain = null;
 
-		for(Resource next : rset.getResources()) {
+		for(Resource next : new ArrayList<Resource>(resourceSet.getResources())) {
 			next.unload();
 			next.eAdapters().clear();
 		}
 
-		rset.getResources().clear();
-		rset.eAdapters().clear();
+		resourceSet.getResources().clear();
+		resourceSet.eAdapters().clear();
+		
+		resourceSet = null;
 	}
 
 	protected URL getResourceURL(Description description) {
@@ -170,17 +184,36 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 		if(testMethod.isAnnotationPresent(JavaResource.class)) {
 			result = testClass.getResource(testMethod.getAnnotation(JavaResource.class).value());
 		} else if(testMethod.isAnnotationPresent(PluginResource.class)) {
-			result = FrameworkUtil.getBundle(testClass).getEntry(testMethod.getAnnotation(PluginResource.class).value());
+			result = getBundleURL(testClass, testMethod.getAnnotation(PluginResource.class).value());
 		} else {
 			// The class must have an annotation
 			if(testClass.isAnnotationPresent(JavaResource.class)) {
 				result = testClass.getResource(testClass.getAnnotation(JavaResource.class).value());
 			} else if(testClass.isAnnotationPresent(PluginResource.class)) {
-				result = FrameworkUtil.getBundle(testClass).getEntry(testClass.getAnnotation(PluginResource.class).value());
+				result = getBundleURL(testClass, testClass.getAnnotation(PluginResource.class).value());
 			}
 		}
 
 		assertThat("No JavaResource or PluginResource annotation found on test.", result, notNullValue());
+
+		return result;
+	}
+
+	private URL getBundleURL(Class<?> testClass, String resourcePath) {
+		URL result = null;
+
+		IPath path = new Path(resourcePath);
+		String pattern = path.lastSegment();
+		IPath search;
+		if(path.segmentCount() > 1) {
+			search = path.removeLastSegments(1);
+		} else {
+			search = Path.ROOT;
+		}
+		Enumeration<URL> urls = FrameworkUtil.getBundle(testClass).findEntries(search.toPortableString(), pattern, false);
+		if((urls != null) && urls.hasMoreElements()) {
+			result = urls.nextElement();
+		}
 
 		return result;
 	}

@@ -10,7 +10,7 @@
  *   Christian W. Damus (CEA) - Initial API and implementation
  *
  */
-package org.eclipse.papyrus.infra.emf.readonly.tests;
+package org.eclipse.papyrus.junit.utils.rules;
 
 import static org.junit.Assert.fail;
 
@@ -21,28 +21,31 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.resource.EditingDomainServiceFactory;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceDescriptor;
-import org.eclipse.papyrus.infra.core.services.ServiceDescriptor.ServiceTypeKind;
 import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.readonly.PapyrusROTransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.services.ServiceDescriptor.ServiceTypeKind;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
-import org.eclipse.papyrus.junit.utils.rules.AbstractModelFixture;
 import org.junit.runner.Description;
 
 
 /**
- * This is the PapyrusModelSetFixture type. Enjoy.
+ * This is the ModelSetFixture type. Enjoy.
  */
-public class PapyrusModelSetFixture extends AbstractModelFixture<PapyrusROTransactionalEditingDomain> {
+public class ModelSetFixture extends AbstractModelFixture<TransactionalEditingDomain> {
 
-	public PapyrusModelSetFixture() {
+	public ModelSetFixture() {
 		super();
 	}
 
-	protected PapyrusROTransactionalEditingDomain createEditingDomain() {
+	@Override
+	public ModelSet getResourceSet() {
+		return (ModelSet)super.getResourceSet();
+	}
+
+	protected TransactionalEditingDomain createEditingDomain() {
 		try {
 			ServicesRegistry services = createServiceRegistry();
-			return (PapyrusROTransactionalEditingDomain)services.getService(ModelSet.class).getTransactionalEditingDomain();
+			return (TransactionalEditingDomain)services.getService(ModelSet.class).getTransactionalEditingDomain();
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Failed to initialize service registry and/or editing domain: " + e.getLocalizedMessage());
@@ -66,8 +69,9 @@ public class PapyrusModelSetFixture extends AbstractModelFixture<PapyrusROTransa
 
 	protected ServicesRegistry createServiceRegistry() throws Exception {
 		ServicesRegistry result = new ServicesRegistry();
-		result.add(ModelSet.class, 10, new ModelSet());
 
+		result.add(ModelSet.class, 10, new ModelSet());
+		
 		ServiceDescriptor desc = new ServiceDescriptor(TransactionalEditingDomain.class, EditingDomainServiceFactory.class.getName(), ServiceStartKind.STARTUP, 10, Collections.singletonList(ModelSet.class.getName()));
 		desc.setServiceTypeKind(ServiceTypeKind.serviceFactory);
 		desc.setClassBundleID(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
