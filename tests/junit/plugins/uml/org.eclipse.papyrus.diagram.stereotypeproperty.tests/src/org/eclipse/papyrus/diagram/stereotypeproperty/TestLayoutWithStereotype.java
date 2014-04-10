@@ -159,13 +159,13 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			class1figure.setBounds(new Rectangle(0,0,200,200));
 			assertTrue("The figure of class1 is not an automaticCompartmentLayoutManager",class1figure.getLayoutManager() instanceof AutomaticCompartmentLayoutManager);
 			class1figure.getLayoutManager().layout(class1figure);
-			assertEquals("The figure of the Class has not the good X coordinate",class1figure.getBounds().x==0);
-			assertEquals("The figure of the Class has not the good Y coordinate",class1figure.getBounds().y==0);
-			assertEquals("The figure of the Class has not the good width coordinate",class1figure.getBounds().width==200);
-			assertEquals("The figure of the Class has not the good height coordinate",class1figure.getBounds().height==200);
+			assertEquals("The figure of the Class has not the good X coordinate",class1figure.getBounds().x,0);
+			assertEquals("The figure of the Class has not the good Y coordinate",class1figure.getBounds().y,0);
+			assertEquals("The figure of the Class has not the good width coordinate",class1figure.getBounds().width,200);
+			assertEquals("The figure of the Class has not the good height coordinate",class1figure.getBounds().height,200);
 
 			// At this moment the class figure must contain 4 sub-figures 1label+ 3compartments
-			assertTrue("The number of figure children must be equal to 4",class1figure.getChildren().size()==4);
+			assertEquals("The number of figure children must be equal to 4",class1figure.getChildren().size(),4);
 
 			//wrappinglabel for name
 			assertTrue("The sub figure [0] is not a wrapping label",class1figure.getChildren().get(0) instanceof WrappingLabel);
@@ -175,7 +175,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertEquals("The label of the Class has not the good Y coordinate",labelClass.getBounds().y,3);
 			assertEquals("The label of the Class has not the good width coordinate",labelClass.getBounds().width,200);
 			assertEquals("The label of the Class has not the good heightcoordinate",labelClass.getBounds().height,16);
-			assertEquals("The label of the Class does not display Class1",labelClass.getText().equals("Class1"));
+			assertEquals("The label of the Class does not display Class1",labelClass.getText(),"Class1");
 
 			assertTrue("The sub figure [0] is not a compartment",class1figure.getChildren().get(1) instanceof RectangleFigure);
 			RectangleFigure propertiesClass=(RectangleFigure)class1figure.getChildren().get(1);
@@ -245,7 +245,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			//get the label
 			org.eclipse.draw2d.Label stereotypeLabel=((ClassifierFigure)nodePlate.getChildren().get(0)).getStereotypesLabel();
 			assertTrue( "stereotype label must be not null" ,stereotypeLabel!=null);
-			assertTrue( "text of stereotype label be equals to "+ST_LEFT+"stereotype1"+ST_RIGHT ,stereotypeLabel.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
+			assertEquals( "text of stereotype label be equals to "+ST_LEFT+"stereotype1"+ST_RIGHT ,stereotypeLabel.getText(),ST_LEFT+"stereotype1"+ST_RIGHT);
 			}
 
 		{//test about the layout
@@ -261,7 +261,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertEquals("The figure of the  «stereotype1»Class1 has not the good height coordinate",class1figure.getBounds().height,200);
 
 			// At this moment the class figure must contain 5 sub-figures 1 label for stereotype+ 1label for name+ 3compartments
-			assertTrue("The number of children «stereotype1»Class1 is not equals to 6",class1figure.getChildren().size()==5);
+			assertEquals("The number of children «stereotype1»Class1 is not equals to 5",class1figure.getChildren().size(),5);
 
 
 			//wrappingLabel for stereotype
@@ -272,7 +272,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertEquals("The label of the Class has not the good Y coordinate",stereotypelabelClass.getBounds().y,3);
 			assertEquals("The label of the Class has not the good width coordinate",stereotypelabelClass.getBounds().width,200);
 			assertEquals("The label of the Class has not the good heightcoordinate",stereotypelabelClass.getBounds().height,15);
-			assertEquals("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
+			assertEquals("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText(),ST_LEFT+"stereotype1"+ST_RIGHT);
 
 
 			//wrappingLabel for name
@@ -283,7 +283,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertEquals("The label of the Class has not the good Y coordinate",labelClass.getBounds().y,19);
 			assertEquals("The label of the Class has not the good width coordinate",labelClass.getBounds().width,200);
 			assertEquals("The label of the Class has not the good heightcoordinate",labelClass.getBounds().height,16);
-			assertEquals("The label of the Class does not display Class1",labelClass.getText().equals("Class1"));
+			assertEquals("The label of the Class does not display Class1",labelClass.getText(),"Class1");
 
 			// compartment for property of stereotype
 			assertTrue("The sub figure [0] of «stereotype1»Class1 is not a compartment",class1figure.getChildren().get(2) instanceof RectangleFigure);
@@ -349,7 +349,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertNotNull( "the editpart of the applied stereotype compartment must be created", stereotypeCompartmentEdipart);
 			assertNotNull( "the editpart of the applied stereotype property must be created", stereotypePropertyEdipart);
 			EditingFlowPage textarea=(EditingFlowPage)stereotypePropertyEdipart.getFigure();
-			assertTrue( "text of stereotype label be equals to «stereotype1» " ,((TextFlowEx)textarea.getChildren().get(0)).getText().equals("testInt=0"));
+			assertEquals( "text of stereotype label be equals to «stereotype1» " ,((TextFlowEx)textarea.getChildren().get(0)).getText(),"testInt=0");
 		}
 
 		{//test about the layout
@@ -365,7 +365,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertEquals("The figure of the  «stereotype1»Class1 has not the good height coordinate",class1figure.getBounds().height,200);
 
 			// At this moment the class figure must contain 5 sub-figures 1 label for stereotype+ 1label for name+ compartment of stereotypes+ 3compartments
-			assertTrue("The number of children «stereotype1»Class1 is not equals to 6",class1figure.getChildren().size()==6);
+			assertEquals("The number of children «stereotype1»Class1 is not equals to 6",class1figure.getChildren().size(),6);
 
 
 			//label for stereotype
@@ -376,7 +376,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertEquals("The label of the Class has not the good Y coordinate",stereotypelabelClass.getBounds().y,3);
 			assertEquals("The label of the Class has not the good width coordinate",stereotypelabelClass.getBounds().width,200);
 			assertEquals("The label of the Class has not the good heightcoordinate",stereotypelabelClass.getBounds().height,15);
-			assertEquals("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText().equals(ST_LEFT+"stereotype1"+ST_RIGHT));
+			assertEquals("The label of the Class does not display "+ST_LEFT+"stereotype1"+ST_RIGHT,stereotypelabelClass.getText(),ST_LEFT+"stereotype1"+ST_RIGHT);
 
 
 			//wrappingLabel for name
@@ -387,7 +387,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertEquals("The label of the Class has not the good Y coordinate",labelClass.getBounds().y,19);
 			assertEquals("The label of the Class has not the good width coordinate",labelClass.getBounds().width,200);
 			assertEquals("The label of the Class has not the good heightcoordinate",labelClass.getBounds().height,16);
-			assertEquals("The label of the Class does not display Class1",labelClass.getText().equals("Class1"));
+			assertEquals("The label of the Class does not display Class1",labelClass.getText(),"Class1");
 
 
 			// compartment for property of stereotypes
