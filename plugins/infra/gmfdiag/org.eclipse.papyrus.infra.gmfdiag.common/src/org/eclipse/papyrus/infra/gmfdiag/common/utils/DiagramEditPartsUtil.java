@@ -19,7 +19,9 @@ import java.util.HashSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.RootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
@@ -27,6 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.ui.IWorkbenchPart;
 
@@ -188,5 +191,37 @@ public class DiagramEditPartsUtil {
 			return ((DiagramGraphicalViewer)viewer).getWorkspaceViewerPreferenceStore();
 		}
 		return null;
+	}
+
+	/**
+	 * 
+	 * @param anEditPart
+	 *        an edit part
+	 * @return
+	 *         <code>true</code> if snap to grid is activated for the diagram owning the editpart
+	 * 
+	 */
+	public static final boolean isSnapToGridActive(final EditPart anEditPart) {
+		boolean result = false;
+		final IPreferenceStore store = getDiagramWorkspacePreferenceStore(anEditPart);
+		if(store != null) {
+			result = store.getBoolean(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT);
+		}
+		return result;
+	}
+
+	/**
+	 * 
+	 * @param anEditPart
+	 *        an edit part
+	 * @return
+	 *         the value of the grid spacing or -1 if not found
+	 */
+	public static final double getDiagramGridSpacing(final EditPart anEditPart) {
+		final RootEditPart rootEP = anEditPart.getRoot();
+		if(rootEP instanceof DiagramRootEditPart) {
+			return ((DiagramRootEditPart)rootEP).getGridSpacing();
+		}
+		return -1.0;
 	}
 }
