@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ExtendedTypesTestsProfile="http:///schemas/ExtendedTypesTestsProfile/_P0oJcIf5EeOi95YnkGlwiQ/7" xmlns:ExtendedTypesTestsProfile_1="http:///schemas/ExtendedTypesTestsProfile/_3cQg8HkREeOwQstt3pSj0Q/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/ExtendedTypesTestsProfile/_P0oJcIf5EeOi95YnkGlwiQ/7 ExtendedTypesTestsProfile.profile.uml#_P0tpAIf5EeOi95YnkGlwiQ http:///schemas/ExtendedTypesTestsProfile/_3cQg8HkREeOwQstt3pSj0Q/5 ExtendedTypesTestsProfile.profile.uml#_3cRIAHkREeOwQstt3pSj0Q">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ExtendedTypesTestsProfile="http:///schemas/ExtendedTypesTestsProfile/_P0oJcIf5EeOi95YnkGlwiQ/7" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ExtendedTypesTestsProfile/_P0oJcIf5EeOi95YnkGlwiQ/7 ExtendedTypesTestsProfile.profile.uml#_P0tpAIf5EeOi95YnkGlwiQ">
   <uml:Model xmi:id="_X66aUf1VEd-WkaQf4YgINA" name="Model">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_X66aUv1VEd-WkaQf4YgINA">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -103,12 +103,6 @@
   </uml:Model>
   <ExtendedTypesTestsProfile:PackageWithComponents xmi:id="_keWi0GcFEeOea9k8XF7uAg" base_Element="_b1QI8P1VEd-WkaQf4YgINA"/>
   <ExtendedTypesTestsProfile:PackageWithComponents xmi:id="_FHOZAGczEeO-Gf1_f5pJdw" base_Element="_Caa0gGczEeO-Gf1_f5pJdw"/>
-  <ExtendedTypesTestsProfile_1:Equipment xmi:id="_e-46gHkOEeOwQstt3pSj0Q"/>
-  <ExtendedTypesTestsProfile_1:Equipment xmi:id="_fmnB0HkOEeOwQstt3pSj0Q"/>
-  <ExtendedTypesTestsProfile_1:Module xmi:id="_bWIEEHkOEeOwQstt3pSj0Q"/>
-  <ExtendedTypesTestsProfile_1:Module xmi:id="_cjKe8HkOEeOwQstt3pSj0Q" kind="Electrical"/>
-  <ExtendedTypesTestsProfile_1:Partition xmi:id="_gW-u0HkOEeOwQstt3pSj0Q"/>
-  <ExtendedTypesTestsProfile_1:Partition xmi:id="_hAeXwHkOEeOwQstt3pSj0Q"/>
   <ExtendedTypesTestsProfile:StereotypeWithFeaturesToSet xmi:id="_FccGsJO3EeOs4_QQK50yyQ" base_Element="_FbcBIJO3EeOs4_QQK50yyQ" stringFeature="MyOtherValue" value="18" boolean="true" enumeration="Enum2"/>
   <ExtendedTypesTestsProfile:StereotypeWithFeaturesToSet xmi:id="_LxXBYJO3EeOs4_QQK50yyQ" base_Element="_Lw35MJO3EeOs4_QQK50yyQ" stringFeature="Test Demo" value="3" enumeration="Enum2">
     <multiStrings>demo</multiStrings>
