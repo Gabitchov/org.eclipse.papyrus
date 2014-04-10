@@ -1,15 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.component.edit.policies;
 
 import java.util.ArrayList;
@@ -56,15 +55,13 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.UMLPackage;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PackagePackageableElementCompartmentCanonicalEditPolicy.
- * 
  * @generated
  */
 public class PackagePackageableElementCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
-
-	/** The my features to synchronize. @generated */
+	/**
+	 * @generated
+	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
 	/**
@@ -73,20 +70,17 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 	protected void refreshOnActivate() {
 		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
 		List<?> c = getHost().getChildren();
-		for(int i = 0; i < c.size(); i++) {
-			((EditPart)c.get(i)).activate();
+		for (int i = 0; i < c.size(); i++) {
+			((EditPart) c.get(i)).activate();
 		}
 		super.refreshOnActivate();
 	}
 
 	/**
-	 * Gets the features to synchronize.
-	 * 
-	 * @return the features to synchronize
 	 * @generated
 	 */
-	protected Set getFeaturesToSynchronize() {
-		if(myFeaturesToSynchronize == null) {
+	protected Set<EStructuralFeature> getFeaturesToSynchronize() {
+		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
@@ -96,30 +90,19 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 	}
 
 	/**
-	 * Gets the semantic children list.
-	 * 
-	 * @return the semantic children list
 	 * @generated
 	 */
-	@SuppressWarnings("rawtypes")
-	protected List getSemanticChildrenList() {
-		View viewObject = (View)getHost().getModel();
+	protected List<EObject> getSemanticChildrenList() {
+		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getPackagePackagedelements_7002SemanticChildren(viewObject);
-		for(UMLNodeDescriptor d : childDescriptors) {
+		for (UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
 		return result;
 	}
 
 	/**
-	 * Checks if is orphaned.
-	 * 
-	 * @param semanticChildren
-	 *        the semantic children
-	 * @param view
-	 *        the view
-	 * @return true, if is orphaned
 	 * @generated
 	 */
 	protected boolean isOrphaned(Collection<EObject> semanticChildren, final View view) {
@@ -127,16 +110,11 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 	}
 
 	/**
-	 * Checks if is my diagram element.
-	 * 
-	 * @param view
-	 *        the view
-	 * @return true, if is my diagram element
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		switch(visualID) {
+		switch (visualID) {
 		case RectangleInterfaceEditPartCN.VISUAL_ID:
 		case CommentEditPartPCN.VISUAL_ID:
 		case ConstraintEditPartPCN.VISUAL_ID:
@@ -150,21 +128,20 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 	}
 
 	/**
-	 * Refresh semantic.
-	 * 
 	 * @generated
 	 */
 	protected void refreshSemantic() {
-		if(resolveSemanticElement() == null) {
+		if (resolveSemanticElement() == null) {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getPackagePackagedelements_7002SemanticChildren((View)getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors =
+				UMLDiagramUpdater.getPackagePackagedelements_7002SemanticChildren((View) getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
-		for(View v : getViewChildren()) {
-			if(isMyDiagramElement(v)) {
+		for (View v : getViewChildren()) {
+			if (isMyDiagramElement(v)) {
 				knownViewChildren.add(v);
 			}
 		}
@@ -174,15 +151,15 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
 		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
 		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
-		for(Iterator<UMLNodeDescriptor> descriptorsIterator = childDescriptors.iterator(); descriptorsIterator.hasNext();) {
+		for (Iterator<UMLNodeDescriptor> descriptorsIterator = childDescriptors.iterator(); descriptorsIterator.hasNext();) {
 			UMLNodeDescriptor next = descriptorsIterator.next();
 			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
 			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
 			LinkedList<View> potentialMatch = new LinkedList<View>(); // semanticElement matches, hint does not
-			for(View childView : getViewChildren()) {
+			for (View childView : getViewChildren()) {
 				EObject semanticElement = childView.getElement();
-				if(next.getModelElement().equals(semanticElement)) {
-					if(hint.equals(childView.getType())) {
+				if (next.getModelElement().equals(semanticElement)) {
+					if (hint.equals(childView.getType())) {
 						perfectMatch.add(childView);
 						// actually, can stop iteration over view children here, but
 						// may want to use not the first view but last one as a 'real' match (the way original CEP does
@@ -192,11 +169,11 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 					}
 				}
 			}
-			if(perfectMatch.size() > 0) {
+			if (perfectMatch.size() > 0) {
 				descriptorsIterator.remove(); // precise match found no need to create anything for the NodeDescriptor
 				// use only one view (first or last?), keep rest as orphaned for further consideration
 				knownViewChildren.remove(perfectMatch.getFirst());
-			} else if(potentialMatch.size() > 0) {
+			} else if (potentialMatch.size() > 0) {
 				potentialViews.put(next, potentialMatch);
 			}
 		}
@@ -206,29 +183,29 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 		//
 		CompositeTransactionalCommand boundsCommand = new CompositeTransactionalCommand(host().getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize);
 		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(childDescriptors.size());
-		for(UMLNodeDescriptor next : childDescriptors) {
+		for (UMLNodeDescriptor next : childDescriptors) {
 			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
 			IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
 			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint());
 			viewDescriptors.add(descriptor);
 			LinkedList<View> possibleMatches = potentialViews.get(next);
-			if(possibleMatches != null) {
+			if (possibleMatches != null) {
 				// from potential matches, leave those that were not eventually used for some other NodeDescriptor (i.e. those left as orphaned)
 				possibleMatches.retainAll(knownViewChildren);
 			}
-			if(possibleMatches != null && !possibleMatches.isEmpty()) {
+			if (possibleMatches != null && !possibleMatches.isEmpty()) {
 				View originalView = possibleMatches.getFirst();
 				knownViewChildren.remove(originalView); // remove not to copy properties of the same view again and again
 				// add command to copy properties
-				if(originalView instanceof Node) {
-					if(((Node)originalView).getLayoutConstraint() instanceof Bounds) {
-						Bounds b = (Bounds)((Node)originalView).getLayoutConstraint();
+				if (originalView instanceof Node) {
+					if (((Node) originalView).getLayoutConstraint() instanceof Bounds) {
+						Bounds b = (Bounds) ((Node) originalView).getLayoutConstraint();
 						boundsCommand.add(new SetBoundsCommand(boundsCommand.getEditingDomain(), boundsCommand.getLabel(), descriptor, new Rectangle(b.getX(), b.getY(), b.getWidth(), b.getHeight())));
-					} else if(((Node)originalView).getLayoutConstraint() instanceof Location) {
-						Location l = (Location)((Node)originalView).getLayoutConstraint();
+					} else if (((Node) originalView).getLayoutConstraint() instanceof Location) {
+						Location l = (Location) ((Node) originalView).getLayoutConstraint();
 						boundsCommand.add(new SetBoundsCommand(boundsCommand.getEditingDomain(), boundsCommand.getLabel(), descriptor, new Point(l.getX(), l.getY())));
-					} else if(((Node)originalView).getLayoutConstraint() instanceof Size) {
-						Size s = (Size)((Node)originalView).getLayoutConstraint();
+					} else if (((Node) originalView).getLayoutConstraint() instanceof Size) {
+						Size s = (Size) ((Node) originalView).getLayoutConstraint();
 						boundsCommand.add(new SetBoundsCommand(boundsCommand.getEditingDomain(), boundsCommand.getLabel(), descriptor, new Dimension(s.getWidth(), s.getHeight())));
 					}
 				}
@@ -238,20 +215,20 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 		//
 		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
 		Command cmd = getCreateViewCommand(request);
-		if(cmd != null && cmd.canExecute()) {
+		if (cmd != null && cmd.canExecute()) {
 			SetViewMutabilityCommand.makeMutable(new EObjectAdapter(host().getNotationView())).execute();
 			executeCommand(cmd);
-			if(boundsCommand.canExecute()) {
+			if (boundsCommand.canExecute()) {
 				executeCommand(new ICommandProxy(boundsCommand.reduce()));
 			}
 			@SuppressWarnings("unchecked")
-			List<IAdaptable> nl = (List<IAdaptable>)request.getNewObject();
+			List<IAdaptable> nl = (List<IAdaptable>) request.getNewObject();
 			createdViews.addAll(nl);
 		}
-		if(changed || createdViews.size() > 0) {
+		if (changed || createdViews.size() > 0) {
 			postProcessRefreshSemantic(createdViews);
 		}
-		if(createdViews.size() > 1) {
+		if (createdViews.size() > 1) {
 			// perform a layout of the container
 			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
 			executeCommand(new ICommandProxy(layoutCmd));

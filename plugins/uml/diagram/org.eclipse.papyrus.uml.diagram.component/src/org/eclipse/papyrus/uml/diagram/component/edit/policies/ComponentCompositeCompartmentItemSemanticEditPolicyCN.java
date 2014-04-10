@@ -1,39 +1,29 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.component.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
-import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ComponentCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.PropertyCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ComponentCompositeCompartmentItemSemanticEditPolicyCN.
- * 
  * @generated
  */
 public class ComponentCompositeCompartmentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy {
-
 	/**
-	 * Instantiates a new component composite compartment item semantic edit
-	 * policy cn.
-	 * 
 	 * @generated
 	 */
 	public ComponentCompositeCompartmentItemSemanticEditPolicyCN() {
@@ -41,40 +31,17 @@ public class ComponentCompositeCompartmentItemSemanticEditPolicyCN extends UMLBa
 	}
 
 	/**
-	 * Gets the creates the command.
-	 * 
-	 * @param req
-	 *        the req
-	 * @return the creates the command
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		IElementType requestElementType = req.getElementType();
-		if(requestElementType == null) {
+		if (requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
-		IElementType baseElementType = requestElementType;
-		boolean isExtendedType = false;
-		if(requestElementType instanceof IExtendedHintedElementType) {
-			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if(baseElementType != null) {
-				isExtendedType = true;
-			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
-				isExtendedType = true;
-			}
-		}
-		if(UMLElementTypes.Component_3070 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if (UMLElementTypes.Component_3070 == requestElementType) {
 			return getGEFWrapper(new ComponentCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if(UMLElementTypes.Property_3079 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if (UMLElementTypes.Property_3079 == requestElementType) {
 			return getGEFWrapper(new PropertyCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);

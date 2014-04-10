@@ -43,28 +43,26 @@ import org.eclipse.uml2.uml.Type;
  * This handler provides the action to manage the provided and required {@link Interface} for a {@link Port}.
  */
 public class ManageProvidedInterfacesHandler extends AbstractHandler {
-
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
-		if(selection.isEmpty()) {
+		if (selection.isEmpty()) {
 			return null;
 		}
-
-		if(selection instanceof IStructuredSelection) {
-			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-			if(structuredSelection.getFirstElement() instanceof PortEditPart){
-			EObject selectedElement = EMFHelper.getEObject(structuredSelection.getFirstElement());
-			if(selectedElement instanceof Port) {
-				Port port = (Port)selectedElement;
-				ManageProvidedInterfaceAction action = new ManageProvidedInterfaceAction(port,(EditPart) structuredSelection.getFirstElement() );
-				try {
-					ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(port).getCommandStack().execute(new GEFtoEMFCommandWrapper(action.getCommand()));
-				} catch (ServiceException ex) {
-					throw new ExecutionException("An unexpected exception occurred", ex);
+		if (selection instanceof IStructuredSelection) {
+			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+			if (structuredSelection.getFirstElement() instanceof PortEditPart) {
+				EObject selectedElement = EMFHelper.getEObject(structuredSelection.getFirstElement());
+				if (selectedElement instanceof Port) {
+					Port port = (Port) selectedElement;
+					ManageProvidedInterfaceAction action = new ManageProvidedInterfaceAction(port, (EditPart) structuredSelection.getFirstElement());
+					try {
+						ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(port).getCommandStack().execute(new GEFtoEMFCommandWrapper(action.getCommand()));
+					} catch (ServiceException ex) {
+						throw new ExecutionException("An unexpected exception occurred", ex);
+					}
 				}
 			}
 		}
-	}
 		return null;
 	}
 
@@ -72,27 +70,23 @@ public class ManageProvidedInterfacesHandler extends AbstractHandler {
 	 * This class provides the action to manage the provided and required interfaces.
 	 */
 	public class ManageProvidedInterfaceAction {
-
-		/** the {@link Port}. */
-		private Port port;
-
 		/** the {@link Type} of the port. */
 		private Type type;
-
 		private EditPart portEditPart;
 
 		/**
 		 * 
 		 * Constructor.
-		 * @param port the semantic port
+		 * 
+		 * @param port
+		 *            the semantic port
 		 * 
 		 * @param aportEditpart
-		 *        the editpart of the port
+		 *            the editpart of the port
 		 */
 		public ManageProvidedInterfaceAction(Port port, EditPart aportEditpart) {
-			this.port = port;
 			this.type = port.getType();
-			this.portEditPart= aportEditpart;
+			this.portEditPart = aportEditpart;
 		}
 
 		/**
@@ -102,19 +96,19 @@ public class ManageProvidedInterfacesHandler extends AbstractHandler {
 		 *         the command to add/remove provided/required interfaces
 		 */
 		public Command getCommand() {
-			if(type != null && !(type instanceof Classifier)) {
+			if (type != null && !(type instanceof Classifier)) {
 				return UnexecutableCommand.INSTANCE;
-			} else if(type == null) {
-				MessageDialog dialog = new MessageDialog(DisplayUtils.getDefaultShell(), Messages.InterfaceManagerDialog_Title, null, Messages.ManageProvidedInterfacesHandler_TheTypeOfThePortIsNotDefined, MessageDialog.WARNING, new String[]{ Messages.ManageProvidedInterfacesHandler_OK }, 0);
+			} else if (type == null) {
+				MessageDialog dialog = new MessageDialog(DisplayUtils.getDefaultShell(), Messages.InterfaceManagerDialog_Title, null, Messages.ManageProvidedInterfacesHandler_TheTypeOfThePortIsNotDefined, MessageDialog.WARNING,
+						new String[] { Messages.ManageProvidedInterfacesHandler_OK }, 0);
 				dialog.open();
 			} else {
-				InterfaceManagerDialog dialog = new DisplayInterfaceMDialog(DisplayUtils.getDefaultShell(), (PortEditPart)portEditPart);
-				if(dialog.open() == Dialog.OK) {
+				InterfaceManagerDialog dialog = new DisplayInterfaceMDialog(DisplayUtils.getDefaultShell(), (PortEditPart) portEditPart);
+				if (dialog.open() == Dialog.OK) {
 					return dialog.getCommand();
 				}
 			}
 			return UnexecutableCommand.INSTANCE;
 		}
 	}
-
 }

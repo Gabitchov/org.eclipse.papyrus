@@ -5031,7 +5031,7 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLNodeDescriptor> getPropertyInternalstructure_7077SemanticChildren(View view) {
-		ICustomDiagramUpdater customUpdater = new PropertyDiagramUpdater();
+		ICustomDiagramUpdater<UMLNodeDescriptor> customUpdater = new PropertyDiagramUpdater();
 		return customUpdater.getSemanticChildren(view);
 	}
 

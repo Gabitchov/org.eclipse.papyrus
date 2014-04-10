@@ -85,65 +85,46 @@ import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
 
-
 /**
  * This class provides a Dialog to manage easily the provided and the required Interfaces for a {@link Port}.
  */
 public class InterfaceManagerDialog extends SelectionDialog {
-
 	/** the selected port. */
 	private Port port;
-
 	/** the list of the provided interfaces. */
 	private List<Object> providedInterfaces;
-
 	/** the list of the required interfaces. */
 	private List<Object> requiredInterfaces;
-
 	/** the {@link ReferenceSelector} for the provided interfaces. */
 	private ReferenceSelector providedSelector;
-
 	/** the {@link ReferenceSelector} for the required interfaces. */
 	private ReferenceSelector requiredSelector;
-
 	/** the Editor for the provided interfaces. */
 	protected ExtendedSelectionEditor providedEditor;
-
 	/** the Editor for the required interfaces. */
 	protected ExtendedSelectionEditor requiredEditor;
-
 	/** In this map, we link the {@link Interface} with their {@link Usage} This map is used when we want remove an Interface from a Usage. */
 	private Map<Interface, List<Usage>> requiredInterfacesMappedWithUsage = new HashMap<Interface, List<Usage>>();
-
 	/**
 	 * In this map, we link the {@link Interface} with their {@link Realization} This map is used when we want remove an Interface from a Realization.
 	 */
 	private Map<Interface, List<Realization>> providedInterfacesMappedWithRealization = new HashMap<Interface, List<Realization>>();
-
 	/** the label provider for selector. */
-	protected  ILabelProvider selectorLabelProvider = new SelectorLabelProvider();
-
+	protected ILabelProvider selectorLabelProvider = new SelectorLabelProvider();
 	/** the label provider for the create new element dialog. */
 	private final ILabelProvider newElementLabelProvider = new CreateElementLabelProvider();
-
 	/** the domain used for the commands. */
 	private TransactionalEditingDomain domain;
-
 	/** the model. */
 	private Package model = null;
-
 	/** this command contains the list of the command to create the new Interfaces. */
 	private CompoundCommand interfaceCreationCommand = new CompoundCommand("Create Interfaces Commands"); //$NON-NLS-1$
-
 	/** This list contains representation of the Interface before their creation. */
 	private List<NewElementRepresentation> interfaceRepresentations;
-
 	/** boolean used to know if the {@link Port} is typed with an {@link Interface}. */
 	private boolean typedWithInterface;
-
 	/** path for the warning icons. */
 	private static final String ICON_WARNING = "/icons/warning.gif"; //$NON-NLS-1$
-
 	/**
 	 * This list contains the names used for the new elements.
 	 * We need to remember these names are used in order don't suggest them when we create other new elements
@@ -155,9 +136,9 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * Constructor.
 	 * 
 	 * @param parentShell
-	 *        the parent {@link Shell}
+	 *            the parent {@link Shell}
 	 * @param port
-	 *        the {@link Port} for which we want manage the Interfaces
+	 *            the {@link Port} for which we want manage the Interfaces
 	 */
 	public InterfaceManagerDialog(Shell parentShell, Port port) {
 		super(parentShell);
@@ -182,80 +163,69 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * This method initialize some fields of the class.
 	 */
 	protected void init() {
-
 		this.forbiddenNames = new ArrayList<String>();
 		this.interfaceRepresentations = new ArrayList<NewElementRepresentation>();
 		EList<Namespace> namespaces = port.allNamespaces();
 		Element el = namespaces.get(namespaces.size() - 1);
-		if(el instanceof Package) {
-			model = (Package)el;
+		if (el instanceof Package) {
+			model = (Package) el;
 		} else {
 			model = el.getNearestPackage();
 		}
-
-		//fill the hashmap to link Interfaces with Usage and InterfaceRealization
+		// fill the hashmap to link Interfaces with Usage and InterfaceRealization
 		buildProvidedInterfaces();
 		buildRequiredInterfaces();
-
-		//we build the list of the provided interfaces
+		// we build the list of the provided interfaces
 		this.providedInterfaces = new ArrayList<Object>();
-		for(Interface current : this.port.getProvideds()) {
+		for (Interface current : this.port.getProvideds()) {
 			this.providedInterfaces.add(current);
 		}
-		//when the port is typed by an Interface, we don't propose this interface in the possible Provided Interfaces list.
-		if(typedWithInterface) {
+		// when the port is typed by an Interface, we don't propose this interface in the possible Provided Interfaces list.
+		if (typedWithInterface) {
 			this.providedInterfaces.remove(this.port.getType());
 		}
-
-		//we build the list of the required interfaces
+		// we build the list of the required interfaces
 		this.requiredInterfaces = new ArrayList<Object>();
-		for(Interface current : this.port.getRequireds()) {
+		for (Interface current : this.port.getRequireds()) {
 			this.requiredInterfaces.add(current);
 		}
-
-		//initialize the transactional editing domain
+		// initialize the transactional editing domain
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editor = activePage.getActiveEditor();
-		if(editor instanceof IMultiDiagramEditor) {
+		if (editor instanceof IMultiDiagramEditor) {
 			try {
-				this.domain = ServiceUtils.getInstance().getTransactionalEditingDomain(((IMultiDiagramEditor)editor).getServicesRegistry());
+				this.domain = ServiceUtils.getInstance().getTransactionalEditingDomain(((IMultiDiagramEditor) editor).getServicesRegistry());
 			} catch (ServiceException e) {
 				e.printStackTrace();
 			}
 		}
-
-		//selectors creation
+		// selectors creation
 		createSelectors();
-		//editors creation
+		// editors creation
 		createEditors();
-
 	}
-
 
 	/**
 	 * This method fills the map {@link #requiredInterfacesMappedWithUsage}.
 	 */
 	protected void buildRequiredInterfaces() {
-		List<?> allUsage = Util.getInstancesFilteredByType(this.model, Usage.class, null);
+		List<?> allUsage = org.eclipse.papyrus.uml.tools.utils.ElementUtil.getInstancesFilteredByType(this.model, Usage.class, null);
 		List<Classifier> classifiers = new ArrayList<Classifier>();
-		classifiers.add((Classifier)this.port.getType());
-
-		classifiers.addAll(Util.getAllSuperClasses(null, (Classifier)this.port.getType()));
-
-
-		for(Object current : allUsage) {
-			Usage usage = (Usage)current;
-			for(Classifier classifier : classifiers) {//we test if the current Usage is linked with the type of the Port
-				if(usage.getClients().contains(classifier)) {//this Usage concerns the current port
-					for(EObject target : usage.getSuppliers()) {
-						if(this.port.getRequireds().contains(target)) {
+		classifiers.add((Classifier) this.port.getType());
+		classifiers.addAll(Util.getAllSuperClasses(null, (Classifier) this.port.getType()));
+		for (Object current : allUsage) {
+			Usage usage = (Usage) current;
+			for (Classifier classifier : classifiers) {// we test if the current Usage is linked with the type of the Port
+				if (usage.getClients().contains(classifier)) {// this Usage concerns the current port
+					for (EObject target : usage.getSuppliers()) {
+						if (this.port.getRequireds().contains(target)) {
 							List<Usage> usages = requiredInterfacesMappedWithUsage.get(target);
-							if(usages != null) {
+							if (usages != null) {
 								usages.add(usage);
 							} else {
 								usages = new ArrayList<Usage>();
 								usages.add(usage);
-								this.requiredInterfacesMappedWithUsage.put((Interface)target, usages);
+								this.requiredInterfacesMappedWithUsage.put((Interface) target, usages);
 							}
 						}
 					}
@@ -269,26 +239,23 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * This method fills the map {@link #providedInterfacesMappedWithRealization}.
 	 */
 	protected void buildProvidedInterfaces() {
-		List<?> allRealization = Util.getInstancesFilteredByType(this.model, Realization.class, null);
+		List<?> allRealization = org.eclipse.papyrus.uml.tools.utils.ElementUtil.getInstancesFilteredByType(this.model, Realization.class, null);
 		List<Classifier> classifiers = new ArrayList<Classifier>();
-		classifiers.add((Classifier)this.port.getType());
-
-		classifiers.addAll(Util.getAllSuperClasses(null, (Classifier)this.port.getType()));
-
-
-		for(Object current : allRealization) {
-			Realization realization = (Realization)current;
-			for(Classifier classifier : classifiers) {//we test if the current Realization is linked with the type of the Port
-				if(realization.getClients().contains(classifier)) {//this Realization concerns the current port
-					for(EObject target : realization.getSuppliers()) {
-						if(this.port.getProvideds().contains(target)) {
+		classifiers.add((Classifier) this.port.getType());
+		classifiers.addAll(Util.getAllSuperClasses(null, (Classifier) this.port.getType()));
+		for (Object current : allRealization) {
+			Realization realization = (Realization) current;
+			for (Classifier classifier : classifiers) {// we test if the current Realization is linked with the type of the Port
+				if (realization.getClients().contains(classifier)) {// this Realization concerns the current port
+					for (EObject target : realization.getSuppliers()) {
+						if (this.port.getProvideds().contains(target)) {
 							List<Realization> realizations = providedInterfacesMappedWithRealization.get(target);
-							if(realizations != null) {
+							if (realizations != null) {
 								realizations.add(realization);
 							} else {
 								realizations = new ArrayList<Realization>();
 								realizations.add(realization);
-								this.providedInterfacesMappedWithRealization.put((Interface)target, realizations);
+								this.providedInterfacesMappedWithRealization.put((Interface) target, realizations);
 							}
 						}
 					}
@@ -302,11 +269,10 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * This method creates the selectors {@link #providedSelector} and {@link #requiredSelector}.
 	 */
 	protected void createSelectors() {
-		//the provided selector
+		// the provided selector
 		this.providedSelector = new ReferenceSelector(true);
 		this.providedSelector.setLabelProvider(selectorLabelProvider);
 		this.providedSelector.setContentProvider(new AbstractStaticContentProvider() {
-
 			/**
 			 * 
 			 * @see org.eclipse.papyrus.editors.providers.IStaticContentProvider#getElements()
@@ -316,19 +282,18 @@ public class InterfaceManagerDialog extends SelectionDialog {
 			public Object[] getElements() {
 				List<Object> tmp = new ArrayList<Object>();
 				tmp.addAll(getAllAvailableInterfaces(model));
-				if(typedWithInterface) {
+				if (typedWithInterface) {
 					tmp.remove(port.getType());
 				}
-				//we add the new interfaces which are not yet created
+				// we add the new interfaces which are not yet created
 				tmp.addAll(interfaceRepresentations);
 				return tmp.toArray();
 			}
 		});
-		//the required selector
+		// the required selector
 		this.requiredSelector = new ReferenceSelector(true);
 		this.requiredSelector.setLabelProvider(selectorLabelProvider);
 		this.requiredSelector.setContentProvider(new AbstractStaticContentProvider() {
-
 			/**
 			 * 
 			 * @see org.eclipse.papyrus.editors.providers.IStaticContentProvider#getElements()
@@ -338,26 +303,23 @@ public class InterfaceManagerDialog extends SelectionDialog {
 			public Object[] getElements() {
 				List<Object> tmp = new ArrayList<Object>();
 				tmp.addAll(getAllAvailableInterfaces(model));
-
-				//we add the new interfaces which are not yet created
+				// we add the new interfaces which are not yet created
 				tmp.addAll(interfaceRepresentations);
 				return tmp.toArray();
 			}
 		});
 	}
 
-
 	/**
 	 * This method create the 2 Editors {@link #providedEditor} and {@link #requiredEditor} and provides the listener for the button of these editors.
 	 */
 	protected void createEditors() {
-		Composite parent = (Composite)getDialogArea();
+		Composite parent = (Composite) getDialogArea();
 		CreateButtonListener listener = new CreateButtonListener();
-		//we set a specific message if the port is typed with an Interface
-		if(typedWithInterface) {
+		// we set a specific message if the port is typed with an Interface
+		if (typedWithInterface) {
 			Composite messageSection = new Composite(parent, SWT.BORDER);
 			CLabel label = new CLabel(messageSection, SWT.NONE);
-
 			label.setText(Messages.InterfaceManagerDialog_ThePortIsTypedWithAnInterfaceWarningMessage);
 			Image errorImage = Activator.getPluginIconImage(Activator.ID, ICON_WARNING);
 			label.setImage(errorImage);
@@ -369,11 +331,9 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		}
 		this.providedEditor = createEditor(parent, providedSelector, Messages.InterfaceManagerDialog_SelectedTheProvidedInterfaces, false, listener, this.providedInterfaces);
 		this.requiredEditor = createEditor(parent, requiredSelector, Messages.InterfaceManagerDialog_SelectTheRequiredInterfaces, true, listener, this.requiredInterfaces);
-
 		this.providedEditor.create();
 		this.requiredEditor.create();
-
-		GridLayout layout = (GridLayout)parent.getLayout();
+		GridLayout layout = (GridLayout) parent.getLayout();
 		layout.numColumns = 1;
 		layout.makeColumnsEqualWidth = true;
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
@@ -387,17 +347,17 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * Creates a {@link SelectionEditor} and returns it.
 	 * 
 	 * @param parent
-	 *        the composite parent
+	 *            the composite parent
 	 * @param selector
-	 *        the selector used by the created editor
+	 *            the selector used by the created editor
 	 * @param message
-	 *        the message to display in the created editor
+	 *            the message to display in the created editor
 	 * @param withCreateButton
-	 *        indicates if the editor provides an additional button for a specific action
+	 *            indicates if the editor provides an additional button for a specific action
 	 * @param listener
-	 *        the listener for the button
+	 *            the listener for the button
 	 * @param initialSelection
-	 *        the initial selection for this editor
+	 *            the initial selection for this editor
 	 * @return the selection editor
 	 *         the created {@link SelectionEditor}
 	 */
@@ -412,24 +372,20 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * Returns all the available Interfaces.
 	 * 
 	 * @param pack
-	 *        the pack
+	 *            the pack
 	 * @return the all available interfaces
 	 *         all the available Interfaces
 	 *         //TODO add the interfaces of the package import!
 	 */
-	@SuppressWarnings("unchecked")
 	protected List<Interface> getAllAvailableInterfaces(Package pack) {
 		List<Interface> otherInterfaces = new ArrayList<Interface>();
 		List<Element> interfaces = Visitor.getOwnedAndImportedElement(pack, Interface.class);
-		for(Namespace namespace : Visitor.getOwnedAndImportedNamespaces(pack)) {
+		for (Namespace namespace : Visitor.getOwnedAndImportedNamespaces(pack)) {
 			interfaces.addAll(Visitor.getOwnedAndImportedElement(namespace, Interface.class));
-
 		}
-
-		for(Element element : interfaces) {
-			otherInterfaces.add((Interface)element);
+		for (Element element : interfaces) {
+			otherInterfaces.add((Interface) element);
 		}
-
 		return otherInterfaces;
 	}
 
@@ -441,15 +397,15 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 */
 	public Command getCommand() {
 		CompoundCommand command = new CompoundCommand("Command to manage interfaces on Port"); //$NON-NLS-1$
-		if(!interfaceCreationCommand.isEmpty()) {
+		if (!interfaceCreationCommand.isEmpty()) {
 			command.add(interfaceCreationCommand);
 		}
 		Command cmd = getCommandsToCreateElements();
-		if(cmd.canExecute()) {
+		if (cmd.canExecute()) {
 			command.add(cmd);
 		}
 		cmd = getCommandToRemoveReferencedInterfaces();
-		if(cmd.canExecute()) {
+		if (cmd.canExecute()) {
 			command.add(cmd);
 		}
 		return command;
@@ -464,43 +420,40 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 */
 	protected Command getCommandToRemoveReferencedInterfaces() {
 		CompoundCommand command = new CompoundCommand("Command to destroy Usage and InterfaceRealization"); //$NON-NLS-1$
-
 		Set<Dependency> relationshipToDestroy = new HashSet<Dependency>();
-		//commands to destroy Usage
-		for(Object current : this.requiredEditor.getElementToRemove()) {
-			//we get all usage associated with this interface
+		// commands to destroy Usage
+		for (Object current : this.requiredEditor.getElementToRemove()) {
+			// we get all usage associated with this interface
 			List<Usage> usages = requiredInterfacesMappedWithUsage.get(current);
-			for(Usage currentUsage : usages) {
-				//we remove the reference to the Interface in the Usage
-				DestroyReferenceRequest request = new DestroyReferenceRequest(domain, currentUsage, UMLPackage.eINSTANCE.getDependency_Supplier(), (EObject)current, false);
+			for (Usage currentUsage : usages) {
+				// we remove the reference to the Interface in the Usage
+				DestroyReferenceRequest request = new DestroyReferenceRequest(domain, currentUsage, UMLPackage.eINSTANCE.getDependency_Supplier(), (EObject) current, false);
 				Command cmd = getCommand(request);
-				if(cmd.canExecute()) {
+				if (cmd.canExecute()) {
 					command.add(cmd);
 					relationshipToDestroy.add(currentUsage);
 				}
 			}
 		}
-
-		//commands to destroy InterfaceRealization
-		for(Object current : this.providedEditor.getElementToRemove()) {
-			//we get all usage associated with this interface
+		// commands to destroy InterfaceRealization
+		for (Object current : this.providedEditor.getElementToRemove()) {
+			// we get all usage associated with this interface
 			List<Realization> realizations = providedInterfacesMappedWithRealization.get(current);
-			for(Realization currentRealization : realizations) {
-				//we remove the reference to the Interface in the Usage
-				DestroyReferenceRequest request = new DestroyReferenceRequest(domain, currentRealization, UMLPackage.eINSTANCE.getDependency_Supplier(), (EObject)current, false);
+			for (Realization currentRealization : realizations) {
+				// we remove the reference to the Interface in the Usage
+				DestroyReferenceRequest request = new DestroyReferenceRequest(domain, currentRealization, UMLPackage.eINSTANCE.getDependency_Supplier(), (EObject) current, false);
 				Command cmd = getCommand(request);
-				if(cmd.canExecute()) {
+				if (cmd.canExecute()) {
 					command.add(cmd);
 					relationshipToDestroy.add(currentRealization);
 				}
 			}
 		}
-		if(!relationshipToDestroy.isEmpty()) {
+		if (!relationshipToDestroy.isEmpty()) {
 			command.add(new ICommandProxy(new DestroyDependencyWithoutSupplierCommand(this.domain, null, relationshipToDestroy)));
 			return command;
 		}
-
-		//nothing to do
+		// nothing to do
 		return UnexecutableCommand.INSTANCE;
 	}
 
@@ -512,58 +465,55 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 */
 	protected Command getCommandsToCreateElements() {
 		CompoundCommand command = new CompoundCommand("Command to create Usage and InterfaceRealization"); //$NON-NLS-1$
-		//commands for Usage Creation
-		for(Object current : this.requiredEditor.getElementToAdd()) {
-			if(current instanceof EObject) {
-				CreateRelationshipRequest request = new CreateRelationshipRequest(this.port.getType().eContainer(), this.port.getType(), (EObject)current, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.USAGE);
+		// commands for Usage Creation
+		for (Object current : this.requiredEditor.getElementToAdd()) {
+			if (current instanceof EObject) {
+				CreateRelationshipRequest request = new CreateRelationshipRequest(this.port.getType().eContainer(), this.port.getType(), (EObject) current, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.USAGE);
 				Command cmd = getCommand(request);
-				if(cmd.canExecute()) {
+				if (cmd.canExecute()) {
 					command.add(cmd);
 				}
-			} else {//its an NewElementRepresentation
-
-				CreateUsageCommand cmd = new CreateUsageCommand(this.domain, this.port.getType().eContainer(), this.port.getType(), (NewElementRepresentation)current, null);
-				if(cmd.canExecute()) {
+			} else {// its an NewElementRepresentation
+				CreateUsageCommand cmd = new CreateUsageCommand(this.domain, this.port.getType().eContainer(), this.port.getType(), (NewElementRepresentation) current, null);
+				if (cmd.canExecute()) {
 					command.add(new ICommandProxy(cmd));
 				}
 			}
 		}
-
-		//commands for InterfaceRealization Creation
-		for(Object current : providedEditor.getElementToAdd()) {
-			if(current instanceof EObject) {
-				CreateRelationshipRequest request = new CreateRelationshipRequest(this.port.getType(), this.port.getType(), (EObject)current, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.INTERFACE_REALIZATION);
+		// commands for InterfaceRealization Creation
+		for (Object current : providedEditor.getElementToAdd()) {
+			if (current instanceof EObject) {
+				CreateRelationshipRequest request = new CreateRelationshipRequest(this.port.getType(), this.port.getType(), (EObject) current, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.INTERFACE_REALIZATION);
 				Command cmd = getCommand(request);
-				if(cmd.canExecute()) {
+				if (cmd.canExecute()) {
 					command.add(cmd);
 				}
-			} else {//its an NewElementRepresentation
-				CreateInterfaceRealizationCommand cmd = new CreateInterfaceRealizationCommand(this.domain, this.port.getType(), this.port.getType(), (NewElementRepresentation)current, null);
-				if(cmd.canExecute()) {
+			} else {// its an NewElementRepresentation
+				CreateInterfaceRealizationCommand cmd = new CreateInterfaceRealizationCommand(this.domain, this.port.getType(), this.port.getType(), (NewElementRepresentation) current, null);
+				if (cmd.canExecute()) {
 					command.add(new ICommandProxy(cmd));
 				}
 			}
 		}
-		if(!command.isEmpty()) {
+		if (!command.isEmpty()) {
 			return command;
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
 
-
 	/**
 	 * Return the command corresponding to the request.
 	 * 
 	 * @param req
-	 *        a request
+	 *            a request
 	 * @return the command
 	 *         the command corresponding to the request
 	 */
 	protected Command getCommand(AbstractEditCommandRequest req) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(model);
-		if(provider != null) {
+		if (provider != null) {
 			ICommand setCommand = provider.getEditCommand(req);
-			if(setCommand != null) {
+			if (setCommand != null) {
 				return new ICommandProxy(setCommand.reduce());
 			}
 		}
@@ -576,12 +526,11 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * @see CreateButtonEvent
 	 */
 	public class CreateButtonListener implements SelectionListener {
-
 		/**
 		 * Widget selected.
 		 * 
 		 * @param e
-		 *        the e
+		 *            the e
 		 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 		 */
 		public void widgetSelected(SelectionEvent e) {
@@ -594,13 +543,13 @@ public class InterfaceManagerDialog extends SelectionDialog {
 			input.add(model);
 			dialog.setInput(input);
 			dialog.setValidator(new ParentInterfaceValidator());
-			if(dialog.open() == org.eclipse.jface.dialogs.Dialog.OK) {
+			if (dialog.open() == org.eclipse.jface.dialogs.Dialog.OK) {
 				interfaceCreationCommand.add(dialog.getCommand());
 				Object[] res = dialog.getResult();
-				for(Object current : res) {
-					if(current instanceof NewElementRepresentation) {
-						interfaceRepresentations.add((NewElementRepresentation)current);
-						forbiddenNames.add(((NewElementRepresentation)current).getName());
+				for (Object current : res) {
+					if (current instanceof NewElementRepresentation) {
+						interfaceRepresentations.add((NewElementRepresentation) current);
+						forbiddenNames.add(((NewElementRepresentation) current).getName());
 					}
 				}
 				providedSelector.refresh();
@@ -612,35 +561,30 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * Widget default selected.
 		 * 
 		 * @param e
-		 *        the e
+		 *            the e
 		 * @see org.eclipse.swt.events.SelectionListener#widgetDefaultSelected(org.eclipse.swt.events.SelectionEvent)
 		 */
 		public void widgetDefaultSelected(SelectionEvent e) {
-
 		}
-
 	}
-
 
 	/**
 	 * This class provides a validator for the selection of the parent of the new Interface.
 	 */
 	public class ParentInterfaceValidator implements ISelectionStatusValidator {
-
 		/**
 		 * Selection has to be a Classifier or an Interface to allow creation.
 		 * 
 		 * @param selection
-		 *        the selection
+		 *            the selection
 		 * @return the i status
 		 * @see org.eclipse.ui.dialogs.ISelectionStatusValidator#validate(java.lang.Object[])
 		 */
 		public IStatus validate(Object[] selection) {
-
 			IStatus status = new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, Messages.NoSelectionFound);
-			if(selection.length >= 1) {
-				for(int i = 0; i < selection.length; i++) {
-					if(selection[i] instanceof Package || selection[i] instanceof Classifier || selection[i] instanceof NewElementRepresentation) {
+			if (selection.length >= 1) {
+				for (int i = 0; i < selection.length; i++) {
+					if (selection[i] instanceof Package || selection[i] instanceof Classifier || selection[i] instanceof NewElementRepresentation) {
 						status = new Status(IStatus.OK, UMLDiagramEditorPlugin.ID, Messages.SelectionValidated);
 					} else {
 						status = new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, Messages.InterfaceManagerDialog_SelectionHasToBeAPackageOrAClassifier);
@@ -660,44 +604,40 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * 
 	 */
 	public class SelectorLabelProvider extends CreateElementLabelProvider {
-
-
 		/**
 		 * Gets the text.
 		 * 
 		 * @param element
-		 *        the element
+		 *            the element
 		 * @return the text
 		 * @see org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider#getText(java.lang.Object)
 		 */
 		@Override
 		public String getText(Object element) {
-			if(element instanceof NewElementRepresentation) {
-				return ((NewElementRepresentation)element).getQualifiedName();
-			} else if(element instanceof NamedElement) {
-				return ((NamedElement)element).getQualifiedName();
+			if (element instanceof NewElementRepresentation) {
+				return ((NewElementRepresentation) element).getQualifiedName();
+			} else if (element instanceof NamedElement) {
+				return ((NamedElement) element).getQualifiedName();
 			}
 			return super.getText(element);
 		}
-
 	}
 
 	/**
 	 * The Class CreateElementLabelProvider.
 	 */
 	public class CreateElementLabelProvider extends UMLLabelProvider {
-
 		/**
 		 * Gets the image.
 		 * 
 		 * @param element
-		 *        the element
+		 *            the element
 		 * @return the image
 		 * @see org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider#getImage(java.lang.Object)
 		 */
 		@Override
 		public Image getImage(Object element) {
-			if(element instanceof NewElementRepresentation) {
+			if (element instanceof NewElementRepresentation) {
 				return org.eclipse.papyrus.uml.tools.Activator.getDefault().getImageForUMLMetaclass(UMLPackage.eINSTANCE.getInterface());
 			}
 			return super.getImage(element);
@@ -707,29 +647,26 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * Gets the text.
 		 * 
 		 * @param element
-		 *        the element
+		 *            the element
 		 * @return the text
 		 * @see org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider#getText(java.lang.Object)
 		 */
 		@Override
 		public String getText(Object element) {
-			if(element instanceof NewElementRepresentation) {
-				return ((NewElementRepresentation)element).getName();
+			if (element instanceof NewElementRepresentation) {
+				return ((NewElementRepresentation) element).getName();
 			}
 			return super.getText(element);
 		}
-
 	}
 
 	/**
 	 * 
-	 * This content provider is used in this dialog. It returns the available element in the model + the future element which are
-	 * {@link NewElementRepresentation}
+	 * This content provider is used in this dialog. It returns the available element in the model + the future element which are {@link NewElementRepresentation}
 	 * 
 	 * 
 	 */
 	public class CustomContentProvider implements ITreeContentProvider {
-
 		/**
 		 * Dispose.
 		 * 
@@ -742,28 +679,27 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * Input changed.
 		 * 
 		 * @param viewer
-		 *        the viewer
+		 *            the viewer
 		 * @param oldInput
-		 *        the old input
+		 *            the old input
 		 * @param newInput
-		 *        the new input
+		 *            the new input
 		 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 		 */
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-
 		}
 
 		/**
 		 * Gets the elements.
 		 * 
 		 * @param inputElement
-		 *        the input element
+		 *            the input element
 		 * @return the elements
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getElements(java.lang.Object)
 		 */
 		public Object[] getElements(Object inputElement) {
-			if(inputElement instanceof List<?>) {
-				return ((List<?>)inputElement).toArray();
+			if (inputElement instanceof List<?>) {
+				return ((List<?>) inputElement).toArray();
 			}
 			return new Object[0];
 		}
@@ -772,28 +708,28 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * Gets the children.
 		 * 
 		 * @param parentElement
-		 *        the parent element
+		 *            the parent element
 		 * @return the children
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(java.lang.Object)
 		 */
 		public Object[] getChildren(Object parentElement) {
 			List<Object> children = new ArrayList<Object>();
 			List<?> tmp = null;
-			if(parentElement instanceof Package) {
-				tmp = ((Package)parentElement).getOwnedMembers();
-			} else if(parentElement instanceof Classifier) {
-				tmp = ((Classifier)parentElement).getOwnedMembers();
+			if (parentElement instanceof Package) {
+				tmp = ((Package) parentElement).getOwnedMembers();
+			} else if (parentElement instanceof Classifier) {
+				tmp = ((Classifier) parentElement).getOwnedMembers();
 			}
-			if(tmp != null) {
-				for(Object current : tmp) {
-					if(current instanceof Classifier || current instanceof Package) {
+			if (tmp != null) {
+				for (Object current : tmp) {
+					if (current instanceof Classifier || current instanceof Package) {
 						children.add(current);
 					}
 				}
 			}
-			//we add the future Interfaces to this selection
-			for(NewElementRepresentation current : interfaceRepresentations) {
-				if(current.getParent() == parentElement) {
+			// we add the future Interfaces to this selection
+			for (NewElementRepresentation current : interfaceRepresentations) {
+				if (current.getParent() == parentElement) {
 					children.add(current);
 				}
 			}
@@ -804,15 +740,15 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * Gets the parent.
 		 * 
 		 * @param element
-		 *        the element
+		 *            the element
 		 * @return the parent
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
 		 */
 		public Object getParent(Object element) {
-			if(element == model) {
+			if (element == model) {
 				return model;
-			} else if(element instanceof NamedElement) {
-				return ((NamedElement)element).eContainer();
+			} else if (element instanceof NamedElement) {
+				return ((NamedElement) element).eContainer();
 			}
 			return null;
 		}
@@ -821,14 +757,13 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * Checks for children.
 		 * 
 		 * @param element
-		 *        the element
+		 *            the element
 		 * @return true, if successful
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(java.lang.Object)
 		 */
 		public boolean hasChildren(Object element) {
 			return getChildren(element).length != 0;
 		}
-
 	}
 
 	/**
@@ -836,13 +771,10 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * (but this Interface will exist when the command will be executed).
 	 */
 	public class CreateUsageCommand extends AbstractTransactionalCommand {
-
 		/** The container for the new Usage. */
 		private EObject container;
-
 		/** the source of this Usage. */
 		private EObject source;
-
 		/** the target : the representation of the new interface. */
 		private NewElementRepresentation target;
 
@@ -851,15 +783,15 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * Constructor.
 		 * 
 		 * @param domain
-		 *        the domain
+		 *            the domain
 		 * @param container
-		 *        the container for the Usage
+		 *            the container for the Usage
 		 * @param source
-		 *        the source for the Usage
+		 *            the source for the Usage
 		 * @param target
-		 *        the target for the Usage
+		 *            the target for the Usage
 		 * @param affectedFiles
-		 *        the affected files
+		 *            the affected files
 		 */
 		public CreateUsageCommand(TransactionalEditingDomain domain, EObject container, EObject source, NewElementRepresentation target, List<?> affectedFiles) {
 			super(domain, "Create Usage Command", affectedFiles); //$NON-NLS-1$
@@ -872,25 +804,23 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * Do execute with result.
 		 * 
 		 * @param monitor
-		 *        the monitor
+		 *            the monitor
 		 * @param info
-		 *        the info
+		 *            the info
 		 * @return the command result
 		 * @throws ExecutionException
-		 *         the execution exception
-		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
-		 *      org.eclipse.core.runtime.IAdaptable)
+		 *             the execution exception
+		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 		 */
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			CreateRelationshipRequest request = new CreateRelationshipRequest(domain, container, source, target.getEObject(), org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.USAGE);
 			Command command = getCommand(request);
-			if(command.canExecute()) {
+			if (command.canExecute()) {
 				command.execute();
 			}
 			return CommandResult.newOKCommandResult(request.getNewElement());
 		}
-
 	}
 
 	/**
@@ -898,13 +828,10 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * (but this Interface will exist when the command will be executed).
 	 */
 	public class CreateInterfaceRealizationCommand extends AbstractTransactionalCommand {
-
 		/** The container for the new InterfaceRealization. */
 		private EObject container;
-
 		/** The source for the new InterfaceRealization. */
 		private EObject source;
-
 		/** the target : the representation of the new interface. */
 		private NewElementRepresentation target;
 
@@ -913,15 +840,15 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * Constructor.
 		 * 
 		 * @param domain
-		 *        the domain
+		 *            the domain
 		 * @param container
-		 *        the container for the InterfaceRealization
+		 *            the container for the InterfaceRealization
 		 * @param source
-		 *        the source for the InterfaceRealization
+		 *            the source for the InterfaceRealization
 		 * @param target
-		 *        the target for the InterfaceRealization
+		 *            the target for the InterfaceRealization
 		 * @param affectedFiles
-		 *        the affected files
+		 *            the affected files
 		 */
 		public CreateInterfaceRealizationCommand(TransactionalEditingDomain domain, EObject container, EObject source, NewElementRepresentation target, List<?> affectedFiles) {
 			super(domain, "Create InterfaceRealization Command", affectedFiles); //$NON-NLS-1$
@@ -934,33 +861,29 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * Do execute with result.
 		 * 
 		 * @param monitor
-		 *        the monitor
+		 *            the monitor
 		 * @param info
-		 *        the info
+		 *            the info
 		 * @return the command result
 		 * @throws ExecutionException
-		 *         the execution exception
-		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
-		 *      org.eclipse.core.runtime.IAdaptable)
+		 *             the execution exception
+		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 		 */
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 			CreateRelationshipRequest request = new CreateRelationshipRequest(domain, container, source, target.getEObject(), org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.INTERFACE_REALIZATION);
 			Command command = getCommand(request);
-			if(command.canExecute()) {
+			if (command.canExecute()) {
 				command.execute();
 			}
 			return CommandResult.newOKCommandResult(request.getNewElement());
 		}
-
 	}
 
 	/**
 	 * This command is used to destroy Dependencies which have any supplier before the deletion of the Interface.
 	 */
 	public class DestroyDependencyWithoutSupplierCommand extends AbstractTransactionalCommand {
-
 		/** the dependencies to test. */
 		private Set<Dependency> dependencies;
 
@@ -969,11 +892,11 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * Constructor.
 		 * 
 		 * @param domain
-		 *        the domain
+		 *            the domain
 		 * @param affectedFiles
-		 *        the affected files
+		 *            the affected files
 		 * @param dependencies
-		 *        the dependencies to test
+		 *            the dependencies to test
 		 */
 		public DestroyDependencyWithoutSupplierCommand(TransactionalEditingDomain domain, List<?> affectedFiles, Set<Dependency> dependencies) {
 			super(domain, "Destroy the empty elements", affectedFiles); //$NON-NLS-1$
@@ -984,29 +907,27 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * Do execute with result.
 		 * 
 		 * @param monitor
-		 *        the monitor
+		 *            the monitor
 		 * @param info
-		 *        the info
+		 *            the info
 		 * @return the command result
 		 * @throws ExecutionException
-		 *         the execution exception
-		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
-		 *      org.eclipse.core.runtime.IAdaptable)
+		 *             the execution exception
+		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 		 */
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			CompoundCommand command = new CompoundCommand("Destroy relationship without suppliers"); //$NON-NLS-1$
-			for(Dependency current : dependencies) {
-				if(current.getSuppliers().isEmpty()) {
+			for (Dependency current : dependencies) {
+				if (current.getSuppliers().isEmpty()) {
 					DestroyElementRequest request = new DestroyElementRequest(domain, current, false);
 					Command cmd = getCommand(request);
-					if(cmd.canExecute()) {
+					if (cmd.canExecute()) {
 						command.add(cmd);
 					}
 				}
 			}
-
-			if(!command.isEmpty() && command.canExecute()) {
+			if (!command.isEmpty() && command.canExecute()) {
 				command.execute();
 			}
 			return CommandResult.newOKCommandResult();

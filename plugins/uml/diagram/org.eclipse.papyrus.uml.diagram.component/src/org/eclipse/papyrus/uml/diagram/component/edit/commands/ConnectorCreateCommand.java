@@ -1,15 +1,14 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2014 CEA LIST.
- *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Patrick Tessier (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.component.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -34,17 +33,14 @@ import org.eclipse.uml2.uml.UMLFactory;
  * @generated
  */
 public class ConnectorCreateCommand extends EditElementCommand {
-
 	/**
 	 * @generated
 	 */
 	protected final EObject source;
-
 	/**
 	 * @generated
 	 */
 	protected final EObject target;
-
 	/**
 	 * @generated
 	 */
@@ -64,20 +60,20 @@ public class ConnectorCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(source == null && target == null) {
+		if (source == null && target == null) {
 			return false;
 		}
-		if(source != null && false == source instanceof ConnectorEnd) {
+		if (source != null && false == source instanceof ConnectorEnd) {
 			return false;
 		}
-		if(target != null && false == target instanceof ConnectorEnd) {
+		if (target != null && false == target instanceof ConnectorEnd) {
 			return false;
 		}
-		if(getSource() == null) {
+		if (getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		if(getContainer() == null) {
+		if (getContainer() == null) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateConnector_4019(getContainer(), getSource(), getTarget());
@@ -87,16 +83,19 @@ public class ConnectorCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
+		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		Connector newElement = UMLFactory.eINSTANCE.createConnector();
-		getContainer().getOwnedConnectors().add(newElement);
-		newElement.getEnds().add(getSource());
-		newElement.getEnds().add(getTarget());
+		getContainer().getOwnedConnectors()
+				.add(newElement);
+		newElement.getEnds()
+				.add(getSource());
+		newElement.getEnds()
+				.add(getTarget());
 		ElementInitializers.getInstance().init_Connector_4019(newElement);
 		doConfigure(newElement, monitor, info);
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
@@ -104,14 +103,14 @@ public class ConnectorCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected void doConfigure(Connector newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
 		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if(configureCommand != null && configureCommand.canExecute()) {
+		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -127,14 +126,14 @@ public class ConnectorCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected ConnectorEnd getSource() {
-		return (ConnectorEnd)source;
+		return (ConnectorEnd) source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected ConnectorEnd getTarget() {
-		return (ConnectorEnd)target;
+		return (ConnectorEnd) target;
 	}
 
 	/**
@@ -147,16 +146,15 @@ public class ConnectorCreateCommand extends EditElementCommand {
 	/**
 	 * Default approach is to traverse ancestors of the source to find instance of container.
 	 * Modify with appropriate logic.
-	 * 
 	 * @generated
 	 */
 	protected StructuredClassifier deduceContainer(EObject source, EObject target) {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null; element = element.eContainer()) {
-			if(element instanceof StructuredClassifier) {
-				return (StructuredClassifier)element;
+		for (EObject element = source; element != null; element = element.eContainer()) {
+			if (element instanceof StructuredClassifier) {
+				return (StructuredClassifier) element;
 			}
 		}
 		return null;

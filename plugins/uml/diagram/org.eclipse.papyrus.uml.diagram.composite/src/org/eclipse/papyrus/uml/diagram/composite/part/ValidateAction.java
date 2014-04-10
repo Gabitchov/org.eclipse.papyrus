@@ -180,9 +180,7 @@ public class ValidateAction extends Action {
 	 */
 	private static void createMarkers(
 			IFile
-			target,
-			IStatus validationStatus,
-			DiagramEditPart diagramEditPart) {
+			target, IStatus validationStatus, DiagramEditPart diagramEditPart) {
 		if (validationStatus.isOK()) {
 			return;
 		}
@@ -207,9 +205,7 @@ public class ValidateAction extends Action {
 	 */
 	private static void createMarkers(
 			IFile
-			target,
-			Diagnostic emfValidationStatus,
-			DiagramEditPart diagramEditPart) {
+			target, Diagnostic emfValidationStatus, DiagramEditPart diagramEditPart) {
 		if (emfValidationStatus.getSeverity() == Diagnostic.OK) {
 			return;
 		}
@@ -236,10 +232,8 @@ public class ValidateAction extends Action {
 	/**
 	 * @generated
 	 */
-	private static void addMarker(EditPartViewer viewer,
-			IFile
-			target,
-			String elementId, String location, String message, int statusSeverity) {
+	private static void addMarker(EditPartViewer viewer, IFile
+			target, String elementId, String location, String message, int statusSeverity) {
 		if (target == null) {
 			return;
 		}

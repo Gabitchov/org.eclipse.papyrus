@@ -1,15 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Amine EL KOUHEN (CEA LIST/LIFL) & Nizar GUEDIDI (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -29,8 +28,9 @@ import org.eclipse.papyrus.uml.diagram.component.edit.policies.AbstractionItemSe
 /**
  * @generated
  */
-public class AbstractionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
-
+public class AbstractionEditPart extends UMLConnectionNodeEditPart
+		implements ITreeBranchEditPart
+{
 	/**
 	 * @generated
 	 */
@@ -58,12 +58,14 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AbstractionNameEditPart) {
-			((AbstractionNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof AbstractionNameEditPart) {
+			((AbstractionNameEditPart) childEditPart).setLabel(
+					getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof AbstractionAppliedStereotypeEditPart) {
-			((AbstractionAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof AbstractionAppliedStereotypeEditPart) {
+			((AbstractionAppliedStereotypeEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -73,7 +75,7 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -83,10 +85,10 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AbstractionNameEditPart) {
+		if (childEditPart instanceof AbstractionNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AbstractionAppliedStereotypeEditPart) {
+		if (childEditPart instanceof AbstractionAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -96,7 +98,7 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -105,8 +107,8 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements IT
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -118,6 +120,6 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure)getFigure();
+		return (DashedEdgeFigure) getFigure();
 	}
 }

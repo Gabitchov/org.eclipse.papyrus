@@ -54,15 +54,15 @@ import org.eclipse.gmf.codegen.gmfgen.GenConstraint
 	 * 
 	 * FIXME don't use static fields, replace with instance/separate cache (e.g. accessible from Activator)
 	 */
-	//	override constraintMethods(GenDiagram it) '''
-	//		«IF null != editorGen.expressionProviders»
-	//			«FOR topNode : topLevelNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
-	//			topNode)»«ENDFOR»
-	//			«FOR childNode : childNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
-	//			childNode)»«ENDFOR»
-	//			«FOR link : links.filter[n|!n.sansDomain]»«constraintMethod(link.modelFacet, link)»«ENDFOR»
-	//		«ENDIF»
-	//	'''
+		override constraintMethods(GenDiagram it) '''
+			«IF null != editorGen.expressionProviders»
+				«FOR topNode : topLevelNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
+				topNode)»«ENDFOR»
+				«FOR childNode : childNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
+				childNode)»«ENDFOR»
+				«FOR link : links.filter[n|!n.sansDomain]»«constraintMethod(link.modelFacet, link)»«ENDFOR»
+			«ENDIF»
+		'''
 	//[ExtendedConstraint] Model selector constraint
 	override checkDomainElementConstraints(TypeModelFacet it, GenCommonBase commonBase) '''
 «««		«IF null != modelElementSelector»

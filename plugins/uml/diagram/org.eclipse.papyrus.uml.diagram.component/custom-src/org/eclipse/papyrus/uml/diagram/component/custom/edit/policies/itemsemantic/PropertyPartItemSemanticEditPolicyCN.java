@@ -26,7 +26,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.component.custom.edit.command.ConnectorCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.command.CustomConnectorCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
@@ -40,7 +41,6 @@ import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
  * </pre>
  */
 public class PropertyPartItemSemanticEditPolicyCN extends org.eclipse.papyrus.uml.diagram.component.edit.policies.PropertyItemSemanticEditPolicy {
-
 	/**
 	 * <pre>
 	 * Calls a custom creation command to allow the creation of a Port on a Property. 
@@ -51,8 +51,8 @@ public class PropertyPartItemSemanticEditPolicyCN extends org.eclipse.papyrus.um
 	 */
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes.Port_3069 == req.getElementType()) {
-			return getGEFWrapper(new org.eclipse.papyrus.uml.diagram.component.custom.command.PortCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
+		if (org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes.Port_3069 == req.getElementType()) {
+			return getGEFWrapper(new org.eclipse.papyrus.uml.diagram.component.custom.command.CustomPortCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}
@@ -67,16 +67,14 @@ public class PropertyPartItemSemanticEditPolicyCN extends org.eclipse.papyrus.um
 	 */
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-
-		EObject graphicalParent = ((GraphicalEditPart)getHost().getParent()).resolveSemanticElement();
+		EObject graphicalParent = ((GraphicalEditPart) getHost().getParent()).resolveSemanticElement();
 		EObject semanticParent = req.getElementToDestroy().eContainer();
-
-		if(graphicalParent != semanticParent) {
+		if (graphicalParent != semanticParent) {
 			return UnexecutableCommand.INSTANCE;
 		}
-
 		return super.getDestroyElementCommand(req);
 	}
+
 	/**
 	 * <pre>
 	 * Calls a custom creation command to allow the creation of a Connector connected to a Property
@@ -87,10 +85,9 @@ public class PropertyPartItemSemanticEditPolicyCN extends org.eclipse.papyrus.um
 	 */
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Connector_4019 == req.getElementType()) {
-			req.setParameter(org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_GRAPHICAL, getHost());
-
-			return getGEFWrapper(new ConnectorCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.Connector_4019 == req.getElementType()) {
+			req.setParameter(CustomGraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_GRAPHICAL, getHost());
+			return getGEFWrapper(new CustomConnectorCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getStartCreateRelationshipCommand(req);
 	}
@@ -105,35 +102,31 @@ public class PropertyPartItemSemanticEditPolicyCN extends org.eclipse.papyrus.um
 	 */
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Connector_4019 == req.getElementType()) {
-			req.setParameter(org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_GRAPHICAL, getHost());
-
-			return getGEFWrapper(new ConnectorCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.Connector_4019 == req.getElementType()) {
+			req.setParameter(CustomGraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_GRAPHICAL, getHost());
+			return getGEFWrapper(new CustomConnectorCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
 
 	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		switch(getVisualID(req)) {
+		switch (getVisualID(req)) {
 		case ConnectorEditPart.VISUAL_ID:
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
-			if(provider == null) {
+			if (provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
-
 			// Add graphical new end View in request parameters
-			View targetView = (View)getHost().getModel();
+			View targetView = (View) getHost().getModel();
 			req.setParameter(RequestParameterConstants.EDGE_REORIENT_REQUEST_END_VIEW, targetView);
-
 			// Retrieve re-orient command from the Element Edit service
 			ICommand reorientCommand = provider.getEditCommand(req);
-			if(reorientCommand == null) {
+			if (reorientCommand == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
 			return getGEFWrapper(reorientCommand.reduce());
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
-
 }

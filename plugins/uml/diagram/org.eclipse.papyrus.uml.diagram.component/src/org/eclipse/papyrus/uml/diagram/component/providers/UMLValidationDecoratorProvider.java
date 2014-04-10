@@ -1,15 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Amine EL KOUHEN (CEA LIST/LIFL) & Nizar GUEDIDI (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.component.providers;
 
 import org.eclipse.gef.EditDomain;
@@ -28,27 +27,31 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentDiagramEdit
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
 
-public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider implements IDecoratorProvider {
-
+/**
+ * @generated
+ */
+public class UMLValidationDecoratorProvider
+		extends ValidationDecoratorProvider
+		implements IDecoratorProvider {
 	/**
 	 * @generated
 	 */
-	@Override
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
-		EditPart editPart = (EditPart)decoratorTarget.getAdapter(EditPart.class);
-		if(editPart instanceof GraphicalEditPart || editPart instanceof AbstractConnectionEditPart) {
+		EditPart editPart = (EditPart) decoratorTarget.getAdapter(EditPart.class);
+		if (editPart instanceof GraphicalEditPart ||
+				editPart instanceof AbstractConnectionEditPart) {
 			Object model = editPart.getModel();
-			if((model instanceof View)) {
-				View view = (View)model;
-				if(!(view instanceof Edge) && !view.isSetElement()) {
+			if ((model instanceof View)) {
+				View view = (View) model;
+				if (!(view instanceof Edge) && !view.isSetElement()) {
 					return;
 				}
 			}
 			EditDomain ed = editPart.getViewer().getEditDomain();
-			if(!(ed instanceof DiagramEditDomain)) {
+			if (!(ed instanceof DiagramEditDomain)) {
 				return;
 			}
-			if(((DiagramEditDomain)ed).getEditorPart() instanceof UMLDiagramEditor) {
+			if (((DiagramEditDomain) ed).getEditorPart() instanceof UMLDiagramEditor) {
 				decoratorTarget.installDecorator(KEY, new StatusDecorator(decoratorTarget));
 			}
 		}
@@ -57,13 +60,14 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean provides(IOperation operation) {
-		if(!(operation instanceof CreateDecoratorsOperation)) {
+		if (!(operation instanceof CreateDecoratorsOperation)) {
 			return false;
 		}
-		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation)operation).getDecoratorTarget();
-		View view = (View)decoratorTarget.getAdapter(View.class);
+		IDecoratorTarget decoratorTarget =
+				((CreateDecoratorsOperation) operation).getDecoratorTarget();
+		View view = (View) decoratorTarget.getAdapter(
+				View.class);
 		return view != null && ComponentDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
 }

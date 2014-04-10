@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.component.custom.handler;
 
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
@@ -28,12 +27,6 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEd
  *
  */
 public class LollipopToRectangleHandler extends ChangeShapeHandler implements IHandler {
-
-	protected TransactionalEditingDomain transactionalEditingDomain = null;
-
-	protected org.eclipse.uml2.uml.Element selectedElement = null;
-
-
 	/**
 	 * 
 	 * Constructor.
@@ -41,20 +34,21 @@ public class LollipopToRectangleHandler extends ChangeShapeHandler implements IH
 	 */
 	public LollipopToRectangleHandler() {
 		super();
-		newType=""+RectangleInterfaceEditPart.VISUAL_ID;
+		newType = "" + RectangleInterfaceEditPart.VISUAL_ID;
 	}
+
 	@Override
 	public boolean isEnabled() {
 		GraphicalEditPart editPart = getSelectedGraphicalEditpart();
-		if((editPart instanceof InterfaceEditPart)||(editPart instanceof InterfaceEditPartPCN)) {
+		if ((editPart instanceof InterfaceEditPart) || (editPart instanceof InterfaceEditPartPCN)) {
 			return true;
 		}
 		return false;
 	}
+
 	@Override
 	protected AbstractTransactionalCommand getChangeShapeCommand(GraphicalEditPart editPart) {
 		LollipopToRectangleCommand command = new LollipopToRectangleCommand(editPart.getEditingDomain(), editPart, new SemanticAdapter(null, null));
 		return command;
 	}
-
 }

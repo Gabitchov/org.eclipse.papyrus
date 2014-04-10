@@ -141,9 +141,10 @@ import xpt.editor.VisualIDRegistry
 					In addition we check that visualID returned by VisualIDRegistry.getNodeVisualID() for
 					domainElement (if specified) is the same as in element type. */»
 				if(elementType instanceof org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType) {
-					org.eclipse.gmf.runtime.emf.type.core.IElementType closestNonExtendedType = org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils.getClosestDiagramType(elementType);
-					if(!«getElementTypesQualifiedClassName()».isKnownElementType(closestNonExtendedType) || (!(closestNonExtendedType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {
-						return false; // foreign element type.
+					if (domainElement != null) {
+						if (!«xptVisualIDRegistry.qualifiedClassName(it)».«checkNodeVisualIDMethodName(it)»(op.getContainerView(), domainElement, visualID)) {
+							return false;
+						}
 					}
 				} else {
 					if (!«getElementTypesQualifiedClassName()».isKnownElementType(elementType) || (!(elementType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {

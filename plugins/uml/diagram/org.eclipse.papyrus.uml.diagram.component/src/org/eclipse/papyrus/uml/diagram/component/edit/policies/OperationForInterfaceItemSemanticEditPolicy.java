@@ -1,16 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *		
- *		CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.component.edit.policies;
 
 import java.util.ArrayList;
@@ -30,7 +28,6 @@ import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
  * @generated
  */
 public class OperationForInterfaceItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
-
 	/**
 	 * @generated
 	 */
@@ -42,11 +39,11 @@ public class OperationForInterfaceItemSemanticEditPolicy extends UMLBaseItemSema
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		View view = (View)getHost().getModel();
+		View view = (View) getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if(annotation == null) {
+		EAnnotation annotation = view.getEAnnotation("Shortcut");//$NON-NLS-1$
+		if (annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element

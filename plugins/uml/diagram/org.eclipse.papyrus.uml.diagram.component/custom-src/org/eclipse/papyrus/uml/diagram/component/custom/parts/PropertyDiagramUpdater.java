@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.part.ICustomDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramUpdater;
+import org.eclipse.papyrus.uml.diagram.component.part.UMLNodeDescriptor;
 
 /**
  * <pre>
@@ -27,8 +28,7 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramUpdater;
  * structured classifier) in {@link UMLDiagramUpdater}.
  * </pre>
  */
-public class PropertyDiagramUpdater implements ICustomDiagramUpdater {
-
+public class PropertyDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDescriptor> {
 	/**
 	 * <pre>
 	 * The original generated method of {@link UMLDiagramUpdater} class is kept commented below.
@@ -46,10 +46,8 @@ public class PropertyDiagramUpdater implements ICustomDiagramUpdater {
 	 * {@inheritDoc}
 	 * </pre>
 	 */
-	public List<?> getSemanticChildren(View view) {
-
-		return Collections.EMPTY_LIST;
-
+	public List<UMLNodeDescriptor> getSemanticChildren(View view) {
+		return Collections.emptyList();
 		// if (!view.isSetElement()) {
 		// return Collections.EMPTY_LIST;
 		// }

@@ -21,6 +21,7 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -42,7 +43,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class TemplateSignatureEditPart extends ShapeNodeEditPart
+public class TemplateSignatureEditPart extends AbstractBorderItemEditPart
 {
 	/**
 	 * @generated

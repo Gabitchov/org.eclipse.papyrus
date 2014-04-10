@@ -49,7 +49,7 @@ import xpt.diagram.editparts.Utils_qvto
 //   GMF
 //---------
 	
-	override extendsListContents (GenNode it)'''
+	override dispatch extendsListContents (GenNode it)'''
 «««BEGIN: PapyrusGenCode
 «««Add own extension
 «IF it.eResource.allContents.filter(typeof(ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].size != 0»
@@ -58,11 +58,11 @@ import xpt.diagram.editparts.Utils_qvto
 «ENDFOR»
 «««END: BEGIN: PapyrusGenCode
 «ELSE»
-	«IF hasBorderItems(it)»org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart«ELSE»«IF it instanceof GenChildSideAffixedNode»org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart«ELSE»org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart«ENDIF»«ENDIF»
+	org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart
 «ENDIF»
 '''
 
-def extendsListContents (GenChildSideAffixedNode it)'''
+override dispatch extendsListContents (GenChildSideAffixedNode it)'''
 «««BEGIN: PapyrusGenCode
 «««Add own extension
 «IF it.eResource.allContents.filter(typeof(ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].size != 0»
