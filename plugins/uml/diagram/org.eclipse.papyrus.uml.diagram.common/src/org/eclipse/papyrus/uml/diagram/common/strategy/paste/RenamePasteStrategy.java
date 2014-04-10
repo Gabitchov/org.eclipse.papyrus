@@ -12,10 +12,12 @@
 package org.eclipse.papyrus.uml.diagram.common.strategy.paste;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
@@ -131,11 +133,10 @@ public class RenamePasteStrategy implements IPasteStrategy {
 	@Override
 	public org.eclipse.emf.common.command.Command getSemanticCommand(EditingDomain domain, EObject targetOwner, PapyrusClipboard<Object> papyrusClipboard) {
 		CompoundCommand compoundCommand = new CompoundCommand("Rename root paste elements"); //$NON-NLS-1$
-		for(Iterator<Object> iterator = papyrusClipboard.iterator(); iterator.hasNext();) {
-			Object object = (Object)iterator.next();
-			// get target Element
-			EObject target = papyrusClipboard.getTragetCopyFromInternalClipboardCopy(object);
-			if(target != null && target instanceof NamedElement) {
+		List<EObject> filterDescendants = EcoreUtil.filterDescendants(papyrusClipboard.getTarget());
+		for(Iterator<EObject> iterator = filterDescendants.iterator(); iterator.hasNext();) {
+			EObject target = (EObject)iterator.next();
+			if(target instanceof NamedElement) {
 				NamedElement namedElement = (NamedElement)target;
 				if(namedElement.getName() != null) {
 					String defaultCopyNameWithIncrement = NamedElementUtil.getDefaultCopyNameWithIncrement(namedElement, targetOwner.eContents());
@@ -162,11 +163,10 @@ public class RenamePasteStrategy implements IPasteStrategy {
 		org.eclipse.gef.commands.CompoundCommand compoundCommand = new org.eclipse.gef.commands.CompoundCommand("Stereotype Semantic And Graphical paste"); //$NON-NLS-1$
 		View view = (View)targetEditPart.getModel();
 		EObject modelTargetOwner = (EObject)view.getElement();
-		for(Iterator<Object> iterator = papyrusClipboard.iterator(); iterator.hasNext();) {
-			Object object = (Object)iterator.next();
-			// get target Element
-			EObject target = papyrusClipboard.getTragetCopyFromInternalClipboardCopy(object);
-			if(target != null && target instanceof NamedElement) {
+		List<EObject> filterDescendants = EcoreUtil.filterDescendants(papyrusClipboard.getTarget());
+		for(Iterator<EObject> iterator = filterDescendants.iterator(); iterator.hasNext();) {
+			EObject target = (EObject)iterator.next();
+			if(target instanceof NamedElement) {
 				NamedElement namedElement = (NamedElement)target;
 				if(namedElement.getName() != null) {
 					String defaultCopyNameWithIncrement = NamedElementUtil.getDefaultCopyNameWithIncrement(namedElement, modelTargetOwner.eContents());

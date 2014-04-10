@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="viewpoint.svg"
+   sodipodi:docname="PapyrusViewpoint.svg"
    inkscape:export-filename="C:\Users\LW238780\Desktop\cviewpoint.png"
    inkscape:export-xdpi="1.41"
    inkscape:export-ydpi="1.41">
@@ -102,19 +102,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="610.88814"
-     inkscape:cy="370.72485"
+     inkscape:zoom="0.64"
+     inkscape:cx="535.76668"
+     inkscape:cy="498.83542"
      inkscape:document-units="px"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="g3910"
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1370"
-     inkscape:window-height="894"
-     inkscape:window-x="385"
-     inkscape:window-y="114"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1600"
+     inkscape:window-height="1178"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -123,7 +123,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -141,20 +141,20 @@
          id="rect3797"
          d="m 333.91746,576.89245 331.1681,-11.03899 c 12.10305,20.96311 10.59675,36.84058 0,55.19468 l -331.1681,-11.03888 c -6.07195,-10.5169 -7.99455,-19.26985 0,-33.11681 z"
          inkscape:transform-center-x="-280"
-         style="fill:#3232ff;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+         style="fill:#9ed000;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
       <path
          transform="matrix(0.98227829,0,0,0.98227829,-230.56514,-74.217723)"
-         d="m 512.85715,679.71429 a 84.285713,84.285713 0 1 1 -168.57142,0 84.285713,84.285713 0 1 1 168.57142,0 z"
+         d="m 512.85715,679.71429 c 0,46.54972 -37.73599,84.28572 -84.28571,84.28572 -46.54971,0 -84.28571,-37.736 -84.28571,-84.28572 0,-46.54971 37.736,-84.28571 84.28571,-84.28571 46.54972,0 84.28571,37.736 84.28571,84.28571 z"
          sodipodi:ry="84.285713"
          sodipodi:rx="84.285713"
          sodipodi:cy="679.71429"
          sodipodi:cx="428.57144"
          id="path3027"
-         style="fill:#3232ff;fill-opacity:0.99607843;fill-rule:evenodd;stroke:#000000;stroke-width:10.1804142;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         style="fill:#009ab9;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10.18041420000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
          sodipodi:type="arc" />
       <path
          inkscape:transform-center-y="-143.60032"
-         style="fill:#3232ff;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         style="fill:#9ed000;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
          inkscape:transform-center-x="-243.7231"
          d="M 306.62797,508.16338 587.90846,333.01926 c 20.96312,12.10306 27.59734,26.60652 27.59734,47.8 L 323.18637,536.84337 c -10.51692,-6.07194 -16.5584,-12.69091 -16.5584,-28.67999 z"
          id="path3856"
@@ -162,7 +162,7 @@
          sodipodi:nodetypes="ccccc" />
       <path
          inkscape:transform-center-y="-243.72307"
-         style="fill:#3232ff;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         style="fill:#9ed000;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
          inkscape:transform-center-x="-143.60036"
          d="m 248.63004,462.28699 156.02398,-292.3195 c 24.20614,0 37.20327,9.24325 47.80001,27.59734 l -175.144,281.28057 c -12.14388,0 -20.68545,-2.71145 -28.67999,-16.55841 z"
          id="path3862"
@@ -170,7 +170,7 @@
          sodipodi:nodetypes="ccccc" />
       <path
          inkscape:transform-center-y="143.60036"
-         style="fill:#3232ff;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         style="fill:#9ed000;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
          inkscape:transform-center-x="-243.72307"
          d="m 323.18631,650.05833 292.31949,156.024 c 0,24.20612 -9.24324,37.20325 -27.59734,47.80001 l -281.28055,-175.144 c -2e-5,-12.14389 2.71144,-20.68545 16.5584,-28.68001 z"
          id="path3864"
@@ -178,7 +178,7 @@
          sodipodi:nodetypes="ccccc" />
       <path
          inkscape:transform-center-y="243.72308"
-         style="fill:#3232ff;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         style="fill:#9ed000;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
          inkscape:transform-center-x="-143.60031"
          d="m 277.30993,708.05626 175.1441,281.28046 c -12.10307,20.96318 -26.60651,27.59738 -47.80001,27.59738 L 248.62992,724.61466 c 6.07194,-10.5169 12.69091,-16.5584 28.68001,-16.5584 z"
          id="path3866"
@@ -189,7 +189,8 @@
   <g
      inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="Tool">
+     inkscape:label="Tool"
+     style="display:none">
     <path
        style="fill:url(#radialGradient3946);fill-opacity:1;stroke:#ff5000;stroke-width:14.92178059;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="m 748.65625,31.460876 0,141.195364 -141.19536,0 0,102.68751 141.19536,0 0,141.19536 102.68751,0 0,-141.19536 141.19535,0 0,-102.68751 -141.19535,0 0,-141.195364 -102.68751,0 z"

@@ -1,16 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.edit.policies;
 
 import org.eclipse.gef.commands.Command;
@@ -43,6 +43,7 @@ public class ProfilePackageableElementCompartmentItemSemanticEditPolicyCN extend
 		super(UMLElementTypes.Profile_1024);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -63,66 +64,80 @@ public class ProfilePackageableElementCompartmentItemSemanticEditPolicyCN extend
 				isExtendedType = true;
 			}
 		}
+
 		if(UMLElementTypes.Stereotype_1023 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new StereotypeCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.Model_1027 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ModelCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.Profile_1024 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ProfileCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.Package_1012 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new PackageCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.Constraint_1028 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ConstraintCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.Enumeration_3025 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new EnumerationCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.PrimitiveType_3026 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new PrimitiveTypeCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.DataType_3027 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new DataTypeCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.Comment_1007 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new CommentCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		if(UMLElementTypes.Class_3028 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new MetaclassCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
+
 		}
 		return super.getCreateCommand(req);
 	}
+
+
+
 }

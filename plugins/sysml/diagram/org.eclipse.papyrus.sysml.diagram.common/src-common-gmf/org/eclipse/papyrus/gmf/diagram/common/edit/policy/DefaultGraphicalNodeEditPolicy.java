@@ -14,15 +14,19 @@
 package org.eclipse.papyrus.gmf.diagram.common.edit.policy;
 
 import java.util.Collections;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionAnchorsCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionEndsCommand;
@@ -41,11 +45,12 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.commands.CreateViewCommand;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.gmfdiag.common.commands.FixEdgeAnchorAfterCreationDeferredCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.FixEdgeAnchorAfterCreationCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.FixEdgeAnchorsDeferredCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
+
 
 /**
  * Default graphical node edit policy replacement used to replace {@link CreateCommand} by {@link CreateViewCommand},
@@ -69,13 +74,36 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 		View targetView = (View)request.getTargetEditPart().getModel();
 		createElementRequest.setParameter(RequestParameterConstants.EDGE_CREATE_REQUEST_TARGET_VIEW, targetView);
+		createElementRequest.setParameter(RequestParameterConstants.EDGE_TARGET_POINT, request.getLocation());
 
-		return super.getConnectionAndRelationshipCompleteCommand(request);
+		//see bug 430702: [Diagram] Moving source of a link moves the target too, we need to store in the parameters : 
+		//- the source point
+		//- the target point
+		//- the source figure
+		//- the target figure
+		final EditPart sourceEP = request.getSourceEditPart();
+		if(sourceEP instanceof GraphicalEditPart) {
+			createElementRequest.setParameter(RequestParameterConstants.EDGE_SOURCE_FIGURE, ((GraphicalEditPart)sourceEP).getFigure());
+		}
+		final EditPart targetEP = request.getTargetEditPart();
+		if(targetEP instanceof GraphicalEditPart) {
+			createElementRequest.setParameter(RequestParameterConstants.EDGE_TARGET_FIGURE, ((GraphicalEditPart)targetEP).getFigure());
+		}
+
+		final TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		final CompoundCommand cc = new CompoundCommand("ConnectionAndRelationshipCompleteCommand");//$NON-NLS-1$
+		final ICommand fixAnchor = new FixEdgeAnchorAfterCreationCommand(editingDomain, request);
+
+
+		cc.add(super.getConnectionAndRelationshipCompleteCommand(request));
+		cc.add(new ICommandProxy(fixAnchor));
+		return cc;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("restriction")
 	@Override
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
 		if(!(request instanceof CreateConnectionViewRequest))
@@ -89,8 +117,12 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		CreateCommand createCommand = new CreateViewCommand(editingDomain, req.getConnectionViewDescriptor(), diagramView.getDiagram());
 		//
 		setViewAdapter((IAdaptable)createCommand.getCommandResult().getReturnValue());
-
-
+		
+		//see bug 430702: [Diagram] Moving source of a link moves the target too, we need to store the source point to fix this bug.
+		@SuppressWarnings("unchecked")
+		Map<Object,Object> parameters = req.getExtendedData();
+		parameters.put(RequestParameterConstants.EDGE_SOURCE_POINT, request.getLocation());
+		
 		SetConnectionEndsCommand sceCommand = new SetConnectionEndsCommand(editingDomain, StringStatics.BLANK);
 		sceCommand.setEdgeAdaptor(getViewAdapter());
 		sceCommand.setNewSourceAdaptor(new EObjectAdapter(getView()));
@@ -104,9 +136,6 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		cc.compose(sceCommand);
 		cc.compose(scaCommand);
 		cc.compose(sbbCommand);
-		
-		//	see bug 430702: [Diagram] Moving source of a link moves the target too.
-		cc.compose(new FixEdgeAnchorAfterCreationDeferredCommand(editingDomain, req, (IGraphicalEditPart)getHost()));
 		Command c = new ICommandProxy(cc);
 		request.setStartCommand(c);
 		return c;

@@ -1,20 +1,20 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
+/*
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * 
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.profile.providers;
 
-import org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Comment;
@@ -399,14 +399,14 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_Stereotype_1026(Stereotype self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Stereotype_1026(Stereotype it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private Boolean isAbstract_Class_1031(Class self) {
+	private Boolean isAbstract_Class_1031(Class it) {
 		//isAbstract = true
 		return true;
 	}
@@ -414,21 +414,21 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String body_Comment_1002(Comment self) {
-		return self.getBody();
+	private String body_Comment_1002(Comment it) {
+		return it.getBody();
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Constraint_1014(Constraint self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Constraint_1014(Constraint it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private ValueSpecification specification_Constraint_1014(Constraint self) {
+	private ValueSpecification specification_Constraint_1014(Constraint it) {
 		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
 		literalString.setValue("");
 		return literalString;
@@ -437,98 +437,98 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_Model_2005(Model self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Model_2005(Model it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Profile_1030(Profile self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Profile_1030(Profile it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Package_2007(Package self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Package_2007(Package it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Enumeration_2006(Enumeration self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Enumeration_2006(Enumeration it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_PrimitiveType_2009(PrimitiveType self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_PrimitiveType_2009(PrimitiveType it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_DataType_2010(DataType self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_DataType_2010(DataType it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_PrimitiveType_3026(PrimitiveType self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_PrimitiveType_3026(PrimitiveType it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Operation_3019(Operation self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Operation_3019(Operation it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_EnumerationLiteral_1037(EnumerationLiteral self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_EnumerationLiteral_1037(EnumerationLiteral it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Property_3018(Property self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Property_3018(Property it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Property_3002(Property self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Property_3002(Property it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Operation_3020(Operation self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Operation_3020(Operation it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Stereotype_1023(Stereotype self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Stereotype_1023(Stereotype it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private Boolean isAbstract_Class_3028(Class self) {
+	private Boolean isAbstract_Class_3028(Class it) {
 		//isAbstract = true
 		return true;
 	}
@@ -536,42 +536,42 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String body_Comment_1007(Comment self) {
-		return self.getBody();
+	private String body_Comment_1007(Comment it) {
+		return it.getBody();
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Model_1027(Model self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Model_1027(Model it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Profile_1024(Profile self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Profile_1024(Profile it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Package_1012(Package self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Package_1012(Package it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Constraint_1028(Constraint self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Constraint_1028(Constraint it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private ValueSpecification specification_Constraint_1028(Constraint self) {
+	private ValueSpecification specification_Constraint_1028(Constraint it) {
 		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
 		literalString.setValue("");
 		return literalString;
@@ -580,44 +580,44 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_Enumeration_3025(Enumeration self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Enumeration_3025(Enumeration it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_DataType_3027(DataType self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_DataType_3027(DataType it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Association_4001(Association self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Association_4001(Association it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Dependency_4008(Dependency self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Dependency_4008(Dependency it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Dependency_4018(Dependency self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	private String name_Dependency_4018(Dependency it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String alias_ElementImport_1064(ElementImport self) {
-		if(self.getImportedElement() != null) {
-			return (self.getImportedElement().getLabel());
+	private String alias_ElementImport_1064(ElementImport it) {
+		if(it.getImportedElement() != null) {
+			return (it.getImportedElement().getLabel());
 		}
 		return "elementimport";
 	}

@@ -17,6 +17,7 @@ package org.eclipse.papyrus.infra.gmfdiag.menu.handlers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -35,6 +36,11 @@ import org.eclipse.papyrus.infra.gmfdiag.common.strategy.IStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.PasteStrategyManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
 /**
  * Handler for the Copy Action in Diagram
@@ -82,11 +88,43 @@ public class CopyInDiagramHandler extends AbstractGraphicalCommandHandler {
 
 		return result;
 	}
-	
+
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.papyrus.infra.gmfdiag.menu.handlers.AbstractGraphicalCommandHandler#setEnabled(java.lang.Object)
+	 */
+	@Override
+	public void setEnabled(Object evaluationContext) {
+		if(evaluationContext instanceof IEvaluationContext) {
+			IEvaluationContext iEvaluationContext = (IEvaluationContext)evaluationContext;
+			Object activeFocusControl = iEvaluationContext.getVariable("activeFocusControl"); //$NON-NLS-1$
+			Object activeShell = iEvaluationContext.getVariable("activeShell"); //$NON-NLS-1$
+			Control focusControl = null;
+			if(activeShell instanceof Shell) {
+				Shell shell = (Shell)activeShell;
+				Display display = shell.getDisplay();
+				if(display != null) {
+					focusControl = display.getFocusControl();
+				}
+			}
+			if(activeFocusControl instanceof StyledText || focusControl instanceof Text) { // true if the focus is on an internal xtext editor or a text edit
+				setBaseEnabled(false);
+			} else {
+				super.setEnabled(evaluationContext);
+			}
+		}
+	}
+
+
+
+
 	//
 	// Nested classes
 	//
-	
+
 	@SuppressWarnings("restriction")
 	private static class MyCopyImageCommand extends org.eclipse.gmf.runtime.diagram.ui.render.internal.commands.CopyImageCommand implements INonDirtying {
 
