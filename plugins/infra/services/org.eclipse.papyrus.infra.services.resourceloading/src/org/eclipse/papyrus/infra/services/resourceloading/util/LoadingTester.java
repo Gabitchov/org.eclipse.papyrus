@@ -25,15 +25,20 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 
 /**
- * This class provides test to perform on resources to know their loading status.
+ * This class provides test to perform on resources to know their loading
+ * status.
  */
 public class LoadingTester extends PropertyTester {
 
-	/** property to test if the selected elements are in loaded resources (at least one other than the opened one) */
+	/**
+	 * property to test if the selected elements are in loaded resources (at
+	 * least one other than the opened one)
+	 */
 	public static final String IS_ALL_LOADED = "isAllLoaded"; //$NON-NLS-1$
 
 	/** property to test if the selected elements are in not loaded resources */
@@ -67,7 +72,8 @@ public class LoadingTester extends PropertyTester {
 	 * 
 	 * @param selection
 	 *        selected elements
-	 * @return <code>true</code> if all selected elements are in loaded resources ; <code>false</code otherwise or if empty selection
+	 * @return <code>true</code> if all selected elements are in loaded
+	 *         resources ; <code>false</code otherwise or if empty selection
 	 */
 	private boolean isInLoadedResource(IStructuredSelection selection) {
 		if(!selection.isEmpty()) {
@@ -76,37 +82,31 @@ public class LoadingTester extends PropertyTester {
 			Iterator<?> iter = selection.iterator();
 			while(iter.hasNext()) {
 				Object obj = iter.next();
-				if(obj instanceof IAdaptable) {
-					View view = (View)((IAdaptable)obj).getAdapter(View.class);
-					EObject eObject;
-					if(view != null) {
-						eObject = view.getElement();
-					} else {
-						eObject = (EObject)((IAdaptable)obj).getAdapter(EObject.class);
-					}
-					if(eObject != null && !eObject.eIsProxy()) {
-						// test that there is at least one not loaded resource object
-						if(!atLeastOneInSubmodel) {
-							Resource containingResource = eObject.eResource();
-							if(mainURI == null && containingResource != null && containingResource.getResourceSet() instanceof ModelSet) {
+				EObject eObject = EMFHelper.getEObject(obj);
+				if(eObject != null && !eObject.eIsProxy()) {
+					// test that there is at least one not loaded resource
+					// object
+					if(!atLeastOneInSubmodel) {
+						Resource containingResource = eObject.eResource();
+						if(mainURI == null && containingResource != null && containingResource.getResourceSet() instanceof ModelSet) {
 
-								//Bug 366709: Add tests to avoid NPEs
-								NotationModel notationModel = NotationUtils.getNotationModel((ModelSet)containingResource.getResourceSet());
-								if(notationModel != null) {
-									URI notationModelURI = notationModel.getResourceURI();
-									if(notationModelURI != null) {
-										mainURI = notationModelURI.trimFileExtension();
-									}
+							// Bug 366709: Add tests to avoid NPEs
+							NotationModel notationModel = NotationUtils.getNotationModel((ModelSet)containingResource.getResourceSet());
+							if(notationModel != null) {
+								URI notationModelURI = notationModel.getResourceURI();
+								if(notationModelURI != null) {
+									mainURI = notationModelURI.trimFileExtension();
 								}
 							}
-							if(mainURI != null) {
-								URI uriTrim = containingResource.getURI().trimFileExtension();
-								atLeastOneInSubmodel = !uriTrim.equals(mainURI);
-							}
 						}
-						continue;
+						if(mainURI != null) {
+							URI uriTrim = containingResource.getURI().trimFileExtension();
+							atLeastOneInSubmodel = !uriTrim.equals(mainURI);
+						}
 					}
+					continue;
 				}
+
 				// a step failed
 				return false;
 			}
@@ -120,24 +120,21 @@ public class LoadingTester extends PropertyTester {
 	 * 
 	 * @param selection
 	 *        selected elements
-	 * @return <code>true</code> if all selected elements are in not loaded resources ; <code>false</code otherwise or if empty selection
+	 * @return <code>true</code> if all selected elements are in not loaded
+	 *         resources ; <code>false</code otherwise or if empty selection
 	 */
 	private boolean isInNotLoadedResource(IStructuredSelection selection) {
 		if(!selection.isEmpty()) {
 			Iterator<?> iter = selection.iterator();
 			while(iter.hasNext()) {
 				Object obj = iter.next();
-				if(obj instanceof IAdaptable) {
+				EObject eObject = EMFHelper.getEObject(obj);
+				if(eObject != null && eObject.eIsProxy()) {
+					continue;
+				} else if(obj instanceof IAdaptable) {
 					View view = (View)((IAdaptable)obj).getAdapter(View.class);
-					EObject eObject;
-					if(view != null) {
-						eObject = view.getElement();
-					} else {
-						eObject = (EObject)((IAdaptable)obj).getAdapter(EObject.class);
-					}
-					if(eObject != null && eObject.eIsProxy()) {
-						continue;
-					} else if(view instanceof Edge) {
+
+					if(view instanceof Edge) {
 						View target = ((Edge)view).getTarget();
 						if(target != null && ViewUtil.resolveSemanticElement(target) == null) {
 							// there is a backslash decorator
