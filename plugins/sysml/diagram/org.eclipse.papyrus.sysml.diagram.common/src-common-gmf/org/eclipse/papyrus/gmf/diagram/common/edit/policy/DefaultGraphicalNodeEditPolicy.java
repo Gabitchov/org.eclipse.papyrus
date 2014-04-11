@@ -91,13 +91,15 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		}
 
 		final TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		final CompoundCommand cc = new CompoundCommand("ConnectionAndRelationshipCompleteCommand");//$NON-NLS-1$
-		final ICommand fixAnchor = new FixEdgeAnchorAfterCreationCommand(editingDomain, request);
-
-
-		cc.add(super.getConnectionAndRelationshipCompleteCommand(request));
-		cc.add(new ICommandProxy(fixAnchor));
-		return cc;
+		final Command defaultCommand = super.getConnectionAndRelationshipCompleteCommand(request);
+		if(defaultCommand != null && defaultCommand.canExecute()) {
+			final CompoundCommand cc = new CompoundCommand("ConnectionAndRelationshipCompleteCommand");//$NON-NLS-1$
+			cc.add(defaultCommand);
+			final ICommand fixAnchor = new FixEdgeAnchorAfterCreationCommand(editingDomain, request);
+			cc.add(new ICommandProxy(fixAnchor));
+			return cc;
+		}
+		return defaultCommand;
 	}
 
 	/**
