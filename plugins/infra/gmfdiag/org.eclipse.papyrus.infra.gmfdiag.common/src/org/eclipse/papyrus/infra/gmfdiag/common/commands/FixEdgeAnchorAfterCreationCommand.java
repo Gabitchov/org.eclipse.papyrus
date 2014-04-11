@@ -93,7 +93,7 @@ public class FixEdgeAnchorAfterCreationCommand extends AbstractTransactionalComm
 		final IFigure targetFigure = (IFigure)requestParameters.get(RequestParameterConstants.EDGE_TARGET_FIGURE);
 		final Point sourcePoint = (Point)requestParameters.get(RequestParameterConstants.EDGE_SOURCE_POINT);
 		final Point targetPoint = (Point)requestParameters.get(RequestParameterConstants.EDGE_TARGET_POINT);
-		if(createdEdge != null && sourceFigure instanceof IAnchorableFigure && targetFigure instanceof IAnchorableFigure) {
+		if(createdEdge != null && sourceFigure instanceof IAnchorableFigure && targetFigure instanceof IAnchorableFigure && sourcePoint!=null && targetPoint!=null) {
 			final String sourceTerminal;
 			final String targetTerminal;
 			if(sourceFigure == targetFigure) {
@@ -131,7 +131,7 @@ public class FixEdgeAnchorAfterCreationCommand extends AbstractTransactionalComm
 
 			return CommandResult.newOKCommandResult();
 		}
-		return CommandResult.newErrorCommandResult("Some required element can't be found to fix the anchors of the created edge");//$NON-NLS-1$
+		return CommandResult.newOKCommandResult();
 	}
 
 	/**
