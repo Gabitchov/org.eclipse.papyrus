@@ -4,22 +4,22 @@
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
   <packageImport xmi:type="uml:PackageImport" xmi:id="_oe_9gPQ1EeK9gKrxk10euQ">
-    <importedPackage xmi:type="uml:Model" href="library.uml#_gvvLwPQ1EeK9gKrxk10euQ"/>
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_TEST_LIBRARIES/registered-library.uml#_gvvLwPQ1EeK9gKrxk10euQ"/>
   </packageImport>
   <packagedElement xmi:type="uml:Class" xmi:id="_aa6-wPQ1EeK9gKrxk10euQ" name="Class1">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_cPQqMPQ1EeK9gKrxk10euQ" name="Attribute1">
-      <type xmi:type="uml:Interface" href="library.uml#_iVyjkPQ1EeK9gKrxk10euQ"/>
+      <type xmi:type="uml:Interface" href="pathmap://UML_TEST_LIBRARIES/registered-library.uml#_iVyjkPQ1EeK9gKrxk10euQ"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_cuXBAPQ1EeK9gKrxk10euQ" name="Attribute2">
-      <type xmi:type="uml:Class" href="library.uml#_iwbRIPQ1EeK9gKrxk10euQ"/>
+      <type xmi:type="uml:Class" href="pathmap://UML_TEST_LIBRARIES/registered-library.uml#_iwbRIPQ1EeK9gKrxk10euQ"/>
     </ownedAttribute>
     <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_yJcpkPQ1EeK9gKrxk10euQ" name="InterfaceRealization1" client="_aa6-wPQ1EeK9gKrxk10euQ">
-      <supplier xmi:type="uml:Interface" href="library.uml#_iLO5YPQ1EeK9gKrxk10euQ"/>
+      <supplier xmi:type="uml:Interface" href="pathmap://UML_TEST_LIBRARIES/registered-library.uml#_iLO5YPQ1EeK9gKrxk10euQ"/>
     </interfaceRealization>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_anHnsPQ1EeK9gKrxk10euQ" name="Class2">
-    <generalization xmi:type="uml:Generalization" xmi:id="_z6w0cMDAEeOe24DdsiPxGg">
-      <general xmi:type="uml:Class" href="library.uml#_iwbRIPQ1EeK9gKrxk10euQ"/>
+    <generalization xmi:type="uml:Generalization" xmi:id="_bhtwgMDBEeOzc9ROZxsqOw">
+      <general xmi:type="uml:Class" href="pathmap://UML_TEST_LIBRARIES/registered-library.uml#_iwbRIPQ1EeK9gKrxk10euQ"/>
     </generalization>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_ar4y8PQ1EeK9gKrxk10euQ" name="Class3">
@@ -32,7 +32,7 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bVGIAvQ1EeK9gKrxk10euQ" value="1"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_lsOMgPQ4EeK9gKrxk10euQ" name="interface2" association="_lsOMg_Q4EeK9gKrxk10euQ">
-      <type xmi:type="uml:Interface" href="library.uml#_iQ41cPQ1EeK9gKrxk10euQ"/>
+      <type xmi:type="uml:Interface" href="pathmap://UML_TEST_LIBRARIES/registered-library.uml#_iQ41cPQ1EeK9gKrxk10euQ"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lsOMgfQ4EeK9gKrxk10euQ" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lsOMgvQ4EeK9gKrxk10euQ" value="1"/>
     </ownedAttribute>
