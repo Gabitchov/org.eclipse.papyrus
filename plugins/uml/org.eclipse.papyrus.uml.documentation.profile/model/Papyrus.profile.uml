@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_XkGiwB07Ed-QQ4mYkrb7Gg" name="Papyrus">
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_XkGiwB07Ed-QQ4mYkrb7Gg" name="Papyrus">
   <packageImport xmi:id="_b3qnYCWuEd62NaW46C6lHg">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
   <packageImport xmi:id="_YlKXIB07Ed-QQ4mYkrb7Gg">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
   </packageImport>
-  <packagedElement xmi:type="uml:Profile" xmi:id="_H9068AEYEeCIz8iAxBJnfA" name="Documentation">
+  <packagedElement xmi:type="uml:Profile" xmi:id="_H9068AEYEeCIz8iAxBJnfA" name="Documentation" URI="http://www.eclipse.org/papyrus/documentation">
     <eAnnotations xmi:id="_vaU6gQEYEeCIz8iAxBJnfA" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <contents xmi:type="ecore:EPackage" xmi:id="_vaU6ggEYEeCIz8iAxBJnfA" name="Documentation" nsURI="http://Papyrus/schemas/Documentation/_vaU6gAEYEeCIz8iAxBJnfA/0" nsPrefix="Documentation">
         <eClassifiers xmi:type="ecore:EClass" xmi:id="_vaU6gwEYEeCIz8iAxBJnfA" name="Documentation">
@@ -29,8 +29,8 @@
       </ownedAttribute>
       <ownedAttribute xmi:id="_XhxJ8AEYEeCIz8iAxBJnfA" name="associatedResource">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hF6ZsAEYEeCIz8iAxBJnfA" value="*"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gkFfAAEYEeCIz8iAxBJnfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hF6ZsAEYEeCIz8iAxBJnfA" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_WuqSAAEYEeCIz8iAxBJnfA" name="Comment_Documentation" memberEnd="_WuqSAQEYEeCIz8iAxBJnfA _WuqSAgEYEeCIz8iAxBJnfA">

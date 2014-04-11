@@ -1,12 +1,20 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.uml2.uml
-Export-Package: org.eclipse.papyrus.uml.documentation.profile
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.uml2.types;visibility:=reexport,
+ org.eclipse.uml2.uml
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.uml.documentation.profile,
+ org.eclipse.papyrus.uml.documentation.Documentation,
+ org.eclipse.papyrus.uml.documentation.Documentation.impl,
+ org.eclipse.papyrus.uml.documentation.Documentation.util
 Bundle-Vendor: %providerName
 Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.documentation.profile;sin
- gleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-SymbolicName: org.eclipse.papyrus.uml.documentation.profile;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 
