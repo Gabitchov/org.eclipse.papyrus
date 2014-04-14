@@ -41,13 +41,12 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
-import org.eclipse.papyrus.uml.diagram.common.util.Util;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.ExtensionCustomNameEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ExtensionEditPart;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.AggregationKind;
@@ -91,22 +90,53 @@ public class ExtensionHelper extends ElementHelper {
 	 */
 	static public Command getDestroyExtensionCommand(Class metaclass) {
 		CompoundCommand cc = new CompoundCommand("Destroy Extension"); //$NON-NLS-1$
-
-
 		/* get all the profile and sub-profile for the diagram */
-		IMultiDiagramEditor editor = (IMultiDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		IMultiDiagramEditor editor = (IMultiDiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		ServicesRegistry registry = editor.getServicesRegistry();
-
 		Profile rootProfile = null;
 		try {
 			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(registry);
-
-
-
-			if(modelSet != null) {
+			if (modelSet != null) {
 				IModel umlModel = modelSet.getModel(UmlModel.MODEL_ID);
-				if(umlModel != null) {
-					rootProfile = (Profile)((UmlModel)umlModel).lookupRoot();
+				if (umlModel != null) {
+					rootProfile = (Profile) ((UmlModel) umlModel).lookupRoot();
+					List<?> profileList = org.eclipse.papyrus.uml.tools.utils.ElementUtil.getInstancesFilteredByType(rootProfile, rootProfile.getClass(), null);
+					/*
+					 * get all the extension of the metaclass
+					 * /!\ some of them comes from the UML MetaModel
+					 */
+					EList<Extension> extensionList = metaclass.getExtensions();
+					/*
+					 * get the extensions to destroy
+					 * 
+					 * All the user's extension are owned by the rootProfile or a sub-profile
+					 */
+					ArrayList<Extension> extensionsToDestroy = new ArrayList<Extension>();
+					for (Extension extension : extensionList) {
+						EObject containerExt = extension.eContainer();
+						// test if it's a user extension or a metamodel extension
+						if (profileList.contains(containerExt) || containerExt == rootProfile) {
+							extensionsToDestroy.add(extension);
+						}
+					}
+					/*
+					 * Destroy the property in the stereotypes
+					 */
+					for (int iterExt = 0; iterExt < extensionsToDestroy.size(); iterExt++) {
+						cc.add(StereotypeHelper.getRemovePropertyCommand(extensionsToDestroy.get(iterExt)));
+					}
+					/*
+					 * Destroy the extensions
+					 */
+					for (Extension extension : extensionsToDestroy) {
+						DestroyElementRequest destroyElementRequest = new DestroyElementRequest(extension, false);
+						DestroyElementCommand destroyElementCommand = new DestroyElementCommand(destroyElementRequest);
+						cc.add(new ICommandProxy(destroyElementCommand));
+					}
+					if (cc.isEmpty()) {
+						// this command does nothing!
+						cc.add(new EMFtoGEFCommandWrapper(new IdentityCommand()));
+					}
 				}
 			}
 		} catch (NotFoundException ex) {
@@ -115,51 +145,6 @@ public class ExtensionHelper extends ElementHelper {
 		} catch (ServiceException ex) {
 			Activator.log.error(ex);
 			return UnexecutableCommand.INSTANCE;
-		}
-
-		List<?> profileList = Util.getInstancesFilteredByType(rootProfile, rootProfile.getClass(), null);
-
-		/*
-		 * get all the extension of the metaclass
-		 * /!\ some of them comes from the UML MetaModel
-		 */
-		EList<Extension> extensionList = metaclass.getExtensions();
-
-
-		/*
-		 * get the extensions to destroy
-		 * 
-		 * All the user's extension are owned by the rootProfile or a sub-profile
-		 */
-
-		ArrayList<Extension> extensionsToDestroy = new ArrayList<Extension>();
-		for(Extension extension : extensionList) {
-			EObject containerExt = extension.eContainer();
-			//test if it's a user extension or a metamodel extension
-			if(profileList.contains(containerExt) || containerExt == rootProfile) {
-				extensionsToDestroy.add(extension);
-			}
-
-		}
-
-		/*
-		 * Destroy the property in the stereotypes
-		 */
-		for(int iterExt = 0; iterExt < extensionsToDestroy.size(); iterExt++) {
-			cc.add(StereotypeHelper.getRemovePropertyCommand(extensionsToDestroy.get(iterExt)));
-		}
-		/*
-		 * Destroy the extensions
-		 */
-		for(Extension extension : extensionsToDestroy) {
-			DestroyElementRequest destroyElementRequest = new DestroyElementRequest(extension, false);
-			DestroyElementCommand destroyElementCommand = new DestroyElementCommand(destroyElementRequest);
-			cc.add(new ICommandProxy(destroyElementCommand));
-
-		}
-		if(cc.isEmpty()) {
-			//this command does nothing!
-			cc.add(new EMFtoGEFCommandWrapper(new IdentityCommand()));
 		}
 		return cc;
 
@@ -177,81 +162,67 @@ public class ExtensionHelper extends ElementHelper {
 		String deducedName = deduceExtensionNameFromProperties(link);
 		String oldName = link.getName();
 		EditPolicy policy = null;
-
-		//find the ExtensionEditPart
+		// find the ExtensionEditPart
 		List<?> view = DiagramEditPartsUtil.getEObjectViews(link);
-		if(!view.isEmpty()) {
+		if (!view.isEmpty()) {
 			IEditorPart editor = MDTUtil.getActiveEditor();
-			DiagramEditPart diagram = (DiagramEditPart)((IMultiDiagramEditor)editor).getAdapter(DiagramEditPart.class);
-			EditPart extensionEP = DiagramEditPartsUtil.getEditPartFromView((View)view.get(0), diagram);
-			if(extensionEP instanceof ExtensionEditPart) {
+			DiagramEditPart diagram = (DiagramEditPart) ((IMultiDiagramEditor) editor).getAdapter(DiagramEditPart.class);
+			EditPart extensionEP = DiagramEditPartsUtil.getEditPartFromView((View) view.get(0), diagram);
+			if (extensionEP instanceof ExtensionEditPart) {
 				policy = extensionEP.getEditPolicy(ExtensionCustomNameEditPolicy.SPECIFIC_EXTENSION_NAME_POLICY);
 			}
-
-			//we change the stereotype to listen!
-			if(policy != null) {
+			// we change the stereotype to listen!
+			if (policy != null) {
 				policy.deactivate();
 			}
 		}
-
-
 		Type sourceType = link.getEndTypes().get(source);
 		Type targetType = link.getEndTypes().get(target);
-
-
-		//unactive the editpolicy for this old stereotype
-
-		//remove the corresponding property in the old stereotype
-		if(sourceType instanceof Stereotype) {
-			EList<Property> attributes = ((Stereotype)sourceType).getOwnedAttributes();
-			for(Property property : attributes) {
-				if(property.getAssociation() == link) {
-					//remove the property from the stereotype
-					((Stereotype)sourceType).getOwnedAttributes().remove(property);
-					//remove the property from the extension
+		// unactive the editpolicy for this old stereotype
+		// remove the corresponding property in the old stereotype
+		if (sourceType instanceof Stereotype) {
+			EList<Property> attributes = ((Stereotype) sourceType).getOwnedAttributes();
+			for (Property property : attributes) {
+				if (property.getAssociation() == link) {
+					// remove the property from the stereotype
+					((Stereotype) sourceType).getOwnedAttributes().remove(property);
+					// remove the property from the extension
 					link.getMemberEnds().remove(property);
 					break;
 				}
 			}
 		}
-
-		//change the ExtensionEnd name
+		// change the ExtensionEnd name
 		EList<Property> ends = link.getOwnedEnds();
-		for(Property endSource : ends) {
-			if(endSource instanceof ExtensionEnd) {
+		for (Property endSource : ends) {
+			if (endSource instanceof ExtensionEnd) {
 				endSource.setName(ExtensionHelper.EXTENSION.replaceFirst("E", "e") + newSource.getName()); //$NON-NLS-1$ //$NON-NLS-2$
 				endSource.setType(newSource);
 				break;
 			}
 		}
-
-
-		//create the new source property (stereotype)
+		// create the new source property (stereotype)
 		Property property = UMLFactory.eINSTANCE.createProperty();
 		property.setName(ExtensionHelper.BASE + targetType.getName());
 		property.setType(targetType);
 		property.setAssociation(link);
 		property.setAggregation(AggregationKind.NONE_LITERAL);
-
 		link.getMemberEnds().add(property);
 		newSource.getOwnedAttributes().add(property);
-
-		//change the extension name, if the user doesn't have rename the extension!
-		if(oldName.contains(deducedName)) {
-			if(oldName.indexOf(deducedName) == 0) {
+		// change the extension name, if the user doesn't have rename the extension!
+		if (oldName.contains(deducedName)) {
+			if (oldName.indexOf(deducedName) == 0) {
 				oldName = oldName.substring(deducedName.length());
 				try {
-					Integer test = Integer.parseInt(oldName);
-					//if there is not exception, the name has not been edited by the user
-					link.setName(getExtensionName((Element)link.eContainer(), newSource, (Class)targetType));
+					// if there is not exception, the name has not been edited by the user
+					link.setName(getExtensionName((Element) link.eContainer(), newSource, (Class) targetType));
 				} catch (NumberFormatException e) {
-					//do nothing
+					// do nothing
 				}
-
 			}
 		}
-		//the stereotype as change, now the edit policy is going to listen to this new stereotype
-		if(policy != null) {
+		// the stereotype as change, now the edit policy is going to listen to this new stereotype
+		if (policy != null) {
 			policy.activate();
 		}
 		return CommandResult.newOKCommandResult(link);
@@ -273,36 +244,29 @@ public class ExtensionHelper extends ElementHelper {
 		String deducedName = deduceExtensionNameFromProperties(link);
 		String oldName = link.getName();
 		Type sourceType = link.getEndTypes().get(source);
-
-		//change the name and the type of the property
-		if(sourceType instanceof Stereotype) {
-			EList<Property> attributes = ((Stereotype)sourceType).getOwnedAttributes();
-			for(Property property : attributes) {
-				if(property.getAssociation() == link) {
+		// change the name and the type of the property
+		if (sourceType instanceof Stereotype) {
+			EList<Property> attributes = ((Stereotype) sourceType).getOwnedAttributes();
+			for (Property property : attributes) {
+				if (property.getAssociation() == link) {
 					property.setType(newTarget);
 					property.setName(ExtensionHelper.BASE + newTarget.getName());
 					break;
 				}
 			}
-
-			//change the extension name, if the user doesn't have rename the extension!
-			if(oldName.contains(deducedName)) {
-				if(oldName.indexOf(deducedName) == 0) {
+			// change the extension name, if the user doesn't have rename the extension!
+			if (oldName.contains(deducedName)) {
+				if (oldName.indexOf(deducedName) == 0) {
 					oldName = oldName.substring(deducedName.length());
 					try {
-						Integer test = Integer.parseInt(oldName);
-						//if there is not exception, the name didn't edited by the user
-						link.setName(getExtensionName((Element)link.eContainer(), (Stereotype)sourceType, newTarget));
+						// if there is not exception, the name didn't edited by the user
+						link.setName(getExtensionName((Element) link.eContainer(), (Stereotype) sourceType, newTarget));
 					} catch (NumberFormatException e) {
-						//do nothing
+						// do nothing
 					}
-
 				}
 			}
 		}
-
-
-
 		return CommandResult.newOKCommandResult(link);
 	}
 
@@ -321,8 +285,7 @@ public class ExtensionHelper extends ElementHelper {
 	public static String getExtensionName(Element extensionParent, Stereotype source, Class target) {
 		String name = "E_"; //$NON-NLS-1$
 		name += source.getName() + "_" + target.getName(); //$NON-NLS-1$
-		NamedElementHelper helper = new NamedElementHelper();
-		name = helper.getNewUMLElementName(extensionParent, name);//to add a number after the name!
+		name = NamedElementUtil.getDefaultNameWithIncrementFromBase(name, extensionParent.eContents());// to add a number after the name!
 		return name;
 
 	}

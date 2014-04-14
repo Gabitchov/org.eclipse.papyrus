@@ -57,7 +57,6 @@ public class DependencyBranchItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		super(UMLElementTypes.Dependency_4018);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -71,7 +70,6 @@ public class DependencyBranchItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		return getGEFWrapper(cmd.reduce());
 		//return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 	}
-
 
 	/**
 	 * @generated
@@ -211,5 +209,4 @@ public class DependencyBranchItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

@@ -66,7 +66,6 @@ public class StereotypeOperationCompartmentEditPart extends ResizeableListCompar
 		return Messages.StereotypeOperationCompartmentEditPart_title;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -81,9 +80,6 @@ public class StereotypeOperationCompartmentEditPart extends ResizeableListCompar
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ProfileDiagramDragDropEditPolicy());
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -97,7 +93,6 @@ public class StereotypeOperationCompartmentEditPart extends ResizeableListCompar
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
-
 		return super.getTargetEditPart(request);
 	}
 

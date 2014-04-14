@@ -122,7 +122,6 @@ public class StereotypeNameEditPart extends PapyrusCompartmentEditPart implement
 	 */
 	protected IDirectEditorConfiguration configuration;
 
-
 	/**
 	 * @generated
 	 */
@@ -139,7 +138,6 @@ public class StereotypeNameEditPart extends PapyrusCompartmentEditPart implement
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new DefaultNodeLabelDragPolicy());
 	}
-
 
 	/**
 	 * @generated
@@ -308,7 +306,6 @@ public class StereotypeNameEditPart extends PapyrusCompartmentEditPart implement
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -395,9 +392,7 @@ public class StereotypeNameEditPart extends PapyrusCompartmentEditPart implement
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -430,7 +425,6 @@ public class StereotypeNameEditPart extends PapyrusCompartmentEditPart implement
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -438,7 +432,6 @@ public class StereotypeNameEditPart extends PapyrusCompartmentEditPart implement
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -617,7 +610,6 @@ public class StereotypeNameEditPart extends PapyrusCompartmentEditPart implement
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -702,7 +694,6 @@ public class StereotypeNameEditPart extends PapyrusCompartmentEditPart implement
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -718,7 +709,6 @@ public class StereotypeNameEditPart extends PapyrusCompartmentEditPart implement
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -761,12 +751,10 @@ public class StereotypeNameEditPart extends PapyrusCompartmentEditPart implement
 		return null;
 	}
 
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -781,7 +769,6 @@ public class StereotypeNameEditPart extends PapyrusCompartmentEditPart implement
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -790,16 +777,12 @@ public class StereotypeNameEditPart extends PapyrusCompartmentEditPart implement
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
-
 
 	/**
 	 * @generated
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

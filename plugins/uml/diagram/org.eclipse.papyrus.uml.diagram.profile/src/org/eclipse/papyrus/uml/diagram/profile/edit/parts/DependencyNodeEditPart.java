@@ -40,7 +40,10 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.DependencyNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.edit.policies.DependencyNodeItemSemanticEditPolicy;
@@ -51,7 +54,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class DependencyNodeEditPart extends AbstractBorderedShapeEditPart {
+public class DependencyNodeEditPart extends NodeEditPart {
 
 	/**
 	 * @generated
@@ -124,24 +127,20 @@ public class DependencyNodeEditPart extends AbstractBorderedShapeEditPart {
 		return lep;
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new DependencyNodeDescriptor();
+		return primaryShape = new DependencyNodeFigure();
 	}
 
 	/**
 	 * DependencyNodeDescriptor
 	 * @generated
 	 */
-	public DependencyNodeDescriptor getPrimaryShape() {
-		return (DependencyNodeDescriptor)primaryShape;
+	public DependencyNodeFigure getPrimaryShape() {
+		return (DependencyNodeFigure)primaryShape;
 	}
-
 
 	/**
 	 * @generated
@@ -160,15 +159,9 @@ public class DependencyNodeEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "Dependency";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(10, 10);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -179,12 +172,7 @@ public class DependencyNodeEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createMainFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape);
-		contentPane = setupContentPane(shape);
-		return figure;
+		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 	}
 
 	/**
@@ -216,14 +204,11 @@ public class DependencyNodeEditPart extends AbstractBorderedShapeEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof NodeFigure) {
-			((NodeFigure)primaryShape).setLineWidth(width);
-		}
+		super.setLineWidth(width);
 	}
 
 	/**
@@ -241,54 +226,4 @@ public class DependencyNodeEditPart extends AbstractBorderedShapeEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(MultiDependencyLabelEditPart.VISUAL_ID));
 	}
-
-
-
-
-
-	/**
-	 * @generated
-	 */
-	public class DependencyNodeDescriptor extends Ellipse {
-
-
-
-
-		/**
-		 * @generated
-		 */
-		public DependencyNodeDescriptor() {
-			this.setForegroundColor(ColorConstants.black);
-			this.setBackgroundColor(ColorConstants.black);
-			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10)));
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10)));
-		}
-
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-
-
-
-
-	}
-
-
 }
