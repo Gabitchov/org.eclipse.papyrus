@@ -16,6 +16,9 @@
     <sections name="SingleEmbeddedStyleSheet" sectionFile="ui/SingleEmbeddedStyleSheet.xwt">
       <widget href="ui/SingleEmbeddedStyleSheet.xwt#//@widgets.0"/>
     </sections>
+    <sections name="SingleTheme" sectionFile="ui/SingleTheme.xwt">
+      <widget href="ui/SingleTheme.xwt#/"/>
+    </sections>
   </tabs>
   <views name="SingleStylableElement" sections="//@tabs.0/@sections.0">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStylableElement" overrideable="false" overriddenConstraints="//@views.1/@constraints.0">
@@ -52,6 +55,13 @@
       <properties xsi:type="constraints:ValueProperty" name="className" value="EmbeddedStyleSheet"/>
     </constraints>
   </views>
+  <views name="SingleTheme" sections="//@tabs.0/@sections.5">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isTheme">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/infra/gmfdiag/css"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Theme"/>
+    </constraints>
+  </views>
   <dataContexts name="CSS" label="CSS">
     <elements name="PapyrusCSSStyle">
       <properties name="cssId" label="CSS ID" description="The CSS ID of this element. The ID should be unique within a Diagram. It can be used to retrieve the style properties applied to this element."/>
@@ -62,6 +72,14 @@
       <properties name="css_stylesheets" label="Diagram style sheets" type="Reference" multiplicity="-1" description="The style sheets associated to this diagram"/>
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.css.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+  <dataContexts name="WorkspaceThemes" label="Themes">
+    <elements name="Theme">
+      <properties name="label" label="Label" description="Theme label"/>
+      <properties name="icon" label="Icon" description="Theme icon"/>
+      <properties name="stylesheets" label="Theme style sheets" type="Reference" multiplicity="-1"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
   <dataContexts name="modelstylesheets" label="StyleSheets">
     <elements name="StyleSheetReference">

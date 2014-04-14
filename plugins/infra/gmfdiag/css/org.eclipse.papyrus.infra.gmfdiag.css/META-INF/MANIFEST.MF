@@ -22,7 +22,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
  org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0",
  org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0",
- org.eclipse.papyrus.views.properties;bundle-version="1.0.0"
+ org.eclipse.papyrus.views.properties;bundle-version="1.0.0",
+ org.eclipse.papyrus.views.properties.model;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.css,
  org.eclipse.papyrus.infra.gmfdiag.css.converters,
  org.eclipse.papyrus.infra.gmfdiag.css.dom,

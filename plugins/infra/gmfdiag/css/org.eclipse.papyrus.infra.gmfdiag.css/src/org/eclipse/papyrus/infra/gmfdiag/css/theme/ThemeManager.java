@@ -18,6 +18,7 @@ import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -66,6 +67,22 @@ public class ThemeManager {
 	/** All found themes in application. */
 	private Map<String, Theme> allThemes = null;
 
+	/** Unsaved themes. */
+	private List<Theme> temporaryThemesList = new ArrayList<Theme>();
+
+	/** Themes to delete. */
+	private List<Theme> deletedThemesList = new ArrayList<Theme>();
+
+	/** Workspace themes helper. */
+	private WorkspaceThemesHelper workspaceThemesHelper = new WorkspaceThemesHelper();
+
+	/**
+	 * Default constructor.
+	 */
+	private ThemeManager() {
+
+	}
+
 	/**
 	 * Returns all the Themes, sorted alphabetically
 	 *
@@ -74,6 +91,7 @@ public class ThemeManager {
 	public List<Theme> getThemes() {
 		List<Theme> sortedThemes = new LinkedList<Theme>(getAllThemes().values());
 		Collections.sort(sortedThemes, ThemeComparator.instance);
+
 		return sortedThemes;
 	}
 
@@ -91,7 +109,7 @@ public class ThemeManager {
 	}
 
 	/**
-	 * Returns the theme associated to the given id, or null if it doesn't
+	 * Returns the theme associated to the given id, or <code>null</code> if it doesn't
 	 * exist
 	 *
 	 * @param themeId
@@ -106,6 +124,73 @@ public class ThemeManager {
 	 */
 	public void reloadThemes() {
 		allThemes = null;
+	}
+
+	/**
+	 * Refresh known themes list by merging states of themes.
+	 */
+	public void refreshThemes() {
+
+		// Handle added themes
+		for(Theme addedTheme : temporaryThemesList) {
+
+			String key = addedTheme.getId();
+			if(!allThemes.containsKey(key)) {
+				allThemes.put(key, addedTheme);
+			}
+		}
+
+		// Handle deleted themes
+		for(Theme deletedTheme : deletedThemesList) {
+			String key = deletedTheme.getId();
+			if(allThemes.containsKey(key)) {
+				allThemes.remove(key);
+			}
+		}
+
+	}
+
+
+	/**
+	 * Clean temporary list of themes.
+	 */
+	public void clearTemporaryThemes() {
+		temporaryThemesList.clear();
+	}
+
+	/**
+	 * Clean deleted theme list.
+	 */
+	public void clearDeletedThemes() {
+		deletedThemesList.clear();
+	}
+
+	/**
+	 * Add a temporary theme.
+	 * 
+	 * @param temporaryTheme
+	 *        Theme to add in workspace themes preference
+	 * 
+	 */
+	public void addTemporaryTheme(Theme temporaryTheme) {
+		temporaryThemesList.add(temporaryTheme);
+	}
+
+	/**
+	 * Delete theme from preferences.
+	 * 
+	 * @param theme
+	 *        Theme to delete
+	 */
+	public void delete(Theme theme) {
+
+		// If theme is temporary don't maintain in associated list
+		if(temporaryThemesList.contains(theme)) {
+			temporaryThemesList.remove(theme);
+		} else {
+			// Else store in a list to be able to cancel
+			deletedThemesList.add(theme);
+		}
 	}
 
 	/**
@@ -139,6 +224,90 @@ public class ThemeManager {
 		}
 
 		return icon;
+	}
+
+	/**
+	 * Return only workspace themes preference.
+	 * 
+	 * @return Workspace themes preference (instance of {@link WorkspaceThemes}) if it exist, otherwise <code>null</code>
+	 */
+	public WorkspaceThemes getWorkspaceThemesPreferences() {
+		WorkspaceThemes workspaceThemes = null;
+
+
+		// Get path of preference file
+		IPath path = workspaceThemesHelper.getThemeWorkspacePreferenceFilePath();
+
+		// If file exist, themes can load
+		if(path.toFile().exists()) {
+			// Resolve URI
+			URI fileURI = CommonPlugin.resolve(URI.createFileURI(path.toOSString()));
+
+			// Create associated resource
+			ResourceSet resourceSet = new ResourceSetImpl();
+			Resource resource = resourceSet.getResource(fileURI, true);
+
+			// Get workspace theme
+			workspaceThemes = (WorkspaceThemes)EcoreUtil.getObjectByType(resource.getContents(), StylesheetsPackage.eINSTANCE.getWorkspaceThemes());
+		}
+
+		return workspaceThemes;
+
+	}
+
+	/**
+	 * Know if theme is editable. Only themes of workspace or temporary can be edited.
+	 * 
+	 * @param id
+	 *        Id of theme to check
+	 * @return <code>true</code> if theme can be edited, otherwise <code>false<code>
+	 */
+	public boolean isEditable(String id) {
+		boolean isEditable = false;
+
+		WorkspaceThemes workspacePreference = getWorkspaceThemesPreferences();
+		if(workspacePreference != null) {
+
+			// Check if theme existing in temporary
+			isEditable = temporaryThemesList.contains(allThemes.get(id));
+
+			//Check if theme comes from workspace preferences
+			Iterator<Theme> themesIterator = workspacePreference.getThemes().iterator();
+			while(themesIterator.hasNext() && !isEditable) {
+				isEditable = id.equals(themesIterator.next().getId());
+			}
+
+
+		}
+
+		return isEditable;
+	}
+
+	/**
+	 * Persist state of the manager.
+	 */
+	public void persist() {
+		Theme[] editableThemes = getEditableThemes();
+		workspaceThemesHelper.saveWorkspaceThemesPreferenceResource(editableThemes, deletedThemesList.toArray(new Theme[deletedThemesList.size()]));
+
+		// Reset manager
+		allThemes = null;
+		deletedThemesList.clear();
+		temporaryThemesList.clear();
+	}
+
+	/**
+	 * @return
+	 */
+	private Theme[] getEditableThemes() {
+		List<Theme> editableThemeList = new ArrayList<Theme>();
+
+		for(Theme theme : allThemes.values()) {
+			if(isEditable(theme.getId())) {
+				editableThemeList.add(theme);
+			}
+		}
+		return editableThemeList.toArray(new Theme[editableThemeList.size()]);
 	}
 
 	/**
@@ -182,6 +351,15 @@ public class ThemeManager {
 			loadThemeDefinitions(config);
 			loadThemeContributions(config);
 			loadThemePreferenceWorkspace();
+			loadTemporaryThemes();
+
+			// Remove deleted themes
+			for(Theme theme : deletedThemesList) {
+				String themeId = theme.getId();
+				if(allThemes.containsKey(themeId)) {
+					allThemes.remove(themeId);
+				}
+			}
 		}
 
 		return allThemes;
@@ -268,24 +446,11 @@ public class ThemeManager {
 	 */
 	private void loadThemePreferenceWorkspace() {
 
-		// Get helper
-		WorkspaceThemesHelper helper = new WorkspaceThemesHelper();
-
-		// Get path of preference file
-		IPath path = helper.getThemeWorkspacePreferenceFilePath();
+		WorkspaceThemes workspaceThemes = getWorkspaceThemesPreferences();
 
 		// If file exist, themes can load
-		if(path.toFile().exists()) {
+		if(workspaceThemes != null) {
 
-			// Resolve URI
-			URI fileURI = CommonPlugin.resolve(URI.createFileURI(path.toOSString()));
-
-			// Create associated resource
-			ResourceSet resourceSet = new ResourceSetImpl();
-			Resource resource = resourceSet.getResource(fileURI, true);
-
-			// Get workspace theme
-			WorkspaceThemes workspaceThemes = (WorkspaceThemes)EcoreUtil.getObjectByType(resource.getContents(), StylesheetsPackage.eINSTANCE.getWorkspaceThemes());
 
 			// Add each themme to current list
 			for(Theme theme : workspaceThemes.getThemes()) {
@@ -293,6 +458,16 @@ public class ThemeManager {
 			}
 
 		}
+	}
+
+	/**
+	 * Add temporary themes in current themes list.
+	 */
+	private void loadTemporaryThemes() {
+		for(Theme theme : temporaryThemesList) {
+			allThemes.put(theme.getId(), theme);
+		}
+
 	}
 
 	private Theme findCurrentTheme() {
@@ -356,10 +531,6 @@ public class ThemeManager {
 		}
 
 		public static Comparator<Theme> instance = new ThemeComparator();
-
-	}
-
-	private ThemeManager() {
 
 	}
 }

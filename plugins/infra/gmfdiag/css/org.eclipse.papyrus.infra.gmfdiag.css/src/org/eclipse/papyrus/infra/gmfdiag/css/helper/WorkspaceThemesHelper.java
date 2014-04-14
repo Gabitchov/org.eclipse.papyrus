@@ -83,6 +83,68 @@ public class WorkspaceThemesHelper {
 	}
 
 	/**
+	 * Method to persist deleted and edited theme in workspace preference file.
+	 * 
+	 * @param editedThemesArray
+	 *        Array of edited themes to persist
+	 * @param deletedThemesArray
+	 *        Array of deleted theme to persist
+	 */
+	public void saveWorkspaceThemesPreferenceResource(Theme[] editedThemesArray, Theme[] deletedThemesArray) {
+
+		// Get current resource of workspace theme preferences
+		Resource currentThemefile = findThemeFile();
+		WorkspaceThemes workspaceThemes = (WorkspaceThemes)EcoreUtil.getObjectByType(currentThemefile.getContents(), StylesheetsPackage.Literals.WORKSPACE_THEMES);
+
+		// Handle edited  themes
+		for(Theme editedTheme : editedThemesArray) {
+			boolean updateResult = updateWorkspaceTheme(editedTheme, workspaceThemes);
+
+			// If update haven't done, theme must be added 
+			if(!updateResult) {
+				workspaceThemes.getThemes().add(editedTheme);
+			}
+		}
+
+		// Handle deleted themes
+		for(Theme deletedTheme : deletedThemesArray) {
+			removeWorkspaceTheme(deletedTheme, workspaceThemes);
+		}
+
+		// Save edited preference file
+		saveResource(currentThemefile);
+
+	}
+
+	/**
+	 * Method to delete a theme in workspace theme.
+	 * 
+	 * @param deletedTheme
+	 *        Theme to delete
+	 * @param workspaceThemes
+	 *        Current workspace themes
+	 */
+	private void removeWorkspaceTheme(Theme deletedTheme, WorkspaceThemes workspaceThemes) {
+		// Search resource value of edited theme
+		Iterator<Theme> currentThemesIterator = workspaceThemes.getThemes().iterator();
+		Theme themeId = null;
+		boolean found = false;
+
+		while(currentThemesIterator.hasNext() && !found) {
+			themeId = currentThemesIterator.next();
+			found = themeId.getId().equals(deletedTheme.getId());
+		}
+
+		if(found) {
+			// Replace in resource the current value with the edited one and save resource
+			EcoreUtil.remove(workspaceThemes, StylesheetsPackage.eINSTANCE.getWorkspaceThemes_Themes(), themeId);
+		}
+
+
+
+	}
+
+	/**
 	 * Replace in current workspace themes resource theme with the edited value.
 	 * 
 	 * @param editedTheme
@@ -93,6 +155,21 @@ public class WorkspaceThemesHelper {
 		Resource currentThemefile = findThemeFile();
 		WorkspaceThemes workspaceThemes = (WorkspaceThemes)EcoreUtil.getObjectByType(currentThemefile.getContents(), StylesheetsPackage.Literals.WORKSPACE_THEMES);
 
+		updateWorkspaceTheme(editedTheme, workspaceThemes);
+
+		saveResource(currentThemefile);
+	}
+
+	/**
+	 * 
+	 * Update in current workspace themes resource the theme with the edited one.
+	 * 
+	 * @param editedTheme
+	 *        Theme with new value
+	 * @param workspaceThemes
+	 *        workspace themes
+	 */
+	private boolean updateWorkspaceTheme(Theme editedTheme, WorkspaceThemes workspaceThemes) {
 		// Search resource value of edited theme
 		Iterator<Theme> currentThemesIterator = workspaceThemes.getThemes().iterator();
 		Theme themeId = null;
@@ -106,8 +183,9 @@ public class WorkspaceThemesHelper {
 		if(found) {
 			// Replace in resource the current value with the edited one and save resource
 			EcoreUtil.replace(workspaceThemes, StylesheetsPackage.eINSTANCE.getWorkspaceThemes_Themes(), themeId, editedTheme);
-			saveResource(currentThemefile);
 		}
+
+		return found;
 	}
 
 	/**
