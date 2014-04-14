@@ -580,10 +580,16 @@ public class NatTableModelElement extends EMFModelElement {
 				public void dispose() { }
 				public boolean isLabelProperty(Object element, String property) { return false; }
 				public Image getImage(Object element) {
+					if (element == null) {
+						return null;
+					}
 					ViewPrototype proto = ViewPrototype.get((PapyrusView)element);
 					return proto.getIcon();
 				}
 				public String getText(Object element) {
+					if (element == null) {
+						return null;
+					}
 					ViewPrototype proto = ViewPrototype.get((PapyrusView)element);
 					return proto.getQualifiedName();
 				}
