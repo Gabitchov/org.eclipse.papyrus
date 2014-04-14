@@ -153,8 +153,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	private BiMap<CellMapKey, Cell> cellsMap;
 
 	/**
-    * the local preference store for the table
-    */
+	 * the local preference store for the table
+	 */
 	private PreferenceStore localPreferenceStore;
 
 	/**
@@ -709,11 +709,13 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 						@Override
 						public void run() {
 							if(NattableModelManager.this.natTable != null && !NattableModelManager.this.natTable.isDisposed()) {
-								if(axis == NattableModelManager.this.columnProvider) {
-									updateColumnContents();
-									NattableModelManager.this.getRowSortModel().updateSort();
-								} else {
-									updateRowContents();
+								if(NattableModelManager.this.getTable() != null && NattableModelManager.this.getTable().getTableConfiguration() != null) {
+									if(axis == NattableModelManager.this.columnProvider) {
+										updateColumnContents();
+										NattableModelManager.this.getRowSortModel().updateSort();
+									} else {
+										updateRowContents();
+									}
 								}
 							}
 						}
