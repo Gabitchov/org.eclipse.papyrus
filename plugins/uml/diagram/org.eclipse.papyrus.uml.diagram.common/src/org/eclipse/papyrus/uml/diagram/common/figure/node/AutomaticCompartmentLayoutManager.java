@@ -171,7 +171,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		for(IFigure child : visibleOthers) {
 			Rectangle bound = new Rectangle();
 			if (child instanceof WrappingLabel) {
-				((WrappingLabel) child).setTextWrap(true);
+				//((WrappingLabel) child).setTextWrap(false);
 				((WrappingLabel) child).setTextJustification(PositionConstants.CENTER);
 				bound.setSize(child.getPreferredSize(container.width, -1));
 			} else {
@@ -265,7 +265,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	 * @param ratio
 	 *        The ratio to be applied on the height of the compartment
 	 */
-	private void fillBoundsForCompartment(IFigure container, Rectangle bound, Rectangle previous, double ratio) {
+	protected void fillBoundsForCompartment(IFigure container, Rectangle bound, Rectangle previous, double ratio) {
 		fillBoundsForOther(container, bound, previous);
 		bound.height = (int)(bound.height / ratio);
 		if(previous == null) {
@@ -283,7 +283,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	 * @param previous
 	 *        The previously filled bound
 	 */
-	private void fillBoundsForOther(IFigure container, Rectangle bound, Rectangle previous) {
+	protected void fillBoundsForOther(IFigure container, Rectangle bound, Rectangle previous) {
 		bound.x = container.getBounds().x + 1;
 		bound.width = container.getBounds().width;
 		if(previous == null) {
