@@ -245,7 +245,9 @@ public class ThemeManager {
 
 			// Create associated resource
 			ResourceSet resourceSet = new ResourceSetImpl();
+
 			Resource resource = resourceSet.getResource(fileURI, true);
+
 
 			// Get workspace theme
 			workspaceThemes = (WorkspaceThemes)EcoreUtil.getObjectByType(resource.getContents(), StylesheetsPackage.eINSTANCE.getWorkspaceThemes());

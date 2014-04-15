@@ -48,7 +48,6 @@ import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
-import org.eclipse.papyrus.views.properties.creation.PropertyEditorFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -162,7 +161,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 	private Map<Integer, Button> buttonsMap = new HashMap<Integer, Button>();
 
 	/** Editor factory for theme. */
-	private PropertyEditorFactory editorFactory = new ThemePropertyEditorFactory(StylesheetsPackage.Literals.WORKSPACE_THEMES__THEMES);
+	private EcorePropertyEditorFactory editorFactory = new ThemePropertyEditorFactory(StylesheetsPackage.Literals.WORKSPACE_THEMES__THEMES);
 
 
 	/**

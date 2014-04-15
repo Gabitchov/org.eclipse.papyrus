@@ -79,7 +79,7 @@
       <properties name="icon" label="Icon" description="Theme icon"/>
       <properties name="stylesheets" label="Theme style sheets" type="Reference" multiplicity="-1"/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.css.properties/model/Environment.xmi#//@modelElementFactories.2"/>
   </dataContexts>
   <dataContexts name="modelstylesheets" label="StyleSheets">
     <elements name="StyleSheetReference">
