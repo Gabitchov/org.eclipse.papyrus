@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.core.clipboard;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -164,5 +165,14 @@ public class PapyrusClipboard<E> extends ArrayList<E> {
 	public EObject getTragetCopyFromInternalClipboardCopy(Object object) {
 		return internalClipboardToTargetCopy.get(object);
 	}
-	
+
+	/**
+	 * Iterate on the copy selection
+	 * (Use by paste strategy to prepare IAdditionalData)
+	 * @return
+	 */
+	public  Collection<EObject> getTarget() {
+		return internalClipboardToTargetCopy.values();		
+	}
+		
 }

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -27,22 +27,18 @@ import org.eclipse.uml2.uml.NamedElement;
  * @generated
  */
 public class ConnectorDurationObservationReorientCommand extends EditElementCommand {
-
 	/**
 	 * @generated
 	 */
 	private final int reorientDirection;
-
 	/**
 	 * @generated
 	 */
 	private final EObject referenceOwner;
-
 	/**
 	 * @generated
 	 */
 	private final EObject oldEnd;
-
 	/**
 	 * @generated
 	 */
@@ -162,5 +158,4 @@ public class ConnectorDurationObservationReorientCommand extends EditElementComm
 	protected NamedElement getNewTarget() {
 		return (NamedElement) newEnd;
 	}
-
 }

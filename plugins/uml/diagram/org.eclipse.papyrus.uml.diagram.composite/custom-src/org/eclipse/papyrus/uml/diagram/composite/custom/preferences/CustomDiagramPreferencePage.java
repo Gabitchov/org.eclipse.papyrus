@@ -14,23 +14,16 @@
 package org.eclipse.papyrus.uml.diagram.composite.custom.preferences;
 
 import org.eclipse.jface.preference.BooleanFieldEditor;
-import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.composite.preferences.DiagramGeneralPreferencePage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPreferencePage;
 
+public class CustomDiagramPreferencePage extends DiagramGeneralPreferencePage {
 
-public class CustomDiagramPreferencePage  extends DiagramGeneralPreferencePage{
-
-	public static String IS_INSIDE_COMPOSITE_COMPOSITE_DIAGRAM= "isInsideComposite_CompositeDiagram";
-
+	public static String IS_INSIDE_COMPOSITE_COMPOSITE_DIAGRAM = "isInsideComposite_CompositeDiagram";
 
 	public CustomDiagramPreferencePage() {
 		super();
@@ -39,10 +32,9 @@ public class CustomDiagramPreferencePage  extends DiagramGeneralPreferencePage{
 	@Override
 	public void createFieldEditors() {
 		Group group = createGroup("Port position");
-		addField(new BooleanFieldEditor(IS_INSIDE_COMPOSITE_COMPOSITE_DIAGRAM,"is inside the composite",group));
-		
+		addField(new BooleanFieldEditor(IS_INSIDE_COMPOSITE_COMPOSITE_DIAGRAM, "is inside the composite", group));
+
 	}
-	
 
 	/**
 	 * Initialize preferences.
@@ -53,7 +45,7 @@ public class CustomDiagramPreferencePage  extends DiagramGeneralPreferencePage{
 
 	private Group createGroup(String text) {
 		Group group = new Group(getFieldEditorParent(), SWT.NONE);
-		//group.setLayout(new GridLayout(1, false));
+		// group.setLayout(new GridLayout(1, false));
 
 		GridLayout gridLayout = new GridLayout(2, false);
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);

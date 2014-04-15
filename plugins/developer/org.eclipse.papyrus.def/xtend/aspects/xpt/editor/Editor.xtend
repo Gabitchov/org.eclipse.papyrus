@@ -15,15 +15,19 @@
  */
 package aspects.xpt.editor
 
+import aspects.xpt.navigator.NavigatorLinkHelper
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.gmf.codegen.gmfgen.GenEditorView
+import org.eclipse.gmf.codegen.gmfgen.GenNavigator
 import org.eclipse.gmf.codegen.gmfgen.Palette
 import xpt.Common
+import xpt.navigator.Utils_qvto
 
 @Singleton class Editor extends xpt.editor.Editor {
 	@Inject extension Common;
-
+	@Inject NavigatorLinkHelper xptNavigatorLinkHelper;
+		@Inject extension Utils_qvto;
 
 	override extendsList(GenEditorView it) '''extends org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor'''
 
@@ -71,6 +75,17 @@ public static final String CONTEXT_ID = "«contextID»"; «nonNLS»
 		setDocumentProvider(documentProvider);
 		
 		«««end of listeners addition
+		}
+	'''
+	
+		override getNavigatorSelection(GenNavigator it) '''
+		
+		«generatedMemberComment»
+		private org.eclipse.jface.viewers.ISelection getNavigatorSelection() {
+			«IF getDiagramTopReference(it) !=null»
+			org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument document = getDiagramDocument();
+			«ENDIF»
+			«xptNavigatorLinkHelper.findSelectionBody(it)»
 		}
 	'''
 

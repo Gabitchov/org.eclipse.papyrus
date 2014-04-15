@@ -16,9 +16,9 @@ package org.eclipse.papyrus.qompass.designer.core.transformations.filters;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
-import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
+import org.eclipse.papyrus.qompass.designer.core.listeners.PostCopyListener;
 import org.eclipse.papyrus.qompass.designer.core.sync.CompImplSync;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 
@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Class;
  * (e.g. derived push interface with formal parameter T would be at wrong location).
  * TODO: need better explanation. Solution is quite a hack.
  */
-public class FixTemplateSync implements CopyListener {
+public class FixTemplateSync implements PostCopyListener {
 
 	public static FixTemplateSync getInstance() {
 		if(instance == null) {
@@ -37,7 +37,7 @@ public class FixTemplateSync implements CopyListener {
 		return instance;
 	}
 
-	public EObject copyEObject(Copy copy, EObject targetEObj) {
+	public void postCopyEObject(LazyCopier copy, EObject targetEObj) {
 		// if (copy.get(sourceEObj) isWithinTemplate)
 		if (!(targetEObj instanceof Behavior)) {
 			if((targetEObj instanceof Class) && Utils.isCompImpl((Class)targetEObj)) {
@@ -49,7 +49,6 @@ public class FixTemplateSync implements CopyListener {
 				// CompImplSync.syncDerivedOperations(implementation);
 			}
 		}
-		return targetEObj;
 	}
 
 	private static FixTemplateSync instance = null;

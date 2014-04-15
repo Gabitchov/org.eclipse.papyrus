@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration:ModiscoQueryConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/core/queries/0.7" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" name="IsNameLongerThanQueryConfiguration1" query="query:JavaModelQuery CoreQueriesTest.querySet#IsNameLongerThan">
-  <parameterValues xsi:type="configuration:ConstantParameterValue" parameter="CoreQueriesTest.querySet#isTrueWhenEqual">
-    <valueInstance xsi:type="uml:LiteralBoolean" name=""/>
-  </parameterValues>
-  <parameterValues xsi:type="configuration:ConstantParameterValue" parameter="CoreQueriesTest.querySet#length">
-    <valueInstance xsi:type="uml:LiteralInteger" value="5"/>
-  </parameterValues>
-</configuration:ModiscoQueryConfiguration>

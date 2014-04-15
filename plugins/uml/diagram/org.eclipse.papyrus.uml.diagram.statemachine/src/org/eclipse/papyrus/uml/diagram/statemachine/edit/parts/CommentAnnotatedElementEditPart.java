@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -7,13 +18,15 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.CommentAnnotatedElementItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class CommentAnnotatedElementEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
-
+public class CommentAnnotatedElementEditPart extends ConnectionEditPart
+		implements ITreeBranchEditPart
+{
 	/**
 	 * @generated
 	 */
@@ -43,27 +56,13 @@ public class CommentAnnotatedElementEditPart extends ConnectionEditPart implemen
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new CommentLinkDescriptor();
+		return new SimpleDashedEdgeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public CommentLinkDescriptor getPrimaryShape() {
-		return (CommentLinkDescriptor)getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class CommentLinkDescriptor extends PolylineConnectionEx {
-
-		/**
-		 * @generated
-		 */
-		public CommentLinkDescriptor() {
-			this.setLineWidth(1);
-			this.setLineStyle(Graphics.LINE_DASH);
-		}
+	public SimpleDashedEdgeFigure getPrimaryShape() {
+		return (SimpleDashedEdgeFigure) getFigure();
 	}
 }

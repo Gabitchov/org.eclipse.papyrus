@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;

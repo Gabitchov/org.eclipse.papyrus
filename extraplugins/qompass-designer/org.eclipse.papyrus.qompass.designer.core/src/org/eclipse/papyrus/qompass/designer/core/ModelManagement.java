@@ -75,6 +75,11 @@ public class ModelManagement {
 	public Model getModel() {
 		return model;
 	}
+	
+	public void saveModel(IProject project, String modelFolder, String modelPostfix) {
+		String path = this.getPath(project, modelFolder, this.getModel().getName() + modelPostfix);
+		this.saveModel(path);
+	}
 
 	/**
 	 * Save a model within a passed project and a specified folder

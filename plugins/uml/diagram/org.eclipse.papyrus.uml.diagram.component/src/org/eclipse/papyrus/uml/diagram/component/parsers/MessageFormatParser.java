@@ -1,15 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.component.parsers;
 
 import java.text.FieldPosition;
@@ -24,38 +23,35 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.tooling.runtime.parsers.AbstractAttributeParser;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.component.part.Messages;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class MessageFormatParser.
- * 
  * @generated
  */
 public class MessageFormatParser extends AbstractAttributeParser {
-
-	/** The default pattern. @generated */
+	/**
+	 * @generated
+	 */
 	private String defaultPattern;
-
-	/** The default editable pattern. @generated */
+	/**
+	 * @generated
+	 */
 	private String defaultEditablePattern;
-
-	/** The view processor. @generated */
+	/**
+	 * @generated
+	 */
 	private MessageFormat viewProcessor;
-
-	/** The editor processor. @generated */
+	/**
+	 * @generated
+	 */
 	private MessageFormat editorProcessor;
-
-	/** The edit processor. @generated */
+	/**
+	 * @generated
+	 */
 	private MessageFormat editProcessor;
 
 	/**
-	 * Instantiates a new message format parser.
-	 * 
-	 * @param features
-	 *        the features
 	 * @generated
 	 */
 	public MessageFormatParser(EAttribute[] features) {
@@ -63,12 +59,6 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	}
 
 	/**
-	 * Instantiates a new message format parser.
-	 * 
-	 * @param features
-	 *        the features
-	 * @param editableFeatures
-	 *        the editable features
 	 * @generated
 	 */
 	public MessageFormatParser(EAttribute[] features, EAttribute[] editableFeatures) {
@@ -76,16 +66,13 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	}
 
 	/**
-	 * Gets the default pattern.
-	 * 
-	 * @return the default pattern
 	 * @generated
 	 */
 	protected String getDefaultPattern() {
-		if(defaultPattern == null) {
+		if (defaultPattern == null) {
 			StringBuffer sb = new StringBuffer();
-			for(int i = 0; i < features.length; i++) {
-				if(i > 0) {
+			for (int i = 0; i < features.length; i++) {
+				if (i > 0) {
 					sb.append(' ');
 				}
 				sb.append('{');
@@ -98,10 +85,6 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	}
 
 	/**
-	 * Sets the view pattern.
-	 * 
-	 * @param viewPattern
-	 *        the new view pattern
 	 * @generated
 	 */
 	public void setViewPattern(String viewPattern) {
@@ -110,10 +93,6 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	}
 
 	/**
-	 * Sets the editor pattern.
-	 * 
-	 * @param editorPattern
-	 *        the new editor pattern
 	 * @generated
 	 */
 	public void setEditorPattern(String editorPattern) {
@@ -122,42 +101,33 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	}
 
 	/**
-	 * Gets the view processor.
-	 * 
-	 * @return the view processor
 	 * @generated
 	 */
 	protected MessageFormat getViewProcessor() {
-		if(viewProcessor == null) {
+		if (viewProcessor == null) {
 			viewProcessor = new MessageFormat(getViewPattern() == null ? getDefaultPattern() : getViewPattern());
 		}
 		return viewProcessor;
 	}
 
 	/**
-	 * Gets the editor processor.
-	 * 
-	 * @return the editor processor
 	 * @generated
 	 */
 	protected MessageFormat getEditorProcessor() {
-		if(editorProcessor == null) {
+		if (editorProcessor == null) {
 			editorProcessor = new MessageFormat(getEditorPattern() == null ? getDefaultEditablePattern() : getEditorPattern());
 		}
 		return editorProcessor;
 	}
 
 	/**
-	 * Gets the default editable pattern.
-	 * 
-	 * @return the default editable pattern
 	 * @generated
 	 */
 	protected String getDefaultEditablePattern() {
-		if(defaultEditablePattern == null) {
+		if (defaultEditablePattern == null) {
 			StringBuffer sb = new StringBuffer();
-			for(int i = 0; i < editableFeatures.length; i++) {
-				if(i > 0) {
+			for (int i = 0; i < editableFeatures.length; i++) {
+				if (i > 0) {
 					sb.append(' ');
 				}
 				sb.append('{');
@@ -170,10 +140,6 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	}
 
 	/**
-	 * Sets the edits the pattern.
-	 * 
-	 * @param editPattern
-	 *        the new edits the pattern
 	 * @generated
 	 */
 	public void setEditPattern(String editPattern) {
@@ -182,62 +148,41 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	}
 
 	/**
-	 * Gets the edits the processor.
-	 * 
-	 * @return the edits the processor
 	 * @generated
 	 */
 	protected MessageFormat getEditProcessor() {
-		if(editProcessor == null) {
+		if (editProcessor == null) {
 			editProcessor = new MessageFormat(getEditPattern() == null ? getDefaultEditablePattern() : getEditPattern());
 		}
 		return editProcessor;
 	}
 
 	/**
-	 * Gets the edits the string.
-	 * 
-	 * @param adapter
-	 *        the adapter
-	 * @param flags
-	 *        the flags
-	 * @return the edits the string
 	 * @generated
 	 */
 	public String getEditString(IAdaptable adapter, int flags) {
-		EObject element =EMFHelper.getEObject(adapter);
+		EObject element = (EObject) adapter.getAdapter(EObject.class);
 		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
 	/**
-	 * Checks if is valid edit string.
-	 * 
-	 * @param adapter
-	 *        the adapter
-	 * @param editString
-	 *        the edit string
-	 * @return the i parser edit status
 	 * @generated
 	 */
 	public IParserEditStatus isValidEditString(IAdaptable adapter, String editString) {
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
-		if(values == null) {
-			return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.UNEDITABLE, NLS.bind(Messages.MessageFormatParser_InvalidInputError, new Integer(pos.getErrorIndex())));
+		if (values == null) {
+			return new ParserEditStatus(
+					UMLDiagramEditorPlugin.ID,
+					IParserEditStatus.UNEDITABLE,
+					NLS.bind(
+							Messages.MessageFormatParser_InvalidInputError,
+							new Integer(pos.getErrorIndex())));
 		}
 		return validateNewValues(values);
 	}
 
 	/**
-	 * Gets the parses the command.
-	 * 
-	 * @param adapter
-	 *        the adapter
-	 * @param newString
-	 *        the new string
-	 * @param flags
-	 *        the flags
-	 * @return the parses the command
 	 * @generated
 	 */
 	public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
@@ -246,17 +191,10 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	}
 
 	/**
-	 * Gets the prints the string.
-	 * 
-	 * @param adapter
-	 *        the adapter
-	 * @param flags
-	 *        the flags
-	 * @return the prints the string
 	 * @generated
 	 */
 	public String getPrintString(IAdaptable adapter, int flags) {
-		EObject element = EMFHelper.getEObject(adapter);
+		EObject element = (EObject) adapter.getAdapter(EObject.class);
 		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 }

@@ -70,4 +70,13 @@ public class NotationItemProviderAdapterFactory extends org.eclipse.gmf.runtime.
 
 		return connectorItemProvider;
 	}
+	
+	@Override
+	public Adapter createNodeAdapter() {
+		if (nodeItemProvider == null) {
+			nodeItemProvider = new NodeItemProvider(this, domainAdapterFactory);
+		}
+
+		return nodeItemProvider;
+	}
 }

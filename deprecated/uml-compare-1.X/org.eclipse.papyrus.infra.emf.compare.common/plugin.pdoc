@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="This plugin provides common for the CompareEditor integration inside the PapyrusSashEditora CompareEditor for Papyrus. This CompareEditor is done&#xD;&#xA;to be opened in the sasheditor as the others papyrus editors (diagram and table)&#xD;&#xA;This editor is &quot;partially volatile&quot;, that is to say, we lose all its information when we close it, &#xD;&#xA;but we don't lose it when we close Papyrus or Eclipse (see bug 371606)&#xD;&#xA;">
-  <referent firstName="vincent" lastName="lorenzo" eMail="vincent.lorenzo@cea.fr" currentCompany="CEA-LIST"/>
-</doc:Documentation>

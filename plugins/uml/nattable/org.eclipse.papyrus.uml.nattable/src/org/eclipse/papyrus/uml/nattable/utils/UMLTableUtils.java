@@ -55,15 +55,17 @@ public class UMLTableUtils {
 		assert id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX);
 		if(eobject instanceof Element) {
 			final Element element = (Element)eobject;
-			final String propertyQN = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
-			final String propertyName = NamedElementUtil.getNameFromQualifiedName(propertyQN);
-			final String stereotypeQN = NamedElementUtil.getParentQualifiedName(propertyQN);
-			final String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQN);
-			final String profileQN = NamedElementUtil.getParentQualifiedName(stereotypeQN);
-			final Profile profile = element.getNearestPackage().getAppliedProfile(profileQN, true);
-			if(profile != null) {
-				final Stereotype ste = profile.getOwnedStereotype(stereotypeName);
-				return (Property)ste.getMember(propertyName);
+			if(element.getNearestPackage() != null) {
+				final String propertyQN = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
+				final String propertyName = NamedElementUtil.getNameFromQualifiedName(propertyQN);
+				final String stereotypeQN = NamedElementUtil.getParentQualifiedName(propertyQN);
+				final String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQN);
+				final String profileQN = NamedElementUtil.getParentQualifiedName(stereotypeQN);
+				final Profile profile = element.getNearestPackage().getAppliedProfile(profileQN, true);
+				if(profile != null) {
+					final Stereotype ste = profile.getOwnedStereotype(stereotypeName);
+					return (Property)ste.getMember(propertyName);
+				}
 			}
 
 		}
@@ -182,8 +184,10 @@ public class UMLTableUtils {
 		final List<Stereotype> stereotypes = new ArrayList<Stereotype>();
 		if(sharedMap != null) {
 			final List<StereotypeApplicationStructure> struct = findStereotypeApplicationDataStructure(element, id, sharedMap);
-			for(final StereotypeApplicationStructure current : struct) {
-				stereotypes.add(current.getStereotype());
+			if(struct != null) {
+				for(final StereotypeApplicationStructure current : struct) {
+					stereotypes.add(current.getStereotype());
+				}
 			}
 		}
 		if(element.eResource() != null) {
@@ -209,7 +213,7 @@ public class UMLTableUtils {
 	 *        a map owning interesting information, like {@link StereotypeApplicationStructure} which can be used to find stereotype, stereotype
 	 *        application and so on
 	 * @return
-	 *         the list of the found data structure
+	 *         the list of the found data structure or <code>null</code> if not found
 	 */
 	public static final List<StereotypeApplicationStructure> findStereotypeApplicationDataStructure(final Element editedElement, final String id, final Map<?, ?> sharedMap) {
 		//TODO : enhance the data structure to look for an editedElement + a propQn as Key!

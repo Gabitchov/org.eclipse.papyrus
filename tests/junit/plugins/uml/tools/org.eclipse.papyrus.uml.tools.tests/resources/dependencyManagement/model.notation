@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_Zt12UPQ1EeK9gKrxk10euQ" type="PapyrusUMLClassDiagram" name="NewDiagram" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Zt12UPQ1EeK9gKrxk10euQ" type="PapyrusUMLClassDiagram" name="NewDiagram" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_adcuUPQ1EeK9gKrxk10euQ" type="2008">
     <children xmi:type="notation:DecorationNode" xmi:id="_admfUPQ1EeK9gKrxk10euQ" type="5029"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_admfUfQ1EeK9gKrxk10euQ" type="7017">
@@ -307,7 +307,6 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_wES69fQ1EeK9gKrxk10euQ" y="40"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_wES68vQ1EeK9gKrxk10euQ"/>
-    <element xmi:type="uml:Generalization" href="model.uml#_wES68PQ1EeK9gKrxk10euQ"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wES68_Q1EeK9gKrxk10euQ" points="[-7, -50, -7, 135]$[-7, -135, -7, 50]"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_yJmakPQ1EeK9gKrxk10euQ" type="4003" source="_adcuUPQ1EeK9gKrxk10euQ" target="_s63E0PQ1EeK9gKrxk10euQ">

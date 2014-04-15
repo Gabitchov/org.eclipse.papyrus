@@ -40,7 +40,6 @@ import org.eclipse.papyrus.uml.diagram.component.providers.UMLViewProvider;
  * 
  */
 public class RectangleToLollipopCommand extends AbstractTransactionalCommand {
-
 	private static View node;
 	protected GraphicalEditPart elementEditPart;
 	private SemanticAdapter semanticApdater;
@@ -50,11 +49,11 @@ public class RectangleToLollipopCommand extends AbstractTransactionalCommand {
 	 * Constructor of this command
 	 * 
 	 * @param domain
-	 *        the transactional editing domain to execute transaction
+	 *            the transactional editing domain to execute transaction
 	 * @param classView
-	 *        the editpart that will be transformed
+	 *            the editpart that will be transformed
 	 * @param semanticAdapter
-	 *        the wrapper that store the value of the result
+	 *            the wrapper that store the value of the result
 	 */
 	public RectangleToLollipopCommand(TransactionalEditingDomain domain, GraphicalEditPart classView, SemanticAdapter semanticAdapter) {
 		super(domain, "change to Lollipop", Collections.EMPTY_LIST);
@@ -84,19 +83,19 @@ public class RectangleToLollipopCommand extends AbstractTransactionalCommand {
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		//creation of the node
+		// creation of the node
 		UMLViewProvider umlViewProvider = new UMLViewProvider();
-		View container = (View)elementEditPart.getNotationView().eContainer();
-		Node interfaceView = umlViewProvider.createNamedElement_2003(elementEditPart.resolveSemanticElement(), container, -1, true, elementEditPart.getDiagramPreferencesHint());
-		interfaceView.setLayoutConstraint(((Node)elementEditPart.getNotationView()).getLayoutConstraint());
-		if( interfaceView.getLayoutConstraint() instanceof Bounds){
-			((Bounds)interfaceView.getLayoutConstraint()).setWidth(20);
-			((Bounds)interfaceView.getLayoutConstraint()).setHeight(20);
+		View container = (View) elementEditPart.getNotationView().eContainer();
+		Node interfaceView = umlViewProvider.createInterface_2003(elementEditPart.resolveSemanticElement(), container, -1, true, elementEditPart.getDiagramPreferencesHint());
+		interfaceView.setLayoutConstraint(((Node) elementEditPart.getNotationView()).getLayoutConstraint());
+		if (interfaceView.getLayoutConstraint() instanceof Bounds) {
+			((Bounds) interfaceView.getLayoutConstraint()).setWidth(20);
+			((Bounds) interfaceView.getLayoutConstraint()).setHeight(20);
 		}
-		node=interfaceView;
-		//copy of all eannotations
+		node = interfaceView;
+		// copy of all eannotations
 		Iterator<EAnnotation> iter = elementEditPart.getNotationView().getEAnnotations().iterator();
-		while(iter.hasNext()) {
+		while (iter.hasNext()) {
 			EAnnotation annotation = EcoreUtil.copy(iter.next());
 			interfaceView.getEAnnotations().add(annotation);
 		}

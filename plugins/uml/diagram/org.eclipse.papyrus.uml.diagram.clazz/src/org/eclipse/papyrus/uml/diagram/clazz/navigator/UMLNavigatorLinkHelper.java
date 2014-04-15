@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -21,12 +21,10 @@ import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -37,7 +35,6 @@ import org.eclipse.ui.part.FileEditorInput;
  * @generated
  */
 public class UMLNavigatorLinkHelper implements ILinkHelper {
-
 	/**
 	 * @generated
 	 */
@@ -61,7 +58,6 @@ public class UMLNavigatorLinkHelper implements ILinkHelper {
 	 * @generated
 	 */
 	public IStructuredSelection findSelection(IEditorInput anInput) {
-		IDiagramDocument document = UMLDiagramEditorPlugin.getInstance().getDocumentProvider().getDiagramDocument(anInput);
 		return StructuredSelection.EMPTY;
 	}
 
@@ -75,7 +71,6 @@ public class UMLNavigatorLinkHelper implements ILinkHelper {
 		if (false == aSelection.getFirstElement() instanceof UMLAbstractNavigatorItem) {
 			return;
 		}
-
 		UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem) aSelection.getFirstElement();
 		View navigatorView = null;
 		if (abstractNavigatorItem instanceof UMLNavigatorItem) {
@@ -109,5 +104,4 @@ public class UMLNavigatorLinkHelper implements ILinkHelper {
 			}
 		}
 	}
-
 }

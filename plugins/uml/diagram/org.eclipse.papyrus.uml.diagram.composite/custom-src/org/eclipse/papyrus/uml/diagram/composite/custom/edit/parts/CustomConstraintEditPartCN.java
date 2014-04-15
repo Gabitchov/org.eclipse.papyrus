@@ -43,31 +43,29 @@ public class CustomConstraintEditPartCN extends ConstraintEditPartCN {
 	@Override
 	protected void performDirectEditRequest(Request request) {
 		EditPart editPart = this;
-		if (request instanceof DirectEditRequest){
-			Point p = new Point(((DirectEditRequest)request).getLocation());
+		if (request instanceof DirectEditRequest) {
+			Point p = new Point(((DirectEditRequest) request).getLocation());
 			getFigure().translateToRelative(p);
 			IFigure fig = getFigure().findFigureAt(p);
-			editPart =(EditPart) getViewer().getVisualPartMap().get(fig);
+			editPart = (EditPart) getViewer().getVisualPartMap().get(fig);
 		}
 		if (editPart == this) {
 			try {
 				editPart = (EditPart) getEditingDomain().runExclusive(
-					new RunnableWithResult.Impl() {
+						new RunnableWithResult.Impl<java.lang.Object>() {
 
-						public void run() {
-							// edit body, which can be found in 2nd child, instead of default action (first child)
-							setResult(getChildren().get(1));
-						}
-					});
+							public void run() {
+								// edit body, which can be found in 2nd child, instead of default action (first child)
+								setResult(getChildren().get(1));
+							}
+						});
 			} catch (InterruptedException e) {
 				Trace.catching(DiagramUIPlugin.getInstance(),
-					DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
-					"performDirectEditRequest", e); //$NON-NLS-1$
+						DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "performDirectEditRequest", e); //$NON-NLS-1$
 				Log.error(DiagramUIPlugin.getInstance(),
-					DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING,
-					"performDirectEditRequest", e); //$NON-NLS-1$
+						DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "performDirectEditRequest", e); //$NON-NLS-1$
 			}
-			if (editPart != null){
+			if (editPart != null) {
 				editPart.performRequest(request);
 			}
 		}

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,9 @@
  *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.deployment.test.canonical;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.ConnectionEditPart;
@@ -29,10 +32,11 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.diagram.tests.canonical.TestLink;
 import org.eclipse.uml2.uml.Element;
 
-public abstract  class TestWithoutReconnectAMultilinkk extends TestLink {
+public abstract class TestWithoutReconnectAMultilinkk extends TestLink {
+
 	/**
 	 * Test view deletion.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -64,7 +68,7 @@ public abstract  class TestWithoutReconnectAMultilinkk extends TestLink {
 
 	/**
 	 * Test destroy.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -98,7 +102,7 @@ public abstract  class TestWithoutReconnectAMultilinkk extends TestLink {
 
 	/**
 	 * Test drop.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -115,7 +119,7 @@ public abstract  class TestWithoutReconnectAMultilinkk extends TestLink {
 
 	/**
 	 * Test to create a link.
-	 * 
+	 *
 	 * @param linkType
 	 *        the type
 	 */
@@ -203,7 +207,7 @@ public abstract  class TestWithoutReconnectAMultilinkk extends TestLink {
 
 	/**
 	 * test the drop of a link where the source and the target are the same objects
-	 * 
+	 *
 	 * @param linkType
 	 * @param allowed
 	 */
@@ -214,7 +218,7 @@ public abstract  class TestWithoutReconnectAMultilinkk extends TestLink {
 
 	/**
 	 * test the creation of a link where the source and the target are the same objects
-	 * 
+	 *
 	 * @param linkType
 	 * @param allowed
 	 */

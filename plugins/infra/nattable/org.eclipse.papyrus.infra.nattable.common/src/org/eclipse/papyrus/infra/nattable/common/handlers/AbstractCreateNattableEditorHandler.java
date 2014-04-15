@@ -21,6 +21,7 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
@@ -36,6 +37,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -184,26 +186,26 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 *         The model where to save the TableInstance is not found.
 	 */
 	protected Table createEditorModel(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
-		final TableConfiguration configuration = getDefaultTableEditorConfiguration();
-		assert configuration != null;
+		final ModelSet modelSet = ServiceUtils.getInstance().getModelSet(serviceRegistry);
+		final TableConfiguration configuration = getDefaultTableEditorConfiguration(modelSet);
+		Assert.isNotNull(configuration);
 
 		final Table table = TableHelper.createTable(configuration, null, name, description); //context null here, see bug 410357
 		// Save the model in the associated resource
-		final PapyrusNattableModel model = (PapyrusNattableModel)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(PapyrusNattableModel.MODEL_ID);
-		model.addPapyrusTable(table);
+		final PapyrusNattableModel model = (PapyrusNattableModel)modelSet.getModelChecked(PapyrusNattableModel.MODEL_ID);
 		table.setContext(getTableContext());
+		model.addPapyrusTable(table);
 		return table;
 	}
 
 
 	/**
 	 * 
+	 * @param resourceSet TODO
 	 * @return
 	 *         the configuration to use for the new table
 	 */
-	protected TableConfiguration getDefaultTableEditorConfiguration() {
-		final EObject current = getSelection().get(0);
-		final ResourceSet resourceSet = current.eResource().getResourceSet();
+	protected TableConfiguration getDefaultTableEditorConfiguration(ResourceSet resourceSet) {
 		final Resource resource = resourceSet.getResource(getTableEditorConfigurationURI(), true);
 		TableConfiguration tableConfiguration = null;
 		if(resource.getContents().get(0) instanceof TableConfiguration) {

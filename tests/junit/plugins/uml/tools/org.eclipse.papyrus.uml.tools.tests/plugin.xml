@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://UML_TEST_LIBRARIES/"
+            target="platform:/plugin/org.eclipse.papyrus.uml.tools.tests/resources/dependencyManagement/libraries/registered/">
+      </mapping>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+      <library
+            description="Test library for dependency management and library switch"
+            iconpath="icons/debug.gif"
+            name="Registered Library for dependency management tests"
+            path="pathmap://UML_TEST_LIBRARIES/registered-library.uml"
+            provider="Eclipse Modeling Project">
+      </library>
+   </extension>
+
+</plugin>

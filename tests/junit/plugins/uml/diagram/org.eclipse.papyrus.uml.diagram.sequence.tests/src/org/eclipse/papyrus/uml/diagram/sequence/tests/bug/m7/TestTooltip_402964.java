@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,10 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,10 +68,10 @@ import org.junit.Test;
 
 /**
  * Bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=402964
- * 
+ *
  * Description:
  * http://ec2-46-137-124-143.eu-west-1.compute.amazonaws.com/confluence/display/PAPYRUS/402964+-+Display+type+name+as+tooltip+of+each+node+element
- * 
+ *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class TestTooltip_402964 extends AbstractNodeTest {
@@ -83,7 +87,7 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Test
 	public void testLifelineTooltip() {
 		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);

@@ -1,17 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2010-2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
  * 
- * 		Arthur daussy (Atos) arthur.daussy@atos.net - Bug 361643: [StateMachine Diagram] Display of Guards doesn't work.
- *
- *****************************************************************************/
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers;
 
 import java.util.Iterator;
@@ -65,15 +62,10 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 public class TransitionPropertiesParser implements IParser, ISemanticParser {
-
 	public static final String ONE_SPACE_STRING = " "; //$NON-NLS-1$
-
 	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
-
 	public static final String DOTS = "..."; //$NON-NLS-1$
-
 	public static final String PARAM_DOTS = "(...)"; //$NON-NLS-1$
-
 	protected Constraint guardConstraint = null;
 
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
@@ -85,41 +77,34 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	}
 
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		final Transition transition = ((Transition)((EObjectAdapter)element).getRealObject());
+		final Transition transition = ((Transition) ((EObjectAdapter) element).getRealObject());
 		final String result = newString;
-
 		final TransactionalEditingDomain editingDomain;
 		try {
 			editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(transition);
 		} catch (ServiceException ex) {
 			return null;
 		}
-
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(editingDomain, "Edit Transition Properties", (List)null) { //$NON-NLS-1$
-
+		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(editingDomain, "Edit Transition Properties", (List<?>) null) { //$NON-NLS-1$
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				SafeRunnable.run(new SafeRunnable() {
-
 					public void run() {
 						RecordingCommand rc = new RecordingCommand(getEditingDomain()) {
-
 							@Override
 							protected void doExecute() {
 								// 1. Search, if a constraint with the same name exists
-								
 								EList<Element> elements = (transition.getModel()).allOwnedElements();
 								Iterator<Element> modelElement = elements.iterator();
-								while(modelElement.hasNext()) {
+								while (modelElement.hasNext()) {
 									Element pElement = modelElement.next();
-									if(pElement instanceof Constraint && (result.equals(((NamedElement)pElement).getName()))) {
-										guardConstraint = (Constraint)pElement;
+									if (pElement instanceof Constraint && (result.equals(((NamedElement) pElement).getName()))) {
+										guardConstraint = (Constraint) pElement;
 										transition.setGuard(guardConstraint);
 									}
 								}
-
 								// 2. no constraint exists already
-								if(guardConstraint == null) {
+								if (guardConstraint == null) {
 									guardConstraint = UMLFactory.eINSTANCE.createConstraint();
 									guardConstraint.setName(result);
 									guardConstraint.setContext(transition.getNamespace());
@@ -132,7 +117,6 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 					}
 				});
 				return CommandResult.newOKCommandResult();
-
 			}
 		};
 		return tc;
@@ -140,21 +124,20 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 
 	public String getPrintString(IAdaptable element, int flags) {
 		String label = getValueString(element, flags);
-		if(label == null || label.length() == 0) {
+		if (label == null || label.length() == 0) {
 			label = ONE_SPACE_STRING;
 		}
 		return label;
 	}
 
 	public boolean isAffectingEvent(Object event, int flags) {
-		if(event instanceof Notification) {
-			int notificationType = ((Notification)event).getEventType();
-			if(Notification.SET == notificationType) {
-				if(((Notification)event).getNewValue() instanceof Constraint) {
-					guardConstraint = (Constraint)((Notification)event).getNewValue();
+		if (event instanceof Notification) {
+			int notificationType = ((Notification) event).getEventType();
+			if (Notification.SET == notificationType) {
+				if (((Notification) event).getNewValue() instanceof Constraint) {
+					guardConstraint = (Constraint) ((Notification) event).getNewValue();
 				}
 				return true;
-
 			}
 		}
 		return false;
@@ -165,18 +148,18 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	 */
 	protected String getValueString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
-		if(obj instanceof Transition) {
-			Transition trans = (Transition)obj;
+		if (obj instanceof Transition) {
+			Transition trans = (Transition) obj;
 			StringBuilder result = new StringBuilder();
 			String textForTrigger = getTextForTrigger(trans);
-			if(textForTrigger != null && !EMPTY_STRING.equals(textForTrigger)) {
+			if (textForTrigger != null && !EMPTY_STRING.equals(textForTrigger)) {
 				result.append(textForTrigger);
 			}
 			result.append(getTextForGuard(trans));
 			String textForEffect = getTextForEffect(trans);
-			if(textForEffect != null && !EMPTY_STRING.equals(textForEffect)) {
-				if(textForEffect != null && !EMPTY_STRING.equals(textForEffect)) {
-					result.append("/");	//$NON-NLS-1$
+			if (textForEffect != null && !EMPTY_STRING.equals(textForEffect)) {
+				if (textForEffect != null && !EMPTY_STRING.equals(textForEffect)) {
+					result.append("/"); //$NON-NLS-1$
 					if (lineBreakBeforeEffect()) {
 						result.append("\n"); //$NON-NLS-1$
 					}
@@ -196,15 +179,15 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	 */
 	protected String getTextForGuard(Transition trans) {
 		Constraint valueSpec = trans.getGuard();
-		if(valueSpec != null) {
+		if (valueSpec != null) {
 			String value = ValueSpecificationUtil.getConstraintnValue(valueSpec);
-			if(value != null) {
+			if (value != null) {
 				return String.format("[%s]", value); //$NON-NLS-1$
 			}
 		}
 		return EMPTY_STRING;
 	}
-	
+
 	/**
 	 * get the text concerning Effects
 	 * 
@@ -214,17 +197,17 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	protected String getTextForEffect(Transition trans) {
 		StringBuilder result = new StringBuilder();
 		Behavior effect = trans.getEffect();
-		if(effect != null) {
+		if (effect != null) {
 			EClass eClass = effect.eClass();
-			if(effect instanceof OpaqueBehavior) {
-				OpaqueBehavior ob = (OpaqueBehavior)effect;
-				if(ob.getBodies().size() > 0) {
+			if (effect instanceof OpaqueBehavior) {
+				OpaqueBehavior ob = (OpaqueBehavior) effect;
+				if (ob.getBodies().size() > 0) {
 					// return body of behavior (only handle case of a single body)
 					result.append(retrieveBody(ob));
 					return result.toString();
 				}
 			}
-			if(eClass != null) {
+			if (eClass != null) {
 				result.append(eClass.getName()).append(": ").append(effect.getName()); //$NON-NLS-1$
 			}
 		}
@@ -240,36 +223,35 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	protected String getTextForTrigger(Transition trans) {
 		StringBuilder result = new StringBuilder();
 		boolean isFirstTrigger = true;
-		for(Trigger t : trans.getTriggers()) {
-			if(t != null) {
-				if(!isFirstTrigger) {
+		for (Trigger t : trans.getTriggers()) {
+			if (t != null) {
+				if (!isFirstTrigger) {
 					result.append(", "); //$NON-NLS-1$
 				} else {
 					isFirstTrigger = false;
 				}
 				Event e = t.getEvent();
-				if(e instanceof CallEvent) {
-					Operation op = ((CallEvent)e).getOperation();
-					if(op != null) {
+				if (e instanceof CallEvent) {
+					Operation op = ((CallEvent) e).getOperation();
+					if (op != null) {
 						result.append(op.getName());
 						if ((op.getOwnedParameters().size() > 0) && displayParamDots()) {
 							result.append(PARAM_DOTS);
 						}
 					} else {
-						result.append(((CallEvent)e).getName());
+						result.append(((CallEvent) e).getName());
 					}
-
-				} else if(e instanceof SignalEvent) {
-					Signal signal = ((SignalEvent)e).getSignal();
-					if(signal != null) {
+				} else if (e instanceof SignalEvent) {
+					Signal signal = ((SignalEvent) e).getSignal();
+					if (signal != null) {
 						result.append(signal.getName());
 						if ((signal.getAttributes().size() > 0) && displayParamDots()) {
 							result.append(PARAM_DOTS);
 						}
 					} else {
-						result.append(((SignalEvent)e).getName());
+						result.append(((SignalEvent) e).getName());
 					}
-				} else if(e instanceof ChangeEvent) {
+				} else if (e instanceof ChangeEvent) {
 					ValueSpecification vs = ((ChangeEvent) e).getChangeExpression();
 					String value;
 					if (vs instanceof OpaqueExpression) {
@@ -279,9 +261,9 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 						value = vs.stringValue();
 					}
 					result.append(value);
-				} else if(e instanceof TimeEvent) {
-					TimeEvent timeEvent= (TimeEvent) e; 
-					//absRelPrefix
+				} else if (e instanceof TimeEvent) {
+					TimeEvent timeEvent = (TimeEvent) e;
+					// absRelPrefix
 					result.append(timeEvent.isRelative() ? "after " : "at "); //$NON-NLS-1$ //$NON-NLS-2$
 					// body
 					TimeExpression te = timeEvent.getWhen();
@@ -308,33 +290,32 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	}
 
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-
 		return new ParserEditStatus(org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin.ID, IParserEditStatus.OK, ""); //$NON-NLS-1$
 	}
 
-	public List getSemanticElementsBeingParsed(EObject element) {
-		Element umlElement = (Element)element;
+	public List<EObject> getSemanticElementsBeingParsed(EObject element) {
+		Element umlElement = (Element) element;
 		List<EObject> result = new LinkedList<EObject>();
-		if(umlElement instanceof Transition) {
-			Transition trans = (Transition)umlElement;
-			if(trans != null) {
+		if (umlElement instanceof Transition) {
+			Transition trans = (Transition) umlElement;
+			if (trans != null) {
 				result.add(trans);
 				/**
 				 * Listen constraint modification
 				 */
 				Constraint constraint = trans.getGuard();
-				if(constraint != null) {
+				if (constraint != null) {
 					result.add(constraint);
 					ValueSpecification specification = constraint.getSpecification();
-					if(specification != null) {
+					if (specification != null) {
 						result.add(specification);
 					}
 				}
 				/**
 				 * Listen trigger modification
 				 */
-				for(Trigger t : trans.getTriggers()) {
-					if(t != null) {
+				for (Trigger t : trans.getTriggers()) {
+					if (t != null) {
 						result.add(t);
 					}
 				}
@@ -342,15 +323,14 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 				 * Listen effect modification
 				 */
 				Behavior effect = trans.getEffect();
-				if(effect != null) {
+				if (effect != null) {
 					result.add(effect);
 				}
 			}
-
-			//			if(constraint.getSpecification() != null) {
-			//				ValueSpecification value = constraint.getSpecification();
-			//				result.add(value);
-			//			}
+			// if(constraint.getSpecification() != null) {
+			// ValueSpecification value = constraint.getSpecification();
+			// result.add(value);
+			// }
 		}
 		return result;
 	}
@@ -363,7 +343,8 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	 * Return the body of an expression. Retrieve the "Natural Language" body with priority,
 	 * i.e. return this body if it exists, otherwise return the first body.
 	 * 
-	 * @param exp an opaque expression
+	 * @param exp
+	 *            an opaque expression
 	 * @return the associated body
 	 */
 	public static String retrieveBody(OpaqueExpression exp) {
@@ -373,12 +354,13 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		}
 		return cutBodyString(body);
 	}
-	
+
 	/**
 	 * Return the body of an opaque behavior. Retrieve the "Natural Language" body with priority,
 	 * i.e. return this body if it exists, otherwise return the first body.
 	 * 
-	 * @param exp an opaque expression
+	 * @param exp
+	 *            an opaque expression
 	 * @return the associated body
 	 */
 	public static String retrieveBody(OpaqueBehavior ob) {
@@ -392,13 +374,13 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	/**
 	 * Cut a body string after a predefined number of lines (taken from preference store).
 	 * 
-	 * @param body the body string
+	 * @param body
+	 *            the body string
 	 * @return
 	 */
 	public static String cutBodyString(String body) {
 		IPreferenceStore preferenceStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		int cutLength = preferenceStore.getInt(PreferenceConstants.BODY_CUT_LENGTH);
-
 		if (cutLength == 0) {
 			return DOTS;
 		}
@@ -420,15 +402,15 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 			}
 			if (newStart > 0) {
 				// handle case that \n is preceded by a \r
-				if (newStart >= 1 && body.charAt(newStart-1) == '\r') {
-					return body.substring(0, start-1) + DOTS;
+				if (newStart >= 1 && body.charAt(newStart - 1) == '\r') {
+					return body.substring(0, start - 1) + DOTS;
 				}
 				return body.substring(0, newStart) + DOTS;
 			}
 			return body;
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @return true, if the presence of parameters should be indicated by (...)
@@ -437,7 +419,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		IPreferenceStore preferenceStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		return preferenceStore.getBoolean(PreferenceConstants.INDICATE_PARAMETERS);
 	}
-	
+
 	/**
 	 * 
 	 * @return true, if the presence of parameters should be indicated by (...)

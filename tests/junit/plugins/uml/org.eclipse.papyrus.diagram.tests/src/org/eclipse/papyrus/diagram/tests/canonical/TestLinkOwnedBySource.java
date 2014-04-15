@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.tests.canonical;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -37,7 +40,7 @@ public abstract class TestLinkOwnedBySource extends TestLink {
 
 	/**
 	 * Test view deletion.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -68,7 +71,7 @@ public abstract class TestLinkOwnedBySource extends TestLink {
 
 	/**
 	 * Test destroy.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -99,7 +102,7 @@ public abstract class TestLinkOwnedBySource extends TestLink {
 
 	/**
 	 * Test drop.
-	 * 
+	 *
 	 * @param type
 	 *        the type
 	 */
@@ -138,7 +141,7 @@ public abstract class TestLinkOwnedBySource extends TestLink {
 
 	/**
 	 * Test to create a link.
-	 * 
+	 *
 	 * @param linkType
 	 *        the type
 	 */
@@ -253,7 +256,7 @@ public abstract class TestLinkOwnedBySource extends TestLink {
 
 	/**
 	 * test the drop of a link where the source and the target are the same objects
-	 * 
+	 *
 	 * @param linkType
 	 * @param allowed
 	 */
@@ -290,7 +293,7 @@ public abstract class TestLinkOwnedBySource extends TestLink {
 
 	/**
 	 * test the creation of a link where the source and the target are the same objects
-	 * 
+	 *
 	 * @param linkType
 	 * @param allowed
 	 */

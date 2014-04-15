@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -58,7 +61,7 @@ public class TestNestedCombinedFragment_364795 extends TestTopNode {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Test
 	public void testCover() {
 		// create parent combined fragment
@@ -76,13 +79,13 @@ public class TestNestedCombinedFragment_364795 extends TestTopNode {
 		final CombinedFragment parentCF = (CombinedFragment)parentCFP.resolveSemanticElement();
 		final CombinedFragment childCF = (CombinedFragment)childCFP.resolveSemanticElement();
 
-		waitForComplete(); // wait for updating covered field 
+		waitForComplete(); // wait for updating covered field
 		assertTrue(CREATION + TEST_THE_EXECUTION, parentCF.getCovereds().size() == 2);
 		assertTrue(CREATION + TEST_THE_EXECUTION, childCF.getCovereds().size() == 2);
 
 		GraphicalEditPart lifelineEP = (GraphicalEditPart)getRootEditPart().getChildren().get(2);
 		deleteNode(lifelineEP);
-		waitForComplete(); // wait for updating covered field 
+		waitForComplete(); // wait for updating covered field
 		assertTrue(CREATION + TEST_THE_EXECUTION, parentCF.getCovereds().size() == 1);
 		assertTrue(CREATION + TEST_THE_EXECUTION, childCF.getCovereds().size() == 1);
 	}

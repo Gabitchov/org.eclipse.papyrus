@@ -37,6 +37,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem;
+import org.eclipse.papyrus.infra.nattable.paste.PastePostActionRegistry;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -50,10 +51,12 @@ import org.eclipse.papyrus.uml.nattable.paste.StereotypeApplicationStructure;
 import org.eclipse.papyrus.uml.nattable.utils.Constants;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
+import org.eclipse.papyrus.uml.tools.utils.CustomElementOperations;
 import org.eclipse.papyrus.uml.tools.utils.EnumerationUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
@@ -165,7 +168,15 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		}
 	}
 
-
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#isCellEditable(java.lang.Object, java.lang.Object, java.util.Map)
+	 * 
+	 * @param columnElement
+	 * @param rowElement
+	 * @param sharedMap
+	 * @return
+	 */
 	@Override
 	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap) {
 		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, sharedMap);
@@ -173,12 +184,27 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		final String id = (String)umlObjects.get(1);
 
 		switch(UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id, sharedMap).size()) {
+		case 0:
+			//the element is not yet in the resource, and the stereotype required by a column is not yet applied
+			//see bug 431691: [Table 2] Paste from Spreadsheet must be able to apply required stereotypes for column properties in all usecases
+			//https://bugs.eclipse.org/bugs/show_bug.cgi?id=431691
+			final Object container = sharedMap.get(org.eclipse.papyrus.infra.nattable.utils.Constants.PASTED_ELEMENT_CONTAINER_KEY);
+			if(container instanceof Element) {
+				Element parent = (Element)container;
+				Property prop1 = UMLTableUtils.getRealStereotypeProperty(parent, id);
+				if(prop1 != null && prop1.getOwner() instanceof Stereotype) {
+					return CustomElementOperations.isStereotypeApplicable(parent, el, (Stereotype)prop1.eContainer());
+				}
+			}
+			break;
+
 		case 1:
 			final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id, sharedMap);
 			return !prop.isDerived() && !prop.isReadOnly();
 		default:
 			return false;
 		}
+		return false;
 	}
 
 	/**
@@ -363,13 +389,55 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		return new GMFtoEMFCommandWrapper(cmd);
 	}
 
+	/**
+	 * This method is used when we are pasting elements in detached mode
+	 * 
+	 * @param columnElement
+	 *        the column element
+	 * @param rowElement
+	 *        the row element
+	 * @param valueAsString
+	 *        the value as string
+	 * @param valueConverter
+	 *        the value converter to use
+	 * @param tableManager
+	 *        the table manager
+	 * @param sharedMap
+	 *        a map with shared elements. The method may read/add elements to the shared map. These contributions will be managed by a paste post
+	 *        action or by the paste manager itself
+	 */
 	@Override
 	public void setStringValue(Object columnElement, Object rowElement, String valueAsString, AbstractStringValueConverter valueSolver, INattableModelManager tableManager, Map<?, ?> sharedMap) {
+		if(valueAsString ==null || valueAsString.isEmpty()){
+			return;
+		}
 		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, sharedMap);
 		final Element el = (Element)umlObjects.get(0);
 		final String id = (String)umlObjects.get(1);
 		Property prop = UMLTableUtils.getRealStereotypeProperty(el, id, sharedMap);
 		List<Stereotype> stereotypes = UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id, sharedMap);
+
+		if(stereotypes.size() == 0) {
+			Object parentElement = sharedMap.get(org.eclipse.papyrus.infra.nattable.utils.Constants.PASTED_ELEMENT_CONTAINER_KEY);
+			final Element element = prop.getOwner();
+			if(element instanceof Stereotype && parentElement instanceof Element) {
+				boolean isApplicable = CustomElementOperations.isStereotypeApplicable(((Element)parentElement).getNearestPackage(), el, (Stereotype)element);
+				if(isApplicable) {
+					//apply stereotype required by the column property using post actions mecanism
+					final String postActionId = Constants.POST_ACTION_APPLY_STEREOTYPE_PREFIX + ((NamedElement)element).getQualifiedName();
+
+					//we register a special post actions to conclude the stereotype application
+					@SuppressWarnings("unchecked")
+					final Collection<String> postActionIds = (Collection<String>)sharedMap.get(org.eclipse.papyrus.infra.nattable.utils.Constants.ADDITIONAL_POST_ACTIONS_TO_CONCLUDE_PASTE_KEY);
+					postActionIds.add(postActionId);
+					//we do the post action : we apply the streotype
+					PastePostActionRegistry.INSTANCE.doPostAction(tableManager, postActionId, (EObject)parentElement, el, (Map<Object, Object>)sharedMap, id);
+					stereotypes = UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id, sharedMap);
+				}
+			}
+		}
+
+
 		ConvertedValueContainer<?> solvedValue = null;
 		EObject stereotypeApplication = null;
 		EStructuralFeature steApFeature = null;

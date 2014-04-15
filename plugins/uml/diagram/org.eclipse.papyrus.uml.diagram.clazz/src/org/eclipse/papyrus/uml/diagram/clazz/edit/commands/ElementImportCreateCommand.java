@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -33,12 +33,10 @@ import org.eclipse.uml2.uml.UMLFactory;
  * @generated
  */
 public class ElementImportCreateCommand extends EditElementCommand {
-
 	/**
 	 * @generated
 	 */
 	protected final EObject source;
-
 	/**
 	 * @generated
 	 */
@@ -80,7 +78,6 @@ public class ElementImportCreateCommand extends EditElementCommand {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		ElementImport newElement = UMLFactory.eINSTANCE.createElementImport();
 		getSource().getElementImports()
 				.add(newElement);
@@ -91,7 +88,6 @@ public class ElementImportCreateCommand extends EditElementCommand {
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**
@@ -130,5 +126,4 @@ public class ElementImportCreateCommand extends EditElementCommand {
 	protected PackageableElement getTarget() {
 		return (PackageableElement) target;
 	}
-
 }

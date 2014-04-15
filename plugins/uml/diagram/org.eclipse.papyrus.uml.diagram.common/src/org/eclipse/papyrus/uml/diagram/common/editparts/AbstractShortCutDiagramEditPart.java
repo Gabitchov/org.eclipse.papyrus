@@ -22,13 +22,13 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.DiagramNodeFigure;
 
@@ -36,7 +36,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.DiagramNodeFigure;
  * this class is used to constraint the behavior of a node to obtain the
  * behavior a short cut
  */
-public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedShapeEditPart implements Adapter {
+public abstract class AbstractShortCutDiagramEditPart extends NodeEditPart implements Adapter {
 
 	protected static final String DELETE_ICON = "icons/delete.gif";
 
@@ -92,7 +92,7 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 * 
 	 */
 	protected IPageIconsRegistry getEditorRegistry() {
-		if(editorRegistry == null) {
+		if (editorRegistry == null) {
 			editorRegistry = createEditorRegistry();
 		}
 		return editorRegistry;
@@ -131,17 +131,17 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 		int width = 34;
 		int height = 20;
 		Dimension size = new Dimension(width, height);
-		int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 	/**
 	 * refresh the icon by taking in account the type of the diagram
 	 */
 	private void refreshIcons() {
-		if(resolveSemanticElement() instanceof Diagram && resolveSemanticElement().eResource() != null) {
+		if (resolveSemanticElement() instanceof Diagram && resolveSemanticElement().eResource() != null) {
 			getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon(resolveSemanticElement()));
 		} else {
 			getPrimaryShape().setIcon(org.eclipse.papyrus.uml.diagram.common.Activator.getPluginIconImage(org.eclipse.papyrus.uml.diagram.common.Activator.ID, DELETE_ICON));

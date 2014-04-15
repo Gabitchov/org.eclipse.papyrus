@@ -1,16 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.composite.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -27,8 +25,9 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.policies.SubstitutionItemS
 /**
  * @generated
  */
-public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
-
+public class SubstitutionEditPart extends UMLConnectionNodeEditPart
+		implements ITreeBranchEditPart
+{
 	/**
 	 * @generated
 	 */
@@ -54,12 +53,14 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof SubstitutionNameEditPart) {
-			((SubstitutionNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof SubstitutionNameEditPart) {
+			((SubstitutionNameEditPart) childEditPart).setLabel(
+					getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof SubstitutionAppliedStereotypeEditPart) {
-			((SubstitutionAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof SubstitutionAppliedStereotypeEditPart) {
+			((SubstitutionAppliedStereotypeEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -69,7 +70,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -79,10 +80,10 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof SubstitutionNameEditPart) {
+		if (childEditPart instanceof SubstitutionNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof SubstitutionAppliedStereotypeEditPart) {
+		if (childEditPart instanceof SubstitutionAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -92,7 +93,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -114,6 +115,6 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	public InterfaceRealizationFigure getPrimaryShape() {
-		return (InterfaceRealizationFigure)getFigure();
+		return (InterfaceRealizationFigure) getFigure();
 	}
 }

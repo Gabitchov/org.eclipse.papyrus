@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
@@ -43,7 +43,7 @@ public class StUtils {
 	 * @param destination
 	 * @return
 	 */
-	public static void copyStereotypes(Copy copy, Element source, Element destination) {
+	public static void copyStereotypes(LazyCopier copy, Element source, Element destination) {
 		for(Stereotype stereotype : source.getAppliedStereotypes()) {
 			copyAttributes(copy, stereotype.getQualifiedName(), source, destination);
 		}
@@ -66,7 +66,7 @@ public class StUtils {
 	 * @return
 	 */
 	@SuppressWarnings({ "unchecked" })
-	public static boolean copyAttributes(Copy copy, String stereotypeName, Element source, Element destination) {
+	public static boolean copyAttributes(LazyCopier copy, String stereotypeName, Element source, Element destination) {
 		Stereotype stereoSource = source.getAppliedStereotype(stereotypeName);
 		Stereotype stereoDest = destination.getApplicableStereotype(stereotypeName);
 

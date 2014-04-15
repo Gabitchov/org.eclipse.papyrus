@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
  *  Christian W. Damus (CEA) - bug 323802
  *  Christian W. Damus (CEA) - bug 429826
+ *  Christian W. Damus (CEA) - bug 408491
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
@@ -55,6 +56,8 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
+
+import com.google.common.collect.ImmutableList;
 
 /**
  * A Helper class for manipulating EMF Objects
@@ -124,11 +127,58 @@ public class EMFHelper {
 		EClassifier theClass = metamodel.getEClassifier(className);
 
 		if(theClass == null) {
-			Activator.log.warn("Class " + className + " not found in Metamodel : " + metamodel.getName() + " (" + metamodel.getNsURI() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+			String message = String.format("Class %s not found in  metamodel: %s (%s)", className, metamodel.getName(), metamodel.getNsURI());//$NON-NLS-1$
+			Activator.log.warn(message);
 			return false;
 		}
 
 		return theClass.isInstance(element);
+	}
+
+
+	/**
+	 * Tests if an Object is an instance of the given EClass
+	 *
+	 * @param element
+	 *        The EObject to test
+	 * @param className
+	 *        The name of the EClass
+	 * @param metamodel
+	 *        The URI of the EPackage owning the EClass
+	 * @return
+	 *         True if the EObject is an instance of the EClass, or of one of the EClass' subtypes
+	 */
+	public static boolean isInstance(EObject selectedItem, String className, String nsUri) {
+		EClass actualEClass = selectedItem.eClass();
+
+		//Exact match
+		if(isExactMatch(actualEClass, className, nsUri)) {
+			return true;
+		}
+
+		List<EClass> allSuperTypes = actualEClass.getEAllSuperTypes();
+		for(EClass eClass : allSuperTypes) {
+			if(isExactMatch(eClass, className, nsUri)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Tests whether the given EClass has the given className and belongs to the EPackage represented by nsUri
+	 *
+	 * @param eClass
+	 *        The EClass to test
+	 * @param className
+	 *
+	 * @param nsUri
+	 * @return
+	 *         True if the EClass' name is className and the EClass' EPackage's nsURI is nsUri
+	 */
+	private static boolean isExactMatch(EClass eClass, String className, String nsUri) {
+		return className.equals(eClass.getName()) && nsUri.equals(eClass.getEPackage().getNsURI());
 	}
 
 	/**
@@ -316,6 +366,29 @@ public class EMFHelper {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Completely unloads a resource set so that it and all the models it contained may be reclaimed by the
+	 * Java garbage collector. This includes, at least:
+	 * <ul>
+	 * <li>unloading all resources in the set, which converts all model elements to proxies and removes all adapters from them</li>
+	 * <li>removing all resources from the set</li>
+	 * <li>removing all adapters from all resources</li>
+	 * <li>removing all adapters from the resource set</li>
+	 * </ul>
+	 * 
+	 * @param resourceSet
+	 *        the resource set to purge
+	 */
+	public static void unload(ResourceSet resourceSet) {
+		List<Resource> resources = ImmutableList.copyOf(resourceSet.getResources());
+		resourceSet.getResources().clear();
+		for(Resource next : resources) {
+			next.unload();
+			next.eAdapters().clear();
+		}
+		resourceSet.eAdapters().clear();
 	}
 
 	/**

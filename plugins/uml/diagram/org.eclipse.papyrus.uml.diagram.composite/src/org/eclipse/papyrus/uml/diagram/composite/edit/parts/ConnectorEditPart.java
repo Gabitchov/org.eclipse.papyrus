@@ -1,16 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.composite.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -26,8 +24,9 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.policies.ConnectorItemSema
 /**
  * @generated
  */
-public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
-
+public class ConnectorEditPart extends UMLConnectionNodeEditPart
+		implements ITreeBranchEditPart
+{
 	/**
 	 * @generated
 	 */
@@ -53,20 +52,24 @@ public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITre
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ConnectorAppliedStereotypeEditPart) {
-			((ConnectorAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof ConnectorAppliedStereotypeEditPart) {
+			((ConnectorAppliedStereotypeEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
-		if(childEditPart instanceof ConnectorNameEditPart) {
-			((ConnectorNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof ConnectorNameEditPart) {
+			((ConnectorNameEditPart) childEditPart).setLabel(
+					getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof ConnectorMultiplicitySourceEditPart) {
-			((ConnectorMultiplicitySourceEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+		if (childEditPart instanceof ConnectorMultiplicitySourceEditPart) {
+			((ConnectorMultiplicitySourceEditPart) childEditPart).setLabel(
+					getPrimaryShape().getMultiplicitySourceLabel());
 			return true;
 		}
-		if(childEditPart instanceof ConnectorMultiplicityTargetEditPart) {
-			((ConnectorMultiplicityTargetEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
+		if (childEditPart instanceof ConnectorMultiplicityTargetEditPart) {
+			((ConnectorMultiplicityTargetEditPart) childEditPart).setLabel(
+					getPrimaryShape().getMultiplicityTargetLabel());
 			return true;
 		}
 		return false;
@@ -76,7 +79,7 @@ public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITre
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -86,16 +89,16 @@ public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITre
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ConnectorAppliedStereotypeEditPart) {
+		if (childEditPart instanceof ConnectorAppliedStereotypeEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof ConnectorNameEditPart) {
+		if (childEditPart instanceof ConnectorNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof ConnectorMultiplicitySourceEditPart) {
+		if (childEditPart instanceof ConnectorMultiplicitySourceEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof ConnectorMultiplicityTargetEditPart) {
+		if (childEditPart instanceof ConnectorMultiplicityTargetEditPart) {
 			return true;
 		}
 		return false;
@@ -105,7 +108,7 @@ public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITre
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -127,6 +130,6 @@ public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITre
 	 * @generated
 	 */
 	public ConnectorFigure getPrimaryShape() {
-		return (ConnectorFigure)getFigure();
+		return (ConnectorFigure) getFigure();
 	}
 }

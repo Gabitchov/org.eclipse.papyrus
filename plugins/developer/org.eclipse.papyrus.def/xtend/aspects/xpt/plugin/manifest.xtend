@@ -64,10 +64,12 @@ Require-Bundle: org.eclipse.core.runtime,
 «FOR reqId : reqPlugins» «reqId»;visibility:=reexport,«extraLineBreak»
 «ENDFOR» org.eclipse.gef,
  org.eclipse.papyrus.infra.gmfdiag.preferences,
- org.eclipse.papyrus.extensionpoints.editors«IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).size != 0 || it.eResource.allContents.filter(typeof (EditPartUsingReorientService)).size != 0»,
+ «IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).size != 0 || it.eResource.allContents.filter(typeof (EditPartUsingReorientService)).size != 0»
+ org.eclipse.papyrus.extensionpoints.editors,
  org.eclipse.papyrus.infra.services.edit
+ «ELSE»
+ org.eclipse.papyrus.extensionpoints.editors
 «ENDIF»
-Eclipse-LazyStart: true
 '''
 
 }

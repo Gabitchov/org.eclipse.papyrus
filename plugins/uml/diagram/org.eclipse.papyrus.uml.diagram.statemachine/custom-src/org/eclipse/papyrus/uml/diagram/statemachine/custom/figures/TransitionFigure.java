@@ -1,15 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2014 CEA.
- *
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  CEA - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.figures;
 
 import org.eclipse.draw2d.Graphics;
@@ -19,16 +18,12 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 public class TransitionFigure extends DashedEdgeFigure {
 
 	/**
-	 * use to if the arrow will be displayed
-	 */
-	protected boolean arrow = true;
-
-	/**
 	 * Creates a new UMLEdgeFigure.
 	 */
 	public TransitionFigure() {
 		super();
 		setupDefaultStyle();
+		arrow = true;
 	}
 
 	/**
@@ -39,7 +34,7 @@ public class TransitionFigure extends DashedEdgeFigure {
 		PolylineDecoration dec = new PolylineDecoration();
 		dec.setScale(15, 5);
 		dec.setLineWidth(1);
-		if(arrow) {
+		if (arrow) {
 			this.setTargetDecoration(dec);
 		} else {
 			this.setTargetDecoration(null);

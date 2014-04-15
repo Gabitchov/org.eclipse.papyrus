@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="The core APIs and implementation of CDO integration in the Papyrus modeler workbench.">
+  <implicitDependencies plugin="org.eclipse.papyrus.infra.gmfdiag.commands" comment="This dependency is required to specialize the Papyrus implementation of the EMF CommandStack."/>
+  <implicitDependencies plugin="org.eclipse.emf.cdo.dawn" comment="The Dawn dependency provides the CDOResource specialization needed to support Papyrus diagrams via the GMF Notation model.&#xA;Ideally, we would remove this dependency by building the necessary support in Papyrus; continued maintenance of the Dawn component is threadbare."/>
+  <referent firstName="Christian" lastName="Damus" eMail="give.a.damus@gmail.com" currentCompany="(independent committer)"/>
+</doc:Documentation>

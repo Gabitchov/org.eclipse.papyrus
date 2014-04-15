@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<predefinedControllers>
-	<predefinedController id="nullPropertyEditorController" predefinedId="emptyComposite"><editor id="org.eclipse.papyrus.views.properties.runtime.nullPropertyEditor"/></predefinedController>
-</predefinedControllers>

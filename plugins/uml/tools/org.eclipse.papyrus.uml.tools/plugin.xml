@@ -82,4 +82,15 @@
             name="Workspace">
       </importSource>
    </extension>
+   
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.uml.tools.commands.internal.expressions.UMLPropertyTester"
+            id="org.eclipse.papyrus.uml.tools.umlProperties"
+            namespace="org.eclipse.papyrus.uml.tools"
+            properties="isRoot"
+            type="org.eclipse.emf.ecore.EObject">
+      </propertyTester>
+   </extension>
 </plugin>

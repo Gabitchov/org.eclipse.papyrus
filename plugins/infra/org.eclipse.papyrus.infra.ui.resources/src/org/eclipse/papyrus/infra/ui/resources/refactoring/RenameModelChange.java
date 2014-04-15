@@ -33,15 +33,14 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
@@ -50,14 +49,18 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
+import org.eclipse.ltk.core.refactoring.resource.RenameResourceChange;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.modelsetquery.IModelSetQueryAdapter;
 import org.eclipse.papyrus.infra.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelsReader;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.controlmode.mm.history.ControledResource;
 import org.eclipse.papyrus.infra.services.controlmode.mm.history.historyPackage;
 import org.eclipse.papyrus.infra.ui.resources.Activator;
@@ -364,6 +367,8 @@ public class RenameModelChange extends Change {
 
 			@Override
 			protected void doExecute() {
+
+				// got though resources, to find if a resources that reference one of uri map is read only
 				for(URI uri : uriMap.keySet()) {
 					Resource r = resourceSet.getResource(uri, false);
 					ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
@@ -374,31 +379,45 @@ public class RenameModelChange extends Change {
 					if(r != null) {
 						for(Iterator<EObject> i = EcoreUtil.getAllProperContents(r, false); i.hasNext();) {
 							EObject e = i.next();
+
+							//look for all references where e is playing
 							Collection<Setting> references = adapter.getInverseReferences(e);
 							for(Setting s : references) {
+								// get the EObject that play with e
 								EObject eObject = s.getEObject();
-								if(eObject != null && eObject.eResource() != null && domain.isReadOnly(eObject.eResource())) {
-									readOnlies.add(eObject.eResource());
+
+								//this is the same resource --> not interesting
+								if((eObject.eResource() != null) && !(eObject.eResource().equals(e.eResource()))) {
+									//this is a external resource that references uri map
+									//if not not interesting
+									EStructuralFeature eFeature = s.getEStructuralFeature();
+
+									if((!eFeature.isDerived()) && (eObject.eClass().getEAllStructuralFeatures().contains(eFeature))) {
+										if(eObject.eResource() != null && EMFHelper.isReadOnly(eObject.eResource(), domain)) {
+											boolean isWritable = EMFHelper.canMakeWritable(eObject.eResource(), domain);
+											if(isWritable) {
+												readOnlies.add(eObject.eResource());
+											}
+										}
+									}
 								}
 							}
 						}
 					}
 				}
-
 			}
+
 		});
 		// if read only => error to the user
 		if(!readOnlies.isEmpty()) {
-			StringBuffer buffer = new StringBuffer("The resources listed are read only, the rename process can not continue : ");
-			int i = 0;
-			for(Resource r : readOnlies) {
-				if(i != 0) {
-					buffer.append(", ");
-				}
-				buffer.append(r.getURI().toString());
-				i++;
+			ReadOnlyManager readOnlyManager = new ReadOnlyManager(domain);
+			ArrayList<URI> uris = new ArrayList<URI>();
+			for(Iterator<Resource> iterator = readOnlies.iterator(); iterator.hasNext();) {
+				Resource r = (Resource)iterator.next();
+				uris.add(r.getURI());
 			}
-			return RefactoringStatus.create(new Status(IStatus.ERROR, Activator.PLUGIN_ID, buffer.toString()));
+
+			readOnlyManager.makeWritable(ReadOnlyAxis.anyAxis(), uris.toArray(new URI[uris.size()]));
 		}
 		return new RefactoringStatus();
 

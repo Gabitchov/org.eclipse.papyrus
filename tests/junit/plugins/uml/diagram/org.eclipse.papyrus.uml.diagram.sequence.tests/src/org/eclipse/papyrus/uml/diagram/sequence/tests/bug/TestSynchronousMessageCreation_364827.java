@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -36,13 +39,14 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestLink;
+import org.junit.After;
 import org.junit.Test;
 
 /**
  * When a synchronous message is created, an executionSpecification (Action or
  * Behavior: a popup menu should give the choice to the user) has to be created in
  * case it does'nt exist.
- * 
+ *
  */
 public class TestSynchronousMessageCreation_364827 extends TestLink {
 
@@ -60,7 +64,7 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	public void selectActionExecution(IElementType sourceType, IElementType targetType, IElementType linkType, IElementType subNodeType) {
 		installEnvironment(sourceType, targetType, subNodeType);
 		target = createSubNode(target, subNodeType, getAbsoluteCenter(target));
@@ -77,7 +81,7 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 		AbstractMessageEditPart p = (AbstractMessageEditPart)source.getSourceConnections().get(0);
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((View)p.getModel()).getType().equals(((IHintedType)linkType).getSemanticHint()));
 
-		//		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().size() == 2); // LifelineNameEditPart 
+		//		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().size() == 2); // LifelineNameEditPart
 		assertTrue(CREATION + TEST_THE_EXECUTION, target instanceof ActionExecutionSpecificationEditPart);
 
 		getDiagramCommandStack().undo();
@@ -115,8 +119,9 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 		assertTrue(CREATION + TEST_THE_REDO, target.getTargetConnections().size() == 1);
 	}
 
+	@After
 	@Override
-	protected void tearDown() throws Exception {
+	public void tearDown() throws Exception {
 		super.tearDown();
 		waitForComplete();
 		PopupUtil.removeMenuListener();

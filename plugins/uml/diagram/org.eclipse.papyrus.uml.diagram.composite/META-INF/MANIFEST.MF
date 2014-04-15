@@ -20,7 +20,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -71,12 +71,11 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0",
  org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.viewpoints.configuration;bundle-version="1.0.0"
+ org.eclipse.papyrus.infra.viewpoints.configuration;bundle-version="1.0.0",
+ org.eclipse.papyrus.views.properties;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.composite.part.UMLDi
- agramEditorPlugin
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.composite;singleton:=true
-
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.composite; singleton:=true

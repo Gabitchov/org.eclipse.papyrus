@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="This progin provides viewers which allows the customization of the viewer using emf-facet.&#xD;&#xA;It provides a viewer for Undo/Redo actions too.&#xD;&#xA;This plugin should not have dependencies on gmf.notation.diagram and uml.">
-  <referent firstName="vincent" lastName="lorenzo" eMail="vincent.lorenzo@cea.fr" currentCompany="CEA-LIST"/>
-</doc:Documentation>

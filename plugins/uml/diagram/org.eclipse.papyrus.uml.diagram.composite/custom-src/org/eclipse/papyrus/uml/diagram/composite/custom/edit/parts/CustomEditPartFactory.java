@@ -33,10 +33,10 @@ public class CustomEditPartFactory extends UMLEditPartFactory {
 			View view = (View)model;
 			switch(UMLVisualIDRegistry.getVisualID(view)) {
 
-			case ConnectorMultiplicitySourceEditPart.VISUAL_ID:
-				return new ConnectorMultiplicitySourceEditPart(view);
-			case ConnectorMultiplicityTargetEditPart.VISUAL_ID:
-				return new ConnectorMultiplicityTargetEditPart(view);
+			case CustomConnectorMultiplicitySourceEditPart.VISUAL_ID:
+				return new CustomConnectorMultiplicitySourceEditPart(view);
+			case CustomConnectorMultiplicityTargetEditPart.VISUAL_ID:
+				return new CustomConnectorMultiplicityTargetEditPart(view);
 			case ConstraintEditPartCN.VISUAL_ID:
 				return new CustomConstraintEditPartCN(view);
 

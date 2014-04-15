@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Papyrus.profile -->
+      <package
+            uri="http://www.eclipse.org/papyrus/documentation"
+            class="org.eclipse.papyrus.uml.documentation.Documentation.DocumentationPackage"
+            genModel="model/Papyrus.profile.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="pathmap://PAPYRUS_DOCUMENTATION/Papyrus.profile.uml#_O1Qs0AEYEeCIz8iAxBJnfA"
+            uri="http://www.eclipse.org/papyrus/documentation">
+      </profile>
+   </extension>
    <extension
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
-            source="pathmap://Papyrus.profile.uml"
-            target="platform:/plugin/org.eclipse.papyrus.uml.documentation.profile/model/Papyrus.profile.uml">
+            source="pathmap://PAPYRUS_DOCUMENTATION/"
+            target="platform:/plugin/org.eclipse.papyrus.uml.documentation.profile/model/">
       </mapping>
    </extension>
 

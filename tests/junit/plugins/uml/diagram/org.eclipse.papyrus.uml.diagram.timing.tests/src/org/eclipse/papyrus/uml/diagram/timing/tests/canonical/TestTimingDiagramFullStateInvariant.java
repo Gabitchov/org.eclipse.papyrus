@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.papyrus.junit.utils.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullStateInvariantEditPartCN;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.StateDefinitionEditPart;
 import org.junit.Test;
@@ -31,6 +32,7 @@ public class TestTimingDiagramFullStateInvariant extends AbstractTimingDiagramTe
 		createThreeOccurrenceSpecificationsInDefaultFullLifeline();
 	}
 
+	@FailingTest("To be verified - Issue with opening the Text widget for direct edit request. Works in standard user environment")
 	@Test
 	public void testMoveStateInvariants() {
 		final List<FullStateInvariantEditPartCN> stateInvariantEditParts = findStateInvariantsInDefaultFullLifeline();

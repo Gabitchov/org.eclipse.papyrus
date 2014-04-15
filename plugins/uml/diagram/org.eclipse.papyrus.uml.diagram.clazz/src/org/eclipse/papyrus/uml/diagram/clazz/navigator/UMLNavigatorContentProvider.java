@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -38,27 +38,22 @@ import org.eclipse.ui.navigator.ICommonContentProvider;
  * @generated
  */
 public class UMLNavigatorContentProvider implements ICommonContentProvider {
-
 	/**
 	 * @generated
 	 */
 	private static final Object[] EMPTY_ARRAY = new Object[0];
-
 	/**
 	 * @generated
 	 */
 	private Viewer myViewer;
-
 	/**
 	 * @generated
 	 */
 	private AdapterFactoryEditingDomain myEditingDomain;
-
 	/**
 	 * @generated
 	 */
 	private WorkspaceSynchronizer myWorkspaceSynchronizer;
-
 	/**
 	 * @generated
 	 */
@@ -135,12 +130,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
 		myViewerRefreshRunnable = null;
-
 		for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 			Resource resource = (Resource) it.next();
 			resource.unload();
 		}
-
 		((TransactionalEditingDomain) myEditingDomain).dispose();
 		myEditingDomain = null;
 	}
@@ -212,12 +205,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			}
 			return result.toArray();
 		}
-
 		if (parentElement instanceof UMLNavigatorGroup) {
 			UMLNavigatorGroup group = (UMLNavigatorGroup) parentElement;
 			return group.getChildren();
 		}
-
 		if (parentElement instanceof UMLNavigatorItem) {
 			UMLNavigatorItem navigatorItem = (UMLNavigatorItem) parentElement;
 			if (navigatorItem.isLeaf() || !isOwnView(navigatorItem.getView())) {
@@ -225,7 +216,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			}
 			return getViewChildren(navigatorItem.getView(), parentElement);
 		}
-
 		return EMPTY_ARRAY;
 	}
 
@@ -262,5 +252,4 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}
-
 }

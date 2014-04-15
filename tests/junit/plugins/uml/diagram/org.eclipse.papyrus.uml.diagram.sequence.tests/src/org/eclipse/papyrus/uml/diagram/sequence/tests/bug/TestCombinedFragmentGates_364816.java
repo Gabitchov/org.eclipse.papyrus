@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -39,6 +42,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDi
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestLink;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Message;
+import org.junit.After;
 import org.junit.Test;
 
 /**
@@ -54,7 +58,7 @@ public class TestCombinedFragmentGates_364816 extends TestLink {
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return ISequenceDiagramTestsConstants.PROJECT_NAME;
@@ -171,8 +175,9 @@ public class TestCombinedFragmentGates_364816 extends TestLink {
 		assertTrue(CREATION + TEST_THE_REDO, cf.getCfragmentGates().size() == 1);
 	}
 
+	@After
 	@Override
-	protected void tearDown() throws Exception {
+	public void tearDown() throws Exception {
 		super.tearDown();
 		waitForComplete();
 		PopupUtil.removeDialogCloseHandler();

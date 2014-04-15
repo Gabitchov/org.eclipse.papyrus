@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -32,5 +32,4 @@ public class UMLLinkDescriptor extends UpdaterLinkDescriptor {
 	public UMLLinkDescriptor(EObject source, EObject destination, EObject linkElement, IElementType elementType, int linkVID) {
 		super(source, destination, linkElement, elementType, linkVID);
 	}
-
 }

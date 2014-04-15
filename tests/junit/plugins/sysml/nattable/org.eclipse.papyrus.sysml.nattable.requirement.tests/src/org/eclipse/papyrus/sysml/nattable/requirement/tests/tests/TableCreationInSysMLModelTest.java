@@ -37,6 +37,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.junit.utils.DisplayUtils;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.ModelExplorerUtils;
@@ -171,7 +172,7 @@ public class TableCreationInSysMLModelTest {
 	public void testCreationAndDestructionOnRootModel() {
 		Object result = ModelExplorerUtils.executeCreateNestedEditorHandlerInModelExplorer(papyrusEditor, TableCreationInSysMLModelTest.view, AllTests.COMMAND_ID, TableCreationInSysMLModelTest.rootModel, BUNDLE_ID);
 		//to refresh the table content
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.flushEventLoop();
 		Assert.assertTrue(result instanceof NatTableEditor);
 		NatTableEditor editor = (NatTableEditor)result;
 		NattableModelManager manager = (NattableModelManager)editor.getAdapter(INattableModelManager.class);
@@ -204,7 +205,7 @@ public class TableCreationInSysMLModelTest {
 		Assert.assertNotNull(requirement);
 		requirement3 = (Class)requirement;
 		//to refresh the table content
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.flushEventLoop();
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(3, managedAxis.size());
 		Assert.assertTrue(managedAxis.contains(requirement1));
@@ -226,7 +227,7 @@ public class TableCreationInSysMLModelTest {
 		Assert.assertNull(requirement);
 		requirement3 = (Class)requirement;
 		//to refresh the table content
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.flushEventLoop();
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(2, managedAxis.size());
 		Assert.assertTrue(managedAxis.contains(requirement1));
@@ -241,7 +242,7 @@ public class TableCreationInSysMLModelTest {
 	public void testCreationAndDestructionOnRequirement() {
 		Object result = ModelExplorerUtils.executeCreateNestedEditorHandlerInModelExplorer(papyrusEditor, TableCreationInSysMLModelTest.view, AllTests.COMMAND_ID, TableCreationInSysMLModelTest.requirement1, BUNDLE_ID);
 		//to refresh the table content
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.flushEventLoop();
 		Assert.assertTrue(result instanceof NatTableEditor);
 		NatTableEditor editor = (NatTableEditor)result;
 		NattableModelManager manager = (NattableModelManager)editor.getAdapter(INattableModelManager.class);
@@ -276,7 +277,7 @@ public class TableCreationInSysMLModelTest {
 		nestedRequirement3 = (Class)requirement;
 
 		//to refresh the table content
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.flushEventLoop();
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(3, managedAxis.size());
 		Assert.assertTrue(managedAxis.contains(nestedRequirement1));
@@ -299,7 +300,7 @@ public class TableCreationInSysMLModelTest {
 		nestedRequirement3 = (Class)requirement;
 
 		//to refresh the table content
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.flushEventLoop();
 
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(2, managedAxis.size());

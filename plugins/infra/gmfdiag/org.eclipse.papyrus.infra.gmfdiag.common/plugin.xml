@@ -156,27 +156,6 @@
 	</binding>
 </extension>
 <extension
-      point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-   <metamodel
-         nsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
-      <metamodelType
-            eclass="Diagram"
-            edithelper="org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramEditHelper"
-            id="org.eclipse.papyrus.infra.gmfdiag.common.DiagramElementType"
-            name="Diagram">
-      </metamodelType>
-   </metamodel>
-</extension>
-<extension
-      point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-   <binding
-         context="org.eclipse.papyrus.infra.services.edit.TypeContext">
-      <elementType
-            ref="org.eclipse.papyrus.infra.gmfdiag.common.DiagramElementType">
-      </elementType>
-   </binding>
-</extension>
-<extension
       point="org.eclipse.core.expressions.propertyTesters">
    <propertyTester
          class="org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramPropertyTester"
@@ -192,6 +171,13 @@
          properties="isGmfDiagramContextActive"
          type="java.util.Collection">
    </propertyTester>
+   <propertyTester
+         class="org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramPropertyTester"
+         id="org.eclipse.papyrus.infra.gmfdiag.common.diagram.text.tester"
+         namespace="org.eclipse.papyrus.infra.gmfdiag.common.diagram.text.tester"
+         properties="isTextZone"
+         type="org.eclipse.swt.widgets.Shell">
+   </propertyTester>   
 </extension>
 <extension
       point="org.eclipse.ui.menus">

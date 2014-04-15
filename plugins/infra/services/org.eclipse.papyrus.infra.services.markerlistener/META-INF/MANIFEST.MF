@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.services.markerlistener,
+ org.eclipse.papyrus.infra.services.markerlistener.dialogs,
  org.eclipse.papyrus.infra.services.markerlistener.providers,
  org.eclipse.papyrus.infra.services.markerlistener.util
 Require-Bundle: org.eclipse.ui,

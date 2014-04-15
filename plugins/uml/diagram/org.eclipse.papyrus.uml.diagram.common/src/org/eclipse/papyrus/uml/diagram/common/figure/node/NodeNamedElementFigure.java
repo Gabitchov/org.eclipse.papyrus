@@ -188,7 +188,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	public void restoreStereotypeLabel() {
 		if(stereotypesLabel!=null){
 			stereotypesLabel.setOpaque(false);
-			getStereotypeLabelContainer().add(stereotypesLabel, getStereotypeLabelConstraint(), getStereotypePropertiesLabelPosition());
+			getStereotypeLabelContainer().add(stereotypesLabel, getStereotypeLabelConstraint(), getStereotypeLabelPosition());
 		}
 	}
 

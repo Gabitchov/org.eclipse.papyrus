@@ -1,15 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Amine EL KOUHEN (CEA LIST/LIFL) & Nizar GUEDIDI (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.component.sheet;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -26,7 +25,6 @@ import org.eclipse.swt.graphics.Image;
  * @generated
  */
 public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelProvider {
-
 	/**
 	 * @generated
 	 */
@@ -48,8 +46,8 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	 * @generated
 	 */
 	private Object unwrap(Object element) {
-		if(element instanceof IStructuredSelection) {
-			return ((IStructuredSelection)element).getFirstElement();
+		if (element instanceof IStructuredSelection) {
+			return ((IStructuredSelection) element).getFirstElement();
 		}
 		return element;
 	}
@@ -58,11 +56,11 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	 * @generated
 	 */
 	private View getView(Object element) {
-		if(element instanceof View) {
-			return (View)element;
+		if (element instanceof View) {
+			return (View) element;
 		}
-		if(element instanceof IAdaptable) {
-			return (View)((IAdaptable)element).getAdapter(View.class);
+		if (element instanceof IAdaptable) {
+			return (View) ((IAdaptable) element).getAdapter(View.class);
 		}
 		return null;
 	}
@@ -72,13 +70,15 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	 */
 	private IElementType getElementType(View view) {
 		// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
-		while(view != null) {
+		while (view != null) {
 			int vid = UMLVisualIDRegistry.getVisualID(view);
-			IElementType etype = UMLElementTypes.getElementType(vid);
-			if(etype != null) {
+			IElementType etype =
+					UMLElementTypes.getElementType(vid);
+			if (etype != null) {
 				return etype;
 			}
-			view = view.eContainer() instanceof View ? (View)view.eContainer() : null;
+			view = view.eContainer() instanceof View ?
+					(View) view.eContainer() : null;
 		}
 		return null;
 	}

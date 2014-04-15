@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_ZtZxs_Q1EeK9gKrxk10euQ" name="Model">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_ZtZxs_Q1EeK9gKrxk10euQ" name="Model">
   <packageImport xmi:type="uml:PackageImport" xmi:id="_ZtZxtPQ1EeK9gKrxk10euQ">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
   <packageImport xmi:type="uml:PackageImport" xmi:id="_oe_9gPQ1EeK9gKrxk10euQ">
     <importedPackage xmi:type="uml:Model" href="library.uml#_gvvLwPQ1EeK9gKrxk10euQ"/>
   </packageImport>
-  <packagedElement xmi:type="uml:Class" xmi:id="_aa6-wPQ1EeK9gKrxk10euQ" clientDependency="_yJcpkPQ1EeK9gKrxk10euQ" name="Class1">
+  <packagedElement xmi:type="uml:Class" xmi:id="_aa6-wPQ1EeK9gKrxk10euQ" name="Class1">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_cPQqMPQ1EeK9gKrxk10euQ" name="Attribute1">
       <type xmi:type="uml:Interface" href="library.uml#_iVyjkPQ1EeK9gKrxk10euQ"/>
     </ownedAttribute>
@@ -15,11 +15,10 @@
     </ownedAttribute>
     <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_yJcpkPQ1EeK9gKrxk10euQ" name="InterfaceRealization1" client="_aa6-wPQ1EeK9gKrxk10euQ">
       <supplier xmi:type="uml:Interface" href="library.uml#_iLO5YPQ1EeK9gKrxk10euQ"/>
-      <contract xmi:type="uml:Interface" href="library.uml#_iLO5YPQ1EeK9gKrxk10euQ"/>
     </interfaceRealization>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_anHnsPQ1EeK9gKrxk10euQ" name="Class2">
-    <generalization xmi:type="uml:Generalization" xmi:id="_wES68PQ1EeK9gKrxk10euQ">
+    <generalization xmi:type="uml:Generalization" xmi:id="_z6w0cMDAEeOe24DdsiPxGg">
       <general xmi:type="uml:Class" href="library.uml#_iwbRIPQ1EeK9gKrxk10euQ"/>
     </generalization>
   </packagedElement>

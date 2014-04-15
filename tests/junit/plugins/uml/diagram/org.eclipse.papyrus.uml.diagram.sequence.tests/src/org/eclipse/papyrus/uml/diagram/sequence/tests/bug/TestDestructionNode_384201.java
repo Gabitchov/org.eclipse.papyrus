@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -40,7 +43,7 @@ import org.junit.Test;
  * The icon of the tool "destruction node" is missing in the palette of the sequence diagram editor.
  * The default size of the figure associated to the destruction node is too big and should be resizable.
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=384201
- * 
+ *
  */
 public class TestDestructionNode_384201 extends TestTopNode {
 
@@ -61,7 +64,7 @@ public class TestDestructionNode_384201 extends TestTopNode {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Test
 	public void testResizeNorth() {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));

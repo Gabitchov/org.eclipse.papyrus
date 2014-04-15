@@ -1,16 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.composite.edit.parts;
 
 import org.eclipse.draw2d.geometry.Dimension;
@@ -31,14 +29,13 @@ import org.eclipse.swt.widgets.Text;
  * @generated
  */
 public class UMLEditPartFactory implements EditPartFactory {
-
 	/**
 	 * @generated
 	 */
 	public EditPart createEditPart(EditPart context, Object model) {
-		if(model instanceof View) {
-			View view = (View)model;
-			switch(UMLVisualIDRegistry.getVisualID(view)) {
+		if (model instanceof View) {
+			View view = (View) model;
+			switch (UMLVisualIDRegistry.getVisualID(view)) {
 			case CompositeStructureDiagramEditPart.VISUAL_ID:
 				return new CompositeStructureDiagramEditPart(view);
 			case ActivityCompositeEditPart.VISUAL_ID:
@@ -403,34 +400,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new PropertyEditPartCLN(view);
 			case OperationEditPartCLN.VISUAL_ID:
 				return new OperationEditPartCLN(view);
-			case ReceptionEditPartCLN.VISUAL_ID:
-				return new ReceptionEditPartCLN(view);
 			case EnumerationLiteralEditPartCLN.VISUAL_ID:
 				return new EnumerationLiteralEditPartCLN(view);
-			case ActivityEditPartCLN.VISUAL_ID:
-				return new ActivityEditPartCLN(view);
-			case InteractionEditPartCLN.VISUAL_ID:
-				return new InteractionEditPartCLN(view);
-			case ProtocolStateMachineEditPartCLN.VISUAL_ID:
-				return new ProtocolStateMachineEditPartCLN(view);
-			case StateMachineEditPartCLN.VISUAL_ID:
-				return new StateMachineEditPartCLN(view);
-			case FunctionBehaviorEditPartCLN.VISUAL_ID:
-				return new FunctionBehaviorEditPartCLN(view);
-			case OpaqueBehaviorEditPartCLN.VISUAL_ID:
-				return new OpaqueBehaviorEditPartCLN(view);
-			case CollaborationEditPartCLN.VISUAL_ID:
-				return new CollaborationEditPartCLN(view);
-			case InterfaceEditPartCLN.VISUAL_ID:
-				return new InterfaceEditPartCLN(view);
-			case EnumerationEditPartCLN.VISUAL_ID:
-				return new EnumerationEditPartCLN(view);
-			case PrimitiveTypeEditPartCLN.VISUAL_ID:
-				return new PrimitiveTypeEditPartCLN(view);
-			case DataTypeEditPartCLN.VISUAL_ID:
-				return new DataTypeEditPartCLN(view);
-			case ClassEditPartCLN.VISUAL_ID:
-				return new ClassEditPartCLN(view);
 			case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
 				return new DataTypeAttributeCompartmentEditPart(view);
 			case DataTypeOperationCompartmentEditPart.VISUAL_ID:
@@ -605,10 +576,13 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
-		if(source.getFigure() instanceof IMultilineEditableFigure) {
-			return new MultilineCellEditorLocator((IMultilineEditableFigure)source.getFigure());
-		} else {
+	public static CellEditorLocator getTextCellEditorLocator(
+			ITextAwareEditPart source) {
+		if (source.getFigure() instanceof IMultilineEditableFigure) {
+			return new MultilineCellEditorLocator(
+					(IMultilineEditableFigure) source.getFigure());
+		}
+		else {
 			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 		}
 	}
@@ -617,7 +591,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 * @generated
 	 */
 	static private class MultilineCellEditorLocator implements CellEditorLocator {
-
 		/**
 		 * @generated
 		 */
@@ -641,15 +614,16 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 * @generated
 		 */
 		public void relocate(CellEditor celleditor) {
-			Text text = (Text)celleditor.getControl();
+			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
 			rect.x = getMultilineEditableFigure().getEditionLocation().x;
 			rect.y = getMultilineEditableFigure().getEditionLocation().y;
 			getMultilineEditableFigure().translateToAbsolute(rect);
-			if(getMultilineEditableFigure().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
+			if (getMultilineEditableFigure().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width,
+						SWT.DEFAULT)));
 			}
-			if(!rect.equals(new Rectangle(text.getBounds()))) {
+			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}

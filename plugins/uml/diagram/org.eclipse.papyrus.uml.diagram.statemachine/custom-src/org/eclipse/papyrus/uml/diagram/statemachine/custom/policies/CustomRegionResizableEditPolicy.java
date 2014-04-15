@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.policies;
 
 import java.util.ArrayList;
@@ -15,20 +26,12 @@ import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.handles.ResizableHandleKit;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.RegionFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 
 public class CustomRegionResizableEditPolicy extends ResizableEditPolicy {
-
 	/** The associated request. */
 	private ChangeBoundsRequest request;
-
-	/**
-	 * The target figure, i.e. the figure associated to the targetNode region .
-	 * Used to change of coordinates.
-	 */
-	private RegionFigure targetFig;
 
 	/** Flag to indicate a change in the referent figure is needed. */
 	private boolean changeReferentFigure = false;
@@ -39,24 +42,24 @@ public class CustomRegionResizableEditPolicy extends ResizableEditPolicy {
 	 * @return a list of the Handles
 	 */
 	@Override
-	protected List createSelectionHandles() {
-		List list = new ArrayList();
+	protected List<?> createSelectionHandles() {
+		List<?> list = new ArrayList<Object>();
 		int dirs = getResizeDirections();
 		// by default (case when dirs == -1 or 0)
 		// no move nor resize handles are provided
 		// this is to cope with the default region included in the statemachine
 		// for which it would not make any sense
-		if(dirs > 0) {
+		if (dirs > 0) {
 			// resize handles are added depending on a bit-wise test of dirs
 			// in any case we do not provide oblique resize handles
-			if((dirs & PositionConstants.EAST) != 0)
-				ResizableHandleKit.addHandle((GraphicalEditPart)getHost(), list, PositionConstants.EAST);
-			if((dirs & PositionConstants.SOUTH) != 0)
-				ResizableHandleKit.addHandle((GraphicalEditPart)getHost(), list, PositionConstants.SOUTH);
-			if((dirs & PositionConstants.WEST) != 0)
-				ResizableHandleKit.addHandle((GraphicalEditPart)getHost(), list, PositionConstants.WEST);
-			if((dirs & PositionConstants.NORTH) != 0) {
-				ResizableHandleKit.addHandle((GraphicalEditPart)getHost(), list, PositionConstants.NORTH);
+			if ((dirs & PositionConstants.EAST) != 0)
+				ResizableHandleKit.addHandle((GraphicalEditPart) getHost(), list, PositionConstants.EAST);
+			if ((dirs & PositionConstants.SOUTH) != 0)
+				ResizableHandleKit.addHandle((GraphicalEditPart) getHost(), list, PositionConstants.SOUTH);
+			if ((dirs & PositionConstants.WEST) != 0)
+				ResizableHandleKit.addHandle((GraphicalEditPart) getHost(), list, PositionConstants.WEST);
+			if ((dirs & PositionConstants.NORTH) != 0) {
+				ResizableHandleKit.addHandle((GraphicalEditPart) getHost(), list, PositionConstants.NORTH);
 			}
 		}
 		return list;
@@ -74,17 +77,15 @@ public class CustomRegionResizableEditPolicy extends ResizableEditPolicy {
 	 * this process we assign a corresponding drop location to the region.
 	 * 
 	 * @param a
-	 *        rectangle which is the bounds of the ghost figure to be shown
+	 *            rectangle which is the bounds of the ghost figure to be shown
 	 */
 	@Override
 	protected Rectangle getInitialFeedbackBounds() {
 		Dimension sizeDelta = request.getSizeDelta();
-
 		// restore default flag value
 		changeReferentFigure = false;
-
 		// we test whether this is a move request or a resize request
-		if((sizeDelta.width == 0) && (sizeDelta.height == 0)) {
+		if ((sizeDelta.width == 0) && (sizeDelta.height == 0)) {
 			return super.getInitialFeedbackBounds();
 		}
 		// this is a resize request
@@ -92,35 +93,35 @@ public class CustomRegionResizableEditPolicy extends ResizableEditPolicy {
 			// retrieve the direction of resize
 			int direction = request.getResizeDirection();
 			// retrieve the edit part associated to the policy
-			RegionEditPart regionEP = (RegionEditPart)getHost();
+			RegionEditPart regionEP = (RegionEditPart) getHost();
 			// the associated region view
-			View region = (View)regionEP.getModel();
+			View region = (View) regionEP.getModel();
 			// a list to get all the nodes impacted by the resize
 			List<View> nodes = new ArrayList<View>();
 			// test the direction and call the appropriate method
-			if(direction == PositionConstants.NORTH)
+			if (direction == PositionConstants.NORTH)
 				// retrieve the list of nodes that are at the BOTTOM of NORTH
 				// border
 				nodes = Zone.getRegionTopBorderInsideNeighbours(region);
-			else if(direction == PositionConstants.SOUTH)
+			else if (direction == PositionConstants.SOUTH)
 				// retrieve the list of nodes that are at the TOP of SOUTH
 				// border
 				nodes = Zone.getRegionBottomBorderInsideNeighbours(region);
-			else if(direction == PositionConstants.EAST)
+			else if (direction == PositionConstants.EAST)
 				// retrieve the list of nodes that are at the LEFT of EAST
 				// border
 				nodes = Zone.getRegionRightBorderInsideNeighbours(region);
-			else if(direction == PositionConstants.WEST)
+			else if (direction == PositionConstants.WEST)
 				// retrieve the list of nodes that are at the RIGHT of WEST
 				// border
 				nodes = Zone.getRegionLeftBorderInsideNeighbours(region);
 			// now compute the bounds of the node union
 			Rectangle rect = null;
 			Iterator<View> it = nodes.iterator();
-			while(it.hasNext()) {
+			while (it.hasNext()) {
 				View view = it.next();
 				Rectangle currentBounds = Zone.getBounds(view);
-				if(rect == null)
+				if (rect == null)
 					rect = currentBounds;
 				else
 					rect = rect.union(currentBounds);
@@ -134,34 +135,31 @@ public class CustomRegionResizableEditPolicy extends ResizableEditPolicy {
 	 * used to perform coordinate change.
 	 * 
 	 * @param request
-	 *        the Request
+	 *            the Request
 	 */
 	@Override
 	protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
-		this.request = (ChangeBoundsRequest)request;
+		this.request = (ChangeBoundsRequest) request;
 		IFigure feedback = getDragSourceFeedbackFigure();
-
 		PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
-
 		// if regions are part of different state machines or state
-		if(changeReferentFigure)
-			// use the target figure as referent for coordinate change
-			targetFig.translateToAbsolute(rect);
+		if (changeReferentFigure) {
+
+		}
 		// both regions are part of the same state machine or state
-		else
+		else {
 			// use default host figure
 			getHostFigure().translateToAbsolute(rect);
+		}
 		rect.translate(request.getMoveDelta());
 		rect.resize(request.getSizeDelta());
-
 		feedback.translateToRelative(rect);
 		feedback.setBounds(rect);
 	}
 
 	@Override
 	public void showSourceFeedback(Request request) {
-		if(REQ_RESIZE.equals(request.getType()))
-			showChangeBoundsFeedback((ChangeBoundsRequest)request);
+		if (REQ_RESIZE.equals(request.getType()))
+			showChangeBoundsFeedback((ChangeBoundsRequest) request);
 	}
-
 }

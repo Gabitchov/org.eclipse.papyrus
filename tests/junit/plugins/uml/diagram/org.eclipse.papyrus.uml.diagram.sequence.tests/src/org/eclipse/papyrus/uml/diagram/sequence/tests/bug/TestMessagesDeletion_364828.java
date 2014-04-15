@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
@@ -51,7 +54,7 @@ import org.junit.Test;
  * When a message is deleted, its associated send and receive events are not
  * deleted. These events must be deleted because new events are systematically
  * created upon the creation of a new message.
- * 
+ *
  * It fixes the deletion of the associated send MessageSend and receive
  * MessageRecv events for
  * - Message Sync
@@ -59,7 +62,7 @@ import org.junit.Test;
  * - Message Reply
  * - Message Create
  * - Message Delete
- * 
+ *
  */
 public class TestMessagesDeletion_364828 extends TestLink {
 
@@ -77,7 +80,7 @@ public class TestMessagesDeletion_364828 extends TestLink {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Override
 	public CreateConnectionViewRequest createConnectionViewRequest(IElementType type, EditPart source, EditPart target, ILinkTestProvider provider) {
 		CreateConnectionViewRequest request = super.createConnectionViewRequest(type, source, target, provider);
@@ -118,9 +121,11 @@ public class TestMessagesDeletion_364828 extends TestLink {
 
 	private int getMessageEndCount(EList<InteractionFragment> fragments) {
 		int count = 0;
-		for(InteractionFragment f : fragments)
-			if(f instanceof MessageEnd)
+		for(InteractionFragment f : fragments) {
+			if(f instanceof MessageEnd) {
 				count++;
+			}
+		}
 
 		return count;
 	}
@@ -221,9 +226,11 @@ public class TestMessagesDeletion_364828 extends TestLink {
 		public int getSemanticChildrenSize() {
 			int count = 0;
 			EList<Element> elems = ((Element)getRootEditPart().getNotationView().getElement()).getOwnedElements();
-			for(Element f : elems)
-				if(!(f instanceof MessageEnd) && !(f instanceof ExecutionOccurrenceSpecification))
+			for(Element f : elems) {
+				if(!(f instanceof MessageEnd) && !(f instanceof ExecutionOccurrenceSpecification)) {
 					count++;
+				}
+			}
 
 			return count;
 		}

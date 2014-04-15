@@ -53,44 +53,82 @@ import xpt.providers.ParserUtils_qvto
 	@Inject extension OclTracker_qvto
 	@Inject extension ParserUtils_qvto
 	@Inject extension expression_qvto
-	
+
 	@Inject extension parsers.ExpressionLabelParser;
 	@Inject extension parsers.PredefinedParser;
-	
+
 	@Inject getExpression xptGetExpression;
 	@Inject MetaModel xptMetaModel;
 	@Inject VisualIDRegistry xptVisualIDRegistry;
-	@Inject ElementTypes xptElementTypes; 
+	@Inject ElementTypes xptElementTypes;
 	@Inject parsers.ParserProvider xptParsers;
 	@Inject Activator xptActivator;
-	
-
 
 	override def HintAdapterClass(GenParsers it) '''
-		«generatedMemberComment()»
-		private static class HintAdapter extends org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter {
-	
 			«generatedMemberComment()»
-			private final org.eclipse.gmf.runtime.emf.type.core.IElementType elementType;
-	
-			«generatedMemberComment()»
-			public HintAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType type,
-					org.eclipse.emf.ecore.EObject object, String parserHint) {
+			private static class HintAdapter extends org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter {
+		
+				«generatedMemberComment()»
+				private final org.eclipse.gmf.runtime.emf.type.core.IElementType elementType;
+		
+				«generatedMemberComment()»
+				public HintAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType type,
+						org.eclipse.emf.ecore.EObject object, String parserHint) {
 				super(object, parserHint);
 				«_assert('type != null')»
 				elementType = type;
-			}
-	
-			«generatedMemberComment()»
-			public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-				if (org.eclipse.gmf.runtime.emf.type.core.IElementType.class.equals(adapter)) {
-					return elementType;
 				}
-				return super.getAdapter(adapter);
+		
+				«generatedMemberComment()»
+				public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
+					if (org.eclipse.gmf.runtime.emf.type.core.IElementType.class.equals(adapter)) {
+						return elementType;
+					}
+					return super.getAdapter(adapter);
+				}
 			}
-		}
 	'''
 
-	
+	override dispatch dispatch_parsers(GenNode it) ''' 
+		«FOR label : it.labels»
+			«IF label.modelFacet != null»
+				«dispatch_parser(label.modelFacet.parser, label.modelFacet, label)»
+			«ENDIF»
+		«ENDFOR»
+	'''
+
+	override dispatch dispatch_parsers(GenLink it) '''
+		«FOR label : it.labels»
+			«IF label.modelFacet != null»
+				«dispatch_parser(label.modelFacet.parser, label.modelFacet, label)»
+			«ENDIF»
+		«ENDFOR»
+	'''
+
+	override dispatch dispatch_getParsers(GenNode it) // 
+	'''
+		«FOR label : it.labels»
+			«IF label.modelFacet != null»
+				«doGetParser(label.modelFacet.parser, label)»
+			«ENDIF»
+		«ENDFOR»
+		
+	'''
+
+	override dispatch dispatch_getParsers(GenLink it) // 
+	'''
+		«FOR label : it.labels»
+			«IF label.modelFacet != null»
+				«doGetParser(label.modelFacet.parser, label)»
+			«ENDIF»
+		«ENDFOR»
+		
+	'''
+
+	override dispatch dispatch_getParsers(GenChildLabelNode it) '''
+		«IF it.modelFacet != null»
+			«doGetParser(it.labelModelFacet.parser, it)»
+		«ENDIF»
+	'''
 
 }

@@ -13,16 +13,12 @@
 package org.eclipse.papyrus.C_Cpp.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.C_Cpp.C_CppPackage;
 import org.eclipse.papyrus.C_Cpp.Const;
-
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Property;
@@ -42,7 +38,7 @@ import org.eclipse.uml2.uml.Property;
  *
  * @generated
  */
-public class ConstImpl extends EObjectImpl implements Const {
+public class ConstImpl extends MinimalEObjectImpl.Container implements Const {
 	/**
 	 * The cached value of the '{@link #getBase_parameter() <em>Base parameter</em>}' reference.
 	 * <!-- begin-user-doc -->

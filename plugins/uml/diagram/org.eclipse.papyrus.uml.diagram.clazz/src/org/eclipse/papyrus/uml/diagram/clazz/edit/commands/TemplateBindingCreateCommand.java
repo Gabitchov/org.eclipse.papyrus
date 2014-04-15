@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -31,17 +31,14 @@ import org.eclipse.uml2.uml.UMLFactory;
  * @generated
  */
 public class TemplateBindingCreateCommand extends EditElementCommand {
-
 	/**
 	 * @generated
 	 */
 	protected final EObject source;
-
 	/**
 	 * @generated
 	 */
 	protected final EObject target;
-
 	/**
 	 * @generated
 	 */
@@ -87,7 +84,6 @@ public class TemplateBindingCreateCommand extends EditElementCommand {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		TemplateBinding newElement = UMLFactory.eINSTANCE.createTemplateBinding();
 		getContainer().getTemplateBindings()
 				.add(newElement);
@@ -100,7 +96,6 @@ public class TemplateBindingCreateCommand extends EditElementCommand {
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**
@@ -163,5 +158,4 @@ public class TemplateBindingCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -29,7 +29,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.AssociationClassLinkI
 public class AssociationClassLinkEditPart extends AbstractAssociationEditPart
 		implements ITreeBranchEditPart
 {
-
 	/**
 	 * @generated
 	 */
@@ -59,10 +58,12 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart
 		if (childEditPart instanceof AssociationClassRoleSourceEditPart) {
 			((AssociationClassRoleSourceEditPart) childEditPart).setLabel(
 					getPrimaryShape().getRoleSourceLabel());
+			return true;
 		}
 		if (childEditPart instanceof AssociationClassRoleTargetEditPart) {
 			((AssociationClassRoleTargetEditPart) childEditPart).setLabel(
 					getPrimaryShape().getRoleTargetLabel());
+			return true;
 		}
 		return false;
 	}
@@ -118,5 +119,4 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure) getFigure();
 	}
-
 }

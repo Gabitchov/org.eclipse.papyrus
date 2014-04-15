@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -20,7 +20,6 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributo
  * @generated
  */
 public abstract class UMLAbstractNavigatorItem extends PlatformObject {
-
 	/**
 	 * @generated
 	 */
@@ -33,7 +32,6 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 			}
 		};
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
-
 			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLAbstractNavigatorItem && adapterType == ITabbedPropertySheetPageContributor.class) {
@@ -48,7 +46,6 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 			}
 		}, org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLAbstractNavigatorItem.class);
 	}
-
 	/**
 	 * @generated
 	 */
@@ -67,5 +64,4 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 	public Object getParent() {
 		return myParent;
 	}
-
 }

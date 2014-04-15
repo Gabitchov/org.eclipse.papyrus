@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
  org.eclipse.uml2.uml;bundle-version="4.1.0",
- org.junit;bundle-version="4.10.0"
+ org.junit;bundle-version="4.10.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.uml.diagram.timing.tests
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
@@ -23,5 +24,5 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.timing.tests.Activat
  or
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.timing.tests
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

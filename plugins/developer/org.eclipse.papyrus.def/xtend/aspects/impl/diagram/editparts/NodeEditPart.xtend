@@ -49,7 +49,7 @@ import xpt.diagram.editparts.Utils_qvto
 //   GMF
 //---------
 	
-	override extendsListContents (GenNode it)'''
+	override dispatch extendsListContents (GenNode it)'''
 «««BEGIN: PapyrusGenCode
 «««Add own extension
 «IF it.eResource.allContents.filter(typeof(ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].size != 0»
@@ -58,11 +58,11 @@ import xpt.diagram.editparts.Utils_qvto
 «ENDFOR»
 «««END: BEGIN: PapyrusGenCode
 «ELSE»
-	«IF hasBorderItems(it)»org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart«ELSE»org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart«ENDIF»
+	org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart
 «ENDIF»
 '''
 
-def extendsListContents (GenChildSideAffixedNode it)'''
+override dispatch extendsListContents (GenChildSideAffixedNode it)'''
 «««BEGIN: PapyrusGenCode
 «««Add own extension
 «IF it.eResource.allContents.filter(typeof(ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].size != 0»
@@ -137,20 +137,42 @@ override addFixedChild (GenNode it)'''
 			}
 		}
 	'''
+	
+	override createFigure(GenNode it) '''
+		«generatedMemberComment(
+			'Creates figure for this edit part.\n' + 
+			'\n' + 
+			'Body of this method does not depend on settings in generation model\n' + 
+			'so you may safely remove <i>generated</i> tag and modify it.\n'
+		)»
+		protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure create«IF hasBorderItems(it)»Main«ELSE»Node«ENDIF»Figure() {
+			«IF it instanceof GenChildSideAffixedNode»
+				org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure figure = createNodePlate();
+				figure.setLayoutManager(new org.eclipse.draw2d.StackLayout());
+				org.eclipse.draw2d.IFigure shape = createNodeShape();
+				figure.add(shape);
+				contentPane = setupContentPane(shape);
+				return figure;
+			«ELSE»
+				return new org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure(createMainFigureWithSVG());
+			«ENDIF»
+			
+		}
+	'''
 
-override createNodePlate (GenNode it)'''
-	«generatedMemberComment»
-	protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
-		String prefElementId="«elementType.displayName»";
-		org.eclipse.jface.preference.IPreferenceStore store =«getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».getInstance().getPreferenceStore();
-		String preferenceConstantWitdh=org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight=org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.HEIGHT);
-		org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure result = new org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-		
-		«setupNodePlate(it)»
-		return result;
-	}
-'''
+//	override createNodePlate (GenNode it)'''
+//		«generatedMemberComment»
+//		protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
+//			String prefElementId="«elementType.displayName»";
+//			org.eclipse.jface.preference.IPreferenceStore store =«getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».getInstance().getPreferenceStore();
+//			String preferenceConstantWitdh=org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.WIDTH);
+//			String preferenceConstantHeight=org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.HEIGHT);
+//			org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure result = new org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+//			
+//			«setupNodePlate(it)»
+//			return result;
+//		}
+//	'''
 
 override borderItemSelectionEditPolicy(GenNode it)'''
 	«IF hasBorderItems(it)»

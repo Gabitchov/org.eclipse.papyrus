@@ -22,7 +22,6 @@ import org.junit.runners.Suite.SuiteClasses;
 	AllCreationNodeTestsOnParametricOwnedByBlock.class,
 	AllCreationNodeTestsOnParametricOwnedByConstraintBlock.class,
 	AllCreationLinkTestsOnParametricOwnedByBlock.class,
-	AllCreationLinkTestsOnParametricOwnedByBlock.class,
 	AllNodeDndTestsOnParametricOwnedByBlock.class,
 	AllNodeDndTestsOnParametricOwnedByConstraintBlock.class,
 })

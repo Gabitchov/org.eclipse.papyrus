@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.canonical;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
@@ -62,7 +65,7 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Test
 	public void testToManageActionExecution() {
 		testToManageChildNode(UMLElementTypes.ActionExecutionSpecification_3006, lifelineProvider);
@@ -183,9 +186,11 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 		public int getSemanticChildrenSize() {
 			Lifeline lifeline = ((Lifeline)getParentEditPart().getNotationView().getElement());
 			int count = 0;
-			for(InteractionFragment f : lifeline.getCoveredBys())
-				if(f instanceof DestructionOccurrenceSpecification || f instanceof ActionExecutionSpecification || f instanceof BehaviorExecutionSpecification)
+			for(InteractionFragment f : lifeline.getCoveredBys()) {
+				if(f instanceof DestructionOccurrenceSpecification || f instanceof ActionExecutionSpecification || f instanceof BehaviorExecutionSpecification) {
 					count++;
+				}
+			}
 
 			return count;
 		}

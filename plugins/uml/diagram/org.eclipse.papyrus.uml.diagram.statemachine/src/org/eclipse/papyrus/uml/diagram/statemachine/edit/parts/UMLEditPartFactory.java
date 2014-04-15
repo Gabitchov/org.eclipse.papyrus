@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.edit.parts;
 
 import org.eclipse.draw2d.geometry.Dimension;
@@ -18,67 +29,13 @@ import org.eclipse.swt.widgets.Text;
  * @generated
  */
 public class UMLEditPartFactory implements EditPartFactory {
-
-	/**
-	 * @generated
-	 */
-	static private class MultilineCellEditorLocator implements CellEditorLocator {
-
-		/**
-		 * @generated
-		 */
-		private IMultilineEditableFigure multilineEditableFigure;
-
-		/**
-		 * @generated
-		 */
-		public MultilineCellEditorLocator(IMultilineEditableFigure figure) {
-			this.multilineEditableFigure = figure;
-		}
-
-		/**
-		 * @generated
-		 */
-		public IMultilineEditableFigure getMultilineEditableFigure() {
-			return multilineEditableFigure;
-		}
-
-		/**
-		 * @generated
-		 */
-		public void relocate(CellEditor celleditor) {
-			Text text = (Text)celleditor.getControl();
-			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
-			rect.x = getMultilineEditableFigure().getEditionLocation().x;
-			rect.y = getMultilineEditableFigure().getEditionLocation().y;
-			getMultilineEditableFigure().translateToAbsolute(rect);
-			if(getMultilineEditableFigure().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
-			}
-			if(!rect.equals(new Rectangle(text.getBounds()))) {
-				text.setBounds(rect.x, rect.y, rect.width, rect.height);
-			}
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
-		if(source.getFigure() instanceof IMultilineEditableFigure) {
-			return new MultilineCellEditorLocator((IMultilineEditableFigure)source.getFigure());
-		} else {
-			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
-		}
-	}
-
 	/**
 	 * @generated
 	 */
 	public EditPart createEditPart(EditPart context, Object model) {
-		if(model instanceof View) {
-			View view = (View)model;
-			switch(UMLVisualIDRegistry.getVisualID(view)) {
+		if (model instanceof View) {
+			View view = (View) model;
+			switch (UMLVisualIDRegistry.getVisualID(view)) {
 			case PackageEditPart.VISUAL_ID:
 				return new PackageEditPart(view);
 			case StateMachineEditPart.VISUAL_ID:
@@ -214,5 +171,61 @@ public class UMLEditPartFactory implements EditPartFactory {
 	private EditPart createUnrecognizedEditPart(EditPart context, Object model) {
 		// Handle creation of unrecognized child node EditParts here
 		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static CellEditorLocator getTextCellEditorLocator(
+			ITextAwareEditPart source) {
+		if (source.getFigure() instanceof IMultilineEditableFigure) {
+			return new MultilineCellEditorLocator(
+					(IMultilineEditableFigure) source.getFigure());
+		}
+		else {
+			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	static private class MultilineCellEditorLocator implements CellEditorLocator {
+		/**
+		 * @generated
+		 */
+		private IMultilineEditableFigure multilineEditableFigure;
+
+		/**
+		 * @generated
+		 */
+		public MultilineCellEditorLocator(IMultilineEditableFigure figure) {
+			this.multilineEditableFigure = figure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public IMultilineEditableFigure getMultilineEditableFigure() {
+			return multilineEditableFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public void relocate(CellEditor celleditor) {
+			Text text = (Text) celleditor.getControl();
+			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
+			rect.x = getMultilineEditableFigure().getEditionLocation().x;
+			rect.y = getMultilineEditableFigure().getEditionLocation().y;
+			getMultilineEditableFigure().translateToAbsolute(rect);
+			if (getMultilineEditableFigure().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width,
+						SWT.DEFAULT)));
+			}
+			if (!rect.equals(new Rectangle(text.getBounds()))) {
+				text.setBounds(rect.x, rect.y, rect.width, rect.height);
+			}
+		}
 	}
 }

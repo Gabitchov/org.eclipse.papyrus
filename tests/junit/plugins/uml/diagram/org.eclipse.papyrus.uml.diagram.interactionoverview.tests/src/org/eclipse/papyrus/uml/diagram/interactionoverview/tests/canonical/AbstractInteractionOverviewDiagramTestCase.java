@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,12 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.interactionoverview.tests.canonical;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -73,10 +79,11 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 
 	protected boolean operationFailed = false;
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new InteractionOverviewDiagramCreateCommand();
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return IInteractionoverviewDiagramTestsConstants.PROJECT_NAME;
@@ -90,12 +97,12 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	/**
 	 * Create a view for the given type, plus the associated semantic element unless the given type is a notation-only
 	 * type.
-	 * 
+	 *
 	 * <ul>
 	 * <li>if type is an {@link INotationType}, then create a view using a {@link CreateViewRequest}
 	 * <li>otherwise, create a view and the corresponding semantic element using a CreateViewAndElementRequest
 	 * </ul>
-	 * 
+	 *
 	 * @param elementType
 	 *        the type for which to create a view (and possibly a model element)
 	 * @param parentEditPart
@@ -109,12 +116,12 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	/**
 	 * Create a view for the given type, plus the associated semantic element unless the given type is a notation-only
 	 * type.
-	 * 
+	 *
 	 * <ul>
 	 * <li>if type is an {@link INotationType}, then create a view using a {@link CreateViewRequest}
 	 * <li>otherwise, create a view and the corresponding semantic element using a CreateViewAndElementRequest
 	 * </ul>
-	 * 
+	 *
 	 * @param elementType
 	 *        the type for which to create a view (and possibly a model element)
 	 * @param location
@@ -214,6 +221,7 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	}
 
 	/** Execute the given command in the diagram editor. */
+	@Override
 	protected void execute(final Command command) {
 		resetLastOperationFailedState();
 		getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
@@ -221,6 +229,7 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	}
 
 	/** Undo the last command done in the diagram editor. */
+	@Override
 	protected void undo() {
 		resetLastOperationFailedState();
 		final CommandStack commandStack = getCommandStack();
@@ -230,6 +239,7 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	}
 
 	/** Redo the last command undone in the diagram editor. */
+	@Override
 	protected void redo() {
 		resetLastOperationFailedState();
 		final CommandStack commandStack = getCommandStack();
@@ -239,6 +249,7 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	}
 
 	/** Call {@link AbstractPapyrusTestCase#execute(Command) execute} on the UI thread. */
+	@Override
 	protected void executeOnUIThread(final Command command) {
 		Display.getDefault().syncExec(new Runnable() {
 
@@ -249,6 +260,7 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	}
 
 	/** Call {@link AbstractPapyrusTestCase#undo() undo} on the UI thread. */
+	@Override
 	protected void undoOnUIThread() {
 		Display.getDefault().syncExec(new Runnable() {
 
@@ -259,6 +271,7 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	}
 
 	/** Call {@link AbstractPapyrusTestCase#redo() redo} on the UI thread. */
+	@Override
 	protected void redoOnUIThread() {
 		Display.getDefault().syncExec(new Runnable() {
 
@@ -282,6 +295,7 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	 * Reset the "operation failed" state. Call this before executing each operation for which you want to test whether
 	 * if failed with {@link AbstractPapyrusTestCase#assertLastOperationSuccessful()}.
 	 */
+	@Override
 	protected void resetLastOperationFailedState() {
 		this.operationFailed = false;
 	}
@@ -290,13 +304,15 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	 * Asserts that no Command executed on the {@link IOperationHistory} since the last call to
 	 * {@link AbstractPapyrusTestCase#resetLastOperationFailedState resetLastOperationFailedState} returned
 	 * {@link OperationHistoryEvent#OPERATION_NOT_OK}.
-	 * 
+	 *
 	 */
+	@Override
 	protected void assertLastOperationSuccessful() {
 		assertFalse("The operation failed. Look at the log, or put a breakpoint on ExecutionException or DefaultOperationHistory#notifyNotOK to find the cause.", this.operationFailed);
 	}
 
 	/** The command stack to use to execute commands on the diagram. */
+	@Override
 	protected CommandStack getCommandStack() {
 		// not "diagramEditor.getDiagramEditDomain().getDiagramCommandStack()" because it messes up undo contexts
 		return this.diagramEditor.getEditingDomain().getCommandStack();
@@ -346,7 +362,7 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 
 	/**
 	 * Send the given EditPart a "delete" request (which only deletes the View), and execute the returned command.
-	 * 
+	 *
 	 * @param editPart
 	 *        the EditPart to hide
 	 */
@@ -378,7 +394,7 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 
 	/**
 	 * Send the given EditPart a {@link DestroyElementRequest}, and execute the returned command.
-	 * 
+	 *
 	 * @param editPart
 	 *        the EditPart to destroy
 	 */
@@ -456,7 +472,7 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	 * Set the name of the given GraphicalEditPart (which must be a name edit part) using a DirectEditRequest. This sets
 	 * the name in the Text widget that appears as a result of the DirectEditRequest, and then closes the Text widget to
 	 * accept the changes.
-	 * 
+	 *
 	 * @param editPart
 	 *        the edit part on which to perform the DirectEditRequest.
 	 * @param newName

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -31,17 +31,14 @@ import org.eclipse.uml2.uml.Type;
  * @generated
  */
 public class AssociationBranchCreateCommand extends EditElementCommand {
-
 	/**
 	 * @generated
 	 */
 	protected final EObject source;
-
 	/**
 	 * @generated
 	 */
 	protected final EObject target;
-
 	/**
 	 * @generated
 	 */
@@ -87,9 +84,7 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		throw new UnsupportedOperationException();
-
 	}
 
 	/**
@@ -152,5 +147,4 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

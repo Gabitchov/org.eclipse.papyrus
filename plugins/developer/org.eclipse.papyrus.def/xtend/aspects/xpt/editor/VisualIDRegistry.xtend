@@ -18,12 +18,15 @@ import metamodel.MetaModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.gmf.codegen.gmfgen.GenExpressionInterpreter
 import org.eclipse.gmf.codegen.gmfgen.GenJavaExpressionProvider
 import org.eclipse.gmf.codegen.gmfgen.GenLink
 import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet
 import org.eclipse.gmf.codegen.gmfgen.ValueExpression
 import xpt.CodeStyle
 import xpt.Common
+import xpt.expressions.getExpression
+import org.eclipse.gmf.codegen.gmfgen.GenConstraint
 
 //XXX: [MG] decide what to do with @MetaDef methods
 @Singleton class VisualIDRegistry extends xpt.editor.VisualIDRegistry {
@@ -31,6 +34,7 @@ import xpt.Common
 	@Inject extension MetaModel
 	@Inject extension Common
 	@Inject CodeStyle xptCodeStyle;
+	@Inject getExpression xptGetExpression;
 
 	override getDiagramVisualID(GenDiagram it) '''
 		«generatedMemberComment()»
@@ -50,46 +54,63 @@ import xpt.Common
 	 * 
 	 * FIXME don't use static fields, replace with instance/separate cache (e.g. accessible from Activator)
 	 */
-	override constraintMethods(GenDiagram it) '''
-		«IF null != editorGen.expressionProviders»
-			«FOR topNode : topLevelNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
-			topNode)»«ENDFOR»
-			«FOR childNode : childNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
-			childNode)»«ENDFOR»
-			«FOR link : links.filter[n|!n.sansDomain]»«constraintMethod(link.modelFacet, link)»«ENDFOR»
-		«ENDIF»
-	'''
-
+		override constraintMethods(GenDiagram it) '''
+			«IF null != editorGen.expressionProviders»
+				«FOR topNode : topLevelNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
+				topNode)»«ENDFOR»
+				«FOR childNode : childNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
+				childNode)»«ENDFOR»
+				«FOR link : links.filter[n|!n.sansDomain]»«constraintMethod(link.modelFacet, link)»«ENDFOR»
+			«ENDIF»
+		'''
 	//[ExtendedConstraint] Model selector constraint
 	override checkDomainElementConstraints(TypeModelFacet it, GenCommonBase commonBase) '''
-	«««	 [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case)
-	«IF commonBase instanceof GenLink»
+«««		«IF null != modelElementSelector»
+«««		//«it.eContainer»
+«««		//->«modelElementSelector»
+«««		«ENDIF»
+		«««	 [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case)
+		«IF null != modelElementSelector»
+			«IF commonBase instanceof GenLink || !(modelElementSelector.provider instanceof GenJavaExpressionProvider)»
+				«««	[ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
+				 && «domainElementConstraintMethodName(commonBase)»(«CastEObject(metaClass,'domainElement')»)
+				«««	[ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case) 
+			«ELSE»
+				 && «domainElementConstraintMethodName(commonBase)»(containerView, «CastEObject(metaClass, 'domainElement')»)
+		«ENDIF»
+		«ENDIF»
 		«««	[ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
-	«IF null != modelElementSelector» && «domainElementConstraintMethodName(commonBase)»(«CastEObject(metaClass,
-		'domainElement')»)«ENDIF»
-	«««	[ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case) 
-	«ELSE»
-		«IF null != modelElementSelector» && «domainElementConstraintMethodName(commonBase)»(containerView, «CastEObject(
-		metaClass, 'domainElement')»)«ENDIF»
-	«ENDIF»
-	«««	[ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
 	'''
 
+//	override dispatch domainElementConstraintMethod(GenExpressionInterpreter it, GenCommonBase diagramElement,
+//		ValueExpression expression, GenClass context) '''
+//		«generatedMemberComment()»
+//		«IF diagramElement instanceof GenLink»
+//		
+//		«ELSE»
+//		private static boolean «domainElementConstraintMethodName(diagramElement)»(«QualifiedClassName(context)» domainElement) {
+//			Object result = «xptGetExpression.getExpression(it, expression, context)».evaluate(domainElement);
+//			return result instanceof Boolean && ((Boolean)result).booleanValue();
+//		}			
+//		«ENDIF»
+//		
+//	'''
+
 	//	[ExtendedConstraint] Model selector constraint
-	override _domainElementConstraintMethod(GenJavaExpressionProvider it, GenCommonBase diagramElement,
+	override dispatch domainElementConstraintMethod(GenJavaExpressionProvider it, GenCommonBase diagramElement,
 		ValueExpression expression, GenClass context) '''
 		«generatedMemberComment»
 		«««	[ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case)
-	«IF diagramElement instanceof GenLink»
+		«IF diagramElement instanceof GenLink»
 			««« [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
-	private static boolean «domainElementConstraintMethodName(diagramElement)»(«QualifiedClassName(context)» domainElement) {
+		private static boolean «domainElementConstraintMethodName(diagramElement)»(«QualifiedClassName(context)» domainElement) {
 		««« [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case)
-	«ELSE»
-			private static boolean «domainElementConstraintMethodName(diagramElement)»(org.eclipse.gmf.runtime.notation.View containerView, «QualifiedClassName(
-			context)» domainElement) {
+		«ELSE»
+		private static boolean «domainElementConstraintMethodName(diagramElement)»(org.eclipse.gmf.runtime.notation.View containerView, «QualifiedClassName(
+		context)» domainElement) {
 		«ENDIF»
 		««« [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
-	«IF injectExpressionBody && (expression.body != null && expression.body.length() != 0)»
+		«IF injectExpressionBody && (expression.body != null && expression.body.length() != 0)»
 			«expression.body»
 		«ELSEIF throwException || (injectExpressionBody && (expression.body == null || expression.body.length() == 0))»
 			// FIXME: implement this method 
@@ -98,7 +119,7 @@ import xpt.Common
 		«ELSE»
 			return false;
 		«ENDIF»
-		}
+	}
 	'''
 
 	override runtimeTypedInstance(GenDiagram it) '''

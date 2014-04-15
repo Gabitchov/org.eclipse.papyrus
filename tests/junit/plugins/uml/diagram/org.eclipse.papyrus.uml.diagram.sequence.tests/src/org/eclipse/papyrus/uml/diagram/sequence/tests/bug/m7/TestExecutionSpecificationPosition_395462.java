@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -66,8 +69,8 @@ import org.junit.Test;
 /**
  * Bug:
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=395462
- * 
- * 
+ *
+ *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest {
@@ -101,7 +104,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Test
 	public void testOnChangeLifelineName() {
 		//Make sure the lifeline width is -1 to enable auto-increment.
@@ -293,7 +296,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 		});
 		getDiagramCommandStack().execute(command);
 		waitForComplete();
-		//waiting until dialog closed. 
+		//waiting until dialog closed.
 		while(true) {
 			if(!result.isEmpty()) {
 				result.get(0).close();

@@ -29,7 +29,6 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.MultiplicityElement;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -45,14 +44,14 @@ public class MultiplicityLabelParser implements ISemanticParser {
 		String result = "";
 		EObject eObject = EMFHelper.getEObject(element);
 
-		if((eObject != null) && (eObject instanceof MultiplicityElement)) {
+		if ((eObject != null) && (eObject instanceof MultiplicityElement)) {
 
-			MultiplicityElement multiplicity = (MultiplicityElement)eObject;
+			MultiplicityElement multiplicity = (MultiplicityElement) eObject;
 
 			// manage multiplicity
 			String lower = ValueSpecificationUtil.getSpecificationValue(multiplicity.getLowerValue());
 			String upper = ValueSpecificationUtil.getSpecificationValue(multiplicity.getUpperValue());
-			if(multiplicity.getLower() != multiplicity.getUpper()) {
+			if (multiplicity.getLower() != multiplicity.getUpper()) {
 				result = String.format(MULTIPLICITY_FORMAT, lower, upper);
 			} else {
 				result = lower;
@@ -68,9 +67,9 @@ public class MultiplicityLabelParser implements ISemanticParser {
 
 	public boolean isAffectingEvent(Object event, int flags) {
 
-		if(event instanceof Notification) {
-			Object feature = ((Notification)event).getFeature();
-			if(feature instanceof EStructuralFeature) {
+		if (event instanceof Notification) {
+			Object feature = ((Notification) event).getFeature();
+			if (feature instanceof EStructuralFeature) {
 				return UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(feature);
 			}
 		}
@@ -81,14 +80,14 @@ public class MultiplicityLabelParser implements ISemanticParser {
 	public List<EObject> getSemanticElementsBeingParsed(EObject element) {
 		List<EObject> semanticElementsBeingParsed = new ArrayList<EObject>();
 
-		if((element != null) && (element instanceof MultiplicityElement)) {
-			MultiplicityElement semElement = (MultiplicityElement)element;
+		if ((element != null) && (element instanceof MultiplicityElement)) {
+			MultiplicityElement semElement = (MultiplicityElement) element;
 
 			semanticElementsBeingParsed.add(semElement);
-			if(semElement.getLowerValue() != null) {
+			if (semElement.getLowerValue() != null) {
 				semanticElementsBeingParsed.add(semElement.getLowerValue());
 			}
-			if(semElement.getUpperValue() != null) {
+			if (semElement.getUpperValue() != null) {
 				semanticElementsBeingParsed.add(semElement.getUpperValue());
 			}
 		}

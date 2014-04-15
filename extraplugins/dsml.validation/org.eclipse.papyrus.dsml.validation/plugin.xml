@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
- <extension
+<extension
          point="org.eclipse.emf.ecore.uri_mapping">
  
       <mapping
@@ -9,7 +9,21 @@
             target="platform:/plugin/org.eclipse.papyrus.dsml.validation/resource/">
       </mapping>
    </extension>
-    <extension
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated PapyrusValidationRuleDSML -->
+      <package
+            uri="http://www.eclipse.org/papyrus/dsmlvalidation"
+            class="org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.PapyrusDSMLValidationRulePackage"
+            genModel="resource/PapyrusValidationRuleDSML.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="pathmap://DSMLValidation_PROFILES/PapyrusValidationRuleDSML.uml#__sUW0OhNEeCjcc2EgK3Uwg"
+            uri="http://www.eclipse.org/papyrus/dsmlvalidation">
+      </profile>
+   </extension>
+   <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
             description="Profile to execute DSML validation"
@@ -18,4 +32,5 @@
             provider="Eclipse Modeling Project">
       </profile>
    </extension>
+
 </plugin>

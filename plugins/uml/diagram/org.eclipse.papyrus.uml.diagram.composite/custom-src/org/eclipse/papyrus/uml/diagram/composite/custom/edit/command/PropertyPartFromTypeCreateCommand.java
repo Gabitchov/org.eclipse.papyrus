@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
@@ -52,11 +51,11 @@ public class PropertyPartFromTypeCreateCommand extends EditElementCommand {
 
 	@Override
 	protected EObject getElementToEdit() {
-		EObject container = ((CreateElementRequest)getRequest()).getContainer();
-		if(container instanceof View) {
-			container = ((View)container).getElement();
+		EObject container = ((CreateElementRequest) getRequest()).getContainer();
+		if (container instanceof View) {
+			container = ((View) container).getElement();
 		}
-		if(container != null) {
+		if (container != null) {
 			return container;
 		}
 		return owner;
@@ -71,14 +70,13 @@ public class PropertyPartFromTypeCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		newElement = UMLFactory.eINSTANCE.createProperty();
-		StructuredClassifier owner = (StructuredClassifier)getElementToEdit();
+		StructuredClassifier owner = (StructuredClassifier) getElementToEdit();
 		owner.getOwnedAttributes().add(newElement);
 		newElement.setType(type);
 
 		String typeName = type.getName();
-		String elementName = (typeName.length() == 0) ? 
-			"none" : //$NON-NLS-1$
-			typeName.substring(0,1).toLowerCase() + typeName.substring(1);
+		String elementName = (typeName.length() == 0) ? "none" : //$NON-NLS-1$
+				typeName.substring(0, 1).toLowerCase() + typeName.substring(1);
 		int i = 0;
 		String initialElementName = elementName;
 		// assure that name is unique.
@@ -87,7 +85,7 @@ public class PropertyPartFromTypeCreateCommand extends EditElementCommand {
 			i++;
 		}
 		newElement.setName(elementName);
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
 
 		semanticAdapter.setElement(newElement);
 		return CommandResult.newOKCommandResult(semanticAdapter);

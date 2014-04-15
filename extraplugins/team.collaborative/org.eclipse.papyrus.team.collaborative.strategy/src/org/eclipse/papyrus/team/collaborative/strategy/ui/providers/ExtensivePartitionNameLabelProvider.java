@@ -13,11 +13,11 @@ package org.eclipse.papyrus.team.collaborative.strategy.ui.providers;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.IFontProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
@@ -46,7 +46,7 @@ public class ExtensivePartitionNameLabelProvider implements IFontProvider, IColo
 
 	/**
 	 * Instantiates a new extensive label provider.
-	 * 
+	 *
 	 * @param predicate
 	 *        the predicate
 	 */
@@ -65,7 +65,7 @@ public class ExtensivePartitionNameLabelProvider implements IFontProvider, IColo
 
 	/**
 	 * Sets the color.
-	 * 
+	 *
 	 * @param color
 	 *        the new color
 	 */
@@ -76,7 +76,7 @@ public class ExtensivePartitionNameLabelProvider implements IFontProvider, IColo
 
 	/**
 	 * Sets the font.
-	 * 
+	 *
 	 * @param font
 	 *        the new font
 	 */
@@ -89,19 +89,17 @@ public class ExtensivePartitionNameLabelProvider implements IFontProvider, IColo
 	 * 
 	 * @see org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider#getText(java.lang.Object)
 	 */
+	@Override
 	public String getText(Object element) {
 		String superText = internal.getText(element);
-		if(element instanceof ModelElementItem) {
-			ModelElementItem elem = (ModelElementItem)element;
-			EObject eObject = elem.getEObject();
-			if(eObject != null) {
-				String partitionName = getPartitionName(eObject);
-				if(partitionName != null) {
-					StringBuilder stringBuilder = new StringBuilder();
-					stringBuilder.append(partitionName);
-					stringBuilder.append(superText);
-					superText = stringBuilder.toString();
-				}
+		EObject eObject = EMFHelper.getEObject(element);
+		if(eObject != null) {
+			String partitionName = getPartitionName(eObject);
+			if(partitionName != null) {
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append(partitionName);
+				stringBuilder.append(superText);
+				superText = stringBuilder.toString();
 			}
 		}
 		return superText;
@@ -114,7 +112,7 @@ public class ExtensivePartitionNameLabelProvider implements IFontProvider, IColo
 
 	/**
 	 * Gets the partition name.
-	 * 
+	 *
 	 * @param eObject
 	 *        the e object
 	 * @return the partition name
@@ -138,13 +136,13 @@ public class ExtensivePartitionNameLabelProvider implements IFontProvider, IColo
 	 * 
 	 * @see org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider#getFont(java.lang.Object)
 	 */
-	@SuppressWarnings("restriction")
+	@Override
 	public Font getFont(Object element) {
 		if(predicate != null) {
-			if(element instanceof ModelElementItem) {
-				ModelElementItem eObject = (ModelElementItem)element;
+			EObject eObject = EMFHelper.getEObject(element);
+			if(eObject != null) {
 				if(font != null) {
-					if(predicate.apply(eObject.getEObject())) {
+					if(predicate.apply(eObject)) {
 						return font;
 					}
 				}
@@ -161,13 +159,13 @@ public class ExtensivePartitionNameLabelProvider implements IFontProvider, IColo
 	 * 
 	 * @see org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider#getForeground(java.lang.Object)
 	 */
-	@SuppressWarnings("restriction")
+	@Override
 	public Color getForeground(Object element) {
 		if(predicate != null) {
-			if(element instanceof ModelElementItem) {
-				ModelElementItem eObject = (ModelElementItem)element;
+			EObject eObject = EMFHelper.getEObject(element);
+			if(eObject != null) {
 				if(color != null) {
-					if(predicate.apply(eObject.getEObject())) {
+					if(predicate.apply(eObject)) {
 						return color;
 					}
 				}
@@ -180,34 +178,40 @@ public class ExtensivePartitionNameLabelProvider implements IFontProvider, IColo
 	}
 
 
+	@Override
 	public void addListener(ILabelProviderListener listener) {
 		internal.addListener(listener);
 
 	}
 
 
+	@Override
 	public void dispose() {
 		internal.dispose();
 
 	}
 
 
+	@Override
 	public boolean isLabelProperty(Object element, String property) {
 		return internal.isLabelProperty(element, property);
 	}
 
 
+	@Override
 	public void removeListener(ILabelProviderListener listener) {
 		internal.removeListener(listener);
 
 	}
 
 
+	@Override
 	public Image getImage(Object element) {
 		return internal.getImage(element);
 	}
 
 
+	@Override
 	public Color getBackground(Object element) {
 		if(internal instanceof IColorProvider) {
 			return ((IColorProvider)internal).getBackground(element);

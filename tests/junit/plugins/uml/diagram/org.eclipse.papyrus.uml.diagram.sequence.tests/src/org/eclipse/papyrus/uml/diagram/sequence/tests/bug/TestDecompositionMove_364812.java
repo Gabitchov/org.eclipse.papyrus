@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 
@@ -62,6 +65,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.junit.After;
 import org.junit.Test;
 
 
@@ -94,7 +98,7 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Override
 	protected void projectCreation() {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
@@ -154,7 +158,7 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 	@Test
 	public void testMoving() {
 		LifelineEditPart decomposition = setupDecomposition();
-		{ // test move			
+		{ // test move
 			moveLifeline(decomposition, new Point(50, 0));
 			moveLifeline(decomposition, new Point(-20, 0));
 			// move child
@@ -294,8 +298,9 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 		return p;
 	}
 
+	@After
 	@Override
-	protected void tearDown() throws Exception {
+	public void tearDown() throws Exception {
 		super.tearDown();
 		waitForComplete();
 		PopupUtil.removeDialogCloseHandler();

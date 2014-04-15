@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -82,38 +82,31 @@ import org.eclipse.uml2.uml.Feature;
  * @generated
  */
 public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implements ITextAwareEditPart, IControlParserForDirectEdit {
-
 	/**
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 5159;
-
 	/**
 	 * @generated
 	 */
 	private DirectEditManager manager;
-
 	/**
 	 * @generated
 	 */
 	private IParser parser;
-
 	/**
 	 * @generated
 	 */
 	private List<?> parserElements;
-
 	/**
 	 * @generated
 	 */
 	private String defaultText;
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
-
 	/**
 	 * configuration from a registered edit dialog
 	 * @generated
@@ -292,7 +285,6 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 	 */
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
-
 			public String isValid(final Object value) {
 				if (value instanceof String) {
 					final EObject element = getParserElement();
@@ -301,7 +293,6 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 						IParserEditStatus valid =
 								(IParserEditStatus) getEditingDomain().runExclusive(
 										new RunnableWithResult.Impl<java.lang.Object>() {
-
 											public void run() {
 												setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
 											}
@@ -311,7 +302,6 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -369,7 +359,6 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 	 */
 	protected void performDirectEdit() {
 		BusyIndicator.showWhile(Display.getDefault(), new java.lang.Runnable() {
-
 			public void run() {
 				getManager().show();
 			}
@@ -400,9 +389,7 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -439,15 +426,12 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if (Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
-
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog) finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -607,7 +591,6 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
-
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -637,7 +620,6 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 		if (checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -704,7 +686,6 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 		// initialize the direct edit manager
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
-
 				public void run() {
 					if (isActive() && isEditable()) {
 						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
@@ -804,7 +785,6 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View) getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -813,7 +793,6 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -821,7 +800,5 @@ public class ConstraintBodyEditPart extends PapyrusCompartmentEditPart implement
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

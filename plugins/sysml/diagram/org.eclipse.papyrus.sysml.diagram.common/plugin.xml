@@ -43,6 +43,12 @@
 			</with>
 		</and>
 	</definition>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.pasteStrategy">
+   <strategy
+         strategy="org.eclipse.papyrus.sysml.diagram.common.strategy.paste.PartPasteStrategy">
+   </strategy>
 </extension>   
 
 </plugin>

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -27,7 +27,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
  * @generated
  */
 public class ComponentNestedClassifierCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
-
 	/**
 	 * @generated
 	 */
@@ -43,38 +42,24 @@ public class ComponentNestedClassifierCompartmentItemSemanticEditPolicy extends 
 		if (requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
-
 		if (UMLElementTypes.Class_3004 == requestElementType) {
-
 			return getGEFWrapper(new NestedClassForComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
 		if (UMLElementTypes.Interface_3037 == requestElementType) {
-
 			return getGEFWrapper(new NestedInterfaceForComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
 		if (UMLElementTypes.Enumeration_3053 == requestElementType) {
-
 			return getGEFWrapper(new NestedEnumerationForComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
 		if (UMLElementTypes.PrimitiveType_3046 == requestElementType) {
-
 			return getGEFWrapper(new NestedPrimitiveTypeForComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
 		if (UMLElementTypes.DataType_3045 == requestElementType) {
-
 			return getGEFWrapper(new NestedDataTypeForComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
 		if (UMLElementTypes.Signal_3051 == requestElementType) {
-
 			return getGEFWrapper(new NestedSignalForComponentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

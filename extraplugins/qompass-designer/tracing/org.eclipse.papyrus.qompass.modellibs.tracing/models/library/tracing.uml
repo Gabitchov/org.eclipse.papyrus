@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:l2="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <uml:Model xmi:id="_H-ZqYDKeEd-WprEKTCaiMA" name="Tracing">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_H-ZqYTKeEd-WprEKTCaiMA">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -28,7 +28,7 @@
         <ownedComment xmi:type="uml:Comment" xmi:id="_bb4kQLniEeCxXoyQxQ47PQ" annotatedElement="_aF1w4DKeEd-WprEKTCaiMA">
           <body>Trace implementation based on OTF trace library. Aggregates singleton TraceInit</body>
         </ownedComment>
-        <packagedElement xmi:type="uml:Class" xmi:id="_aF1w4DKeEd-WprEKTCaiMA" clientDependency="_BuqlQDOcEd-1k-POY2IaLg" name="OTFTrace_impl">
+        <packagedElement xmi:type="uml:Class" xmi:id="_aF1w4DKeEd-WprEKTCaiMA" name="OTFTrace_impl">
           <generalization xmi:type="uml:Generalization" xmi:id="_WdRuUDaUEeKkY-29HX5sMQ" general="_MM6RwDaUEeKkY-29HX5sMQ"/>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_aF1w5TKeEd-WprEKTCaiMA" name="timestamp" isUnique="false">
             <type xmi:type="uml:Class" href="pathmap://QML_CORE/osal.uml#_FuKEEDj8Edy0Rd6V_tf1-Q"/>
@@ -242,7 +242,7 @@ OTF_Writer_writeDefFunction (writer, streamNr, &lt;%enumSvcPrefix%>::id_&lt;%own
             </ownedParameter>
           </ownedTemplateSignature>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_aoSDwKAdEeCF0uoVQbVQRg" clientDependency="_Mgn2cKKXEeCdIOXlyrCmKQ" name="OTFTrace_vc">
+        <packagedElement xmi:type="uml:Class" xmi:id="_aoSDwKAdEeCF0uoVQbVQRg" name="OTFTrace_vc">
           <generalization xmi:type="uml:Generalization" xmi:id="_nQ6YMKAdEeCF0uoVQbVQRg" general="_aF1w4DKeEd-WprEKTCaiMA"/>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_EWKx4KD0EeCFDJJCA2W5wg" name="m_first">
             <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_Bv7l0B-VEd6nGq8wpI2tjg"/>
@@ -389,7 +389,7 @@ if (doTrace) {
           </defaultValue>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_If04ACqLEeKGrchWittz_g" clientDependency="_riv0oC5vEeKMZ5P9cEChlg" name="LTTngLWRule">
+      <packagedElement xmi:type="uml:Class" xmi:id="_If04ACqLEeKGrchWittz_g" name="LTTngLWRule">
         <ownedAttribute xmi:type="uml:Property" xmi:id="_Avfe8C8PEeKVAPO2lpiVnA" name="instanceName" visibility="public">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BuA8sC8PEeKVAPO2lpiVnA" value="1"/>
@@ -423,7 +423,7 @@ if (doTrace) {
         <packagedElement xmi:type="uml:Usage" xmi:id="_7uQr8D4OEeC-VMxjm_qUAg" name="TraceInit => Thread (for ThreadId)" client="_apuYoDNwEd-1k-POY2IaLg">
           <supplier xmi:type="uml:Class" href="pathmap://QML_CORE/osal.uml#_-HeCsDj_Edy0Rd6V_tf1-Q"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_apuYoDNwEd-1k-POY2IaLg" clientDependency="_UcPagD1nEd-Bk-AHd6yyoA _7uQr8D4OEeC-VMxjm_qUAg" name="TraceInit">
+        <packagedElement xmi:type="uml:Class" xmi:id="_apuYoDNwEd-1k-POY2IaLg" name="TraceInit">
           <generalization xmi:type="uml:Generalization" xmi:id="_9zJj0DguEd-9wq2wHPy3lw">
             <general xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_-WNegNtxEd6nqsBVkgJEEA"/>
           </generalization>
@@ -594,7 +594,7 @@ return processID;</body>
           <body>Trace Provider
 </body>
         </ownedComment>
-        <packagedElement xmi:type="uml:Class" xmi:id="_pwl_MPxWEeGOK9t90vpALA" clientDependency="_BV2G4PzTEeGKDvxFM1SZ_g _9ygUUDHKEeKt1a2SZnJmwg _c0nqkDWGEeKGAYOVxzQeAg" name="LTTngInterceptor">
+        <packagedElement xmi:type="uml:Class" xmi:id="_pwl_MPxWEeGOK9t90vpALA" name="LTTngInterceptor">
           <generalization xmi:type="uml:Generalization" xmi:id="_1963sPxWEeGOK9t90vpALA" general="_dcP9gDaSEeKxVvAop17bHw"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qLhLMPxXEeGOK9t90vpALA" name="[name/]" specification="_YU5H4PxXEeGOK9t90vpALA">
             <language>C/C++</language>
@@ -634,7 +634,7 @@ return processID;</body>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_H_B8gDKeEd-WprEKTCaiMA">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_H_DxsDKeEd-WprEKTCaiMA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2#/"/>
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/StandardL2.profile.uml#_0"/>
     </profileApplication>
@@ -651,7 +651,7 @@ return processID;</body>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
   </uml:Model>
-  <l2:ModelLibrary xmi:id="_ICaAoDKeEd-WprEKTCaiMA" base_Package="_H-ZqYDKeEd-WprEKTCaiMA"/>
+  <standard:ModelLibrary xmi:id="_ICaAoDKeEd-WprEKTCaiMA" base_Package="_H-ZqYDKeEd-WprEKTCaiMA"/>
   <FCM:Template xmi:id="_bKc-kDNZEd-0bO2vHbUkEA" base_Element="_aF1w7zKeEd-WprEKTCaiMA" kind="LoopOperations">
     <helper xmi:type="FCM:BindingHelper" href="pathmap://QML_CORE/core.uml#_nLe_sHJDEeOMF7YEvnQt5g"/>
     <formalParam xmi:type="uml:Interface" href="pathmap://QML_CORE/core.uml#_ZzlzMPfBEd2TbIfwytOyPA"/>
@@ -744,7 +744,9 @@ return processID;</body>
   </FCM:ContainerRule>
   <FCM:InterceptionRule xmi:id="_m-L0sPwkEeGWn-a9PUOYcA" interceptionKind="InterceptAll" base_Property="_d7If0PwkEeGWn-a9PUOYcA"/>
   <C_Cpp:Include xmi:id="__rP4oPxWEeGOK9t90vpALA" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(clazz : Class)]&#xA;[clazz.declareTP()/]&#xA;[/template]" base_class="_rGPjgPxWEeGOK9t90vpALA"/>
-  <FCM:Template xmi:id="_bKW5IPxXEeGOK9t90vpALA" base_Element="_YU5H4PxXEeGOK9t90vpALA" kind="LoopOperations"/>
+  <FCM:Template xmi:id="_bKW5IPxXEeGOK9t90vpALA" base_Element="_YU5H4PxXEeGOK9t90vpALA" kind="LoopOperations">
+    <helper xmi:type="FCM:BindingHelper" href="pathmap://QML_CORE/core.uml#_nLe_sHJDEeOMF7YEvnQt5g"/>
+  </FCM:Template>
   <C_Cpp:ExternLibrary xmi:id="_t_sHUPzOEeGKDvxFM1SZ_g" base_Package="_nAkZEPzOEeGKDvxFM1SZ_g">
     <libs>lttng-ust</libs>
     <libs>dl</libs>
@@ -754,8 +756,8 @@ return processID;</body>
   <FCM:InteractionComponent xmi:id="__yL98PzhEeGe5LUTfvP5hQ" base_Class="_pwl_MPxWEeGOK9t90vpALA"/>
   <C_Cpp:ManualGeneration xmi:id="_KSTlgCdaEeKGdt7FoegMYA" extensionBody="c" base_Class="_rGPjgPxWEeGOK9t90vpALA"/>
   <FCM:InterceptionRule xmi:id="_vt_HYSdbEeKGdt7FoegMYA" interceptionKind="InterceptAllIn" base_Property="_vt7dASdbEeKGdt7FoegMYA"/>
-  <l2:Create xmi:id="_X1okQCmiEeKp-eCvZDLsaw" base_BehavioralFeature="_UvQpMCmiEeKp-eCvZDLsaw"/>
-  <l2:Destroy xmi:id="_ZJYEECmiEeKp-eCvZDLsaw" base_BehavioralFeature="_VUW6UCmiEeKp-eCvZDLsaw"/>
+  <standard:Create xmi:id="_X1okQCmiEeKp-eCvZDLsaw" base_BehavioralFeature="_UvQpMCmiEeKp-eCvZDLsaw"/>
+  <standard:Destroy xmi:id="_ZJYEECmiEeKp-eCvZDLsaw" base_BehavioralFeature="_VUW6UCmiEeKp-eCvZDLsaw"/>
   <FCM:ContainerRule xmi:id="_NtAukCqLEeKGrchWittz_g" base_Class="_If04ACqLEeKGrchWittz_g" kind="LightWeightOORule">
     <forConfig xmi:type="FCM:ConfigOption" href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:ContainerRule>
@@ -766,7 +768,9 @@ return processID;</body>
   <FCM:UseInstanceConfigurator xmi:id="_gH1RQC8DEeKwPrQVP28AQw" base_Class="_If04ACqLEeKGrchWittz_g" configurator="_nTMOYKbnEeC0_qP7CUZIiQ"/>
   <FCM:InstanceConfigurator xmi:id="_nUB1YC8HEeKwPrQVP28AQw" base_Class="_nUAnQC8HEeKwPrQVP28AQw"/>
   <C_Cpp:Include xmi:id="_gvf4IDHKEeKt1a2SZnJmwg" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(intf : Interface)]&#xA;[intf.declareTP()/]&#xA;[/template]" base_class="_gveqADHKEeKt1a2SZnJmwg"/>
-  <FCM:Template xmi:id="_gvnM4DHKEeKt1a2SZnJmwg" base_Element="_gveqADHKEeKt1a2SZnJmwg"/>
+  <FCM:Template xmi:id="_gvnM4DHKEeKt1a2SZnJmwg" base_Element="_gveqADHKEeKt1a2SZnJmwg">
+    <helper xmi:type="FCM:BindingHelper" href="pathmap://QML_CORE/core.uml#_mFUQALsMEeO0n5elMxN1LQ"/>
+  </FCM:Template>
   <C_Cpp:ManualGeneration xmi:id="_gvnz8DHKEeKt1a2SZnJmwg" extensionBody="c" base_Class="_gveqADHKEeKt1a2SZnJmwg"/>
   <C_Cpp:ManualGeneration xmi:id="_WUbVADV7EeKGAYOVxzQeAg" extensionBody="c" base_Class="_C4FREDV7EeKGAYOVxzQeAg"/>
   <C_Cpp:Include xmi:id="_ZdHkQDV7EeKGAYOVxzQeAg" header="[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]&#xA;[import org::eclipse::papyrus::qompass::designer::core::acceleo::TransformationContext/]&#xA;&#xA;[template public LTTngTP(cl : Classifier)]&#xA;#include &lt;lttng/tracepoint.h>&#xA;&#xA;TRACEPOINT_MODEL_EMF_URI(UMLmodel, starting, &quot;[getSourceRoot().getURI()/]&quot;)&#xA;[/template]&#xA;" base_class="_C4FREDV7EeKGAYOVxzQeAg"/>

@@ -44,18 +44,18 @@ public abstract class CppAbstractPanel extends Composite {
 
 	// string representing the ID of the language
 	// this is the string contained in the language attribute of Activity
-	protected static final String C_CPP_ID = "C/C++";
+	protected static final String C_CPP_ID = "C/C++"; //$NON-NLS-1$
 
-	protected static final String CPP_ID = "C++";
+	protected static final String CPP_ID = "C++"; //$NON-NLS-1$
 
-	protected static final String C_ID = "C";
+	protected static final String C_ID = "C"; //$NON-NLS-1$
 
 	// CppInclude text area
 	protected Button buttonSave;
 
 	protected Button buttonCancel;
 
-	/** Listener for modifications on the uml element */
+	/** Listener for modifications on the UML element */
 	protected UMLElementPanelListener umlListener = null;
 
 	public CppAbstractPanel(Composite parent, int style) {
@@ -129,7 +129,7 @@ public abstract class CppAbstractPanel extends Composite {
 
 		groupBody.setBackground(textArea.getBackground());
 		groupBody.setLayout(new FormLayout());
-		groupBody.setText(" " + name + " ");
+		groupBody.setText(" " + name + " "); //$NON-NLS-1$ //$NON-NLS-2$
 		groupBody.setFont(Activator.VIEW_FONT);
 
 		FormData data = new FormData();
@@ -235,7 +235,7 @@ public abstract class CppAbstractPanel extends Composite {
 
 		buttonSave = new Button(this, SWT.PUSH);
 		buttonSave.setImage(Activator.getImage(Activator.SAVE_IMAGE));
-		buttonSave.setToolTipText(Activator.getResourceString("panel.class.button.save.tooltip"));
+		buttonSave.setToolTipText(Activator.getResourceString("panel.class.button.save.tooltip")); //$NON-NLS-1$
 		buttonSave.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent arg0) {
@@ -245,7 +245,7 @@ public abstract class CppAbstractPanel extends Composite {
 
 		buttonCancel = new Button(this, SWT.PUSH);
 		buttonCancel.setImage(Activator.getImage(Activator.UNDO_IMAGE));
-		buttonCancel.setToolTipText(Activator.getResourceString("panel.class.button.cancel.tooltip"));
+		buttonCancel.setToolTipText(Activator.getResourceString("panel.class.button.cancel.tooltip")); //$NON-NLS-1$
 		buttonCancel.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent arg0) {
@@ -337,13 +337,13 @@ public abstract class CppAbstractPanel extends Composite {
 		if(modelChanged) {
 			MessageDialog dialog = new MessageDialog(
 				Display.getCurrent().getActiveShell(),
-				Activator.getResourceString("panel.property.dialog.saveorignore.title"),
+				Activator.getResourceString("panel.property.dialog.saveorignore.title"), //$NON-NLS-1$
 				Activator.getImage(Activator.WARNING_IMAGE),
-				Activator.getResourceString("panel.property.dialog.saveorignore"),
+				Activator.getResourceString("panel.property.dialog.saveorignore"), //$NON-NLS-1$
 				0,
 				new String[]{
-					Activator.getResourceString("panel.property.dialog.saveorignore.button.save"),
-					Activator.getResourceString("panel.property.dialog.saveorignore.button.ignore") },
+					Activator.getResourceString("panel.property.dialog.saveorignore.button.save"), //$NON-NLS-1$
+					Activator.getResourceString("panel.property.dialog.saveorignore.button.ignore") }, //$NON-NLS-1$
 				0);
 			dialog.open();
 			if(dialog.getReturnCode() == 0) { //saveButton pressed

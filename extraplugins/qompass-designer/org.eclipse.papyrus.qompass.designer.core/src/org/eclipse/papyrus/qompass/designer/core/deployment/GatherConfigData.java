@@ -16,8 +16,8 @@ package org.eclipse.papyrus.qompass.designer.core.deployment;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
-import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.listeners.PreCopyListener;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.uml2.uml.Class;
 
 /**
@@ -27,7 +27,7 @@ import org.eclipse.uml2.uml.Class;
  * 
  * @author ansgar
  */
-public class GatherConfigData implements CopyListener {
+public class GatherConfigData implements PreCopyListener {
 
 	/**
 	 * Gather configuration data for a code generation project
@@ -40,7 +40,7 @@ public class GatherConfigData implements CopyListener {
 		this.langSupport = langSupport;
 	}
 
-	public EObject copyEObject(Copy copy, EObject sourceEObj) {
+	public EObject preCopyEObject(LazyCopier copy, EObject sourceEObj) {
 		if(sourceEObj instanceof Class) {
 			langSupport.gatherConfigData((Class)sourceEObj);
 		}

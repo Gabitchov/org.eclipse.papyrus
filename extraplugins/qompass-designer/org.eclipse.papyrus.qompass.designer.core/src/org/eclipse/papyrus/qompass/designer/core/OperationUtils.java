@@ -16,7 +16,7 @@ package org.eclipse.papyrus.qompass.designer.core;
 
 import java.util.Iterator;
 
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
@@ -141,7 +141,7 @@ public class OperationUtils {
 	 */
 	public static void syncOperation(Operation sourceOp, Operation targetOp) {
 		if(targetOp != null) {
-			Copy.copyFeatureModifiers(sourceOp, targetOp);
+			LazyCopier.copyFeatureModifiers(sourceOp, targetOp);
 			// ordered and unique are derived from ret-parameter
 			targetOp.setIsQuery(sourceOp.isQuery());
 			targetOp.setIsAbstract(sourceOp.isAbstract());
@@ -152,7 +152,7 @@ public class OperationUtils {
 				Parameter newParameter =
 					targetOp.createOwnedParameter(parameter.getLabel(), type);
 				newParameter.setDirection(parameter.getDirection());
-				Copy.copyMultElemModifiers(parameter, newParameter);
+				LazyCopier.copyMultElemModifiers(parameter, newParameter);
 				StUtils.copyStereotypes(parameter, newParameter);
 			}
 		}

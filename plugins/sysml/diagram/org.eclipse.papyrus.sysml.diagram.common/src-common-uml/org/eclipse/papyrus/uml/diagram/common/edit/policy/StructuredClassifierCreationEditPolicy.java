@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.common.edit.policy;
 
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
@@ -39,8 +40,10 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.commands.CreateViewCommand;
+import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.snap.NodeSnapHelper;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
+import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 
 /**
  * Replaces the {@link DefaultCreationEditPolicy} in order to manage Affixed Port position on creation or on drop.
@@ -116,16 +119,35 @@ public class StructuredClassifierCreationEditPolicy extends CreationEditPolicy {
 		// Retrieve parent location
 		Point parentLoc = getHostFigure().getBounds().getLocation().getCopy();
 
+		
+		final Point realWantedLocation;
+		Map<?, ?> params = request.getExtendedData();
+		Point realLocation = (Point)params.get(AspectUnspecifiedTypeCreationTool.INITIAL_MOUSE_LOCATION_FOR_CREATION);
+		if(realLocation != null) {
+			realWantedLocation = realLocation.getCopy();
+		} else {
+			//we use this location to be able to create Port in the corners of the figure
+			realWantedLocation = request.getLocation().getCopy();
+		}
+
 		// Compute relative creation location
-		Point requestedLocation = request.getLocation().getCopy();
+		Point requestedLocation = realWantedLocation.getCopy();
+
+
+
 		getHostFigure().translateToRelative(requestedLocation);
 
 		// Create proposed creation bounds and use the locator to find the expected position
 		PortPositionLocator locator = new PortPositionLocator(getHostFigure(), PositionConstants.NONE);
-		Rectangle proposedBounds = new Rectangle(requestedLocation, new Dimension(20, 20));
-		Rectangle preferredBounds = locator.getPreferredLocation(proposedBounds);
+		final Rectangle preferredBounds = locator.getPreferredLocation(new Rectangle(requestedLocation, new Dimension(20, 20)));
+		Rectangle retainedBounds = preferredBounds.getCopy();
 		
-		if(request.isSnapToEnabled()) { //request for snap port at the creation
+		//find the current side of the wanted position
+		final Rectangle parentBounds = getHostFigure().getBounds().getCopy();
+		//break all!!! getHostFigure().translateToAbsolute(parentBounds);
+		locator.setConstraint(preferredBounds.getCopy().translate(parentBounds.getLocation().getNegated()));
+		int currentSide = locator.getCurrentSideOfParent();
+		if(request.isSnapToEnabled() && currentSide != PositionConstants.NORTH_EAST && currentSide != PositionConstants.NORTH_WEST && currentSide != PositionConstants.SOUTH_EAST && currentSide != PositionConstants.SOUTH_WEST) { //request for snap port at the creation
 			//we find the best location with snap
 			Point wantedPoint = preferredBounds.getLocation();
 			getHostFigure().translateToAbsolute(wantedPoint);
@@ -137,6 +159,19 @@ public class StructuredClassifierCreationEditPolicy extends CreationEditPolicy {
 			tmpRequest.setLocation(portBounds.getLocation());
 			helper.snapPoint(tmpRequest);
 			preferredBounds.translate(tmpRequest.getMoveDelta());
+
+			switch(currentSide) {
+			case PositionConstants.NORTH:
+			case PositionConstants.SOUTH:
+				preferredBounds.y = retainedBounds.y;
+				break;
+			case PositionConstants.EAST:
+			case PositionConstants.WEST:
+				preferredBounds.x = retainedBounds.x;
+				break;
+			default:
+				break;
+			}
 		}
 		// Convert the calculated preferred bounds as relative to parent location
 		Rectangle creationBounds = preferredBounds.getTranslated(parentLoc.getNegated());

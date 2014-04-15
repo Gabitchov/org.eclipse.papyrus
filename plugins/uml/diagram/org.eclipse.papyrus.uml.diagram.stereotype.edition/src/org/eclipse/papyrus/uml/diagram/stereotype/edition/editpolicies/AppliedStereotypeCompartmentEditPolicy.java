@@ -35,7 +35,7 @@ import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.command.CreateAppliedStereotypeViewCommand;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeConpartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCompartmentEditPart;
 import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
@@ -299,7 +299,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 						});
 					}
 					// the sub nodes has the type appliedStereotypeCompartment but does not references a application of stereotype
-					if((currentNode.getType().equals(AppliedStereotypeConpartmentEditPart.ID)) && (!(currentNode.getElement() instanceof DynamicEObjectImpl))) {
+					if((currentNode.getType().equals(AppliedStereotypeCompartmentEditPart.ID)) && (!(currentNode.getElement() instanceof DynamicEObjectImpl))) {
 						//yes, Execution of the Deletion command
 						editPart.getEditingDomain().runExclusive(new Runnable() {
 
@@ -339,7 +339,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 		while(i < node.getChildren().size()) {
 			if((node.getChildren().get(i)) instanceof Node) {
 				final Node currentNode = (Node)(node.getChildren().get(i));
-				if(currentNode.getType().equals(AppliedStereotypeConpartmentEditPart.ID)) {
+				if(currentNode.getType().equals(AppliedStereotypeCompartmentEditPart.ID)) {
 					EObject stereotypeApplication = currentNode.getElement();
 					Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
 					if(stereotype != null && stereotypesPropertiesToDisplay.contains(stereotype.getQualifiedName())) {

@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
  org.eclipse.papyrus.uml.diagram.stereotype.edition;bundle-version="1.0.0",
  org.junit;bundle-version="4.10.0",
- org.eclipse.papyrus.uml.appearance
+ org.eclipse.papyrus.uml.appearance;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.diagram.stereotypeproperty
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

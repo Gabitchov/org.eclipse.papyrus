@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -26,9 +29,9 @@ import org.junit.Test;
 
 /**
  * Fixed bug: A new created InteractionUse in CombinedFragment is always located at left and top
- * 
+ *
  * See: https://bugs.eclipse.org/bugs/show_bug.cgi?id=402971
- * 
+ *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class TestInteractionUseInCombinedFragment_402971 extends AbstractNodeTest {
@@ -42,7 +45,7 @@ public class TestInteractionUseInCombinedFragment_402971 extends AbstractNodeTes
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Test
 	public void test() {
 		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 100), new Dimension(500, 200));

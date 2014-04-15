@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -39,7 +42,7 @@ import org.junit.Test;
  * When childs are outside the current size, the parent bar should autoresize. The parent should always wrap the children.
  * Its size should be extended when we create, move, resize and reparent a child
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=385603
- * 
+ *
  */
 public class TestParentBarAutoresize_385603 extends TestTopNode {
 
@@ -61,7 +64,7 @@ public class TestParentBarAutoresize_385603 extends TestTopNode {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Test
 	public void testActionExecutionSpecificationUp() {
 		moveUp(UMLElementTypes.ActionExecutionSpecification_3006);
@@ -110,7 +113,7 @@ public class TestParentBarAutoresize_385603 extends TestTopNode {
 		assertTrue(MOVE + TEST_THE_EXECUTION, getAbsoluteBounds(parent).getTop().y == getAbsoluteBounds(child).getTop().y);
 		/*
 		 * the parent would not be always expanded.
-		 * 
+		 *
 		 * assertTrue(MOVE + TEST_THE_EXECUTION, getAbsoluteBounds(parent).getTop().y - before.getTop().y == moveDelta.y);
 		 */
 		assertTrue(MOVE + TEST_THE_EXECUTION, getAbsoluteBounds(parent).getTop().y <= getAbsoluteBounds(child).getTop().y);
@@ -141,7 +144,7 @@ public class TestParentBarAutoresize_385603 extends TestTopNode {
 
 		/*
 		 * DISABLED: the parent is not always expanded when adding a child.
-		 * 
+		 *
 		 * assertTrue(RESIZE + TEST_THE_EXECUTION, getAbsoluteBounds(parent).getBottom().y > before.getBottom().y);
 		 * assertTrue(RESIZE + TEST_THE_EXECUTION, getAbsoluteBounds(parent).getBottom().y == getAbsoluteBounds(child).getBottom().y);
 		 */
@@ -167,7 +170,7 @@ public class TestParentBarAutoresize_385603 extends TestTopNode {
 
 		/*
 		 * parent would not be changed.
-		 * 
+		 *
 		 * assertTrue(RESIZE + TEST_THE_EXECUTION, getAbsoluteBounds(parent).getBottom().y == getAbsoluteBounds(child).getBottom().y);
 		 * assertTrue(RESIZE + TEST_THE_EXECUTION, getAbsoluteBounds(parent).height == before.height + deltaSize.height);
 		 */

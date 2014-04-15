@@ -35,7 +35,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockPropertyCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.figure.ConstraintBlockPropertyCompositeFigure;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
@@ -58,15 +58,15 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEditPart {
-	
-	public static final String REPRESENTATION_MODE_STYLE = "representation_mode_style"; 
-	public static final String ROUNDED_REPRESENTATION = "rounded_representation"; 
+
+	public static final String REPRESENTATION_MODE_STYLE = "representation_mode_style";
+	public static final String ROUNDED_REPRESENTATION = "rounded_representation";
 	public static final String SQUARE_REPRESENTATION_WITH_STRUCTURE = "square_representation_with_structure";
 
 	public Map<EditPart, FullInsidePortPositionLocator> constraintParameter2FullInsidePortPositionLocator = new HashMap<EditPart, FullInsidePortPositionLocator>();
-	
+
 	public static String lastRepresentationKind;
-	
+
 	public ConstraintBlockPropertyCompositeEditPart(View view) {
 		super(view);
 	}
@@ -90,12 +90,12 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				if(child instanceof IBorderItemEditPart) {
+				if (child instanceof IBorderItemEditPart) {
 					return new BorderItemResizableEditPolicy();
 				}
 
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -117,19 +117,19 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
 
-		if(childEditPart instanceof PropertyNodeLabelEditPart) {
-			((PropertyNodeLabelEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof PropertyNodeLabelEditPart) {
+			((PropertyNodeLabelEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof ConstraintNodeLabelEditPart) {
-			((ConstraintNodeLabelEditPart)childEditPart).setLabel(((ConstraintBlockPropertyCompositeFigure)getPrimaryShape()).getConstraintLabel());
+		if (childEditPart instanceof ConstraintNodeLabelEditPart) {
+			((ConstraintNodeLabelEditPart) childEditPart).setLabel(((ConstraintBlockPropertyCompositeFigure) getPrimaryShape()).getConstraintLabel());
 			return true;
 		}
 
-		if(childEditPart instanceof ConstraintParameterAffixedNodeEditPart) {
-			FullInsidePortPositionLocator locator = new FullInsidePortPositionLocator(getMainFigure(), PositionConstants.NONE, ((ConstraintBlockPropertyCompositeFigure)getPrimaryShape()).getCorner());
-			constraintParameter2FullInsidePortPositionLocator.put(childEditPart, locator); // register the locator in order to reset the corner when changing ConstraintProeprty representation 
-			getBorderedFigure().getBorderItemContainer().add(((ConstraintParameterAffixedNodeEditPart)childEditPart).getFigure(), locator);
+		if (childEditPart instanceof ConstraintParameterAffixedNodeEditPart) {
+			FullInsidePortPositionLocator locator = new FullInsidePortPositionLocator(getMainFigure(), PositionConstants.NONE, ((ConstraintBlockPropertyCompositeFigure) getPrimaryShape()).getCorner());
+			constraintParameter2FullInsidePortPositionLocator.put(childEditPart, locator); // register the locator in order to reset the corner when changing ConstraintProeprty representation
+			getBorderedFigure().getBorderItemContainer().add(((ConstraintParameterAffixedNodeEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 
@@ -139,32 +139,32 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 	@Override
 	protected boolean removeFixedChild(EditPart childEditPart) {
 
-		if(childEditPart instanceof PropertyNodeLabelEditPart) {
+		if (childEditPart instanceof PropertyNodeLabelEditPart) {
 			return true;
 		}
 
-		if(childEditPart instanceof ConstraintNodeLabelEditPart) {
+		if (childEditPart instanceof ConstraintNodeLabelEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof ConstraintParameterAffixedNodeEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ConstraintParameterAffixedNodeEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof ConstraintParameterAffixedNodeEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ConstraintParameterAffixedNodeEditPart) childEditPart).getFigure());
 			return true;
 		}
 
 		return false;
 	}
-	
+
 	@Override
 	protected void removeChild(EditPart child) {
 		if (child instanceof ConstraintNodeLabelEditPart) {
-			return; // When hiding constraint expression, we want to keep the edit part in order to re-show it 
+			return; // When hiding constraint expression, we want to keep the edit part in order to re-show it
 		}
 		super.removeChild(child);
 	}
-	
+
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof IBorderItemEditPart) {
+		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 
@@ -195,7 +195,7 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 					primaryShape = new ConstraintBlockPropertyCompositeFigure(SQUARE_REPRESENTATION_WITH_STRUCTURE);
 				}
 				else {
-					primaryShape = new ConstraintBlockPropertyCompositeFigure(ROUNDED_REPRESENTATION);					
+					primaryShape = new ConstraintBlockPropertyCompositeFigure(ROUNDED_REPRESENTATION);
 				}
 			}
 		}
@@ -204,7 +204,7 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 
 	@Override
 	public ConstraintBlockPropertyCompositeFigure getPrimaryShape() {
-		return (ConstraintBlockPropertyCompositeFigure)primaryShape;
+		return (ConstraintBlockPropertyCompositeFigure) primaryShape;
 	}
 
 	@Override
@@ -224,17 +224,17 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 			}
 		}
 	}
-	
+
 	public boolean isSquareRepresentationWithStructure() {
-		StringValueStyle style = (StringValueStyle)((View)this.getModel()).getStyle(NotationPackage.eINSTANCE.getStringValueStyle());
+		StringValueStyle style = (StringValueStyle) ((View) this.getModel()).getStyle(NotationPackage.eINSTANCE.getStringValueStyle());
 		if (style == null) {
 			return false;
 		}
 		return SQUARE_REPRESENTATION_WITH_STRUCTURE.equals(style.getStringValue());
 	}
-	
+
 	public boolean isRoundedRepresentation() {
-		StringValueStyle style = (StringValueStyle)((View)this.getModel()).getStyle(NotationPackage.eINSTANCE.getStringValueStyle());
+		StringValueStyle style = (StringValueStyle) ((View) this.getModel()).getStyle(NotationPackage.eINSTANCE.getStringValueStyle());
 		if (style == null) {
 			return false;
 		}
@@ -251,20 +251,20 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 	protected void handleNotificationEvent(Notification event) {
 
 		// A visual refresh may also be needed when the following properties are changing : aggregation, type, or the related association.
-		if(resolveSemanticElement() != null) {
+		if (resolveSemanticElement() != null) {
 			EObject element = resolveSemanticElement();
-			
-			if((element != null) && (element.equals(event.getNotifier())) && (element instanceof Property)) {
 
-				if(UMLPackage.eINSTANCE.getProperty_Aggregation().equals(event.getFeature())) {
+			if ((element != null) && (element.equals(event.getNotifier())) && (element instanceof Property)) {
+
+				if (UMLPackage.eINSTANCE.getProperty_Aggregation().equals(event.getFeature())) {
 					refreshVisuals();
 				}
 
-				if(UMLPackage.eINSTANCE.getTypedElement_Type().equals(event.getFeature())) {
+				if (UMLPackage.eINSTANCE.getTypedElement_Type().equals(event.getFeature())) {
 					refreshVisuals();
 				}
 
-				if(UMLPackage.eINSTANCE.getProperty_Association().equals(event.getFeature())) {
+				if (UMLPackage.eINSTANCE.getProperty_Association().equals(event.getFeature())) {
 					refreshVisuals();
 				}
 			}
@@ -280,7 +280,7 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 	public static void setLastRepresentation(String representationKind) {
 		ConstraintBlockPropertyCompositeEditPart.lastRepresentationKind = representationKind;
 	}
-	
+
 	public void setCornerLocators(int corner) {
 		for (EditPart editPart : constraintParameter2FullInsidePortPositionLocator.keySet()) {
 			FullInsidePortPositionLocator locator = constraintParameter2FullInsidePortPositionLocator.get(editPart);

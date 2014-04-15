@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,9 +21,9 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 /**
  * A constraint testing if a Selection is an EObject, instance of the given
  * EClass. The EClass is identified by its nsURI and name.
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class EMFInstanceOfConstraint extends AbstractConstraint {
 
@@ -61,12 +61,22 @@ public class EMFInstanceOfConstraint extends AbstractConstraint {
 		return result || super.overrides(constraint);
 	}
 
+	@Override
 	public boolean match(Object selection) {
+		if(className == null || nsUri == null) {
+			return false;
+		}
+
 		EObject selectedItem = EMFHelper.getEObject(selection);
 
 		if(selectedItem != null) {
-			return EMFHelper.isInstance(selectedItem, className, metamodel);
+			if(metamodel == null) { //This may be a dynamic, local (non-registered) EPackage
+				return EMFHelper.isInstance(selectedItem, className, nsUri);
+			} else {
+				return EMFHelper.isInstance(selectedItem, className, metamodel);
+			}
 		}
+
 		return false;
 	}
 

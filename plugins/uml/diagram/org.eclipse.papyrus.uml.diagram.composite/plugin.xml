@@ -16,21 +16,21 @@
 <plugin>
 
    <extension point="org.eclipse.ui.contexts" id="ui-context">
-      <?gmfgen generated="true"?>
-      <context
-         description="%context.description"
-         id="org.eclipse.papyrus.uml.diagram.composite.ui.diagramContext"
-         name="%context.name"
-         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
-      </context>
-   </extension>
+				      <?gmfgen generated="true"?>
+				      <context
+				         description="%context.description"
+				         id="org.eclipse.papyrus.uml.diagram.composite.ui.diagramContext"
+				         name="%context.name"
+				         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+				      </context>
+				   </extension>
       	
 
 
-   <extension point="org.eclipse.core.runtime.preferences">
-		<?gmfgen generated="true"?>
-		<initializer class="org.eclipse.papyrus.uml.diagram.composite.preferences.DiagramPreferenceInitializer"/>
-	</extension>
+   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
+      <?gmfgen generated="true"?>
+      <initializer class="org.eclipse.papyrus.uml.diagram.composite.preferences.DiagramPreferenceInitializer"/>
+   </extension>
 
    <extension point="org.eclipse.ui.preferencePages" id="prefpages">
       <?gmfgen generated="false"?>
@@ -41,8 +41,6 @@
             class="org.eclipse.papyrus.uml.diagram.composite.custom.preferences.CustomDiagramPreferencePage">
       </page>
       
-
-
       <page
             id="org.eclipse.papyrus.uml.diagram.composite.preferences.DiagramPrintingPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
@@ -126,7 +124,7 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="CompositeStructure"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2060,2061,2062,2063,2064,2065,2069,2070,2071,2072,2073,2075,2076,2066,2067,2068,2077,2078,2079,2080,2081,2082,2083,2084,2085,2088,2089,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,3121,3069,3088,3070,3115,3071,3072,3073,3074,3075,3076,3077,3081,3082,3083,3084,3085,3086,3087,3078,3079,3080,3091,3092,3093,3094,3095,3096,3097,3116,3117,3118,3119,3120,3101,3102,3100,3066,3103,3104,3105,3106,3107,3108,3109,3110,3111,3112,3113,3114"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2060,2061,2062,2063,2064,2065,2069,2070,2071,2072,2073,2075,2076,2066,2067,2068,2077,2078,2079,2080,2081,2082,2083,2084,2085,2088,2089,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,3121,3069,3088,3070,3115,3071,3072,3073,3074,3075,3076,3077,3081,3082,3083,3084,3085,3086,3087,3078,3079,3080,3091,3092,3093,3094,3095,3096,3097,3116,3117,3118,3119,3120,3101,3102,3066"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4022,4001,4002,4003,4004,4005,4011,4006,4012,4007,4008,4009,4017,4010,4013,4015,4018,4019,4020,4021"/>
       </viewProvider>
    </extension>
@@ -154,114 +152,7 @@
       </editpartProvider>
    </extension>
 
-   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
-      <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLModelingAssistantProvider">
-         <Priority name="Lowest"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CompositeStructureDiagramEditPart" id="Package_1000"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ActivityCompositeEditPart" id="Activity_2060"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InteractionCompositeEditPart" id="Interaction_2061"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ProtocolStateMachineCompositeEditPart" id="ProtocolStateMachine_2062"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.StateMachineCompositeEditPart" id="StateMachine_2063"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.FunctionBehaviorCompositeEditPart" id="FunctionBehavior_2064"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.OpaqueBehaviorCompositeEditPart" id="OpaqueBehavior_2065"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ComponentCompositeEditPart" id="Component_2069"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DeviceCompositeEditPart" id="Device_2070"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ExecutionEnvironmentCompositeEditPart" id="ExecutionEnvironment_2071"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.NodeCompositeEditPart" id="Node_2072"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeEditPart" id="Class_2073"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CollaborationCompositeEditPart" id="Collaboration_2075"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InterfaceEditPart" id="Interface_2076"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PrimitiveTypeEditPart" id="PrimitiveType_2066"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.EnumerationEditPart" id="Enumeration_2067"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DataTypeEditPart" id="DataType_2068"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ActorEditPart" id="Actor_2077"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DeploymentSpecificationEditPart" id="DeploymentSpecification_2078"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ArtifactEditPart" id="Artifact_2079"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InformationItemEditPart" id="InformationItem_2080"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.SignalEditPart" id="Signal_2081"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.UseCaseEditPart" id="UseCase_2082"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.SignalEventEditPart" id="SignalEvent_2083"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CallEventEditPart" id="CallEvent_2084"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.AnyReceiveEventEditPart" id="AnyReceiveEvent_2085"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ChangeEventEditPart" id="ChangeEvent_2088"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeEventEditPart" id="TimeEvent_2089"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DurationObservationEditPart" id="DurationObservation_2093"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeObservationEditPart" id="TimeObservation_2094"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.LiteralBooleanEditPart" id="LiteralBoolean_2095"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.LiteralIntegerEditPart" id="LiteralInteger_2096"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.LiteralNullEditPart" id="LiteralNull_2097"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.LiteralStringEditPart" id="LiteralString_2098"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.LiteralUnlimitedNaturalEditPart" id="LiteralUnlimitedNatural_2099"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.StringExpressionEditPart" id="StringExpression_2100"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.OpaqueExpressionEditPart" id="OpaqueExpression_2101"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeExpressionEditPart" id="TimeExpression_2102"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ExpressionEditPart" id="Expression_2103"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DurationEditPart" id="Duration_2104"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeIntervalEditPart" id="TimeInterval_2105"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DurationIntervalEditPart" id="DurationInterval_2106"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.IntervalEditPart" id="Interval_2107"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InstanceValueEditPart" id="InstanceValue_2108"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPart" id="Comment_2109"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DurationConstraintEditPart" id="DurationConstraint_2110"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeConstraintEditPart" id="TimeConstraint_2111"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.IntervalConstraintEditPart" id="IntervalConstraint_2112"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InteractionConstraintEditPart" id="InteractionConstraint_2113"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPart" id="Constraint_2114"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.BehaviorPortEditPart" id="Node_3121"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart" id="Port_3069"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ParameterEditPart" id="Parameter_3088"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PropertyPartEditPartCN" id="Property_3070"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CollaborationRoleEditPartCN" id="ConnectableElement_3115"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CollaborationUseEditPartCN" id="CollaborationUse_3071"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ActivityCompositeEditPartCN" id="Activity_3072"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InteractionCompositeEditPartCN" id="Interaction_3073"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ProtocolStateMachineCompositeEditPartCN" id="ProtocolStateMachine_3074"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.StateMachineCompositeEditPartCN" id="StateMachine_3075"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.FunctionBehaviorCompositeEditPartCN" id="FunctionBehavior_3076"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.OpaqueBehaviorCompositeEditPartCN" id="OpaqueBehavior_3077"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ComponentCompositeEditPartCN" id="Component_3081"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DeviceCompositeEditPartCN" id="Device_3082"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ExecutionEnvironmentCompositeEditPartCN" id="ExecutionEnvironment_3083"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.NodeCompositeEditPartCN" id="Node_3084"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeEditPartCN" id="Class_3085"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CollaborationCompositeEditPartCN" id="Collaboration_3086"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InterfaceEditPartCN" id="Interface_3087"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PrimitiveTypeEditPartCN" id="PrimitiveType_3078"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.EnumerationEditPartCN" id="Enumeration_3079"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DataTypeEditPartCN" id="DataType_3080"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ActorEditPartCN" id="Actor_3091"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DeploymentSpecificationEditPartCN" id="DeploymentSpecification_3092"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ArtifactEditPartCN" id="Artifact_3093"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InformationItemEditPartCN" id="InformationItem_3094"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.SignalEditPartCN" id="Signal_3095"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.UseCaseEditPartCN" id="UseCase_3096"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPartCN" id="Comment_3097"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DurationConstraintEditPartCN" id="DurationConstraint_3116"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeConstraintEditPartCN" id="TimeConstraint_3117"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.IntervalConstraintEditPartCN" id="IntervalConstraint_3118"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InteractionConstraintEditPartCN" id="InteractionConstraint_3119"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPartCN" id="Constraint_3120"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PropertyEditPartCLN" id="Property_3101"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.OperationEditPartCLN" id="Operation_3102"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ReceptionEditPartCLN" id="Reception_3100"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.EnumerationLiteralEditPartCLN" id="EnumerationLiteral_3066"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ActivityEditPartCLN" id="Activity_3103"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InteractionEditPartCLN" id="Interaction_3104"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ProtocolStateMachineEditPartCLN" id="ProtocolStateMachine_3105"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.StateMachineEditPartCLN" id="StateMachine_3106"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.FunctionBehaviorEditPartCLN" id="FunctionBehavior_3107"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.OpaqueBehaviorEditPartCLN" id="OpaqueBehavior_3108"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CollaborationEditPartCLN" id="Collaboration_3109"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InterfaceEditPartCLN" id="Interface_3110"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.EnumerationEditPartCLN" id="Enumeration_3111"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PrimitiveTypeEditPartCLN" id="PrimitiveType_3112"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DataTypeEditPartCLN" id="DataType_3113"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassEditPartCLN" id="Class_3114"/>
-         <context elements="Package_1000,Activity_2060,Interaction_2061,ProtocolStateMachine_2062,StateMachine_2063,FunctionBehavior_2064,OpaqueBehavior_2065,Component_2069,Device_2070,ExecutionEnvironment_2071,Node_2072,Class_2073,Collaboration_2075,Interface_2076,PrimitiveType_2066,Enumeration_2067,DataType_2068,Actor_2077,DeploymentSpecification_2078,Artifact_2079,InformationItem_2080,Signal_2081,UseCase_2082,SignalEvent_2083,CallEvent_2084,AnyReceiveEvent_2085,ChangeEvent_2088,TimeEvent_2089,DurationObservation_2093,TimeObservation_2094,LiteralBoolean_2095,LiteralInteger_2096,LiteralNull_2097,LiteralString_2098,LiteralUnlimitedNatural_2099,StringExpression_2100,OpaqueExpression_2101,TimeExpression_2102,Expression_2103,Duration_2104,TimeInterval_2105,DurationInterval_2106,Interval_2107,InstanceValue_2108,Comment_2109,DurationConstraint_2110,TimeConstraint_2111,IntervalConstraint_2112,InteractionConstraint_2113,Constraint_2114,Node_3121,Port_3069,Parameter_3088,Property_3070,ConnectableElement_3115,CollaborationUse_3071,Activity_3072,Interaction_3073,ProtocolStateMachine_3074,StateMachine_3075,FunctionBehavior_3076,OpaqueBehavior_3077,Component_3081,Device_3082,ExecutionEnvironment_3083,Node_3084,Class_3085,Collaboration_3086,Interface_3087,PrimitiveType_3078,Enumeration_3079,DataType_3080,Actor_3091,DeploymentSpecification_3092,Artifact_3093,InformationItem_3094,Signal_3095,UseCase_3096,Comment_3097,DurationConstraint_3116,TimeConstraint_3117,IntervalConstraint_3118,InteractionConstraint_3119,Constraint_3120,Property_3101,Operation_3102,Reception_3100,EnumerationLiteral_3066,Activity_3103,Interaction_3104,ProtocolStateMachine_3105,StateMachine_3106,FunctionBehavior_3107,OpaqueBehavior_3108,Collaboration_3109,Interface_3110,Enumeration_3111,PrimitiveType_3112,DataType_3113,Class_3114"/>
-      </modelingAssistantProvider>
-   </extension>
-
+   
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
       <IconProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLIconProvider">
@@ -1090,16 +981,6 @@
          </specializationType>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Reception_3100"
-               name="%metatype.name.Reception_3100"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Reception"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ReceptionEditHelper">
-            <param name="semanticHint" value="3100"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.EnumerationLiteral_3066"
                name="%metatype.name.EnumerationLiteral_3066"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -1107,114 +988,6 @@
                edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.EnumerationLiteralEditHelper">
             <param name="semanticHint" value="3066"/>
          </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Activity_3103"
-               name="%metatype.name.Activity_3103"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Activity_2060"/>
-            <param name="semanticHint" value="3103"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Interaction_3104"
-               name="%metatype.name.Interaction_3104"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Interaction_2061"/>
-            <param name="semanticHint" value="3104"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_3105"
-               name="%metatype.name.ProtocolStateMachine_3105"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_2062"/>
-            <param name="semanticHint" value="3105"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.StateMachine_3106"
-               name="%metatype.name.StateMachine_3106"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.StateMachine_2063"/>
-            <param name="semanticHint" value="3106"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_3107"
-               name="%metatype.name.FunctionBehavior_3107"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_2064"/>
-            <param name="semanticHint" value="3107"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_3108"
-               name="%metatype.name.OpaqueBehavior_3108"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_2065"/>
-            <param name="semanticHint" value="3108"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Collaboration_3109"
-               name="%metatype.name.Collaboration_3109"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Collaboration_3086"/>
-            <param name="semanticHint" value="3109"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Interface_3110"
-               name="%metatype.name.Interface_3110"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Interface_3087"/>
-            <param name="semanticHint" value="3110"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Enumeration_3111"
-               name="%metatype.name.Enumeration_3111"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Enumeration_2067"/>
-            <param name="semanticHint" value="3111"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_3112"
-               name="%metatype.name.PrimitiveType_3112"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_2066"/>
-            <param name="semanticHint" value="3112"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.DataType_3113"
-               name="%metatype.name.DataType_3113"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.DataType_2068"/>
-            <param name="semanticHint" value="3113"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Class_3114"
-               name="%metatype.name.Class_3114"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Class_2073"/>
-            <param name="semanticHint" value="3114"/>
-         </specializationType>
       </metamodel>
       <specializationType
             id="org.eclipse.papyrus.uml.diagram.composite.Link_4022"
@@ -1409,7 +1182,6 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
-      
       <clientContext id="org.eclipse.papyrus.uml.diagram.composite.TypeContext">
          <enablement>
             <test
@@ -1418,8 +1190,6 @@
          </enablement>
       </clientContext> 
       <binding context="org.eclipse.papyrus.uml.diagram.composite.TypeContext">
-      
-      
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Package_1000"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Activity_2060"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interaction_2061"/>
@@ -1506,20 +1276,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Constraint_3120"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Property_3101"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Operation_3102"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Reception_3100"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.EnumerationLiteral_3066"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Activity_3103"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interaction_3104"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_3105"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.StateMachine_3106"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_3107"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_3108"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Collaboration_3109"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interface_3110"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Enumeration_3111"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_3112"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DataType_3113"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Class_3114"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Link_4022"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Link_4001"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CommentAnnotatedElement_4002"/>
@@ -1541,7 +1298,6 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Representation_4020"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InformationFlow_4021"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
-         <advice ref="org.eclipse.papyrus.infra.emf.readOnlyAdvice"/>
       </binding>
    </extension>
 	   
@@ -1626,31 +1382,6 @@
    </extension>
 
 
-<!-- added by Remi Schnekenburger-->
-<extension
-      point="org.eclipse.ui.preferencePages">
-      			<?gmfgen generated="false"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.custom.preferences.PropertyPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.PropertyPreferencePage"
-            name="Property" />
- <page
-       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-       class="org.eclipse.papyrus.uml.diagram.composite.custom.preferences.ParameterPreferencePage"
-       id="org.eclipse.papyrus.uml.diagram.composite.preferences.ParameterPreferencePage"
-       name="Parameter">
- </page>
- <page
-       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-       class="org.eclipse.papyrus.uml.diagram.composite.custom.preferences.CollaborationUsePreferencePage"
-       id="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationUsePreferencePage"
-       name="CollaborationUse">
- </page>
-
-</extension>
-
-
-
 <extension
       point="org.eclipse.ui.commands">
    <command
@@ -1663,26 +1394,26 @@
 </extension>
 
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
-      <?gmfgen generated="true"?>
-      <MarkerNavigationProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLMarkerNavigationProvider">
-         <MarkerType name="org.eclipse.papyrus.uml.diagram.composite.diagnostic"/>
-         <Priority name="Lowest"/>
-      </MarkerNavigationProvider>
-   </extension>
+				      <?gmfgen generated="true"?>
+				      <MarkerNavigationProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLMarkerNavigationProvider">
+				         <MarkerType name="org.eclipse.papyrus.uml.diagram.composite.diagnostic"/>
+				         <Priority name="Lowest"/>
+				      </MarkerNavigationProvider>
+				   </extension>
 
 <extension id="diagnostic" name="Papyrus Composite Structure Diagram (Incubation) problems" point="org.eclipse.core.resources.markers">
-      <?gmfgen generated="true"?>
-      <super type="org.eclipse.core.resources.problemmarker"/>
-      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
-      <persistent value="true"/>
-   </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
-      <?gmfgen generated="true"?>
-      <decoratorProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLValidationDecoratorProvider">
-         <Priority name="Lowest"/>
-         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
-         <context decoratorTargets="PRIMARY_VIEW"/>
-      </decoratorProvider>
-   </extension>
+				      <?gmfgen generated="true"?>
+				      <super type="org.eclipse.core.resources.problemmarker"/>
+				      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+				      <persistent value="true"/>
+				   </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+				      <?gmfgen generated="true"?>
+				      <decoratorProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLValidationDecoratorProvider">
+				         <Priority name="Lowest"/>
+				         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+				         <context decoratorTargets="PRIMARY_VIEW"/>
+				      </decoratorProvider>
+				   </extension>
    
 <!-- Diagram specific advices -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
@@ -1834,477 +1565,474 @@
 
 
 <extension
-		id="Papyrus Composite Structure Diagram (Incubation).palettedefinition"
-		name="Papyrus Composite Structure Diagram (Incubation) Predefined Entries"
-		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
-		
-		<?gmfgen generated="true"?>	
-		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
-			<Priority name="Lowest"/>
-      		<contribution
-            	factoryClass="org.eclipse.papyrus.uml.diagram.composite.part.UMLPaletteFactory">
-     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+			id="Papyrus Composite Structure Diagram (Incubation).palettedefinition"
+			name="Papyrus Composite Structure Diagram (Incubation) Predefined Entries"
+			point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+			
+			<?gmfgen generated="true"?>	
+			<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+				<Priority name="Lowest"/>
+				   		<contribution
+				   		    	factoryClass="org.eclipse.papyrus.uml.diagram.composite.part.UMLPaletteFactory">
+				   		<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
-					<entry
-       defineOnly="true"
-       description="Create new Class"
-       id="composite.tool.class"
-       kind="tool"
-       label="Class"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Property"
-       id="composite.tool.property"
-       kind="tool"
-       label="Property"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Port"
-       id="composite.tool.port"
-       kind="tool"
-       label="Port"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Collaboration"
-       id="composite.tool.collaboration"
-       kind="tool"
-       label="Collaboration"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new CollaborationRole"
-       id="composite.tool.collaborationrole"
-       kind="tool"
-       label="CollaborationRole"
-       large_icon="icons/obj16/CollaborationRole.gif"
-       path=""
-       small_icon="icons/obj16/CollaborationRole.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new CollaborationUse"
-       id="composite.tool.collaborationuse"
-       kind="tool"
-       label="CollaborationUse"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Comment"
-       id="composite.tool.comment"
-       kind="tool"
-       label="Comment"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Constraint"
-       id="composite.tool.constraint"
-       kind="tool"
-       label="Constraint"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new TimeObservation"
-       id="composite.tool.timeobservation"
-       kind="tool"
-       label="TimeObservation"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new DurationObservation"
-       id="composite.tool.durationobservation"
-       kind="tool"
-       label="DurationObservation"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new InformationItem"
-       id="composite.tool.informationitem"
-       kind="tool"
-       label="InformationItem"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Parameter"
-       id="composite.tool.parameter"
-       kind="tool"
-       label="Parameter"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Activity"
-       id="composite.tool.activity"
-       kind="tool"
-       label="Activity"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Interaction"
-       id="composite.tool.interaction"
-       kind="tool"
-       label="Interaction"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new ProtocolStateMachine"
-       id="composite.tool.protocolstatemachine"
-       kind="tool"
-       label="ProtocolStateMachine"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new StateMachine"
-       id="composite.tool.statemachine"
-       kind="tool"
-       label="StateMachine"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new FunctionBehavior"
-       id="composite.tool.functionbehavior"
-       kind="tool"
-       label="FunctionBehavior"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new OpaqueBehavior"
-       id="composite.tool.opaquebehavior"
-       kind="tool"
-       label="OpaqueBehavior"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Link (Comment / Constraint)"
-       id="composite.tool.link"
-       kind="tool"
-       label="Link"
-       large_icon="icons/obj16/Link.gif"
-       path=""
-       small_icon="icons/obj16/Link.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Connector"
-       id="composite.tool.connector"
-       kind="tool"
-       label="Connector"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new RoleBinding"
-       id="composite.tool.rolebinding"
-       kind="tool"
-       label="RoleBinding"
-       large_icon="icons/obj16/CollaborationRoleBinding.gif"
-       path=""
-       small_icon="icons/obj16/CollaborationRoleBinding.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Generalization"
-       id="composite.tool.generalization"
-       kind="tool"
-       label="Generalization"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Realization"
-       id="composite.tool.realization"
-       kind="tool"
-       label="Realization"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Substitution"
-       id="composite.tool.substitution"
-       kind="tool"
-       label="Substitution"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Abstraction"
-       id="composite.tool.abstraction"
-       kind="tool"
-       label="Abstraction"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Usage"
-       id="composite.tool.usage"
-       kind="tool"
-       label="Usage"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Dependency"
-       id="composite.tool.dependency"
-       kind="tool"
-       label="Dependency"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new representation for an InformationItem"
-       id="composite.tool.representation"
-       kind="tool"
-       label="Representation"
-       large_icon="icons/obj16/Representation.gif"
-       path=""
-       small_icon="icons/obj16/Representation.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new InformationFlow"
-       id="composite.tool.informationflow"
-       kind="tool"
-       label="InformationFlow"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif">
- 	</entry>
-
-			</contribution>
-		</paletteProvider>	
-			
-	</extension>
+				
+				<entry
+				      defineOnly="true"
+				      description="Create new Class"
+				      id="composite.tool.class"
+				      kind="tool"
+				      label="Class"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Property"
+				      id="composite.tool.property"
+				      kind="tool"
+				      label="Property"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Port"
+				      id="composite.tool.port"
+				      kind="tool"
+				      label="Port"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Collaboration"
+				      id="composite.tool.collaboration"
+				      kind="tool"
+				      label="Collaboration"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new CollaborationRole"
+				      id="composite.tool.collaborationrole"
+				      kind="tool"
+				      label="CollaborationRole"
+				      large_icon="icons/obj16/CollaborationRole.gif"
+				      path=""
+				      small_icon="icons/obj16/CollaborationRole.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new CollaborationUse"
+				      id="composite.tool.collaborationuse"
+				      kind="tool"
+				      label="CollaborationUse"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Comment"
+				      id="composite.tool.comment"
+				      kind="tool"
+				      label="Comment"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Constraint"
+				      id="composite.tool.constraint"
+				      kind="tool"
+				      label="Constraint"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new TimeObservation"
+				      id="composite.tool.timeobservation"
+				      kind="tool"
+				      label="TimeObservation"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new DurationObservation"
+				      id="composite.tool.durationobservation"
+				      kind="tool"
+				      label="DurationObservation"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new InformationItem"
+				      id="composite.tool.informationitem"
+				      kind="tool"
+				      label="InformationItem"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Parameter"
+				      id="composite.tool.parameter"
+				      kind="tool"
+				      label="Parameter"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Activity"
+				      id="composite.tool.activity"
+				      kind="tool"
+				      label="Activity"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Interaction"
+				      id="composite.tool.interaction"
+				      kind="tool"
+				      label="Interaction"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new ProtocolStateMachine"
+				      id="composite.tool.protocolstatemachine"
+				      kind="tool"
+				      label="ProtocolStateMachine"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new StateMachine"
+				      id="composite.tool.statemachine"
+				      kind="tool"
+				      label="StateMachine"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new FunctionBehavior"
+				      id="composite.tool.functionbehavior"
+				      kind="tool"
+				      label="FunctionBehavior"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new OpaqueBehavior"
+				      id="composite.tool.opaquebehavior"
+				      kind="tool"
+				      label="OpaqueBehavior"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Link (Comment / Constraint)"
+				      id="composite.tool.link"
+				      kind="tool"
+				      label="Link"
+				      large_icon="icons/obj16/Link.gif"
+				      path=""
+				      small_icon="icons/obj16/Link.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Connector"
+				      id="composite.tool.connector"
+				      kind="tool"
+				      label="Connector"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new RoleBinding"
+				      id="composite.tool.rolebinding"
+				      kind="tool"
+				      label="RoleBinding"
+				      large_icon="icons/obj16/CollaborationRoleBinding.gif"
+				      path=""
+				      small_icon="icons/obj16/CollaborationRoleBinding.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Generalization"
+				      id="composite.tool.generalization"
+				      kind="tool"
+				      label="Generalization"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Realization"
+				      id="composite.tool.realization"
+				      kind="tool"
+				      label="Realization"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Substitution"
+				      id="composite.tool.substitution"
+				      kind="tool"
+				      label="Substitution"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Abstraction"
+				      id="composite.tool.abstraction"
+				      kind="tool"
+				      label="Abstraction"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Usage"
+				      id="composite.tool.usage"
+				      kind="tool"
+				      label="Usage"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Dependency"
+				      id="composite.tool.dependency"
+				      kind="tool"
+				      label="Dependency"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new representation for an InformationItem"
+				      id="composite.tool.representation"
+				      kind="tool"
+				      label="Representation"
+				      large_icon="icons/obj16/Representation.gif"
+				      path=""
+				      small_icon="icons/obj16/Representation.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new InformationFlow"
+				      id="composite.tool.informationflow"
+				      kind="tool"
+				      label="InformationFlow"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif">
+					</entry>
+				
+				</contribution>
+			</paletteProvider>	
+				
+		</extension>
 
 <extension
-		id="Papyrus Composite Structure Diagram (Incubation).standard"
-		name="Papyrus Composite Structure Diagram (Incubation) Standard Palette"
-		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+	id="Papyrus Composite Structure Diagram (Incubation).standard"
+	name="Papyrus Composite Structure Diagram (Incubation) Standard Palette"
+	point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+	
+	<?gmfgen generated="true"?>	
+	<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+		<Priority name="Low"/>
+		   		<contribution
+		   		    	factoryClass="org.eclipse.papyrus.uml.diagram.composite.part.UMLPaletteFactory">
+		   		<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+		<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+		<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
 		
-		<?gmfgen generated="true"?>	
-		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
-			<Priority name="Low"/>
-      		<contribution
-            	factoryClass="org.eclipse.papyrus.uml.diagram.composite.part.UMLPaletteFactory">
-     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
-				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
-				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
-					<entry
-       description="Nodes"
-       id="composite.group.nodes"
-       kind="drawer"
-       label="Nodes"
-       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
-       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-       <expand
-              force="true">
-       </expand>
- 	</entry>
- 	 
- 	 	<predefinedEntry
-          id="composite.tool.class"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.property"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.port"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.collaboration"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.collaborationrole"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.collaborationuse"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.comment"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.constraint"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.timeobservation"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.durationobservation"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.informationitem"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.parameter"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.activity"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.interaction"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.protocolstatemachine"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.statemachine"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.functionbehavior"
-          path="/composite.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.opaquebehavior"
-          path="/composite.group.nodes">
-    </predefinedEntry>
-
-	<entry
-       description="Edges"
-       id="composite.group.edges"
-       kind="drawer"
-       label="Edges"
-       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
-       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-       <expand
-              force="true">
-       </expand>
- 	</entry>
- 	 
- 	 	<predefinedEntry
-          id="composite.tool.link"
-          path="/composite.group.edges">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.connector"
-          path="/composite.group.edges">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.rolebinding"
-          path="/composite.group.edges">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.generalization"
-          path="/composite.group.edges">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.realization"
-          path="/composite.group.edges">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.substitution"
-          path="/composite.group.edges">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.abstraction"
-          path="/composite.group.edges">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.usage"
-          path="/composite.group.edges">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.dependency"
-          path="/composite.group.edges">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.representation"
-          path="/composite.group.edges">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="composite.tool.informationflow"
-          path="/composite.group.edges">
-    </predefinedEntry>
-
-
-			</contribution>
-			<editor id="org.eclipse.papyrus.uml.diagram.composite"/>
-		</paletteProvider>	
-			
-	</extension>
+		<entry
+		      description="Nodes"
+		      id="composite.group.nodes"
+		      kind="drawer"
+		      label="Nodes"
+		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+		      path="/"
+		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+		      <expand
+		             force="true">
+		      </expand>
+			</entry>
+		<predefinedEntry
+		        id="composite.tool.class"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.property"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.port"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.collaboration"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.collaborationrole"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.collaborationuse"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.comment"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.constraint"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.timeobservation"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.durationobservation"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.informationitem"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.parameter"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.activity"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.interaction"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.protocolstatemachine"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.statemachine"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.functionbehavior"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.opaquebehavior"
+		        path="/composite.group.nodes">
+		  </predefinedEntry>
+		<entry
+		      description="Edges"
+		      id="composite.group.edges"
+		      kind="drawer"
+		      label="Edges"
+		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+		      path="/"
+		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+		      <expand
+		             force="true">
+		      </expand>
+			</entry>
+		<predefinedEntry
+		        id="composite.tool.link"
+		        path="/composite.group.edges">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.connector"
+		        path="/composite.group.edges">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.rolebinding"
+		        path="/composite.group.edges">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.generalization"
+		        path="/composite.group.edges">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.realization"
+		        path="/composite.group.edges">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.substitution"
+		        path="/composite.group.edges">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.abstraction"
+		        path="/composite.group.edges">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.usage"
+		        path="/composite.group.edges">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.dependency"
+		        path="/composite.group.edges">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.representation"
+		        path="/composite.group.edges">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.informationflow"
+		        path="/composite.group.edges">
+		  </predefinedEntry>
+		</contribution>
+		<editor id="org.eclipse.papyrus.uml.diagram.composite"/>
+	</paletteProvider>	
+		
+</extension>
 
 <extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
 		<diagramMappings diagramID="CompositeStructure">

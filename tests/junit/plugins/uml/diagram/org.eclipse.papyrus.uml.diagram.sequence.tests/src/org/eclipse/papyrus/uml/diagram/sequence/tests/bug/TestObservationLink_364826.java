@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -77,7 +80,7 @@ public class TestObservationLink_364826 extends TestLink {
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return ISequenceDiagramTestsConstants.PROJECT_NAME;
@@ -404,9 +407,9 @@ public class TestObservationLink_364826 extends TestLink {
 
 	/**
 	 * Copy from org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil.getAbsoluteEdgeExtremity(ConnectionNodeEditPart, boolean)
-	 * 
+	 *
 	 * Get the extremity of a connection edit part
-	 * 
+	 *
 	 * @param connection
 	 *        the connection edit part to find extremity
 	 * @param isStart

@@ -14,48 +14,29 @@ package aspects.xpt.navigator
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenNavigatorChildReference
-import xpt.editor.VisualIDRegistry
-import xpt.navigator.NavigatorGroup
-import xpt.navigator.NavigatorItem
+import org.eclipse.gmf.codegen.gmfgen.GenNavigator
+import xpt.Common
+import xpt.navigator.Utils_qvto
 
 @Singleton class NavigatorLinkHelper extends xpt.navigator.NavigatorLinkHelper {
+	@Inject extension Common;
+	@Inject extension Utils_qvto;
 
-	@Inject NavigatorGroup navigatorGroup;
-	@Inject NavigatorItem xptNavigatorItem;
 	
-
-
-	/**
-	 * Linking with editor currently supported only for the navigators conteining top
-	 * reference to the diagram. In this case diagram node will be selected in navigator.
- 	*/
-	override getDiagramSelection(GenNavigatorChildReference it) '''
-		«IF it != null»
-		«IF navigator != null»
-		«IF navigator.editorGen != null»
-		«getDiagram(navigator.editorGen)»
-		if (diagram == null || diagram.eResource() == null) {
-			return org.eclipse.jface.viewers.StructuredSelection.EMPTY;
-		}
-		org.eclipse.core.resources.IFile file = org.eclipse.emf.workspace.util.WorkspaceSynchronizer.getFile(diagram.eResource());
-		if (file != null) {
-			«IF isInsideGroup()»
-				«navigatorGroup.qualifiedClassName(navigator)» parentGroup = new «navigatorGroup.
-				qualifiedClassName(navigator)»("«groupName»", "«groupIcon»", «VisualIDRegistry::modelID(
-			navigator.editorGen.diagram)», file);
+	override findSelection(GenNavigator it) '''
+		«generatedMemberComment()»
+		public org.eclipse.jface.viewers.IStructuredSelection findSelection(org.eclipse.ui.IEditorInput anInput) {
+			«IF getDiagramTopReference(it) !=null»
+			«defineDiagramDocument(editorGen.plugin)»
 			«ENDIF»
-			«xptNavigatorItem.qualifiedClassName(navigator)» item = new «xptNavigatorItem.qualifiedClassName(navigator)»(diagram, «IF isInsideGroup()»parentGroup«ELSE»file«ENDIF», false);
-			«IF isInsideGroup()»
-				parentGroup.addChild(item);
-			«ENDIF»
-			return new org.eclipse.jface.viewers.StructuredSelection(«IF isInsideGroup()»parentGroup«ELSE»item«ENDIF»);
+			«findSelectionBody(it)»
 		}
-		«ENDIF»
-		«ENDIF»
-		«ENDIF»
 	'''
-
 	
-
+	override findSelectionBody(GenNavigator it) '''
+		«IF getDiagramTopReference(it) !=null»
+		«getDiagramSelection(getDiagramTopReference(it))»
+		«ENDIF»
+		return org.eclipse.jface.viewers.StructuredSelection.EMPTY;
+	'''
 }

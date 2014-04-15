@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2010-2011 CEA LIST.
- * 
+/**
+ * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,10 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- * 
- * Ansgar Radermacher: Bug 402068: Correct calculation of region height in refresh visuals
- * 
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part;
 

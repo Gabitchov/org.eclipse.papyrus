@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -30,32 +30,26 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
  */
 public class UMLCreationWizard
 		extends Wizard implements INewWizard {
-
 	/**
 	 * @generated
 	 */
 	private IWorkbench workbench;
-
 	/**
 	 * @generated
 	 */
 	protected IStructuredSelection selection;
-
 	/**
 	 * @generated
 	 */
 	protected UMLCreationWizardPage diagramModelFilePage;
-
 	/**
 	 * @generated
 	 */
 	protected UMLCreationWizardPage domainModelFilePage;
-
 	/**
 	 * @generated
 	 */
 	protected Resource diagram;
-
 	/**
 	 * @generated
 	 */
@@ -115,9 +109,7 @@ public class UMLCreationWizard
 		diagramModelFilePage.setTitle(Messages.UMLCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage.setDescription(Messages.UMLCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
-
 		domainModelFilePage = new UMLCreationWizardPage("DomainModelFile", getSelection(), "PapyrusUMLClass") { //$NON-NLS-1$ //$NON-NLS-2$
-
 			public void setVisible(boolean visible) {
 				if (visible) {
 					String fileName = diagramModelFilePage.getFileName();
@@ -139,7 +131,6 @@ public class UMLCreationWizard
 	public boolean performFinish() {
 		IRunnableWithProgress op =
 				new WorkspaceModifyOperation(null) {
-
 					protected void execute(IProgressMonitor monitor)
 							throws CoreException, InterruptedException {
 						diagram = UMLDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(),

@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.stereotypeproperty;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -30,11 +29,12 @@ import org.junit.Test;
 public class TestProfileApplication extends AbstractPapyrusTestCase {
 
 	@Test
-	public void testToManageModel() throws ServiceException {
+	public void testProfileApplicationOnModel() throws ServiceException {
 		RegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("TestProfile");
 		final Model root = ((Model)getDiagramEditPart().resolveSemanticElement());
 		assertTrue("Registered profile not found", registeredProfile != null);
 		URI modelUri = registeredProfile.uri;
+		@SuppressWarnings("deprecation")
 		final Resource modelResource = Util.getResourceSet(root).getResource(modelUri, true);
 		assertTrue("the registered profile is not a profile", (modelResource.getContents().get(0) instanceof Profile));
 		assertTrue("strange profile", ("".equals(registeredProfile.qualifiednames)));
@@ -44,7 +44,6 @@ public class TestProfileApplication extends AbstractPapyrusTestCase {
 		AppliedProfileCommand appliedProfileCommand = new AppliedProfileCommand(domain, root, profile);
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(appliedProfileCommand));
 
-		EList<Profile> list = root.getAllAppliedProfiles();
 		assertTrue("Profile not applied", root.getAllAppliedProfiles().size() == 1);
 
 	}

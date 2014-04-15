@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,7 +60,7 @@ import org.junit.Test;
  * An embedded textuel editor shall allow editing duration constraints. This editor shall be accessible on the diagram.
  * When the two values of the interval are equal, the value shall be displayed only once.
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=384596
- * 
+ *
  */
 public class TestDurationConstraints_384596 extends TestTopNode {
 
@@ -85,7 +88,7 @@ public class TestDurationConstraints_384596 extends TestTopNode {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Test
 	public void testDurationEdition() {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200), null);

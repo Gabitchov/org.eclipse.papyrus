@@ -31,7 +31,9 @@ import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * handler for instantiating a deployment plan
@@ -60,7 +62,7 @@ public class InstantiateDepPlanHandler extends CmdHandler {
 		// only one model is selected
 		selectedCDP = null;
 		if((selectedEObject instanceof Package) || (selectedEObject instanceof Class)) {
-			selectedCDP = (Element)selectedEObject;
+			selectedCDP = (NamedElement) selectedEObject;
 		} else {
 			return null;
 		}
@@ -76,8 +78,12 @@ public class InstantiateDepPlanHandler extends CmdHandler {
 				@Override
 				protected IStatus run(IProgressMonitor monitor) {
 					// execute the task ...
-					InstantiateDepPlan.instantiate(selectedCDP, monitor, project, genOptions);
-					monitor.done();
+					if (selectedCDP instanceof Package) {
+						new InstantiateDepPlan().instantiate((Package)selectedCDP, monitor, project, genOptions);
+					} else if (StereotypeUtil.isApplied(selectedCDP, Configuration.class)) {
+						Configuration configuration = UMLUtil.getStereotypeApplication(selectedCDP, Configuration.class);
+						new InstantiateDepPlan().instantiate(configuration, monitor, project, genOptions);
+					}
 					return Status.OK_STATUS;
 				}
 			};
@@ -88,7 +94,7 @@ public class InstantiateDepPlanHandler extends CmdHandler {
 		return null;
 	}
 
-	private Element selectedCDP;
+	private NamedElement selectedCDP;
 
 	private IProject project;
 }

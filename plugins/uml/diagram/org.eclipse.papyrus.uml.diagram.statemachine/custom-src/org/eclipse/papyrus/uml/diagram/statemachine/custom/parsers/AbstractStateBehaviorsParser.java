@@ -1,17 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2011 Atos.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *   Atos - Initial API and implementation
- *   Arthur daussy (Atos) arthur.daussy@atos.net - Bug : 365405: [State Machine Diagram] Behaviours (Entry,exit,do) on states should have their own mechanisms
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers;
 
 import java.util.Collections;
@@ -45,9 +42,7 @@ import org.eclipse.uml2.uml.Behavior;
  * 
  */
 public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
-
 	private static final String ONE_SPACE_STRING = " ";
-
 	private static final String EMPTY_STRING = "";
 
 	/**
@@ -66,7 +61,6 @@ public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
 	 * 
 	 */
 	public interface BehaviorType {
-
 		/**
 		 * Get the keyword to display in the label name
 		 * CAN NOT RETURN NULL
@@ -83,7 +77,6 @@ public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
 		public EStructuralFeature getEStructuralFeature();
 	}
 
-
 	/***
 	 * Get the parser type ( among {@link Behavior_Type})
 	 * 
@@ -93,14 +86,12 @@ public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
 
 	public String getEditString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(Behavior.class);
-		if(obj instanceof Behavior) {
-			final Behavior behavior = ((Behavior)obj);
+		if (obj instanceof Behavior) {
+			final Behavior behavior = ((Behavior) obj);
 			return behavior.getName();
 		}
-
 		return EMPTY_STRING;
 	}
-
 
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 		return new ParserEditStatus(org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin.ID, IParserEditStatus.OK, ""); //$NON-NLS-1$
@@ -117,30 +108,28 @@ public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
 	 * @return
 	 */
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		final Behavior behavior = ((Behavior)((EObjectAdapter)element).getRealObject());
+		final Behavior behavior = ((Behavior) ((EObjectAdapter) element).getRealObject());
 		final EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(behavior);
 		final String newStringResult = newString;
-		if(editingDomain != null && editingDomain instanceof TransactionalEditingDomain) {
-			AbstractTransactionalCommand cmd = new AbstractTransactionalCommand((TransactionalEditingDomain)editingDomain, "Set new name in " + behavior.getName(), null) {
-
+		if (editingDomain != null && editingDomain instanceof TransactionalEditingDomain) {
+			AbstractTransactionalCommand cmd = new AbstractTransactionalCommand((TransactionalEditingDomain) editingDomain, "Set new name in " + behavior.getName(), null) {
 				@Override
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 					behavior.setName(newStringResult);
 					return CommandResult.newOKCommandResult();
 				}
 			};
-			if(cmd != null && cmd.canExecute()) {
+			if (cmd != null && cmd.canExecute()) {
 				return cmd;
 			}
 		}
-
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	public String getPrintString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(Behavior.class);
-		if(obj instanceof Behavior) {
-			final Behavior behavior = ((Behavior)obj);
+		if (obj instanceof Behavior) {
+			final Behavior behavior = ((Behavior) obj);
 			StringBuilder result = new StringBuilder();
 			// Append keyword
 			String keyWord = getParserType().getKeyWord();
@@ -154,24 +143,23 @@ public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
 			result.append(behavior.getName());
 			return result.toString();
 		}
-
 		return EMPTY_STRING;
 	}
 
 	private void addExtraSpace(StringBuilder result, String keyWord) {
-		if(!keyWord.endsWith(ONE_SPACE_STRING)) {
+		if (!keyWord.endsWith(ONE_SPACE_STRING)) {
 			result.append(ONE_SPACE_STRING);
 		}
 	}
 
 	public boolean isAffectingEvent(Object event, int flags) {
-		if(event instanceof Notification) {
-			int notificationType = ((Notification)event).getEventType();
-			if(Notification.ADD == notificationType || Notification.SET == notificationType || Notification.REMOVE == notificationType) {
-				Object feature = ((Notification)event).getFeature();
-				if(feature instanceof EStructuralFeature) {
-					EStructuralFeature eStrucFeature = (EStructuralFeature)feature;
-					if(getParserType().getEStructuralFeature().equals(eStrucFeature)) {
+		if (event instanceof Notification) {
+			int notificationType = ((Notification) event).getEventType();
+			if (Notification.ADD == notificationType || Notification.SET == notificationType || Notification.REMOVE == notificationType) {
+				Object feature = ((Notification) event).getFeature();
+				if (feature instanceof EStructuralFeature) {
+					EStructuralFeature eStrucFeature = (EStructuralFeature) feature;
+					if (getParserType().getEStructuralFeature().equals(eStrucFeature)) {
 						return true;
 					}
 				}
@@ -184,19 +172,15 @@ public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
 		return null;
 	}
 
-
-	public List getSemanticElementsBeingParsed(EObject element) {
-		if(element instanceof Behavior) {
-			final Behavior behavior = ((Behavior)element);
+	public List<Behavior> getSemanticElementsBeingParsed(EObject element) {
+		if (element instanceof Behavior) {
+			final Behavior behavior = ((Behavior) element);
 			return Collections.singletonList(behavior);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
-
 
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		return true;
 	}
-
-
 }

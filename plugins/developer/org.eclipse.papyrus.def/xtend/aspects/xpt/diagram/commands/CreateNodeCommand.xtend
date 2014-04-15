@@ -40,7 +40,10 @@ import xpt.diagram.Utils_qvto
 		«generatedClassComment()»
 		public class «className(it)» extends org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand {
 			
-			private org.eclipse.gmf.runtime.notation.Diagram diagram = null;
+			«IF ! it.modelFacet.isPhantomElement()»
+				«generatedMemberComment()»
+				private org.eclipse.gmf.runtime.notation.Diagram diagram = null;
+			«ENDIF»
 		
 			«_constructor(it)»
 		
@@ -60,7 +63,9 @@ import xpt.diagram.Utils_qvto
 		«generatedMemberComment()»
 		public «className(it)»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.gmf.runtime.notation.Diagram diagram) {
 			super(req.getLabel(), null, req);
+			«IF ! it.modelFacet.isPhantomElement()»
 			this.diagram = diagram;
+			«ENDIF»
 		}
 	'''
 

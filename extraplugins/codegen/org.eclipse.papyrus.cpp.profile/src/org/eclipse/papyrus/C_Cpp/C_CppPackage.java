@@ -113,6 +113,15 @@ public interface C_CppPackage extends EPackage {
 	int PTR_FEATURE_COUNT = 3;
 
 	/**
+	 * The number of operations of the '<em>Ptr</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PTR_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.IncludeImpl <em>Include</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -186,6 +195,15 @@ public interface C_CppPackage extends EPackage {
 	int INCLUDE_FEATURE_COUNT = 6;
 
 	/**
+	 * The number of operations of the '<em>Include</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ManualGenerationImpl <em>Manual Generation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -221,6 +239,15 @@ public interface C_CppPackage extends EPackage {
 	 * @ordered
 	 */
 	int MANUAL_GENERATION_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Manual Generation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANUAL_GENERATION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ExternLibraryImpl <em>Extern Library</em>}' class.
@@ -296,6 +323,15 @@ public interface C_CppPackage extends EPackage {
 	int EXTERN_LIBRARY_FEATURE_COUNT = 6;
 
 	/**
+	 * The number of operations of the '<em>Extern Library</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERN_LIBRARY_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.NoCodeGenImpl <em>No Code Gen</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -324,6 +360,15 @@ public interface C_CppPackage extends EPackage {
 	int NO_CODE_GEN_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>No Code Gen</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NO_CODE_GEN_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.CppRootImpl <em>Cpp Root</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -350,6 +395,15 @@ public interface C_CppPackage extends EPackage {
 	 * @ordered
 	 */
 	int CPP_ROOT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Cpp Root</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CPP_ROOT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ArrayImpl <em>Array</em>}' class.
@@ -407,6 +461,15 @@ public interface C_CppPackage extends EPackage {
 	int ARRAY_FEATURE_COUNT = 4;
 
 	/**
+	 * The number of operations of the '<em>Array</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ConstImpl <em>Const</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -453,6 +516,15 @@ public interface C_CppPackage extends EPackage {
 	int CONST_FEATURE_COUNT = 3;
 
 	/**
+	 * The number of operations of the '<em>Const</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONST_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.RefImpl <em>Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -488,6 +560,15 @@ public interface C_CppPackage extends EPackage {
 	 * @ordered
 	 */
 	int REF_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REF_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ExternalImpl <em>External</em>}' class.
@@ -527,6 +608,15 @@ public interface C_CppPackage extends EPackage {
 	int EXTERNAL_FEATURE_COUNT = 2;
 
 	/**
+	 * The number of operations of the '<em>External</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ConstInitImpl <em>Const Init</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -562,6 +652,15 @@ public interface C_CppPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONST_INIT_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Const Init</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONST_INIT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.FriendImpl <em>Friend</em>}' class.
@@ -601,6 +700,15 @@ public interface C_CppPackage extends EPackage {
 	int FRIEND_FEATURE_COUNT = 2;
 
 	/**
+	 * The number of operations of the '<em>Friend</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRIEND_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.InlineImpl <em>Inline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -629,6 +737,15 @@ public interface C_CppPackage extends EPackage {
 	int INLINE_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>Inline</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INLINE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.VirtualImpl <em>Virtual</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -655,6 +772,15 @@ public interface C_CppPackage extends EPackage {
 	 * @ordered
 	 */
 	int VIRTUAL_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Virtual</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.TypedefImpl <em>Typedef</em>}' class.
@@ -694,6 +820,15 @@ public interface C_CppPackage extends EPackage {
 	int TYPEDEF_FEATURE_COUNT = 2;
 
 	/**
+	 * The number of operations of the '<em>Typedef</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPEDEF_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.VisibilityImpl <em>Visibility</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -729,6 +864,15 @@ public interface C_CppPackage extends EPackage {
 	 * @ordered
 	 */
 	int VISIBILITY_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Visibility</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISIBILITY_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.CppInitImpl <em>Cpp Init</em>}' class.
@@ -768,6 +912,15 @@ public interface C_CppPackage extends EPackage {
 	int CPP_INIT_FEATURE_COUNT = 2;
 
 	/**
+	 * The number of operations of the '<em>Cpp Init</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CPP_INIT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.TemplateImpl <em>Template</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -803,6 +956,15 @@ public interface C_CppPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEMPLATE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Template</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.TemplateBindingImpl <em>Template Binding</em>}' class.
@@ -842,6 +1004,15 @@ public interface C_CppPackage extends EPackage {
 	int TEMPLATE_BINDING_FEATURE_COUNT = 2;
 
 	/**
+	 * The number of operations of the '<em>Template Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_BINDING_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.TemplateParameterImpl <em>Template Parameter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -879,6 +1050,15 @@ public interface C_CppPackage extends EPackage {
 	int TEMPLATE_PARAMETER_FEATURE_COUNT = 2;
 
 	/**
+	 * The number of operations of the '<em>Template Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.UnionImpl <em>Union</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -905,6 +1085,15 @@ public interface C_CppPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNION_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Union</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.StorageClassImpl <em>Storage Class</em>}' class.
@@ -951,6 +1140,15 @@ public interface C_CppPackage extends EPackage {
 	 * @ordered
 	 */
 	int STORAGE_CLASS_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Storage Class</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORAGE_CLASS_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.VisibilityKind <em>Visibility Kind</em>}' enum.

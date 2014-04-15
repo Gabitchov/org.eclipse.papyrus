@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -27,17 +27,14 @@ import org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedback
  * @generated
  */
 public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements IRefreshableFeedbackEditPolicy {
-
 	/**
 	 * @generated
 	 */
 	private IFigure selectionFeedbackFigure;
-
 	/**
 	 * @generated
 	 */
 	private IFigure focusFeedbackFigure;
-
 	/**
 	 * @generated
 	 */
@@ -154,7 +151,6 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements I
 	 */
 	protected IFigure createFocusFeedbackFigure() {
 		return new Figure() {
-
 			protected void paintFigure(Graphics graphics) {
 				graphics.drawFocus(getBounds().getResized(-1, -1));
 			}
@@ -197,7 +193,6 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements I
 	/**
 	 * @generated
 	 */
-
 	public void refreshFeedback() {
 		refreshSelectionFeedback();
 		refreshFocusFeedback();
@@ -216,5 +211,4 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements I
 		}
 		return hostPositionListener;
 	}
-
 }

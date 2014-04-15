@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.figures;
 
 import org.eclipse.draw2d.Border;
@@ -12,7 +23,6 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
 public class PseudostateDeepHistoryFigure extends PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure {
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -40,26 +50,19 @@ public class PseudostateDeepHistoryFigure extends PapyrusNodeFigure implements I
 	 * {@inheritDoc}
 	 */
 	public void paintFigure(Graphics graphics) {
-
-		final int space = 5;
-		Rectangle f = Rectangle.SINGLETON;
-		//to be in adequation with the figure node plate
-		Rectangle r = getBounds().getCopy().crop(new Insets(1, 1, 1, 1));
+		// to be in adequation with the figure node plate
+		Rectangle r = getBounds().getCopy().shrink(new Insets(1, 1, 1, 1));
 		graphics.setBackgroundColor(getForegroundColor());
 		graphics.setLineWidth(1);
 		graphics.drawOval(r);
-
 		// 'H' letter
-		graphics.drawLine(bounds.getCenter().getTranslated((int)(-bounds.width * 0.25), (int)(-bounds.height * 0.25)), bounds.getCenter().getTranslated((int)(-bounds.width * 0.25), (int)(bounds.height * 0.25)));
-		graphics.drawLine(bounds.getCenter().getTranslated((int)(bounds.width * 0.05), (int)(-bounds.height * 0.25)), bounds.getCenter().getTranslated((int)(bounds.width * 0.05), (int)(bounds.height * 0.25)));
-		graphics.drawLine(bounds.getCenter().getTranslated((int)(-bounds.width * 0.25), 0), bounds.getCenter().getTranslated((int)(bounds.width * 0.05), 0));
-
+		graphics.drawLine(bounds.getCenter().getTranslated((int) (-bounds.width * 0.25), (int) (-bounds.height * 0.25)), bounds.getCenter().getTranslated((int) (-bounds.width * 0.25), (int) (bounds.height * 0.25)));
+		graphics.drawLine(bounds.getCenter().getTranslated((int) (bounds.width * 0.05), (int) (-bounds.height * 0.25)), bounds.getCenter().getTranslated((int) (bounds.width * 0.05), (int) (bounds.height * 0.25)));
+		graphics.drawLine(bounds.getCenter().getTranslated((int) (-bounds.width * 0.25), 0), bounds.getCenter().getTranslated((int) (bounds.width * 0.05), 0));
 		// '*' character
-		graphics.drawLine(bounds.getCenter().getTranslated((int)(bounds.width * 0.25), (int)(-bounds.height * 0.25)), bounds.getCenter().getTranslated((int)(bounds.width * 0.25), (int)(-bounds.height * 0.05)));
-		graphics.drawLine(bounds.getCenter().getTranslated((int)(bounds.width * 0.15), (int)(-bounds.height * 0.20)), bounds.getCenter().getTranslated((int)(bounds.width * 0.35), (int)(-bounds.height * 0.10)));
-		graphics.drawLine(bounds.getCenter().getTranslated((int)(bounds.width * 0.35), (int)(-bounds.height * 0.20)), bounds.getCenter().getTranslated((int)(bounds.width * 0.15), (int)(-bounds.height * 0.10)));
-
-
+		graphics.drawLine(bounds.getCenter().getTranslated((int) (bounds.width * 0.25), (int) (-bounds.height * 0.25)), bounds.getCenter().getTranslated((int) (bounds.width * 0.25), (int) (-bounds.height * 0.05)));
+		graphics.drawLine(bounds.getCenter().getTranslated((int) (bounds.width * 0.15), (int) (-bounds.height * 0.20)), bounds.getCenter().getTranslated((int) (bounds.width * 0.35), (int) (-bounds.height * 0.10)));
+		graphics.drawLine(bounds.getCenter().getTranslated((int) (bounds.width * 0.35), (int) (-bounds.height * 0.20)), bounds.getCenter().getTranslated((int) (bounds.width * 0.15), (int) (-bounds.height * 0.10)));
 	}
 
 	/**
@@ -67,7 +70,6 @@ public class PseudostateDeepHistoryFigure extends PapyrusNodeFigure implements I
 	 */
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -75,7 +77,6 @@ public class PseudostateDeepHistoryFigure extends PapyrusNodeFigure implements I
 	 */
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -83,7 +84,5 @@ public class PseudostateDeepHistoryFigure extends PapyrusNodeFigure implements I
 	 */
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
 		// TODO Auto-generated method stub
-
 	}
-
 }

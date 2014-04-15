@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.figures;
 
 import org.eclipse.draw2d.Graphics;
@@ -24,7 +35,7 @@ public class RoundedBorder extends RoundedRectangleBorder {
 		tempRect.setBounds(getPaintRectangle(figure, insets));
 
 		// bug fix when lineWidth is 1
-		if(getWidth() % 2 == 1) {
+		if(getWidth() % 2 != 0) {
 			tempRect.width--;
 			tempRect.height--;
 		}

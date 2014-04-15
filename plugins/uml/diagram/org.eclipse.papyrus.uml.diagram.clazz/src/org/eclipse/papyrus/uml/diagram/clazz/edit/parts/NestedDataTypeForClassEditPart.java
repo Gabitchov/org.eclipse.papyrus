@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -93,38 +93,31 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class NestedDataTypeForClassEditPart extends
 		UMLCompartmentEditPart
 		implements ITextAwareEditPart, IPrimaryEditPart, IControlParserForDirectEdit {
-
 	/**
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 3044;
-
 	/**
 	 * @generated
 	 */
 	private DirectEditManager manager;
-
 	/**
 	 * @generated
 	 */
 	private IParser parser;
-
 	/**
 	 * @generated
 	 */
 	private List<?> parserElements;
-
 	/**
 	 * @generated
 	 */
 	private String defaultText;
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
-
 	/**
 	 * configuration from a registered edit dialog
 	 * @generated
@@ -315,7 +308,6 @@ public class NestedDataTypeForClassEditPart extends
 	 */
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
-
 			public String isValid(final Object value) {
 				if (value instanceof String) {
 					final EObject element = getParserElement();
@@ -324,7 +316,6 @@ public class NestedDataTypeForClassEditPart extends
 						IParserEditStatus valid =
 								(IParserEditStatus) getEditingDomain().runExclusive(
 										new RunnableWithResult.Impl<java.lang.Object>() {
-
 											public void run() {
 												setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
 											}
@@ -334,7 +325,6 @@ public class NestedDataTypeForClassEditPart extends
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -392,7 +382,6 @@ public class NestedDataTypeForClassEditPart extends
 	 */
 	protected void performDirectEdit() {
 		BusyIndicator.showWhile(Display.getDefault(), new java.lang.Runnable() {
-
 			public void run() {
 				getManager().show();
 			}
@@ -423,9 +412,7 @@ public class NestedDataTypeForClassEditPart extends
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -462,15 +449,12 @@ public class NestedDataTypeForClassEditPart extends
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if (Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
-
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog) finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -630,7 +614,6 @@ public class NestedDataTypeForClassEditPart extends
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
-
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -660,7 +643,6 @@ public class NestedDataTypeForClassEditPart extends
 		if (checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -727,7 +709,6 @@ public class NestedDataTypeForClassEditPart extends
 		// initialize the direct edit manager
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
-
 				public void run() {
 					if (isActive() && isEditable()) {
 						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
@@ -826,5 +807,4 @@ public class NestedDataTypeForClassEditPart extends
 	public boolean isSelectable() {
 		return getFigure().isShowing();
 	}
-
 }

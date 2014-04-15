@@ -1,33 +1,32 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Amine EL KOUHEN (CEA LIST/LIFL) & Nizar GUEDIDI (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ViewComponentEditPolicy;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy;
 
 /**
  * @generated
  */
-public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
-
+public class LinkDescriptorEditPart extends ConnectionEditPart
+		implements ITreeBranchEditPart
+{
 	/**
 	 * @generated
 	 */
@@ -53,33 +52,19 @@ public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeB
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new LinkDescriptor();
+		return new SimpleDashedEdgeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public LinkDescriptor getPrimaryShape() {
-		return (LinkDescriptor)getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class LinkDescriptor extends PolylineConnectionEx {
-
-		/**
-		 * @generated
-		 */
-		public LinkDescriptor() {
-			this.setLineWidth(1);
-			this.setLineStyle(Graphics.LINE_DASH);
-		}
+	public SimpleDashedEdgeFigure getPrimaryShape() {
+		return (SimpleDashedEdgeFigure) getFigure();
 	}
 }
