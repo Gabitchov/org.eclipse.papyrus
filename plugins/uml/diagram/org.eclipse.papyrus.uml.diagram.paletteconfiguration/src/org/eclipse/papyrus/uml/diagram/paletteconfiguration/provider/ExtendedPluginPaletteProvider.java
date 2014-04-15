@@ -15,8 +15,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +48,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.uml.diagram.common.service.IProfileDependantPaletteProvider;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Activator;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ChildConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration;
@@ -57,6 +60,7 @@ import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Paletteconfiguration
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.SeparatorConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.StackConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.util.PaletteConfigurationUtils;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.util.PaletteconfigurationSwitch;
 import org.eclipse.ui.IEditorPart;
 import org.osgi.framework.Bundle;
@@ -65,7 +69,7 @@ import org.osgi.framework.Bundle;
 /**
  * Palette provider with enhanced elements types
  */
-public class ExtendedPluginPaletteProvider extends AbstractProvider implements IPaletteProvider {
+public class ExtendedPluginPaletteProvider extends AbstractProvider implements IPaletteProvider, IProfileDependantPaletteProvider {
 
 	/** name of the type */
 	public static final String TYPE_NAME = "testSpecializationTypeName";
@@ -100,6 +104,11 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 	/** default icon for drawers */
 	protected static ImageDescriptor DEFAULT_DRAWER_IMAGE_DESCRIPTOR = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/drawer.gif");
 
+	/** cached list of required profiles for this palette to be shown. this will be <code>null</code> until initialized*/
+	protected Collection<String> requiredProfiles = null;
+	
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -112,6 +121,27 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public Collection<String> getRequiredProfiles() {
+		if(contributions == null || contributions.size() == 0) {
+			return Collections.emptyList();
+		}
+		if(requiredProfiles == null) {
+			requiredProfiles = new HashSet<String>();
+			
+			// compute. should be at least an empty list as soon as it has been initialized
+			for(PaletteConfiguration configuration : contributions) {
+				Collection<String> profiles = PaletteConfigurationUtils.getRequiredProfiles(configuration);
+				if(profiles !=null && profiles.size() > 0) {
+					requiredProfiles.addAll(profiles);	
+				}
+			}
+		}
+		return requiredProfiles;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */

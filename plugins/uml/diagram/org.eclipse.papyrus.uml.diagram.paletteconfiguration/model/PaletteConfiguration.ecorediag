@@ -3,6 +3,10 @@
   <children xmi:type="notation:Node" xmi:id="_Es6HAN3dEd-vY7OSNoF8nA" type="1001">
     <children xmi:type="notation:Node" xmi:id="_Es6HA93dEd-vY7OSNoF8nA" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_Es6HBN3dEd-vY7OSNoF8nA" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_8nEWwMSxEeO-K5aODM_IgQ" type="2001">
+        <element xmi:type="ecore:EAttribute" href="PaletteConfiguration.ecore#//PaletteConfiguration/requiredProfiles"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_8nEWwcSxEeO-K5aODM_IgQ"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_Es6HBd3dEd-vY7OSNoF8nA"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_Es6HBt3dEd-vY7OSNoF8nA"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Es6HB93dEd-vY7OSNoF8nA"/>

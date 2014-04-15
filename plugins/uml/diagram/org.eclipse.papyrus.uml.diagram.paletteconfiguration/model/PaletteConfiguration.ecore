@@ -5,6 +5,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="PaletteConfiguration" eSuperTypes="#//Configuration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="drawerConfigurations" lowerBound="1"
         upperBound="-1" eType="#//DrawerConfiguration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredProfiles" upperBound="-1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ToolConfiguration" eSuperTypes="#//LeafConfiguration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="#//ToolKind"

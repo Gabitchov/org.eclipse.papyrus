@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLViewProvider;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
@@ -40,23 +41,18 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 	@Override
 	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge createdEdge = null;
-
 		IElementType elementType = (IElementType)semanticAdapter.getAdapter(IElementType.class);
 		if(elementType != null) {
 			createdEdge = super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 		} else {
-
 			EObject domainElement = (EObject)semanticAdapter.getAdapter(EObject.class);
-
 			String domainElementGraphicalType = semanticHint;
 			if(domainElementGraphicalType == null) {
 				domainElementGraphicalType = registry.getEdgeGraphicalType(domainElement);
 			}
-
 			if((!IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(domainElementGraphicalType)) && (registry.isKnownEdgeType(domainElementGraphicalType))) {
 				// Cannot use createEdge from super class as it never take the graphical type (semanticHint) into account.
 				// createdEdge = super.createEdge(semanticAdapter, containerView, domainElementGraphicalType, index, persisted, preferencesHint);
-
 				if(ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint().equals(domainElementGraphicalType)) {
 					createdEdge = createCommentAnnotatedElement_4013(containerView, index, persisted, preferencesHint);
 				}
@@ -65,11 +61,9 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 				}
 			}
 		}
-
 		if(createdEdge == null) {
 			log.error(new Exception("Could not create Edge."));
 		}
-
 		return createdEdge;
 	}
 
@@ -80,24 +74,20 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
 			return false;
 		}
-
-		throw new UnsupportedOperationException("Should never be called by the "+diagramType+" diagram.");
+		throw new UnsupportedOperationException("Should never be called by the " + diagramType + " diagram.");
 	}
 
 	@Override
 	protected boolean provides(CreateEdgeViewOperation op) {
-
 		// Must have a container
 		if(op.getContainerView() == null) {
 			return false;
 		}
-
 		// This provider is registered for BlockDefinition Diagram only
 		String diagramType = op.getContainerView().getDiagram().getType();
 		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
 			return false;
 		}
-
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
 		if(elementType == ElementTypes.COMMENT_ANNOTATED_ELEMENT) {
 			return true;
@@ -105,11 +95,20 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 		if(elementType == ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT) {
 			return true;
 		}
-
 		// /////////////////////////////////////////////////////////////////////
 		// Test possibility to provide a view based on the semantic nature and its expected container.
 		// /////////////////////////////////////////////////////////////////////
-
+		// IElementType may be an extended type. Check for a view based on this element type
+		if(elementType instanceof IExtendedHintedElementType) {
+			EObject domainElement = (EObject)op.getSemanticAdapter().getAdapter(EObject.class);
+			String domainElementGraphicalType = op.getSemanticHint();
+			if(domainElementGraphicalType == null) {
+				domainElementGraphicalType = registry.getEdgeGraphicalType(domainElement);
+			}
+			if((!IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(domainElementGraphicalType)) && (registry.isKnownEdgeType(domainElementGraphicalType))) {
+				return true;
+			}
+		}
 		// IElementType may be null (especially when drop from ModelExplorer).
 		// In such a case, test the semantic EObject instead.	
 		if(elementType == null) {
@@ -118,12 +117,10 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 			if(domainElementGraphicalType == null) {
 				domainElementGraphicalType = registry.getEdgeGraphicalType(domainElement);
 			}
-
 			if((!IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(domainElementGraphicalType)) && (registry.isKnownEdgeType(domainElementGraphicalType))) {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -135,17 +132,14 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 		}
 		// Get the type of the container
 		String containerGraphicalType = op.getContainerView().getType();
-
 		// This provider is registered for BlockDefinition Diagram only
 		String diagramType = op.getContainerView().getDiagram().getType();
 		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
 			return false;
 		}
-
 		// /////////////////////////////////////////////////////////////////////
 		// Test possibility to provide a view based on the ElementType and its expected container.
 		// /////////////////////////////////////////////////////////////////////
-
 		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
 		if(elementType == UMLElementTypes.MODEL) {
 			if(ElementTypes.DIAGRAM_ID.equals(containerGraphicalType)) {
@@ -246,11 +240,23 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 			}
 			return false;
 		}
-
 		// /////////////////////////////////////////////////////////////////////
 		// Test possibility to provide a view based on the semantic nature and its expected container.
 		// /////////////////////////////////////////////////////////////////////
-
+		// IElementType may be an extended type. Check for a view based on this element type
+		if(elementType instanceof IExtendedHintedElementType) {
+			EObject domainElement = (EObject)op.getSemanticAdapter().getAdapter(EObject.class);
+			String domainElementGraphicalType = op.getSemanticHint();
+			if(domainElementGraphicalType == null) {
+				domainElementGraphicalType = registry.getNodeGraphicalType(domainElement, containerGraphicalType);
+			} else {
+				domainElementGraphicalType = registry.getNodeGraphicalType(domainElementGraphicalType, containerGraphicalType);
+			}
+			if((!IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(domainElementGraphicalType)) && (registry.isKnownNodeType(domainElementGraphicalType))) {
+				return true;
+			}
+		}
+		
 		// IElementType may be null (especially when drop from ModelExplorer).
 		// In such a case, test the semantic EObject instead.
 		if(elementType == null) {
@@ -261,7 +267,6 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 			} else {
 				domainElementGraphicalType = registry.getNodeGraphicalType(domainElementGraphicalType, containerGraphicalType);
 			}
-
 			if((!IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(domainElementGraphicalType)) && (registry.isKnownNodeType(domainElementGraphicalType))) {
 				return true;
 			}
@@ -271,38 +276,31 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 
 	@Override
 	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
-
 		// Use the GraphicalTypeRegistry to find the expected type for a domain element
 		// Get the type of the container
 		String containerGraphicalType = containerView.getType();
-		
 		// Get the type of the domain element
 		EObject domainElement = (EObject)semanticAdapter.getAdapter(EObject.class);
-		
 		if(semanticHint != null) {
 			// Look for a possible graphicalType replacement
 			String graphicalType = registry.getNodeGraphicalType(semanticHint, containerGraphicalType);
 			return super.createNode(new SemanticAdapter(domainElement, null), containerView, graphicalType, index, persisted, preferencesHint);
 		}
-
 		String domainElementGraphicalType = registry.getNodeGraphicalType(domainElement, containerGraphicalType);
-
-//		if(semanticHint != null) {
-//			return super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
-//		}
-//
-//		// Use the GraphicalTypeRegistry to find the expected type for a domain element
-//		// Get the type of the container
-//		String containerGraphicalType = containerView.getType();
-//		// Get the type of the domain element
-//		EObject domainElement = (EObject)semanticAdapter.getAdapter(EObject.class);
-//		String domainElementGraphicalType = registry.getNodeGraphicalType(domainElement, containerGraphicalType);
-
+		//		if(semanticHint != null) {
+		//			return super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
+		//		}
+		//
+		//		// Use the GraphicalTypeRegistry to find the expected type for a domain element
+		//		// Get the type of the container
+		//		String containerGraphicalType = containerView.getType();
+		//		// Get the type of the domain element
+		//		EObject domainElement = (EObject)semanticAdapter.getAdapter(EObject.class);
+		//		String domainElementGraphicalType = registry.getNodeGraphicalType(domainElement, containerGraphicalType);
 		// Create the expected node
 		if(!IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(domainElementGraphicalType)) {
 			return super.createNode(semanticAdapter, containerView, domainElementGraphicalType, index, persisted, preferencesHint);
 		}
-
 		log.error(new Exception("Could not create Node."));
 		return null;
 	}

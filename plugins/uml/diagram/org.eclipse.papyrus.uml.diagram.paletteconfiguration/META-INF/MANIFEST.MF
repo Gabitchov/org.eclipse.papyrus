@@ -24,10 +24,8 @@ Bundle-ClassPath: .
 Bundle-Version: 1.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.paletteconfiguration
- .Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.paletteconfigurat
- ion;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.paletteconfiguration.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.paletteconfiguration;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

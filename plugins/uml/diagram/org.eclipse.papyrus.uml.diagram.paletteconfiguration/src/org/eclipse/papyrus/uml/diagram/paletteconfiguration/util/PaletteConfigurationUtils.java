@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.paletteconfiguration.util;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
@@ -33,6 +35,13 @@ import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration;
  */
 public class PaletteConfigurationUtils {
 
+	public static Collection<String> getRequiredProfiles(PaletteConfiguration paletteConfiguration) {
+		if(paletteConfiguration == null) {
+			return Collections.emptyList();
+		}
+		return paletteConfiguration.getRequiredProfiles();
+	}
+	
 	/**
 	 * Removes a configuration from its container
 	 * 

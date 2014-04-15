@@ -198,6 +198,15 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPaletteConfiguration_RequiredProfiles() {
+		return (EAttribute)paletteConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getToolConfiguration() {
 		return toolConfigurationEClass;
 	}
@@ -421,6 +430,7 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		// Create classes and their features
 		paletteConfigurationEClass = createEClass(PALETTE_CONFIGURATION);
 		createEReference(paletteConfigurationEClass, PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS);
+		createEAttribute(paletteConfigurationEClass, PALETTE_CONFIGURATION__REQUIRED_PROFILES);
 
 		toolConfigurationEClass = createEClass(TOOL_CONFIGURATION);
 		createEAttribute(toolConfigurationEClass, TOOL_CONFIGURATION__KIND);
@@ -498,6 +508,7 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		// Initialize classes and features; add operations and parameters
 		initEClass(paletteConfigurationEClass, PaletteConfiguration.class, "PaletteConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPaletteConfiguration_DrawerConfigurations(), this.getDrawerConfiguration(), null, "drawerConfigurations", null, 1, -1, PaletteConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPaletteConfiguration_RequiredProfiles(), theEcorePackage.getEString(), "requiredProfiles", null, 0, -1, PaletteConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(toolConfigurationEClass, ToolConfiguration.class, "ToolConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getToolConfiguration_Kind(), this.getToolKind(), "kind", "CreationTool", 1, 1, ToolConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

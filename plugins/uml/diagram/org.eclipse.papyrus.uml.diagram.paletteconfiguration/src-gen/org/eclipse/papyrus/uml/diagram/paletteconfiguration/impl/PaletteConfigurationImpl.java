@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration;
@@ -26,6 +27,7 @@ import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Paletteconfiguration
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteConfigurationImpl#getDrawerConfigurations <em>Drawer Configurations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteConfigurationImpl#getRequiredProfiles <em>Required Profiles</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,6 +43,16 @@ public class PaletteConfigurationImpl extends ConfigurationImpl implements Palet
 	 * @ordered
 	 */
 	protected EList<DrawerConfiguration> drawerConfigurations;
+
+	/**
+	 * The cached value of the '{@link #getRequiredProfiles() <em>Required Profiles</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequiredProfiles()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> requiredProfiles;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,6 +90,18 @@ public class PaletteConfigurationImpl extends ConfigurationImpl implements Palet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<String> getRequiredProfiles() {
+		if (requiredProfiles == null) {
+			requiredProfiles = new EDataTypeUniqueEList<String>(String.class, this, PaletteconfigurationPackage.PALETTE_CONFIGURATION__REQUIRED_PROFILES);
+		}
+		return requiredProfiles;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -97,6 +121,8 @@ public class PaletteConfigurationImpl extends ConfigurationImpl implements Palet
 		switch (featureID) {
 			case PaletteconfigurationPackage.PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS:
 				return getDrawerConfigurations();
+			case PaletteconfigurationPackage.PALETTE_CONFIGURATION__REQUIRED_PROFILES:
+				return getRequiredProfiles();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -114,6 +140,10 @@ public class PaletteConfigurationImpl extends ConfigurationImpl implements Palet
 				getDrawerConfigurations().clear();
 				getDrawerConfigurations().addAll((Collection<? extends DrawerConfiguration>)newValue);
 				return;
+			case PaletteconfigurationPackage.PALETTE_CONFIGURATION__REQUIRED_PROFILES:
+				getRequiredProfiles().clear();
+				getRequiredProfiles().addAll((Collection<? extends String>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -129,6 +159,9 @@ public class PaletteConfigurationImpl extends ConfigurationImpl implements Palet
 			case PaletteconfigurationPackage.PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS:
 				getDrawerConfigurations().clear();
 				return;
+			case PaletteconfigurationPackage.PALETTE_CONFIGURATION__REQUIRED_PROFILES:
+				getRequiredProfiles().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -143,8 +176,26 @@ public class PaletteConfigurationImpl extends ConfigurationImpl implements Palet
 		switch (featureID) {
 			case PaletteconfigurationPackage.PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS:
 				return drawerConfigurations != null && !drawerConfigurations.isEmpty();
+			case PaletteconfigurationPackage.PALETTE_CONFIGURATION__REQUIRED_PROFILES:
+				return requiredProfiles != null && !requiredProfiles.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (requiredProfiles: ");
+		result.append(requiredProfiles);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PaletteConfigurationImpl

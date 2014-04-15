@@ -16,6 +16,10 @@ package org.eclipse.papyrus.uml.diagram.common.service;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -39,13 +43,46 @@ import org.xml.sax.SAXException;
 /**
  * Provider for Palette that uses a XML file for palette definition.
  */
-public class LocalPaletteProvider extends AbstractProvider implements IPaletteProvider, IPapyrusPaletteConstant {
+public class LocalPaletteProvider extends AbstractProvider implements IPaletteProvider, IPapyrusPaletteConstant, IProfileDependantPaletteProvider {
 
 	/**
 	 * The list of palette provider XML contributions
 	 */
 	protected NodeList contributions = null;
+	
+	/** list of required applied profile */
+	protected Collection<String> requiredProfiles;
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public Collection<String> getRequiredProfiles() {
+		if(contributions==null) {
+			return Collections.emptyList();
+		}
+		if(requiredProfiles == null) {
+			requiredProfiles = new HashSet<String>();
+
+			try {
+				// parse the content of the file to discover the required
+				// profiles
+				// using safe computation
+				XMLPaletteDefinitionProfileInspector inspector = new XMLPaletteDefinitionProfileInspector();
+				XMLPaletteDefinitionWalker walker = new XMLPaletteDefinitionWalker(inspector);
+				for(int i = 0; i < contributions.getLength(); i++) {
+					Node node = contributions.item(i);
+					if(PALETTE_DEFINITION.equals(node.getNodeName())) {
+						walker.walk(node);
+						requiredProfiles.addAll(inspector.getRequiredProfiles());
+					}
+				}
+			} catch (Throwable e) {
+				Activator.log.error(e);
+			}
+		}
+		return requiredProfiles;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
