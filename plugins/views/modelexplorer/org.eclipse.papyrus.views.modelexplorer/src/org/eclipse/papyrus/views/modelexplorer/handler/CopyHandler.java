@@ -55,9 +55,7 @@ public class CopyHandler extends AbstractCommandHandler {
 	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#setEnabled(java.lang.Object)
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
-		PapyrusClipboard<Object> instance = PapyrusClipboard.getInstance();
-		super.setEnabled(evaluationContext); // setenabled should'nt clear/modify the clipboard
-		PapyrusClipboard.setInstance(instance);
+	public void setEnabled(Object evaluationContext) { // copy is enable as long as there is an EObject to put in the Clipboard
+		setBaseEnabled(!getSelectedElements().isEmpty());
 	}
 }
