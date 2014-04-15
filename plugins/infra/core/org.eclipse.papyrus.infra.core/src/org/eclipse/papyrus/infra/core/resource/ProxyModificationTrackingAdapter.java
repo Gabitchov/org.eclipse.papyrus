@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 Atos.
- *
+ * Copyright (c) 2013, 2014 Atos, CEA, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos) mathieu.velten@atos.net - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 432753
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -98,7 +98,7 @@ public class ProxyModificationTrackingAdapter extends EContentAdapter {
 					break;
 				}
 
-				if(!r.isLoading()) {
+				if(r.isLoaded() && !r.isLoading()) {
 					if(!objects.isEmpty()) {
 						r.setModified(true);
 					}
