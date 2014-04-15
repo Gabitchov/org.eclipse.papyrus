@@ -53,7 +53,7 @@ public class ApplyStereotypeCommand extends AbstractTransactionalCommand {
 			if(stereotype == null) {
 				// stereotype has no been found. should ask for
 				// profile application ?
-				Activator.log.warn("impossible to retrieve the stereotype " + stereotypeQName);
+				Activator.log.warn("impossible to retrieve the stereotype " + stereotypeQName); //$NON-NLS-1$
 			} else {
 				result.add(element.applyStereotype(stereotype));
 			}
@@ -62,7 +62,7 @@ public class ApplyStereotypeCommand extends AbstractTransactionalCommand {
 		if (req.renameWithFirstStereotype() && element instanceof NamedElement && !stereotypeQNames.isEmpty()) {
 			String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQNames.get(0));
 			// find a new name for the element
-			String name = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), stereotypeName);
+			String name = NamedElementUtil.getDefaultNameWithIncrementFromBase(stereotypeName, element.getOwner().eContents());
 			((NamedElement)element).setName(name);
 		}
 
