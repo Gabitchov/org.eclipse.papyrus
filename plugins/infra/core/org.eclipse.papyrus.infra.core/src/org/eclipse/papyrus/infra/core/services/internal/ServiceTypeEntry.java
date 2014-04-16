@@ -1,6 +1,16 @@
-/**
- * 
- */
+/*****************************************************************************
+ * Copyright (c) CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.services.internal;
 
 import org.eclipse.core.runtime.Platform;
@@ -116,13 +126,13 @@ public abstract class ServiceTypeEntry {
 		try {
 			return classname.newInstance();
 		} catch (SecurityException e) {
-			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with zero args.", e);
+			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with zero args.", e); //$NON-NLS-1$ //$NON-NLS-2$
 		} catch (IllegalArgumentException e) {
-			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with zero args.", e);
+			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with zero args.", e); //$NON-NLS-1$ //$NON-NLS-2$
 		} catch (InstantiationException e) {
-			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with zero args.", e);
+			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with zero args.", e); //$NON-NLS-1$ //$NON-NLS-2$
 		} catch (IllegalAccessException e) {
-			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with zero args.", e);
+			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with zero args.", e); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -145,7 +155,7 @@ public abstract class ServiceTypeEntry {
 				Bundle bundle = Platform.getBundle(bundleID);
 				serviceClass = bundle.loadClass(serviceClassname);
 			} catch (ClassNotFoundException e2) {
-				throw new ServiceException("Can't find class for the name '" + serviceClassname + "'.", e2);
+				throw new ServiceException("Can't find class for the name '" + serviceClassname + "'.", e2); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 

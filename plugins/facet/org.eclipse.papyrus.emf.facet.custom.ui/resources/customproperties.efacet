@@ -274,7 +274,8 @@
             href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
       <query
-          xsi:type="query:TrueLiteralQuery"/>
+          xsi:type="javaQuery:JavaQuery"
+          implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.DefaultVisibilityQuery"/>
     </facetOperations>
     <facetOperations
         name="selection"
@@ -304,7 +305,7 @@
             href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
       <query
-          xsi:type="query:TrueLiteralQuery"/>
+          xsi:type="query:FalseLiteralQuery"/>
     </facetOperations>
   </eClassifiers>
   <eClassifiers

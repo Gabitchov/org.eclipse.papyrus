@@ -1,6 +1,16 @@
-/**
- * 
- */
+/*****************************************************************************
+ * Copyright (c) CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.services.internal;
 
 import java.util.Collection;
@@ -84,7 +94,7 @@ public abstract class ServiceStartupEntry {
 	 */
 	public Collection<ServiceStartupEntry> getRequiredServices() {
 
-		throw new UnsupportedOperationException("Not yet implemented");
+		throw new UnsupportedOperationException("Not yet implemented"); //$NON-NLS-1$
 		// return requiredServices;
 	}
 
@@ -121,7 +131,7 @@ public abstract class ServiceStartupEntry {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + ": key=" + getDescriptor().getKey();
+		return super.toString() + ": key=" + getDescriptor().getKey(); //$NON-NLS-1$
 	}
 
 }
