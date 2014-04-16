@@ -55,12 +55,15 @@ public class PasteHandler extends AbstractCommandHandler {
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#computeEnabled()
+	 */
 	@Override
-	public void setEnabled(Object evaluationContext) { // past is only available on a simple selection and wit ha full Clipboard
+	protected boolean computeEnabled() { // paste is only available on a simple selection and wit ha full Clipboard
 		if (!PapyrusClipboard.getInstance().isEmpty() && getSelectedElements().size() == 1){
-			super.setEnabled(evaluationContext);
+			return true;
 		} else {
-			setBaseEnabled(false);
-		}	
+			return super.computeEnabled();
+		}			
 	}
 }

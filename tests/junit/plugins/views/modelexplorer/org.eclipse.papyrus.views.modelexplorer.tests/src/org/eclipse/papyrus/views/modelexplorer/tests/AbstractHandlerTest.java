@@ -122,7 +122,7 @@ public abstract class AbstractHandlerTest {
 	 *        the id of the command to test
 	 */
 	public AbstractHandlerTest(String commandId, Bundle bundle) {
-		Assert.assertNotNull("Bundle can't be null to do the test.", bundle);
+		Assert.assertNotNull("Bundle can't be null to do the test.", bundle); //$NON-NLS-1$
 		this.commandId = commandId;
 		this.bundle = bundle;
 	}
@@ -306,7 +306,7 @@ public abstract class AbstractHandlerTest {
 						SimpleUML=custo;
 					}
 				}
-				org.junit.Assert.assertNotNull("Custom SimpleUML not found", SimpleUML);
+				Assert.assertNotNull("Custom SimpleUML not found", SimpleUML); //$NON-NLS-1$
 				org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations().add(0, SimpleUML);
 				setStatus(Status.OK_STATUS);
 			}
@@ -352,9 +352,9 @@ public abstract class AbstractHandlerTest {
 	}
 
 	public void undoRedoTest() {
-		Assert.assertTrue("I can't undo the command!", getCommandStack().canUndo());
+		Assert.assertTrue("I can't undo the command!", getCommandStack().canUndo()); //$NON-NLS-1$
 		getCommandStack().undo();
-		Assert.assertTrue("I can't Redo the command!", getCommandStack().canRedo());
+		Assert.assertTrue("I can't Redo the command!", getCommandStack().canRedo()); //$NON-NLS-1$
 		getCommandStack().redo();
 	}
 

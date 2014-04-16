@@ -56,9 +56,9 @@ public class EditorUtils {
 			return (DiagramEditor)ServiceUtils.getInstance().getNestedActiveIEditorPart(serviceRegistry);
 
 		} catch (ServiceException e) {
-			throw new Exception("Unable to retrieve service.", e);
+			throw new Exception("Unable to retrieve service.", e); //$NON-NLS-1$
 		} catch (ClassCastException e) {
-			throw new Exception("Active diagram is not a DiagramEditor." + e.getMessage(), e);
+			throw new Exception("Active diagram is not a DiagramEditor." + e.getMessage(), e); //$NON-NLS-1$
 		}
 	}
 
@@ -68,7 +68,7 @@ public class EditorUtils {
 			return getDiagramEditor().getDiagramEditPart();
 
 		} catch (NullPointerException e) {
-			throw new Exception("Could not find diagram edit part.", e);
+			throw new Exception("Could not find diagram edit part.", e); //$NON-NLS-1$
 		}
 	}
 
