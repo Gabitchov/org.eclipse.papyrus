@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.eclipse.papyrus</groupId>
-	<artifactId>org.eclipse.papyrus.rcp.master</artifactId>
+	<artifactId>org.eclipse.papyrus</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-
-	<!-- tycho requires maven >= 3.0 -->
-	<prerequisites>
-		<maven>3.0</maven>
-	</prerequisites>
-
-
+	<modules>
+		<module>rcp/org.eclipse.papyrus.rcp</module>
+		<module>rcp/org.eclipse.papyrus.rcp.feature</module>
+		<module>rcp/org.eclipse.papyrus.rcp.product</module>
+	</modules>
 	<properties>
-		<tycho-version>0.19.0</tycho-version>
+		<tycho-version>0.20.0</tycho-version>
+		<tychoExtrasVersion>0.20.0</tychoExtrasVersion>
 	</properties>
 	<repositories>
-		<!-- configure p2 repository to resolve against -->
+		<!-- Eclipse MDT components -->
 		<repository>
-			<id>Luna</id>
+			<id>eclipse</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/releases/luna</url>
 		</repository>
+		<repository>
+			<id>ep</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/eclipse/updates/4.4</url>
+		</repository>
+		<repository>
+			<id>emf-cdo</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/emf/cdo/drops/S20140312-0256</url>
+		</repository>
+		
+		<!-- Papyrus components -->
 		<repository>
 			<id>papyrus-main</id>
 			<layout>p2</layout>
@@ -35,19 +44,36 @@
 			<url>${papyrus.repo.extras}</url>
 		</repository>
 		<repository>
-			<id>cdo-dawn</id>
+			<id>papyrus-dev</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/emf/cdo/drops/S20140129-1205</url>
+			<url>${papyrus.repo.dev}</url>
+		</repository>
+		
+		<!-- Additional components -->
+		<repository>
+			<id>subversive</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/technology/subversive/2.0/update-site/</url>
 		</repository>
 		<repository>
-			<id>uml-5</id>
+			<id>gmp-gmf-notation</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.0-I-builds/I201403011958</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones</url>
 		</repository>
 		<repository>
-			<id>eclipse-update</id>
+			<id>gmp-gmf-runtime</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/eclipse/updates/4.4</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones</url>
+		</repository>
+		<repository>
+			<id>gmf-tooling</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.2.M6a</url>
+		</repository>
+		<repository>
+			<id>otdt</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/objectteams/updates/ot2.2/</url>
 		</repository>
 	</repositories>
 	<build>
@@ -117,9 +143,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<modules>
-		<module>../org.eclipse.papyrus.rcp</module>
-		<module>../org.eclipse.papyrus.rcp.feature</module>
-		<module>../org.eclipse.papyrus.rcp.product</module>
-	</modules>
 </project>

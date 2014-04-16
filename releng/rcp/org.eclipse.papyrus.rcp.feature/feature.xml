@@ -33,6 +33,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <requires>
+      <!-- Features for the Eclipse Modeling Tools distribution -->
       <import feature="org.eclipse.amalgam.discovery"/>
       <import feature="org.eclipse.cvs"/>
       <import feature="org.eclipse.egit"/>
@@ -40,7 +41,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <import feature="org.eclipse.emf.cdo.epp"/>
       <import feature="org.eclipse.emf.compare.ide.ui.source"/>
       <import feature="org.eclipse.emf.compare.source"/>
-      <import feature="org.eclipse.emf.ecoretools.design"/>
       <import feature="org.eclipse.emf.eef.codegen.ecore-feature"/>
       <import feature="org.eclipse.emf.query.sdk"/>
       <import feature="org.eclipse.emf.sdk"/>
@@ -61,13 +61,23 @@ http://www.eclipse.org/legal/epl-v10.html
       <import feature="org.eclipse.mylyn_feature"/>
       <import feature="org.eclipse.ocl.all.sdk"/>
       <import feature="org.eclipse.emf.cdo.dawn.sdk"/>
-      <import feature="org.eclipse.papyrus.sdk.sources.feature"/>
-      <import feature="org.eclipse.papyrus.extra.sources.feature"/>
       <import feature="org.eclipse.pde"/>
       <import feature="org.eclipse.rcp"/>
       <import feature="org.eclipse.sdk"/>
       <import feature="org.eclipse.uml2.sdk"/>
       <import feature="org.eclipse.xsd.sdk"/>
+
+      <!-- Papyrus components -->
+	  <import feature="org.eclipse.papyrus.sdk.feature.source"/>
+      <import feature="org.eclipse.papyrus.extra.feature.source"/>
+	  <import feature="org.eclipse.papyrus.dev.feature.source"/>
+
+      <!-- Additional components -->
+	  <import feature="org.eclipse.team.svn"/>
+	  <import feature="org.eclipse.team.svn.revision.graph"/>
+	  <import feature="org.eclipse.team.svn.mylyn"/>
+	  <import feature="org.eclipse.gmf.sdk"/>
+	  <import feature="org.eclipse.gmf.tooling.codegen.xtend2"/>
    </requires>
 
    <plugin
