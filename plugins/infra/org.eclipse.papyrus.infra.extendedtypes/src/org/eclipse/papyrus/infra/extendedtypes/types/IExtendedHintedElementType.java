@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.extendedtypes.types;
 
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
+import org.eclipse.papyrus.infra.extendedtypes.ICreationElementValidator;
 
 
 /**
@@ -22,4 +23,5 @@ import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
  */
 public interface IExtendedHintedElementType extends ISpecializationType, IHintedType {
 
+	public ICreationElementValidator getCreationElementValidator();
 }
