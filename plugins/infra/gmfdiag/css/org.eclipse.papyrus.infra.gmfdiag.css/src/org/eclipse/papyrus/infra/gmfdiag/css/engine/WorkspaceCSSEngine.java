@@ -47,6 +47,7 @@ public class WorkspaceCSSEngine extends ExtendedCSSEngineImpl {
 	@Override
 	protected void reloadStyleSheets() {
 		styleSheetURLs.clear();
+		styleSheets.clear();
 		for(StyleSheet styleSheet : ThemeManager.instance.getWorkspaceStyleSheets()) {
 
 			if(styleSheet instanceof StyleSheetReference) {
@@ -56,6 +57,8 @@ public class WorkspaceCSSEngine extends ExtendedCSSEngineImpl {
 				} catch (MalformedURLException e) {
 					Activator.log.error(e);
 				}
+			} else {
+				styleSheets.add(styleSheet);
 			}
 
 		}
