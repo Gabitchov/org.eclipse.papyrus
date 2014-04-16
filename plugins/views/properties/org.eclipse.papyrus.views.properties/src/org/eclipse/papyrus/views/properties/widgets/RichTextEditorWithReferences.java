@@ -18,8 +18,9 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.utils.TextReferencesHelper;
+import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
+import org.eclipse.papyrus.infra.widgets.editors.RichTextValueEditor;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
-import org.eclipse.papyrus.infra.widgets.editors.richtext.RichTextEditor;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -33,29 +34,47 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * A StringEditor with support for inserting references to EObjects (Via a TextReferenceHelper)
- * 
- * @author Camille Letavernier
- * 
+ * A RichText editor with support for inserting references to EObjects (Via a TextReferenceHelper).
+ *
+ * @author Mickaël ADAM
  */
-public class RichTextEditorWithReferences extends RichTextEditor implements SelectionListener {
+public class RichTextEditorWithReferences extends RichTextValueEditor implements SelectionListener {
 
+	/** The buttons bar. */
 	protected Composite buttonsBar;
 
+	/** The insert reference button. */
 	protected Button insertReferenceButton;
 
+	/** The reference content provider. */
 	protected IStaticContentProvider referenceContentProvider = EmptyContentProvider.instance;
 
+	/** The label provider. */
 	protected ILabelProvider labelProvider = new LabelProvider();
 
+	/** The reference helper. */
 	protected TextReferencesHelper referenceHelper;
 
+	/**
+	 * Instantiates a new rich text editor with references.
+	 *
+	 * @param parent
+	 *        the parent
+	 * @param style
+	 *        the style
+	 */
 	public RichTextEditorWithReferences(Composite parent, int style) {
 		super(parent, style | SWT.MULTI);
-		setLayout(new GridLayout(2, false));
+		setLayout(new GridLayout(1, false));
 		createButtonsBar(this);
 	}
 
+	/**
+	 * Gets the default layout data.
+	 *
+	 * @return the default layout data
+	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractEditor#getDefaultLayoutData()
+	 */
 	@Override
 	protected GridData getDefaultLayoutData() {
 		GridData defaultData = super.getDefaultLayoutData();
@@ -63,6 +82,12 @@ public class RichTextEditorWithReferences extends RichTextEditor implements Sele
 		return defaultData;
 	}
 
+	/**
+	 * Creates the buttons bar.
+	 *
+	 * @param wrapper
+	 *        the wrapper
+	 */
 	protected void createButtonsBar(Composite wrapper) {
 		buttonsBar = new Composite(wrapper, SWT.NONE);
 		GridLayout buttonsBarLayout = new GridLayout(1, true);
@@ -76,10 +101,22 @@ public class RichTextEditorWithReferences extends RichTextEditor implements Sele
 		createButtons(buttonsBar);
 	}
 
+	/**
+	 * Creates the buttons.
+	 *
+	 * @param buttonsBar
+	 *        the buttons bar
+	 */
 	protected void createButtons(Composite buttonsBar) {
 		createInsertReferenceButton(buttonsBar);
 	}
 
+	/**
+	 * Creates the insert reference button.
+	 *
+	 * @param buttonsBar
+	 *        the buttons bar
+	 */
 	protected void createInsertReferenceButton(Composite buttonsBar) {
 		insertReferenceButton = new Button(buttonsBar, SWT.PUSH);
 		insertReferenceButton.setToolTipText("Insert a dynamic reference to an Element");
@@ -88,20 +125,43 @@ public class RichTextEditorWithReferences extends RichTextEditor implements Sele
 		insertReferenceButton.setLayoutData(new GridData(SWT.END, SWT.BEGINNING, true, false));
 	}
 
+	/**
+	 * Sets the reference browser content provider.
+	 *
+	 * @param provider
+	 *        the new reference browser content provider
+	 * @see org.eclipse.papyrus.infra.widgets.editors.richtext.RichTextEditor#setReferenceBrowserContentProvider(org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider)
+	 */
 	public void setReferenceBrowserContentProvider(IStaticContentProvider provider) {
 		this.referenceContentProvider = provider;
 	}
 
+	/**
+	 * Sets the text references helper.
+	 *
+	 * @param helper
+	 *        the new text references helper
+	 */
 	public void setTextReferencesHelper(TextReferencesHelper helper) {
 		this.referenceHelper = helper;
 	}
 
-	public void widgetSelected(SelectionEvent e) {
-		if(e.widget == insertReferenceButton) {
+	/**
+	 * Widget selected.
+	 *
+	 * @param event
+	 *        the event
+	 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+	 */
+	public void widgetSelected(SelectionEvent event) {
+		if(event.widget == insertReferenceButton) {
 			insertReferenceAction();
 		}
 	}
 
+	/**
+	 * Insert reference action.
+	 */
 	protected void insertReferenceAction() {
 		if(referenceHelper == null) {
 			//The widget is not properly set. We cannot handle references
@@ -126,42 +186,40 @@ public class RichTextEditorWithReferences extends RichTextEditor implements Sele
 			}
 
 			EObject objectToReference = (EObject)resultElement;
+			String newText = referenceHelper.insertReference(objectToReference, "", 0);
 
-			String currentText = value;
-			//			int caretPosition = text.getCaretPosition();
+			getRichTextEditor().addHTML(newText);
 
-			//			String newText = referenceHelper.insertReference(objectToReference, currentText, caretPosition);
-			//			if(newText.length() == currentText.length()) {
-			//				return;
-			//			}
-			//
-			//			int caretShift = newText.length() - currentText.length();
-			//			int newCaretPosition = caretPosition + caretShift;
-
-			//This should not happen with the standard ReferenceHelper as it is supposed to insert additional text into the current text
-			//However, some ReferenceHelper implementations might replace the current text 
-			//			if(newCaretPosition < 0) {
-			//				newCaretPosition = 0;
-			//			}
-			//
-			//			if(newCaretPosition > newText.length()) {
-			//				newCaretPosition = newText.length();
-			//			}
-			//
-			//			text.setText(newText);
-			//			text.setFocus();
-			//			text.setSelection(newCaretPosition);
 			commit();
 		}
 	}
 
-	public void widgetDefaultSelected(SelectionEvent e) {
+	/**
+	 * Widget default selected.
+	 *
+	 * @param event
+	 *        the event
+	 * @see org.eclipse.swt.events.SelectionListener#widgetDefaultSelected(org.eclipse.swt.events.SelectionEvent)
+	 */
+	public void widgetDefaultSelected(SelectionEvent event) {
 		//Nothing
 	}
 
+	/**
+	 * Sets the label provider.
+	 *
+	 * @param labelProvider
+	 *        the new label provider
+	 * @see org.eclipse.papyrus.infra.widgets.editors.richtext.RichTextEditor#setLabelProvider(org.eclipse.jface.viewers.ILabelProvider)
+	 */
 	public void setLabelProvider(ILabelProvider labelProvider) {
 		this.labelProvider = labelProvider;
 	}
 
+	@Override
+	public void addCommitListener(ICommitListener listener) {
+		// TODO Auto-generated method stub
+		super.addCommitListener(listener);
+	}
 
 }
