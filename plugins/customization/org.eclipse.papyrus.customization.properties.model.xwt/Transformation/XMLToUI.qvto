@@ -1,4 +1,4 @@
-modeltype XML uses "http://www.eclipse.org/MoDisco/Xml/0.1.incubation/XML";
+modeltype XML uses "http://www.eclipse.org/papyrus/xwt/XML";
 modeltype UI uses "http://www.eclipse.org/papyrus/properties/ui/0.9";
 modeltype PropertiesRoot uses "http://www.eclipse.org/papyrus/properties/root";
 modeltype Context uses "http://www.eclipse.org/papyrus/properties/contexts/0.9";
