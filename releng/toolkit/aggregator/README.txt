@@ -1,0 +1,2 @@
+This folder contains the build toolkit for the aggregation of external resources that are not readily Tycho-compliant, for example non-P2 update sites.
+The results of this built is an aggregated update sites of external resources that can then be used by the RCP build.
