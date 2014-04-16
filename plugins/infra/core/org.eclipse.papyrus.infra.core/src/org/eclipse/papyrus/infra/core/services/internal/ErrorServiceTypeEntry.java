@@ -1,6 +1,16 @@
-/**
- * 
- */
+/*****************************************************************************
+ * Copyright (c) CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.services.internal;
 
 import org.eclipse.papyrus.infra.core.services.BadStateException;
@@ -43,7 +53,7 @@ public class ErrorServiceTypeEntry extends ServiceTypeEntry {
 	 */
 	@Override
 	public Object getServiceInstance() throws ServiceException {
-		throw new BadStateException("Service has not started.", ServiceState.error, descriptor);
+		throw new BadStateException("Service has not started.", ServiceState.error, descriptor); //$NON-NLS-1$
 	}
 
 	/**
