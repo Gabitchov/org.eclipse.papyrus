@@ -31,26 +31,26 @@
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/nattable/model#//Table"/>
       <query xsi:type="query:OperationCallQuery" operation="//TableContainer.1/TablesRefContent"/>
     </facetElements>
-    <facetOperations name="TablesRefVisibility" documentation="Return true if the element contains tables">
+    <!-- facetOperations name="TablesRefVisibility" documentation="Return true if the element contains tables">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="eStructuralFeature">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
       </eParameters>
       <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.nattable.modelexplorer.queries.DisplayTablesRef"/>
       <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
-    </facetOperations>
+    </facetOperations-->
     <facetOperations name="TablesRefContent" upperBound="-1" documentation="Get the collection of all contained tables">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/nattable/model#//Table"/>
       <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.nattable.modelexplorer.queries.GetContainedTables"/>
     </facetOperations>
-    <facetOperations name="TablesRefCollapse">
+    <!-- facetOperations name="TablesRefCollapse">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="eStructuralFeature">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
       </eParameters>
       <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.nattable.modelexplorer.queries.TablesRefCollapseQuery"/>
       <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
-    </facetOperations>
+    </facetOperations-->
     <customizedFacet href="../../../plugin/org.eclipse.papyrus.infra.nattable.modelexplorer/resources/PapyrusTable.custom#//TableContainer"/>
   </eClassifiers>
 </custom:Customization>
