@@ -1,6 +1,16 @@
-/**
- * 
- */
+/*****************************************************************************
+ * Copyright (c) CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.services.internal;
 
 import org.eclipse.papyrus.infra.core.services.BadStateException;
@@ -54,7 +64,7 @@ public class PojoServiceEntry extends ServiceTypeEntry {
 	public Object getServiceInstance() throws ServiceException {
 
 		if(serviceInstance == null)
-			throw new BadStateException("Service is not created.", state, serviceDescriptor);
+			throw new BadStateException("Service is not created.", state, serviceDescriptor); //$NON-NLS-1$
 
 		return serviceInstance;
 	}
