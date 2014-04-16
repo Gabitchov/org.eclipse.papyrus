@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+<Composite xmlns:x="http://www.eclipse.org/xwt"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:j="clr-namespace:java.lang"
-	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt">
+	xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:css="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.css.properties.widgets">
 	<Composite.layout>
 		<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 	</Composite.layout>
-	<ppe:StringEditor input="{Binding}" property="WorkspaceThemes:Theme:label"></ppe:StringEditor>
-	<ppe:StringFileSelector input="{Binding}"
-		 property="WorkspaceThemes:Theme:icon"><ppe:StringFileSelector.filterNames>
-                <x:Array Type="j:String">
-                    <j:String>PNG file</j:String>
-                    <j:String>GIF file</j:String>
-                    <j:String>All</j:String>
-                </x:Array>
-            </ppe:StringFileSelector.filterNames>
-            <ppe:StringFileSelector.filterExtensions>
-                <x:Array Type="j:String">
-                    <j:String>*.png</j:String>
-                    <j:String>*.gif</j:String>
-                    <j:String>*.*</j:String>
-                </x:Array>
-            </ppe:StringFileSelector.filterExtensions>
-     </ppe:StringFileSelector>
+	<ppe:StringEditor input="{Binding}" property="WorkspaceThemes:Theme:label">
+	</ppe:StringEditor>
+	<css:BrowseFilePropertyEditor input="{Binding}"
+		buttonLabel="Browse..." property="WorkspaceThemes:Theme:icon">
+		<css:BrowseFilePropertyEditor.filterExtensions>
+			<x:Array Type="j:String">
+			 <j:String>All</j:String>
+             <j:String>PNG Icon</j:String>
+             <j:String>GIF Icon</j:String>
+			</x:Array>
+		</css:BrowseFilePropertyEditor.filterExtensions>
+		<css:BrowseFilePropertyEditor.filterNames>
+			<x:Array Type="j:String">
+			 <j:String>*.*</j:String>
+             <j:String>*.png</j:String>
+             <j:String>*.gif</j:String>
+             </x:Array>
+		</css:BrowseFilePropertyEditor.filterNames>
+	</css:BrowseFilePropertyEditor>
 	<ppe:MultiReference input="{Binding}"
 		property="WorkspaceThemes:Theme:stylesheets"></ppe:MultiReference>
 </Composite>
