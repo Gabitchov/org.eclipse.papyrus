@@ -54,12 +54,12 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 	private Collection<Object> alreadyManaged = new LinkedList<Object>();
 
 	public EObjectInheritanceCopyCommand(EObject source, EClass target, TransactionalEditingDomain adapterFactoryEditingDomain) {
-		super("Inheritance copy");
+		super("Inheritance copy"); //$NON-NLS-1$
 		this.sourceEObject = source;
 		this.targetEObject = target.getEPackage().getEFactoryInstance().create(target);
 		this.editingDomain = adapterFactoryEditingDomain;
 		if(sourceEObject == null || targetEObject == null || editingDomain == null) {
-			throw new IllegalArgumentException("Please provide non null arguments");
+			throw new IllegalArgumentException("Please provide non null arguments"); //$NON-NLS-1$
 		}
 		init();
 		if(sourceEObject.eContainingFeature().isMany()) {
