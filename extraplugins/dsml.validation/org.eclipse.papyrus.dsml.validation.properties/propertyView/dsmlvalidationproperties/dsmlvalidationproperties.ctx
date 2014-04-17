@@ -26,7 +26,7 @@
       <properties name="severity" type="Enumeration"/>
       <properties name="class"/>
       <properties name="id"/>
-      <properties name="isEnabledByDefault" type="Boolean"/>
+      <properties name="isEnabledByDefault" label="Enabled by default" type="Boolean"/>
       <properties name="mode" type="Enumeration"/>
       <properties name="target"/>
       <properties name="message"/>
