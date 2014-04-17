@@ -6,6 +6,20 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
+		<module>../features/papyrus-dev-features/org.eclipse.papyrus.dev.feature</module>
+		<module>../plugins/developer/org.eclipse.papyrus.codegen</module>
+		<module>../plugins/developer/org.eclipse.papyrus.def</module>
+		<module>../plugins/developer/org.eclipse.papyrus.dev.view.services.edit.request</module>
+		<module>../plugins/developer/org.eclipse.papyrus.documentation.plugin</module>
+		<module>../plugins/developer/org.eclipse.papyrus.documentation.plugin.edit</module>
+		<module>../plugins/developer/org.eclipse.papyrus.domaincontextcodegen</module>
+		<module>../plugins/developer/org.eclipse.papyrus.domaincontextcodegen.edit</module>
+		<module>../plugins/developer/org.eclipse.papyrus.domaincontextcodegen.editor</module>
+		<module>../plugins/developer/org.eclipse.papyrus.gmf.editpartview</module>
+		<module>../plugins/developer/org.eclipse.papyrus.gmf.editpoliciesstates</module>
+		<module>../plugins/developer/org.eclipse.papyrus.gmf.figureview</module>
+		<module>../plugins/developer/org.eclipse.papyrus.gmfgenextension</module>
+		<module>../plugins/infra/gmfdiag/css/org.eclipse.papyrus.infra.gmfdiag.css.debug</module>
 		<module>dev</module>
 	</modules>
 	<properties>
