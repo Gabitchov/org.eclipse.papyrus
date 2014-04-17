@@ -196,5 +196,8 @@
       <modeldeclaration
             file="UICustom/PropertiesContext.custom">
       </modeldeclaration>
+      <modeldeclaration
+            file="UICustom/PropertiesUI.custom">
+      </modeldeclaration>
    </extension>
 </plugin>
