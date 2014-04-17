@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,20 +25,20 @@ import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 
 /**
  * A Content provider for returning objects for the registered environments
- * 
+ *
  * @author Camille Letavernier
  */
 public class EnvironmentContentProvider extends SemanticEMFContentProvider implements IStaticContentProvider {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param feature
 	 *        The EStructuralFeature used to retrieve the elements from the
 	 *        different environments.
 	 */
 	public EnvironmentContentProvider(EStructuralFeature feature) {
-		super(null, feature, getRoots(feature), Activator.getDefault().getCustomizationManager());
+		super(null, feature, getRoots(feature), org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager());
 	}
 
 	private static EObject[] getRoots(EStructuralFeature feature) {
