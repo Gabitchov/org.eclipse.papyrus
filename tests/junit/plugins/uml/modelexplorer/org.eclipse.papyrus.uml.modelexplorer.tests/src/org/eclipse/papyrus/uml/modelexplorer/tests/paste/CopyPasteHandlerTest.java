@@ -51,7 +51,7 @@ public class CopyPasteHandlerTest extends AbstractDualHandlerTest {
 		try {
 			EObject rootOfTheModel = getRootOfTheModel();
 			// check that there is Class1
-			Assert.assertEquals("Class1 is missing", getCountElementByName(CLASS1), 1);			
+			Assert.assertEquals("Class1 is missing", getCountElementByName(CLASS1), 1);	//$NON-NLS-1$		
 			EObject class1 = getNameElementByName(CLASS1); // get Class1
 			
 			// select class1
@@ -71,7 +71,7 @@ public class CopyPasteHandlerTest extends AbstractDualHandlerTest {
 			pasteHandler.execute(new ExecutionEvent());
 			
 			// check that there is 2 Class1 
-			Assert.assertEquals("Class1 copy is missing", getCountElementByName(CLASS1), 2);
+			Assert.assertEquals("Class1 copy is missing", getCountElementByName(CLASS1), 2); //$NON-NLS-1$
 			
 		} catch (ExecutionException e) {
 			Assert.fail(e.toString());
@@ -88,8 +88,8 @@ public class CopyPasteHandlerTest extends AbstractDualHandlerTest {
 		try {
 			EObject rootOfTheModel = getRootOfTheModel();
 			// check that there is Class1 and Class2
-			Assert.assertEquals("Class1 is missing", getCountElementByName(CLASS1), 1);
-			Assert.assertEquals("Class2 is missing", getCountElementByName(CLASS2), 1);	
+			Assert.assertEquals("Class1 is missing", getCountElementByName(CLASS1), 1); //$NON-NLS-1$
+			Assert.assertEquals("Class2 is missing", getCountElementByName(CLASS2), 1);	//$NON-NLS-1$ 
 			
 			EObject class1 = getNameElementByName(CLASS1); // get Class1
 			EObject class2 = getNameElementByName(CLASS2); // get Class2
@@ -113,8 +113,8 @@ public class CopyPasteHandlerTest extends AbstractDualHandlerTest {
 			Assert.assertTrue(pasteHandler.isEnabled());
 			pasteHandler.execute(new ExecutionEvent());
 			// check that there is 2 Class1 and 2 Class2
-			Assert.assertEquals("Class1 copy is missing", getCountElementByName(CLASS1), 2);
-			Assert.assertEquals("Class2 copy is missing", getCountElementByName(CLASS2), 2);
+			Assert.assertEquals("Class1 copy is missing", getCountElementByName(CLASS1), 2); //$NON-NLS-1$
+			Assert.assertEquals("Class2 copy is missing", getCountElementByName(CLASS2), 2); //$NON-NLS-1$
 			
 		} catch (ExecutionException e) {
 			Assert.fail(e.toString());

@@ -75,7 +75,7 @@ public abstract class AbstractModelExplorerTest {
 	public static IEditorPart editor = null;
 
 	/** id of the papyrus editor */
-	public static String editorID = "org.eclipse.papyrus.infra.core.papyrusEditor";
+	public static String editorID = "org.eclipse.papyrus.infra.core.papyrusEditor"; 
 
 	/** view part: the model explorer */
 	protected static IViewPart modelExplorerPart;
@@ -172,42 +172,42 @@ public abstract class AbstractModelExplorerTest {
 		DiagramEditPart diagramEditPart = EditorUtils.getDiagramEditPart();
 		EObject root = diagramEditPart.getDiagramView().getElement();
 
-		Assert.assertTrue("Impossible to find main model", root instanceof Model);
+		Assert.assertTrue("Impossible to find main model", root instanceof Model); //$NON-NLS-1$
 
 		/** generated selectable objects */
 		model_EObject = (org.eclipse.uml2.uml.Model)root;
 		b1_EObject = (org.eclipse.uml2.uml.Class)model_EObject.getPackagedElement("B1");
-		Assert.assertNotNull("Impossible to find Class B1", b1_EObject);
+		Assert.assertNotNull("Impossible to find Class B1", b1_EObject); //$NON-NLS-1$
 		pB1P1_B1_EObject = b1_EObject.getAttribute("pB1P1", null);
-		Assert.assertNotNull("Impossible to find Property pB1P1", pB1P1_B1_EObject);
+		Assert.assertNotNull("Impossible to find Property pB1P1", pB1P1_B1_EObject); //$NON-NLS-1$
 		rB2_B1_EObject = b1_EObject.getAttribute("rB2", null);
-		Assert.assertNotNull("Impossible to find Property rB2", rB2_B1_EObject);
+		Assert.assertNotNull("Impossible to find Property rB2", rB2_B1_EObject); //$NON-NLS-1$
 		pB2_B1_EObject = b1_EObject.getAttribute("pB2", null);
-		Assert.assertNotNull("Impossible to find Property pB2", pB2_B1_EObject);
+		Assert.assertNotNull("Impossible to find Property pB2", pB2_B1_EObject); //$NON-NLS-1$
 
 		b2_EObject = (org.eclipse.uml2.uml.Class)model_EObject.getPackagedElement("B2");
-		Assert.assertNotNull("Impossible to find Class B2", b2_EObject);
+		Assert.assertNotNull("Impossible to find Class B2", b2_EObject); //$NON-NLS-1$
 
 		p1_EObject = (org.eclipse.uml2.uml.Package)model_EObject.getPackagedElement("P1");
-		Assert.assertNotNull("Impossible to find Package P1", p1_EObject);
+		Assert.assertNotNull("Impossible to find Package P1", p1_EObject); //$NON-NLS-1$
 		b2P1_P1_EObject = (org.eclipse.uml2.uml.Class)p1_EObject.getPackagedElement("B2P1");
-		Assert.assertNotNull("Impossible to find Class B2P1", b2P1_P1_EObject);
+		Assert.assertNotNull("Impossible to find Class B2P1", b2P1_P1_EObject); //$NON-NLS-1$
 
 		b1P1_P1_EObject = (org.eclipse.uml2.uml.Class)p1_EObject.getPackagedElement("B1P1");
-		Assert.assertNotNull("Impossible to find Class B1P1", b1P1_P1_EObject);
+		Assert.assertNotNull("Impossible to find Class B1P1", b1P1_P1_EObject); //$NON-NLS-1$
 		pB1_B1P1_P1_EObject = b1P1_P1_EObject.getAttribute("pB1", null);
-		Assert.assertNotNull("Impossible to find Property pB1", pB1_B1P1_P1_EObject);
+		Assert.assertNotNull("Impossible to find Property pB1", pB1_B1P1_P1_EObject); //$NON-NLS-1$
 		pB2P1_B1P1_P1_EObject = b1P1_P1_EObject.getAttribute("pB2P1", null);
-		Assert.assertNotNull("Impossible to find Property pB2P1", pB2P1_B1P1_P1_EObject);
+		Assert.assertNotNull("Impossible to find Property pB2P1", pB2P1_B1P1_P1_EObject); //$NON-NLS-1$
 
 
 
 
 
 		iBD_B1_Diagram = getDiagram("IBD_B1");
-		Assert.assertNotNull("Impossible to find IBD_B1", iBD_B1_Diagram);
+		Assert.assertNotNull("Impossible to find IBD_B1", iBD_B1_Diagram); //$NON-NLS-1$
 		bDD_Main_Diagram = getDiagram("BDD_Main");
-		Assert.assertNotNull("Impossible to find BDD_Main", bDD_Main_Diagram);
+		Assert.assertNotNull("Impossible to find BDD_Main", bDD_Main_Diagram); //$NON-NLS-1$
 		List<Customization> appliedCustomizations=org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations();
 		Customization SimpleUML=null;
 		Iterator<?>iter=appliedCustomizations.iterator();
@@ -217,12 +217,12 @@ public abstract class AbstractModelExplorerTest {
 				SimpleUML=custo;
 			}
 		}
-		org.junit.Assert.assertNotNull("Custom SimpleUML not found", SimpleUML);
+		Assert.assertNotNull("Custom SimpleUML not found", SimpleUML); //$NON-NLS-1$
 		org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations().add(0, SimpleUML);
 
 
 
-		org.junit.Assert.assertEquals("bad order of applied Custom", "SimpleUML", appliedCustomizations.get(0).getName());
+		Assert.assertEquals("bad order of applied Custom", "SimpleUML", appliedCustomizations.get(0).getName()); //$NON-NLS-1$
 
 	/** end of generated selectable objects */
 	}
@@ -293,7 +293,7 @@ public abstract class AbstractModelExplorerTest {
 			semanticElementList.addAll(newElements);
 			modelExplorerView.revealSemanticElement(semanticElementList);
 		} else {
-			throw new Exception("Impossible to find the model explorer required to select: " + newElements);
+			throw new Exception("Impossible to find the model explorer required to select: " + newElements); //$NON-NLS-1$
 		}
 	}
 
@@ -372,7 +372,7 @@ public abstract class AbstractModelExplorerTest {
 			modelExplorerView.revealSemanticElement(semanticElementList);
 			//reveal(semanticElementList, modelExplorerView.getCommonViewer());
 		} else {
-			throw new Exception("Impossible to find the model explorer required to select: " + newDiagrams);
+			throw new Exception("Impossible to find the model explorer required to select: " + newDiagrams); //$NON-NLS-1$
 		}
 	}
 
@@ -476,11 +476,11 @@ public abstract class AbstractModelExplorerTest {
 	protected EObjectTreeElement findSemanticModelElementItem(EObject objectToFind) throws Exception {
 		selectAndReveal(objectToFind);
 		IStructuredSelection selection = (IStructuredSelection)modelExplorerPart.getSite().getSelectionProvider().getSelection();
-		Assert.assertEquals("one and only one object should be selected", 1, selection.size());
+		Assert.assertEquals("one and only one object should be selected", 1, selection.size()); //$NON-NLS-1$
 		Object selectedElement = selection.getFirstElement();
-		Assert.assertTrue("selection should be a model item element", selectedElement instanceof EObjectTreeElement);
-		Assert.assertTrue("selection should be linked to a EObject", ((EObjectTreeElement)selectedElement).getEObject() instanceof EObject);
-		Assert.assertTrue("selection should be linked to the Object: " + objectToFind, ((EObjectTreeElement)selectedElement).getEObject().equals(objectToFind));
+		Assert.assertTrue("selection should be a model item element", selectedElement instanceof EObjectTreeElement); //$NON-NLS-1$
+		Assert.assertTrue("selection should be linked to a EObject", ((EObjectTreeElement)selectedElement).getEObject() instanceof EObject); //$NON-NLS-1$
+		Assert.assertTrue("selection should be linked to the Object: " + objectToFind, ((EObjectTreeElement)selectedElement).getEObject().equals(objectToFind)); //$NON-NLS-1$
 		return (EObjectTreeElement)selectedElement;
 	}
 
@@ -497,11 +497,11 @@ public abstract class AbstractModelExplorerTest {
 
 		selectAndRevealDiagram(diagramToFind);
 		IStructuredSelection selection = (IStructuredSelection)modelExplorerPart.getSite().getSelectionProvider().getSelection();
-		Assert.assertEquals("one and only one diagram should be selected", 1, selection.size());
+		Assert.assertEquals("one and only one diagram should be selected", 1, selection.size()); //$NON-NLS-1$
 		Object selectedElement = selection.getFirstElement();
-		Assert.assertTrue("selection should be a model item element", selectedElement instanceof EObjectTreeElement);
-		Assert.assertTrue("selection should be linked to a Diagram", ((EObjectTreeElement)selectedElement).getEObject() instanceof Diagram);
-		Assert.assertTrue("selection should be linked to the Object: " + diagramToFind, ((EObjectTreeElement)selectedElement).getEObject().equals(diagramToFind));
+		Assert.assertTrue("selection should be a model item element", selectedElement instanceof EObjectTreeElement); //$NON-NLS-1$
+		Assert.assertTrue("selection should be linked to a Diagram", ((EObjectTreeElement)selectedElement).getEObject() instanceof Diagram); //$NON-NLS-1$
+		Assert.assertTrue("selection should be linked to the Object: " + diagramToFind, ((EObjectTreeElement)selectedElement).getEObject().equals(diagramToFind)); //$NON-NLS-1$
 		return (EObjectTreeElement)selectedElement;
 	}
 

@@ -51,7 +51,7 @@ public class CopyPasteSimpleReferenceTest extends AbstractCopyPasteReferenceTest
 			}
 		});
 
-		Assert.assertFalse("Editor should not be dirty at initialization", isEditorDirty());
+		Assert.assertFalse("Editor should not be dirty at initialization", isEditorDirty()); //$NON-NLS-1$
 		// retrieve elements in the model explorer
 		selectAndReveal(rB2_B1_EObject);
 
@@ -59,16 +59,16 @@ public class CopyPasteSimpleReferenceTest extends AbstractCopyPasteReferenceTest
 		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
 		commandService.refreshElements(IWorkbenchCommandConstants.EDIT_COPY, null);
 		org.eclipse.core.commands.Command copyCommand = commandService.getCommand(IWorkbenchCommandConstants.EDIT_COPY);
-		Assert.assertNotNull("Impossible to find copy command", copyCommand);
-		Assert.assertTrue("command in not enabled", copyCommand.isEnabled());
-		Assert.assertTrue("command in not defined", copyCommand.isDefined());
+		Assert.assertNotNull("Impossible to find copy command", copyCommand); //$NON-NLS-1$
+		Assert.assertTrue("command in not enabled", copyCommand.isEnabled()); //$NON-NLS-1$
+		Assert.assertTrue("command in not defined", copyCommand.isDefined()); //$NON-NLS-1$
 		copyCommand.executeWithChecks(new ExecutionEvent());
 
 		// check editor state (should be non dirty)
 		// Assert.assertFalse("Editor should not be dirty after copy", isEditorDirty());
 
 		// NOTE: save editor. The copy command should not dirty the model, the implementation of the copy command or the editor should be modified
-		Assert.assertFalse("Copy command is dirtying the model, whereas it should not. This assert is here to remember that the test code should be modified: Isdirty = false after copy...", isEditorDirty());
+		Assert.assertFalse("Copy command is dirtying the model, whereas it should not. This assert is here to remember that the test code should be modified: Isdirty = false after copy...", isEditorDirty()); //$NON-NLS-1$
 		Display.getDefault().syncExec(new Runnable() {
 
 			public void run() {
@@ -76,7 +76,7 @@ public class CopyPasteSimpleReferenceTest extends AbstractCopyPasteReferenceTest
 			}
 		});
 
-		Assert.assertFalse("Save command is non-dirtying the model, whereas it should. ", isEditorDirty());
+		Assert.assertFalse("Save command is non-dirtying the model, whereas it should. ", isEditorDirty()); //$NON-NLS-1$
 		// END NOTE
 	}
 
@@ -110,7 +110,7 @@ public class CopyPasteSimpleReferenceTest extends AbstractCopyPasteReferenceTest
 	 */
 	@Test
 	public void testCopyPasteInB1() throws Exception {
-		testExecutableCopyPaste(b1_EObject, rB2_B1_EObject, "attribute", 1);
+		testExecutableCopyPaste(b1_EObject, rB2_B1_EObject, "attribute", 1); 
 	}
 
 	/**
