@@ -17,10 +17,10 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
@@ -89,14 +89,14 @@ public class UMLModelTester extends PropertyTester {
 				}
 
 				/* If not found, retrieve the ModelSet from the Active Editor */
+				IEditorPart activeEditor = EditorHelper.getCurrentEditor();
+				if(activeEditor != null) {
+					servicesRegistry = (ServicesRegistry)activeEditor.getAdapter(ServicesRegistry.class);
 
-				IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-				servicesRegistry = (ServicesRegistry)activeEditor.getAdapter(ServicesRegistry.class);
-
-				if(servicesRegistry != null) {
-					return ServiceUtils.getInstance().getModelSet(servicesRegistry);
+					if(servicesRegistry != null) {
+						return ServiceUtils.getInstance().getModelSet(servicesRegistry);
+					}
 				}
-
 			} catch (Exception ex) {
 				return null; //NPE (getActiveEditor) or ServiceException (Service registry cannot be found). In both cases, we just don't handle the event. Fail silently.
 			}
