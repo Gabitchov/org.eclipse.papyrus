@@ -526,15 +526,38 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	}
 
 	@Override
+	public void dispose() {
+		if(changeColorTask != null) {
+			changeColorTask.cancel();
+		}
+		if(timer != null) {
+			timer.cancel();
+		}
+		super.dispose();
+	}
+
+	private void cancelCurrentTask() {
+		if(changeColorTask != null) {
+			changeColorTask.cancel();
+		}
+	}
+
+	@Override
 	public void changeColorField() {
 		if(!error & !edit) {
+
 			if(timer == null) {
 				timer = new Timer(true);
 			}
+
+			cancelCurrentTask();
 			changeColorTask = new TimerTask() {
 
 				@Override
 				public void run() {
+					if(ReferenceDialog.this.isDisposed()) {
+						return;
+					}
 					ReferenceDialog.this.getDisplay().syncExec(new Runnable() {
 
 						@Override
@@ -548,6 +571,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 					});
 				}
 			};
+
 			if(errorBinding) {
 				currentValueLabel.setBackground(ERROR);
 				currentValueLabel.update();
@@ -555,13 +579,9 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 				IStatus status = (IStatus)binding.getValidationStatus().getValue();
 				switch(status.getSeverity()) {
 				case IStatus.OK:
-					timer.schedule(changeColorTask, 600);
-					currentValueLabel.setBackground(VALIDE);
-					currentValueLabel.update();
-					break;
 				case IStatus.WARNING:
 					timer.schedule(changeColorTask, 600);
-					currentValueLabel.setBackground(VALIDE);
+					currentValueLabel.setBackground(VALID);
 					currentValueLabel.update();
 					break;
 				case IStatus.ERROR:

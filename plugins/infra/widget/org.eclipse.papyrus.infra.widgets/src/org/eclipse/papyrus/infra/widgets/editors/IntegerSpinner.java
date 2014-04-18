@@ -230,11 +230,19 @@ public class IntegerSpinner extends AbstractValueEditor implements KeyListener, 
 		}
 	}
 
+	private void cancelCurrentTask() {
+		if(changeColorTask != null) {
+			changeColorTask.cancel();
+		}
+	}
+
 	@Override
 	public void changeColorField() {
 		if(timer == null) {
 			timer = new Timer(true);
 		}
+
+		cancelCurrentTask();
 		changeColorTask = new TimerTask() {
 
 			@Override
@@ -257,18 +265,12 @@ public class IntegerSpinner extends AbstractValueEditor implements KeyListener, 
 			spinner.setBackground(ERROR);
 			spinner.update();
 		} else {
-
-
 			IStatus status = (IStatus)binding.getValidationStatus().getValue();
 			switch(status.getSeverity()) {
 			case IStatus.OK:
-				timer.schedule(changeColorTask, 600);
-				spinner.setBackground(VALIDE);
-				spinner.update();
-				break;
 			case IStatus.WARNING:
 				timer.schedule(changeColorTask, 600);
-				spinner.setBackground(VALIDE);
+				spinner.setBackground(VALID);
 				spinner.update();
 				break;
 			case IStatus.ERROR:
@@ -303,24 +305,19 @@ public class IntegerSpinner extends AbstractValueEditor implements KeyListener, 
 		if(modelProperty == null) {
 			return;
 		}
-		try {
-			if(modelProperty.getValue() != null) {
-				if(!isReadOnly() && !modelProperty.getValue().toString().equals(spinner.getText())) {
 
-					spinner.setBackground(EDIT);
-
-				} else {
-					spinner.setBackground(DEFAULT);
-				}
+		if(modelProperty.getValue() != null) {
+			if(!isReadOnly() && !modelProperty.getValue().toString().equals(spinner.getText())) {
+				spinner.setBackground(EDIT);
 			} else {
-				if(spinner.getText().equals("")) {
-					spinner.setBackground(DEFAULT);
-				} else {
-					spinner.setBackground(EDIT);
-				}
+				spinner.setBackground(DEFAULT);
 			}
-		} catch (Exception ex) {
-
+		} else {
+			if(spinner.getText().equals("")) {
+				spinner.setBackground(DEFAULT);
+			} else {
+				spinner.setBackground(EDIT);
+			}
 		}
 	}
 

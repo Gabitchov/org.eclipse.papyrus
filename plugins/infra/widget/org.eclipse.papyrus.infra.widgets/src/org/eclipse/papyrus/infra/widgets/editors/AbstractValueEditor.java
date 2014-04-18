@@ -27,6 +27,7 @@ import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.papyrus.infra.widgets.validator.AbstractValidator;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -75,13 +76,13 @@ public abstract class AbstractValueEditor extends AbstractEditor {
 	protected ControlDecoration controlDecoration;
 
 
-	protected final Color VALIDE = new Color(Display.getCurrent(), 153, 255, 153);
+	protected static final Color VALID = new Color(Display.getCurrent(), 144, 238, 144); //CSS LightGreen
 
-	protected final Color DEFAULT = new Color(Display.getCurrent(), 255, 255, 255);
+	protected static final Color DEFAULT = Display.getCurrent().getSystemColor(SWT.COLOR_WHITE);
 
-	protected final Color EDIT = new Color(Display.getCurrent(), 255, 204, 153);
+	protected static final Color EDIT = new Color(Display.getCurrent(), 255, 204, 153); //Orange
 
-	protected final Color ERROR = new Color(Display.getCurrent(), 255, 153, 153);
+	protected static final Color ERROR = new Color(Display.getCurrent(), 255, 153, 153); //Red
 
 	protected AbstractValueEditor(Composite parent) {
 		super(parent);

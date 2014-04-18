@@ -23,15 +23,12 @@ import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.papyrus.infra.widgets.databinding.TextObservableValue;
 import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Text;
 
@@ -330,12 +327,12 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 
 				return;
 			}
-			cancelCurrentTask();
 
 			if(timer == null) {
 				timer = new Timer(true);
 			}
 
+			cancelCurrentTask();
 			currentValidateTask = new TimerTask() {
 
 				// Timer thread
@@ -366,24 +363,18 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 			}
 		}
 
-		try {
-			if(modelProperty.getValue() != null) {
-				if(!isReadOnly() && !modelProperty.getValue().toString().equals(text.getText())) {
-
-					text.setBackground(EDIT);
-
-				} else {
-					text.setBackground(DEFAULT);
-				}
+		if(modelProperty.getValue() != null) {
+			if(!isReadOnly() && !modelProperty.getValue().toString().equals(text.getText())) {
+				text.setBackground(EDIT);
 			} else {
-				if(text.getText().equals("")) {
-					text.setBackground(DEFAULT);
-				} else {
-					text.setBackground(EDIT);
-				}
+				text.setBackground(DEFAULT);
 			}
-		} catch (Exception ex) {
-
+		} else {
+			if(text.getText().equals("")) {
+				text.setBackground(DEFAULT);
+			} else {
+				text.setBackground(EDIT);
+			}
 		}
 
 	}
@@ -437,20 +428,19 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 			if(timer == null) {
 				timer = new Timer(true);
 			}
+
+			cancelChangeColorTask();
 			changeColorTask = new TimerTask() {
 
 				@Override
 				public void run() {
-					StringEditor.this.getDisplay().asyncExec(new Runnable() {
+					StringEditor.this.getDisplay().syncExec(new Runnable() {
 
 						@Override
 						public void run() {
-
 							text.setBackground(DEFAULT);
 							text.update();
 						}
-
-
 					});
 				}
 			};
@@ -461,13 +451,9 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 				IStatus status = (IStatus)binding.getValidationStatus().getValue();
 				switch(status.getSeverity()) {
 				case IStatus.OK:
-					timer.schedule(changeColorTask, 600);
-					text.setBackground(VALIDE);
-					text.update();
-					break;
 				case IStatus.WARNING:
 					timer.schedule(changeColorTask, 600);
-					text.setBackground(VALIDE);
+					text.setBackground(VALID);
 					text.update();
 					break;
 				case IStatus.ERROR:
@@ -478,26 +464,6 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 				}
 			}
 		}
-	}
-
-	@Override
-	protected void setCommitOnFocusLost(Control control) {
-		control.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				// Nothing
-
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-
-				commit();
-
-			}
-
-		});
 	}
 
 	private void cancelChangeColorTask() {
