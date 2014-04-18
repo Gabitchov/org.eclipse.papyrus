@@ -81,6 +81,7 @@ http://www.eclipse.org/legal/epl-v10.html
 	  <import feature="net.sf.jautodoc.feature"/>
 	  <import feature="net.sf.eclipsecs"/>
 	  <import feature="edu.umd.cs.findbugs.plugin.eclipse"/>
+	  <import featur="org.eclipse.xtend.sdk"/>
    </requires>
 
    <plugin

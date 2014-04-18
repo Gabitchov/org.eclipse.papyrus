@@ -80,6 +80,11 @@
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/objectteams/updates/ot2.2/</url>
 		</repository>
+		<repository>
+			<id>tmf-xtext</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/milestones/</url>
+		</repository>
 	</repositories>
 	<build>
 		<plugins>
