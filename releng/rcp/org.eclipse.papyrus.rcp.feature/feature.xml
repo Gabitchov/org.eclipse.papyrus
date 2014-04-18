@@ -78,6 +78,9 @@ http://www.eclipse.org/legal/epl-v10.html
 	  <import feature="org.eclipse.team.svn.mylyn"/>
 	  <import feature="org.eclipse.gmf.sdk"/>
 	  <import feature="org.eclipse.gmf.tooling.codegen.xtend2"/>
+	  <import feature="net.sf.jautodoc.feature"/>
+	  <import feature="net.sf.eclipsecs"/>
+	  <import feature="edu.umd.cs.findbugs.plugin.eclipse"/>
    </requires>
 
    <plugin

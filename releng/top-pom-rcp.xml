@@ -51,6 +51,11 @@
 		
 		<!-- Additional components -->
 		<repository>
+			<id>aggregated-legacies</id>
+			<layout>p2</layout>
+			<url>${papyrus.repo.legacy}</url>
+		</repository>
+		<repository>
 			<id>subversive</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/technology/subversive/2.0/update-site/</url>
