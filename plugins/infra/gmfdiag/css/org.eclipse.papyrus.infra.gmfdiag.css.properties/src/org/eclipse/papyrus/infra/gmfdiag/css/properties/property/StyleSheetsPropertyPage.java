@@ -9,13 +9,15 @@
  * Contributors:
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.property;
+package org.eclipse.papyrus.infra.gmfdiag.css.properties.property;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -38,22 +40,23 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
-import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.css.messages.Messages;
-import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.engine.ProjectCSSEngine;
+import org.eclipse.papyrus.infra.gmfdiag.css.properties.messages.Messages;
+import org.eclipse.papyrus.infra.gmfdiag.css.properties.provider.CSSStyleSheetLabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
-import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
+import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -62,6 +65,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbenchPropertyPage;
 import org.eclipse.ui.dialogs.PropertyPage;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
 
@@ -75,11 +79,42 @@ import org.eclipse.ui.dialogs.PropertyPage;
  */
 public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchPropertyPage {
 
+
 	/** Text for preference page label. */
 	private static final String PREFERENCE_PAGE_LABEL = Messages.getString("StyleSheetsPropertyPage.preference.page.label"); //$NON-NLS-1$
 
 	/** Text for preference page title. */
 	private static final String PREFERENCE_PAGE_TITLE = Messages.getString("StyleSheetsPropertyPage.preference.page.title"); //$NON-NLS-1$
+
+	/** Icon for delete button. */
+	private static final Image DELETE_ICON = Activator.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "/icons/Delete_12x12.gif").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
+
+	/** Icon for add button. */
+	private static final Image ADD_ICON = Activator.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "/icons/Add_12x12.gif").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
+
+	/** Icon for edit button. */
+	private static final Image EDIT_ICON = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "icons/Edit_12x12.gif").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
+
+	/** Icon for up action button. */
+	private static final Image UP_ICON = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "icons/Up_12x12.gif").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
+
+	/** Icon for down action button. */
+	private static final Image DOWN_ICON = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "icons/Down_12x12.gif").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
+
+	/** Id for add button. */
+	private static final int ADD_BUTTON_ID = 1;
+
+	/** Id for delete button. */
+	private static final int DELETE_BUTTON_ID = 2;
+
+	/** Id for up button. */
+	private static final int UP_BUTTON_ID = 3;
+
+	/** Id for down button. */
+	private static final int DOWN_BUTTON_ID = 4;
+
+	/** Id for edit button. */
+	private static final int EDIT_BUTTON_ID = 0;
 
 	/** Preference resource of project to load and save. */
 	private Resource resource = null;
@@ -96,9 +131,11 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 	/** Viewer for style sheets list. */
 	private TreeViewer styleSheetsViewer = null;
 
-	/** Button to delete style sheets in project preferences. */
-	private Button removeButton = null;
+	/** Map of all buttons of property page. */
+	private Map<Integer, Button> buttonsMap = new HashMap<Integer, Button>();
 
+	/** Editor factory to edit Style sheets */
+	private ReferenceValueFactory editorFactory = new EcorePropertyEditorFactory(StylesheetsPackage.Literals.MODEL_STYLE_SHEETS__STYLESHEETS);
 
 	/**
 	 * Default Constructor.
@@ -128,7 +165,7 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 		if(pageElement instanceof IProject) {
 			// Build path of preference file
 			ProjectScope pageProject = new ProjectScope((IProject)pageElement);
-			IPath preferencePath = pageProject.getLocation().append("stylesheets.xmi"); //$NON-NLS-1$
+			IPath preferencePath = pageProject.getLocation().append(ProjectCSSEngine.PROJECT_STYLESHEETS);
 
 			// Check path is valid
 			if(preferencePath != null) {
@@ -180,7 +217,7 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 		createStyleSheetsPageButtons(container);
 
 		//Update state buttons
-		updateButton();
+		updateButtons();
 
 		return container;
 	}
@@ -255,7 +292,7 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 			}
 		};
 
-		labelProvider = new StylesheetsModelLabelProvider();
+		labelProvider = new CSSStyleSheetLabelProvider();
 	}
 
 
@@ -275,9 +312,9 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 		styleSheetsViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		styleSheetsViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-			@Override
+
 			public void selectionChanged(SelectionChangedEvent event) {
-				updateButton();
+				updateButtons();
 
 			}
 
@@ -305,86 +342,38 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 		buttonsComposite.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
 
 
-		//Add button
-		Button addButton = new Button(buttonsComposite, SWT.PUSH);
-		addButton.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		addButton.setImage(Activator.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "/icons/Add_12x12.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
-		addButton.addSelectionListener(new SelectionListener() {
+		// Add all buttons
+		createButton(buttonsComposite, ADD_ICON, ADD_BUTTON_ID);
+		createButton(buttonsComposite, DELETE_ICON, DELETE_BUTTON_ID);
+		createButton(buttonsComposite, UP_ICON, UP_BUTTON_ID);
+		createButton(buttonsComposite, DOWN_ICON, DOWN_BUTTON_ID);
+		createButton(buttonsComposite, EDIT_ICON, EDIT_BUTTON_ID);
+	}
 
-			/**
-			 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
-			 *
-			 * @param e
-			 */
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-
-				ReferenceSelector selector = new ReferenceSelector(true);
-				selector.setContentProvider((IStaticContentProvider)contentProvider);
-				selector.setLabelProvider(labelProvider);
-
-				// Use common component for add dialog and parameterize it
-				MultipleValueSelectorDialog vDialog = new MultipleValueSelectorDialog(getShell(), selector, PREFERENCE_PAGE_TITLE);
-				vDialog.setContextElement(modelStyleSheets);
-				vDialog.setLabelProvider(labelProvider);
-				vDialog.setFactory(new EcorePropertyEditorFactory(StylesheetsPackage.Literals.MODEL_STYLE_SHEETS__STYLESHEETS));
-
-				// Handle dialog result
-				int result = vDialog.open();
-				if(result == Dialog.OK) {
-
-					Object[] resultArray = vDialog.getResult();
-					if(resultArray != null) {
-						refreshStyleSheets(resultArray);
-					}
-				}
-			}
+	/**
+	 * Method to create button.
+	 * 
+	 * @param parent
+	 *        Composite where will be added
+	 * @param icon
+	 *        Icon for button
+	 * @param id
+	 *        Id to identify button
+	 */
+	private void createButton(Composite parent, Image icon, int id) {
+		Button button = new Button(parent, SWT.PUSH);
+		button.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		button.setData(new Integer(id));
+		button.setImage(icon);
+		button.addSelectionListener(new SelectionAdapter() {
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-				//Nothing to do
+			public void widgetSelected(SelectionEvent event) {
+				buttonPressed(((Integer)event.widget.getData()).intValue());
 			}
 		});
 
-		removeButton = new Button(buttonsComposite, SWT.PUSH);
-		removeButton.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		removeButton.setImage(Activator.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "/icons/Delete_12x12.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
-		removeButton.addSelectionListener(new SelectionListener() {
-
-			/**
-			 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
-			 *
-			 * @param e
-			 */
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				ISelection selection = styleSheetsViewer.getSelection();
-				if(selection instanceof IStructuredSelection) {
-
-					// Handle selection
-					Object firstElement = ((IStructuredSelection)selection).getFirstElement();
-					if(firstElement instanceof StyleSheet) {
-						modelStyleSheets.getStylesheets().remove(firstElement);
-					}
-
-					// Refresh viewer
-					styleSheetsViewer.setInput(modelStyleSheets);
-
-				}
-
-			}
-
-			/**
-			 * @see org.eclipse.swt.events.SelectionListener#widgetDefaultSelected(org.eclipse.swt.events.SelectionEvent)
-			 *
-			 * @param e
-			 */
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-				// Nothing to do
-
-			}
-		});
+		buttonsMap.put(id, button);
 	}
 
 	/**
@@ -407,18 +396,181 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 
 		// Refresh viewer
 		styleSheetsViewer.setInput(modelStyleSheets);
+		updateButtons();
 	}
 
 
+	/**
+	 * Method call when a button is pressed.
+	 * 
+	 * @param buttonId
+	 */
+	protected void buttonPressed(int buttonId) {
+		switch(buttonId) {
+		case ADD_BUTTON_ID:
+			addAction();
+			break;
+		case DELETE_BUTTON_ID:
+			deleteAction();
+			break;
+		case DOWN_BUTTON_ID:
+			downAction();
+			break;
+		case UP_BUTTON_ID:
+			upAction();
+			break;
+		case EDIT_BUTTON_ID:
+			editAction();
+			break;
+		default:
+			break;
+		}
+	}
+
+	/**
+	 * Action to edit selected style sheet.
+	 */
+	private void editAction() {
+
+		ISelection selection = styleSheetsViewer.getSelection();
+
+		if(selection instanceof IStructuredSelection) {
+			Object selectedObject = ((IStructuredSelection)selection).getFirstElement();
+			if(selectedObject instanceof StyleSheet) {
+				// Use editor factory
+				editorFactory.edit(buttonsMap.get(EDIT_BUTTON_ID), selectedObject);
+			}
+		}
+
+	}
+
+
+	/**
+	 * Action to move up a style sheet in list.
+	 */
+	private void upAction() {
+		// Handle selection to extract selected style sheet
+		ISelection selection = styleSheetsViewer.getSelection();
+		if(selection instanceof IStructuredSelection) {
+			Object selectedElement = ((IStructuredSelection)selection).getFirstElement();
+
+			if(selectedElement instanceof StyleSheet) {
+
+				// Get index of selected style sheet in list
+				EList<StyleSheet> stylesheetsList = modelStyleSheets.getStylesheets();
+				int index = stylesheetsList.indexOf(selectedElement);
+
+				// Check if selected style sheet is not at top of list
+				if(index > 0) {
+					stylesheetsList.move(--index, (StyleSheet)selectedElement);
+					styleSheetsViewer.setInput(stylesheetsList);
+				}
+			}
+		}
+
+	}
+
+
+	/**
+	 * Action to move down selected style sheet in list.
+	 */
+	private void downAction() {
+		// Handle selection to extract selected style sheet
+		ISelection selection = styleSheetsViewer.getSelection();
+
+		if(selection instanceof IStructuredSelection) {
+			Object selectedElement = ((IStructuredSelection)selection).getFirstElement();
+
+			if(selectedElement instanceof StyleSheet) {
+
+				// Get index of selected style sheet in list
+				EList<StyleSheet> stylesheetsList = modelStyleSheets.getStylesheets();
+				int index = stylesheetsList.indexOf(selectedElement);
+
+				// Check if selected style sheet is not at bottom of list
+				if(index < stylesheetsList.size() - 1) {
+					stylesheetsList.move(++index, (StyleSheet)selectedElement);
+					styleSheetsViewer.setInput(stylesheetsList);
+				}
+			}
+		}
+
+	}
+
+
+	/**
+	 * Action to delete selected style sheet.
+	 */
+	private void deleteAction() {
+		ISelection selection = styleSheetsViewer.getSelection();
+		if(selection instanceof IStructuredSelection) {
+
+			// Handle selection
+			Object firstElement = ((IStructuredSelection)selection).getFirstElement();
+			if(firstElement instanceof StyleSheet) {
+				modelStyleSheets.getStylesheets().remove(firstElement);
+			}
+
+			// Refresh viewer
+			styleSheetsViewer.setInput(modelStyleSheets);
+
+			updateButtons();
+
+		}
+	}
+
+
+	/**
+	 * Action to add a style sheet.
+	 */
+	private void addAction() {
+		ReferenceSelector selector = new ReferenceSelector(true);
+		selector.setContentProvider((IStaticContentProvider)contentProvider);
+		selector.setLabelProvider(labelProvider);
+
+		// Use common component for add dialog and parameterize it
+		MultipleValueSelectorDialog vDialog = new MultipleValueSelectorDialog(getShell(), selector, PREFERENCE_PAGE_TITLE);
+		vDialog.setContextElement(modelStyleSheets);
+		vDialog.setLabelProvider(labelProvider);
+		vDialog.setFactory(editorFactory);
+
+		// Handle dialog result
+		int result = vDialog.open();
+		if(result == Dialog.OK) {
+
+			Object[] resultArray = vDialog.getResult();
+			if(resultArray != null) {
+				refreshStyleSheets(resultArray);
+			}
+		}
+
+	}
 
 
 	/**
 	 * Update state buttons.
 	 */
-	protected void updateButton() {
+	protected void updateButtons() {
 		ISelection selection = styleSheetsViewer.getSelection();
+		boolean enabled = !selection.isEmpty();
+		for(int idButton : buttonsMap.keySet()) {
+			switch(idButton) {
+			case UP_BUTTON_ID:
+			case DOWN_BUTTON_ID:
+				EList<StyleSheet> stylesheets = modelStyleSheets.getStylesheets();
+				buttonsMap.get(idButton).setEnabled(enabled && !stylesheets.isEmpty() && stylesheets.size() > 1);
+				break;
+			case EDIT_BUTTON_ID:
+			case DELETE_BUTTON_ID:
+				buttonsMap.get(idButton).setEnabled(enabled);
+				break;
 
-		removeButton.setEnabled(!selection.isEmpty());
+			default:
+				break;
+			}
+
+		}
+
 
 
 	}
@@ -444,48 +596,6 @@ public class StyleSheetsPropertyPage extends PropertyPage implements IWorkbenchP
 		}
 
 		return performOK;
-	}
-
-
-
-	/**
-	 * 
-	 * Label provider for style sheets list in different displays.
-	 * 
-	 * @author gpascual
-	 *
-	 */
-	public class StylesheetsModelLabelProvider extends EMFLabelProvider {
-
-		/**
-		 * Default constructor.
-		 *
-		 */
-		public StylesheetsModelLabelProvider() {
-			super();
-		}
-
-		/**
-		 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
-		 *
-		 * @param element
-		 * @return
-		 */
-		@Override
-		public String getText(Object element) {
-			String text = ""; //$NON-NLS-1$
-
-			if(element instanceof StyleSheetReference) {
-				text = ((StyleSheetReference)element).getPath();
-			} else if(element instanceof EmbeddedStyleSheet) {
-				text = ((EmbeddedStyleSheet)element).getLabel();
-			}
-
-			return text;
-		}
-
-
-
 	}
 
 

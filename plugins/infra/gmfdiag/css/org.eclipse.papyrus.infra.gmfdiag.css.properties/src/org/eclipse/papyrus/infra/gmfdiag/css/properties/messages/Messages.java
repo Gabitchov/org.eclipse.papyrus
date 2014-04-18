@@ -9,7 +9,7 @@
  * Contributors:
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.messages;
+package org.eclipse.papyrus.infra.gmfdiag.css.properties.messages;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
