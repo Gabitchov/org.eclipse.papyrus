@@ -78,7 +78,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 
 	private static final String HISTORY_SETTINGS = "History"; //$NON-NLS-1$
 
-	private static final String PREVIOUS_SELECTION = "PreviousSelection";
+	private static final String PREVIOUS_SELECTION = "PreviousSelection"; //$NON-NLS-1$
 
 	protected List<EObject> selectionHistory;
 

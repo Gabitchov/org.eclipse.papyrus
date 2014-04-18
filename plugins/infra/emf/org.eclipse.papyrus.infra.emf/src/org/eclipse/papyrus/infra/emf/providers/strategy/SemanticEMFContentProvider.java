@@ -181,7 +181,7 @@ public class SemanticEMFContentProvider extends CustomizedTreeContentProvider im
 			if(isCompatibleMetaclass(containerElement, metaclass)) {
 				return false;
 			}
-		}
+		}			
 
 		return true;
 	}
@@ -199,6 +199,7 @@ public class SemanticEMFContentProvider extends CustomizedTreeContentProvider im
 	}
 
 	public void setNotWantedMetaclasses(List<?> notWantedMetaclasses) {
+		assert notWantedMetaclasses != null : "notWantedMetaclasses must be not null"; //$NON-NLS-1$
 		this.notWantedMetaclasses = notWantedMetaclasses;
 	}
 

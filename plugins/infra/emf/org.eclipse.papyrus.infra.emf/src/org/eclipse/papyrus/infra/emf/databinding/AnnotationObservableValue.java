@@ -159,7 +159,7 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 			}
 		}
 
-		CompoundCommand emfCommand = new CompoundCommand("Set " + key) {
+		CompoundCommand emfCommand = new CompoundCommand("Set " + key) { //$NON-NLS-1$
 
 			@Override
 			public boolean prepare() {
