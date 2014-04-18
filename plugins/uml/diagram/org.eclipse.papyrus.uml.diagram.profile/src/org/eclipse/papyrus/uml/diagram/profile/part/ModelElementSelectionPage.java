@@ -28,9 +28,6 @@ public class ModelElementSelectionPage extends DefaultModelElementSelectionPage 
 		super(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory(), pageName);
 	}
 
-
-
-
 	/**
 	 * Override to provide custom model element description.
 	 * @generated
@@ -38,7 +35,4 @@ public class ModelElementSelectionPage extends DefaultModelElementSelectionPage 
 	protected String getSelectionTitle() {
 		return Messages.ModelElementSelectionPageMessage;
 	}
-
-
-
 }

@@ -96,5 +96,4 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	public int hashCode() {
 		return EcoreUtil.getURI(getView()).hashCode();
 	}
-
 }

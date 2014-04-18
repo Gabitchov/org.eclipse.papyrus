@@ -108,14 +108,13 @@ public class AssociationDiamondViewCreateCommand extends AbstractTransactionalCo
 		// ((IHintedType) UMLElementTypes.Dependency_2014)
 		// .getSemanticHint(), -1, true, preferenceHint);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		this.node = viewProvider.createAssociation_2015(((EObject)semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint);
-
+		node = viewProvider.createAssociation_2015(((EObject) semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint);
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
 		notationLocation.setX(location.x);
 		notationLocation.setY(location.y);
-		((Node)this.node).setLayoutConstraint(notationLocation);
-		semanticApdater.setView(this.node);
+		((Node) node).setLayoutConstraint(notationLocation);
+		semanticApdater.setView(node);
 		return CommandResult.newOKCommandResult(semanticApdater);
 	}
 
@@ -124,12 +123,12 @@ public class AssociationDiamondViewCreateCommand extends AbstractTransactionalCo
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List getAffectedFiles() {
-		if(viewer != null) {
+	public List<?> getAffectedFiles() {
+		if (viewer != null) {
 			EditPart editpart = viewer.getRootEditPart().getContents();
-			if(editpart instanceof IGraphicalEditPart) {
-				View view = (View)((IGraphicalEditPart)editpart).getModel();
-				if(view != null) {
+			if (editpart instanceof IGraphicalEditPart) {
+				View view = (View) ((IGraphicalEditPart) editpart).getModel();
+				if (view != null) {
 					IFile f = WorkspaceSynchronizer.getFile(view.eResource());
 					return f != null ? Collections.singletonList(f) : Collections.EMPTY_LIST;
 				}

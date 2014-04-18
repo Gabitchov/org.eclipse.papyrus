@@ -38,8 +38,6 @@ public class EnumerationLiteralItemSemanticEditPolicy extends UMLBaseItemSemanti
 		super(UMLElementTypes.EnumerationLiteral_1037);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -61,6 +59,4 @@ public class EnumerationLiteralItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 }

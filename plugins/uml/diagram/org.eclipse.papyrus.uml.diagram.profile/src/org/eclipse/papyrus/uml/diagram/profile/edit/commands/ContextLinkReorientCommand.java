@@ -157,5 +157,4 @@ public class ContextLinkReorientCommand extends EditElementCommand {
 	protected Namespace getNewTarget() {
 		return (Namespace)newEnd;
 	}
-
 }

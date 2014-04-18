@@ -52,14 +52,12 @@ public class PackagePackageableElementCompartmentEditPart extends ShapeCompartme
 		super(view);
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public String getCompartmentName() {
 		return Messages.PackagePackageableElementCompartmentEditPart_title;
 	}
-
 
 	/**
 	 * @generated
@@ -75,9 +73,6 @@ public class PackagePackageableElementCompartmentEditPart extends ShapeCompartme
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomCreationRoleEditPolicy());
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -91,7 +86,6 @@ public class PackagePackageableElementCompartmentEditPart extends ShapeCompartme
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
-
 		return super.getTargetEditPart(request);
 	}
 

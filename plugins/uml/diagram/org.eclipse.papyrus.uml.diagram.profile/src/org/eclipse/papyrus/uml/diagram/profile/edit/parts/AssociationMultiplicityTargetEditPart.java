@@ -122,8 +122,6 @@ public class AssociationMultiplicityTargetEditPart extends PapyrusLabelEditPart 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 	/**
 	 * @generated
 	 */
@@ -155,7 +153,6 @@ public class AssociationMultiplicityTargetEditPart extends PapyrusLabelEditPart 
 	public int getKeyPoint() {
 		return ConnectionLocator.SOURCE;
 	}
-
 
 	/**
 	 * @generated
@@ -324,7 +321,6 @@ public class AssociationMultiplicityTargetEditPart extends PapyrusLabelEditPart 
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -411,9 +407,7 @@ public class AssociationMultiplicityTargetEditPart extends PapyrusLabelEditPart 
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -446,7 +440,6 @@ public class AssociationMultiplicityTargetEditPart extends PapyrusLabelEditPart 
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -454,7 +447,6 @@ public class AssociationMultiplicityTargetEditPart extends PapyrusLabelEditPart 
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -633,7 +625,6 @@ public class AssociationMultiplicityTargetEditPart extends PapyrusLabelEditPart 
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -718,7 +709,6 @@ public class AssociationMultiplicityTargetEditPart extends PapyrusLabelEditPart 
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -748,7 +738,6 @@ public class AssociationMultiplicityTargetEditPart extends PapyrusLabelEditPart 
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -759,5 +748,4 @@ public class AssociationMultiplicityTargetEditPart extends PapyrusLabelEditPart 
 		// Parent should assign one using setLabel() method
 		return null;
 	}
-
 }

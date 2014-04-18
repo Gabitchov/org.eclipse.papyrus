@@ -59,8 +59,6 @@ public class DependencyNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		super(UMLElementTypes.Dependency_2014);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -82,8 +80,6 @@ public class DependencyNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 
 	/**
 	 * @generated
@@ -223,5 +219,4 @@ public class DependencyNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }
