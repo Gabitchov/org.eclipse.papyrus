@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add SelectOutputPage
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.wizard;
 
@@ -63,6 +64,7 @@ public class CreateContextMainPage extends AbstractCreateContextPage implements 
 	public IWizardPage getNextPage() {
 		int selection = combo.getSelectionIndex();
 		getWizard().setGenerator(CreateContextWizard.contextGenerators.get(selection));
+//		getWizard().generatorPage.clearTarget();
 		return getWizard().generatorPage;
 	}
 

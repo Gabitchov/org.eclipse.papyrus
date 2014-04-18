@@ -159,4 +159,10 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 	public void addCommitListener(ICommitListener commitListener) {
 		multiReferenceEditor.addCommitListener(commitListener);
 	}
+
+	@Override
+	public void changeColorField() {
+		// TODO Auto-generated method stub
+		
+	}
 }

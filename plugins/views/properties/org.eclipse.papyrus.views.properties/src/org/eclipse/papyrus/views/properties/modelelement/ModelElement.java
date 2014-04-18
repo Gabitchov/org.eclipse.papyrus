@@ -8,10 +8,12 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.modelelement;
 
 import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -155,4 +157,12 @@ public interface ModelElement {
 	 * All created IObservable will be disposed
 	 */
 	public void dispose();
+	
+
+	/**
+	 * return  the Validator of a given String propertyPath
+	 * @param propertyPath
+	 * @return
+	 */
+	public IValidator getValidator(String propertyPath);
 }

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2014 CEA LIST and others.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -77,9 +77,9 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	protected IElementSelector selector;
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param parent
 	 *        The widget in which this editor is created
 	 * @param style
@@ -92,9 +92,9 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param parent
 	 *        The widget in which this editor is created
 	 * @param style
@@ -111,9 +111,9 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param parent
 	 *        The widget in which this editor is created
 	 * @param style
@@ -169,7 +169,7 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 
 	/**
 	 * Sets the label provider for this editor
-	 * 
+	 *
 	 * @param provider
 	 *        The label provider for this editor
 	 */
@@ -180,11 +180,12 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 
 	/**
 	 * Refreshes the Label when a change occurs on the ObservableList
-	 * 
+	 *
 	 * @see org.eclipse.core.databinding.observable.IChangeListener#handleChange(org.eclipse.core.databinding.observable.ChangeEvent)
-	 * 
+	 *
 	 * @param event
 	 */
+	@Override
 	public void handleChange(ChangeEvent event) {
 		if(modelProperty != null) {
 
@@ -199,7 +200,7 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 
 	/**
 	 * Creates the text for the value label of this editor
-	 * 
+	 *
 	 * @param labels
 	 *        The labels for each selected element
 	 * @return The concatenated label
@@ -230,6 +231,7 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	/**
 	 * {@inheritDoc} Handles the event when the edit button is pressed
 	 */
+	@Override
 	public void widgetSelected(SelectionEvent e) {
 		dialog.setContextElement(getContextElement());
 		dialog.setInitialSelections(modelProperty.toArray());
@@ -256,6 +258,7 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	/**
 	 * {@inheritDoc} Ignored
 	 */
+	@Override
 	public void widgetDefaultSelected(SelectionEvent e) {
 		// Nothing
 	}
@@ -281,4 +284,5 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	public void refreshValue() {
 		handleChange(null);
 	}
+
 }

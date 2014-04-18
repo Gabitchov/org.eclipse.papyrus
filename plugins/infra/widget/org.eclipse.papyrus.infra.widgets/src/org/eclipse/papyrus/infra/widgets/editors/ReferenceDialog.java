@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2014 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,17 +8,24 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *  Christian W. Damus (CEA) - bug 402525
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.jface.fieldassist.ControlDecoration;
+import org.eclipse.jface.fieldassist.FieldDecoration;
+import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
@@ -37,6 +44,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -48,9 +56,9 @@ import org.eclipse.swt.widgets.Widget;
  * dialog is used to edit the value. Also offers support for unsetting the
  * value. This Editor needs a ContentProvider, and may use an optional
  * LabelProvider, describing the objects that can be referred by this property
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class ReferenceDialog extends AbstractValueEditor implements SelectionListener {
 
@@ -114,26 +122,38 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	private boolean directCreation;
 
 	/**
-	 * Indicates whether the widget requires a value or not.
-	 * If it is mandatory, it cannot delete/unset its value
+	 * Indicates whether the widget requires a value or not. If it is mandatory,
+	 * it cannot delete/unset its value
 	 */
 	protected boolean mandatory;
 
+	private ControlDecoration controlDecoration;
+
+	protected boolean error = false;
+
+	private Timer timer;
+
+	private TimerTask changeColorTask;
+
+	private boolean edit = false;
+
 	/**
-	 * 
+	 *
 	 * Constructs a new ReferenceDialog in the given parent Composite. The style
 	 * will be applied to the CLabel displaying the current value.
-	 * 
+	 *
 	 * @param parent
 	 * @param style
 	 */
 	public ReferenceDialog(Composite parent, int style) {
 		super(parent, style);
+		GridData gridData = getDefaultLayoutData();
 
 		currentValueLabel = factory.createCLabel(this, null, factory.getBorderStyle() | style);
-		currentValueLabel.setLayoutData(getDefaultLayoutData());
+		currentValueLabel.setLayoutData(gridData);
 		currentValueLabel.addMouseListener(new MouseListener() {
 
+			@Override
 			public void mouseDoubleClick(MouseEvent e) {
 				editAction(); // TODO : Try to determine whether the double
 				// click should call the edit, create or browse
@@ -142,10 +162,12 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 				// browse, try to create an instance.
 			}
 
+			@Override
 			public void mouseDown(MouseEvent e) {
 				// Nothing
 			}
 
+			@Override
 			public void mouseUp(MouseEvent e) {
 				// Nothing
 			}
@@ -156,6 +178,9 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 
 		createButtons();
 		updateControls();
+		controlDecoration = new ControlDecoration(currentValueLabel, SWT.TOP | SWT.LEFT);
+
+		gridData.horizontalIndent = FieldDecorationRegistry.getDefault().getMaximumDecorationWidth();
 	}
 
 	protected ITreeSelectorDialog createDialog(Shell shell) {
@@ -187,8 +212,8 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	}
 
 	/**
-	 * The action executed when the "browse" button is selected
-	 * Choose a value from a selection of already created objects
+	 * The action executed when the "browse" button is selected Choose a value
+	 * from a selection of already created objects
 	 */
 	protected void browseAction() {
 		setInitialSelection(Collections.singletonList(getValue()));
@@ -204,6 +229,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 			} else {
 				Object value = newValue[0];
 				if(contentProvider instanceof IAdaptableContentProvider) {
+
 					value = ((IAdaptableContentProvider)contentProvider).getAdaptedValue(value);
 				}
 				setValue(value);
@@ -219,7 +245,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 		if(valueFactory != null && valueFactory.canCreateObject()) {
 			final Object context = getContextElement();
 			getOperationExecutor(context).execute(new Runnable() {
-				
+
 				@Override
 				public void run() {
 					Object value = valueFactory.createObject(createInstanceButton, context);
@@ -241,10 +267,12 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	 * that is currently selected
 	 */
 	protected void editAction() {
+		currentValueLabel.setBackground(EDIT);
+		edit = true;
 		final Object currentValue = getValue();
 		if(currentValue != null && valueFactory != null && valueFactory.canEdit()) {
 			getOperationExecutor(currentValue).execute(new Runnable() {
-				
+
 				@Override
 				public void run() {
 					Object newValue = valueFactory.edit(editInstanceButton, currentValue);
@@ -271,6 +299,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	protected void updateLabel() {
 		if(binding != null) {
 			binding.updateModelToTarget();
+
 		} else {
 			currentValueLabel.setImage(labelProvider.getImage(getValue()));
 			currentValueLabel.setText(labelProvider.getText(getValue()));
@@ -279,7 +308,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 
 	/**
 	 * Sets the Content provider for this editor
-	 * 
+	 *
 	 * @param provider
 	 *        The content provider used to retrieve the possible values for
 	 *        this Reference
@@ -297,7 +326,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	 * Sets the Label provider for this editor If the label provider is null, a
 	 * default one will be used. The same label provider is used for both the
 	 * editor's label and the selection dialog.
-	 * 
+	 *
 	 * @param provider
 	 *        The label provider
 	 */
@@ -390,6 +419,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 		updateControls();
 	}
 
+	@Override
 	public void widgetSelected(SelectionEvent e) {
 		Widget widget = e.widget;
 		if(widget == browseValuesButton) {
@@ -403,6 +433,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 		}
 	}
 
+	@Override
 	public void widgetDefaultSelected(SelectionEvent e) {
 		// Nothing
 	}
@@ -426,7 +457,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 			createInstanceButton.setEnabled(valueFactory != null && valueFactory.canCreateObject() && !readOnly);
 		}
 
-		//Do not display unset if the value is mandatory
+		// Do not display unset if the value is mandatory
 		setExclusion(unsetButton, mandatory);
 		if(!mandatory) {
 			boolean enabled = !readOnly;
@@ -449,9 +480,16 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 
 	public void setValue(Object value) {
 		this.value = value;
-		if(modelProperty != null) {
-			modelProperty.setValue(value);
+		try {
+			if(modelProperty != null) {
+				modelProperty.setValue(value);
+				error = false;
+			}
+		} catch (Exception e) {
+			error = true;
+
 		}
+
 		updateControls();
 		updateLabel();
 		commit();
@@ -468,4 +506,74 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	public void setMandatory(boolean mandatory) {
 		this.mandatory = mandatory;
 	}
+
+	@Override
+	public void updateStatus(IStatus status) {
+
+		if(error) {
+			FieldDecoration error = FieldDecorationRegistry.getDefault().getFieldDecoration(FieldDecorationRegistry.DEC_ERROR);
+			controlDecoration.setImage(error.getImage());
+			controlDecoration.showHoverText(Messages.ReferenceDialog_0);
+			controlDecoration.setDescriptionText(Messages.ReferenceDialog_1);
+			controlDecoration.show();
+			currentValueLabel.setBackground(ERROR);
+			currentValueLabel.update();
+
+
+		} else {
+			controlDecoration.hide();
+		}
+	}
+
+	@Override
+	public void changeColorField() {
+		if(!error & !edit) {
+			if(timer == null) {
+				timer = new Timer(true);
+			}
+			changeColorTask = new TimerTask() {
+
+				@Override
+				public void run() {
+					ReferenceDialog.this.getDisplay().syncExec(new Runnable() {
+
+						@Override
+						public void run() {
+
+							currentValueLabel.setBackground(DEFAULT);
+							currentValueLabel.update();
+						}
+
+
+					});
+				}
+			};
+			if(errorBinding) {
+				currentValueLabel.setBackground(ERROR);
+				currentValueLabel.update();
+			} else {
+				IStatus status = (IStatus)binding.getValidationStatus().getValue();
+				switch(status.getSeverity()) {
+				case IStatus.OK:
+					timer.schedule(changeColorTask, 600);
+					currentValueLabel.setBackground(VALIDE);
+					currentValueLabel.update();
+					break;
+				case IStatus.WARNING:
+					timer.schedule(changeColorTask, 600);
+					currentValueLabel.setBackground(VALIDE);
+					currentValueLabel.update();
+					break;
+				case IStatus.ERROR:
+					currentValueLabel.setBackground(ERROR);
+					currentValueLabel.update();
+					break;
+
+				}
+			}
+		} else {
+			currentValueLabel.setBackground(DEFAULT);
+		}
+	}
+
 }

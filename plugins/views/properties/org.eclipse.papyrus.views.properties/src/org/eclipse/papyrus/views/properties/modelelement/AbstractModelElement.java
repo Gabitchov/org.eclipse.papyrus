@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.modelelement;
 
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
@@ -36,6 +38,7 @@ public abstract class AbstractModelElement implements ModelElement {
 
 	private final Map<String, IObservable> observables = new HashMap<String, IObservable>();
 
+	
 	/**
 	 * Constructor.
 	 */
@@ -119,5 +122,11 @@ public abstract class AbstractModelElement implements ModelElement {
 		}
 		observables.clear();
 	}
+	
+	public IValidator getValidator(String propertyPath){
+		return null;
+	}
 
+	
+	
 }

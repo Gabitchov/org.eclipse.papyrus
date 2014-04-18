@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,9 +8,12 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Strategy improvement of generated files
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.generators;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,11 +21,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -42,16 +48,18 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 /**
- * An IGenerator to create Property view contexts from an Ecore metamodel
- * FIXME : The generator doesn't seem to keep the Metaclass inheritance
- * 
+ * An IGenerator to create Property view contexts from an Ecore metamodel FIXME
+ * : The generator doesn't seem to keep the Metaclass inheritance
+ *
  * @author Camille Letavernier
  */
 public class EcoreGenerator extends AbstractQVTGenerator {
 
 	private FileChooser sourceFileChooser;
 
-	private EPackage ecorePackage;
+	protected EPackage ecorePackage;
+
+	protected List<EPackage> listEPackages;
 
 	public void createControls(Composite parent) {
 		Composite root = new Composite(parent, SWT.NONE);
@@ -68,6 +76,9 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 		sourceFileChooser = new FileChooser(root, false);
 		sourceFileChooser.setFilterExtensions(new String[]{ "ecore" }); //$NON-NLS-1$
 		sourceFileChooser.addListener(this);
+
+		listEPackages = new ArrayList<EPackage>();
+
 	}
 
 	public String getDescription() {
@@ -108,14 +119,13 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 
 	/**
 	 * Retrieve the EStructuralFeature corresponding to the given property
-	 * 
+	 *
 	 * @param property
-	 * @return
-	 *         The EStructuralFeature corresponding to the given property
+	 * @return The EStructuralFeature corresponding to the given property
 	 */
 	protected EStructuralFeature getFeature(Property property) {
 		List<String> path = getPath(property);
-		path.remove(0); //Root = EPackage
+		path.remove(0); // Root = EPackage
 
 		EPackage currentPackage = ecorePackage;
 
@@ -133,15 +143,17 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 	}
 
 	/**
-	 * Retrieve the Classifier corresponding to the given path, in the given EPackage
-	 * 
+	 * Retrieve the Classifier corresponding to the given path, in the given
+	 * EPackage
+	 *
 	 * @param path
-	 *        The list of package and subpackages names, and the classifier name, i.e.
-	 *        the list of segments in the classifier's qualified name
+	 *        The list of package and subpackages names, and the classifier
+	 *        name, i.e. the list of segments in the classifier's qualified
+	 *        name
 	 * @param source
 	 *        The root EPackage in which the classifier should be retrieved
-	 * @return
-	 *         The corresponding EClassifier, or null if it couldn't be retrieved
+	 * @return The corresponding EClassifier, or null if it couldn't be
+	 *         retrieved
 	 */
 	protected EClassifier findClassifier(List<String> path, EPackage source) {
 		String qualifier = path.get(0);
@@ -159,15 +171,14 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 	}
 
 	/**
-	 * Retrieve the subpackage corresponding to the given packageName, in the given
-	 * package
-	 * 
+	 * Retrieve the subpackage corresponding to the given packageName, in the
+	 * given package
+	 *
 	 * @param currentPackage
 	 *        The EPackage in which the subpackage should be found
 	 * @param packageName
 	 *        The name of the EPackage to find
-	 * @return
-	 *         The corresponding EPackage, or null if it couldn't be found
+	 * @return The corresponding EPackage, or null if it couldn't be found
 	 */
 	protected EPackage findSubPackage(EPackage currentPackage, String packageName) {
 		for(EPackage pack : currentPackage.getESubpackages()) {
@@ -230,23 +241,128 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 		return URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/transforms/ecore2datacontext.qvto", true); //$NON-NLS-1$
 	}
 
+
 	@Override
 	protected List<ModelExtent> getModelExtents() {
-		try {
-			URI packageURI = URI.createPlatformResourceURI(sourceFileChooser.getFilePath(), true);
-			ecorePackage = (EPackage)loadEMFModel(packageURI);
-			ModelExtent inPackage = new BasicModelExtent(Collections.singletonList(ecorePackage));
+		LinkedList<ModelExtent> result = new LinkedList<ModelExtent>();
+		ModelExtent temp = new BasicModelExtent();
+		ModelExtent inPackage = new BasicModelExtent(Collections.singletonList(ecorePackage));
 
+
+
+		PropertiesRoot root = ConfigurationManager.getInstance().getPropertiesRoot();
+		ModelExtent inRoot = new BasicModelExtent(Collections.singletonList(root));
+		if(!listEPackages.isEmpty()) {
+			temp.setContents(listEPackages);
+			if(!listEPackages.contains(ecorePackage)) {
+				result.add(temp); //if the root package isnt selected
+			} else {
+				result.add(inPackage);
+			}
+			result.add(temp);
+
+		} else {
+			//Basic Method
+			result.add(inPackage);
+			result.add(inPackage);
+		}
+
+		result.add(inRoot);
+		result.add(getOutContextExtent());
+		return result;
+
+	}
+
+	@Override
+	public IObservableValue getObservableValue() {
+		return sourceFileChooser.getObservableValue();
+	}
+
+	public List<Object> getExternalReference() {
+		URI packageURI = URI.createPlatformResourceURI(sourceFileChooser.getFilePath(), true);
+
+		try {
+			ecorePackage = (EPackage)loadEMFModel(packageURI);
+		} catch (IOException e) {
+			// nothing
+		}
+		new ArrayList<Object>();
+		List<Object> listePackage = new ArrayList<Object>();
+		if(!listePackage.contains(ecorePackage)) {
+			listePackage.add(ecorePackage);
+		}
+		TreeIterator<EObject> tree = ecorePackage.eAllContents();
+		while(tree.hasNext()) {
+			EObject obj = tree.next();
+			if(obj instanceof EStructuralFeature) {
+				EStructuralFeature feature = (EStructuralFeature)obj;
+				EClass eClass = feature.getEContainingClass();
+				if(eClass != null) {
+					EClassifier classifier = feature.getEType();
+					EPackage targetPackage = null;
+					if(classifier != null) {
+						targetPackage = classifier.getEPackage();
+					}
+					if(targetPackage != null) {
+						if(!ecorePackage.equals(targetPackage)) {
+							if(!listePackage.contains(targetPackage)) {
+								listePackage.add(targetPackage);
+							}
+
+						}
+					}
+				}
+			}
+			if(obj instanceof EClass) {
+
+				EClass eclass = (EClass)obj;
+				List<EClass> liste = eclass.getESuperTypes();
+				for(EClass item : liste) {
+					if(!listePackage.contains(item.getEPackage())) {
+						listePackage.add(item.getEPackage());
+					}
+
+				}
+			}
+
+		}
+
+		return listePackage;
+	}
+
+	public void addCheckElement(Object obj) {
+
+		if(obj instanceof EPackage) {
+			EPackage pack = (EPackage)obj;
+			listEPackages.add(pack);
+		}
+
+	}
+
+
+	@Override
+	protected List<ModelExtent> getModelExtents(int i) {
+		EPackage currentPackage = listEPackages.get(i);
+		try {
+
+			ModelExtent inPackage = new BasicModelExtent(Collections.singletonList(currentPackage));
 			PropertiesRoot root = ConfigurationManager.getInstance().getPropertiesRoot();
 			ModelExtent inRoot = new BasicModelExtent(Collections.singletonList(root));
-
 			LinkedList<ModelExtent> result = new LinkedList<ModelExtent>();
+			result.add(inPackage);
 			result.add(inPackage);
 			result.add(inRoot);
 			result.add(getOutContextExtent());
+
 			return result;
+
 		} catch (Exception ex) {
 			return null;
+
 		}
+
 	}
+
+
+
 }

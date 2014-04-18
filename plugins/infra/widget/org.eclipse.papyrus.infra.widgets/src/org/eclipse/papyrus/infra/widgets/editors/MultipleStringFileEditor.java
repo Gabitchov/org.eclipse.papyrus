@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -25,6 +26,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.widgets.Activator;
+import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.NullSelector;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
@@ -73,8 +75,8 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 		add.dispose();
 		edit.dispose();
 
-		browseFileSystem = createButton(Activator.getDefault().getImageFromPlugin(browseFileSystemIcon), "Browse file system");
-		browseWorkspace = createButton(Activator.getDefault().getImageFromPlugin(browseWorkspaceIcon), "Browse workspace");
+		browseFileSystem = createButton(Activator.getDefault().getImageFromPlugin(browseFileSystemIcon), Messages.MultipleStringFileEditor_0);
+		browseWorkspace = createButton(Activator.getDefault().getImageFromPlugin(browseWorkspaceIcon), Messages.MultipleStringFileEditor_1);
 
 		browseWorkspace.moveAbove(remove);
 		browseFileSystem.moveAbove(remove);
@@ -197,7 +199,7 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 	public void setFilters(String[] filterExtensions, String[] filterNames) {
 		if(filterExtensions.length != filterNames.length) {
 			//This is a simple warning. Only valid filters will be retained.
-			Activator.log.warn("FilterExtensions and FilterNames do not match");
+			Activator.log.warn(Messages.MultipleStringFileEditor_2);
 		}
 
 		setFilterNames(getFilterLabels(filterNames, filterExtensions));
@@ -208,7 +210,7 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 		int size = Math.min(filterNames.length, filterExtensions.length);
 		String[] filters = new String[size];
 		for(int i = 0; i < size; i++) {
-			filters[i] = filterNames[i] + " (" + filterExtensions[i] + ")";
+			filters[i] = filterNames[i] + " (" + filterExtensions[i] + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		return filters;
 	}
