@@ -904,12 +904,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	public static void reveal(Iterable<?> elementList, final CommonViewer commonViewer) {
 		ArrayList<IMatchingItem> matchingItemsToSelect = new ArrayList<IMatchingItem>();
 		// filter out non EMF objects
-		Iterable<EObject> list = Iterables.transform(Iterables.filter(elementList, EObject.class), new Function<Object, EObject>() {
-
-			public EObject apply(Object from) {
-				return (EObject)from;
-			}
-		});
+		Iterable<EObject> list = Iterables.filter(elementList, EObject.class);
 
 		for(EObject currentEObject : list) {
 			matchingItemsToSelect.add(new ModelElementItemMatchingItem(currentEObject));
