@@ -31,9 +31,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.papyrus.infra.emf.resource.IDependencyReplacementParticipant;
 import org.eclipse.papyrus.infra.emf.resource.Replacement;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -48,6 +50,7 @@ import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.internal.operations.PackageOperations;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -155,6 +158,40 @@ public class StereotypeApplicationRepairParticipant extends PackageOperations im
 		}
 
 		copier.copyReferences();
+		
+		// Preserve the identities of stereotype applications and their contents and update references not accounted for by the copier
+		// (for example, references from Notation views/styles in the diagrams)
+		for(Map.Entry<EObject, EObject> next : copier.entrySet()) {
+			EObject original = next.getKey();
+			EObject copy = next.getValue();
+
+			if(copy != null) {
+				// Update the ID, if the old ID is known
+				Resource res = original.eResource();
+				if(res instanceof XMLResource) {
+					XMLResource xml = (XMLResource)res;
+					String id = xml.getID(original);
+					if(id != null) {
+						xml.setID(copy, id);
+					}
+				}
+
+				// Replace incoming references to the old stereotypes with references to the new stereotypes
+				for(Setting setting : ImmutableList.copyOf(getNonNavigableInverseReferences(original))) {
+					EStructuralFeature ref = setting.getEStructuralFeature();
+
+					if((ref != null) && ref.isChangeable()) {
+						if(ref.isMany()) {
+							@SuppressWarnings("unchecked")
+							EList<EObject> list = ((EList<EObject>)setting.getEObject().eGet(ref));
+							list.set(list.indexOf(original), copy);
+						} else {
+							setting.set(copy);
+						}
+					}
+				}
+			}
+		}
 
 		UML2Util.destroyAll(oldStereotypeApplications);
 
