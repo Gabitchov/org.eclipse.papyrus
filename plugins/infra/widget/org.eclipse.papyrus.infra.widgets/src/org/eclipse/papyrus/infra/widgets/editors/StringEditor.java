@@ -363,20 +363,21 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 			}
 		}
 
-		if(modelProperty.getValue() != null) {
-			if(!isReadOnly() && !modelProperty.getValue().toString().equals(text.getText())) {
-				text.setBackground(EDIT);
+		if(modelProperty != null) { //Bug 433169: The widget may be used without an Observable Value (setValue + getValue)
+			if(modelProperty.getValue() != null) {
+				if(!isReadOnly() && !modelProperty.getValue().toString().equals(text.getText())) {
+					text.setBackground(EDIT);
+				} else {
+					text.setBackground(DEFAULT);
+				}
 			} else {
-				text.setBackground(DEFAULT);
-			}
-		} else {
-			if(text.getText().equals("")) {
-				text.setBackground(DEFAULT);
-			} else {
-				text.setBackground(EDIT);
+				if(text.getText().equals("")) {
+					text.setBackground(DEFAULT);
+				} else {
+					text.setBackground(EDIT);
+				}
 			}
 		}
-
 	}
 
 	@Override
