@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.papyrus.cdo.core;bundle-version="1.0.0";visibility:=
  org.eclipse.papyrus.infra.services.controlmode;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.services.resourceloading.preferences;bundle-version="1.0.0",
- org.eclipse.papyrus.junit.utils;bundle-version="1.0.0"
+ org.eclipse.papyrus.junit.utils;bundle-version="1.0.0";visibility:=reexport
 Export-Package: org.eclipse.papyrus.cdo.core.resource.tests,
  org.eclipse.papyrus.cdo.core.tests,
  org.eclipse.papyrus.cdo.core.util.tests,
