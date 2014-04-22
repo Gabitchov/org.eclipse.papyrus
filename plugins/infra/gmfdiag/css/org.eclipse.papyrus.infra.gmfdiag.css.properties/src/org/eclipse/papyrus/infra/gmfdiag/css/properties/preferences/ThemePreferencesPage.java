@@ -10,7 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.preferences;
+package org.eclipse.papyrus.infra.gmfdiag.css.properties.preferences;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -34,15 +34,16 @@ import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.WorkspaceCSSEngine;
-import org.eclipse.papyrus.infra.gmfdiag.css.factory.ThemePropertyEditorFactory;
+import org.eclipse.papyrus.infra.gmfdiag.css.preferences.ThemePreferences;
+import org.eclipse.papyrus.infra.gmfdiag.css.properties.creation.ThemePropertyEditorFactory;
+import org.eclipse.papyrus.infra.gmfdiag.css.properties.fieldeditor.IDynamicFieldEditor;
+import org.eclipse.papyrus.infra.gmfdiag.css.properties.fieldeditor.InputComboFieldEditor;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
 import org.eclipse.papyrus.infra.gmfdiag.css.theme.ThemeManager;
-import org.eclipse.papyrus.infra.gmfdiag.css.widget.IDynamicFieldEditor;
-import org.eclipse.papyrus.infra.gmfdiag.css.widget.InputComboFieldEditor;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
@@ -280,7 +281,6 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 
 		themeLabelField.addModifyListener(new ModifyListener() {
 
-			@Override
 			public void modifyText(ModifyEvent e) {
 				currentTheme.setLabel(themeLabelField.getText());
 			}
@@ -305,7 +305,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 		iconPathfield.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		iconPathfield.addModifyListener(new ModifyListener() {
 
-			@Override
+
 			public void modifyText(ModifyEvent e) {
 				currentTheme.setIcon(iconPathfield.getText());
 

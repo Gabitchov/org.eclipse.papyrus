@@ -9,7 +9,7 @@
  * Contributors:
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.dialog;
+package org.eclipse.papyrus.infra.gmfdiag.css.properties.dialog;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -257,7 +257,6 @@ public class CSSThemeEditionDialog extends Dialog {
 			 *
 			 * @param event
 			 */
-			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 
 				// Refresh content of dialog
@@ -348,7 +347,6 @@ public class CSSThemeEditionDialog extends Dialog {
 
 		themeLabelField.addModifyListener(new ModifyListener() {
 
-			@Override
 			public void modifyText(ModifyEvent e) {
 				currentTheme.setLabel(themeLabelField.getText());
 
@@ -371,7 +369,6 @@ public class CSSThemeEditionDialog extends Dialog {
 		iconPathfield.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		iconPathfield.addModifyListener(new ModifyListener() {
 
-			@Override
 			public void modifyText(ModifyEvent e) {
 				currentTheme.setIcon(iconPathfield.getText());
 
@@ -874,7 +871,6 @@ public class CSSThemeEditionDialog extends Dialog {
 		 * @param secondStyleSheet
 		 * @return
 		 */
-		@Override
 		public int compare(StyleSheet firstStyleSheet, StyleSheet secondStyleSheet) {
 
 			// Default result for comparison

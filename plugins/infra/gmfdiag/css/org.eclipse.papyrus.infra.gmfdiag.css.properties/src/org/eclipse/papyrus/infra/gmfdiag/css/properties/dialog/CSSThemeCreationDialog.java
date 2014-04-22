@@ -9,7 +9,7 @@
  * Contributors:
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.dialog;
+package org.eclipse.papyrus.infra.gmfdiag.css.properties.dialog;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -30,8 +30,8 @@ import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
@@ -175,7 +175,6 @@ public class CSSThemeCreationDialog extends Dialog {
 		// Add behavior to text field
 		themeLabelField.addModifyListener(new ModifyListener() {
 
-			@Override
 			public void modifyText(ModifyEvent e) {
 				theme.setLabel(themeLabelField.getText());
 			}
@@ -201,7 +200,6 @@ public class CSSThemeCreationDialog extends Dialog {
 		// Add behavior to text field
 		iconPathField.addModifyListener(new ModifyListener() {
 
-			@Override
 			public void modifyText(ModifyEvent e) {
 				theme.setIcon(iconPathField.getText());
 			}
@@ -212,9 +210,8 @@ public class CSSThemeCreationDialog extends Dialog {
 		Button browseButton = new Button(parent, SWT.NONE);
 		browseButton.setText(BROWSE_BUTTON_LABEL);
 
-		browseButton.addSelectionListener(new SelectionListener() {
+		browseButton.addSelectionListener(new SelectionAdapter() {
 
-			@Override
 			public void widgetSelected(SelectionEvent e) {
 
 				// Use file dialog for that user find icon
@@ -228,12 +225,6 @@ public class CSSThemeCreationDialog extends Dialog {
 
 
 
-			}
-
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-				// Nothing to do
 			}
 		});
 	}
@@ -304,7 +295,6 @@ public class CSSThemeCreationDialog extends Dialog {
 		 * @param element
 		 * @return
 		 */
-		@Override
 		public Image getImage(Object element) {
 			return null;
 		}
@@ -315,7 +305,6 @@ public class CSSThemeCreationDialog extends Dialog {
 		 * @param element
 		 * @return
 		 */
-		@Override
 		public String getText(Object element) {
 			String text = element.toString();
 

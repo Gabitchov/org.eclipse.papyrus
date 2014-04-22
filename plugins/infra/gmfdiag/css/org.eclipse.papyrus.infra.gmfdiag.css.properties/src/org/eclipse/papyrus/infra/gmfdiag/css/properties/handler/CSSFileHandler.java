@@ -10,7 +10,7 @@
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.gmfdiag.css.handler;
+package org.eclipse.papyrus.infra.gmfdiag.css.properties.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -25,9 +25,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.gmfdiag.css.dialog.CSSThemeCreationDialog;
-import org.eclipse.papyrus.infra.gmfdiag.css.dialog.CSSThemeEditionDialog;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.WorkspaceThemesHelper;
+import org.eclipse.papyrus.infra.gmfdiag.css.properties.dialog.CSSThemeCreationDialog;
+import org.eclipse.papyrus.infra.gmfdiag.css.properties.dialog.CSSThemeEditionDialog;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes;
@@ -70,7 +70,6 @@ public class CSSFileHandler extends AbstractHandler implements IHandler {
 	 * @return
 	 * @throws ExecutionException
 	 */
-	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		Theme theme = null;

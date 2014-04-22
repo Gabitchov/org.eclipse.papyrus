@@ -9,7 +9,7 @@
  * Contributors:
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.widget;
+package org.eclipse.papyrus.infra.gmfdiag.css.properties.fieldeditor;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.preference.FieldEditor;
@@ -246,11 +246,10 @@ public class InputComboFieldEditor extends FieldEditor implements IDynamicFieldE
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.css.widget.IDynamicFieldEditor#setInput(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.properties.fieldeditor.IDynamicFieldEditor#setInput(java.lang.Object)
 	 *
 	 * @param input
 	 */
-	@Override
 	public void setInput(Object input) {
 
 		if(input.getClass().equals(fEntryNamesAndValues.getClass())) {
@@ -267,11 +266,10 @@ public class InputComboFieldEditor extends FieldEditor implements IDynamicFieldE
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.css.widget.IDynamicFieldEditor#setSelection(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.properties.fieldeditor.IDynamicFieldEditor#setSelection(java.lang.String)
 	 *
 	 * @param value
 	 */
-	@Override
 	public void setSelection(String value) {
 		updateComboForValue(value);
 

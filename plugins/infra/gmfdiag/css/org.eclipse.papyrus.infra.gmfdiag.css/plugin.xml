@@ -18,15 +18,6 @@
     </styleprovider>
  </extension>
  <extension
-       point="org.eclipse.ui.preferencePages">
-    <page
-          category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
-          class="org.eclipse.papyrus.infra.gmfdiag.css.preferences.ThemePreferencesPage"
-          id="org.eclipse.papyrus.infra.gmfdiag.css.theme"
-          name="CSS Theme">
-    </page>
- </extension>
- <extension
        point="org.eclipse.core.runtime.preferences">
     <initializer
           class="org.eclipse.papyrus.infra.gmfdiag.css.preferences.ThemePreferenceInitializer">
@@ -80,93 +71,6 @@
     <postProcessor
           implementation="org.eclipse.papyrus.infra.gmfdiag.css.CssSvgPostProcessor">
     </postProcessor>
- </extension>
- <extension
-       point="org.eclipse.ui.menus">
-    <menuContribution
-          allPopups="false"
-          locationURI="popup:org.eclipse.ui.popup.any?after=additions">
-       <menu
-             id="org.eclipse.papyrus.infra.gmfdiag.css.theme.menu"
-             label="CSS Theme">
-          <visibleWhen
-                checkEnabled="true">
-             <with
-                   variable="activePartId">
-                <equals
-                      value="org.eclipse.ui.navigator.ProjectExplorer">
-                </equals>
-             </with>
-          </visibleWhen>
-       </menu>
-    </menuContribution>
-    <menuContribution
-          allPopups="false"
-          locationURI="popup:org.eclipse.papyrus.infra.gmfdiag.css.theme.menu">
-       <command
-             commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme.define"
-             style="push">
-       </command>
-       <command
-             commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme.edit"
-             style="push">
-       </command>
-    </menuContribution>
- </extension>
- <extension
-       point="org.eclipse.ui.commands">
-    <command
-          categoryId="org.eclipse.papyrus.infra.gmfdiag.css.theme.category"
-          id="org.eclipse.papyrus.infra.gmfdiag.css.theme.define"
-          name="Define theme">
-    </command>
-    <command
-          categoryId="org.eclipse.papyrus.infra.gmfdiag.css.theme.category"
-          id="org.eclipse.papyrus.infra.gmfdiag.css.theme.edit"
-          name="Edit theme">
-    </command>
-    <category
-          id="org.eclipse.papyrus.infra.gmfdiag.css.theme.category"
-          name="CSS Theme">
-    </category>
- </extension>
- <extension
-       point="org.eclipse.ui.handlers">
-    <handler
-          class="org.eclipse.papyrus.infra.gmfdiag.css.handler.CSSFileHandler"
-          commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme.define">
-       <enabledWhen>
-          <with
-                variable="selection">
-             <iterate>
-                <adapt
-                      type="org.eclipse.core.resources.IResource">
-                   <test
-                         property="org.eclipse.core.resources.extension"
-                         value="css">
-                   </test>
-                </adapt>
-             </iterate>
-          </with></enabledWhen>
-    </handler>
-    <handler
-          class="org.eclipse.papyrus.infra.gmfdiag.css.handler.CSSFileHandler"
-          commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme.edit">
-       <enabledWhen>
-          <with
-                variable="selection">
-             <iterate>
-                <adapt
-                      type="org.eclipse.core.resources.IResource">
-                   <test
-                         property="org.eclipse.core.resources.extension"
-                         value="css">
-                   </test>
-                </adapt>
-             </iterate>
-          </with>
-       </enabledWhen>
-    </handler>
  </extension>
  <extension
        point="org.eclipse.ui.propertyPages">

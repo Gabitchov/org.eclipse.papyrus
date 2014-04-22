@@ -9,7 +9,7 @@
  * Contributors:
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.widget;
+package org.eclipse.papyrus.infra.gmfdiag.css.properties.fieldeditor;
 
 
 /**
