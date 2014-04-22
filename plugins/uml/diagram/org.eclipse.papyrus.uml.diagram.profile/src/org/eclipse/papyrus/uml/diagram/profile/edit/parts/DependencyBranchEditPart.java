@@ -49,10 +49,6 @@ public class DependencyBranchEditPart extends ConnectionEditPart implements ITre
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -71,5 +67,4 @@ public class DependencyBranchEditPart extends ConnectionEditPart implements ITre
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

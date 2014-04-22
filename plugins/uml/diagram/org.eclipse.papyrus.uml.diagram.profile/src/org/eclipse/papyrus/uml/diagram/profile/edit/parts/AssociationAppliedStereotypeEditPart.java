@@ -121,8 +121,6 @@ public class AssociationAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 	/**
 	 * @generated
 	 */
@@ -153,7 +151,6 @@ public class AssociationAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 	public int getKeyPoint() {
 		return ConnectionLocator.MIDDLE;
 	}
-
 
 	/**
 	 * @generated
@@ -322,7 +319,6 @@ public class AssociationAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -409,9 +405,7 @@ public class AssociationAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -444,7 +438,6 @@ public class AssociationAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -452,7 +445,6 @@ public class AssociationAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -708,7 +700,6 @@ public class AssociationAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -738,7 +729,6 @@ public class AssociationAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -749,5 +739,4 @@ public class AssociationAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 		// Parent should assign one using setLabel() method
 		return null;
 	}
-
 }

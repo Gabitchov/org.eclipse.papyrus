@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.eclipse.papyrus</groupId>
+	<artifactId>org.eclipse.papyrus.legacy</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<properties>
+		<tycho-version>0.20.0</tycho-version>
+		<tychoExtrasVersion>0.20.0</tychoExtrasVersion>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-p2-extras-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<!-- step 1: mirror old-style update site -->
+						<id>mirror-update-sites</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>mirror</goal>
+						</goals>
+						<configuration>
+							<source>
+								<repository>
+									<url>http://jautodoc.sourceforge.net/update/</url>
+								</repository>
+								<repository>
+									<url>http://sourceforge.net/projects/eclipse-cs/files/updatesite/5.7.0/</url>
+								</repository>
+								<repository>
+									<url>http://findbugs.cs.umd.edu/eclipse/</url>
+								</repository>
+								<!-- more update sites... -->
+							</source>
+							<destination>${project.build.directory}/repository</destination>
+						</configuration>
+					</execution>
+					<execution>
+						<!-- step 3: generate the full p2 metadata for the mirrored artifacts -->
+						<id>generate-full-metadata</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>publish-features-and-bundles</goal>
+						</goals>
+						<configuration>
+							<sourceLocation>${project.build.directory}/repository</sourceLocation>
+							<compress>false</compress>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<!-- step 2: strip the p2 metadata that contains the "partial IUs" that which be used for dependency resolution in Tycho -->
+						<id>remove-incomplete-metadata</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<delete file="${project.build.directory}/repository/content.jar" />
+								<delete file="${project.build.directory}/repository/artifacts.jar" />
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

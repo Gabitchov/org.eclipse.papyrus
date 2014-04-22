@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
@@ -117,16 +118,13 @@ public class PackageEditPartCN extends NamedElementEditPart {
 		return lep;
 	}
 
-
 	/**
 	 *Papyrus codeGen
 	 *@generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
-
 
 	/**
 	 * @generated
@@ -151,15 +149,12 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			((PackageNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		if(childEditPart instanceof PackagePackageableElementCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((PackagePackageableElementCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -208,20 +203,13 @@ public class PackageEditPartCN extends NamedElementEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "Package";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 50);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -232,12 +220,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodeFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape);
-		contentPane = setupContentPane(shape);
-		return figure;
+		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 	}
 
 	/**
@@ -274,14 +257,11 @@ public class PackageEditPartCN extends NamedElementEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof NodeFigure) {
-			((NodeFigure)primaryShape).setLineWidth(width);
-		}
+		super.setLineWidth(width);
 	}
 
 	/**
@@ -299,9 +279,4 @@ public class PackageEditPartCN extends NamedElementEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(PackageNameEditPartCN.VISUAL_ID));
 	}
-
-
-
-
-
 }

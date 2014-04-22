@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -24,9 +25,9 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * An editor representing a boolean value as a combo box, with
  * two options (true / false)
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class BooleanCombo extends AbstractValueEditor {
 
@@ -34,7 +35,7 @@ public class BooleanCombo extends AbstractValueEditor {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param parent
 	 *        The Composite widget in which this editor will be displayed
 	 */
@@ -43,9 +44,9 @@ public class BooleanCombo extends AbstractValueEditor {
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param parent
 	 *        The Composite widget in which this editor will be displayed
 	 * @param style
@@ -63,6 +64,7 @@ public class BooleanCombo extends AbstractValueEditor {
 
 		viewer.setContentProvider(new EncapsulatedContentProvider(new AbstractStaticContentProvider() {
 
+			@Override
 			public Object[] getElements() {
 				return new Boolean[]{ Boolean.TRUE, Boolean.FALSE };
 			}
@@ -73,11 +75,12 @@ public class BooleanCombo extends AbstractValueEditor {
 		setWidgetObservable(ViewerProperties.singleSelection().observe(viewer));
 
 		setCommitOnFocusLost(combo);
+
 	}
 
 	/**
 	 * Creates the combo viewer
-	 * 
+	 *
 	 * @param combo
 	 *        The parent combo
 	 * @return the combo viewer.
@@ -87,9 +90,9 @@ public class BooleanCombo extends AbstractValueEditor {
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param parent
 	 *        The Composite widget in which this editor will be displayed
 	 * @param style
@@ -100,9 +103,9 @@ public class BooleanCombo extends AbstractValueEditor {
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param parent
 	 *        The Composite widget in which this editor will be displayed
 	 * @param label

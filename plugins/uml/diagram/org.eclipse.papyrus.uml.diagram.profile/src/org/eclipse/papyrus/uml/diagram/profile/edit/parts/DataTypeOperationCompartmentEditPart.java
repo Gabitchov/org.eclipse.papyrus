@@ -66,7 +66,6 @@ public class DataTypeOperationCompartmentEditPart extends ResizeableListCompartm
 		return Messages.DataTypeOperationCompartmentEditPart_title;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -81,9 +80,6 @@ public class DataTypeOperationCompartmentEditPart extends ResizeableListCompartm
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ProfileDiagramDragDropEditPolicy());
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -97,7 +93,6 @@ public class DataTypeOperationCompartmentEditPart extends ResizeableListCompartm
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
-
 		return super.getTargetEditPart(request);
 	}
 

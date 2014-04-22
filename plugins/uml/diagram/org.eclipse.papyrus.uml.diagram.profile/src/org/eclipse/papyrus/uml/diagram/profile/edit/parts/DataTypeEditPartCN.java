@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ClassifierEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
@@ -89,7 +90,6 @@ public class DataTypeEditPartCN extends ClassifierEditPart {
 		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDataTypeItemSemanticEditPolicyCN());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -121,16 +121,13 @@ public class DataTypeEditPartCN extends ClassifierEditPart {
 		return lep;
 	}
 
-
 	/**
 	 *Papyrus codeGen
 	 *@generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
-
 
 	/**
 	 * @generated
@@ -155,22 +152,18 @@ public class DataTypeEditPartCN extends ClassifierEditPart {
 			((DataTypeNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		if(childEditPart instanceof DataTypeAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((DataTypeAttributeCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-
 		if(childEditPart instanceof DataTypeOperationCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((DataTypeOperationCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -227,20 +220,13 @@ public class DataTypeEditPartCN extends ClassifierEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "DataType";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 100);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -251,12 +237,7 @@ public class DataTypeEditPartCN extends ClassifierEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodeFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape);
-		contentPane = setupContentPane(shape);
-		return figure;
+		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 	}
 
 	/**
@@ -293,14 +274,11 @@ public class DataTypeEditPartCN extends ClassifierEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof NodeFigure) {
-			((NodeFigure)primaryShape).setLineWidth(width);
-		}
+		super.setLineWidth(width);
 	}
 
 	/**
@@ -319,8 +297,6 @@ public class DataTypeEditPartCN extends ClassifierEditPart {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DataTypeNameEditPartCN.VISUAL_ID));
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -337,7 +313,4 @@ public class DataTypeEditPartCN extends ClassifierEditPart {
 		}
 		return super.getTargetEditPart(request);
 	}
-
-
-
 }

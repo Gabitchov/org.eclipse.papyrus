@@ -142,5 +142,4 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure)getFigure();
 	}
-
 }

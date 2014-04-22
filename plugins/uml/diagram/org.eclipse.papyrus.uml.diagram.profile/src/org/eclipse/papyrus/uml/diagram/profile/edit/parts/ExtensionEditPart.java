@@ -50,10 +50,6 @@ public class ExtensionEditPart extends UMLConnectionNodeEditPart implements ITre
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomExtensionItemSemanticEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -72,5 +68,4 @@ public class ExtensionEditPart extends UMLConnectionNodeEditPart implements ITre
 	public ExtensionFigure getPrimaryShape() {
 		return (ExtensionFigure)getFigure();
 	}
-
 }

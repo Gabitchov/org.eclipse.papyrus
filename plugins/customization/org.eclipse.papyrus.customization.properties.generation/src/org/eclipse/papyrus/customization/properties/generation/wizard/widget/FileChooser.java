@@ -16,8 +16,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
+import org.eclipse.jface.databinding.swt.IWidgetValueProperty;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.customization.properties.generation.messages.Messages;
 import org.eclipse.swt.SWT;
@@ -144,5 +147,14 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 	public void widgetDefaultSelected(SelectionEvent e) {
 		//Nothing
 	}
+	
+	public IObservableValue getObservableValue(){
+		 IWidgetValueProperty prop = WidgetProperties.text(SWT.Modify);
+		 return prop.observeDelayed(600, text);
+	}
 
+	public void setText(String s){
+		text.setText(s);
+		
+	}
 }

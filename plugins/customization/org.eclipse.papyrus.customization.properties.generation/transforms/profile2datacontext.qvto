@@ -7,7 +7,7 @@ modeltype Constraints uses "http://www.eclipse.org/papyrus/constraints/0.9";
 transformation stereotype2datacontext(in profile : UML, out context : PropertyContext, in uml : PropertyContext, in pRoot : PRoot);
 
 main() {
-	profile.rootObjects()[Profile]->map toContext();
+	profile.rootObjects()[Profile].map toContext();
 }
 
 ----- Context -----
@@ -16,7 +16,7 @@ mapping Package::toContext() : Context{
 	name := self.name;
 	dataContexts := self.map toDCRoot();
 	dependencies := uml.rootObjects()[Context];
-	self.getClassifiers()->map toDCElement();
+	//self.getClassifiers().map toDCElement();
 }
 
 query Package::getRootPackage() : Package {
@@ -46,12 +46,10 @@ mapping Package::toDCPackage() : DataContextPackage disjuncts
 	
 abstract mapping Package::toAbstractDCPackage() : DataContextPackage {
 	name := self.name;
-	
-	var mappedElements := self.getClassifiers().map toDCElement(); 
-	
-	elements := mappedElements.element
+	var mappedElements := self.getClassifiers().map toDCElement().element; 
+	elements := mappedElements
 		->union(
-			self.packagedElement->select(e | e.oclIsKindOf(Package)).oclAsType(Package)->map toDataContextPackage()
+			self.packagedElement->select(e | e.oclIsKindOf(Package)).oclAsType(Package).map toDataContextPackage()
 		)
 	;
 }
@@ -90,8 +88,7 @@ mapping Classifier::toDCElement() : element : DataContextElement, viewSingle : V
 	
 abstract mapping Classifier::toAbstractDCElement() : element : DataContextElement, viewSingle : View, viewMultiple : View{
 	element.name := self.name;
-	element.package := self.package.map toDCPackage();
-
+	
 	viewSingle.name := 'Single '+self.name;
 	viewSingle.automaticContext := true;
 	viewSingle.datacontexts := element;
@@ -108,19 +105,24 @@ abstract mapping Classifier::toAbstractDCElement() : element : DataContextElemen
 }
 
 mapping Stereotype::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View inherits Classifier::toAbstractDCElement{
-	element.properties := self.attribute->select(e | e.isAttribute(self))->map toProperty();
-	element.supertypes := self.generalization.target->select(e | e.isView()).oclAsType(Classifier)->map toDCElement().element->union(
-		self.ownedAttribute->select(e | not e.isAttribute(self)).getDataContextElement()->asSet()
-	);
+
+	element.properties := self.attribute->select(e | e.isAttribute(self)).map toProperty();
+	var superClassifiers := self.generalization.target->select(e | e.isView()).oclAsType(Classifier);
+	var tempAtt := self.ownedAttribute->select(e | not e.isAttribute(self)).getDataContextElement()->asSet();
+	if not superClassifiers->isEmpty() then 
+   
+ 		element.supertypes :=  self.generalization.target->select(e | e.isView()).oclAsType(Classifier).late resolve(DataContextElement)
+	 else 
+	 	element.supertypes := superClassifiers.map toDCElement().element->union(tempAtt)->asSet()
+	endif;
+	
 }
 
 mapping DataType::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View inherits Classifier::toAbstractDCElement when {
 	self.oclIsTypeOf(DataType) -- Exclude primitive types from generation
 }{
-	element.properties := self.attribute->map toProperty();
-	element.supertypes := self.generalization.target->select(e | e.isView()).oclAsType(Classifier)->map toDCElement().element->union(
-		self.ownedAttribute->getDataContextElement()->asSet()
-	);
+	element.properties := self.attribute.map toProperty();
+	element.supertypes := self.generalization.target->select(e | e.isView()).oclAsType(Classifier).map toDCElement().element
 }
 
 mapping Classifier::toConstraint(view : View) : SimpleConstraint{
@@ -168,7 +170,8 @@ query UML::Type::getType() : PropertyEnvironment::Type {
 			case (self.name = "String") type := PropertyEnvironment::Type::String; 
 			case (self.name = "Integer") type := PropertyEnvironment::Type::Integer;
 			case (self.name = "Boolean") type := PropertyEnvironment::Type::Boolean;
-			case (self.name = "Real") type := PropertyEnvironment::Type::String;
+			case (self.name = "Real") type := PropertyEnvironment::Type::Double;
+			case (self.name = "Double") type := PropertyEnvironment::Type::Double;
 		};
 		case (self.oclIsTypeOf(DataType)) type := PropertyEnvironment::Type::Reference;
 	};

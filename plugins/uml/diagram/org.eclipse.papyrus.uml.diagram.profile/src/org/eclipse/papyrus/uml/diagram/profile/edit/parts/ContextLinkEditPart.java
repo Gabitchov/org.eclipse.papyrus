@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.custom.figure.CustomContextLinkFigure;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.edit.policies.ContextLinkItemSemanticEditPolicy;
 
@@ -50,10 +51,6 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -63,37 +60,13 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new ContextLinkDescriptor();
+		return new CustomContextLinkFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ContextLinkDescriptor getPrimaryShape() {
-		return (ContextLinkDescriptor)getFigure();
+	public CustomContextLinkFigure getPrimaryShape() {
+		return (CustomContextLinkFigure)getFigure();
 	}
-
-
-	/**
-	 * @generated
-	 */
-	public class ContextLinkDescriptor extends PolylineConnectionEx {
-
-
-
-
-		/**
-		 * @generated
-		 */
-		public ContextLinkDescriptor() {
-			this.setLineStyle(Graphics.LINE_DASHDOT);
-
-		}
-
-
-
-
-	}
-
-
 }

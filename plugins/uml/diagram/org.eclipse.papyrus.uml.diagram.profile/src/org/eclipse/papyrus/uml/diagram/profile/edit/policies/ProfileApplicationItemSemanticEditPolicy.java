@@ -47,7 +47,6 @@ public class ProfileApplicationItemSemanticEditPolicy extends UMLBaseItemSemanti
 		super(UMLElementTypes.ProfileApplication_1045);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -61,7 +60,6 @@ public class ProfileApplicationItemSemanticEditPolicy extends UMLBaseItemSemanti
 		return getGEFWrapper(cmd.reduce());
 		//return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 	}
-
 
 	/**
 	 * @generated
@@ -147,5 +145,4 @@ public class ProfileApplicationItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

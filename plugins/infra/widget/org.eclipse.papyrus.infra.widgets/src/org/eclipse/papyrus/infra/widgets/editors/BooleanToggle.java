@@ -8,14 +8,20 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.fieldassist.ControlDecoration;
+import org.eclipse.jface.fieldassist.FieldDecoration;
+import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
@@ -29,6 +35,7 @@ import org.eclipse.swt.widgets.Composite;
 public class BooleanToggle extends AbstractValueEditor {
 
 	private Button toggleButton;
+	private ControlDecoration controlDecoration;
 
 	private BooleanToggle(Composite parent, int style, String label, Image image, String text) {
 		super(parent, SWT.NONE, label);
@@ -36,6 +43,9 @@ public class BooleanToggle extends AbstractValueEditor {
 		toggleButton = factory.createButton(this, null, style | SWT.TOGGLE);
 		setWidgetObservable(WidgetProperties.selection().observe(toggleButton));
 		setCommitOnFocusLost(toggleButton);
+		GridData gridData = new GridData();
+		toggleButton.setLayoutData(gridData);
+
 		toggleButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
@@ -49,6 +59,9 @@ public class BooleanToggle extends AbstractValueEditor {
 
 		setText(text);
 		setImage(image);
+		gridData.horizontalIndent = FieldDecorationRegistry.getDefault().getMaximumDecorationWidth();
+		
+		controlDecoration = new ControlDecoration(toggleButton, SWT.TOP | SWT.LEFT );
 	}
 
 	public BooleanToggle(Composite parent, int style, String label, String text) {
@@ -125,6 +138,41 @@ public class BooleanToggle extends AbstractValueEditor {
 	 */
 	public void setValue(boolean isActive) {
 		toggleButton.setSelection(isActive);
+	}
+
+	@Override
+	public void updateStatus(IStatus status) {
+		// nothing
+		switch (status.getSeverity()) {
+		case IStatus.OK:
+			controlDecoration.hide();
+			break;
+		case IStatus.WARNING:
+			FieldDecoration warning = FieldDecorationRegistry.getDefault()
+					.getFieldDecoration(FieldDecorationRegistry.DEC_WARNING);
+			controlDecoration.setImage(warning.getImage());
+			controlDecoration.showHoverText(status.getMessage());
+			controlDecoration.setDescriptionText(status.getMessage());
+			controlDecoration.show();
+			break;
+		case IStatus.ERROR:
+			FieldDecoration error = FieldDecorationRegistry.getDefault()
+					.getFieldDecoration(FieldDecorationRegistry.DEC_ERROR);
+			controlDecoration.setImage(error.getImage());
+			controlDecoration.showHoverText(status.getMessage());
+			controlDecoration.setDescriptionText(status.getMessage());
+			controlDecoration.show();
+			break;
+		default:
+			controlDecoration.hide();
+			break;
+}
+	}
+
+	@Override
+	public void changeColorField() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

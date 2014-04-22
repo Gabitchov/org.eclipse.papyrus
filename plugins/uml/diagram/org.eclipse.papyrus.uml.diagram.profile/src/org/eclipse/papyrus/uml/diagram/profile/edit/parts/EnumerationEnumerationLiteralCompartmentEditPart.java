@@ -66,7 +66,6 @@ public class EnumerationEnumerationLiteralCompartmentEditPart extends Resizeable
 		return Messages.EnumerationEnumerationLiteralCompartmentEditPart_title;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -81,9 +80,6 @@ public class EnumerationEnumerationLiteralCompartmentEditPart extends Resizeable
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ProfileDiagramDragDropEditPolicy());
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -97,7 +93,6 @@ public class EnumerationEnumerationLiteralCompartmentEditPart extends Resizeable
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
-
 		return super.getTargetEditPart(request);
 	}
 

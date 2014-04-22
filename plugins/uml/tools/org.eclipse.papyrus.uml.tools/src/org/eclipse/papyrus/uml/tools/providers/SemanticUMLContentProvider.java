@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 410346
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.providers;
 
@@ -41,7 +41,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 
 /**
  * A semantic Hierarchic Content Provider for UML
- * 
+ *
  * @author Camille Letavernier
  */
 public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
@@ -149,6 +149,10 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 	}
 
 	protected static boolean isUMLResource(Resource resource) {
+		if(resource == null) {
+			return false;
+		}
+
 		if(resource instanceof UMLResource) {
 			return true;
 		}
@@ -193,7 +197,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 	/**
 	 * This method should return either the StereotypeApplication (For Sto - Sto associations),
 	 * or the UML Element (For Sto - UML associations)
-	 * 
+	 *
 	 * This depends on the wanted metaclass.
 	 */
 	//TODO : In some cases, we may have a filter based on both a UML Metaclass and a Stereotype
@@ -265,7 +269,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 			root = null;
 			roots = null;
 		}
-		
+
 		if(resourceSet != null) {
 			resourceSetListener.setTarget(resourceSet);
 			this.root = resourceSet;
@@ -275,7 +279,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 	@Override
 	public void dispose() {
-		if (root != null) {
+		if(root != null) {
 			resourceSetListener.unsetTarget(root);
 		}
 		root = null;

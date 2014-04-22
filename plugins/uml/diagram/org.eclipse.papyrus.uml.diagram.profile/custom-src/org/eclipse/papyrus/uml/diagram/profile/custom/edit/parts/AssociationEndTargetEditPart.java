@@ -49,6 +49,7 @@ public class AssociationEndTargetEditPart extends AssociationRoleTargetEditPart 
 		return AssociationEndSourceLabelHelper.getInstance().getUMLElement(this);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class key) {
 		if(key == IPropertySource.class) {

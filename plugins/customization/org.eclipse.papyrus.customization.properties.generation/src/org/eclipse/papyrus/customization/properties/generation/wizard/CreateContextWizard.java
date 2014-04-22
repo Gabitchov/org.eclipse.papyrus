@@ -58,6 +58,8 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 	protected CreateContextMainPage mainPage;
 
 	protected GeneratorPage generatorPage;
+	
+	protected SelectOutputPage selectOutputPage;
 
 	//protected LayoutPage layout;
 
@@ -168,7 +170,6 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 
 						try {
 							currentContext.eResource().save(saveOptions);
-
 							monitor.worked(1);
 							for(Tab tab : currentContext.getTabs()) {
 								for(Section section : tab.getSections()) {
@@ -295,6 +296,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		addPage(mainPage = new CreateContextMainPage());
 		addPage(generatorPage = new GeneratorPage());
+		addPage(selectOutputPage = new SelectOutputPage());
 		addPage(selectFieldsPage = new SelectFieldsPage());
 		//addPage(layout = new LayoutPage());
 
@@ -305,6 +307,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 	protected void setGenerator(IGenerator generator) {
 		this.generator = generator;
 		generatorPage.setGenerator(generator);
+		generatorPage.doBinding();
 	}
 
 	protected void setContexts(List<Context> contexts) {

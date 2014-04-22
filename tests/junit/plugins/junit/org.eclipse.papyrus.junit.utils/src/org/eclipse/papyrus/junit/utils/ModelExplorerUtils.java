@@ -38,6 +38,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
@@ -86,8 +87,8 @@ public class ModelExplorerUtils {
 	public static void setSelectionInTheModelexplorer(final ModelExplorerView view, List<?> elements) {
 		view.revealSemanticElement(elements);
 		final List<?> currentSelection = getCurrentSelectionInTheModelExplorer();
-		Assert.assertTrue("The current selection is not the wanted selection", elements.containsAll(currentSelection));
-		Assert.assertTrue("The current selection is not the wanted selection", currentSelection.containsAll(elements));
+		Assert.assertTrue("The current selection is not the wanted selection", elements.containsAll(currentSelection)); //$NON-NLS-1$
+		Assert.assertTrue("The current selection is not the wanted selection", currentSelection.containsAll(elements)); //$NON-NLS-1$
 	}
 
 	/**
@@ -97,18 +98,20 @@ public class ModelExplorerUtils {
 	 *         //TODO : should be moved in the ModelExplorer
 	 */
 	public static List<?> getCurrentSelectionInTheModelExplorer() {
-		final IStructuredSelection currentSelection = (IStructuredSelection)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection(ModelExplorerViewId);
 		final List<Object> selection = new ArrayList<Object>();
-		final Iterator<?> iter = currentSelection.iterator();
-		while(iter.hasNext()) {
-			final Object current = iter.next();
-			EObject eObject = EMFHelper.getEObject(current);
-			if(eObject != null) {
-				selection.add(eObject);
-			} else {
-				selection.add(current);
-			}
-
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if (activeWorkbenchWindow!=null){
+			final IStructuredSelection currentSelection = (IStructuredSelection)activeWorkbenchWindow.getSelectionService().getSelection(ModelExplorerViewId);
+			final Iterator<?> iter = currentSelection.iterator();
+			while(iter.hasNext()) {
+				final Object current = iter.next();
+				EObject eObject = EMFHelper.getEObject(current);
+				if(eObject != null) {
+					selection.add(eObject);
+				} else {
+					selection.add(current);
+				}
+			}			
 		}
 		return selection;
 	}
@@ -195,7 +198,7 @@ public class ModelExplorerUtils {
 				IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				IEditorPart activeEditor = activePage.getActiveEditor();
 				if(currentPapyrusEditor != activeEditor) {
-					setStatus(new Status(IStatus.ERROR, bundelID, "The current active editor is not the wanted Papyrus Editor"));
+					setStatus(new Status(IStatus.ERROR, bundelID, "The current active editor is not the wanted Papyrus Editor")); //$NON-NLS-1$
 				}
 
 				setResult(currentPapyrusEditor.getActiveEditor());

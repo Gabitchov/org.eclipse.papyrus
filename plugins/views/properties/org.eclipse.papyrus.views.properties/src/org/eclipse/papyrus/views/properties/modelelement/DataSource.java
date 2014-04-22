@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.modelelement;
 
@@ -19,6 +20,7 @@ import java.util.Set;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
@@ -343,5 +345,17 @@ public class DataSource implements IChangeListener {
 			}
 		}
 		elements.clear();
+	}
+	/**
+	 * return the IValidator for a property path
+	 * @param propertyPath
+	 * @return
+	 */
+	public IValidator getValidator(String propertyPath){
+		ModelElement element = getModelElement(propertyPath);
+		if(element == null) {
+			return null;
+		}
+		return element.getValidator(getLocalPropertyPath(propertyPath));		
 	}
 }

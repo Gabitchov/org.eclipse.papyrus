@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -16,7 +17,11 @@ import java.util.Map;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.SelectObservableValue;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.fieldassist.ControlDecoration;
+import org.eclipse.jface.fieldassist.FieldDecoration;
+import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
@@ -36,9 +41,9 @@ import org.eclipse.swt.widgets.Control;
  * EnumCombo.
  * This Editor needs a ContentProvider describing the Enumerated values,
  * and an optional label provider.
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  * @see EnumCombo
  */
 public class EnumRadio extends AbstractValueEditor {
@@ -53,6 +58,8 @@ public class EnumRadio extends AbstractValueEditor {
 
 	protected int numColumns = -1;
 
+	private ControlDecoration controlDecoration;
+
 	public EnumRadio(Composite parent, int style) {
 		this(parent, SWT.NONE, null);
 	}
@@ -60,20 +67,23 @@ public class EnumRadio extends AbstractValueEditor {
 	public EnumRadio(Composite parent, int style, String label) {
 		super(parent, style, label);
 		buttonsArea = factory.createComposite(this);
-		buttonsArea.setLayoutData(getDefaultLayoutData());
+		GridData gridData = getDefaultLayoutData();
+		buttonsArea.setLayoutData(gridData);
 		GridLayout layout = new GridLayout(1, true);
-
 		layout.marginWidth = 0;
 		layout.marginHeight = 0;
-
 		buttonsArea.setLayout(layout);
 		factory.createCLabel(buttonsArea, Messages.EnumRadio_NoValue);
+		controlDecoration = new ControlDecoration(buttonsArea, SWT.TOP | SWT.LEFT);
+		gridData.horizontalIndent = FieldDecorationRegistry.getDefault().getMaximumDecorationWidth();
+
 	}
+
 
 	/**
 	 * Sets the content provider for this editor. The Content provider should
 	 * specify the values that can be set for this property
-	 * 
+	 *
 	 * @param contentProvider
 	 *        The Content provider returning the available values for this editor
 	 * @param labelProvider
@@ -121,7 +131,7 @@ public class EnumRadio extends AbstractValueEditor {
 
 	/**
 	 * Sets the max number of elements per line for this editor
-	 * 
+	 *
 	 * @param numColumns
 	 *        The max number of elements per line. May be -1 if there should
 	 *        be a single line of elements
@@ -213,7 +223,7 @@ public class EnumRadio extends AbstractValueEditor {
 	 * Use a Map instead of content providers to define the selectable elements
 	 * The keys are the semantic objects (contentProvider), and the values are
 	 * the labels (labelProvider)
-	 * 
+	 *
 	 * @param objectsAndLabels
 	 */
 	public void setEnumValues(Map<Object, String> objectsAndLabels) {
@@ -221,4 +231,31 @@ public class EnumRadio extends AbstractValueEditor {
 		LabelProvider labelProvider = new MapLabelProvider(objectsAndLabels);
 		setProviders(provider, labelProvider);
 	}
+
+	@Override
+	public void updateStatus(IStatus status) {
+		switch(status.getSeverity()) {
+		case IStatus.OK:
+			controlDecoration.hide();
+			break;
+		case IStatus.WARNING:
+			FieldDecoration warning = FieldDecorationRegistry.getDefault().getFieldDecoration(FieldDecorationRegistry.DEC_WARNING);
+			controlDecoration.setImage(warning.getImage());
+			controlDecoration.showHoverText(status.getMessage());
+			controlDecoration.setDescriptionText(status.getMessage());
+			controlDecoration.show();
+			break;
+		case IStatus.ERROR:
+			FieldDecoration error = FieldDecorationRegistry.getDefault().getFieldDecoration(FieldDecorationRegistry.DEC_ERROR);
+			controlDecoration.setImage(error.getImage());
+			controlDecoration.showHoverText(status.getMessage());
+			controlDecoration.setDescriptionText(status.getMessage());
+			controlDecoration.show();
+			break;
+		default:
+			controlDecoration.hide();
+			break;
+		}
+	}
+
 }

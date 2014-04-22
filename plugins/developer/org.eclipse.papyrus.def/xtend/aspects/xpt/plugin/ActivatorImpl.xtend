@@ -42,7 +42,6 @@ import xpt.Common
 		«providersAccessMethods(it)»
 		«logError(it)»
 		«logInfo(it)»
-		«debug(it)»
 		«additions(it)»
 	}
 '''

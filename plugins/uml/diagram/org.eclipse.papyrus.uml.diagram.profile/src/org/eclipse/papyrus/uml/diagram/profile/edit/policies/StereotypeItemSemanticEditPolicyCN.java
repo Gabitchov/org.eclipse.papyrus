@@ -87,8 +87,6 @@ public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 		super(UMLElementTypes.Stereotype_1023);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -125,11 +123,6 @@ public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ClassPropertyEditPart.VISUAL_ID:
-
-
-
-
-
 						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -147,11 +140,6 @@ public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ClassOperationEditPart.VISUAL_ID:
-
-
-
-
-
 						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -167,8 +155,6 @@ public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 			}
 		}
 	}
-
-
 
 	/**
 	 * @generated
@@ -386,5 +372,4 @@ public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

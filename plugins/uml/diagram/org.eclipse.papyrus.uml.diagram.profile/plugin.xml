@@ -95,8 +95,18 @@
 					</entry>
 				<entry
 				      defineOnly="true"
+				      description="Create a new Class"
+				      id="createClass6CreationTool"
+				      kind="tool"
+				      label="Class"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
 				      description="Import a new Metaclass"
-				      id="createImportMetaclass6CreationTool"
+				      id="createImportMetaclass7CreationTool"
 				      kind="tool"
 				      label="Import Metaclass"
 				      large_icon="/icons/Metaclass.gif"
@@ -106,7 +116,7 @@
 				<entry
 				      defineOnly="true"
 				      description="Create new Enumeration"
-				      id="createEnumeration7CreationTool"
+				      id="createEnumeration8CreationTool"
 				      kind="tool"
 				      label="Enumeration"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
@@ -116,7 +126,7 @@
 				<entry
 				      defineOnly="true"
 				      description="Create new DataType"
-				      id="createDataType8CreationTool"
+				      id="createDataType9CreationTool"
 				      kind="tool"
 				      label="DataType"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
@@ -126,7 +136,7 @@
 				<entry
 				      defineOnly="true"
 				      description="Create new PrimitiveType"
-				      id="createPrimitiveType9CreationTool"
+				      id="createPrimitiveType10CreationTool"
 				      kind="tool"
 				      label="PrimitiveType"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
@@ -136,7 +146,7 @@
 				<entry
 				      defineOnly="true"
 				      description="Add new property"
-				      id="createProperty10CreationTool"
+				      id="createProperty11CreationTool"
 				      kind="tool"
 				      label="Property"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
@@ -146,7 +156,7 @@
 				<entry
 				      defineOnly="true"
 				      description="Add new operation"
-				      id="createOperation11CreationTool"
+				      id="createOperation12CreationTool"
 				      kind="tool"
 				      label="Operation"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif"
@@ -156,7 +166,7 @@
 				<entry
 				      defineOnly="true"
 				      description="Add new EnumerationLiteral"
-				      id="createEnumerationLiteral12CreationTool"
+				      id="createEnumerationLiteral13CreationTool"
 				      kind="tool"
 				      label="EnumerationLiteral"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif"
@@ -277,31 +287,35 @@
 		        path="/createNodes1Group">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createImportMetaclass6CreationTool"
+		        id="createClass6CreationTool"
 		        path="/createNodes1Group">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createEnumeration7CreationTool"
+		        id="createImportMetaclass7CreationTool"
 		        path="/createNodes1Group">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createDataType8CreationTool"
+		        id="createEnumeration8CreationTool"
 		        path="/createNodes1Group">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createPrimitiveType9CreationTool"
+		        id="createDataType9CreationTool"
 		        path="/createNodes1Group">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createProperty10CreationTool"
+		        id="createPrimitiveType10CreationTool"
 		        path="/createNodes1Group">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createOperation11CreationTool"
+		        id="createProperty11CreationTool"
 		        path="/createNodes1Group">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createEnumerationLiteral12CreationTool"
+		        id="createOperation12CreationTool"
+		        path="/createNodes1Group">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="createEnumerationLiteral13CreationTool"
 		        path="/createNodes1Group">
 		  </predefinedEntry>
 		<entry
@@ -360,7 +374,7 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.profile.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLProfileDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2015,1026,1031,1002,1014,2005,1030,2007,2006,2009,2010,2016,3026,3019,1037,3018,3002,3020,1023,3028,1007,1027,1024,1012,1028,3025,3027"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2015,1026,2008,1031,1002,1014,2005,1030,2007,2006,2009,2010,2016,3026,3019,1037,3018,3002,3020,1023,3010,3028,1007,1027,1024,1012,1028,3025,3027"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="1013,4001,1045,4019,4002,4008,4018,1064,1065,1022,4014,8500"/>
       </viewProvider>
    </extension>
@@ -373,16 +387,16 @@
             <method name="getType()" value="PapyrusUMLProfileDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2014,2015,1026,1031,1002,1014,2005,1030,2007,2006,2009,2010,2016,3026,3019,1037,3018,3002,3020,1023,3028,1007,1027,1024,1012,1028,3025,3027"/>
+            <method name="getType()" value="2014,2015,1026,2008,1031,1002,1014,2005,1030,2007,2006,2009,2010,2016,3026,3019,1037,3018,3002,3020,1023,3010,3028,1007,1027,1024,1012,1028,3025,3027"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="1013,4001,1045,4019,4002,4008,4018,1064,1065,1022,4014,8500"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="1,1034,1084,3,1015,5063,5020,1047,5026,5023,5032,5035,2,5058,1046,5062,1008,1056,1050,1010,1059,5064,5055,5061"/>
+            <method name="getType()" value="1,1034,5029,1084,3,1015,5063,5020,1047,5026,5023,5032,5035,2,5058,1046,5014,5062,1008,1056,1050,1010,1059,5064,5055,5061"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="1005,11,1042,1051,1071,1052,1019,1053,1057,1058,1062,1063,1067,1069,1068,1070"/>
+            <method name="getType()" value="1005,11,1042,1051,1071,1052,1019,1053,1057,1058,1062,1063,1067,1069,1068,1070,7017,7011,7018,7012"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -489,6 +503,16 @@
                eclass="Stereotype"
                edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.StereotypeEditHelper">
             <param name="semanticHint" value="1026"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.profile.Class_2008"
+               name="%metatype.name.Class_2008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Class"
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.ClassEditHelper">
+            <param name="semanticHint" value="2008"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
@@ -658,6 +682,15 @@
                edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.StereotypeEditHelper">
             <param name="semanticHint" value="1023"/>
          </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.profile.Class_3010"
+               name="%metatype.name.Class_3010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.diagram.profile.Class_2008"/>
+            <param name="semanticHint" value="3010"/>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
@@ -864,6 +897,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Dependency_2014"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Association_2015"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Stereotype_1026"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Class_2008"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Metaclass_1031"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Comment_1002"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Constraint_1014"/>
@@ -881,6 +915,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.ClassProperty_3002"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.ClassOperation_3020"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Stereotype_1023"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Class_3010"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Metaclass_3028"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.CommentCN_1007"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Model_1027"/>
@@ -1180,7 +1215,8 @@
        label="Profile">
 	</diagramCategory>      
 </extension>
-<extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+
+<extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
       <ParserProvider class="org.eclipse.papyrus.uml.diagram.profile.providers.UMLParserProvider">
          <Priority name="Lowest"/>

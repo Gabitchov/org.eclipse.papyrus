@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -45,12 +45,12 @@ public class StringFileSelectorEMF extends StringFileSelector {
 		notifyChange();
 	}
 
-	@Override
+	//	@Override
 	protected IFile getIFile(String path) {
 		return EMFFileUtil.getIFile(path);
 	}
 
-	@Override
+	//	@Override
 	protected File getFile(String path) {
 		return EMFFileUtil.getFile(path);
 	}

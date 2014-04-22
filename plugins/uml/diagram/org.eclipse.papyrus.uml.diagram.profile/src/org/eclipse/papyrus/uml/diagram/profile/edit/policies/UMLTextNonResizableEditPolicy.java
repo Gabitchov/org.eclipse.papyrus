@@ -205,7 +205,6 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
-
 	public void refreshFeedback() {
 		refreshSelectionFeedback();
 		refreshFocusFeedback();
@@ -235,5 +234,4 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 		moveHandle.setDragTracker(new DragEditPartsTrackerEx(getHost()));
 		return Collections.singletonList(moveHandle);
 	}
-
 }

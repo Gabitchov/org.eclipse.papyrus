@@ -67,7 +67,31 @@ public class Messages extends NLS {
 
 	public static String SelectFieldsPage_title;
 
+	public static String SelectOutputPage_0;
+
+	public static String SelectOutputPage_1;
+
+	public static String SelectOutputPage_2;
+
+	public static String SelectOutputPage_3;
+
+	public static String SelectOutputPage_4;
+
+	public static String SourceValidator_2;
+
+	public static String SourceValidator_4;
+
+	public static String SourceValidator_5;
+
+	public static String SourceValidator_6;
+
+	public static String SourceValidator_7;
+
 	public static String FileChooser_browseWorkspace;
+
+	public static String TargetValidator_2;
+
+	public static String TargetValidator_3;
 
 	public static String TernaryButton_defaultFalse;
 

@@ -31,6 +31,12 @@ public class Messages extends NLS {
 
 	public static String UnlimitedNaturalInputValidator_NotAnUnlimitedNaturalMessage;
 
+	public static String MultipleStringFileEditor_0;
+
+	public static String MultipleStringFileEditor_1;
+
+	public static String MultipleStringFileEditor_2;
+
 	/** The Multiple value editor_ add elements. */
 	public static String MultipleValueEditor_AddElements;
 
@@ -65,6 +71,10 @@ public class Messages extends NLS {
 	/** The Multiple value selector dialog_ remove all elements. */
 	public static String MultipleValueSelectorDialog_RemoveAllElements;
 
+	public static String ReferenceDialog_0;
+
+	public static String ReferenceDialog_1;
+
 	public static String ReferenceDialog_CreateANewObject;
 
 	public static String ReferenceDialog_editOperation;
@@ -97,7 +107,11 @@ public class Messages extends NLS {
 
 	public static String IntegerMask_ErrorTooManyValues;
 
+	public static String ProviderBasedBrowseStrategy_0;
+
 	public static String StringEditionFactory_EnterANewValue;
+
+	public static String StringFileSelector_0;
 
 	public static String StringFileSelector_Browse;
 

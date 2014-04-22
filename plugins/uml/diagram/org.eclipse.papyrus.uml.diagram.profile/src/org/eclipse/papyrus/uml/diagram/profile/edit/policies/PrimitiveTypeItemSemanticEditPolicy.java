@@ -74,8 +74,6 @@ public class PrimitiveTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.PrimitiveType_2009);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -97,8 +95,6 @@ public class PrimitiveTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 
 	/**
 	 * @generated
@@ -305,5 +301,4 @@ public class PrimitiveTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

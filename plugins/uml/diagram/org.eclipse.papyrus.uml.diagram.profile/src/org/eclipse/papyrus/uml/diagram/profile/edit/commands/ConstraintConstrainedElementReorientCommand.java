@@ -158,5 +158,4 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	protected Element getNewTarget() {
 		return (Element)newEnd;
 	}
-
 }

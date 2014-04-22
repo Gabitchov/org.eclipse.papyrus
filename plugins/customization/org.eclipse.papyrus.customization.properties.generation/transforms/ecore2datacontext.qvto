@@ -4,15 +4,17 @@ modeltype PropertyEnvironment uses "http://www.eclipse.org/papyrus/properties/en
 modeltype PRoot uses "http://www.eclipse.org/papyrus/properties/root";
 modeltype Constraints uses "http://www.eclipse.org/papyrus/constraints/0.9";
 
-transformation ecore2datacontext(in ecore : Ecore, in pRoot : PRoot, out context : PropertyContext);
+transformation ecore2datacontext(in ecore : Ecore,in list: Ecore,in pRoot : PRoot, out context : PropertyContext);
 
 main() {
 	ecore.rootObjects()[EPackage]->map toContext();
 }
 
 mapping EPackage::toContext() : c: Context, root:DataContextRoot when {
-	self.isMainPackage() //Only transform source EPackages ; not their dependencies
+	//self.isMainPackage() //Only transform source EPackages ; not their dependencies
+self.isSelected() 
 }{
+	log("Package " + self.name);
 	c.name := self.name;
 	c.dataContexts := root;
 	c.views := self.eClassifiers->select(e | e.oclIsKindOf(EClass))->map toDataContextElement().viewSingle
@@ -57,8 +59,10 @@ abstract mapping EClassifier::toDataContextElement() : element : DataContextElem
 
 mapping EClass::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View  inherits EClassifier::toDataContextElement 
 when {
-	self.ePackage.isMainPackage() //Only transform Classifiers from source EPackages ; not their dependencies
-}{
+	self.ePackage.isSelected() 
+}
+{
+
 	element.properties := self.eStructuralFeatures->map toProperty(); 
 	element.supertypes := self.eSuperTypes.map toDataContextElement().element;
 
@@ -89,6 +93,12 @@ query EPackage::isMainPackage() : Boolean {
 	endif;
 }
 
+query EPackage::isSelected() : Boolean {
+ 	
+ 	return if (list.objectsOfType(EPackage)->includes(self.getRootPackage())) then  true
+	else false
+	endif;
+}
 mapping EClass::toConstraint(view : View) : SimpleConstraint {
 	name := "is" + view.name.replace(' ', '');
 	display := view;

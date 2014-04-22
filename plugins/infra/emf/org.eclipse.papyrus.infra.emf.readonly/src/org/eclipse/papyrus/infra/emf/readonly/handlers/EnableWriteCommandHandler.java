@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
 import org.eclipse.papyrus.infra.onefile.utils.OneFileUtils;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 public class EnableWriteCommandHandler extends AbstractHandler {
@@ -62,10 +63,13 @@ public class EnableWriteCommandHandler extends AbstractHandler {
 	}
 
 	protected EObject getSelectedElement() {
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(selection instanceof IStructuredSelection) {
-			Object obj = ((IStructuredSelection)selection).getFirstElement();
-			return resolveSemanticObject(obj);
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if (activeWorkbenchWindow!=null){
+			ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
+			if(selection instanceof IStructuredSelection) {
+				Object obj = ((IStructuredSelection)selection).getFirstElement();
+				return resolveSemanticObject(obj);
+			}			
 		}
 		return null;
 	}

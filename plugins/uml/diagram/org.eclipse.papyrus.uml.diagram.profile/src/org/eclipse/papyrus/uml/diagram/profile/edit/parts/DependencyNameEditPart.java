@@ -121,8 +121,6 @@ public class DependencyNameEditPart extends PapyrusLabelEditPart implements ITex
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 	/**
 	 * @generated
 	 */
@@ -153,7 +151,6 @@ public class DependencyNameEditPart extends PapyrusLabelEditPart implements ITex
 	public int getKeyPoint() {
 		return ConnectionLocator.MIDDLE;
 	}
-
 
 	/**
 	 * @generated
@@ -322,7 +319,6 @@ public class DependencyNameEditPart extends PapyrusLabelEditPart implements ITex
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -409,9 +405,7 @@ public class DependencyNameEditPart extends PapyrusLabelEditPart implements ITex
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -444,7 +438,6 @@ public class DependencyNameEditPart extends PapyrusLabelEditPart implements ITex
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -452,7 +445,6 @@ public class DependencyNameEditPart extends PapyrusLabelEditPart implements ITex
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -631,7 +623,6 @@ public class DependencyNameEditPart extends PapyrusLabelEditPart implements ITex
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -716,7 +707,6 @@ public class DependencyNameEditPart extends PapyrusLabelEditPart implements ITex
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -746,7 +736,6 @@ public class DependencyNameEditPart extends PapyrusLabelEditPart implements ITex
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -757,5 +746,4 @@ public class DependencyNameEditPart extends PapyrusLabelEditPart implements ITex
 		// Parent should assign one using setLabel() method
 		return null;
 	}
-
 }

@@ -8,12 +8,14 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractValueEditor;
 import org.eclipse.papyrus.uml.properties.expression.ExpressionList.Expression;
 import org.eclipse.papyrus.uml.properties.preferences.LanguageRegistry;
@@ -194,5 +196,17 @@ public class DynamicBodyEditor extends AbstractValueEditor implements Listener {
 		if(currentEditor != null) {
 			currentEditor.setContext(context);
 		}
+	}
+
+	@Override
+	public void updateStatus(IStatus status) {
+		// TODO Auto-generated method stub
+	}
+
+
+	@Override
+	public void changeColorField() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -144,14 +144,12 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 			hide();
 			return;
 		}
-
-		self.setRedraw(false);
+		
 		if(refresh) {
 			display.refreshSection(self, section, source);
 		} else {
 			display.createSection(self, section, source);
 		}
-		self.setRedraw(true);
 	}
 
 	private void hide() {

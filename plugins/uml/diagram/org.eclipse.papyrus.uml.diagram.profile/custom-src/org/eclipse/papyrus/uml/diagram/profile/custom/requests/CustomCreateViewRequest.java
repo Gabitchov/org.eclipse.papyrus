@@ -11,7 +11,6 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.profile.custom.requests;
 
 import java.util.ArrayList;
@@ -37,7 +36,6 @@ import org.eclipse.gmf.runtime.notation.View;
  * 
  */
 public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequest {
-
 	/**
 	 * A view descriptor that contains attributes needed to create the view The
 	 * class is also a mutable adapter that initially adapts to nothing, but
@@ -46,26 +44,18 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 	 * to this request) This is how GEF works!!
 	 */
 	public static class ViewDescriptor implements IAdaptable {
-
 		/** the element adapter */
 		private final IAdaptable elementAdapter;
-
-
 		/** the view kind */
-		private final Class viewKind;
-
+		private final Class<?> viewKind;
 		/** the semantic hint */
 		private String semanticHint;
-
 		/** the index */
 		private final int index;
-
 		/** The underlying view element */
 		private View view;
-
 		/** persisted view flag. */
 		private boolean _persisted;
-
 		/**
 		 * The hint used to find the appropriate preference store from which general
 		 * diagramming preference values for properties of shapes, connections, and
@@ -78,12 +68,12 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 		 * Creates a new view descriptor using element adapter
 		 * 
 		 * @param elementAdapter
-		 *        the element adapter referened by the view
+		 *            the element adapter referened by the view
 		 * @param preferencesHint
-		 *        The preference hint that is to be used to find the appropriate
-		 *        preference store from which to retrieve diagram preference
-		 *        values. The preference hint is mapped to a preference store in
-		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 *            The preference hint that is to be used to find the appropriate
+		 *            preference store from which to retrieve diagram preference
+		 *            values. The preference hint is mapped to a preference store in
+		 *            the preference registry <@link DiagramPreferencesRegistry>.
 		 */
 		public ViewDescriptor(IAdaptable elementAdapter, PreferencesHint preferencesHint) {
 			this(elementAdapter, Node.class, preferencesHint);
@@ -93,17 +83,17 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 		 * Creates a new view descriptor using element adapter and a view kind
 		 * 
 		 * @param elementAdapter
-		 *        the element adapter referened by the view
+		 *            the element adapter referened by the view
 		 * @param viewkind
-		 *        the kind of the view to be created (a concrete class
-		 *        derived from IView)
+		 *            the kind of the view to be created (a concrete class
+		 *            derived from IView)
 		 * @param preferencesHint
-		 *        The preference hint that is to be used to find the appropriate
-		 *        preference store from which to retrieve diagram preference
-		 *        values. The preference hint is mapped to a preference store in
-		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 *            The preference hint that is to be used to find the appropriate
+		 *            preference store from which to retrieve diagram preference
+		 *            values. The preference hint is mapped to a preference store in
+		 *            the preference registry <@link DiagramPreferencesRegistry>.
 		 */
-		public ViewDescriptor(IAdaptable elementAdapter, Class viewkind, PreferencesHint preferencesHint) {
+		public ViewDescriptor(IAdaptable elementAdapter, Class<?> viewkind, PreferencesHint preferencesHint) {
 			this(elementAdapter, viewkind, "", preferencesHint); //$NON-NLS-1$
 		}
 
@@ -111,20 +101,20 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 		 * Creates a new view descriptor using element adapter and a view kind
 		 * 
 		 * @param elementAdapter
-		 *        the element adapter referened by the view
+		 *            the element adapter referened by the view
 		 * @param viewkind
-		 *        the kind of the view to be created (a concrete class
-		 *        derived from IView)
+		 *            the kind of the view to be created (a concrete class
+		 *            derived from IView)
 		 * @param persisted
-		 *        indicates if the view will be created as a persisted
-		 *        view or transient
+		 *            indicates if the view will be created as a persisted
+		 *            view or transient
 		 * @param preferencesHint
-		 *        The preference hint that is to be used to find the appropriate
-		 *        preference store from which to retrieve diagram preference
-		 *        values. The preference hint is mapped to a preference store in
-		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 *            The preference hint that is to be used to find the appropriate
+		 *            preference store from which to retrieve diagram preference
+		 *            values. The preference hint is mapped to a preference store in
+		 *            the preference registry <@link DiagramPreferencesRegistry>.
 		 */
-		public ViewDescriptor(IAdaptable elementAdapter, Class viewkind, boolean persisted, PreferencesHint preferencesHint) {
+		public ViewDescriptor(IAdaptable elementAdapter, Class<?> viewkind, boolean persisted, PreferencesHint preferencesHint) {
 			this(elementAdapter, viewkind, "", persisted, preferencesHint); //$NON-NLS-1$
 		}
 
@@ -133,18 +123,18 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 		 * a factory hint
 		 * 
 		 * @param elementAdapter
-		 *        the element adapter referened by the view
+		 *            the element adapter referened by the view
 		 * @param viewkind
-		 *        the kind of the view to be created
+		 *            the kind of the view to be created
 		 * @param semanticHint
-		 *        the semantic hint of the view
+		 *            the semantic hint of the view
 		 * @param preferencesHint
-		 *        The preference hint that is to be used to find the appropriate
-		 *        preference store from which to retrieve diagram preference
-		 *        values. The preference hint is mapped to a preference store in
-		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 *            The preference hint that is to be used to find the appropriate
+		 *            preference store from which to retrieve diagram preference
+		 *            values. The preference hint is mapped to a preference store in
+		 *            the preference registry <@link DiagramPreferencesRegistry>.
 		 */
-		public ViewDescriptor(IAdaptable elementAdapter, Class viewkind, String semanticHint, PreferencesHint preferencesHint) {
+		public ViewDescriptor(IAdaptable elementAdapter, Class<?> viewkind, String semanticHint, PreferencesHint preferencesHint) {
 			this(elementAdapter, viewkind, semanticHint, ViewUtil.APPEND, preferencesHint);
 		}
 
@@ -153,21 +143,21 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 		 * a factory hint
 		 * 
 		 * @param elementAdapter
-		 *        the element adapter referened by the view
+		 *            the element adapter referened by the view
 		 * @param viewkind
-		 *        the kind of the view to be created
+		 *            the kind of the view to be created
 		 * @param semanticHint
-		 *        the semantic hint of the view
+		 *            the semantic hint of the view
 		 * @param persisted
-		 *        indicates if the view will be created as a persisted
-		 *        view or transient
+		 *            indicates if the view will be created as a persisted
+		 *            view or transient
 		 * @param preferencesHint
-		 *        The preference hint that is to be used to find the appropriate
-		 *        preference store from which to retrieve diagram preference
-		 *        values. The preference hint is mapped to a preference store in
-		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 *            The preference hint that is to be used to find the appropriate
+		 *            preference store from which to retrieve diagram preference
+		 *            values. The preference hint is mapped to a preference store in
+		 *            the preference registry <@link DiagramPreferencesRegistry>.
 		 */
-		public ViewDescriptor(IAdaptable elementAdapter, Class viewkind, String semanticHint, boolean persisted, PreferencesHint preferencesHint) {
+		public ViewDescriptor(IAdaptable elementAdapter, Class<?> viewkind, String semanticHint, boolean persisted, PreferencesHint preferencesHint) {
 			this(elementAdapter, viewkind, semanticHint, ViewUtil.APPEND, persisted, preferencesHint);
 		}
 
@@ -178,15 +168,15 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 		 * Same as calling <code>new ViewDescriptor(elementAdapter, viewKind, factoryHint, index, true);</code>
 		 * 
 		 * @param elementAdapter
-		 *        the element adapter referened by the view
+		 *            the element adapter referened by the view
 		 * @param viewKind
-		 *        the kind of the view to be created (a concrete class derived from View)
+		 *            the kind of the view to be created (a concrete class derived from View)
 		 * @param factoryHint
-		 *        the semantic hint of the view
+		 *            the semantic hint of the view
 		 * @param index
-		 *        the index of the view in its parent's children collection
+		 *            the index of the view in its parent's children collection
 		 */
-		public ViewDescriptor(IAdaptable elementAdapter, Class viewKind, String factoryHint, int index, PreferencesHint preferencesHint) {
+		public ViewDescriptor(IAdaptable elementAdapter, Class<?> viewKind, String factoryHint, int index, PreferencesHint preferencesHint) {
 			this(elementAdapter, viewKind, factoryHint, index, true, preferencesHint);
 		}
 
@@ -195,21 +185,19 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 		 * view kind, factory hint, index and persistence flag.
 		 * 
 		 * @param elementAdapter
-		 *        the element adapter referened by the view
+		 *            the element adapter referened by the view
 		 * @param viewKind
-		 *        the kind of the view to be created (a concrete class derived from View)
+		 *            the kind of the view to be created (a concrete class derived from View)
 		 * @param semanticHint
-		 *        the semantic hint of the view
+		 *            the semantic hint of the view
 		 * @param index
-		 *        the index of the view in its parent's children collection
+		 *            the index of the view in its parent's children collection
 		 * @param persisted
-		 *        set <true> to create a persisted (attached) view; <tt>false</tt> to create a detached (non-persisted) view.
+		 *            set <true> to create a persisted (attached) view; <tt>false</tt> to create a detached (non-persisted) view.
 		 */
-		public ViewDescriptor(IAdaptable elementAdapter, Class viewKind, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
-
+		public ViewDescriptor(IAdaptable elementAdapter, Class<?> viewKind, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 			Assert.isNotNull(viewKind);
 			Assert.isTrue(index >= ViewUtil.APPEND);
-
 			this.elementAdapter = elementAdapter;
 			this.viewKind = viewKind;
 			this.semanticHint = semanticHint;
@@ -223,8 +211,9 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 		 * 
 		 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(Class)
 		 */
+		@SuppressWarnings("rawtypes")
 		public Object getAdapter(Class adapter) {
-			if(adapter.isInstance(view))
+			if (adapter.isInstance(view))
 				return view;
 			return null;
 		}
@@ -261,7 +250,7 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 		 * 
 		 * @return Class
 		 */
-		public Class getViewKind() {
+		public Class<?> getViewKind() {
 			return viewKind;
 		}
 
@@ -304,27 +293,21 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 			return preferencesHint;
 		}
 
-
-
 		public IAdaptable getElementAdapter(int i) {
-			if(elementAdapter instanceof CustomCreateElementRequestAdapter) {
-				return ((CustomCreateElementRequestAdapter)elementAdapter).getRequestAdapterDUMMY(i);
+			if (elementAdapter instanceof CustomCreateElementRequestAdapter) {
+				return ((CustomCreateElementRequestAdapter) elementAdapter).getRequestAdapterDUMMY(i);
 			} else {
 				return getElementAdapter();
 			}
-
 		}
 
 		public ArrayList<CreateElementRequestAdapter> getRequestAdapters() {
-			if(elementAdapter instanceof CustomCreateElementRequestAdapter) {
-				return ((CustomCreateElementRequestAdapter)elementAdapter).getRequestAdapters();
+			if (elementAdapter instanceof CustomCreateElementRequestAdapter) {
+				return ((CustomCreateElementRequestAdapter) elementAdapter).getRequestAdapters();
 			} else {
 				return null;
 			}
-
 		}
-
-
 	}
 
 	/**
@@ -336,12 +319,12 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 	 * Convenience constructor for CreateViewRequest using a <code>IElement</code>
 	 * 
 	 * @param element
-	 *        a semantic element
+	 *            a semantic element
 	 * @param preferencesHint
-	 *        The preference hint that is to be used to find the appropriate
-	 *        preference store from which to retrieve diagram preference
-	 *        values. The preference hint is mapped to a preference store in
-	 *        the preference registry <@link DiagramPreferencesRegistry>.
+	 *            The preference hint that is to be used to find the appropriate
+	 *            preference store from which to retrieve diagram preference
+	 *            values. The preference hint is mapped to a preference store in
+	 *            the preference registry <@link DiagramPreferencesRegistry>.
 	 */
 	public CustomCreateViewRequest(EObject element, PreferencesHint preferencesHint) {
 		this(new ViewDescriptor(new EObjectAdapter(element), preferencesHint));
@@ -351,7 +334,7 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 	 * Constructor for CreateViewRequest using a <code>ViewDescriptor</code>
 	 * 
 	 * @param viewDescriptor
-	 *        a view descriptor
+	 *            a view descriptor
 	 */
 	public CustomCreateViewRequest(ViewDescriptor viewDescriptor) {
 		this(Collections.singletonList(viewDescriptor));
@@ -361,7 +344,7 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 	 * Constructor for CreateViewRequest using a list of <code>ViewDescriptor</code> s
 	 * 
 	 * @param viewDescriptors
-	 *        a list of view descriptors
+	 *            a list of view descriptors
 	 */
 	public CustomCreateViewRequest(List<? extends ViewDescriptor> viewDescriptors) {
 		Assert.isNotNull(viewDescriptors);
@@ -373,9 +356,9 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 	 * Constructor for CreateViewRequest using a request type and a <code>ViewDescriptor</code>
 	 * 
 	 * @param type
-	 *        request type
+	 *            request type
 	 * @param viewDescriptor
-	 *        a view descriptor
+	 *            a view descriptor
 	 */
 	public CustomCreateViewRequest(Object type, ViewDescriptor viewDescriptor) {
 		this(type, Collections.singletonList(viewDescriptor));
@@ -385,9 +368,9 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 	 * Constructor for CreateViewRequest using a request type and list of <code>ViewDescriptor</code> s
 	 * 
 	 * @param type
-	 *        the request type
+	 *            the request type
 	 * @param viewDescriptors
-	 *        a list of view descriptors
+	 *            a list of view descriptors
 	 */
 	public CustomCreateViewRequest(Object type, List<? extends ViewDescriptor> viewDescriptors) {
 		super(type);

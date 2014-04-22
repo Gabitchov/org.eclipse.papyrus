@@ -1,15 +1,15 @@
 /*
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- * 
- * 
+ *
+ *
  */
 package org.eclipse.papyrus.uml.diagram.profile.part;
 
@@ -20,106 +20,20 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AppliedStereotypeElementImportEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationBranchEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationBranchMultiplicityEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationBranchRoleEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationMultiplicitySourceEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationMultiplicityTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationNameEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationRoleSourceEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationRoleTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassOperationEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassPropertyEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentBodyEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentBodyEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBodyEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBodyEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintNameEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeAttributeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeAttributeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeNameEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeOperationCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeOperationCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeOperationEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypePropertyEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyBranchEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyNameEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DiagramNameEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ElementImportAliasEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ElementImportEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.EnumerationEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.EnumerationEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.EnumerationEnumerationLiteralCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.EnumerationEnumerationLiteralCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.EnumerationLiteralEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.EnumerationNameEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.EnumerationNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ExtensionEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.GeneralizationAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.GeneralizationEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.MetaclassEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.MetaclassEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.MetaclassNameEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.MetaclassNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelEditPartTN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelNameEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelPackageableElementCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelPackageableElementCompartmentEditPartTN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.MultiDependencyLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageImportAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageImportEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageNameEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackagePackageableElementCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackagePackageableElementCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PrimitiveTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PrimitiveTypeEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PrimitiveTypeNameEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PrimitiveTypeNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileApplicationEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileDiagramEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileEditPartTN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileNameEditPartTN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfilePackageableElementCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfilePackageableElementCompartmentEditPartTN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ShortCutDiagramEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.StereotypeAttributeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.StereotypeAttributeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.StereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.StereotypeEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.StereotypeNameEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.StereotypeNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.StereotypeOperationCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.StereotypeOperationCompartmentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.common.util.Util;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.*;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This registry is used to determine which type of visual object should be
  * created for the corresponding Diagram, Node, ChildNode or Link represented
  * by a domain model object.
- * 
+ *
  * @generated
  */
 public class UMLVisualIDRegistry {
@@ -151,7 +65,7 @@ public class UMLVisualIDRegistry {
 		while(view != diagram) {
 			EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 			if(annotation != null) {
-				return (String)annotation.getDetails().get("modelID"); //$NON-NLS-1$
+				return annotation.getDetails().get("modelID"); //$NON-NLS-1$
 			}
 			view = (View)view.eContainer();
 		}
@@ -190,7 +104,8 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 *            we manually test if it's a class or a metaclass
 	 */
 	public static int getNodeVisualID(View containerView, EObject domainElement) {
 		if(domainElement == null) {
@@ -222,7 +137,12 @@ public class UMLVisualIDRegistry {
 				return StereotypeEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
-				return MetaclassEditPart.VISUAL_ID;
+				if(domainElement instanceof Type) {
+					if(Util.isMetaclass((Type)domainElement)) {
+						return MetaclassEditPart.VISUAL_ID;
+					}
+				}
+				return ClassEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPart.VISUAL_ID;
@@ -285,6 +205,9 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getStereotype().isSuperTypeOf(domainElement.eClass())) {
 				return StereotypeEditPartCN.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
+				return ClassEditPartCN.VISUAL_ID;
+			}
 			break;
 		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
@@ -313,6 +236,9 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getStereotype().isSuperTypeOf(domainElement.eClass())) {
 				return StereotypeEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
+				return ClassEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ProfilePackageableElementCompartmentEditPartTN.VISUAL_ID:
@@ -344,7 +270,12 @@ public class UMLVisualIDRegistry {
 				return CommentEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
-				return MetaclassEditPartCN.VISUAL_ID;
+				if(domainElement instanceof Type) {
+					if(Util.isMetaclass((Type)domainElement)) {
+						return MetaclassEditPartCN.VISUAL_ID;
+					}
+				}
+				return ClassEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ProfilePackageableElementCompartmentEditPartCN.VISUAL_ID:
@@ -376,7 +307,12 @@ public class UMLVisualIDRegistry {
 				return CommentEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
-				return MetaclassEditPartCN.VISUAL_ID;
+				if(domainElement instanceof Type) {
+					if(Util.isMetaclass((Type)domainElement)) {
+						return MetaclassEditPartCN.VISUAL_ID;
+					}
+				}
+				return ClassEditPartCN.VISUAL_ID;
 			}
 			break;
 		case StereotypeAttributeCompartmentEditPart.VISUAL_ID:
@@ -424,6 +360,9 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
+				return ClassEditPartCN.VISUAL_ID;
+			}
 			break;
 		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
@@ -449,6 +388,9 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
+				return ClassEditPartCN.VISUAL_ID;
 			}
 			break;
 		case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
@@ -479,6 +421,26 @@ public class UMLVisualIDRegistry {
 		case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getOperation().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeOperationEditPart.VISUAL_ID;
+			}
+			break;
+		case ClassAttributeCompartmentEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+				return ClassPropertyEditPart.VISUAL_ID;
+			}
+			break;
+		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+				return ClassPropertyEditPart.VISUAL_ID;
+			}
+			break;
+		case ClassOperationCompartmentEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getOperation().isSuperTypeOf(domainElement.eClass())) {
+				return ClassOperationEditPart.VISUAL_ID;
+			}
+			break;
+		case ClassOperationCompartmentEditPartCN.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getOperation().isSuperTypeOf(domainElement.eClass())) {
+				return ClassOperationEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -512,6 +474,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(StereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ClassEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(MetaclassEditPart.VISUAL_ID == nodeVisualID) {
@@ -558,6 +523,17 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(StereotypeOperationCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ClassEditPart.VISUAL_ID:
+			if(ClassNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ClassOperationCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ClassAttributeCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -645,6 +621,17 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(StereotypeOperationCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ClassEditPartCN.VISUAL_ID:
+			if(ClassNameEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ClassAttributeCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ClassOperationCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -740,6 +727,9 @@ public class UMLVisualIDRegistry {
 			if(StereotypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ClassEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
 			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -767,6 +757,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(StereotypeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ClassEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -801,6 +794,9 @@ public class UMLVisualIDRegistry {
 			if(MetaclassEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ClassEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ProfilePackageableElementCompartmentEditPartCN.VISUAL_ID:
 			if(StereotypeEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -831,6 +827,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(MetaclassEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ClassEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -879,6 +878,9 @@ public class UMLVisualIDRegistry {
 			if(DataTypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ClassEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
 			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -903,6 +905,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(DataTypeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ClassEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -933,6 +938,26 @@ public class UMLVisualIDRegistry {
 			break;
 		case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
 			if(DataTypeOperationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ClassAttributeCompartmentEditPart.VISUAL_ID:
+			if(ClassPropertyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
+			if(ClassPropertyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ClassOperationCompartmentEditPart.VISUAL_ID:
+			if(ClassOperationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ClassOperationCompartmentEditPartCN.VISUAL_ID:
+			if(ClassOperationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1034,13 +1059,12 @@ public class UMLVisualIDRegistry {
 	/**
 	 * User can change implementation of this method to handle some specific
 	 * situations not covered by default logic.
-	 * 
+	 *
 	 * @generated
 	 */
 	private static boolean isDiagram(Profile element) {
 		return true;
 	}
-
 
 	/**
 	 * @generated
@@ -1075,6 +1099,10 @@ public class UMLVisualIDRegistry {
 		case DataTypeAttributeCompartmentEditPartCN.VISUAL_ID:
 		case DataTypeOperationCompartmentEditPart.VISUAL_ID:
 		case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
+		case ClassAttributeCompartmentEditPart.VISUAL_ID:
+		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
+		case ClassOperationCompartmentEditPart.VISUAL_ID:
+		case ClassOperationCompartmentEditPartCN.VISUAL_ID:
 			return true;
 		default:
 			break;
@@ -1165,5 +1193,4 @@ public class UMLVisualIDRegistry {
 			return org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
 		}
 	};
-
 }

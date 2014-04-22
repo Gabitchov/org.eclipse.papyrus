@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - bug 323802
  *  Christian W. Damus (CEA) - bug 429826
  *  Christian W. Damus (CEA) - bug 408491
+ *  Christian W. Damus (CEA) - bug 432813
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
@@ -389,6 +390,14 @@ public class EMFHelper {
 			next.eAdapters().clear();
 		}
 		resourceSet.eAdapters().clear();
+
+		// Clear the package registry (it may contain dynamic profile EPackages that we don't
+		// want to leak in BasicExtendedMetaData instances attached to static EPackages)
+		// Works around EMF bug 433108
+		EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
+		if(packageRegistry != null) {
+			packageRegistry.clear();
+		}
 	}
 
 	/**

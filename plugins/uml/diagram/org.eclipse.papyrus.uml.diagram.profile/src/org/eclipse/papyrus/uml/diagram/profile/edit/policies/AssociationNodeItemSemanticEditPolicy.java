@@ -74,8 +74,6 @@ public class AssociationNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.Association_2015);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -97,8 +95,6 @@ public class AssociationNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 
 	/**
 	 * @generated
@@ -305,5 +301,4 @@ public class AssociationNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

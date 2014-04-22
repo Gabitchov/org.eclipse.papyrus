@@ -33,15 +33,15 @@ public class FileExtensions {
 	public static final Map<String, String> allFilesExtensions = new LinkedHashMap<String, String>();
 
 	static {
-		umlExtensions.put("*.uml", "UML (*.uml)");
-		umlExtensions.put("*.profile.uml", "UML Profiles (*.profile.uml)");
+		umlExtensions.put("*.uml", "UML (*.uml)"); //$NON-NLS-1$ //$NON-NLS-2$
+		umlExtensions.put("*.profile.uml", "UML Profiles (*.profile.uml)"); //$NON-NLS-1$ //$NON-NLS-2$
 
-		umlProfileExtensions.put("*.profile.uml", "UML Profiles (*.profile.uml)");
-		umlProfileExtensions.put("*.uml", "UML (*.uml)");
+		umlProfileExtensions.put("*.profile.uml", "UML Profiles (*.profile.uml)"); //$NON-NLS-1$ //$NON-NLS-2$
+		umlProfileExtensions.put("*.uml", "UML (*.uml)"); //$NON-NLS-1$ //$NON-NLS-2$
 
-		cssStylesheetsExtension.put("*.css", "CSS Stylesheets (*.css)");
+		cssStylesheetsExtension.put("*.css", "CSS Stylesheets (*.css)"); //$NON-NLS-1$ //$NON-NLS-2$
 
-		allFilesExtensions.put("*", "All (*)");
+		allFilesExtensions.put("*", "All (*)"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 

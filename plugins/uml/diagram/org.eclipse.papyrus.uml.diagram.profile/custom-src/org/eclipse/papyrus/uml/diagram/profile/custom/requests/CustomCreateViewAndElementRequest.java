@@ -11,10 +11,6 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
-
-
-
 package org.eclipse.papyrus.uml.diagram.profile.custom.requests;
 
 import java.util.Map;
@@ -33,23 +29,20 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
  * 
  * This class was created to use the CustomCreateElementRequestAdapter (used in the CustomCreateViewRequest)
  */
-
 public class CustomCreateViewAndElementRequest extends CustomCreateViewRequest {
-
 	/**
 	 * An extended view descriptor that takes an <code>ElementDescriptor</code> instead of <code>IAdaptable</code> as the element adapter
 	 */
 	public static class ViewAndElementDescriptor extends ViewDescriptor {
-
 		/**
 		 * Constructor for ViewAndElementDescriptor.
 		 * 
 		 * @param requestAdapter
 		 * @param preferencesHint
-		 *        The preference hint that is to be used to find the appropriate
-		 *        preference store from which to retrieve diagram preference
-		 *        values. The preference hint is mapped to a preference store in
-		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 *            The preference hint that is to be used to find the appropriate
+		 *            preference store from which to retrieve diagram preference
+		 *            values. The preference hint is mapped to a preference store in
+		 *            the preference registry <@link DiagramPreferencesRegistry>.
 		 */
 		public ViewAndElementDescriptor(CustomCreateElementRequestAdapter requestAdapter, PreferencesHint preferencesHint) {
 			super(requestAdapter, preferencesHint);
@@ -61,7 +54,7 @@ public class CustomCreateViewAndElementRequest extends CustomCreateViewRequest {
 		 * @param requestAdapter
 		 * @param viewkind
 		 */
-		public ViewAndElementDescriptor(CustomCreateElementRequestAdapter requestAdapter, Class viewkind, PreferencesHint preferencesHint) {
+		public ViewAndElementDescriptor(CustomCreateElementRequestAdapter requestAdapter, Class<?> viewkind, PreferencesHint preferencesHint) {
 			super(requestAdapter, viewkind, preferencesHint);
 		}
 
@@ -72,7 +65,7 @@ public class CustomCreateViewAndElementRequest extends CustomCreateViewRequest {
 		 * @param viewkind
 		 * @param semanticHint
 		 */
-		public ViewAndElementDescriptor(CustomCreateElementRequestAdapter requestAdapter, Class viewkind, String semanticHint, PreferencesHint preferencesHint) {
+		public ViewAndElementDescriptor(CustomCreateElementRequestAdapter requestAdapter, Class<?> viewkind, String semanticHint, PreferencesHint preferencesHint) {
 			super(requestAdapter, viewkind, semanticHint, preferencesHint);
 		}
 
@@ -84,7 +77,7 @@ public class CustomCreateViewAndElementRequest extends CustomCreateViewRequest {
 		 * @param semanticHint
 		 * @param index
 		 */
-		public ViewAndElementDescriptor(CustomCreateElementRequestAdapter requestAdapter, Class viewKind, String semanticHint, int index, PreferencesHint preferencesHint) {
+		public ViewAndElementDescriptor(CustomCreateElementRequestAdapter requestAdapter, Class<?> viewKind, String semanticHint, int index, PreferencesHint preferencesHint) {
 			super(requestAdapter, viewKind, semanticHint, index, preferencesHint);
 		}
 
@@ -94,10 +87,9 @@ public class CustomCreateViewAndElementRequest extends CustomCreateViewRequest {
 		 * @return ElementDescriptor
 		 */
 		public CustomCreateElementRequestAdapter getCreateElementRequestAdapter() {
-			return (CustomCreateElementRequestAdapter)getElementAdapter();
+			return (CustomCreateElementRequestAdapter) getElementAdapter();
 		}
 	}
-
 
 	/**
 	 * Constructor for CreateViewAndElementRequest.
@@ -113,10 +105,10 @@ public class CustomCreateViewAndElementRequest extends CustomCreateViewRequest {
 	 * 
 	 * @param type
 	 * @param preferencesHint
-	 *        The preference hint that is to be used to find the appropriate
-	 *        preference store from which to retrieve diagram preference
-	 *        values. The preference hint is mapped to a preference store in
-	 *        the preference registry <@link DiagramPreferencesRegistry>.
+	 *            The preference hint that is to be used to find the appropriate
+	 *            preference store from which to retrieve diagram preference
+	 *            values. The preference hint is mapped to a preference store in
+	 *            the preference registry <@link DiagramPreferencesRegistry>.
 	 */
 	public CustomCreateViewAndElementRequest(IElementType type, PreferencesHint preferencesHint) {
 		super(new ViewAndElementDescriptor(new CustomCreateElementRequestAdapter(new CreateElementRequest(type)), preferencesHint));
@@ -128,15 +120,14 @@ public class CustomCreateViewAndElementRequest extends CustomCreateViewRequest {
 	 * @param type
 	 * @param context
 	 * @param preferencesHint
-	 *        The preference hint that is to be used to find the appropriate
-	 *        preference store from which to retrieve diagram preference
-	 *        values. The preference hint is mapped to a preference store in
-	 *        the preference registry <@link DiagramPreferencesRegistry>.
+	 *            The preference hint that is to be used to find the appropriate
+	 *            preference store from which to retrieve diagram preference
+	 *            values. The preference hint is mapped to a preference store in
+	 *            the preference registry <@link DiagramPreferencesRegistry>.
 	 */
 	public CustomCreateViewAndElementRequest(IElementType type, EObject context, PreferencesHint preferencesHint) {
 		super(new ViewAndElementDescriptor(new CustomCreateElementRequestAdapter(new CreateElementRequest(TransactionUtil.getEditingDomain(context), context, type)), preferencesHint));
 	}
-
 
 	/**
 	 * Method getViewAndElementDescriptor.
@@ -144,27 +135,22 @@ public class CustomCreateViewAndElementRequest extends CustomCreateViewRequest {
 	 * @return ViewAndElementDescriptor
 	 */
 	public ViewAndElementDescriptor getViewAndElementDescriptor() {
-		return (ViewAndElementDescriptor)getViewDescriptors().get(0);
+		return (ViewAndElementDescriptor) getViewDescriptors().get(0);
 	}
-
 
 	/**
 	 * Propagates setting the parameters to the <code>CreateElementRequest</code> in my {@link #getViewAndElementDescriptor()}.
 	 */
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void setExtendedData(Map map) {
-
 		super.setExtendedData(map);
-
 		ViewAndElementDescriptor descriptor = getViewAndElementDescriptor();
-
-		if(descriptor != null) {
+		if (descriptor != null) {
 			CreateElementRequestAdapter adapter = descriptor.getCreateElementRequestAdapter();
-
-			if(adapter != null) {
-				CreateElementRequest request = (CreateElementRequest)adapter.getAdapter(CreateElementRequest.class);
-
-				if(request != null) {
+			if (adapter != null) {
+				CreateElementRequest request = (CreateElementRequest) adapter.getAdapter(CreateElementRequest.class);
+				if (request != null) {
 					request.getParameters().clear();
 					request.addParameters(map);
 				}

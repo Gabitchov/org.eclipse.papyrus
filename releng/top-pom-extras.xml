@@ -221,11 +221,6 @@
 			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201403111353/</url>
 		</repository>
 		<repository>
-			<id>mdt-modisco</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/modisco/updates/integration/0.12.0/I201401201815/</url>
-		</repository>
-		<repository>
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/5.0.0/S201403101212</url>

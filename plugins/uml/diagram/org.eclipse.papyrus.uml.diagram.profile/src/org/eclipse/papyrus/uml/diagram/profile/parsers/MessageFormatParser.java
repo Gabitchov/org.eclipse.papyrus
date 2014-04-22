@@ -199,5 +199,4 @@ public class MessageFormatParser extends AbstractAttributeParser {
 		EObject element = (EObject)adapter.getAdapter(EObject.class);
 		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
-
 }

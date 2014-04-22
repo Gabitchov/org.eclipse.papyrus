@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.AssociationNodeCreateCommand;
+import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ClassCreateCommand;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.CommentEditPartCreateCommand;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ConstraintCreateCommand;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.DataTypeCreateCommand;
@@ -50,7 +51,6 @@ public class ProfileDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		super(UMLElementTypes.Profile_1000);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -59,109 +59,47 @@ public class ProfileDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		if(requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
-		IElementType baseElementType = requestElementType;
-		boolean isExtendedType = false;
-		if(requestElementType instanceof IExtendedHintedElementType) {
-			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if(baseElementType != null) {
-				isExtendedType = true;
-			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
-				isExtendedType = true;
-			}
-		}
-
-		if(UMLElementTypes.Dependency_2014 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Dependency_2014 == requestElementType) {
 			return getGEFWrapper(new DependencyNodeCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Association_2015 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Association_2015 == requestElementType) {
 			return getGEFWrapper(new AssociationNodeCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Stereotype_1026 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Stereotype_1026 == requestElementType) {
 			return getGEFWrapper(new StereotypeCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Class_1031 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Class_2008 == requestElementType) {
+			return getGEFWrapper(new ClassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
+		}
+		if(UMLElementTypes.Class_1031 == requestElementType) {
 			return getGEFWrapper(new MetaclassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Comment_1002 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Comment_1002 == requestElementType) {
 			return getGEFWrapper(new CommentEditPartCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Constraint_1014 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Constraint_1014 == requestElementType) {
 			return getGEFWrapper(new ConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Model_2005 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Model_2005 == requestElementType) {
 			return getGEFWrapper(new ModelCreateCommandTN(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Profile_1030 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Profile_1030 == requestElementType) {
 			return getGEFWrapper(new ProfileCreateCommandTN(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Package_2007 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Package_2007 == requestElementType) {
 			return getGEFWrapper(new PackageCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Enumeration_2006 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Enumeration_2006 == requestElementType) {
 			return getGEFWrapper(new EnumerationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.PrimitiveType_2009 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.PrimitiveType_2009 == requestElementType) {
 			return getGEFWrapper(new PrimitiveTypeCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.DataType_2010 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.DataType_2010 == requestElementType) {
 			return getGEFWrapper(new DataTypeCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Diagram_2016 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Diagram_2016 == requestElementType) {
 			return getGEFWrapper(new ShortCutDiagramCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
 		return super.getCreateCommand(req);
 	}
@@ -185,7 +123,5 @@ public class ProfileDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req) {
 			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
 		}
-
 	}
-
 }

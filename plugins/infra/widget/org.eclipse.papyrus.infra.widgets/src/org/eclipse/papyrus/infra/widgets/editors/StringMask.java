@@ -208,4 +208,15 @@ public class StringMask extends AbstractListEditor implements SelectionListener,
 		refreshCheckboxes();
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractEditor#changeColorField()
+	 *
+	 */
+
+	@Override
+	public void changeColorField() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

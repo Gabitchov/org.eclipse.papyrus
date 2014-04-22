@@ -47,7 +47,6 @@ public class ElementImportItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.ElementImport_1064);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -61,7 +60,6 @@ public class ElementImportItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		return getGEFWrapper(cmd.reduce());
 		//return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 	}
-
 
 	/**
 	 * @generated
@@ -147,5 +145,4 @@ public class ElementImportItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

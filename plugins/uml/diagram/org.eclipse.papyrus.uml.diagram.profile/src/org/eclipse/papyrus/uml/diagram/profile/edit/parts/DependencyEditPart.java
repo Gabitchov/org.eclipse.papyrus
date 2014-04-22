@@ -116,5 +116,4 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITr
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

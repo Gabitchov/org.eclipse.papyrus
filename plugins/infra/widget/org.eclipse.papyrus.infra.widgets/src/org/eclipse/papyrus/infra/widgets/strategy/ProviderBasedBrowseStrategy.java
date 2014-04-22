@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -66,7 +66,7 @@ public class ProviderBasedBrowseStrategy extends EncapsulatedContentProvider imp
 	/**
 	 * Filters the valid root elements, ie. the root elements containing
 	 * at least one valid child (Or being valid themselves)
-	 * 
+	 *
 	 * @param roots
 	 * @return
 	 */
@@ -123,7 +123,7 @@ public class ProviderBasedBrowseStrategy extends EncapsulatedContentProvider imp
 	protected boolean hasOneVisibleChild(Object element, Set<Object> visitedElements) {
 		if(!visibleChildCache.containsKey(element)) {
 			boolean result = false;
-			if(visitedElements.add(element)) {
+			if(visitedElements.add(getAdaptedValue(element))) {
 				for(Object child : super.getChildren(element)) {
 					if(isValid(child, visitedElements)) {
 						result = true;
@@ -137,6 +137,7 @@ public class ProviderBasedBrowseStrategy extends EncapsulatedContentProvider imp
 		return visibleChildCache.get(element);
 	}
 
+	@Override
 	public TreePath findPath(Object semanticElement, Object[] rootElements) {
 		return TreePath.EMPTY; //TODO : Naive search
 	}
@@ -154,15 +155,15 @@ public class ProviderBasedBrowseStrategy extends EncapsulatedContentProvider imp
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * The basic implementation is a naive tree search
-	 * 
+	 *
 	 * @param elementToReveal
 	 */
 	@Override
 	public void revealSemanticElement(List<?> elementsToReveal) {
 		if(viewer != null) {
-			//FIXME: TreeViewers cannot do this search when the items have not yet be expanded. 
+			//FIXME: TreeViewers cannot do this search when the items have not yet be expanded.
 			//We need to search on the ContentProvider and pass a TreeSelection to the viewer
 			viewer.setSelection(new StructuredSelection(elementsToReveal), true);
 		}

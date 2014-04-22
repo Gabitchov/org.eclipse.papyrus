@@ -1,211 +1,55 @@
 <?xml version="1.0" encoding="ASCII"?>
-<environment:Environment
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9">
-  <constraintTypes
-      label="EMF Instance Of (Deprecated)"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.EMFInstanceOfConstraint"/>
-  <constraintTypes
-      label="True Constraint (Deprecated)"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.TrueConstraint"/>
-  <constraintTypes
-      label="EMF Query (Deprecated)"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.EMFQueryConstraint"/>
-  <constraintTypes
-      label="Java Instance Of (Deprecated)"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.JavaInstanceOf"/>
-  <constraintTypes
-      label="Java Query (Deprecated)"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.JavaQueryConstraint"/>
-  <modelElementFactories
-      name="EMF Factory"
-      factoryClass="org.eclipse.papyrus.views.properties.modelelement.EMFModelElementFactory"/>
-  <modelElementFactories
-      name="Annotation Factory"
-      factoryClass="org.eclipse.papyrus.views.properties.modelelement.AnnotationModelElementFactory"/>
-  <modelElementFactories
-      name="Basic preferences Factory"
-      factoryClass="org.eclipse.papyrus.views.properties.modelelement.PreferencesModelElementFactory"/>
-  <widgetTypes
-      label="Label"
-      widgetClass="Label"/>
-  <widgetTypes
-      label="Text"
-      widgetClass="Text"/>
-  <widgetTypes
-      label="Button"
-      widgetClass="Button"/>
-  <propertyEditorTypes
-      label="StringEditor"
-      widgetClass="StringEditor"
-      namespace="//@namespaces.3"/>
-  <propertyEditorTypes
-      label="StringMultiline"
-      widgetClass="StringMultiline"
-      namespace="//@namespaces.3"/>
-  <propertyEditorTypes
-      label="StringLabel (Read-only)"
-      widgetClass="StringLabel"
-      namespace="//@namespaces.3"/>
-  <propertyEditorTypes
-      label="StringCombo"
-      widgetClass="StringCombo"
-      namespace="//@namespaces.3"/>
-  <propertyEditorTypes
-      label="FileSelector"
-      widgetClass="StringFileSelector"
-      namespace="//@namespaces.3"/>
-  <propertyEditorTypes
-      label="BooleanCombo"
-      widgetClass="BooleanCombo"
-      namespace="//@namespaces.3"
-      type="Boolean"/>
-  <propertyEditorTypes
-      label="BooleanCheckbox"
-      widgetClass="BooleanCheckbox"
-      namespace="//@namespaces.3"
-      type="Boolean"/>
-  <propertyEditorTypes
-      label="BooleanRadio"
-      widgetClass="BooleanRadio"
-      namespace="//@namespaces.3"
-      type="Boolean"/>
-  <propertyEditorTypes
-      label="BooleanToggle"
-      widgetClass="BooleanToggle"
-      namespace="//@namespaces.3"
-      type="Boolean"/>
-  <propertyEditorTypes
-      label="IntegerEditor"
-      widgetClass="IntegerEditor"
-      namespace="//@namespaces.3"
-      type="Integer"/>
-  <propertyEditorTypes
-      label="IntegerSpinner"
-      widgetClass="IntegerSpinner"
-      namespace="//@namespaces.3"
-      type="Integer"/>
-  <propertyEditorTypes
-      label="EnumCombo"
-      widgetClass="EnumCombo"
-      namespace="//@namespaces.3"
-      type="Enumeration"/>
-  <propertyEditorTypes
-      label="EnumRadio (No preview)"
-      widgetClass="EnumRadio"
-      namespace="//@namespaces.3"
-      type="Enumeration"/>
-  <propertyEditorTypes
-      label="ReferenceCombo"
-      widgetClass="ReferenceCombo"
-      namespace="//@namespaces.3"
-      type="Reference"/>
-  <propertyEditorTypes
-      label="ReferenceDialog"
-      widgetClass="ReferenceDialog"
-      namespace="//@namespaces.3"
-      type="Reference"/>
-  <propertyEditorTypes
-      label="ViewEditor"
-      widgetClass="ViewEditor"
-      namespace="//@namespaces.3"
-      type="Reference"
-      multiplicity="-1"/>
-  <propertyEditorTypes
-      label="ReferenceLabel (Read-only)"
-      widgetClass="ReferenceLabel"
-      namespace="//@namespaces.3"
-      type="Reference"/>
-  <propertyEditorTypes
-      label="MultiReference"
-      widgetClass="MultiReference"
-      namespace="//@namespaces.3"
-      type="Reference"
-      multiplicity="-1"/>
-  <propertyEditorTypes
-      label="MultiReferenceWithPropertyView"
-      widgetClass="MultiReferencePropertyEditorWithPropertyView"
-      namespace="//@namespaces.3"
-      type="Reference"
-      multiplicity="-1"/>
-  <propertyEditorTypes
-      label="MultiString"
-      widgetClass="MultiString"
-      namespace="//@namespaces.3"
-      multiplicity="-1"/>
-  <propertyEditorTypes
-      label="MultipleFileEditor"
-      widgetClass="MultiStringFile"
-      namespace="//@namespaces.3"
-      multiplicity="-1"/>
-  <propertyEditorTypes
-      label="MultiInteger"
-      widgetClass="MultiInteger"
-      namespace="//@namespaces.3"
-      type="Integer"
-      multiplicity="-1"/>
-  <propertyEditorTypes
-      label="InvalidWidget"
-      widgetClass="InvalidWidget"
-      namespace="//@namespaces.3"/>
-  <propertyEditorTypes
-      label="StringMultiline with References"
-      widgetClass="StringMultilineWithReferences"
-      namespace="//@namespaces.3"/>
-  <propertyEditorTypes
-      label="FloatEditor"
-      widgetClass="FloatEditor"
-      namespace="//@namespaces.3"/>
-  <propertyEditorTypes
-      label="File Selector - EMF URI Format"
-      widgetClass="XWTStringFileSelectorEMF"
-      namespace="//@namespaces.3"/>
-  <compositeWidgetTypes
-      label="Composite"
-      widgetClass="Composite"/>
-  <compositeWidgetTypes
-      label="Group"
-      widgetClass="Group"/>
-  <layoutTypes
-      label="GridLayout"
-      widgetClass="GridLayout"/>
-  <layoutTypes
-      label="FillLayout"
-      widgetClass="FillLayout"/>
-  <layoutTypes
-      label="RowLayout"
-      widgetClass="RowLayout"/>
-  <layoutTypes
-      label="PropertiesLayout"
-      widgetClass="PropertiesLayout"
-      namespace="//@namespaces.4"/>
-  <namespaces
-      prefix=""
-      name=""
-      value="http://www.eclipse.org/xwt/presentation"/>
-  <namespaces
-      prefix=""
-      name="x"
-      value="http://www.eclipse.org/xwt"/>
-  <namespaces
-      name="j"
-      value="java.lang"/>
-  <namespaces
-      name="ppe"
-      value="org.eclipse.papyrus.views.properties.widgets"/>
-  <namespaces
-      name="ppel"
-      value="org.eclipse.papyrus.views.properties.widgets.layout"/>
-  <namespaces
-      name="ppec"
-      value="org.eclipse.papyrus.views.properties.creation"/>
-  <miscClasses
-      label="EMF object factory"
-      class="EcorePropertyEditorFactory"
-      namespace="//@namespaces.5"/>
-  <miscClasses
-      label="Property view Edition factory"
-      class="PropertyEditorFactory"
-      namespace="//@namespaces.5"/>
+<environment:Environment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9">
+  <constraintTypes label="EMF Instance Of (Deprecated)" constraintClass="org.eclipse.papyrus.infra.constraints.constraints.EMFInstanceOfConstraint"/>
+  <constraintTypes label="True Constraint (Deprecated)" constraintClass="org.eclipse.papyrus.infra.constraints.constraints.TrueConstraint"/>
+  <constraintTypes label="EMF Query (Deprecated)" constraintClass="org.eclipse.papyrus.infra.constraints.constraints.EMFQueryConstraint"/>
+  <constraintTypes label="Java Instance Of (Deprecated)" constraintClass="org.eclipse.papyrus.infra.constraints.constraints.JavaInstanceOf"/>
+  <constraintTypes label="Java Query (Deprecated)" constraintClass="org.eclipse.papyrus.infra.constraints.constraints.JavaQueryConstraint"/>
+  <modelElementFactories name="EMF Factory" factoryClass="org.eclipse.papyrus.views.properties.modelelement.EMFModelElementFactory"/>
+  <modelElementFactories name="Annotation Factory" factoryClass="org.eclipse.papyrus.views.properties.modelelement.AnnotationModelElementFactory"/>
+  <modelElementFactories name="Basic preferences Factory" factoryClass="org.eclipse.papyrus.views.properties.modelelement.PreferencesModelElementFactory"/>
+  <widgetTypes label="Label" widgetClass="Label"/>
+  <widgetTypes label="Text" widgetClass="Text"/>
+  <widgetTypes label="Button" widgetClass="Button"/>
+  <propertyEditorTypes label="StringEditor" widgetClass="StringEditor" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="StringMultiline" widgetClass="StringMultiline" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="StringLabel (Read-only)" widgetClass="StringLabel" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="StringCombo" widgetClass="StringCombo" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="FileSelector" widgetClass="StringFileSelector" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="BooleanCombo" widgetClass="BooleanCombo" namespace="//@namespaces.3" type="Boolean"/>
+  <propertyEditorTypes label="BooleanCheckbox" widgetClass="BooleanCheckbox" namespace="//@namespaces.3" type="Boolean"/>
+  <propertyEditorTypes label="BooleanRadio" widgetClass="BooleanRadio" namespace="//@namespaces.3" type="Boolean"/>
+  <propertyEditorTypes label="BooleanToggle" widgetClass="BooleanToggle" namespace="//@namespaces.3" type="Boolean"/>
+  <propertyEditorTypes label="IntegerEditor" widgetClass="IntegerEditor" namespace="//@namespaces.3" type="Integer"/>
+  <propertyEditorTypes label="IntegerSpinner" widgetClass="IntegerSpinner" namespace="//@namespaces.3" type="Integer"/>
+  <propertyEditorTypes label="EnumCombo" widgetClass="EnumCombo" namespace="//@namespaces.3" type="Enumeration"/>
+  <propertyEditorTypes label="EnumRadio (No preview)" widgetClass="EnumRadio" namespace="//@namespaces.3" type="Enumeration"/>
+  <propertyEditorTypes label="ReferenceCombo" widgetClass="ReferenceCombo" namespace="//@namespaces.3" type="Reference"/>
+  <propertyEditorTypes label="ReferenceDialog" widgetClass="ReferenceDialog" namespace="//@namespaces.3" type="Reference"/>
+  <propertyEditorTypes label="ViewEditor" widgetClass="ViewEditor" namespace="//@namespaces.3" type="Reference" multiplicity="-1"/>
+  <propertyEditorTypes label="ReferenceLabel (Read-only)" widgetClass="ReferenceLabel" namespace="//@namespaces.3" type="Reference"/>
+  <propertyEditorTypes label="MultiReference" widgetClass="MultiReference" namespace="//@namespaces.3" type="Reference" multiplicity="-1"/>
+  <propertyEditorTypes label="MultiReferenceWithPropertyView" widgetClass="MultiReferencePropertyEditorWithPropertyView" namespace="//@namespaces.3" type="Reference" multiplicity="-1"/>
+  <propertyEditorTypes label="MultiString" widgetClass="MultiString" namespace="//@namespaces.3" multiplicity="-1"/>
+  <propertyEditorTypes label="MultipleFileEditor" widgetClass="MultiStringFile" namespace="//@namespaces.3" multiplicity="-1"/>
+  <propertyEditorTypes label="MultiInteger" widgetClass="MultiInteger" namespace="//@namespaces.3" type="Integer" multiplicity="-1"/>
+  <propertyEditorTypes label="InvalidWidget" widgetClass="InvalidWidget" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="StringMultiline with References" widgetClass="StringMultilineWithReferences" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="FloatEditor" widgetClass="FloatEditor" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="DoubleEditor" widgetClass="DoubleEditor" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="UnlimitedNaturalEditor" widgetClass="UnlimitedNaturalEditor" namespace="//@namespaces.3"/>
+  <compositeWidgetTypes label="Composite" widgetClass="Composite"/>
+  <compositeWidgetTypes label="Group" widgetClass="Group"/>
+  <layoutTypes label="GridLayout" widgetClass="GridLayout"/>
+  <layoutTypes label="FillLayout" widgetClass="FillLayout"/>
+  <layoutTypes label="RowLayout" widgetClass="RowLayout"/>
+  <layoutTypes label="PropertiesLayout" widgetClass="PropertiesLayout" namespace="//@namespaces.4"/>
+  <namespaces prefix="" name="" value="http://www.eclipse.org/xwt/presentation"/>
+  <namespaces prefix="" name="x" value="http://www.eclipse.org/xwt"/>
+  <namespaces name="j" value="java.lang"/>
+  <namespaces name="ppe" value="org.eclipse.papyrus.views.properties.widgets"/>
+  <namespaces name="ppel" value="org.eclipse.papyrus.views.properties.widgets.layout"/>
+  <namespaces name="ppec" value="org.eclipse.papyrus.views.properties.creation"/>
+  <miscClasses label="EMF object factory" class="EcorePropertyEditorFactory" namespace="//@namespaces.5"/>
+  <miscClasses label="Property view Edition factory" class="PropertyEditorFactory" namespace="//@namespaces.5"/>
 </environment:Environment>

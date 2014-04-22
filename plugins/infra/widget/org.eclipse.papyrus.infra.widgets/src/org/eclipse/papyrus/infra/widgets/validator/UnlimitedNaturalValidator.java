@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,7 +31,7 @@ public class UnlimitedNaturalValidator extends AbstractValidator {
 
 	/**
 	 * @see org.eclipse.jface.dialogs.IInputValidator#isValid(java.lang.String)
-	 * 
+	 *
 	 * @param newText
 	 * @return <code>null</code> if the newText is valid an error message when newText is
 	 *         invalid
@@ -42,7 +42,7 @@ public class UnlimitedNaturalValidator extends AbstractValidator {
 		}
 		boolean isValid = true;
 		try {
-			Integer myUnlimitedNatural = new Integer(newText);
+			Integer myUnlimitedNatural = Integer.valueOf(newText);
 			if(myUnlimitedNatural < -1) {
 				isValid = false;
 			}
@@ -57,11 +57,12 @@ public class UnlimitedNaturalValidator extends AbstractValidator {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param newValue
 	 * @return {@link Status#OK_STATUS} if the newValue is valid and {@link IStatus#ERROR} when newValue is
 	 *         invalid
 	 */
+	@Override
 	public IStatus validate(Object newValue) {
 		if(newValue instanceof Integer) {
 			int value = (Integer)newValue;
@@ -74,7 +75,7 @@ public class UnlimitedNaturalValidator extends AbstractValidator {
 			String newText = (String)newValue;
 
 			if(INFINITE_STAR.equals(newText) || INFINITE_MINUS_ONE.equals(newText)) {
-				return null;
+				return Status.OK_STATUS;
 			}
 
 			boolean isValid = true;

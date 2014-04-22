@@ -59,6 +59,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_Class_2008(Class instance) {
+		try {
+			Object value_0 = name_Class_2008(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_Class_1031(Class instance) {
 		try {
 			Object value_0 = isAbstract_Class_1031(instance);
@@ -253,6 +265,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_Class_3010(Class instance) {
+		try {
+			Object value_0 = name_Class_3010(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_Class_3028(Class instance) {
 		try {
 			Object value_0 = isAbstract_Class_3028(instance);
@@ -406,6 +430,13 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private String name_Class_2008(Class it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
+	}
+
+	/**
+	 * @generated
+	 */
 	private Boolean isAbstract_Class_1031(Class it) {
 		//isAbstract = true
 		return true;
@@ -522,6 +553,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_Stereotype_1023(Stereotype it) {
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Class_3010(Class it) {
 		return NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());
 	}
 

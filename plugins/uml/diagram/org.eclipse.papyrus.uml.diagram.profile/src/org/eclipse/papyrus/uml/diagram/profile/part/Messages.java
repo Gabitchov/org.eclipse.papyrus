@@ -33,7 +33,6 @@ public class Messages extends NLS {
 	private Messages() {
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -327,72 +326,82 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String ImportMetaclass6CreationTool_title;
+	public static String Class6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ImportMetaclass6CreationTool_desc;
+	public static String Class6CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Enumeration7CreationTool_title;
+	public static String ImportMetaclass7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Enumeration7CreationTool_desc;
+	public static String ImportMetaclass7CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DataType8CreationTool_title;
+	public static String Enumeration8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DataType8CreationTool_desc;
+	public static String Enumeration8CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String PrimitiveType9CreationTool_title;
+	public static String DataType9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String PrimitiveType9CreationTool_desc;
+	public static String DataType9CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Property10CreationTool_title;
+	public static String PrimitiveType10CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Property10CreationTool_desc;
+	public static String PrimitiveType10CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Operation11CreationTool_title;
+	public static String Property11CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Operation11CreationTool_desc;
+	public static String Property11CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String EnumerationLiteral12CreationTool_title;
+	public static String Operation12CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String EnumerationLiteral12CreationTool_desc;
+	public static String Operation12CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String EnumerationLiteral13CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String EnumerationLiteral13CreationTool_desc;
 
 	/**
 	 * @generated
@@ -537,6 +546,26 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String ClassAttributeCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ClassAttributeCompartmentEditPartCN_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ClassOperationCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ClassOperationCompartmentEditPartCN_title;
+
+	/**
+	 * @generated
+	 */
 	public static String CommandName_OpenDiagram;
 
 	/**
@@ -558,6 +587,5 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String UMLModelingAssistantProviderMessage;
-
 	//TODO: put accessor fields manually	
 }

@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
@@ -108,16 +109,13 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 		return lep;
 	}
 
-
 	/**
 	 *Papyrus codeGen
 	 *@generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
-
 
 	/**
 	 * @generated
@@ -146,8 +144,6 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 			((ConstraintBodyEditPart)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -191,20 +187,13 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "Constraint";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -215,12 +204,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodeFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape);
-		contentPane = setupContentPane(shape);
-		return figure;
+		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 	}
 
 	/**
@@ -257,14 +241,11 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof NodeFigure) {
-			((NodeFigure)primaryShape).setLineWidth(width);
-		}
+		super.setLineWidth(width);
 	}
 
 	/**
@@ -282,9 +263,4 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID));
 	}
-
-
-
-
-
 }

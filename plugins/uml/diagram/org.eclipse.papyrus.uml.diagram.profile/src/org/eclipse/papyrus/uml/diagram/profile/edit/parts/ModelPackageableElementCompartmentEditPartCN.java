@@ -53,14 +53,12 @@ public class ModelPackageableElementCompartmentEditPartCN extends ShapeCompartme
 		super(view);
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public String getCompartmentName() {
 		return Messages.ModelPackageableElementCompartmentEditPartCN_title;
 	}
-
 
 	/**
 	 * @generated
@@ -77,9 +75,6 @@ public class ModelPackageableElementCompartmentEditPartCN extends ShapeCompartme
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomCreationRoleEditPolicy());
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -93,7 +88,6 @@ public class ModelPackageableElementCompartmentEditPartCN extends ShapeCompartme
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
-
 		return super.getTargetEditPart(request);
 	}
 

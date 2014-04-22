@@ -27,5 +27,4 @@ public class UMLNodeDescriptor extends UpdaterNodeDescriptor {
 	public UMLNodeDescriptor(EObject modelElement, int visualID) {
 		super(modelElement, visualID);
 	}
-
 }

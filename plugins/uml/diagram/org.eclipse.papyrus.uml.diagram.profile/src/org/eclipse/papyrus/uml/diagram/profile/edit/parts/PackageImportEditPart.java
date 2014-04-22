@@ -111,5 +111,4 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements 
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

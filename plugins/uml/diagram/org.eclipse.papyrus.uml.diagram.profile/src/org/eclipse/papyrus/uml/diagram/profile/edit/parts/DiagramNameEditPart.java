@@ -123,8 +123,6 @@ public class DiagramNameEditPart extends LabelEditPart implements ITextAwareEdit
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 	/**
 	 * @generated
 	 */
@@ -170,7 +168,6 @@ public class DiagramNameEditPart extends LabelEditPart implements ITextAwareEdit
 		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
 		getBorderItemLocator().setConstraint(new Rectangle(x, y, width, height));
 	}
-
 
 	/**
 	 * @generated
@@ -339,7 +336,6 @@ public class DiagramNameEditPart extends LabelEditPart implements ITextAwareEdit
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -426,9 +422,7 @@ public class DiagramNameEditPart extends LabelEditPart implements ITextAwareEdit
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -461,7 +455,6 @@ public class DiagramNameEditPart extends LabelEditPart implements ITextAwareEdit
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -469,7 +462,6 @@ public class DiagramNameEditPart extends LabelEditPart implements ITextAwareEdit
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -648,7 +640,6 @@ public class DiagramNameEditPart extends LabelEditPart implements ITextAwareEdit
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -732,7 +723,6 @@ public class DiagramNameEditPart extends LabelEditPart implements ITextAwareEdit
 			e.printStackTrace();
 		}
 	}
-
 
 	/**
 	 * @generated

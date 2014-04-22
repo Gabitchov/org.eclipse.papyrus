@@ -17,6 +17,7 @@ package org.eclipse.papyrus.uml.diagram.profile.custom.helper;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 
 import org.eclipse.papyrus.uml.diagram.common.helper.ILinkMappingHelper;
@@ -32,12 +33,10 @@ import org.eclipse.uml2.uml.Type;
  * The Class LinkMappingHelper is specialization of the link mapping helper for the Class diagram
  */
 public class ProfileLinkMappingHelper implements ILinkMappingHelper {
-
 	/**
 	 * SingletonHolder is loaded at the first execution of getInstance() method
 	 */
 	private static class SingletonHolder {
-
 		private final static ProfileLinkMappingHelper instance = new ProfileLinkMappingHelper();
 	}
 
@@ -62,7 +61,6 @@ public class ProfileLinkMappingHelper implements ILinkMappingHelper {
 	 */
 	public Collection<?> getSource(Element link) {
 		return LinkMappingHelper.getSource(link, new CommonSourceUMLSwitch() {
-
 			@Override
 			public java.util.Collection<?> caseAssociationClass(org.eclipse.uml2.uml.AssociationClass object) {
 				return object.getEndTypes();
@@ -70,9 +68,7 @@ public class ProfileLinkMappingHelper implements ILinkMappingHelper {
 
 			@Override
 			public java.util.Collection<?> caseElementImport(org.eclipse.uml2.uml.ElementImport object) {
-				ArrayList result = new ArrayList();
-				result.add(object.getImportingNamespace());
-				return result;
+				return Collections.singleton(object.getImportingNamespace());
 			};
 
 			@Override
@@ -82,41 +78,31 @@ public class ProfileLinkMappingHelper implements ILinkMappingHelper {
 
 			@Override
 			public java.util.Collection<?> caseInterfaceRealization(org.eclipse.uml2.uml.InterfaceRealization object) {
-				ArrayList result = new ArrayList();
-				result.add(object.getImplementingClassifier());
-				return result;
-
+				return Collections.singleton(object.getImplementingClassifier());
 			};
 
 			@Override
 			public java.util.Collection<?> caseProfileApplication(org.eclipse.uml2.uml.ProfileApplication object) {
-				ArrayList result = new ArrayList();
-				result.add(object.getApplyingPackage());
-				return result;
+				return Collections.singleton(object.getApplyingPackage());
 			};
 
 			@Override
 			public java.util.Collection<?> caseTemplateBinding(org.eclipse.uml2.uml.TemplateBinding object) {
-				ArrayList result = new ArrayList();
-				result.add(object.getBoundElement());
-				return result;
+				return Collections.singleton(object.getBoundElement());
 			};
 
 			@Override
 			public java.util.Collection<?> caseExtension(org.eclipse.uml2.uml.Extension object) {
 				ArrayList<Type> result = new ArrayList<Type>();
-				//it's possible don't have ownedEnd...
-				if(object.getOwnedEnds().size() != 0) {
+				// it's possible don't have ownedEnd...
+				if (object.getOwnedEnds().size() != 0) {
 					Iterator<Property> iterator = object.getOwnedEnds().iterator();
-					while(iterator.hasNext()) {
+					while (iterator.hasNext()) {
 						result.add(iterator.next().getType());
 					}
-
-
 				}
 				return result;
 			};
-
 		});
 	}
 
@@ -125,20 +111,18 @@ public class ProfileLinkMappingHelper implements ILinkMappingHelper {
 	 */
 	public Collection<?> getTarget(Element link) {
 		return LinkMappingHelper.getTarget(link, new CommonTargetUMLSwitch() {
-
 			@Override
 			public java.util.Collection<?> caseExtension(org.eclipse.uml2.uml.Extension object) {
-				ArrayList result = new ArrayList();
-				if(object.getMemberEnds().size() != 0) {
-					for(int i = 0; i < object.getMemberEnds().size(); i++) {
-						if(!(object.getMemberEnds().get(i) instanceof ExtensionEnd)) {
+				ArrayList<Type> result = new ArrayList<Type>();
+				if (object.getMemberEnds().size() != 0) {
+					for (int i = 0; i < object.getMemberEnds().size(); i++) {
+						if (!(object.getMemberEnds().get(i) instanceof ExtensionEnd)) {
 							result.add((object.getMemberEnds().get(i)).getType());
 						}
 					}
 				}
 				return result;
 			};
-
 
 			@Override
 			public java.util.Collection<?> caseAssociationClass(org.eclipse.uml2.uml.AssociationClass object) {
@@ -147,9 +131,7 @@ public class ProfileLinkMappingHelper implements ILinkMappingHelper {
 
 			@Override
 			public java.util.Collection<?> caseElementImport(org.eclipse.uml2.uml.ElementImport object) {
-				ArrayList result = new ArrayList();
-				result.add(object.getImportedElement());
-				return result;
+				return Collections.singleton(object.getImportedElement());
 			};
 
 			@Override
@@ -159,23 +141,18 @@ public class ProfileLinkMappingHelper implements ILinkMappingHelper {
 
 			@Override
 			public java.util.Collection<?> caseInterfaceRealization(org.eclipse.uml2.uml.InterfaceRealization object) {
-				ArrayList result = new ArrayList();
-				result.add(object.getContract());
-				return result;
+				return Collections.singleton(object.getContract());
 			};
 
 			@Override
 			public java.util.Collection<?> caseProfileApplication(org.eclipse.uml2.uml.ProfileApplication object) {
-				ArrayList result = new ArrayList();
-				result.add(object.getAppliedProfile());
-				return result;
+				return Collections.singleton(object.getAppliedProfile());
 			};
 
 			@Override
 			public java.util.Collection<?> caseTemplateBinding(org.eclipse.uml2.uml.TemplateBinding object) {
 				return object.getTargets();
 			};
-
 		});
 	}
 }

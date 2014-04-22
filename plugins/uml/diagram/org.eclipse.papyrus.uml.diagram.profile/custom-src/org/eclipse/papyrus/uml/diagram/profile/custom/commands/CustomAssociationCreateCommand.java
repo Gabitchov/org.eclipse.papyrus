@@ -29,16 +29,6 @@ import org.eclipse.uml2.uml.Type;
  * custom class to create an association
  */
 public class CustomAssociationCreateCommand extends org.eclipse.papyrus.uml.diagram.profile.edit.commands.AssociationCreateCommand {
-
-	/** the container */
-	protected Package container;
-
-	/** the source of the association */
-	protected EObject source;
-
-	/** the target of the association */
-	protected EObject target;
-
 	/**
 	 * 
 	 * Constructor.
@@ -52,8 +42,6 @@ public class CustomAssociationCreateCommand extends org.eclipse.papyrus.uml.diag
 	 */
 	public CustomAssociationCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request, source, target);
-		this.source = source;
-		this.target = target;
 		container = deduceContainer(source, target);
 	}
 
@@ -63,13 +51,12 @@ public class CustomAssociationCreateCommand extends org.eclipse.papyrus.uml.diag
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
+		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		if(source instanceof Type && target instanceof Type && container instanceof Package) {
-
+		if (source instanceof Type && target instanceof Type && container instanceof Package) {
 			Association newElement = (Association) ProfileDiagramAssociationHelper.createAssociation(getEditingDomain(), (Type) source, (Type) target, container, null);
-			((CreateElementRequest)getRequest()).setNewElement(newElement);
+			((CreateElementRequest) getRequest()).setNewElement(newElement);
 			return CommandResult.newOKCommandResult(newElement);
 		}
 		return null;

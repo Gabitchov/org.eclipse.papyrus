@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.edit.policies.ConstraintConstrainedElementItemSemanticEditPolicy;
 
@@ -50,10 +51,6 @@ public class ConstraintConstrainedElementEditPart extends ConnectionEditPart imp
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -63,37 +60,13 @@ public class ConstraintConstrainedElementEditPart extends ConnectionEditPart imp
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new CommentLinkDescriptor();
+		return new SimpleDashedEdgeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public CommentLinkDescriptor getPrimaryShape() {
-		return (CommentLinkDescriptor)getFigure();
+	public SimpleDashedEdgeFigure getPrimaryShape() {
+		return (SimpleDashedEdgeFigure)getFigure();
 	}
-
-
-	/**
-	 * @generated
-	 */
-	public class CommentLinkDescriptor extends PolylineConnectionEx {
-
-
-
-
-		/**
-		 * @generated
-		 */
-		public CommentLinkDescriptor() {
-			this.setLineStyle(Graphics.LINE_DASH);
-
-		}
-
-
-
-
-	}
-
-
 }

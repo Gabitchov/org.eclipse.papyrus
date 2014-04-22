@@ -44,6 +44,8 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLMarkerNavigationProvider;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLValidationProvider;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -110,7 +112,11 @@ public class ValidateAction extends Action {
 	 * @generated
 	 */
 	public static void runNonUIValidation(View view) {
-		DiagramEditPart diagramEditPart = OffscreenEditPartFactory.getInstance().createDiagramEditPart(view.getDiagram());
+		Shell shell = Display.getCurrent().getActiveShell();
+		if(shell == null) {
+			shell = new Shell();
+		}
+		DiagramEditPart diagramEditPart = OffscreenEditPartFactory.getInstance().createDiagramEditPart(view.getDiagram(), shell);
 		runValidation(diagramEditPart, view);
 	}
 
@@ -187,11 +193,11 @@ public class ValidateAction extends Action {
 			return;
 		}
 		final Diagnostic rootStatus = emfValidationStatus;
-		List allDiagnostics = new ArrayList();
+		List<Diagnostic> allDiagnostics = new ArrayList<Diagnostic>();
 		UMLDiagramEditorUtil.LazyElement2ViewMap element2ViewMap = new UMLDiagramEditorUtil.LazyElement2ViewMap(diagramEditPart.getDiagramView(), collectTargetElements(rootStatus, new HashSet<EObject>(), allDiagnostics));
-		for(Iterator it = emfValidationStatus.getChildren().iterator(); it.hasNext();) {
+		for(Iterator<Diagnostic> it = emfValidationStatus.getChildren().iterator(); it.hasNext();) {
 			Diagnostic nextDiagnostic = (Diagnostic)it.next();
-			List data = nextDiagnostic.getData();
+			List<?> data = nextDiagnostic.getData();
 			if(data != null && !data.isEmpty() && data.get(0) instanceof EObject) {
 				EObject element = (EObject)data.get(0);
 				View view = UMLDiagramEditorUtil.findView(diagramEditPart, element, element2ViewMap);
@@ -229,10 +235,10 @@ public class ValidateAction extends Action {
 	/**
 	 * @generated
 	 */
-	private static Set<EObject> collectTargetElements(IStatus status, Set<EObject> targetElementCollector, List allConstraintStatuses) {
+	private static Set<EObject> collectTargetElements(IStatus status, Set<EObject> targetElementCollector, List<IConstraintStatus> allConstraintStatuses) {
 		if(status instanceof IConstraintStatus) {
 			targetElementCollector.add(((IConstraintStatus)status).getTarget());
-			allConstraintStatuses.add(status);
+			allConstraintStatuses.add((IConstraintStatus)status);
 		}
 		if(status.isMultiStatus()) {
 			IStatus[] children = status.getChildren();
@@ -246,8 +252,8 @@ public class ValidateAction extends Action {
 	/**
 	 * @generated
 	 */
-	private static Set<EObject> collectTargetElements(Diagnostic diagnostic, Set<EObject> targetElementCollector, List allDiagnostics) {
-		List data = diagnostic.getData();
+	private static Set<EObject> collectTargetElements(Diagnostic diagnostic, Set<EObject> targetElementCollector, List<Diagnostic> allDiagnostics) {
+		List<?> data = diagnostic.getData();
 		EObject target = null;
 		if(data != null && !data.isEmpty() && data.get(0) instanceof EObject) {
 			target = (EObject)data.get(0);
@@ -255,7 +261,7 @@ public class ValidateAction extends Action {
 			allDiagnostics.add(diagnostic);
 		}
 		if(diagnostic.getChildren() != null && !diagnostic.getChildren().isEmpty()) {
-			for(Iterator it = diagnostic.getChildren().iterator(); it.hasNext();) {
+			for(Iterator<Diagnostic> it = diagnostic.getChildren().iterator(); it.hasNext();) {
 				collectTargetElements((Diagnostic)it.next(), targetElementCollector, allDiagnostics);
 			}
 		}

@@ -199,7 +199,6 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements I
 	/**
 	 * @generated
 	 */
-
 	public void refreshFeedback() {
 		refreshSelectionFeedback();
 		refreshFocusFeedback();
@@ -219,5 +218,4 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements I
 		}
 		return hostPositionListener;
 	}
-
 }

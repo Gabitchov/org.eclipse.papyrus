@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2014 CEA LIST and others.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,8 +8,9 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *  Christian W. Damus (CEA) - bug 402525
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -50,14 +51,12 @@ import org.eclipse.ui.dialogs.SelectionDialog;
 
 /**
  * Object Chooser. Defines a standard popup for selecting
- * multiple values.  If this dialog is used to select or create model
+ * multiple values. If this dialog is used to select or create model
  * elements to be added to or removed from some element that is being
- * edited, then it is important to
- * {@linkplain #setContextElement(Object) set that contextual element}
- * in this dialog.
- * 
+ * edited, then it is important to {@linkplain #setContextElement(Object) set that contextual element} in this dialog.
+ *
  * @author Camille Letavernier
- * 
+ *
  * @see #setContextElement(Object)
  */
 public class MultipleValueSelectorDialog extends SelectionDialog implements ISelectionChangedListener, IDoubleClickListener, IElementSelectionListener, SelectionListener {
@@ -158,7 +157,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 	 * The factory for creating new elements
 	 */
 	protected ReferenceValueFactory factory;
-	
+
 	/**
 	 * The model element being edited (if any), to which elements are to be added or removed.
 	 */
@@ -177,7 +176,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param parentShell
 	 *        The shell in which this dialog should be opened
 	 * @param selector
@@ -189,7 +188,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param parentShell
 	 *        The shell in which this dialog should be opened
 	 * @param selector
@@ -202,9 +201,9 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param parentShell
 	 *        The shell in which this dialog should be opened
 	 * @param selector
@@ -217,9 +216,9 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param parentShell
 	 *        The shell in which this dialog should be opened
 	 * @param selector
@@ -230,13 +229,13 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 	 *        True if the values returned by this dialog should be unique
 	 */
 	public MultipleValueSelectorDialog(Shell parentShell, IElementSelector selector, String title, boolean unique, boolean ordered) {
-		this(parentShell, selector, title, unique, ordered, MANY);
+		this(parentShell, selector, title, unique, false, MANY);
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param parentShell
 	 *        The shell in which this dialog should be opened
 	 * @param selector
@@ -313,7 +312,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 
 	/**
 	 * Creates the selector section
-	 * 
+	 *
 	 * @param parent
 	 *        The composite in which the section is created
 	 */
@@ -326,7 +325,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 
 	/**
 	 * Creates the main controls section (Add, remove, Add all, remove all)
-	 * 
+	 *
 	 * @param parent
 	 *        The composite in which the section is created
 	 */
@@ -363,7 +362,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 
 	/**
 	 * Creates the list displaying the currently selected elements
-	 * 
+	 *
 	 * @param parent
 	 *        The composite in which the section is created
 	 */
@@ -390,7 +389,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 
 	/**
 	 * Creates the up/down controls section
-	 * 
+	 *
 	 * @param parent
 	 *        The composite in which the section is created
 	 */
@@ -422,7 +421,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 
 	/**
 	 * Sets the label provider used to display the selected elements
-	 * 
+	 *
 	 * @param labelProvider
 	 */
 	public void setLabelProvider(ILabelProvider labelProvider) {
@@ -431,12 +430,13 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 
 	/**
 	 * {@inheritDoc} Handles the events on one of the control buttons
-	 * 
+	 *
 	 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
-	 * 
+	 *
 	 * @param e
 	 *        The event that occurred
 	 */
+	@Override
 	public void widgetSelected(SelectionEvent e) {
 		if(e.widget == add) {
 			addAction();
@@ -460,7 +460,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 	/**
 	 * Sets the {@link ReferenceValueFactory} for this editor. The {@link ReferenceValueFactory} is used to create
 	 * new instances and edit existing ones.
-	 * 
+	 *
 	 * @param factory
 	 *        The {@link ReferenceValueFactory} to be used by this editor
 	 */
@@ -571,7 +571,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 
 	/**
 	 * Moves an element from oldIndex to newIndex
-	 * 
+	 *
 	 * @param list
 	 *        The list in which to move the object
 	 * @param oldIndex
@@ -636,10 +636,11 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 	/**
 	 * Adds the specified elements to the currently selected elements (For
 	 * "Add" and "Add all" actions)
-	 * 
+	 *
 	 * @param elements
 	 *        The elements to be added
 	 */
+	@Override
 	public void addElements(Object[] elements) {
 		if(elements != null) {
 			allElements.addAll(Arrays.asList(elements));
@@ -665,13 +666,14 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 		super.okPressed();
 	}
 
+	@Override
 	public void widgetDefaultSelected(SelectionEvent e) {
 		//Nothing (see #doubleClick())
 	}
 
 	/**
 	 * Indicates if the selected values should be unique (According to Object.equals())
-	 * 
+	 *
 	 * @param unique
 	 */
 	public void setUnique(boolean unique) {
@@ -681,7 +683,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 
 	/**
 	 * Indicates if the selected elements should be ordered
-	 * 
+	 *
 	 * @param ordered
 	 */
 	public void setOrdered(boolean ordered) {
@@ -717,7 +719,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 
 	/**
 	 * Set the maximum number of values selected.
-	 * 
+	 *
 	 * @param upperBound
 	 */
 	public void setUpperBound(int upperBound) {
@@ -726,23 +728,23 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 
 	/**
 	 * Sets the optional context of the element that is being edited, in which others will be added and removed.
-	 * 
+	 *
 	 * @param contextElement
 	 *        the model element that is being edited
 	 */
 	public void setContextElement(Object contextElement) {
 		this.contextElement = contextElement;
 	}
-	
+
 	/**
 	 * Queries the optional context of the element that is being edited, in which others will be added and removed.
-	 * 
+	 *
 	 * @return the model element that is being edited
 	 */
 	public Object getContextElement() {
 		return contextElement;
 	}
-	
+
 	@Override
 	public boolean close() {
 		selector.removeElementSelectionListener(this);
@@ -751,19 +753,21 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * Handles double click event on the right-panel tree viewer {@link #selectedElementsViewer}
-	 * 
+	 *
 	 */
+	@Override
 	public void doubleClick(DoubleClickEvent event) {
 		removeAction();
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * Handles selection change event on the right-panel tree viewer {@link #selectedElementsViewer}
 	 */
+	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
 		updateControls();
 	}

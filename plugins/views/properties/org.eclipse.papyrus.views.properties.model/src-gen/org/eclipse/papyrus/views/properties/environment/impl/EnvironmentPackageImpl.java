@@ -604,6 +604,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		addEEnumLiteral(typeEEnum, Type.INTEGER);
 		addEEnumLiteral(typeEEnum, Type.REFERENCE);
 		addEEnumLiteral(typeEEnum, Type.ENUMERATION);
+		addEEnumLiteral(typeEEnum, Type.DOUBLE);
 
 		// Create resource
 		createResource(eNS_URI);

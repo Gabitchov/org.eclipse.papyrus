@@ -158,5 +158,4 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	protected Element getNewTarget() {
 		return (Element)newEnd;
 	}
-
 }

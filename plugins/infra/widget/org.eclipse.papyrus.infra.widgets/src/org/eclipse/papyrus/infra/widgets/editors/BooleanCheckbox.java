@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,21 +8,24 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.infra.widgets.databinding.GrayedCheckboxObservableValue;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
 /**
  * A Property Editor representing a Boolean value
  * as a Checkbox.
- * 
+ *
  * @author Camille Letavernier
  */
 public class BooleanCheckbox extends AbstractValueEditor {
@@ -31,11 +34,12 @@ public class BooleanCheckbox extends AbstractValueEditor {
 
 	private AggregatedObservable aggregated;
 
+
 	/**
-	 * 
+	 *
 	 * Constructor. Creates a new Property Editor for a Boolean
 	 * value, represented as a Checkbox.
-	 * 
+	 *
 	 * @param parent
 	 *        This editor's parent composite
 	 * @param style
@@ -46,10 +50,10 @@ public class BooleanCheckbox extends AbstractValueEditor {
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor. Creates a new Property Editor for a Boolean
 	 * value, represented as a Checkbox, with the given label
-	 * 
+	 *
 	 * @param parent
 	 *        This editor's parent composite
 	 * @param style
@@ -63,6 +67,11 @@ public class BooleanCheckbox extends AbstractValueEditor {
 
 		IObservableValue widgetObservable = WidgetProperties.selection().observe(checkbox);
 		setWidgetObservable(widgetObservable, true);
+		GridData gridData = getDefaultLayoutData();
+		checkbox.setLayoutData(gridData);
+		gridData.horizontalIndent = FieldDecorationRegistry.getDefault().getMaximumDecorationWidth();
+
+
 	}
 
 	@Override
@@ -122,7 +131,7 @@ public class BooleanCheckbox extends AbstractValueEditor {
 
 	/**
 	 * Sets this widget's value
-	 * 
+	 *
 	 * @param selected
 	 *        Whether the checkbox should be selected or not
 	 */

@@ -55,6 +55,8 @@ public class AssociationEndSourceEditPart extends AssociationRoleSourceEditPart 
 	 * @param key
 	 * @return
 	 */
+	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class key) {
 		if(key == IPropertySource.class) {

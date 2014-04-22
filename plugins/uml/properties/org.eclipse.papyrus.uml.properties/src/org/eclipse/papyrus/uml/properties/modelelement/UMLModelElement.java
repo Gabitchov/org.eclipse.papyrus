@@ -24,6 +24,7 @@ import java.util.Set;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.ecore.EClass;
@@ -278,6 +279,17 @@ public class UMLModelElement extends EMFModelElement {
 
 		//Transition
 		ownedRuleSubsets.add(UMLPackage.eINSTANCE.getTransition_Guard());
+	}
+	
+	public IValidator getValidator(String propertyPath){
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == UMLPackage.eINSTANCE.getNamedElement_Name()){
+
+			return new org.eclipse.papyrus.uml.tools.databinding.NamedElementValidator(source);
+		}
+
+		//TODO improve if our model add his own constraint
+		return null;
 	}
 
 }

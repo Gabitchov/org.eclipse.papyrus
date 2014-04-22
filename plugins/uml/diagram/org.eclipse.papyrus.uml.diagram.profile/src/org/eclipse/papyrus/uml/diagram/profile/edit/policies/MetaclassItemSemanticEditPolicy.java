@@ -77,8 +77,6 @@ public class MetaclassItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.Class_1031);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -100,8 +98,6 @@ public class MetaclassItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 
 	/**
 	 * @generated
@@ -319,5 +315,4 @@ public class MetaclassItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

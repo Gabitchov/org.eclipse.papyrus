@@ -49,8 +49,6 @@ public class CommentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.Comment_1007);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -72,8 +70,6 @@ public class CommentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 
 	/**
 	 * @generated
@@ -165,5 +161,4 @@ public class CommentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

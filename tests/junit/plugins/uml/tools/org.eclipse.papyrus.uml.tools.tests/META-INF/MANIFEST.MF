@@ -11,6 +11,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.junit.utils;bundle-version="1.0.0",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.0.0",
  org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.uml.tools.tests,
  org.eclipse.papyrus.uml.tools.tests.tests

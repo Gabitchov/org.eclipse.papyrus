@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -74,14 +74,14 @@ import org.eclipse.swt.widgets.Display;
 /**
  * Central class of the Property View framework. It lists the available environments and contexts,
  * and is responsible for Enabling or Disabling contexts programmatically.
- * 
+ *
  * All {@link Context}s should have unique names.
- * 
+ *
  * @see ContextExtensionPoint
  * @see EnvironmentExtensionPoint
  * @see Preferences
  * @see ConfigurationManager#instance
- * 
+ *
  * @author Camille Letavernier
  */
 public class ConfigurationManager {
@@ -314,7 +314,7 @@ public class ConfigurationManager {
 	/**
 	 * Refresh the given Context. This method should be called when a model is edited
 	 * at runtime, to re-load it from persistent storage.
-	 * 
+	 *
 	 * @param context
 	 *        A Context model to re-load
 	 */
@@ -356,11 +356,11 @@ public class ConfigurationManager {
 
 	/**
 	 * Tests if a Context is enabled.
-	 * 
+	 *
 	 * @param context
 	 * @return
 	 *         true if the given context is enabled.
-	 * 
+	 *
 	 * @see Preferences
 	 */
 	public boolean isApplied(Context context) {
@@ -420,7 +420,7 @@ public class ConfigurationManager {
 	 * Retrieves the ContextDescriptor associated to the specified context.
 	 * If a matching descriptor cannot be found, a new Descriptor is created
 	 * in the preferences.
-	 * 
+	 *
 	 * @param context
 	 * @return
 	 */
@@ -446,7 +446,7 @@ public class ConfigurationManager {
 	/**
 	 * Adds a context via its URI. The URI should represent a valid Context model.
 	 * The model is loaded in the ConfigurationManager's resourceSet.
-	 * 
+	 *
 	 * @param uri
 	 *        The context's URI
 	 * @throws IOException
@@ -468,7 +468,7 @@ public class ConfigurationManager {
 	/**
 	 * Adds a context via its URI. The URI should represent a valid Context model.
 	 * The model is loaded in the ConfigurationManager's resourceSet.
-	 * 
+	 *
 	 * @param uri
 	 *        The context's URI
 	 * @throws IOException
@@ -484,12 +484,12 @@ public class ConfigurationManager {
 	 * However, you can still call this method when creating a Context at runtime, programmatically
 	 * (Wizards, ...)
 	 * All {@link Context} should have unique names
-	 * 
+	 *
 	 * @param context
 	 *        The new context to register
 	 * @param apply
 	 *        Whether the context should be enabled or not
-	 * 
+	 *
 	 * @see ConfigurationManager#addContext(URI)
 	 */
 	public void addContext(Context context, boolean apply) {
@@ -500,7 +500,7 @@ public class ConfigurationManager {
 	 * Recalculates the cached preference descriptor prototype of the specified {@code context}.
 	 * This ensures that if the {@code context} becomes unavailable, we will still know locally
 	 * in this workspace what its prototype is.
-	 * 
+	 *
 	 * @param context
 	 *        a context
 	 */
@@ -525,12 +525,12 @@ public class ConfigurationManager {
 	 * However, you can still call this method when creating a Context at runtime, programmatically
 	 * (Wizards, ...)
 	 * All {@link Context} should have unique names
-	 * 
+	 *
 	 * @param context
 	 *        The new context to register
 	 * @param apply
 	 *        Whether the context should be enabled or not
-	 * 
+	 *
 	 * @see ConfigurationManager#addContext(URI)
 	 */
 	public void addContext(Context context, boolean apply, boolean isCustomizable) {
@@ -572,7 +572,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Disable a Context.
-	 * 
+	 *
 	 * @param context
 	 *        The Context to disable
 	 * @param update
@@ -612,7 +612,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Enables a Context
-	 * 
+	 *
 	 * @param context
 	 *        The Context to enable
 	 * @param update
@@ -620,7 +620,7 @@ public class ConfigurationManager {
 	 *        modification
 	 *        If false, you should call manually {@link #update()} to refresh
 	 *        the constraint engine
-	 * 
+	 *
 	 * @see #disableContext(Context, boolean)
 	 */
 	public void enableContext(Context context, boolean update) {
@@ -651,7 +651,7 @@ public class ConfigurationManager {
 	 * Tests if a Context is a plugin context. plugin contexts
 	 * are registered through {@link ContextExtensionPoint} and are
 	 * read-only.
-	 * 
+	 *
 	 * @param context
 	 * @return
 	 *         True if the context comes from a plugin, and is thus read-only
@@ -665,7 +665,7 @@ public class ConfigurationManager {
 	/**
 	 * Queries whether the specified {@code context} is a proxy for a missing context. That is a
 	 * context that is expected to exist but is (temporarily) unavailable.
-	 * 
+	 *
 	 * @param context
 	 *        a context
 	 * @return whether it represents a missing context
@@ -676,7 +676,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Loads a Context from the given URI. The model is loaded in the {@link ConfigurationManager}'s resourceSet
-	 * 
+	 *
 	 * @param uri
 	 *        The URI from which the Context is loaded
 	 * @return
@@ -694,7 +694,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Adds a new Environment from the given URI.
-	 * 
+	 *
 	 * @param uri
 	 *        The URI from which the Environment is retrieved.
 	 * @throws IOException
@@ -716,7 +716,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Returns the context from the given context name
-	 * 
+	 *
 	 * @param contextName
 	 *        The name of the context to retrieve
 	 * @return
@@ -746,9 +746,9 @@ public class ConfigurationManager {
 	/**
 	 * Returns all the known contexts, even if they are not applied
 	 * To get only applied contexts, see {@link #getEnabledContexts()}
-	 * 
+	 *
 	 * @return All known contexts
-	 * 
+	 *
 	 * @see PropertiesRoot#getContexts()
 	 */
 	public Collection<Context> getContexts() {
@@ -757,9 +757,9 @@ public class ConfigurationManager {
 
 	/**
 	 * Returns all the known customizable contexts.
-	 * 
+	 *
 	 * @return All known contexts
-	 * 
+	 *
 	 * @see PropertiesRoot#getContexts()
 	 * @see {@link #getEnabledContexts()}
 	 */
@@ -776,7 +776,7 @@ public class ConfigurationManager {
 	/**
 	 * Obtains proxies (not the EMF kind) for all contexts that the system knows about
 	 * but are currently unavailable.
-	 * 
+	 *
 	 * @return the current collection of missing contexts
 	 */
 	public Collection<Context> getMissingContexts() {
@@ -860,7 +860,10 @@ public class ConfigurationManager {
 		case STRING:
 			propertyEditorName = multiple ? "MultiString" : "StringEditor"; //$NON-NLS-1$ //$NON-NLS-2$
 			break;
+		case DOUBLE:
+			propertyEditorName = multiple ? "MultiDouble" : "DoubleEditor"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
+
 
 		if(propertyEditorName == null) {
 			return null;
@@ -871,7 +874,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Returns the default XWT namespaces
-	 * 
+	 *
 	 * @return the default XWT namespaces
 	 */
 	public Set<Namespace> getBaseNamespaces() {
@@ -912,7 +915,7 @@ public class ConfigurationManager {
 	 * Disable, then unregisters a Context. The Context won't be available anymore in the framework
 	 * (not even in the Preferences page). This method <strong>won't</strong> delete the context's files
 	 * on the file system.
-	 * 
+	 *
 	 * @param context
 	 *        The context to delete
 	 */
@@ -924,7 +927,7 @@ public class ConfigurationManager {
 	 * Disable, then unregisters a Context. The Context won't be available anymore in the framework
 	 * (not even in the Preferences page). This method <strong>won't</strong> delete the context's files
 	 * on the file system.
-	 * 
+	 *
 	 * @param context
 	 *        The context to delete
 	 * @param updateEngine
@@ -980,7 +983,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Retrieves the Property object associated to the propertyPath in the given context
-	 * 
+	 *
 	 * @param propertyPath
 	 * @param context
 	 * @return
@@ -1027,7 +1030,7 @@ public class ConfigurationManager {
 	 * Checks the conflicts between all applied configurations
 	 * A Conflict may occur when two sections have the same ID : they can't
 	 * be displayed at the same time
-	 * 
+	 *
 	 * @return
 	 *         The list of conflicts
 	 */
@@ -1066,7 +1069,7 @@ public class ConfigurationManager {
 	/**
 	 * Returns the ResourceSet associated to the ConfigurationManager,
 	 * ie. the ResourceSet containing all Environments and Contexts
-	 * 
+	 *
 	 * @return
 	 */
 	public ResourceSet getResourceSet() {
@@ -1085,8 +1088,8 @@ public class ConfigurationManager {
 			return customizableContexts.get(propertyViewConfiguration);
 		}
 
-		//Default value for isCustomizable is true. However, if the context is 
-		//not stored in customizableContexts, then it's an error. We should 
+		//Default value for isCustomizable is true. However, if the context is
+		//not stored in customizableContexts, then it's an error. We should
 		//disable customization tools for this one...
 		return false;
 	}

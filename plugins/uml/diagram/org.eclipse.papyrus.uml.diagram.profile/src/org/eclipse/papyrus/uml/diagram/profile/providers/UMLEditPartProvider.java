@@ -29,5 +29,4 @@ public class UMLEditPartProvider extends DefaultEditPartProvider {
 	public UMLEditPartProvider() {
 		super(new UMLEditPartFactory(), UMLVisualIDRegistry.TYPED_INSTANCE, ProfileDiagramEditPart.MODEL_ID);
 	}
-
 }

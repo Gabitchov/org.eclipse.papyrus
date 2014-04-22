@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ClassCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.CommentCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ConstraintCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.DataTypeCreateCommandCN;
@@ -42,7 +43,6 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicy extends 
 		super(UMLElementTypes.Package_2007);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -51,85 +51,36 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicy extends 
 		if(requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
-		IElementType baseElementType = requestElementType;
-		boolean isExtendedType = false;
-		if(requestElementType instanceof IExtendedHintedElementType) {
-			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if(baseElementType != null) {
-				isExtendedType = true;
-			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
-				isExtendedType = true;
-			}
-		}
-
-		if(UMLElementTypes.Comment_1007 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Comment_1007 == requestElementType) {
 			return getGEFWrapper(new CommentCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Model_1027 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Model_1027 == requestElementType) {
 			return getGEFWrapper(new ModelCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Profile_1024 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Profile_1024 == requestElementType) {
 			return getGEFWrapper(new ProfileCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Package_1012 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Package_1012 == requestElementType) {
 			return getGEFWrapper(new PackageCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Constraint_1028 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Constraint_1028 == requestElementType) {
 			return getGEFWrapper(new ConstraintCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Enumeration_3025 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Enumeration_3025 == requestElementType) {
 			return getGEFWrapper(new EnumerationCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.PrimitiveType_3026 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.PrimitiveType_3026 == requestElementType) {
 			return getGEFWrapper(new PrimitiveTypeCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.DataType_3027 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.DataType_3027 == requestElementType) {
 			return getGEFWrapper(new DataTypeCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
-		if(UMLElementTypes.Stereotype_1023 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Stereotype_1023 == requestElementType) {
 			return getGEFWrapper(new StereotypeCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
-
+		}
+		if(UMLElementTypes.Class_3010 == requestElementType) {
+			return getGEFWrapper(new ClassCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}
-
-
-
 }

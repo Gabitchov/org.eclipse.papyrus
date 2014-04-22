@@ -26,6 +26,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.uml.diagram.common.actions.AbstractShowHideAction;
 import org.eclipse.ui.ISelectionService;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -93,21 +94,25 @@ abstract public class AbstractShowHideHandler extends AbstractHandler {
 	 */
 	protected void buildSelection() {
 		this.selection.clear();
-		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
-		ISelection selectionTmp = selectionService.getSelection();
-		if((selectionTmp != null) && (!selectionTmp.isEmpty())) {
-			if(selectionTmp instanceof StructuredSelection) {
-				Iterator<?> it = ((StructuredSelection)selectionTmp).iterator();
-				while(it.hasNext()) {
-					Object current = it.next();
-					if(current instanceof IGraphicalEditPart) {
-						EditPolicy editpolicy = ((IGraphicalEditPart)current).getEditPolicy(this.editpolicy);
-						if(editpolicy != null) {
-							this.selection.add((IGraphicalEditPart)current);
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if (activeWorkbenchWindow!=null){
+			ISelectionService selectionService = activeWorkbenchWindow.getSelectionService();
+			ISelection selectionTmp = selectionService.getSelection();
+			if((selectionTmp != null) && (!selectionTmp.isEmpty())) {
+				if(selectionTmp instanceof StructuredSelection) {
+					Iterator<?> it = ((StructuredSelection)selectionTmp).iterator();
+					while(it.hasNext()) {
+						Object current = it.next();
+						if(current instanceof IGraphicalEditPart) {
+							EditPolicy editpolicy = ((IGraphicalEditPart)current).getEditPolicy(this.editpolicy);
+							if(editpolicy != null) {
+								this.selection.add((IGraphicalEditPart)current);
+							}
 						}
 					}
 				}
-			}
+			}			
 		}
+
 	}
 }

@@ -47,6 +47,7 @@
       <eLiterals name="Integer" value="2"/>
       <eLiterals name="Reference" value="3" literal="Reference"/>
       <eLiterals name="Enumeration" value="4"/>
+      <eLiterals name="Double" value="5" literal="Double"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StandardWidgetType" eSuperTypes="#//environment/WidgetType"/>
     <eClassifiers xsi:type="ecore:EClass" name="Namespace">
