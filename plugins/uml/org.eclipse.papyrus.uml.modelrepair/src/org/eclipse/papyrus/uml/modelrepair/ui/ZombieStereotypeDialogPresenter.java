@@ -13,6 +13,9 @@
 package org.eclipse.papyrus.uml.modelrepair.ui;
 
 import java.util.List;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -50,6 +53,12 @@ public class ZombieStereotypeDialogPresenter {
 
 	private Runnable presentation;
 
+	private final Lock lock = new ReentrantLock();
+
+	private final Condition pendingCond = lock.newCondition();
+
+	private volatile boolean pending = false;
+
 	public ZombieStereotypeDialogPresenter(Shell parentShell, ModelSet modelSet) {
 		super();
 
@@ -58,9 +67,12 @@ public class ZombieStereotypeDialogPresenter {
 	}
 
 	public void dispose() {
-		synchronized(zombieDescriptors) {
+		lock.lock();
+		try {
 			zombieDescriptors.clear();
 			presentation = null;
+		} finally {
+			lock.unlock();
 		}
 	}
 
@@ -69,41 +81,78 @@ public class ZombieStereotypeDialogPresenter {
 	}
 
 	public void addZombies(ZombieStereotypesDescriptor zombies) {
-		synchronized(zombieDescriptors) {
+		lock.lock();
+		try {
 			zombieDescriptors.add(zombies);
 
 			if(presentation == null) {
+				internalSetPending(true);
+
 				presentation = new Runnable() {
 
 					public void run() {
 						List<ZombieStereotypesDescriptor> zombies;
 
-						synchronized(zombieDescriptors) {
+						lock.lock();
+						try {
 							if(presentation != this) {
-								// I have been cancelled
+								internalSetPending(false);
 								return;
 							}
 							zombies = ImmutableList.copyOf(zombieDescriptors);
 							dispose();
+						} finally {
+							lock.unlock();
 						}
 
-						if(!zombies.isEmpty()) {
-							try {
-								ZombieStereotypesDialog zombieDialog = new ZombieStereotypesDialog(parentShell, modelSet, zombies);
-								dynamicProfileSupplier.setParentWindow(zombieDialog);
-								zombieDialog.setBlockOnOpen(true);
-								zombieDialog.open();
-							} catch (ServiceException e) {
-								StatusManager.getManager().handle(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to open model repair dialog.", e), StatusManager.SHOW);
-							} finally {
-								dynamicProfileSupplier.setParentWindow(null);
+						try {
+							if(!zombies.isEmpty()) {
+								try {
+									ZombieStereotypesDialog zombieDialog = new ZombieStereotypesDialog(parentShell, modelSet, zombies);
+									dynamicProfileSupplier.setParentWindow(zombieDialog);
+									zombieDialog.setBlockOnOpen(true);
+									zombieDialog.open();
+								} catch (ServiceException e) {
+									StatusManager.getManager().handle(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to open model repair dialog.", e), StatusManager.SHOW);
+								} finally {
+									dynamicProfileSupplier.setParentWindow(null);
+								}
 							}
+						} finally {
+							internalSetPending(false);
 						}
 					}
 				};
 
 				parentShell.getDisplay().asyncExec(presentation);
 			}
+		} finally {
+			lock.unlock();
+		}
+	}
+
+	public boolean isPending() {
+		return pending;
+	}
+
+	public void awaitPending(boolean expected) throws InterruptedException {
+		lock.lock();
+		try {
+			while(pending != expected) {
+				pendingCond.await();
+			}
+		} finally {
+			lock.unlock();
+		}
+	}
+
+	private void internalSetPending(boolean pending) {
+		lock.lock();
+		try {
+			this.pending = pending;
+			pendingCond.signalAll();
+		} finally {
+			lock.unlock();
 		}
 	}
 

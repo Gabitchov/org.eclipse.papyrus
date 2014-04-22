@@ -15,6 +15,8 @@ package org.eclipse.papyrus.uml.modelrepair.internal.stereotypes;
 import java.util.Collection;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -29,6 +31,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
+import org.eclipse.papyrus.uml.modelrepair.Activator;
 import org.eclipse.papyrus.uml.modelrepair.ui.ZombieStereotypeDialogPresenter;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.Element;
@@ -47,10 +50,10 @@ import com.google.common.collect.Sets;
  */
 public class StereotypeApplicationRepairSnippet implements IModelSetSnippet {
 
-	private final UMLResourceLoadAdaper adapter = new UMLResourceLoadAdaper();
+	private final UMLResourceLoadAdapter adapter = new UMLResourceLoadAdapter();
 
 	private final Supplier<Profile> dynamicProfileSupplier;
-	
+
 	private ZombieStereotypeDialogPresenter presenter;
 
 	public StereotypeApplicationRepairSnippet() {
@@ -63,16 +66,58 @@ public class StereotypeApplicationRepairSnippet implements IModelSetSnippet {
 		this.dynamicProfileSupplier = dynamicProfileSupplier;
 	}
 
+	public static StereotypeApplicationRepairSnippet getInstance(ModelSet modelSet) {
+		UMLResourceLoadAdapter adapter = (UMLResourceLoadAdapter)EcoreUtil.getExistingAdapter(modelSet, StereotypeApplicationRepairSnippet.class);
+		return (adapter == null) ? null : adapter.getSnippet();
+	}
+
+	public IStatus repair(ModelSet modelSet) {
+		IStatus result = Status.OK_STATUS;
+
+		if(presenter != null) {
+			for(Resource next : ImmutableList.copyOf(modelSet.getResources())) {
+				if(next.isLoaded()) {
+					handleResourceLoaded(next);
+				}
+			}
+
+			// Wait for the presenter to have shown its dialog and finished
+			try {
+				presenter.awaitPending(false);
+
+				// Did we fix all of the zombies?
+				for(Resource next : ImmutableList.copyOf(modelSet.getResources())) {
+					if(next.isLoaded() && (getZombieStereotypes(next) != null)) {
+						result = new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Stereotype repair did not successfully repair all stereotype application problems.");
+						break;
+					}
+				}
+			} catch (InterruptedException e) {
+				result = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Stereotype repair was interrupted while waiting for user input.", e);
+			}
+		}
+
+		return result;
+	}
+
 	protected void handleResourceLoaded(Resource resource) {
+		ZombieStereotypesDescriptor zombies = getZombieStereotypes(resource);
+
+		if((zombies != null) && (presenter != null)) {
+			presenter.addZombies(zombies);
+		}
+	}
+
+	protected ZombieStereotypesDescriptor getZombieStereotypes(Resource resource) {
+		ZombieStereotypesDescriptor result = null;
 		Element root = getRootUMLElement(resource);
 
 		// Only check for zombies in resources that we can modify (those being the resources in the user model opened in the editor)
 		if((root != null) && !EMFHelper.isReadOnly(resource, EMFHelper.resolveEditingDomain(root))) {
-			ZombieStereotypesDescriptor zombies = getZombieStereotypes(resource, root);
-			if((zombies != null) && (presenter != null)) {
-				presenter.addZombies(zombies);
-			}
+			result = getZombieStereotypes(resource, root);
 		}
+
+		return result;
 	}
 
 	protected Element getRootUMLElement(Resource resource) {
@@ -149,7 +194,16 @@ public class StereotypeApplicationRepairSnippet implements IModelSetSnippet {
 	// Nested types
 	//
 
-	private class UMLResourceLoadAdaper extends AdapterImpl {
+	private class UMLResourceLoadAdapter extends AdapterImpl {
+
+		public StereotypeApplicationRepairSnippet getSnippet() {
+			return StereotypeApplicationRepairSnippet.this;
+		}
+
+		@Override
+		public boolean isAdapterForType(Object type) {
+			return type == StereotypeApplicationRepairSnippet.class;
+		}
 
 		@Override
 		public void notifyChanged(Notification msg) {
