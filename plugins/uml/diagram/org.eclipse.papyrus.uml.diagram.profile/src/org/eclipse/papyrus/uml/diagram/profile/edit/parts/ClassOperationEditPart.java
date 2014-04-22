@@ -134,7 +134,6 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 	 */
 	protected IDirectEditorConfiguration configuration;
 
-
 	/**
 	 * @generated
 	 */
@@ -164,7 +163,6 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 		installEditPolicy(AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeOperationDisplayEditPolicy());
 		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new OperationLabelEditPolicy());
 	}
-
 
 	/**
 	 * @generated
@@ -333,7 +331,6 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -420,9 +417,7 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -455,7 +450,6 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -463,7 +457,6 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -625,7 +618,7 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return (View)getModel();
+		return getPrimaryView();
 	}
 
 	/**
@@ -642,7 +635,6 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -727,7 +719,6 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -792,40 +783,8 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new OperationFigureDescriptor();
+		return new WrappingLabel();
 	}
-
-
-	/**
-	 * @generated
-	 */
-	public class OperationFigureDescriptor extends WrappingLabel {
-
-
-
-
-		/**
-		 * @generated
-		 */
-		public OperationFigureDescriptor() {
-			this.setText("");
-
-			this.setFont(THIS_FONT);
-
-
-		}
-
-
-
-
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
-
 
 	/**
 	 * @generated
@@ -834,5 +793,4 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 	public boolean isSelectable() {
 		return getFigure().isShowing();
 	}
-
 }

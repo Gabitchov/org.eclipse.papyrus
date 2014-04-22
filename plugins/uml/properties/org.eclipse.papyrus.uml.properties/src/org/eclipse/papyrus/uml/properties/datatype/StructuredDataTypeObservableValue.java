@@ -56,6 +56,7 @@ public class StructuredDataTypeObservableValue extends PapyrusObservableValue im
 	@Override
 	protected void doSetValue(Object value) { //value = dataType instance
 		super.doSetValue(value); //TODO : type réel de value ? compatibilité des types ?
+		
 	}
 
 	public Object getAdapter(Class adapter) {

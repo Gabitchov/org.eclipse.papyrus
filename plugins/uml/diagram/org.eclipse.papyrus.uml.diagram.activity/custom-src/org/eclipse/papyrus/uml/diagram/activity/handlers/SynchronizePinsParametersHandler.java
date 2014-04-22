@@ -65,6 +65,7 @@ import org.eclipse.papyrus.uml.diagram.activity.helper.PinAndParameterSynchroniz
 import org.eclipse.papyrus.uml.diagram.activity.helper.datastructure.LinkPinToParameter;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLMarkerNavigationProvider;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -107,7 +108,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 	/**
 	 * Label for the handler (use in notification and dialog)
 	 */
-	private static final String SYNCHRONIZE_PINS_AND_PARAMETERS = "Synchronize pins and parameters";
+	private static final String SYNCHRONIZE_PINS_AND_PARAMETERS = "Synchronize pins and parameters"; //$NON-NLS-1$
 
 	/**
 	 * Constructor
@@ -167,7 +168,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 	 */
 	private static void renamePins(final InvocationAction invocationAction) {
 		//Command used as renaming the pins change the model.
-		AbstractTransactionalCommand renamePinsCommand = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "renaming pins", null) {
+		AbstractTransactionalCommand renamePinsCommand = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "renaming pins", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -584,18 +585,21 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 	 */
 	protected static List<IGraphicalEditPart> getIGraphicalPartSelection() {
 		List<IGraphicalEditPart> viewSelected = new ArrayList<IGraphicalEditPart>();
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(false == selection instanceof IStructuredSelection) {
-			return Collections.emptyList();
-		}
-		for(Object object : ((IStructuredSelection)selection).toList()) {
-			if(false == object instanceof IGraphicalEditPart) {
-				continue;
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if (activeWorkbenchWindow!=null){
+			ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
+			if(false == selection instanceof IStructuredSelection) {
+				return Collections.emptyList();
 			}
-			if(object instanceof DiagramEditPart) {
-				continue;
-			}
-			viewSelected.add((IGraphicalEditPart)object);
+			for(Object object : ((IStructuredSelection)selection).toList()) {
+				if(false == object instanceof IGraphicalEditPart) {
+					continue;
+				}
+				if(object instanceof DiagramEditPart) {
+					continue;
+				}
+				viewSelected.add((IGraphicalEditPart)object);
+			}			
 		}
 		return viewSelected;
 	}
@@ -619,7 +623,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 		private InvocationAction callAction;
 
 		public DeleteActivityEdgeDialog(Shell parentShell, Iterable<ActivityEdge> egdes, InvocationAction callAction) {
-			super(parentShell, SYNCHRONIZE_PINS_AND_PARAMETERS, getIcon(), "", WARNING, new String[]{ "Synchronize", "Cancel" }, 0);////$NON-NLS-1$////$NON-NLS-2$
+			super(parentShell, SYNCHRONIZE_PINS_AND_PARAMETERS, getIcon(), "", WARNING, new String[]{ "Synchronize", "Cancel" }, 0);//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			this.egdes = egdes;
 			this.callAction = callAction;
 			this.message = getEdgeListString();
@@ -628,7 +632,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 		private String getEdgeListString() {
 			UMLItemProviderAdapterFactory t = new UMLItemProviderAdapterFactory();
 			IItemLabelProvider provider = (IItemLabelProvider)t.adapt(callAction, IItemLabelProvider.class);
-			StringBuilder builder = new StringBuilder("If you synchronize " + provider.getText(callAction) + " the following edges will be deleted : \n ");////$NON-NLS-1$
+			StringBuilder builder = new StringBuilder("If you synchronize " + provider.getText(callAction) + " the following edges will be deleted : \n ");//$NON-NLS-1$ //$NON-NLS-2$
 			for(ActivityEdge e : egdes) {
 				provider = (IItemLabelProvider)t.adapt(e, IItemLabelProvider.class);
 				builder.append(provider.getText(e)).append(" \n");

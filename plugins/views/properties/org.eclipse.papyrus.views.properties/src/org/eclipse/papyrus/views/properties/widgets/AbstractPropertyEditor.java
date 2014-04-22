@@ -8,14 +8,17 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.widgets;
 
+import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractListEditor;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractValueEditor;
@@ -29,6 +32,7 @@ import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.widgets.Control;
+
 
 /**
  * An Abstract class to factorize code for PropertyEditors. PropertyEditors are
@@ -75,6 +79,10 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 */
 	protected IObservableValue observableValue;
 
+	
+	protected IValidator modelValidator;
+	
+	protected IConverter targetToModelConverter;
 	/**
 	 * Indicates if the editor's label should be displayed
 	 */
@@ -186,7 +194,20 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			IObservableValue inputObservableValue = getInputObservableValue();
 
 			if(inputObservableValue != null) {
+				valueEditor.setStrategies();
+
+	
+
+				IValidator modelVal = getValidator();
+				if(modelVal!=null){
+
+					valueEditor.setModelValidator(modelVal);
+				}	
 				valueEditor.setModelObservable(inputObservableValue);
+
+
+
+
 			}
 		}
 
@@ -221,9 +242,12 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	public final void handleChange(ChangeEvent event) {
 		//Handle the "forceRefresh" behavior when the input DataSource sends a ChangeEvent
 		AbstractEditor editor = getEditor();
-		if(editor != null) {
+		if(editor != null ) {
 			editor.refreshValue();
-		}
+			}
+
+
+			
 	}
 
 	/**
@@ -312,6 +336,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	protected void updateDescription() {
 		String description = ""; //$NON-NLS-1$
 		Property property = getModelProperty();
+
 		if(property != null) {
 			description = property.getDescription();
 		}
@@ -324,6 +349,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			description = getLocalPropertyPath() + ": " + description;
 		}
 
+			
 		updateDescription(description);
 	}
 
@@ -335,6 +361,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		if(valueEditor != null) {
 			valueEditor.setToolTipText(description);
 		} else if(listEditor != null) {
+			
 			listEditor.setToolTipText(description);
 		}
 	}
@@ -349,6 +376,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			return null;
 		}
 		Context context = getContext();
+
 		return ConfigurationManager.getInstance().getProperty(propertyPath, context);
 	}
 
@@ -521,4 +549,23 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		}
 		return valueEditor;
 	}
+	
+	/**
+	 * @return the IValidator for this property editor 
+	 */
+	
+	public IValidator getValidator(){
+		if(modelValidator==null){
+			try{
+				modelValidator = input.getValidator(propertyPath);
+			}
+			catch(Exception ex){
+				Activator.log.error("Cannot find a valid Validator for " + propertyPath, ex); //$NON-NLS-1$
+
+			}
+		}
+
+		return modelValidator;
+	}
+	
 }

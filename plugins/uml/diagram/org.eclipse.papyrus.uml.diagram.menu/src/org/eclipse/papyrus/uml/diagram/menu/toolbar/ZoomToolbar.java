@@ -355,23 +355,25 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	protected List<IGraphicalEditPart> getSelectedElements() {
 		List<IGraphicalEditPart> editparts = new ArrayList<IGraphicalEditPart>();
 
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(selection instanceof IStructuredSelection) {
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if (activeWorkbenchWindow!=null){
+			ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
+			if(selection instanceof IStructuredSelection) {
 
-			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
 
-			Iterator<?> it = structuredSelection.iterator();
-			while(it.hasNext()) {
-				Object object = it.next();
-				if(object instanceof IGraphicalEditPart) {
-					editparts.add((IGraphicalEditPart)object);
+				Iterator<?> it = structuredSelection.iterator();
+				while(it.hasNext()) {
+					Object object = it.next();
+					if(object instanceof IGraphicalEditPart) {
+						editparts.add((IGraphicalEditPart)object);
+					}
 				}
-			}
 
-		} else if(selection instanceof IGraphicalEditPart) {
-			editparts.add((IGraphicalEditPart)selection);
+			} else if(selection instanceof IGraphicalEditPart) {
+				editparts.add((IGraphicalEditPart)selection);
+			}			
 		}
-
 		return editparts;
 	}
 

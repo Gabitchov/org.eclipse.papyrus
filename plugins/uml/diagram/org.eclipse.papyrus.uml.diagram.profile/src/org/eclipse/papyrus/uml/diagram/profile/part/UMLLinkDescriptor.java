@@ -35,5 +35,4 @@ public class UMLLinkDescriptor extends UpdaterLinkDescriptor {
 	public UMLLinkDescriptor(EObject source, EObject destination, EObject linkElement, IElementType elementType, int linkVID) {
 		super(source, destination, linkElement, elementType, linkVID);
 	}
-
 }

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -60,7 +60,7 @@ import org.eclipse.papyrus.views.properties.ui.PropertyEditor;
  * any referenceable object. Hence, this ModelElement replaces
  * most EMF Content Providers by custom ones, much lighter. When such
  * a content provider cannot be found, the default EMF one is used.
- * 
+ *
  * @author Camille Letavernier
  */
 public class CustomizationModelElement extends AbstractModelElement {
@@ -71,7 +71,7 @@ public class CustomizationModelElement extends AbstractModelElement {
 
 	/**
 	 * Constructs a new ModelElement.
-	 * 
+	 *
 	 * @param delegate
 	 *        If this model element cannot handle a given property, it will
 	 *        delegate the call to a standard EMF ModelElement

@@ -116,5 +116,4 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure)getFigure();
 	}
-
 }
