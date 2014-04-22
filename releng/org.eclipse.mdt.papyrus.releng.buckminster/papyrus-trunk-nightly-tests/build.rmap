@@ -267,14 +267,6 @@
       </rm:uri>
     </rm:provider>        
     
-    <!-- MoDisco -->
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-      <!-- updateFrom("MoDisco",0) -->
-      <rm:uri format="{0}/modeling/mdt/modisco/updates/integration/0.12.0/I201401201815/">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>    
-    
     <!-- MDT UML2 -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MDT UML2",0) -->

@@ -57,13 +57,13 @@ public class CopyPasteSimplePartTest extends AbstractCopyPastePartTest {
 		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
 		commandService.refreshElements(IWorkbenchCommandConstants.EDIT_COPY, null);
 		org.eclipse.core.commands.Command copyCommand = commandService.getCommand(IWorkbenchCommandConstants.EDIT_COPY);
-		Assert.assertNotNull("Impossible to find copy command", copyCommand);
-		Assert.assertTrue("command in not enabled", copyCommand.isEnabled());
-		Assert.assertTrue("command in not defined", copyCommand.isDefined());
-		copyCommand.executeWithChecks(new ExecutionEvent());
+		Assert.assertNotNull("Impossible to find copy command", copyCommand); //$NON-NLS-1$
+		Assert.assertTrue("command in not enabled", copyCommand.isEnabled()); //$NON-NLS-1$
+		Assert.assertTrue("command in not defined", copyCommand.isDefined()); //$NON-NLS-1$
+		copyCommand.executeWithChecks(new ExecutionEvent()); 
 
 		// check editor state (should be non dirty)
-		Assert.assertFalse("Editor should not be dirty after copy", isEditorDirty());
+		Assert.assertFalse("Editor should not be dirty after copy", isEditorDirty()); //$NON-NLS-1$
 	}
 
 	@Override

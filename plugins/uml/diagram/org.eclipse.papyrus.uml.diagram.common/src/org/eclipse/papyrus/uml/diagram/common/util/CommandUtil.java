@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.common.core.util.StringStatics;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
-import org.eclipse.papyrus.infra.core.utils.PapyrusTrace;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 
 /**
  * Utility to execute command inside an action.
@@ -72,7 +72,7 @@ public class CommandUtil {
 		try {
 			operation.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
-			PapyrusTrace.log(e);
+			Activator.log.error(e);
 		}
 	}
 

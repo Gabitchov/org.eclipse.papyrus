@@ -32,13 +32,7 @@ import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration;
  * @generated
  */
 public class ToolConfigurationItemProvider
-	extends LeafConfigurationItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends LeafConfigurationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

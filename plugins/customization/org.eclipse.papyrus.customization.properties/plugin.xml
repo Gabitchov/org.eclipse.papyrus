@@ -191,4 +191,13 @@
             class="org.eclipse.papyrus.customization.properties.storage.actions.workspace.WorkspaceContextStorageActionProvider">
       </actionProvider>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+      <modeldeclaration
+            file="UICustom/PropertiesContext.custom">
+      </modeldeclaration>
+      <modeldeclaration
+            file="UICustom/PropertiesUI.custom">
+      </modeldeclaration>
+   </extension>
 </plugin>

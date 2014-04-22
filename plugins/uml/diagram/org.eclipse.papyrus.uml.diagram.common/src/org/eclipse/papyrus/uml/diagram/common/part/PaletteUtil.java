@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Tool;
@@ -39,7 +38,6 @@ import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.SpecializationType;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
@@ -404,7 +402,7 @@ public class PaletteUtil {
 	 */
 	public static boolean areRequiredProfileApplied(IEditorPart part, PapyrusPaletteService.ProviderDescriptor papyrusProviderDesc) {
 		if(!(part instanceof DiagramEditorWithFlyOutPalette)) {
-			PapyrusTrace.log(IStatus.WARNING, "trying to check a papyrus palette descriptor outside papyrus framework");
+			Activator.log.warn("trying to check a papyrus palette descriptor outside papyrus framework"); //$NON-NLS-1$
 			return false;
 		}
 		if(papyrusProviderDesc instanceof PapyrusPaletteService.LocalProviderDescriptor) {
@@ -490,7 +488,7 @@ public class PaletteUtil {
 						postActions.add((IPostAction)action);
 					}
 				} else {
-					Activator.log.error("impossible to find factory with id: " + AspectToolService.getProviderId(childNode), null);
+					Activator.log.error("impossible to find factory with id: " + AspectToolService.getProviderId(childNode), null); //$NON-NLS-1$
 				}
 			} else if(IPapyrusPaletteConstant.PRE_ACTION.equals(childName)) {
 				// node is a pre action => retrieve the id of the factory in charge of this configuration
@@ -501,7 +499,7 @@ public class PaletteUtil {
 						preActions.add((IPreAction)action);
 					}
 				} else {
-					Activator.log.error("impossible to find factory with id: " + AspectToolService.getProviderId(childNode), null);
+					Activator.log.error("impossible to find factory with id: " + AspectToolService.getProviderId(childNode), null); //$NON-NLS-1$
 				}
 			}
 		}

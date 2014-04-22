@@ -44,7 +44,7 @@ public class OpendiagramTest extends AbstractEditorTest {
 	public void testOpendiagramTest() throws Exception {
 
 		//get the rootModel
-		Assert.assertNotNull("RootModel is null", getRootUMLModel());
+		Assert.assertNotNull("RootModel is null", getRootUMLModel()); //$NON-NLS-1$
 		//get all semantic elment that will handled
 		Model model=(Model) getRootUMLModel();
 		org.eclipse.uml2.uml.Class class1=(org.eclipse.uml2.uml.Class) model.getPackagedElement("Class1");
@@ -63,39 +63,39 @@ public class OpendiagramTest extends AbstractEditorTest {
 
 		//getItem for model
 		EObject modelTreeObject=(EObject)((IStructuredSelection)selectionService.getSelection()).getFirstElement();
-		Assert.assertNotNull("Model TreeElement is null", modelTreeObject);
+		Assert.assertNotNull("Model TreeElement is null", modelTreeObject); //$NON-NLS-1$
 
 		//get Item for class1
 		elements.clear();
 		elements.add(class1);
 		modelExplorerView.revealSemanticElement( elements);
 		EObject class1TreeObject=(EObject)((IStructuredSelection)selectionService.getSelection()).getFirstElement();
-		Assert.assertNotNull("Class1 TreeElement is null", class1TreeObject);
+		Assert.assertNotNull("Class1 TreeElement is null", class1TreeObject); //$NON-NLS-1$
 
 		//get Item for class2
 		elements.clear();
 		elements.add(class2);
 		modelExplorerView.revealSemanticElement( elements);
 		EObject class2TreeObject=(EObject)((IStructuredSelection)selectionService.getSelection()).getFirstElement();
-		Assert.assertNotNull("Class2 TreeElement is null", class2TreeObject);
+		Assert.assertNotNull("Class2 TreeElement is null", class2TreeObject); //$NON-NLS-1$
 
 		//get Item for diagram1
 		elements.clear();
 		elements.add(diagram1);
 		modelExplorerView.revealSemanticElement( elements);
 		EObject diagram1TreeObject=(EObject)((IStructuredSelection)selectionService.getSelection()).getFirstElement();
-		Assert.assertNotNull("digram1 TreeElement is null", diagram1TreeObject);
+		Assert.assertNotNull("digram1 TreeElement is null", diagram1TreeObject); //$NON-NLS-1$
 		//get Item for diagram2
 		elements.clear();
 		elements.add(diagram2);
 		modelExplorerView.revealSemanticElement( elements);
 		EObject diagram2TreeObject=(EObject)((IStructuredSelection)selectionService.getSelection()).getFirstElement();
-		Assert.assertNotNull("digram2 TreeElement is null", diagram2TreeObject);
+		Assert.assertNotNull("digram2 TreeElement is null", diagram2TreeObject); //$NON-NLS-1$
 
 		//test icons of closed diagram
 		DecoratingLabelProviderWTooltips labeProvider=(DecoratingLabelProviderWTooltips)modelExplorerView.getCommonViewer().getLabelProvider();
-		Assert.assertNotEquals("the label of diagram1 is not good", "Diagram1", labeProvider.getText(diagram1));
-		Assert.assertNotEquals("the label of class1 is not good","class1",labeProvider.getText(class1));
+		Assert.assertNotEquals("the label of diagram1 is not good", "Diagram1", labeProvider.getText(diagram1)); //$NON-NLS-1$ //$NON-NLS-2$
+		Assert.assertNotEquals("the label of class1 is not good","class1",labeProvider.getText(class1)); //$NON-NLS-1$ //$NON-NLS-2$
 
 		//now test image about diagram for open and closed diagram
 		//select all Tree element in the common viewer.

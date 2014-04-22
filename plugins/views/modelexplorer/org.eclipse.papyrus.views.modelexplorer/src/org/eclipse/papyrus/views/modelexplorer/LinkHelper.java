@@ -89,7 +89,7 @@ public class LinkHelper implements ILinkHelper {
 			} catch (ServiceException ex) {
 				//We cannot access the service registry. The PapyrusEditor is probably closed.
 			} catch (Exception ex) {
-				Activator.log.error("Impossible to acces to windows Container", ex);
+				Activator.log.error("Impossible to acces to windows Container", ex); //$NON-NLS-1$
 			}
 		}
 	}

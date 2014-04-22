@@ -105,7 +105,7 @@ public class ModelExplorerViewTests extends AbstractHandlerTest {
 			Assert.assertTrue("Only one element should be selected", currentSelection.size() == 1); //$NON-NLS-1$
 			Object obj = currentSelection.getFirstElement();
 			obj =org.eclipse.papyrus.infra.emf.utils.EMFHelper.getEObject(obj);
-			Assert.assertTrue("The function revealSemanticElement seems doesn't work with children", obj == current);
+			Assert.assertTrue("The function revealSemanticElement seems doesn't work with children", obj == current); //$NON-NLS-1$
 		}
 	}
 
@@ -173,7 +173,7 @@ public class ModelExplorerViewTests extends AbstractHandlerTest {
 			Assert.assertEquals("I don't get the correct selection", 1, currentSelection.size()); //$NON-NLS-1$
 			Object obj = currentSelection.getFirstElement();
 			obj =EMFHelper.getEObject(obj);
-			Assert.assertEquals("The function revealSemanticElement seems doesn't work with importedPackage", current, obj);
+			Assert.assertEquals("The function revealSemanticElement seems doesn't work with importedPackage", current, obj); //$NON-NLS-1$
 		}
 	}
 

@@ -45,7 +45,7 @@ public class PasteHandler extends AbstractCommandHandler {
 			CompoundCommand compoundCommand = new CompoundCommand();
 			for (IStrategy iStrategy : allStrategies) {
 				Command emfCommand = ((IPasteStrategy) iStrategy)
-						.getSemanticCommand(getEditingDomain(), selection.get(0),PapyrusClipboard.getInstance());
+						.getSemanticCommand(getEditingDomain(), selection.get(0), PapyrusClipboard.getInstance());
 				if (emfCommand!=null) {
 					compoundCommand.append(emfCommand);
 				}
@@ -53,5 +53,17 @@ public class PasteHandler extends AbstractCommandHandler {
 			return compoundCommand;
 		}
 		return UnexecutableCommand.INSTANCE;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#computeEnabled()
+	 */
+	@Override
+	protected boolean computeEnabled() { // paste is only available on a simple selection and wit ha full Clipboard
+		if (!PapyrusClipboard.getInstance().isEmpty() && getSelectedElements().size() == 1){
+			return true;
+		} else {
+			return super.computeEnabled();
+		}			
 	}
 }

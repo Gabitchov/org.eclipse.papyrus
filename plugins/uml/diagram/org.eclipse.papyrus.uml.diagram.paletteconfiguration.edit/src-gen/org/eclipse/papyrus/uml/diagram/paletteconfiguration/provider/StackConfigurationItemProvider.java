@@ -30,13 +30,7 @@ import org.eclipse.papyrus.uml.diagram.paletteconfiguration.StackConfiguration;
  * @generated
  */
 public class StackConfigurationItemProvider
-	extends ChildConfigurationItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ChildConfigurationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

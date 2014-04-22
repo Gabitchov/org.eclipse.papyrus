@@ -57,7 +57,7 @@ public class ExtendedHintedElementType extends SpecializationType implements IEx
 	/**
 	 * {@inheritDoc}
 	 */
-	public ICreationElementValidator getElementCreationValidator() {
+	public ICreationElementValidator getCreationElementValidator() {
 		return creationElementValidator;
 	}
 	
