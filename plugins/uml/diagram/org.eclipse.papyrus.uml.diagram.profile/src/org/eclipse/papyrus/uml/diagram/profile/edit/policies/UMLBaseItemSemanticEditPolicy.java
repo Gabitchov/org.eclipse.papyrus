@@ -236,7 +236,17 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		// no more usage of the extended types here. 
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			// try to get a semantic create command from the extended type
+			IElementEditService commandProvider = ElementEditServiceUtils.getCommandProvider(req.getContainer());
+			if(commandProvider != null) {
+				ICommand command = commandProvider.getEditCommand(req);
+				if(command != null && command.canExecute()) {
+					return new ICommandProxy(command);
+				}
+			}
+		}
 		return null;
 	}
 
@@ -281,7 +291,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	// RS: End of add code for extended types
-
 	/**
 	 * @generated
 	 */
@@ -334,7 +343,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		} else {
 			return getGEFWrapper(new MoveElementsCommand(req));
 		}
-
 	}
 
 	/**
@@ -380,7 +388,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -476,7 +483,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
-
 			return canExistCommentAnnotatedElement_1022(source, target);
 		}
 
@@ -489,7 +495,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
-
 			return canExistConstraintConstrainedElement_4014(source, target);
 		}
 
@@ -505,7 +510,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(target != null && (target.getOwnedRules().contains(target))) {
 				return false;
 			}
-
 			return canExistConstraintContext_8500(source, target);
 		}
 
@@ -520,7 +524,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				 * @see org.eclipse.papyrus.uml.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
 				 */
 				//ExtensionTarget
-
 				/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
 				 * 
 				 * @see org.eclipse.papyrus.uml.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
@@ -756,5 +759,4 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return true;
 		}
 	}
-
 }

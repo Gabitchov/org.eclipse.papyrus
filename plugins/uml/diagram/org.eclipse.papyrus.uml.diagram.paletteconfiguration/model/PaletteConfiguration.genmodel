@@ -19,6 +19,7 @@
     </genEnums>
     <genClasses ecoreClass="PaletteConfiguration.ecore#//PaletteConfiguration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PaletteConfiguration.ecore#//PaletteConfiguration/drawerConfigurations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PaletteConfiguration.ecore#//PaletteConfiguration/requiredProfiles"/>
     </genClasses>
     <genClasses ecoreClass="PaletteConfiguration.ecore#//ToolConfiguration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PaletteConfiguration.ecore#//ToolConfiguration/kind"/>

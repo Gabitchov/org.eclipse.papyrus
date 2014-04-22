@@ -131,7 +131,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	 */
 	protected IDirectEditorConfiguration configuration;
 
-
 	/**
 	 * @generated
 	 */
@@ -159,7 +158,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 	}
-
 
 	/**
 	 * @generated
@@ -328,7 +326,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -415,9 +412,7 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -450,7 +445,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -458,7 +452,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -620,7 +613,7 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return (View)getModel();
+		return getPrimaryView();
 	}
 
 	/**
@@ -637,7 +630,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -722,7 +714,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -787,40 +778,8 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new LiteralEnumerationDescriptor();
+		return new WrappingLabel();
 	}
-
-
-	/**
-	 * @generated
-	 */
-	public class LiteralEnumerationDescriptor extends WrappingLabel {
-
-
-
-
-		/**
-		 * @generated
-		 */
-		public LiteralEnumerationDescriptor() {
-			this.setText("");
-
-			this.setFont(THIS_FONT);
-
-
-		}
-
-
-
-
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
-
 
 	/**
 	 * @generated
@@ -829,5 +788,4 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	public boolean isSelectable() {
 		return getFigure().isShowing();
 	}
-
 }

@@ -11,7 +11,6 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.profile.custom.requests;
 
 import java.util.ArrayList;
@@ -25,63 +24,46 @@ import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
-
 public class CustomCreateElementRequestAdapter extends org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter {
-
-
 	/**
 	 * The request to create a new element.
 	 */
 	private final CreateElementRequest createElementRequest;
-
-
-
 	private ArrayList<CreateElementRequestAdapter> listRequestAdapter;
 
 	/**
 	 * Constructs a new adapter.
 	 * 
 	 * @param createElementRequest
-	 *        the request to create a new element.
+	 *            the request to create a new element.
 	 */
 	public CustomCreateElementRequestAdapter(CreateElementRequest createElementRequest) {
 		super(createElementRequest);
 		this.createElementRequest = createElementRequest;
-
 		listRequestAdapter = new ArrayList<CreateElementRequestAdapter>();
 		listRequestAdapter.add(new CreateElementRequestAdapter(createElementRequest));
-
 	}
-
-
-
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 */
-
-	public Object getAdapter(java.lang.Class adapter, int i) {
-		if(adapter.isInstance(listRequestAdapter.get(i).getAdapter(CreateElementRequest.class))) {
+	public Object getAdapter(java.lang.Class<?> adapter, int i) {
+		if (adapter.isInstance(listRequestAdapter.get(i).getAdapter(CreateElementRequest.class))) {
 			return listRequestAdapter.get(i).getAdapter(CreateElementRequest.class);
 		}
-
-		if(adapter.isInstance(getNewElement(i))) {
+		if (adapter.isInstance(getNewElement(i))) {
 			return getNewElement(i);
 		}
-		if(adapter.isInstance(getElementType(i))) {
+		if (adapter.isInstance(getElementType(i))) {
 			return getElementType(i);
 		}
-
-		//Is this correct?
-		if(adapter.isInstance(this)) {
+		// Is this correct?
+		if (adapter.isInstance(this)) {
 			return this;
 		}
-
-
 		return Platform.getAdapterManager().getAdapter(listRequestAdapter.get(i).getAdapter(CreateElementRequest.class), adapter);
-
 	}
 
 	/**
@@ -90,14 +72,11 @@ public class CustomCreateElementRequestAdapter extends org.eclipse.gmf.runtime.d
 	 * @return the new element
 	 */
 	private EObject getNewElement(int i) {
-		return ((CreateElementRequest)listRequestAdapter.get(i).getAdapter(CreateElementRequest.class)).getNewElement();
-
+		return ((CreateElementRequest) listRequestAdapter.get(i).getAdapter(CreateElementRequest.class)).getNewElement();
 	}
 
-
 	public CreateElementRequest getRequest(int i) {
-		return ((CreateElementRequest)listRequestAdapter.get(i).getAdapter(CreateElementRequest.class));
-
+		return ((CreateElementRequest) listRequestAdapter.get(i).getAdapter(CreateElementRequest.class));
 	}
 
 	/**
@@ -106,21 +85,19 @@ public class CustomCreateElementRequestAdapter extends org.eclipse.gmf.runtime.d
 	 * @return the element type
 	 */
 	private IElementType getElementType(int i) {
-		return ((CreateElementRequest)listRequestAdapter.get(i).getAdapter(CreateElementRequest.class)).getElementType();
-
+		return ((CreateElementRequest) listRequestAdapter.get(i).getAdapter(CreateElementRequest.class)).getElementType();
 	}
 
 	/**
 	 * Sets the new element that has been created in response to this request.
 	 * 
 	 * @param newElement
-	 *        the new element
+	 *            the new element
 	 */
-
 	@Override
 	public void setNewElement(EObject newElement) {
-		if(listRequestAdapter.size() == 1 && ((CreateElementRequest)listRequestAdapter.get(0).getAdapter(CreateElementRequest.class)).getNewElement() == null) {
-			//the request exists yet!!!
+		if (listRequestAdapter.size() == 1 && ((CreateElementRequest) listRequestAdapter.get(0).getAdapter(CreateElementRequest.class)).getNewElement() == null) {
+			// the request exists yet!!!
 			listRequestAdapter.get(0).setNewElement(newElement);
 		} else {
 			CreateElementRequest req = new CreateElementRequest(createElementRequest.getEditingDomain(), createElementRequest.getContainer(), createElementRequest.getElementType(), createElementRequest.getContainmentFeature());
@@ -135,7 +112,6 @@ public class CustomCreateElementRequestAdapter extends org.eclipse.gmf.runtime.d
 	 * @see org.eclipse.gmf.runtime.emf.core.internal.util.IProxyEObject#getProxyClassID()
 	 */
 	public Object getProxyClassID(int i) {
-
 		return getNewElement(i) == null ? null : PackageUtil.getID(EMFCoreUtil.getProxyClass(getNewElement(i)));
 	}
 
@@ -145,7 +121,7 @@ public class CustomCreateElementRequestAdapter extends org.eclipse.gmf.runtime.d
 	 * @see org.eclipse.gmf.runtime.emf.core.internal.util.IProxyEObject#resolve()
 	 */
 	public EObject resolve(int i) {
-		return getNewElement(i) == null ? null : EMFCoreUtil.resolve(TransactionUtil.getEditingDomain(((CreateElementRequest)listRequestAdapter.get(i).getAdapter(CreateElementRequest.class)).getContainer()), getNewElement(i));
+		return getNewElement(i) == null ? null : EMFCoreUtil.resolve(TransactionUtil.getEditingDomain(((CreateElementRequest) listRequestAdapter.get(i).getAdapter(CreateElementRequest.class)).getContainer()), getNewElement(i));
 	}
 
 	/**

@@ -30,6 +30,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -81,24 +82,22 @@ public class RenamedElementHandler extends AbstractHandler {
 	 */
 	protected List<IGraphicalEditPart> getSelectedElements() {
 		List<IGraphicalEditPart> editparts = new ArrayList<IGraphicalEditPart>();
-
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(selection instanceof IStructuredSelection) {
-
-			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-
-			Iterator<?> it = structuredSelection.iterator();
-			while(it.hasNext()) {
-				Object object = it.next();
-				if(object instanceof IGraphicalEditPart) {
-					editparts.add((IGraphicalEditPart)object);
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if (activeWorkbenchWindow!=null){
+			ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
+			if(selection instanceof IStructuredSelection) {
+				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+				Iterator<?> it = structuredSelection.iterator();
+				while(it.hasNext()) {
+					Object object = it.next();
+					if(object instanceof IGraphicalEditPart) {
+						editparts.add((IGraphicalEditPart)object);
+					}
 				}
-			}
-
-		} else if(selection instanceof IGraphicalEditPart) {
-			editparts.add((IGraphicalEditPart)selection);
+			} else if(selection instanceof IGraphicalEditPart) {
+				editparts.add((IGraphicalEditPart)selection);
+			}			
 		}
-
 		return editparts;
 	}
 }

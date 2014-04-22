@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Profile xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_URIssMD9EeGp8LlPJ4gYgw" name="profile" metaclassReference="_YN6EQMD9EeGp8LlPJ4gYgw _YN6EQcD9EeGp8LlPJ4gYgw _YN6EQsD9EeGp8LlPJ4gYgw">
-  <eAnnotations xmi:id="_deInwcD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_deInwcD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML">
     <contents xmi:type="ecore:EPackage" xmi:id="_sWINYcEWEeGmd-DVx7z1xw" name="profile" nsURI="http:///schemas/profile/_sWINYMEWEeGmd-DVx7z1xw/3" nsPrefix="profile">
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_sWINYsEWEeGmd-DVx7z1xw" name="Stereotype1">
-        <eAnnotations xmi:id="_sWINY8EWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Vi0XAMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sWINY8EWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Vi0XAMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sWINZMEWEeGmd-DVx7z1xw" name="base_Comment" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Comment"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_sWINZsEWEeGmd-DVx7z1xw" name="Stereotype2">
-        <eAnnotations xmi:id="_sWINZ8EWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VvA_8MD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sWINZ8EWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VvA_8MD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sWINaMEWEeGmd-DVx7z1xw" name="base_Comment" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Comment"/>
         </eStructuralFeatures>
@@ -18,25 +18,25 @@
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_sWINbMEWEeGmd-DVx7z1xw" name="Stereotype3">
-        <eAnnotations xmi:id="_sWINbcEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCWysMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sWINbcEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCWysMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sWINbsEWEeGmd-DVx7z1xw" name="base_Activity" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Activity"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_sWINcMEWEeGmd-DVx7z1xw" name="Stereotype4" eSuperTypes="_sWINbMEWEeGmd-DVx7z1xw">
-        <eAnnotations xmi:id="_sWINccEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCptoMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sWINccEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCptoMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_sWINcsEWEeGmd-DVx7z1xw" name="Property1" ordered="false" lowerBound="1"/>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_sWINdMEWEeGmd-DVx7z1xw" name="Stereotype5" eSuperTypes="_sWINbMEWEeGmd-DVx7z1xw _sWINe8EWEeGmd-DVx7z1xw">
-        <eAnnotations xmi:id="_sWINdcEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WC9PoMD9EeGp8LlPJ4gYgw"/>
-        <eAnnotations xmi:id="_sWINdsEWEeGmd-DVx7z1xw" source="duplicates">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sWINdcEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WC9PoMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sWINdsEWEeGmd-DVx7z1xw" source="duplicates">
           <contents xmi:type="ecore:EAttribute" xmi:id="_sWINd8EWEeGmd-DVx7z1xw" name="Property1" ordered="false" lowerBound="1">
-            <eAnnotations xmi:id="_sWINeMEWEeGmd-DVx7z1xw" source="redefines" references="_sWINf8EWEeGmd-DVx7z1xw"/>
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sWINeMEWEeGmd-DVx7z1xw" source="redefines" references="_sWINf8EWEeGmd-DVx7z1xw"/>
           </contents>
         </eAnnotations>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_sWINe8EWEeGmd-DVx7z1xw" name="Stereotype6">
-        <eAnnotations xmi:id="_sWINfMEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WDQKkMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sWINfMEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WDQKkMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sWINfcEWEeGmd-DVx7z1xw" name="base_Class" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
         </eStructuralFeatures>
@@ -46,13 +46,13 @@
     </contents>
     <contents xmi:type="ecore:EPackage" xmi:id="_k9d9wcEWEeGmd-DVx7z1xw" name="profile" nsURI="http:///schemas/profile/_k9d9wMEWEeGmd-DVx7z1xw/2" nsPrefix="profile">
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_k9d9wsEWEeGmd-DVx7z1xw" name="Stereotype1">
-        <eAnnotations xmi:id="_k9d9w8EWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Vi0XAMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k9d9w8EWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Vi0XAMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_k9d9xMEWEeGmd-DVx7z1xw" name="base_Comment" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Comment"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_k9d9xsEWEeGmd-DVx7z1xw" name="Stereotype2">
-        <eAnnotations xmi:id="_k9d9x8EWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VvA_8MD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k9d9x8EWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VvA_8MD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_k9d9yMEWEeGmd-DVx7z1xw" name="base_Comment" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Comment"/>
         </eStructuralFeatures>
@@ -61,25 +61,25 @@
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_k9d9zMEWEeGmd-DVx7z1xw" name="Stereotype3">
-        <eAnnotations xmi:id="_k9d9zcEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCWysMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k9d9zcEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCWysMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_k9d9zsEWEeGmd-DVx7z1xw" name="base_Activity" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Activity"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_k9d90MEWEeGmd-DVx7z1xw" name="Stereotype4" eSuperTypes="_k9d9zMEWEeGmd-DVx7z1xw">
-        <eAnnotations xmi:id="_k9d90cEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCptoMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k9d90cEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCptoMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_k9d90sEWEeGmd-DVx7z1xw" name="Property1" ordered="false" lowerBound="1"/>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_k9d91MEWEeGmd-DVx7z1xw" name="Stereotype5" eSuperTypes="_k9d9zMEWEeGmd-DVx7z1xw _k9d928EWEeGmd-DVx7z1xw">
-        <eAnnotations xmi:id="_k9d91cEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WC9PoMD9EeGp8LlPJ4gYgw"/>
-        <eAnnotations xmi:id="_k9d91sEWEeGmd-DVx7z1xw" source="duplicates">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k9d91cEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WC9PoMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k9d91sEWEeGmd-DVx7z1xw" source="duplicates">
           <contents xmi:type="ecore:EAttribute" xmi:id="_k9d918EWEeGmd-DVx7z1xw" name="Property1" ordered="false" lowerBound="1">
-            <eAnnotations xmi:id="_k9d92MEWEeGmd-DVx7z1xw" source="redefines" references="_k9d938EWEeGmd-DVx7z1xw"/>
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k9d92MEWEeGmd-DVx7z1xw" source="redefines" references="_k9d938EWEeGmd-DVx7z1xw"/>
           </contents>
         </eAnnotations>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_k9d928EWEeGmd-DVx7z1xw" name="Stereotype6">
-        <eAnnotations xmi:id="_k9d93MEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WDQKkMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k9d93MEWEeGmd-DVx7z1xw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WDQKkMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_k9d93cEWEeGmd-DVx7z1xw" name="base_Class" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
         </eStructuralFeatures>
@@ -89,13 +89,13 @@
     </contents>
     <contents xmi:type="ecore:EPackage" xmi:id="_nX6wUcD9EeGp8LlPJ4gYgw" name="profile" nsURI="http:///schemas/profile/_nX6wUMD9EeGp8LlPJ4gYgw/1" nsPrefix="profile">
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_nX6wUsD9EeGp8LlPJ4gYgw" name="Stereotype1">
-        <eAnnotations xmi:id="_nX6wU8D9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Vi0XAMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nX6wU8D9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Vi0XAMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nX6wVMD9EeGp8LlPJ4gYgw" name="base_Comment" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Comment"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_nX6wVsD9EeGp8LlPJ4gYgw" name="Stereotype2">
-        <eAnnotations xmi:id="_nX6wV8D9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VvA_8MD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nX6wV8D9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VvA_8MD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nX6wWMD9EeGp8LlPJ4gYgw" name="base_Comment" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Comment"/>
         </eStructuralFeatures>
@@ -104,25 +104,25 @@
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_nX6wXMD9EeGp8LlPJ4gYgw" name="Stereotype3">
-        <eAnnotations xmi:id="_nX6wXcD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCWysMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nX6wXcD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCWysMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nX6wXsD9EeGp8LlPJ4gYgw" name="base_Activity" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Activity"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_nX6wYMD9EeGp8LlPJ4gYgw" name="Stereotype4" eSuperTypes="_nX6wXMD9EeGp8LlPJ4gYgw">
-        <eAnnotations xmi:id="_nX6wYcD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCptoMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nX6wYcD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCptoMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_nX6wYsD9EeGp8LlPJ4gYgw" name="Property1" ordered="false" lowerBound="1"/>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_nX6wZMD9EeGp8LlPJ4gYgw" name="Stereotype5" eSuperTypes="_nX6wXMD9EeGp8LlPJ4gYgw _nX6wa8D9EeGp8LlPJ4gYgw">
-        <eAnnotations xmi:id="_nX6wZcD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WC9PoMD9EeGp8LlPJ4gYgw"/>
-        <eAnnotations xmi:id="_nX6wZsD9EeGp8LlPJ4gYgw" source="duplicates">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nX6wZcD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WC9PoMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nX6wZsD9EeGp8LlPJ4gYgw" source="duplicates">
           <contents xmi:type="ecore:EAttribute" xmi:id="_nX6wZ8D9EeGp8LlPJ4gYgw" name="Property1" ordered="false" lowerBound="1">
-            <eAnnotations xmi:id="_nX6waMD9EeGp8LlPJ4gYgw" source="redefines" references="_nX6wb8D9EeGp8LlPJ4gYgw"/>
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nX6waMD9EeGp8LlPJ4gYgw" source="redefines" references="_nX6wb8D9EeGp8LlPJ4gYgw"/>
           </contents>
         </eAnnotations>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_nX6wa8D9EeGp8LlPJ4gYgw" name="Stereotype6">
-        <eAnnotations xmi:id="_nX6wbMD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WDQKkMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nX6wbMD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WDQKkMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nX6wbcD9EeGp8LlPJ4gYgw" name="base_Class" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
         </eStructuralFeatures>
@@ -131,21 +131,21 @@
       </eClassifiers>
     </contents>
     <contents xmi:type="ecore:EPackage" xmi:id="_deInwsD9EeGp8LlPJ4gYgw" name="profile" nsURI="http:///schemas/profile/_deInwMD9EeGp8LlPJ4gYgw/0" nsPrefix="profile">
-      <eAnnotations xmi:id="_deSYw8D9EeGp8LlPJ4gYgw" source="PapyrusVersion">
-        <details xmi:id="_deSYxMD9EeGp8LlPJ4gYgw" key="Version" value="0.0.1"/>
-        <details xmi:id="_deSYxcD9EeGp8LlPJ4gYgw" key="Comment" value=""/>
-        <details xmi:id="_deSYxsD9EeGp8LlPJ4gYgw" key="Copyright" value=""/>
-        <details xmi:id="_deSYx8D9EeGp8LlPJ4gYgw" key="Date" value="2012-06-28"/>
-        <details xmi:id="_deSYyMD9EeGp8LlPJ4gYgw" key="Author" value=""/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_deSYw8D9EeGp8LlPJ4gYgw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_deSYxMD9EeGp8LlPJ4gYgw" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_deSYxcD9EeGp8LlPJ4gYgw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_deSYxsD9EeGp8LlPJ4gYgw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_deSYx8D9EeGp8LlPJ4gYgw" key="Date" value="2012-06-28"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_deSYyMD9EeGp8LlPJ4gYgw" key="Author" value=""/>
       </eAnnotations>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_deInw8D9EeGp8LlPJ4gYgw" name="Stereotype1">
-        <eAnnotations xmi:id="_deInxMD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Vi0XAMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_deInxMD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Vi0XAMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_deInxcD9EeGp8LlPJ4gYgw" name="base_Comment" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Comment"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_deInx8D9EeGp8LlPJ4gYgw" name="Stereotype2">
-        <eAnnotations xmi:id="_deInyMD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VvA_8MD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_deInyMD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VvA_8MD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_deInycD9EeGp8LlPJ4gYgw" name="base_Comment" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Comment"/>
         </eStructuralFeatures>
@@ -154,67 +154,67 @@
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_deInzcD9EeGp8LlPJ4gYgw" name="Stereotype3">
-        <eAnnotations xmi:id="_deInzsD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCWysMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_deInzsD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCWysMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_deInz8D9EeGp8LlPJ4gYgw" name="base_Activity" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Activity"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_deIn0cD9EeGp8LlPJ4gYgw" name="Stereotype4" eSuperTypes="_deInzcD9EeGp8LlPJ4gYgw">
-        <eAnnotations xmi:id="_deIn0sD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCptoMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_deIn0sD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WCptoMD9EeGp8LlPJ4gYgw"/>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_deIn1MD9EeGp8LlPJ4gYgw" name="Stereotype5" eSuperTypes="_deInzcD9EeGp8LlPJ4gYgw _deIn2MD9EeGp8LlPJ4gYgw">
-        <eAnnotations xmi:id="_deIn1cD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WC9PoMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_deIn1cD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WC9PoMD9EeGp8LlPJ4gYgw"/>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_deIn2MD9EeGp8LlPJ4gYgw" name="Stereotype6">
-        <eAnnotations xmi:id="_deIn2cD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WDQKkMD9EeGp8LlPJ4gYgw"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_deIn2cD9EeGp8LlPJ4gYgw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WDQKkMD9EeGp8LlPJ4gYgw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_deIn2sD9EeGp8LlPJ4gYgw" name="base_Class" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
         </eStructuralFeatures>
       </eClassifiers>
     </contents>
   </eAnnotations>
-  <elementImport xmi:id="_YN6EQMD9EeGp8LlPJ4gYgw" alias="Activity">
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_YN6EQMD9EeGp8LlPJ4gYgw" alias="Activity">
     <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Activity"/>
   </elementImport>
-  <elementImport xmi:id="_YN6EQcD9EeGp8LlPJ4gYgw" alias="Class">
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_YN6EQcD9EeGp8LlPJ4gYgw" alias="Class">
     <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
   </elementImport>
-  <elementImport xmi:id="_YN6EQsD9EeGp8LlPJ4gYgw" alias="Comment">
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_YN6EQsD9EeGp8LlPJ4gYgw" alias="Comment">
     <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Comment"/>
   </elementImport>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_Vi0XAMD9EeGp8LlPJ4gYgw" name="Stereotype1">
-    <ownedAttribute xmi:id="_Z3_AcMD9EeGp8LlPJ4gYgw" name="base_Comment" association="_Z3_AccD9EeGp8LlPJ4gYgw">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Z3_AcMD9EeGp8LlPJ4gYgw" name="base_Comment" association="_Z3_AccD9EeGp8LlPJ4gYgw">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Comment"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_VvA_8MD9EeGp8LlPJ4gYgw" name="Stereotype2">
-    <ownedAttribute xmi:id="_aKuWQMD9EeGp8LlPJ4gYgw" name="base_Comment" association="_aKuWQcD9EeGp8LlPJ4gYgw">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_aKuWQMD9EeGp8LlPJ4gYgw" name="base_Comment" association="_aKuWQcD9EeGp8LlPJ4gYgw">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Comment"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="_adeTIMD9EeGp8LlPJ4gYgw" name="base_Class" association="_adeTIcD9EeGp8LlPJ4gYgw">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_adeTIMD9EeGp8LlPJ4gYgw" name="base_Class" association="_adeTIcD9EeGp8LlPJ4gYgw">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_WCWysMD9EeGp8LlPJ4gYgw" name="Stereotype3">
-    <ownedAttribute xmi:id="_aw924MD9EeGp8LlPJ4gYgw" name="base_Activity" association="_aw924cD9EeGp8LlPJ4gYgw">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_aw924MD9EeGp8LlPJ4gYgw" name="base_Activity" association="_aw924cD9EeGp8LlPJ4gYgw">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Activity"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_WCptoMD9EeGp8LlPJ4gYgw" name="Stereotype4">
-    <generalization xmi:id="_bG1ZMMD9EeGp8LlPJ4gYgw" general="_WCWysMD9EeGp8LlPJ4gYgw"/>
-    <ownedAttribute xmi:id="_nAQeQMD9EeGp8LlPJ4gYgw" name="Property1"/>
+    <generalization xmi:type="uml:Generalization" xmi:id="_bG1ZMMD9EeGp8LlPJ4gYgw" general="_WCWysMD9EeGp8LlPJ4gYgw"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_nAQeQMD9EeGp8LlPJ4gYgw" name="Property1"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_WC9PoMD9EeGp8LlPJ4gYgw" name="Stereotype5">
-    <generalization xmi:id="_bXpcYMD9EeGp8LlPJ4gYgw" general="_WCWysMD9EeGp8LlPJ4gYgw"/>
-    <generalization xmi:id="_b0XNkMD9EeGp8LlPJ4gYgw" general="_WDQKkMD9EeGp8LlPJ4gYgw"/>
-    <ownedAttribute xmi:id="_myH7oMD9EeGp8LlPJ4gYgw" name="Property1"/>
+    <generalization xmi:type="uml:Generalization" xmi:id="_bXpcYMD9EeGp8LlPJ4gYgw" general="_WCWysMD9EeGp8LlPJ4gYgw"/>
+    <generalization xmi:type="uml:Generalization" xmi:id="_b0XNkMD9EeGp8LlPJ4gYgw" general="_WDQKkMD9EeGp8LlPJ4gYgw"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_myH7oMD9EeGp8LlPJ4gYgw" name="Property1"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_WDQKkMD9EeGp8LlPJ4gYgw" name="Stereotype6">
-    <ownedAttribute xmi:id="_ciCL4MD9EeGp8LlPJ4gYgw" name="base_Class" association="_ciCL4cD9EeGp8LlPJ4gYgw">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ciCL4MD9EeGp8LlPJ4gYgw" name="base_Class" association="_ciCL4cD9EeGp8LlPJ4gYgw">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="_lV4nIMD9EeGp8LlPJ4gYgw" name="Property1"/>
-    <ownedAttribute xmi:id="_maLVsMD9EeGp8LlPJ4gYgw" name="Property2"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_lV4nIMD9EeGp8LlPJ4gYgw" name="Property1"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_maLVsMD9EeGp8LlPJ4gYgw" name="Property2"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Extension" xmi:id="_Z3_AccD9EeGp8LlPJ4gYgw" name="E_Stereotype1_Comment1" memberEnd="_Z3_AcsD9EeGp8LlPJ4gYgw _Z3_AcMD9EeGp8LlPJ4gYgw">
     <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Z3_AcsD9EeGp8LlPJ4gYgw" name="extension_Stereotype1" type="_Vi0XAMD9EeGp8LlPJ4gYgw" aggregation="composite" association="_Z3_AccD9EeGp8LlPJ4gYgw"/>

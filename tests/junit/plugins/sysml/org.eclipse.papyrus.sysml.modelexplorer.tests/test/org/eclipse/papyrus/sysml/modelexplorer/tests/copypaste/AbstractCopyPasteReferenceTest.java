@@ -51,7 +51,8 @@ public abstract class AbstractCopyPasteReferenceTest extends AbstractCopyPasteTe
     super.postCopyAdditionalChecks(originalModel, newValues, delta);
     
       /* post copy checks */
-      Association newAssociation = ((Property)newValues.get(0)).getAssociation(); Assert.assertNotNull("New Reference should have an association", newAssociation);
+      Association newAssociation = ((Property)newValues.get(0)).getAssociation(); 
+      Assert.assertNotNull("New Reference should have an association", newAssociation); //$NON-NLS-1$
       /* END OF post copy checks */
   }
 

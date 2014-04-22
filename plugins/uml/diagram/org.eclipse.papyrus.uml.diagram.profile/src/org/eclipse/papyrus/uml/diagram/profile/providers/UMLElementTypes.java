@@ -29,6 +29,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassOperationEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassPropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentAnnotatedElementEditPart;
@@ -120,6 +122,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Class_2008 = getElementType("org.eclipse.papyrus.uml.diagram.profile.Class_2008"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Class_1031 = getElementType("org.eclipse.papyrus.uml.diagram.profile.Metaclass_1031"); //$NON-NLS-1$
 
 	/**
@@ -201,6 +208,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Stereotype_1023 = getElementType("org.eclipse.papyrus.uml.diagram.profile.Stereotype_1023"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Class_3010 = getElementType("org.eclipse.papyrus.uml.diagram.profile.Class_3010"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -339,124 +351,48 @@ public class UMLElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if(elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
-
 			elements.put(Profile_1000, UMLPackage.eINSTANCE.getProfile());
-
-
 			elements.put(Dependency_2014, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(Association_2015, UMLPackage.eINSTANCE.getAssociation());
-
-
 			elements.put(Stereotype_1026, UMLPackage.eINSTANCE.getStereotype());
-
-
+			elements.put(Class_2008, UMLPackage.eINSTANCE.getClass_());
 			elements.put(Class_1031, UMLPackage.eINSTANCE.getClass_());
-
-
 			elements.put(Comment_1002, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(Constraint_1014, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Model_2005, UMLPackage.eINSTANCE.getModel());
-
-
 			elements.put(Profile_1030, UMLPackage.eINSTANCE.getProfile());
-
-
 			elements.put(Package_2007, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Enumeration_2006, UMLPackage.eINSTANCE.getEnumeration());
-
-
 			elements.put(PrimitiveType_2009, UMLPackage.eINSTANCE.getPrimitiveType());
-
-
 			elements.put(DataType_2010, UMLPackage.eINSTANCE.getDataType());
-
-
 			elements.put(Diagram_2016, NotationPackage.eINSTANCE.getDiagram());
-
-
 			elements.put(PrimitiveType_3026, UMLPackage.eINSTANCE.getPrimitiveType());
-
-
 			elements.put(Operation_3019, UMLPackage.eINSTANCE.getOperation());
-
-
 			elements.put(EnumerationLiteral_1037, UMLPackage.eINSTANCE.getEnumerationLiteral());
-
-
 			elements.put(Property_3018, UMLPackage.eINSTANCE.getProperty());
-
-
 			elements.put(Property_3002, UMLPackage.eINSTANCE.getProperty());
-
-
 			elements.put(Operation_3020, UMLPackage.eINSTANCE.getOperation());
-
-
 			elements.put(Stereotype_1023, UMLPackage.eINSTANCE.getStereotype());
-
-
+			elements.put(Class_3010, UMLPackage.eINSTANCE.getClass_());
 			elements.put(Class_3028, UMLPackage.eINSTANCE.getClass_());
-
-
 			elements.put(Comment_1007, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(Model_1027, UMLPackage.eINSTANCE.getModel());
-
-
 			elements.put(Profile_1024, UMLPackage.eINSTANCE.getProfile());
-
-
 			elements.put(Package_1012, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Constraint_1028, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Enumeration_3025, UMLPackage.eINSTANCE.getEnumeration());
-
-
 			elements.put(DataType_3027, UMLPackage.eINSTANCE.getDataType());
-
-
 			elements.put(Extension_1013, UMLPackage.eINSTANCE.getExtension());
-
-
 			elements.put(Association_4001, UMLPackage.eINSTANCE.getAssociation());
-
-
 			elements.put(ProfileApplication_1045, UMLPackage.eINSTANCE.getProfileApplication());
-
-
 			elements.put(Association_4019, UMLPackage.eINSTANCE.getAssociation());
-
-
 			elements.put(Generalization_4002, UMLPackage.eINSTANCE.getGeneralization());
-
-
 			elements.put(Dependency_4008, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(Dependency_4018, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(ElementImport_1064, UMLPackage.eINSTANCE.getElementImport());
-
-
 			elements.put(PackageImport_1065, UMLPackage.eINSTANCE.getPackageImport());
-
 			elements.put(CommentAnnotatedElement_1022, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-
 			elements.put(ConstraintConstrainedElement_4014, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-
 			elements.put(ConstraintContext_8500, UMLPackage.eINSTANCE.getConstraint_Context());
 		}
 		return (ENamedElement)elements.get(type);
@@ -479,6 +415,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Dependency_2014);
 			KNOWN_ELEMENT_TYPES.add(Association_2015);
 			KNOWN_ELEMENT_TYPES.add(Stereotype_1026);
+			KNOWN_ELEMENT_TYPES.add(Class_2008);
 			KNOWN_ELEMENT_TYPES.add(Class_1031);
 			KNOWN_ELEMENT_TYPES.add(Comment_1002);
 			KNOWN_ELEMENT_TYPES.add(Constraint_1014);
@@ -496,6 +433,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Property_3002);
 			KNOWN_ELEMENT_TYPES.add(Operation_3020);
 			KNOWN_ELEMENT_TYPES.add(Stereotype_1023);
+			KNOWN_ELEMENT_TYPES.add(Class_3010);
 			KNOWN_ELEMENT_TYPES.add(Class_3028);
 			KNOWN_ELEMENT_TYPES.add(Comment_1007);
 			KNOWN_ELEMENT_TYPES.add(Model_1027);
@@ -533,6 +471,8 @@ public class UMLElementTypes {
 			return Association_2015;
 		case StereotypeEditPart.VISUAL_ID:
 			return Stereotype_1026;
+		case ClassEditPart.VISUAL_ID:
+			return Class_2008;
 		case MetaclassEditPart.VISUAL_ID:
 			return Class_1031;
 		case CommentEditPart.VISUAL_ID:
@@ -567,6 +507,8 @@ public class UMLElementTypes {
 			return Operation_3020;
 		case StereotypeEditPartCN.VISUAL_ID:
 			return Stereotype_1023;
+		case ClassEditPartCN.VISUAL_ID:
+			return Class_3010;
 		case MetaclassEditPartCN.VISUAL_ID:
 			return Class_3028;
 		case CommentEditPartCN.VISUAL_ID:
@@ -640,5 +582,4 @@ public class UMLElementTypes {
 			return org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes.getElement(elementTypeAdapter);
 		}
 	};
-
 }

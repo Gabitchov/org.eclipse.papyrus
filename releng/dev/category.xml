@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+	<feature id="org.eclipse.papyrus.dev.feature" url="features/org.eclipse.papyrus.dev.feature_1.0.0.qualifier.jar" version="1.0.0.qualifier">
+		<category name="org.eclipse.papyrus.category"/>
+	</feature>
+	<feature id="org.eclipse.papyrus.dev.feature.source" url="features/org.eclipse.papyrus.dev.feature.source_1.0.0.qualifier.jar" version="1.0.0.qualifier">
+		<category name="org.eclipse.papyrus.category"/>
+	</feature>
+	<category-def label="Papyrus Category" name="org.eclipse.papyrus.category">
+		<description>Papyrus Category</description>
+	</category-def>
+</site>

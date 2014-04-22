@@ -65,14 +65,14 @@ public abstract class AbstractCopyPasteTest extends AbstractModelExplorerTest {
 		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
 		commandService.refreshElements(IWorkbenchCommandConstants.EDIT_PASTE, null);
 		org.eclipse.core.commands.Command pasteCommand = commandService.getCommand(IWorkbenchCommandConstants.EDIT_PASTE);
-		Assert.assertNotNull("Impossible to find paste command", pasteCommand);
-		Assert.assertTrue("command in not enabled", pasteCommand.isEnabled());
-		Assert.assertTrue("command in not defined", pasteCommand.isDefined());
+		Assert.assertNotNull("Impossible to find paste command", pasteCommand); //$NON-NLS-1$
+		Assert.assertTrue("command in not enabled", pasteCommand.isEnabled()); //$NON-NLS-1$
+		Assert.assertTrue("command in not defined", pasteCommand.isDefined()); //$NON-NLS-1$
 
 		pasteCommand.executeWithChecks(new ExecutionEvent());
 
 		// check editor state (should be non dirty)
-		Assert.assertTrue("Editor should be dirty after paste command execution", isEditorDirty());
+		Assert.assertTrue("Editor should be dirty after paste command execution", isEditorDirty()); //$NON-NLS-1$
 
 
 		// should retrieve a new Part AND a new association
@@ -86,7 +86,7 @@ public abstract class AbstractCopyPasteTest extends AbstractModelExplorerTest {
 		}
 
 		// size = original size +1
-		Assert.assertEquals("Wrong number of attributes after paste", expectedNumberOfAddedElements, delta.size());
+		Assert.assertEquals("Wrong number of attributes after paste", expectedNumberOfAddedElements, delta.size()); //$NON-NLS-1$
 
 		// part should be linked to an association 
 		postCopyAdditionalChecks(originalModel, newValues, delta);
@@ -95,22 +95,22 @@ public abstract class AbstractCopyPasteTest extends AbstractModelExplorerTest {
 		if(getEditingDomain().getCommandStack().canUndo()) {
 			getEditingDomain().getCommandStack().undo();
 		} else {
-			throw new Exception("Impossible to undo the paste command: " + pasteCommand);
+			throw new Exception("Impossible to undo the paste command: " + pasteCommand); //$NON-NLS-1$
 		}
 		// check editor state (should be non dirty)
-		Assert.assertFalse("Editor should not be dirty after undo", isEditorDirty());
+		Assert.assertFalse("Editor should not be dirty after undo", isEditorDirty()); //$NON-NLS-1$
 		// check old values equals the actual values
 		newValues = (List<EObject>)targetContainer.eGet(feature);
-		Assert.assertEquals("Initial and current list feature list should be equivalent", newValues, originalValues);
+		Assert.assertEquals("Initial and current list feature list should be equivalent", newValues, originalValues); //$NON-NLS-1$
 
 		// redo
 		if(getEditingDomain().getCommandStack().canRedo()) {
 			getEditingDomain().getCommandStack().redo();
 		} else {
-			throw new Exception("Impossible to redo the paste command: " + pasteCommand);
+			throw new Exception("Impossible to redo the paste command: " + pasteCommand); //$NON-NLS-1$
 		}
 		// check editor state (should be non dirty)
-		Assert.assertTrue("Editor should not dirty after redo", isEditorDirty());
+		Assert.assertTrue("Editor should not dirty after redo", isEditorDirty()); //$NON-NLS-1$
 
 		// check as it was the result of the paste command
 		newValues = (List<EObject>)targetContainer.eGet(feature);
@@ -122,7 +122,7 @@ public abstract class AbstractCopyPasteTest extends AbstractModelExplorerTest {
 		}
 
 		// size = original size + delta
-		Assert.assertEquals("Wrong number of attributes after paste", expectedNumberOfAddedElements, delta.size());
+		Assert.assertEquals("Wrong number of attributes after paste", expectedNumberOfAddedElements, delta.size()); //$NON-NLS-1$
 
 		// part should be linked to an association 
 		postCopyAdditionalChecks(originalModel, newValues, delta);
@@ -131,10 +131,10 @@ public abstract class AbstractCopyPasteTest extends AbstractModelExplorerTest {
 		if(getEditingDomain().getCommandStack().canUndo()) {
 			getEditingDomain().getCommandStack().undo();
 		} else {
-			throw new Exception("Impossible to re-undo the paste command: " + pasteCommand);
+			throw new Exception("Impossible to re-undo the paste command: " + pasteCommand); //$NON-NLS-1$
 		}
 		// check editor state (should be non dirty)
-		Assert.assertFalse("Editor should not be dirty after undo", isEditorDirty());
+		Assert.assertFalse("Editor should not be dirty after undo", isEditorDirty()); //$NON-NLS-1$
 
 	}
 

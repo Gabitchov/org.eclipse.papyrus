@@ -25,19 +25,15 @@ import org.eclipse.papyrus.infra.core.pluginexplorer.Plugin;
 import org.eclipse.papyrus.infra.core.pluginexplorer.PluginEntry;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.osgi.framework.Bundle;
-import org.w3c.dom.Node;
 
 /**
  * Provider extending the {@link LocalPaletteProvider} to reference xml-defined
  * palettes into plugins, using the papyrus palette extension point
  */
-public class PluginPaletteProvider extends LocalPaletteProvider implements IProfileDependantPaletteProvider {
+public class PluginPaletteProvider extends LocalPaletteProvider {
 
 	/** id of the contributor */
 	private String providerID;
-
-	/** cached list of required profiles for this palette to be shown */
-	protected Collection<String> requiredProfiles;
 
 	/**
 	 * Return the provider ID that declares this provider
@@ -75,34 +71,5 @@ public class PluginPaletteProvider extends LocalPaletteProvider implements IProf
 		providerID = configElement.getContributor().getName();
 		readXMLDocument(configElement.getAttribute(PATH));
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<String> getRequiredProfiles() {
-		if(contributions==null) {
-			return Collections.emptyList();
-		}
-		if(requiredProfiles == null) {
-			requiredProfiles = new HashSet<String>();
-
-			try {
-				// parse the content of the file to discover the required
-				// profiles
-				// using safe computation
-				XMLPaletteDefinitionProfileInspector inspector = new XMLPaletteDefinitionProfileInspector();
-				XMLPaletteDefinitionWalker walker = new XMLPaletteDefinitionWalker(inspector);
-				for(int i = 0; i < contributions.getLength(); i++) {
-					Node node = contributions.item(i);
-					if(PALETTE_DEFINITION.equals(node.getNodeName())) {
-						walker.walk(node);
-						requiredProfiles.addAll(inspector.getRequiredProfiles());
-					}
-				}
-			} catch (Throwable e) {
-				Activator.log.error(e);
-			}
-		}
-		return requiredProfiles;
-	}
+	
 }

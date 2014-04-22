@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -35,8 +35,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.gmt.modisco.xml.Root;
-import org.eclipse.gmt.modisco.xml.resource.GenericXMLResourceImpl;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
@@ -45,6 +43,8 @@ import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.util.Log;
 import org.eclipse.papyrus.customization.properties.model.xwt.Activator;
 import org.eclipse.papyrus.customization.properties.model.xwt.format.XMLFormatter;
+import org.eclipse.papyrus.customization.properties.model.xwt.modisco.GenericXMLResourceImpl;
+import org.eclipse.papyrus.customization.properties.model.xwt.xwtxml.Root;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
@@ -56,12 +56,12 @@ import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
  * as EObjects.
  * Resulting EObjects are conform to the Papyrus property view UI Metamodel :
  * http://www.eclipse.org/papyrus/properties/ui/0.9
- * 
+ *
  * The resource is based on MoDisco for reading and writing XML,
  * and on QVTO to go from XML to EMF and vice-versa.
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  * @see UiPackage
  */
 public class XWTResource extends ResourceImpl {
@@ -70,15 +70,15 @@ public class XWTResource extends ResourceImpl {
 
 	/**
 	 * The "format" option.
-	 * 
+	 *
 	 * This option is a boolean, which default value is true
 	 */
 	public static final String OPTION_FORMAT = "format";
 
 	/**
-	 * 
+	 *
 	 * Constructs a new XWTResource with the given URI
-	 * 
+	 *
 	 * @param uri
 	 *        The resource's URI
 	 */
@@ -200,19 +200,23 @@ public class XWTResource extends ResourceImpl {
 	private Log getLogger() {
 		return new Log() {
 
+			@Override
 			public void log(int level, String message) {
 				Activator.getDefault().getLog().log(new Status(level, Activator.PLUGIN_ID, message));
 			}
 
+			@Override
 			public void log(int level, String message, Object param) {
 				log(level, message);
 			}
 
 
+			@Override
 			public void log(String message) {
 				log(IStatus.INFO, message);
 			}
 
+			@Override
 			public void log(String message, Object param) {
 				log(message);
 			}

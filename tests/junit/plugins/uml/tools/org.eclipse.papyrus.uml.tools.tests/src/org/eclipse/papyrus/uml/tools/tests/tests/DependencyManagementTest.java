@@ -13,10 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.tests.tests;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -32,6 +36,8 @@ import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.eclipse.papyrus.uml.tools.tests.Activator;
+import org.eclipse.uml2.common.util.UML2Util;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
@@ -361,6 +367,97 @@ public class DependencyManagementTest extends AbstractEditorTest {
 
 			// After the transformation + reload, stereotypes from the target profile must be applied
 			checkAppliedProfileAndStereotypeProperties(modelSet, rootModel, targetProfileURI);
+		} finally {
+			// Cleanup
+			domain.dispose();
+			modelSet.unload();
+
+			if (newModelSet != null) {
+				ModelUtils.getEditingDomain(newModelSet).dispose();
+				newModelSet.unload();
+			}
+
+			project.delete(true, null);
+		}
+	}
+
+	// Verify that stereotype applications that can be retargeted to the new profile retain their identities
+	@Test
+	public void testSwitchProfilesStereotypeIdentities() throws Exception {
+		IProject project = ProjectUtils.createProject("dependencyManagement.switchProfiles");
+		PapyrusProjectUtils.copyPapyrusModel(project, getBundle(), getSourcePath(), "profiles/model2");
+		PapyrusProjectUtils.copyPapyrusModel(project, getBundle(), getSourcePath(), "profiles/p3/profile3.profile");
+		PapyrusProjectUtils.copyPapyrusModel(project, getBundle(), getSourcePath(), "profiles/p4/profile4.profile");
+
+		final URI clientModelDiURI = URI.createPlatformResourceURI(project.getName() + "/profiles/model2.di", true);
+		final URI clientModelURI = URI.createPlatformResourceURI(project.getName() + "/profiles/model2.uml", true);
+		final URI sourceProfileURI = URI.createPlatformResourceURI(project.getName() + "/profiles/p3/profile3.profile.uml", true);
+		final URI targetProfileURI = URI.createPlatformResourceURI(project.getName() + "/profiles/p4/profile4.profile.uml", true);
+
+		final ModelSet modelSet = ModelUtils.loadModelSet(clientModelDiURI, true);
+		final TransactionalEditingDomain domain = ModelUtils.getEditingDomain(modelSet);
+		ModelSet newModelSet = null;
+
+		try {
+			// The modelset doesn't have any reference to the target profile
+			Assert.assertNull("The modelset should not have references to the target library", modelSet.getResource(targetProfileURI, false));
+
+			Model rootModel = UMLUtil.load(modelSet, clientModelURI, UMLPackage.eINSTANCE.getModel());
+
+			// Gather the identities of stereotype instances
+			Map<String, EObject> idsToStereotypeInstances = new HashMap<String, EObject>();
+			XMLResource xml = (XMLResource)rootModel.eResource();
+			for(TreeIterator<EObject> iter = xml.getAllContents(); iter.hasNext();) {
+				EObject next = iter.next();
+				if(!(next instanceof Element)) {
+					iter.prune();
+				} else {
+					for(EObject stereo : ((Element)next).getStereotypeApplications()) {
+						idsToStereotypeInstances.put(xml.getID(stereo), stereo);
+					}
+				}
+			}
+			
+			// Before the transformation, stereotypes from the source profile must be applied
+			checkAppliedProfileAndStereotypes(modelSet, rootModel, sourceProfileURI);
+
+			// Execute the transformation
+			domain.getCommandStack().execute(new RecordingCommand(domain, "Edit profile applications") {
+
+				@Override
+				protected void doExecute() {
+					new DependencyManager(domain).updateDependencies(sourceProfileURI, targetProfileURI, null, null);
+				}
+
+			});
+
+			// Save, reload, and check IDs
+			modelSet.save(new NullProgressMonitor());
+
+			newModelSet = ModelUtils.loadModelSet(clientModelDiURI, true);
+
+			rootModel = UMLUtil.load(modelSet, clientModelURI, UMLPackage.eINSTANCE.getModel());
+			
+			// All of the stereotype instances must have existed before
+			xml = (XMLResource)rootModel.eResource();
+			for(TreeIterator<EObject> iter = xml.getAllContents(); iter.hasNext();) {
+				EObject next = iter.next();
+				if(!(next instanceof Element)) {
+					iter.prune();
+				} else {
+					Element element = (Element)next;
+					for(Stereotype stereo : element.getAppliedStereotypes()) {
+						// The required stereotypes were added in the new profile definition, so they couldn't have been applied before
+						if(!element.isStereotypeRequired(stereo)) {
+							EObject application = element.getStereotypeApplication(stereo);
+							EObject original = idsToStereotypeInstances.remove(xml.getID(application));
+							Assert.assertNotNull("Stereotype instance has a new identity", original);
+							Assert.assertEquals("Stereotype instance has wrong identity", UML2Util.getQualifiedName(original.eClass(), "::"), UML2Util.getQualifiedName(application.eClass(), "::"));
+						}
+					}
+				}
+			}
+
 		} finally {
 			// Cleanup
 			domain.dispose();

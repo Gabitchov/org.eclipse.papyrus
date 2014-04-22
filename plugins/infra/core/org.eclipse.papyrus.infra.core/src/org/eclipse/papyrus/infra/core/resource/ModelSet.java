@@ -15,6 +15,7 @@
  *  Christian W. Damus (CEA) - Refactoring of Create Model Wizard (CDO)
  *  Christian W. Damus (CEA LIST) - Controlled resources in CDO repositories
  *  Christian W. Damus (CEA) - bug 429826
+ *  Christian W. Damus (CEA) - bug 432813
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -46,6 +47,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -929,6 +931,14 @@ public class ModelSet extends ResourceSetImpl {
 			iter.remove();
 		}
 
+		// Clear the package registry (it may contain dynamic profile EPackages that we don't
+		// want to leak in BasicExtendedMetaData instances attached to static EPackages)
+		// Works around EMF bug 433108
+		EPackage.Registry packageRegistry = getPackageRegistry();
+		if(packageRegistry != null) {
+			packageRegistry.clear();
+		}
+		
 		// Dispose Editing Domain
 		if(transactionalEditingDomain != null) {
 			transactionalEditingDomain.dispose();

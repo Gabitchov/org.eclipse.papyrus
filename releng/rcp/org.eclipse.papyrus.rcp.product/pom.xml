@@ -1,18 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>org.eclipse.papyrus.rcp.product</artifactId>
-	<packaging>eclipse-repository</packaging>
 	<parent>
+		<artifactId>org.eclipse.papyrus</artifactId>
 		<groupId>org.eclipse.papyrus</groupId>
-		<artifactId>org.eclipse.papyrus.rcp.master</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>../org.eclipse.papyrus.rcp.master</relativePath>
+		<relativePath>../../top-pom-rcp.xml</relativePath>
 	</parent>
+	<groupId>org.eclipse.papyrus</groupId>
+	<artifactId>org.eclipse.papyrus.rcp.product</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>eclipse-repository</packaging>
 	<properties>
 		<product-id>org.eclipse.papyrus.rcp.product</product-id>
 	</properties>
-	<version>1.0.0-SNAPSHOT</version>
 	<build>
 		<plugins>
 			<plugin>
@@ -58,5 +59,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

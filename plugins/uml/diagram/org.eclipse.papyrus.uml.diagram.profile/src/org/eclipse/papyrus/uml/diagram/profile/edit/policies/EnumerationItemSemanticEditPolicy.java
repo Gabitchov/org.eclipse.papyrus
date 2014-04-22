@@ -82,8 +82,6 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Enumeration_2006);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -120,11 +118,6 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case EnumerationLiteralEditPart.VISUAL_ID:
-
-
-
-
-
 						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -140,8 +133,6 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 			}
 		}
 	}
-
-
 
 	/**
 	 * @generated
@@ -348,5 +339,4 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

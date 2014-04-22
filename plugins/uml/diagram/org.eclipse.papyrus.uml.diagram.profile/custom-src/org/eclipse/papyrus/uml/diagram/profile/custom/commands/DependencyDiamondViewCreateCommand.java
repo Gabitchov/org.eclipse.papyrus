@@ -114,14 +114,13 @@ public class DependencyDiamondViewCreateCommand extends AbstractTransactionalCom
 		// ((IHintedType) UMLElementTypes.Dependency_2014)
 		// .getSemanticHint(), -1, true, preferenceHint);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		this.node = viewProvider.createDependency_2014(((EObject)semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint);
-
+		node = viewProvider.createDependency_2014(((EObject) semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint);
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
 		notationLocation.setX(location.x);
 		notationLocation.setY(location.y);
-		((Node)this.node).setLayoutConstraint(notationLocation);
-		semanticApdater.setView(this.node);
+		((Node) node).setLayoutConstraint(notationLocation);
+		semanticApdater.setView(node);
 		return CommandResult.newOKCommandResult(semanticApdater);
 	}
 
@@ -130,7 +129,7 @@ public class DependencyDiamondViewCreateCommand extends AbstractTransactionalCom
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List getAffectedFiles() {
+	public List<?> getAffectedFiles() {
 		if(viewer != null) {
 			EditPart editpart = viewer.getRootEditPart().getContents();
 			if(editpart instanceof IGraphicalEditPart) {

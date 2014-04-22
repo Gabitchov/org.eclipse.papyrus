@@ -61,6 +61,7 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
@@ -126,7 +127,6 @@ public class PrimitiveTypeNameEditPart extends PapyrusCompartmentEditPart implem
 	 */
 	protected IDirectEditorConfiguration configuration;
 
-
 	/**
 	 * @generated
 	 */
@@ -143,7 +143,6 @@ public class PrimitiveTypeNameEditPart extends PapyrusCompartmentEditPart implem
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new DefaultNodeLabelDragPolicy());
 	}
-
 
 	/**
 	 * @generated
@@ -246,7 +245,7 @@ public class PrimitiveTypeNameEditPart extends PapyrusCompartmentEditPart implem
 		}
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
-			if(NameLabelIconHelper.showLabelIcon(view)) {
+			if(AppearanceHelper.showElementIcon(view)) {
 				return UMLElementTypes.getImage(parserElement.eClass());
 			}
 		}
@@ -322,7 +321,6 @@ public class PrimitiveTypeNameEditPart extends PapyrusCompartmentEditPart implem
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -409,9 +407,7 @@ public class PrimitiveTypeNameEditPart extends PapyrusCompartmentEditPart implem
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -444,7 +440,6 @@ public class PrimitiveTypeNameEditPart extends PapyrusCompartmentEditPart implem
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -452,7 +447,6 @@ public class PrimitiveTypeNameEditPart extends PapyrusCompartmentEditPart implem
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -631,7 +625,6 @@ public class PrimitiveTypeNameEditPart extends PapyrusCompartmentEditPart implem
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -716,7 +709,6 @@ public class PrimitiveTypeNameEditPart extends PapyrusCompartmentEditPart implem
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -732,7 +724,6 @@ public class PrimitiveTypeNameEditPart extends PapyrusCompartmentEditPart implem
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -778,12 +769,10 @@ public class PrimitiveTypeNameEditPart extends PapyrusCompartmentEditPart implem
 		return null;
 	}
 
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -798,7 +787,6 @@ public class PrimitiveTypeNameEditPart extends PapyrusCompartmentEditPart implem
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -807,16 +795,12 @@ public class PrimitiveTypeNameEditPart extends PapyrusCompartmentEditPart implem
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
-
 
 	/**
 	 * @generated
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

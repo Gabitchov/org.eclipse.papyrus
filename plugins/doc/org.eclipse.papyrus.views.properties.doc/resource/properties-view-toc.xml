@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc topic="resource/properties-view.html" label="properties-view">
+	<topic href="resource/properties-view.html" label="INTRODUCTION"></topic>
+	<topic href="resource/properties-view.html#THE_CUSTOMIZATION_TOOL" label="THE CUSTOMIZATION TOOL">
+		<topic href="resource/properties-view.html#Edit_a_configuration" label="Edit a configuration"></topic>
+		<topic href="resource/properties-view.html#The_property_view_elements" label="The property view elements">
+			<topic href="resource/properties-view.html#Preview" label="Preview"></topic>
+			<topic href="resource/properties-view.html#Property_view" label="Property view"></topic>
+		</topic>
+		<topic href="resource/properties-view.html#Priorities_between_views" label="Priorities between views"></topic>
+		<topic href="resource/properties-view.html#Preferences" label="Preferences"></topic>
+	</topic>
+	<topic href="resource/properties-view.html#ADVANCED_CUSTOMIZATION" label="ADVANCED CUSTOMIZATION">
+		<topic href="resource/properties-view.html#The_Environment_model" label="The Environment model"></topic>
+		<topic href="resource/properties-view.html#Create_a_new_widget" label="Create a new widget"></topic>
+		<topic href="resource/properties-view.html#Constraints" label="Constraints"></topic>
+		<topic href="resource/properties-view.html#ModelElement" label="ModelElement"></topic>
+		<topic href="resource/properties-view.html#ModelElement_Factory" label="ModelElement Factory"></topic>
+		<topic href="resource/properties-view.html#Content_Providers_and_Widgets" label="Content Providers and Widgets"></topic>
+		<topic href="resource/properties-view.html#Dynamic_sections" label="Dynamic sections"></topic>
+		<topic href="resource/properties-view.html#Property_view_Header" label="Property view Header"></topic>
+		<topic href="resource/properties-view.html#Binding_and_Validation" label="Binding and Validation"></topic>
+		<topic href="resource/properties-view.html#Field_coloration" label="Field coloration"></topic>
+	</topic>
+	<topic href="resource/properties-view.html#GENERATION_TOOL" label="GENERATION TOOL"></topic>
+	<topic href="resource/properties-view.html#DEPLOYING_A_PROPERTY_VIEW" label="DEPLOYING A PROPERTY VIEW"></topic>
+</toc>

@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -71,7 +72,7 @@ public class StringFileSelector extends StringEditor {
 		browse.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				File file = getFile(text.getText());
+				File file = FileUtil.getFile(text.getText());
 
 				FileDialog dialog = new FileDialog(getShell());
 				if(labelText != null) {
@@ -105,7 +106,7 @@ public class StringFileSelector extends StringEditor {
 
 				ILabelProvider labelProvider = labelProviderService.getLabelProvider();
 
-				IFile currentFile = getIFile(text.getText());
+				IFile currentFile = FileUtil.getIFile(text.getText());
 
 				TreeSelectorDialog dialog = new TreeSelectorDialog(getShell());
 				if(labelText != null) {
@@ -165,19 +166,11 @@ public class StringFileSelector extends StringEditor {
 		text.setText(path);
 		notifyChange();
 	}
-	
-	protected IFile getIFile(String path){
-		return FileUtil.getIFile(path);
-	}
-	
-	protected File getFile(String path){
-		return FileUtil.getFile(path);
-	}
 
 	public void setFilters(String[] filterExtensions, String[] filterNames) {
 		if(filterExtensions.length != filterNames.length) {
 			//This is a simple warning. Only valid filters will be retained.
-			Activator.log.warn("FilterExtensions and FilterNames do not match");
+			Activator.log.warn(Messages.StringFileSelector_0);
 		}
 
 		setFilterNames(getFilterLabels(filterNames, filterExtensions));
@@ -188,7 +181,7 @@ public class StringFileSelector extends StringEditor {
 		int size = Math.min(filterNames.length, filterExtensions.length);
 		String[] filters = new String[size];
 		for(int i = 0; i < size; i++) {
-			filters[i] = filterNames[i] + " (" + filterExtensions[i] + ")";
+			filters[i] = filterNames[i] + " (" + filterExtensions[i] + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		return filters;
 	}

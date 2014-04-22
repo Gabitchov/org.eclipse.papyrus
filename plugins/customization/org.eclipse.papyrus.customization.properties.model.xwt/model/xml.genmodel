@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.customization.properties.model.xwt/src-gen"
+    editDirectory="/org.eclipse.papyrus.customization.properties.model.xwt.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrus.customization.properties.model.xwt.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.customization.properties.model.xwt" modelName="Xml"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/org.eclipse.papyrus.customization.properties.model.xwt.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>xml.ecore</foreignModel>
+  <genPackages prefix="Xwtxml" basePackage="org.eclipse.papyrus.customization.properties.model.xwt"
+      disposableProviderFactory="true" ecorePackage="xml.ecore#/">
+    <genClasses image="false" ecoreClass="xml.ecore#//Node">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xml.ecore#//Node/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference xml.ecore#//Node/parent"/>
+    </genClasses>
+    <genClasses ecoreClass="xml.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xml.ecore#//Attribute/value"/>
+    </genClasses>
+    <genClasses ecoreClass="xml.ecore#//Text"/>
+    <genClasses ecoreClass="xml.ecore#//Element">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xml.ecore#//Element/children"/>
+    </genClasses>
+    <genClasses ecoreClass="xml.ecore#//Root">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xml.ecore#//Root/namespaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xml.ecore#//Root/dtd"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xml.ecore#//Root/leadingPIs"/>
+    </genClasses>
+    <genClasses ecoreClass="xml.ecore#//Namespace"/>
+    <genClasses ecoreClass="xml.ecore#//Comment"/>
+    <genClasses ecoreClass="xml.ecore#//DocumentTypeDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xml.ecore#//DocumentTypeDeclaration/publicID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xml.ecore#//DocumentTypeDeclaration/systemID"/>
+    </genClasses>
+    <genClasses ecoreClass="xml.ecore#//CDATA"/>
+    <genClasses ecoreClass="xml.ecore#//ProcessingInstruction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xml.ecore#//ProcessingInstruction/data"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

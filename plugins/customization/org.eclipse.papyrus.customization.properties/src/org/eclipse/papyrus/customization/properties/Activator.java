@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,10 +12,7 @@
 package org.eclipse.papyrus.customization.properties;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManagerFactory;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -47,8 +44,6 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static LogHelper log;
 
-	private ICustomizationManager fCustomizationManager;
-
 	@Override
 	public void start(final BundleContext context) throws Exception {
 		super.start(context);
@@ -64,50 +59,54 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns the shared instance
-	 * 
+	 *
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {
 		return Activator.plugin;
 	}
 
+	//	private ICustomizationManager fCustomizationManager;
+
 	/**
-	 * 
+	 *
 	 * @return the customization manager in charge to adapt element in modisco
 	 */
-	public ICustomizationManager getCustomizationManager() {
-		if(this.fCustomizationManager == null) {
-			this.fCustomizationManager = ICustomizationManagerFactory.DEFAULT.getOrCreateICustomizationManager(new ResourceSetImpl());
-			init(this.fCustomizationManager);
-		}
-		return this.fCustomizationManager;
-	}
+	//	public ICustomizationManager getCustomizationManager() {
+	//		if(this.fCustomizationManager == null) {
+	//			this.fCustomizationManager = ICustomizationManagerFactory.DEFAULT.getOrCreateICustomizationManager(new ResourceSetImpl());
+	//			init(this.fCustomizationManager);
+	//		}
+	//		return this.fCustomizationManager;
+	//
+	//		return org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager();
+	//	}
 
-	private void init(final ICustomizationManager customizationManager) {
-//		customizationManager.setShowContainer(false);
-//		customizationManager.setShowDerivedLinks(true);
-//		customizationManager.setShowEmptyLinks(true);
-//
-//		try {
-//			List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
-//			for(MetamodelView metamodelView : registryDefaultCustomizations) {
-//				//FIXME: One of the default uiCustom files in Papyrus has a side effect to call resolveAll on the resource set. While this is generally not a problem in Papyrus,
-//				//it becomes critical with the properties view customization, as the resource set contains hundreds of proxies to xwt files (Which are really expensive to load)
-//				//It seems that this uiCustom query cannot be easily fixed, so we disable it in this context.
-//				//The query which tries to (indirectly) resolve all: org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.IsDiagramContainer
-//				//Used by: PapyrusNotationFacet.querySet -> PapyrusNotationFacet.uiCustom
-//				if("PapyrusNotationFacet".equals(metamodelView.getName())) {
-//					continue; //Disable this specific uiCustom
-//				}
-//
-//				customizationManager.registerCustomization(metamodelView);
-//			}
-//
-//			customizationManager.loadCustomizations();
-//		} catch (Throwable e) {
-//			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
-//		}
-	}
+	//	private void init(final ICustomizationManager customizationManager) {
+	//		customizationManager.setShowContainer(false);
+	//		customizationManager.setShowDerivedLinks(true);
+	//		customizationManager.setShowEmptyLinks(true);
+	//
+	//		try {
+	//			List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
+	//			for(MetamodelView metamodelView : registryDefaultCustomizations) {
+	//				//FIXME: One of the default uiCustom files in Papyrus has a side effect to call resolveAll on the resource set. While this is generally not a problem in Papyrus,
+	//				//it becomes critical with the properties view customization, as the resource set contains hundreds of proxies to xwt files (Which are really expensive to load)
+	//				//It seems that this uiCustom query cannot be easily fixed, so we disable it in this context.
+	//				//The query which tries to (indirectly) resolve all: org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.IsDiagramContainer
+	//				//Used by: PapyrusNotationFacet.querySet -> PapyrusNotationFacet.uiCustom
+	//				if("PapyrusNotationFacet".equals(metamodelView.getName())) {
+	//					continue; //Disable this specific uiCustom
+	//				}
+	//
+	//				customizationManager.registerCustomization(metamodelView);
+	//			}
+	//
+	//			customizationManager.loadCustomizations();
+	//		} catch (Throwable e) {
+	//			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
+	//		}
+	//	}
 
 	/**
 	 * @return The IPath representing the plugin's preferences folder location
@@ -118,7 +117,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns the image at the given path from this plugin
-	 * 
+	 *
 	 * @param path
 	 *        the path of the image to be displayed
 	 * @return The Image at the given location, or null if it couldn't be found
@@ -129,7 +128,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns the image from the given image descriptor
-	 * 
+	 *
 	 * @param pluginId
 	 *        The plugin in which the image is located
 	 * @param path

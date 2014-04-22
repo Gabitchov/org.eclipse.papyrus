@@ -64,7 +64,7 @@ public class AbstractDragDropTest extends AbstractModelExplorerTest {
 			}
 		});
 
-		Assert.assertFalse("Editor should not be dirty at initialization", isEditorDirty());
+		Assert.assertFalse("Editor should not be dirty at initialization", isEditorDirty()); //$NON-NLS-1$
 	}
 
 	public List<CompoundCommand> getListOfDropCommands(EObject sourceElement, EObject targetElement) throws Exception {
@@ -90,17 +90,17 @@ public class AbstractDragDropTest extends AbstractModelExplorerTest {
 		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID);
 		if(bookViewPart != null) {
 			modelExplorerView = (ModelExplorerView)bookViewPart.getActiveView();
-			Assert.assertNotNull("Impossible to find model explorer view", modelExplorerView);
+			Assert.assertNotNull("Impossible to find model explorer view", modelExplorerView); //$NON-NLS-1$
 		}
 		NavigatorDnDService dndService = (NavigatorDnDService)modelExplorerView.getNavigatorContentService().getDnDService();
-		Assert.assertNotNull("Impossible to find dnd service", dndService);
+		Assert.assertNotNull("Impossible to find dnd service", dndService); //$NON-NLS-1$
 		CommonDropAdapter commonDropAdapter = ((CustomCommonViewer)modelExplorerView.getCommonViewer()).getDropAdapter();
 		CommonDropAdapterAssistant[] commonDropAdapterAssistants = dndService.findCommonDropAdapterAssistants(targetMEI, (IStructuredSelection)modelExplorerView.getCommonViewer().getSelection());
 		List<CompoundCommand> results = new ArrayList<CompoundCommand>();
 		for(CommonDropAdapterAssistant assistant : commonDropAdapterAssistants) {
 			// try to adapt to a Papyrus drop assistant. If not, send a warning
 			if(!(assistant instanceof org.eclipse.papyrus.views.modelexplorer.dnd.CommonDropAdapterAssistant)) {
-				fail("this test expects that only papyrus drop assistants are provided for papyrus model explorer");
+				fail("this test expects that only papyrus drop assistants are provided for papyrus model explorer"); //$NON-NLS-1$
 			}
 			org.eclipse.papyrus.views.modelexplorer.dnd.CommonDropAdapterAssistant papyrusAssistant = ((org.eclipse.papyrus.views.modelexplorer.dnd.CommonDropAdapterAssistant)assistant);
 			Field currentOperationField = ViewerDropAdapter.class.getDeclaredField("currentOperation");
@@ -121,7 +121,7 @@ public class AbstractDragDropTest extends AbstractModelExplorerTest {
 	}
 
 	public void testExecutableDropOfDiagram(Diagram sourceElement, EObject targetElement) throws Exception {
-		Assert.assertFalse("Editor should not be dirty at the beginning of the test", EditorUtils.getEditor().isDirty());
+		Assert.assertFalse("Editor should not be dirty at the beginning of the test", EditorUtils.getEditor().isDirty()); //$NON-NLS-1$
 		EObject initialDiagramContainer = sourceElement.getElement();
 		// find command for the drag / drop (source, target)
 		List<CompoundCommand> dropCommands = getListOfDropCommands(sourceElement, targetElement);
@@ -132,21 +132,21 @@ public class AbstractDragDropTest extends AbstractModelExplorerTest {
 		}
 		getEditingDomain().getCommandStack().execute(executableCommand);
 		// check results
-		Assert.assertEquals("Context of the diagram should be the target: " + printElement(targetElement), targetElement, sourceElement.getElement());
-		Assert.assertNotNull("diagram should still be contained in a resource", sourceElement.eResource());
+		Assert.assertEquals("Context of the diagram should be the target: " + printElement(targetElement), targetElement, sourceElement.getElement()); //$NON-NLS-1$
+		Assert.assertNotNull("diagram should still be contained in a resource", sourceElement.eResource()); //$NON-NLS-1$
 		// try to undo
 		getEditingDomain().getCommandStack().undo();
-		Assert.assertEquals("Context of the diagram should be the initial value: " + printElement(initialDiagramContainer), initialDiagramContainer, sourceElement.getElement());
+		Assert.assertEquals("Context of the diagram should be the initial value: " + printElement(initialDiagramContainer), initialDiagramContainer, sourceElement.getElement()); //$NON-NLS-1$
 		// try to redo
 		getEditingDomain().getCommandStack().redo();
 		// check results
-		Assert.assertEquals("Context of the diagram should be the target: " + printElement(targetElement), targetElement, sourceElement.getElement());
-		Assert.assertNotNull("diagram should still be contained in a resource", sourceElement.eResource());
+		Assert.assertEquals("Context of the diagram should be the target: " + printElement(targetElement), targetElement, sourceElement.getElement()); //$NON-NLS-1$
+		Assert.assertNotNull("diagram should still be contained in a resource", sourceElement.eResource()); //$NON-NLS-1$
 		// undo to go to previous state
 		getEditingDomain().getCommandStack().undo();
-		Assert.assertEquals("Context of the diagram should be the initial value: " + printElement(initialDiagramContainer), initialDiagramContainer, sourceElement.getElement());
+		Assert.assertEquals("Context of the diagram should be the initial value: " + printElement(initialDiagramContainer), initialDiagramContainer, sourceElement.getElement()); //$NON-NLS-1$
 
-		Assert.assertFalse("Editor should not be dirty at the end of the test", EditorUtils.getEditor().isDirty());
+		Assert.assertFalse("Editor should not be dirty at the end of the test", EditorUtils.getEditor().isDirty()); //$NON-NLS-1$
 	}
 
 	public void testUnexecutableDropOfDiagram(Diagram sourceElement, EObject targetElement) throws Exception {
@@ -162,6 +162,6 @@ public class AbstractDragDropTest extends AbstractModelExplorerTest {
 				}
 			}
 		}
-		Assert.assertTrue("It should be impossible to move " + printElement(sourceElement) + " on " + printElement(targetElement), notexecutable);
+		Assert.assertTrue("It should be impossible to move " + printElement(sourceElement) + " on " + printElement(targetElement), notexecutable); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

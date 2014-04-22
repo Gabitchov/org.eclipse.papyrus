@@ -709,4 +709,10 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 			}
 		}
 	}
+
+	@Override
+	public void changeColorField() {
+		// TODO Auto-generated method stub
+		
+	}
 }

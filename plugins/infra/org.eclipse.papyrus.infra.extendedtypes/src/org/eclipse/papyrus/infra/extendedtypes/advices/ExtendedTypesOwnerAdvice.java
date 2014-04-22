@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.infra.extendedtypes.ICreationElementValidator;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 
 /**
@@ -149,21 +150,28 @@ public class ExtendedTypesOwnerAdvice extends AbstractEditHelperAdvice {
 		IContainerDescriptor containerDescriptor = typeToCreate.getEContainerDescriptor();
 		EObject newContainer = request.getContainer();
 		// check it matches the container descriptor for the element type
-		if(containerDescriptor == null || newContainer == null) {
-			return true;
-		}
-		if(containerDescriptor.getContainmentFeatures() != null && containerDescriptor.getContainmentFeatures().length > 0) {
-			// check containment feature
-			List<EReference> references = Arrays.asList(containerDescriptor.getContainmentFeatures());
-			if(!(references.contains(request.getContainmentFeature()))) {
-				return false;
+		if(containerDescriptor != null && newContainer != null) {
+			if(containerDescriptor.getContainmentFeatures() != null && containerDescriptor.getContainmentFeatures().length > 0) {
+				// check containment feature
+				List<EReference> references = Arrays.asList(containerDescriptor.getContainmentFeatures());
+				if(!(references.contains(request.getContainmentFeature()))) {
+					return false;
+				}
+			}
+			IElementMatcher containerMatcher = containerDescriptor.getMatcher();
+			if(containerMatcher != null) {
+				if(!containerMatcher.matches(newContainer)) {
+					return false;
+				}
 			}
 		}
-		IElementMatcher containerMatcher = containerDescriptor.getMatcher();
-		if(containerMatcher != null) {
-			return containerMatcher.matches(newContainer);
+		
+		// check that the element can be created. Delegates to the created element type if it can be created or not (rather than being based on the container, as usual on GMF element type framework). 
+		ICreationElementValidator creationValidator = typeToCreate.getCreationElementValidator();
+		if(creationValidator!=null) {
+			return creationValidator.canCreate(request);
 		}
-		// check container is matching the matcher of the container descriptor for the new type
+		
 		return true;
 	}
 

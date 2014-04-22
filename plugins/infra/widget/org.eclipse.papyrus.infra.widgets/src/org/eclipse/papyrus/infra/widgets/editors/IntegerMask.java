@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -164,6 +165,7 @@ public class IntegerMask extends AbstractValueEditor implements SelectionListene
 		super.setLabelToolTipText(text);
 	}
 
+	@Override
 	public void widgetSelected(final SelectionEvent e) {
 		Button button = (Button)e.widget;
 		int value = (Integer)button.getData("IntValue"); //$NON-NLS-1$
@@ -196,6 +198,7 @@ public class IntegerMask extends AbstractValueEditor implements SelectionListene
 		}
 	}
 
+	@Override
 	public void widgetDefaultSelected(final SelectionEvent e) {
 		// Nothing
 	}
@@ -204,8 +207,10 @@ public class IntegerMask extends AbstractValueEditor implements SelectionListene
 		return ((GridLayout)checkboxContainer.getLayout()).numColumns;
 	}
 
+	@Override
 	public void handleChange(final ChangeEvent event) {
 		refreshCheckboxes();
 	}
+
 
 }

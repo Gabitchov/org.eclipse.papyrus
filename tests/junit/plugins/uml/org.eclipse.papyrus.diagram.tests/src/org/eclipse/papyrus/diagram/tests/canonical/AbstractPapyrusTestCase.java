@@ -48,6 +48,7 @@ import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
+import org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.swt.widgets.Display;
@@ -172,13 +173,17 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 
 			public void run() {
 				try {
-					papyrusEditor.doSave(new NullProgressMonitor());
+					//if the diagram is a Profile we dont save it because we dont need to define it
+					if(!diagramEditPart.getDiagramView().getType().equals("PapyrusUMLProfileDiagram")) {
+						papyrusEditor.doSave(new NullProgressMonitor());
+					}
+
 					// diResourceSet.save( new NullProgressMonitor());
 					// diagramEditor.close(true);
 					papyrusEditor = null;
 					diagramEditPart = null;
 					diagramEditor = null;
-					page.closeAllEditors(true);
+					page.closeAllEditors(false);
 					project.delete(true, new NullProgressMonitor());
 					setResult(true);
 				} catch (Exception ex) {
@@ -248,7 +253,7 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 		root = workspace.getRoot();
 		/*
 		 * final String timestamp = Long.toString(System.currentTimeMillis());
-		 *
+		 * 
 		 * project = root.getProject("DiagramTestProject_" + timestamp); file =
 		 * project.getFile("DiagramTest_" + timestamp + ".di"); //$NON-NLS-2$
 		 */
@@ -269,44 +274,57 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 		if(!file.exists()) {
 			file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
 			diResourceSet.createsModels(file);
-			new CreateUMLModelCommand().createModel(this.diResourceSet);
-			ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
-			try {
-				registry.add(ModelSet.class, Integer.MAX_VALUE, diResourceSet); // High priority to override all contributions
-				registry.startRegistry();
-			} catch (ServiceException ex) {
-				// Ignore exceptions
-			}
+			if(!file.getName().endsWith(".profile.di")) {
 
-			// Apply the required profiles
-			ArrayList<IFile> modifiedFiles = new ArrayList<IFile>();
-			modifiedFiles.add(file);
-			ICommand commandProfiles = new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), "Apply profiles", modifiedFiles) {
+				new CreateUMLModelCommand().createModel(this.diResourceSet);
 
-				@Override
-				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-					UmlModel resModel = UmlUtils.getUmlModel(diResourceSet);
-					EObject obj;
-					try {
-						obj = resModel.lookupRoot();
-					} catch (NotFoundException e) {
-						return CommandResult.newErrorCommandResult(e);
-					}
-					if(obj instanceof Model) {
-						Model model = (Model)obj;
-						for(String uri : getRequiredProfiles()) {
-							EPackage definition = EPackage.Registry.INSTANCE.getEPackage(uri);
-							if(definition != null) {
-								Profile profile = UMLUtil.getProfile(definition, model);
-								model.applyProfile(profile);
+				ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+				try {
+					registry.add(ModelSet.class, Integer.MAX_VALUE, diResourceSet); // High priority to override all contributions
+					registry.startRegistry();
+				} catch (ServiceException ex) {
+					// Ignore exceptions
+				}
+
+				// Apply the required profiles
+				ArrayList<IFile> modifiedFiles = new ArrayList<IFile>();
+				modifiedFiles.add(file);
+				ICommand commandProfiles = new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), "Apply profiles", modifiedFiles) {
+
+					@Override
+					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+						UmlModel resModel = UmlUtils.getUmlModel(diResourceSet);
+						EObject obj;
+						try {
+							obj = resModel.lookupRoot();
+						} catch (NotFoundException e) {
+							return CommandResult.newErrorCommandResult(e);
+						}
+						if(obj instanceof Model) {
+							Model model = (Model)obj;
+							for(String uri : getRequiredProfiles()) {
+								EPackage definition = EPackage.Registry.INSTANCE.getEPackage(uri);
+								if(definition != null) {
+									Profile profile = UMLUtil.getProfile(definition, model);
+									model.applyProfile(profile);
+								}
 							}
 						}
+						return CommandResult.newOKCommandResult();
 					}
-					return CommandResult.newOKCommandResult();
-				}
-			};
-			commandProfiles.execute(new NullProgressMonitor(), null);
+				};
+				commandProfiles.execute(new NullProgressMonitor(), null);
 
+			} else {
+				new CreateProfileModelCommand().createModel(this.diResourceSet);
+				ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+				try {
+					registry.add(ModelSet.class, Integer.MAX_VALUE, diResourceSet); // High priority to override all contributions
+					registry.startRegistry();
+				} catch (ServiceException ex) {
+					// Ignore exceptions
+				}
+			}
 			ICreationCommand command = getDiagramCommandCreation();
 			command.createDiagram(diResourceSet, null, "DiagramToTest");
 			diResourceSet.save(new NullProgressMonitor());

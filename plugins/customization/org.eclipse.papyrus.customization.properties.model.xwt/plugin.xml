@@ -12,4 +12,12 @@
            file-extensions="xwt">
      </file-association>
   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated xml -->
+      <package
+            uri="http://www.eclipse.org/papyrus/xwt/XML"
+            class="org.eclipse.papyrus.customization.properties.model.xwt.xwtxml.XwtxmlPackage"
+            genModel="model/xml.genmodel"/>
+   </extension>
+
 </plugin>
