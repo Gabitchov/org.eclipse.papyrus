@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 Cedric Dumoulin.
+ * Copyright (c) 2012, 2014 Cedric Dumoulin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,11 +9,13 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
 
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+import org.eclipse.papyrus.infra.core.editor.ModelSetServiceFactory;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 
 /**
@@ -23,7 +25,9 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
  * 
  * @author cedric dumoulin
  * 
+ * @deprecated Since 1.0, the {@link ModelSetServiceFactory} class associates the model-set with its service registry.
  */
+@Deprecated
 public class ServiceRegistryAdapterFactory extends AdapterFactoryImpl {
 
 	/**

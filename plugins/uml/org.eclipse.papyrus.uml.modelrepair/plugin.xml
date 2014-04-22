@@ -110,5 +110,12 @@
             class="org.eclipse.papyrus.uml.modelrepair.internal.participants.StereotypeApplicationRepairParticipant">
       </replaceParticipant>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.model">
+      <modelSetSnippet
+            classname="org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.StereotypeApplicationRepairSnippet"
+            description="Initiates repair of zombie stereotype applications on load of a UML resource.">
+      </modelSetSnippet>
+   </extension>
 
 </plugin>

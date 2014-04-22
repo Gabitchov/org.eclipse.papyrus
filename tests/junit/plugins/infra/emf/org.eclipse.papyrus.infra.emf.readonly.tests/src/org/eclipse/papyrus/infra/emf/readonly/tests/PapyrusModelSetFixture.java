@@ -25,7 +25,6 @@ import org.eclipse.papyrus.infra.core.services.ServiceDescriptor.ServiceTypeKind
 import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.readonly.PapyrusROTransactionalEditingDomain;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.junit.utils.rules.AbstractModelFixture;
 import org.junit.runner.Description;
@@ -68,7 +67,6 @@ public class PapyrusModelSetFixture extends AbstractModelFixture<PapyrusROTransa
 	protected ServicesRegistry createServiceRegistry() throws Exception {
 		ServicesRegistry result = new ServicesRegistry();
 		result.add(ModelSet.class, 10, new ModelSet());
-		result.add(ServiceUtilsForResourceInitializerService.class, 10, new ServiceUtilsForResourceInitializerService());
 
 		ServiceDescriptor desc = new ServiceDescriptor(TransactionalEditingDomain.class, EditingDomainServiceFactory.class.getName(), ServiceStartKind.STARTUP, 10, Collections.singletonList(ModelSet.class.getName()));
 		desc.setServiceTypeKind(ServiceTypeKind.serviceFactory);

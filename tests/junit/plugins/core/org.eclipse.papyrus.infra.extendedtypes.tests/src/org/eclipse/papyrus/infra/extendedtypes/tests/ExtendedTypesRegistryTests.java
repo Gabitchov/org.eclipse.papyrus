@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 431953 (fix test to prevent Model Repair dialog on unrecognized profile schema)
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.extendedtypes.tests;
 
@@ -47,6 +49,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.osgi.framework.Bundle;
 
 
 /**
@@ -87,9 +90,11 @@ public class ExtendedTypesRegistryTests implements ITestConstants {
 			fail(e.getMessage());
 		}
 
-		// import test model
+		// import test model and profile
 		try {
-			copyPapyrusModel = PapyrusProjectUtils.copyPapyrusModel(createProject, Platform.getBundle("org.eclipse.papyrus.infra.extendedtypes.tests"), "/model/", "model");
+			Bundle bundle = Platform.getBundle("org.eclipse.papyrus.infra.extendedtypes.tests");
+			copyPapyrusModel = PapyrusProjectUtils.copyPapyrusModel(createProject, bundle, "/model/", "model");
+			PapyrusProjectUtils.copyPapyrusModel(createProject, bundle, "/model/", "ExtendedTypesTestsProfile.profile");
 		} catch (CoreException e) {
 			fail(e.getMessage());
 		} catch (IOException e) {

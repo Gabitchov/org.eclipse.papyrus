@@ -18,7 +18,6 @@ import static com.google.common.base.Strings.nullToEmpty;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -55,7 +54,6 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.viewers.ViewerComparator;
-import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
@@ -64,20 +62,14 @@ import org.eclipse.papyrus.infra.emf.resource.Replacement;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.markerlistener.dialogs.DiagnosticDialog;
-import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
-import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
-import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
-import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.modelrepair.Activator;
 import org.eclipse.papyrus.uml.tools.util.ProfileHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -88,6 +80,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.statushandlers.StatusManager;
 import org.eclipse.uml2.uml.Profile;
+
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
 
 /**
  * The dialog to switch from a Profile application to another
@@ -100,10 +95,6 @@ public class SwitchProfileDialog extends SelectionDialog {
 
 	private static final String APPLY_LABEL = "Apply";
 
-	private static final int BROWSE_WORKSPACE_ID = IDialogConstants.CLIENT_ID + 2;
-
-	private static final int BROWSE_REGISTERED_ID = IDialogConstants.CLIENT_ID + 3;
-
 	private ModelSet modelSet;
 
 	private TransactionalEditingDomain editingDomain;
@@ -112,6 +103,8 @@ public class SwitchProfileDialog extends SelectionDialog {
 
 	protected Table table;
 
+	protected BrowseProfilesBlock browseBlock;
+	
 	protected LabelProviderService labelProviderService;
 
 	protected final Map<Resource, Resource> profilesToEdit = new HashMap<Resource, Resource>();
@@ -148,20 +141,25 @@ public class SwitchProfileDialog extends SelectionDialog {
 
 		warningLabel.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
 
-		Composite buttonsBarComposite = new Composite(self, SWT.NONE);
+		EventBus bus = new EventBus("profileSelection"); //$NON-NLS-1$
+		browseBlock = new BrowseProfilesBlock(bus, labelProviderService);
+		browseBlock.createControl(self, BrowseProfilesBlock.ICON).setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false));
+		bus.register(new Object() {
 
-		GridLayout buttonsLayout = new GridLayout(0, false);
-		buttonsLayout.marginWidth = 0;
+			@Subscribe
+			public void workspaceProfileSelected(IFile file) {
+				IPath filePath = file.getFullPath();
+				URI workspaceURI = URI.createPlatformResourceURI(filePath.toPortableString(), true);
 
-		buttonsBarComposite.setLayout(buttonsLayout);
-		buttonsBarComposite.setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false));
+				replaceSelectionWith(workspaceURI);
+			}
 
-		Button browseWorkspace = createButton(buttonsBarComposite, BROWSE_WORKSPACE_ID, "", false);
-		browseWorkspace.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("icons/Add_12x12.gif"));
-		Button browseRegistered = createButton(buttonsBarComposite, BROWSE_REGISTERED_ID, "", false);
-		browseRegistered.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, "icons/AddReg.gif"));
-
-
+			@Subscribe
+			public void registeredProfileSelected(RegisteredProfile profile) {
+				replaceSelectionWith(profile.uri);
+			}
+		});
+		
 		viewer = new TableViewer(self, SWT.FULL_SELECTION | SWT.BORDER);
 		table = viewer.getTable();
 		TableLayout layout = new TableLayout();
@@ -266,20 +264,9 @@ public class SwitchProfileDialog extends SelectionDialog {
 
 		boolean enableBrowse = !viewer.getSelection().isEmpty();
 
-		getButton(BROWSE_REGISTERED_ID).setEnabled(enableBrowse);
-		getButton(BROWSE_WORKSPACE_ID).setEnabled(enableBrowse);
+		browseBlock.setEnabled(enableBrowse);
 		
 		viewer.refresh();
-	}
-
-	@Override
-	protected void setButtonLayoutData(Button button) {
-		int buttonId = ((Integer)button.getData()).intValue();
-		if(buttonId == BROWSE_REGISTERED_ID || buttonId == BROWSE_WORKSPACE_ID) {
-			return; //Don't change the layout data
-		}
-
-		super.setButtonLayoutData(button);
 	}
 
 	protected void applyPressed() {
@@ -355,12 +342,6 @@ public class SwitchProfileDialog extends SelectionDialog {
 			break;
 		case APPLY_ID:
 			applyPressed();
-			return;
-		case BROWSE_REGISTERED_ID:
-			browseRegisteredProfiles();
-			return;
-		case BROWSE_WORKSPACE_ID:
-			browseWorkspaceProfiles();
 			return;
 		}
 
@@ -458,43 +439,6 @@ public class SwitchProfileDialog extends SelectionDialog {
 		}
 	}
 
-	protected void browseWorkspaceProfiles() {
-		if(getSelectedResource() == null) {
-			return;
-		}
-
-		Map<String, String> extensionFilters = new LinkedHashMap<String, String>();
-		extensionFilters.put("*.profile.uml", "UML Profiles (*.profile.uml)");
-		extensionFilters.put("*.uml", "UML (*.uml)");
-		extensionFilters.put("*", "All (*)");
-
-		TreeSelectorDialog dialog = new TreeSelectorDialog(getShell());
-		dialog.setTitle("Browse Workspace");
-		dialog.setDescription("Select a profile in the workspace.");
-		WorkspaceContentProvider workspaceContentProvider = new WorkspaceContentProvider();
-		workspaceContentProvider.setExtensionFilters(extensionFilters);
-		dialog.setContentProvider(workspaceContentProvider);
-
-		dialog.setLabelProvider(labelProviderService.getLabelProvider());
-
-
-		if(dialog.open() == Window.OK) {
-			Object[] result = dialog.getResult();
-			if(result == null || result.length == 0) {
-				return;
-			}
-
-			Object selectedFile = result[0];
-
-			if(selectedFile instanceof IFile) {
-				IPath filePath = ((IFile)selectedFile).getFullPath();
-				URI workspaceURI = URI.createPlatformResourceURI(filePath.toString(), true);
-
-				replaceSelectionWith(workspaceURI);
-			}
-		}
-	}
-
 	protected Resource getSelectedResource() {
 		ISelection selection = viewer.getSelection();
 		if(selection.isEmpty()) {
@@ -509,48 +453,6 @@ public class SwitchProfileDialog extends SelectionDialog {
 		}
 
 		return null;
-	}
-
-	protected void browseRegisteredProfiles() {
-		TreeSelectorDialog dialog = new TreeSelectorDialog(getShell());
-		dialog.setTitle("Browse Registered Profiles");
-		dialog.setDescription("Select one of the registered profiles below.");
-		dialog.setContentProvider(new EncapsulatedContentProvider(new StaticContentProvider(RegisteredProfile.getRegisteredProfiles())));
-		dialog.setLabelProvider(new LabelProvider() {
-
-			@Override
-			public Image getImage(Object element) {
-				if(element instanceof RegisteredProfile) {
-					RegisteredProfile profile = (RegisteredProfile)element;
-					return profile.getImage();
-				}
-				return super.getImage(element);
-			}
-
-			@Override
-			public String getText(Object element) {
-				if(element instanceof RegisteredProfile) {
-					RegisteredProfile profile = (RegisteredProfile)element;
-					return profile.name;
-				}
-
-				return super.getText(element);
-			}
-		});
-
-		if(dialog.open() == Window.OK) {
-			Object[] result = dialog.getResult();
-			if(result == null || result.length == 0) {
-				return;
-			}
-
-			Object selectedElement = result[0];
-			if(selectedElement instanceof RegisteredProfile) {
-				RegisteredProfile profile = (RegisteredProfile)selectedElement;
-
-				replaceSelectionWith(profile.uri);
-			}
-		}
 	}
 
 	protected void replaceSelectionWith(URI targetURI) {

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.uml.modelrepair.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: %providerName
+Fragment-Host: org.eclipse.papyrus.uml.modelrepair;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Localization: fragment
+Require-Bundle: org.junit;bundle-version="4.10.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="1.0.0"

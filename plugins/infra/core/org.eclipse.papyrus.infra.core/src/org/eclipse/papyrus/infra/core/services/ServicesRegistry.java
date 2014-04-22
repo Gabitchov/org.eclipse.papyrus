@@ -1,5 +1,14 @@
-/**
- * 
+/*****************************************************************************
+ * Copyright (c) 2011, 2014 LIFL, CEA, and others.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 431953 (fix start-up of selective services to require only their dependencies)
  */
 package org.eclipse.papyrus.infra.core.services;
 
@@ -15,11 +24,13 @@ import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.services.ServiceDescriptor.ServiceTypeKind;
 import org.eclipse.papyrus.infra.core.services.internal.LazyStartupEntry;
 import org.eclipse.papyrus.infra.core.services.internal.PojoServiceEntry;
+import org.eclipse.papyrus.infra.core.services.internal.ServiceAdapterEntry;
 import org.eclipse.papyrus.infra.core.services.internal.ServiceEntry;
 import org.eclipse.papyrus.infra.core.services.internal.ServiceFactoryEntry;
 import org.eclipse.papyrus.infra.core.services.internal.ServiceStartupEntry;
 import org.eclipse.papyrus.infra.core.services.internal.ServiceTypeEntry;
 import org.eclipse.papyrus.infra.core.services.internal.StartStartupEntry;
+import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 
 /**
  * A registry of services. This registry allows to get a service by its
@@ -259,6 +270,11 @@ public class ServicesRegistry {
 	 * 
 	 */
 	public void add(String key, int priority, Object serviceInstance, ServiceStartKind startKind) {
+		// If the service instance is actually an IService, register it thus to enable the lifecycle hooks
+		if(serviceInstance instanceof IService) {
+			add(key, priority, (IService)serviceInstance, startKind);
+		}
+		
 		// Check if the service already exist.
 		ServiceStartupEntry service = addedServices.get(key);
 		if(service != null) {
@@ -271,13 +287,29 @@ public class ServicesRegistry {
 
 		// Create descriptor and add service.
 		ServiceDescriptor descriptor = new ServiceDescriptor(key, serviceInstance.getClass().getName(), startKind, priority);
-
-		if(startKind == ServiceStartKind.STARTUP) {
-			addedServices.put(key, new StartStartupEntry(new PojoServiceEntry(descriptor, serviceInstance)));
+		ServiceTypeEntry type;
+		ServiceStartupEntry entry;
+		
+		// If the instance is a service or has an adapter for the service protocol, register that
+		IService serviceAdapter = AdapterUtils.adapt(serviceInstance, IService.class, null);
+		if(serviceAdapter != null) {
+			type = new ServiceAdapterEntry(descriptor, serviceInstance, serviceAdapter);
 		} else {
-			addedServices.put(key, new LazyStartupEntry(new PojoServiceEntry(descriptor, serviceInstance), this));
+			type = new PojoServiceEntry(descriptor, serviceInstance);
 		}
-
+		
+		switch(startKind) {
+		case STARTUP:
+			entry = new StartStartupEntry(type);
+			break;
+		case LAZY:
+			entry = new LazyStartupEntry(type, this);
+			break;
+		default:
+			throw new IllegalArgumentException("Unrecognized startKind: " + startKind);
+		}
+		
+		addedServices.put(key, entry);
 	}
 
 	/**
@@ -581,7 +613,7 @@ public class ServicesRegistry {
 
 		// Check if all dependencies exist.
 		try {
-			checkDependencies(addedServices.values(), map);
+			checkDependencies(services, map);
 		} catch (ServiceMultiException ex) {
 			for(Throwable t : ex.getExceptions()) {
 				errors.addException(t);
