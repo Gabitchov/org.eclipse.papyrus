@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 430023
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.editors.tests;
 
@@ -17,7 +19,6 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assume.assumeThat;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.cdo.dawn.editors.IDawnEditor;
@@ -30,6 +31,8 @@ import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.papyrus.cdo.internal.ui.editors.DawnEditorAdapter;
 import org.eclipse.papyrus.cdo.internal.ui.editors.PapyrusGMFEditorSupport;
 import org.eclipse.papyrus.cdo.ui.tests.AbstractPapyrusCDOUITest;
+import org.eclipse.papyrus.junit.utils.rules.Condition;
+import org.eclipse.papyrus.junit.utils.rules.Conditional;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -38,6 +41,7 @@ import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Class;
 import org.junit.Before;
 import org.junit.Test;
@@ -92,6 +96,7 @@ public class DawnEditorAdapterTest extends AbstractPapyrusCDOUITest {
 		final Class foo = expectElement("Foo", Class.class);
 		executeEdit(new Runnable() {
 
+			@Override
 			public void run() {
 				foo.setName("Foo1");
 			}
@@ -170,15 +175,10 @@ public class DawnEditorAdapterTest extends AbstractPapyrusCDOUITest {
 	}
 
 	@Test
+	@Conditional(key = "workbenchIsActive")
 	public void testSetFocus() {
 		getRepositoryExplorer().setFocus();
 		flushDisplayEvents();
-
-		// when running the tests while using some other application, the workbench
-		// window doesn't have focus, so other focus changes don't work and we
-		// get spurious test failures.
-		IWorkbenchWindow window = getWorkbenchPage().getWorkbenchWindow();
-		assumeThat(window.getShell().getDisplay().getActiveShell(), is(window.getShell()));
 
 		assertThat(getWorkbenchPage().getActivePart(), not((IWorkbenchPart)getEditor()));
 
@@ -193,6 +193,7 @@ public class DawnEditorAdapterTest extends AbstractPapyrusCDOUITest {
 		final Class foo = expectElement("Foo", Class.class);
 		executeEdit(new Runnable() {
 
+			@Override
 			public void run() {
 				foo.setName("Foo1");
 			}
@@ -202,6 +203,7 @@ public class DawnEditorAdapterTest extends AbstractPapyrusCDOUITest {
 
 			private volatile boolean committed;
 
+			@Override
 			public void notifyEvent(IEvent event) {
 				if(event instanceof CDOTransactionFinishedEvent) {
 					committed = true;
@@ -235,10 +237,25 @@ public class DawnEditorAdapterTest extends AbstractPapyrusCDOUITest {
 		fixture = DawnEditorAdapter.getDawnEditor(getDiagramEditor());
 	}
 
+	/**
+	 * when running the tests while using some other application, the workbench
+	 * window doesn't have focus, so other focus changes don't work and we
+	 * get spurious test failures.
+	 */
+	@Condition
+	public boolean workbenchIsActive() {
+		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if(window == null) {
+			window = PlatformUI.getWorkbench().getWorkbenchWindows()[0];
+		}
+		return window.getShell().getDisplay().getActiveShell() == window.getShell();
+	}
+
 	private static class TestPropertyListener implements IPropertyListener {
 
 		private int propertyID = -1;
 
+		@Override
 		public void propertyChanged(Object source, int propId) {
 			propertyID = propId;
 		}

@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 429242
+ *   Christian W. Damus (CEA) - bug 430023
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.tests;
@@ -47,6 +48,7 @@ import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -61,7 +63,7 @@ import com.google.common.collect.Maps;
 /**
  * This is the AbstractPapyrusCDOTest type. Enjoy.
  */
-public abstract class AbstractPapyrusCDOTest {
+public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 
 	private static final Pattern LEADING_SLASHES = Pattern.compile("^/+");
 
