@@ -24,6 +24,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -67,22 +68,25 @@ public abstract class AbstractAction extends Action {
 	 */
 	protected List<View> getSelection() {
 		List<View> viewSelected = new ArrayList<View>();
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(false == selection instanceof IStructuredSelection) {
-			return Collections.emptyList();
-		}
-		for(Object object : ((IStructuredSelection)selection).toList()) {
-			if(false == object instanceof IGraphicalEditPart) {
-				continue;
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if (activeWorkbenchWindow!=null){
+			ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
+			if(false == selection instanceof IStructuredSelection) {
+				return Collections.emptyList();
 			}
-			if(object instanceof DiagramEditPart) {
-				continue;
-			}
-			View view = ((IGraphicalEditPart)object).getNotationView();
-			if(view.getEAnnotation("Shortcut") != null) {
-				continue;
-			}
-			viewSelected.add(view);
+			for(Object object : ((IStructuredSelection)selection).toList()) {
+				if(false == object instanceof IGraphicalEditPart) {
+					continue;
+				}
+				if(object instanceof DiagramEditPart) {
+					continue;
+				}
+				View view = ((IGraphicalEditPart)object).getNotationView();
+				if(view.getEAnnotation("Shortcut") != null) {
+					continue;
+				}
+				viewSelected.add(view);
+			}			
 		}
 		return viewSelected;
 	}

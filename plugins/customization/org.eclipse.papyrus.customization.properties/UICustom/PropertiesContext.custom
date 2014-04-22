@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom:Customization xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:custom="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:efacet="http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet" xmlns:javaQuery="http://www.eclipse.org/papyrus/emf/facet/query/java/0.2.incubation/javaquery" xmlns:oclQuery="http://www.eclipse.org/papyrus/emf/facet/query/ocl/0.3.incubation/oclquery" name="Properties Context" nsURI="http://www.eclipse.org/papyrus/properties/contexts/custom" nsPrefix="propctx" documentation="" mustBeLoadedByDefault="true">
+  <eClassifiers xsi:type="custom:EClassCustomization" name="CustomContext">
+    <extendedMetaclass href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context"/>
+    <facetOperations name="label" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <value xsi:type="oclQuery:OclQuery" oclExpression="if name = null or name = '' then '&lt;&lt;Unnamed>>' else name endif">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context/views"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="'Views'">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context/dataContexts"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="'Data contexts'">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+    </facetOperations>
+    <facetOperations name="isVisible" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/2002/Ecore#//EModelElement/eAnnotations"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context/name"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context/dependencies"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context/dataContexts"/>
+          <value xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.customization.properties.query.ShowContextQuery"/>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context/prototype"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="not self.prototype.oclIsUndefined()">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
+    </facetOperations>
+    <facetOperations name="image" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom_primitive_types#//Image"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context/views"/>
+          <value xsi:type="javaQuery:JavaQuery" canBeCached="true" implementationClassName="org.eclipse.papyrus.customization.properties.query.ViewsImageQuery"/>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context/dataContexts"/>
+          <value xsi:type="javaQuery:JavaQuery" canBeCached="true" implementationClassName="org.eclipse.papyrus.customization.properties.query.DataContextsImageQuery"/>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/image"/>
+    </facetOperations>
+    <facetOperations name="collapseLink">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context/tabs"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="true">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
+    </facetOperations>
+    <extendedFacets href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="custom:EClassCustomization" name="CustomDataContextRoot">
+    <extendedMetaclass href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextRoot"/>
+    <facetOperations name="isVisible" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextElement/name"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextRoot"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextRoot/label"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextRoot"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextRoot/modelElementFactory"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextRoot"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
+    </facetOperations>
+    <extendedFacets href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="custom:EClassCustomization" name="CustomDataContextPackage">
+    <extendedMetaclass href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextPackage"/>
+    <facetOperations name="collapseLink">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextPackage/elements"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="true">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextPackage"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
+    </facetOperations>
+    <extendedFacets href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="custom:EClassCustomization" name="CustomDataContextElement">
+    <extendedMetaclass href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextElement"/>
+    <facetOperations name="isVisible" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextElement/name"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextElement"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextElement/package"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextElement"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextElement/supertypes"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextElement"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
+    </facetOperations>
+    <facetOperations name="collapseLink">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextElement/properties"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="true">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextElement"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
+    </facetOperations>
+    <facetOperations name="label" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="name">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//DataContextElement"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+    </facetOperations>
+    <extendedFacets href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="custom:EClassCustomization" name="CustomProperty">
+    <extendedMetaclass href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property"/>
+    <facetOperations name="isVisible" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property/name"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property/label"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property/type"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property/contextElement"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property/multiplicity"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property/description"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
+    </facetOperations>
+    <facetOperations name="label" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="if label.oclIsUndefined() or label = '' then name else label endif">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+    </facetOperations>
+    <extendedFacets href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="custom:EClassCustomization" name="CustomSection">
+    <extendedMetaclass href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Section"/>
+    <facetOperations name="isVisible" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/constraints/0.9#//DisplayUnit/constraints"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/constraints/0.9#//DisplayUnit/elementMultiplicity"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Section/name"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Section/tab"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Section/sectionFile"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Property"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
+    </facetOperations>
+    <facetOperations name="label" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="if name = null or name = '' then '&lt;&lt;Unnamed>>' else name.concat(if tab.oclIsUndefined() then ' [&lt;&lt;Undefined>>]' else ' ['.concat(tab.label).concat(']') endif) endif">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Section"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+    </facetOperations>
+    <facetOperations name="collapseLink">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Section/widget"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="true">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Section"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
+    </facetOperations>
+    <extendedFacets href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="custom:EClassCustomization" name="CustomTab">
+    <extendedMetaclass href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab"/>
+    <facetOperations name="isVisible" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab/label"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab/id"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab/category"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab/image"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab/afterTab"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab/sections"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab/indented"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab/priority"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
+    </facetOperations>
+    <facetOperations name="label" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="if label.oclIsUndefined() or label = '' then '&lt;&lt;Unnamed>>' else label endif">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Tab"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+    </facetOperations>
+    <extendedFacets href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="custom:EClassCustomization" name="CustomView">
+    <extendedMetaclass href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View"/>
+    <facetOperations name="isVisible" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/constraints/0.9#//DisplayUnit/constraints"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/constraints/0.9#//DisplayUnit/elementMultiplicity"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View/name"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View/context"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EAttribute" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View/automaticContext"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View"/>
+          </value>
+        </cases>
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View/datacontexts"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="false">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
+    </facetOperations>
+    <facetOperations name="collapseLink">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <case xsi:type="ecore:EReference" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View/sections"/>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="true">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
+    </facetOperations>
+    <facetOperations name="label" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="eStructuralFeature">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query xsi:type="custom:ETypedElementSwitchQuery">
+        <cases>
+          <value xsi:type="oclQuery:OclQuery" canBeCached="true" oclExpression="if name = null or name = '' then '&lt;&lt;Unnamed>>' else name endif">
+            <context xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//View"/>
+          </value>
+        </cases>
+      </query>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+    </facetOperations>
+    <extendedFacets href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+  </eClassifiers>
+</custom:Customization>

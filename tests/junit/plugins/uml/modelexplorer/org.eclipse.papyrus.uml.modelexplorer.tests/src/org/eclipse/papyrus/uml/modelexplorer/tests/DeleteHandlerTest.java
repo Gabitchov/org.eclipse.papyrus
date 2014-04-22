@@ -126,14 +126,14 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 			selectedElement.add(elementToDelete);
 			getModelExplorerView().revealSemanticElement(selectedElement);
 			currentSelection = getCurrentSelection();
-			assertEquals("Only one element should be selected", 1, currentSelection.size());
+			assertEquals("Only one element should be selected", 1, currentSelection.size()); //$NON-NLS-1$
 			Object obj = currentSelection.getFirstElement();
 			if(obj instanceof IAdaptable) {
 				obj = ((IAdaptable)obj).getAdapter(EObject.class);
 			}
 			Assert.assertEquals(elementToDelete, obj);
 			IHandler currentHandler = getActiveHandler();
-			Assert.assertTrue("We can't delete the following element" + elementToDelete, currentHandler.isEnabled());
+			Assert.assertTrue("We can't delete the following element" + elementToDelete, currentHandler.isEnabled()); //$NON-NLS-1$
 
 			currentHandler.execute(new ExecutionEvent());
 

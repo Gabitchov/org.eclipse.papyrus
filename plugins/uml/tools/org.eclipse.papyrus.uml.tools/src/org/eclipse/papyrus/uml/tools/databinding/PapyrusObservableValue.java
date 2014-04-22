@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.databinding;
 
@@ -72,9 +73,16 @@ public class PapyrusObservableValue extends EMFObservableValue implements Aggreg
 	}
 
 	@Override
-	protected void doSetValue(Object value) {
-		Command emfCommand = getCommand(value);
-		domain.getCommandStack().execute(emfCommand);
+	protected void doSetValue  (Object value) {
+
+		try{
+			Command emfCommand = getCommand(value);
+			domain.getCommandStack().execute(emfCommand);
+		}
+		catch(Exception ex){
+		//
+		}
+//		throw new IllegalArgumentException("an error occured");
 	}
 
 	/**

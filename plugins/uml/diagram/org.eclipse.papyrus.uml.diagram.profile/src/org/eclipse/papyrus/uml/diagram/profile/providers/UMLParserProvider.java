@@ -38,6 +38,8 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationMultiplicit
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationRoleSourceEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationRoleTargetEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassNameEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassOperationEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassPropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentBodyEditPart;
@@ -113,6 +115,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			stereotypeName_1034Parser = parser;
 		}
 		return stereotypeName_1034Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser className_5029Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getClassName_5029Parser() {
+		if(className_5029Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			className_5029Parser = parser;
+		}
+		return className_5029Parser;
 	}
 
 	/**
@@ -415,6 +434,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			stereotypeName_1046Parser = parser;
 		}
 		return stereotypeName_1046Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser className_5014Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getClassName_5014Parser() {
+		if(className_5014Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			className_5014Parser = parser;
+		}
+		return className_5014Parser;
 	}
 
 	/**
@@ -806,6 +842,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDependencyName_1Parser();
 		case StereotypeNameEditPart.VISUAL_ID:
 			return getStereotypeName_1034Parser();
+		case ClassNameEditPart.VISUAL_ID:
+			return getClassName_5029Parser();
 		case MetaclassNameEditPart.VISUAL_ID:
 			return getClassName_1084Parser();
 		case CommentBodyEditPart.VISUAL_ID:
@@ -842,6 +880,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getOperation_3020Parser();
 		case StereotypeNameEditPartCN.VISUAL_ID:
 			return getStereotypeName_1046Parser();
+		case ClassNameEditPartCN.VISUAL_ID:
+			return getClassName_5014Parser();
 		case MetaclassNameEditPartCN.VISUAL_ID:
 			return getClassName_5062Parser();
 		case CommentBodyEditPartCN.VISUAL_ID:
@@ -956,5 +996,4 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return super.getAdapter(adapter);
 		}
 	}
-
 }

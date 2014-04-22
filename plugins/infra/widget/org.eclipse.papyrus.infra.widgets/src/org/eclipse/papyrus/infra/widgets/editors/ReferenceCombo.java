@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,11 +8,16 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.jface.fieldassist.ControlDecoration;
+import org.eclipse.jface.fieldassist.FieldDecoration;
+import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -26,6 +31,7 @@ import org.eclipse.papyrus.infra.widgets.providers.UnsetObject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
@@ -34,9 +40,9 @@ import org.eclipse.swt.widgets.Composite;
  * An editor representing a single reference as a Combo Box
  * This Editor needs a ContentProvider and a LabelProvider,
  * describing the objects that can be referred by this property
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class ReferenceCombo extends AbstractValueEditor { //implements SelectionListener {
 
@@ -56,10 +62,11 @@ public class ReferenceCombo extends AbstractValueEditor { //implements Selection
 
 	protected EncapsulatedContentProvider contentProvider;
 
+
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param parent
 	 *        The Composite in which this editor is diplayed
 	 * @param style
@@ -70,9 +77,9 @@ public class ReferenceCombo extends AbstractValueEditor { //implements Selection
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param parent
 	 *        The Composite in which this editor is diplayed
 	 * @param style
@@ -98,13 +105,17 @@ public class ReferenceCombo extends AbstractValueEditor { //implements Selection
 		((GridLayout)getLayout()).numColumns++;
 
 		setCommitOnFocusLost(combo);
+		controlDecoration = new ControlDecoration(combo, SWT.TOP | SWT.LEFT);
+		GridData gridData = getDefaultLayoutData();
+		combo.setLayoutData(gridData);
+		gridData.horizontalIndent = FieldDecorationRegistry.getDefault().getMaximumDecorationWidth();
 	}
 
 	/**
 	 * Sets the Content and Label providers for this editor
-	 * 
+	 *
 	 * @param contentProvider
-	 * 
+	 *
 	 * @param labelProvider
 	 */
 	public void setProviders(IStaticContentProvider contentProvider, ILabelProvider labelProvider) {
@@ -119,7 +130,7 @@ public class ReferenceCombo extends AbstractValueEditor { //implements Selection
 	/**
 	 * Sets the content provider for this combo. The Content provider should
 	 * specify the objects that can be referred by this property
-	 * 
+	 *
 	 * @param provider
 	 */
 	public void setContentProvider(IStaticContentProvider provider) {
@@ -153,7 +164,7 @@ public class ReferenceCombo extends AbstractValueEditor { //implements Selection
 	/**
 	 * The Label provider associated to the available objects that
 	 * can be referred by this property
-	 * 
+	 *
 	 * @param provider
 	 */
 	public void setLabelProvider(ILabelProvider provider) {
@@ -162,7 +173,7 @@ public class ReferenceCombo extends AbstractValueEditor { //implements Selection
 
 	/**
 	 * Retrieves the ComboViewer associated to this Editor
-	 * 
+	 *
 	 * @return
 	 *         The ComboViewer associated to this editor
 	 */
@@ -192,7 +203,7 @@ public class ReferenceCombo extends AbstractValueEditor { //implements Selection
 
 	/**
 	 * Sets the value for this widget
-	 * 
+	 *
 	 * @param value
 	 */
 	public void setValue(Object value) {
@@ -248,12 +259,41 @@ public class ReferenceCombo extends AbstractValueEditor { //implements Selection
 	/**
 	 * Changes the viewer for this editor.
 	 * The viewer should use a CCombo
-	 * 
+	 *
 	 * @param comboViewer
 	 */
 	public void setViewer(ComboViewer comboViewer) {
 		this.viewer = comboViewer;
 		this.combo = viewer.getCCombo();
+	}
+
+	//FIXME error avec multiplicité nulllpointerexception l285
+	@Override
+	public void updateStatus(IStatus status) {
+		switch(status.getSeverity()) {
+		case IStatus.OK:
+			controlDecoration.hide();
+			break;
+		case IStatus.WARNING:
+			FieldDecoration warning = FieldDecorationRegistry.getDefault().getFieldDecoration(FieldDecorationRegistry.DEC_WARNING);
+			controlDecoration.setImage(warning.getImage());
+			controlDecoration.showHoverText(status.getMessage());
+			controlDecoration.setDescriptionText(status.getMessage());
+			controlDecoration.show();
+			break;
+		case IStatus.ERROR:
+			FieldDecoration error = FieldDecorationRegistry.getDefault().getFieldDecoration(FieldDecorationRegistry.DEC_ERROR);
+			controlDecoration.setImage(error.getImage());
+			controlDecoration.showHoverText(status.getMessage());
+			controlDecoration.setDescriptionText(status.getMessage());
+			controlDecoration.show();
+			break;
+		default:
+			controlDecoration.hide();
+			break;
+		}
+
+
 	}
 
 	//	protected void unsetAction() {

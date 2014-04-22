@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.customization.properties.tests.qvt;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,14 +24,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.papyrus.customization.properties.generation.generators.EcoreGenerator;
 import org.eclipse.papyrus.customization.properties.generation.generators.IGenerator;
 import org.eclipse.papyrus.customization.properties.generation.generators.ProfileGenerator;
-import org.eclipse.papyrus.customization.properties.model.xwt.resource.XWTResource;
 import org.eclipse.papyrus.customization.properties.tests.Activator;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
 import org.eclipse.papyrus.views.properties.contexts.Context;
@@ -68,26 +66,26 @@ public class TransformationsTests {
 		targetProject.delete(true, new NullProgressMonitor());
 	}
 
-	@Test
-	public void handleXWTFileFromResource() {
-		//From an XWT Resource
-		Resource xwtResource = new XWTResource(xwtModelUri);
-		try {
-			xwtResource.load(null);
-		} catch (IOException ex) {
-			Activator.log.error(ex);
-			Assert.fail("Cannot load the XWT Resource");
-		}
-		checkContents(xwtResource);
-	}
+	//	@Test
+	//	public void handleXWTFileFromResource() {
+	//		//From an XWT Resource
+	//		Resource xwtResource = new XWTResource(xwtModelUri);
+	//		try {
+	//			xwtResource.load(null);
+	//		} catch (IOException ex) {
+	//			Activator.log.error(ex);
+	//			Assert.fail("Cannot load the XWT Resource");
+	//		}
+	//		checkContents(xwtResource);
+	//	}
 
-	@Test
-	public void handleXWTFileFromResourceSet() {
-		//From a generic ResourceSet
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource xwtResource = resourceSet.getResource(xwtModelUri, true);
-		checkContents(xwtResource);
-	}
+	//	@Test
+	//	public void handleXWTFileFromResourceSet() {
+	//		//From a generic ResourceSet
+	//		ResourceSet resourceSet = new ResourceSetImpl();
+	//		Resource xwtResource = resourceSet.getResource(xwtModelUri, true);
+	//		checkContents(xwtResource);
+	//	}
 
 	//Briefly check the resource contents
 	private void checkContents(Resource xwtResource) {
@@ -118,25 +116,40 @@ public class TransformationsTests {
 			@Override
 			protected List<ModelExtent> getModelExtents() {
 				try {
-					EPackage ecorePackage = (EPackage)loadEMFModel(packageURI);
-					ModelExtent inPackage = new BasicModelExtent(Collections.singletonList(ecorePackage));
-
-					PropertiesRoot root = ConfigurationManager.getInstance().getPropertiesRoot();
-					ModelExtent inRoot = new BasicModelExtent(Collections.singletonList(root));
-
-					LinkedList<ModelExtent> result = new LinkedList<ModelExtent>();
-					result.add(inPackage);
-					result.add(inRoot);
-					result.add(getOutContextExtent());
-					return result;
-				} catch (Exception ex) {
-					return null;
+					ecorePackage = (EPackage)loadEMFModel(packageURI);
+				} catch (IOException e) {
+					// nothing
 				}
+				LinkedList<ModelExtent> result = new LinkedList<ModelExtent>();
+				ModelExtent temp = new BasicModelExtent();
+				ModelExtent inPackage = new BasicModelExtent(Collections.singletonList(ecorePackage));
+
+
+
+				PropertiesRoot root = ConfigurationManager.getInstance().getPropertiesRoot();
+				ModelExtent inRoot = new BasicModelExtent(Collections.singletonList(root));
+
+				//Basic Method
+				result.add(inPackage);
+				result.add(inPackage);
+
+
+				result.add(inRoot);
+				result.add(getOutContextExtent());
+				return result;
 			}
 		};
 
 		URI targetURI = URI.createPlatformResourceURI(targetProject.getName() + "/properties/Ecore/EcoreProperties.ctx", false);
-		List<Context> generatedContexts = generator.generate(targetURI);
+
+		ArrayList<URI> listURI = new ArrayList<URI>();
+		listURI.add(targetURI);
+		//		List<Object> listObject = generator.getExternalReference();
+		//		for(Object p: listObject){
+		//			generator.addCheckElement(p);
+		//		}
+		List<Context> generatedContexts = generator.generate(listURI);
+
 		Assert.assertNotNull(generatedContexts);
 		Assert.assertEquals(1, generatedContexts.size());
 
@@ -145,7 +158,7 @@ public class TransformationsTests {
 		Assert.assertEquals(1, context.getDataContexts().size()); //Only one DataContextRoot
 		Assert.assertEquals(3, context.getDataContexts().get(0).getElements().size()); //3 DataContextElements
 
-		//Assert.assertEquals(6, context.getViews().size());
+		Assert.assertEquals(6, context.getViews().size());
 
 		//int numberOfSections = checkGeneratedContents(context);
 		//Assert.assertEquals(6, numberOfSections);
@@ -191,57 +204,62 @@ public class TransformationsTests {
 		};
 
 		URI targetURI = URI.createPlatformResourceURI(targetProject.getName() + "/properties/Profile/ProfileProperties.ctx", false);
-		List<Context> generatedContexts = generator.generate(targetURI);
+		generator.setStrategy(0);
+		ArrayList<URI> listURI = new ArrayList<URI>();
+		listURI.add(targetURI);
+		List<Context> generatedContexts = generator.generate(listURI);
+
 		Assert.assertNotNull(generatedContexts);
 		Assert.assertEquals(1, generatedContexts.size());
 
 		Context context = generatedContexts.get(0);
 		Assert.assertEquals(1, context.getDependencies().size());
 		Assert.assertEquals("UML", context.getDependencies().get(0).getName());
-
 		Assert.assertEquals(1, context.getDataContexts().size()); //Only one DataContextRoot
+		Assert.assertEquals(12, context.getViews().size()); //12 view for 6 elements 
+		//		Assert.assertEquals(6, generatedContexts.get(0).getDataContexts().get(0).getElements().size());
 		Assert.assertEquals(6, context.getDataContexts().get(0).getElements().size()); //6 DataContextElements
 
+
 		//Check that all 12 sections have an associated CompositeWidget (xwt file)
-		//int numberOfSections = checkGeneratedContents(context);
+		//		int numberOfSections = checkGeneratedContents(context);
 
 
-		//Assert.assertEquals(12, numberOfSections);
+		//		Assert.assertEquals(12, numberOfSections);
 	}
 
 	//FIXME: This test is disabled, because we haven't generated the views yet. 
 	//We need to run the full wizard ; not only the IGenerator (Which only generates the Context model)
 	//The wizard isn't built to be used programmatically
-
-	//	private int checkGeneratedContents(Context context) {
-	//		int numberOfSections = 0;
 	//
-	//		ResourceSet loadingResourceSet = new ResourceSetImpl();
-	//
-	//		for(Tab tab : context.getTabs()) {
-	//			for(Section section : tab.getSections()) {
-	//				//There is a CompositeWidget
-	//				Assert.assertNotNull(section.getWidget());
-	//
-	//				Resource widgetResource = section.getWidget().eResource();
-	//				URI widgetURI = widgetResource.getURI();
-	//
-	//				//The CompositeWidget is located in its own *.xwt resource
-	//				Assert.assertTrue(widgetURI.lastSegment().endsWith(".xwt"));
-	//
-	//				//The Resource is serialized to the XWT Format (Not XMI)
-	//				Assert.assertTrue(widgetResource instanceof XWTResource);
-	//
-	//				//The XWT Resource can be unserialized
-	//				Resource xwtResource = loadingResourceSet.getResource(widgetURI, true);
-	//				Assert.assertTrue(xwtResource instanceof XWTResource);
-	//				Assert.assertEquals(1, xwtResource.getContents().size());
-	//				Assert.assertTrue(xwtResource.getContents().get(0) instanceof CompositeWidget);
-	//
-	//				numberOfSections++;
+	//		private int checkGeneratedContents(Context context) {
+	//			int numberOfSections = 0;
+	//	
+	//			ResourceSet loadingResourceSet = new ResourceSetImpl();
+	//			for(Tab tab : context.getTabs()) {
+	//				for(Section section : tab.getSections()) {
+	//					//There is a CompositeWidget
+	//					Assert.assertNotNull(section.getWidget());
+	//	
+	//					Resource widgetResource = section.getWidget().eResource();
+	//					URI widgetURI = widgetResource.getURI();
+	//	
+	//					//The CompositeWidget is located in its own *.xwt resource
+	//					Assert.assertTrue(widgetURI.lastSegment().endsWith(".xwt"));
+	//	
+	//					//The Resource is serialized to the XWT Format (Not XMI)
+	//					Assert.assertTrue(widgetResource instanceof XWTResource);
+	//	
+	//					//The XWT Resource can be unserialized
+	//					Resource xwtResource = loadingResourceSet.getResource(widgetURI, true);
+	//					Assert.assertTrue(xwtResource instanceof XWTResource);
+	//					Assert.assertEquals(1, xwtResource.getContents().size());
+	//					Assert.assertTrue(xwtResource.getContents().get(0) instanceof CompositeWidget);
+	//	
+	//					numberOfSections++;
+	//				}
 	//			}
+	//	
+	//			return numberOfSections;
 	//		}
-	//
-	//		return numberOfSections;
-	//	}
 }

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.views.properties.environment.*;
 import org.eclipse.papyrus.views.properties.environment.CompositeWidgetType;
 import org.eclipse.papyrus.views.properties.environment.Environment;
 import org.eclipse.papyrus.views.properties.environment.EnvironmentFactory;
@@ -40,7 +41,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	 */
 	public static EnvironmentFactory init() {
 		try {
-			EnvironmentFactory theEnvironmentFactory = (EnvironmentFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/properties/environment/0.9"); 
+			EnvironmentFactory theEnvironmentFactory = (EnvironmentFactory)EPackage.Registry.INSTANCE.getEFactory(EnvironmentPackage.eNS_URI);
 			if (theEnvironmentFactory != null) {
 				return theEnvironmentFactory;
 			}

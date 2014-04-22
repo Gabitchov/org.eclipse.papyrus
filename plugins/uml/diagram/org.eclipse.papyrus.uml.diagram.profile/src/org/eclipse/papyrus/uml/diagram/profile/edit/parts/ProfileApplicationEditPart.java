@@ -46,10 +46,6 @@ public class ProfileApplicationEditPart extends UMLConnectionNodeEditPart implem
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ProfileApplicationItemSemanticEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -68,5 +64,4 @@ public class ProfileApplicationEditPart extends UMLConnectionNodeEditPart implem
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

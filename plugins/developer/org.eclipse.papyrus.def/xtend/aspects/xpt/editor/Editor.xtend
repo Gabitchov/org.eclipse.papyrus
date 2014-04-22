@@ -165,7 +165,7 @@ def constructPaletteViewer (GenEditorView it) '''
 	}
 '''
 
-def dispose(GenEditorView it)'''
+override dispose(GenEditorView it)'''
 	«generatedMemberComment»
 	public void dispose() {
 		// remove palette service listener

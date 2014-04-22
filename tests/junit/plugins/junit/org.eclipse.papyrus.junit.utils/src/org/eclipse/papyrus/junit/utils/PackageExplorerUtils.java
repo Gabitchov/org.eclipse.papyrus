@@ -31,7 +31,7 @@ import org.junit.Assert;
 public class PackageExplorerUtils {
 
 	/** ID of the Package Explorer View */
-	private static final String PACKAGE_EXPLORER_VIEW_ID = "org.eclipse.jdt.ui.PackageExplorer";
+	private static final String PACKAGE_EXPLORER_VIEW_ID = "org.eclipse.jdt.ui.PackageExplorer"; //$NON-NLS-1$
 
 	/**
 	 * This methods opens the PackageExplorerView, and give it the focus
@@ -62,11 +62,11 @@ public class PackageExplorerUtils {
 		packageExplorer.getTreeViewer().setSelection(newSelection);
 		//we verify that the current selection is correct in the PackageExplorer
 		IStructuredSelection currentSelection = (IStructuredSelection)packageExplorer.getTreeViewer().getSelection();
-		Assert.assertEquals("Package Explorer: The current selection is not the same as the wanted selection", currentSelection.toList(), newSelection.toList());
+		Assert.assertEquals("Package Explorer: The current selection is not the same as the wanted selection", currentSelection.toList(), newSelection.toList()); //$NON-NLS-1$
 
 		//we verify that the current selection is correct using the selection service
 		currentSelection = getCurrentSelectionInPackageExplorerView();
-		Assert.assertEquals("Package Explorer: The SelectionService doesn't return the wanted selection", currentSelection.toList(), newSelection.toList());
+		Assert.assertEquals("Package Explorer: The SelectionService doesn't return the wanted selection", currentSelection.toList(), newSelection.toList()); //$NON-NLS-1$
 	}
 
 	/**

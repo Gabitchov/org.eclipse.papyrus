@@ -111,7 +111,7 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 			return obj;
 			// return element.createExecutableExtension(classAttribute);
 		} catch (Exception e) {
-			throw new Exception("unable to create Extension " + e);
+			throw new Exception("unable to create Extension " + e); //$NON-NLS-1$
 		}
 	}
 

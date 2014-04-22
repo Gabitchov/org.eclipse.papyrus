@@ -48,7 +48,7 @@ public class RenameHandlerTest extends AbstractHandlerTest {
 			selectElementInTheModelexplorer(((Model)getRootOfTheModel()).getOwnedComments().get(i));
 			IHandler handler = getActiveHandler();
 			if(handler != null) {
-				Assert.assertFalse("Rename handler is not disabled on UnnamedElement", handler.isEnabled());
+				Assert.assertFalse("Rename handler is not disabled on UnnamedElement", handler.isEnabled()); //$NON-NLS-1$
 			}
 		}
 	}

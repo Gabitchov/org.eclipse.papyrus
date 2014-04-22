@@ -58,7 +58,7 @@ import org.eclipse.swt.widgets.TreeItem;
  */
 public class SelectFieldsPage extends AbstractCreateContextPage {
 
-	private URI targetURI;
+	private List<URI> targetURI;
 
 	private List<Context> contexts;
 
@@ -69,6 +69,7 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 	public int fieldColumn = -1, selectionSingleColumn = -1, selectionMultipleColumn = -1, descriptionColumn = -1;
 
 	private int columnId = 0;
+	
 
 	/**
 	 * Constructor.
@@ -311,7 +312,7 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 	 * @param uri
 	 *        The URI of the generated context
 	 */
-	public void setTargetURI(URI uri) {
+	public void setTargetURI(List<URI> uri) {
 		this.targetURI = uri;
 	}
 

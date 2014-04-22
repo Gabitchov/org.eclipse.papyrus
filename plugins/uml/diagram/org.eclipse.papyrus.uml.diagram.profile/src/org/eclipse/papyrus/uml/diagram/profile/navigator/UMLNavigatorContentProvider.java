@@ -133,8 +133,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		});
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -142,12 +140,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
 		myViewerRefreshRunnable = null;
-
 		for(Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 			Resource resource = (Resource)it.next();
 			resource.unload();
 		}
-
 		((TransactionalEditingDomain)myEditingDomain).dispose();
 		myEditingDomain = null;
 	}
@@ -219,12 +215,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			}
 			return result.toArray();
 		}
-
 		if(parentElement instanceof UMLNavigatorGroup) {
 			UMLNavigatorGroup group = (UMLNavigatorGroup)parentElement;
 			return group.getChildren();
 		}
-
 		if(parentElement instanceof UMLNavigatorItem) {
 			UMLNavigatorItem navigatorItem = (UMLNavigatorItem)parentElement;
 			if(navigatorItem.isLeaf() || !isOwnView(navigatorItem.getView())) {
@@ -232,7 +226,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			}
 			return getViewChildren(navigatorItem.getView(), parentElement);
 		}
-
 		return EMPTY_ARRAY;
 	}
 
@@ -245,14 +238,12 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		return EMPTY_ARRAY;
 	}
 
-
 	/**
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
 		return ProfileDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
-
 
 	/**
 	 * @generated
@@ -271,5 +262,4 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}
-
 }

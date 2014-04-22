@@ -38,8 +38,6 @@ public class DataTypePropertyItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		super(UMLElementTypes.Property_3018);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -61,6 +59,4 @@ public class DataTypePropertyItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 }

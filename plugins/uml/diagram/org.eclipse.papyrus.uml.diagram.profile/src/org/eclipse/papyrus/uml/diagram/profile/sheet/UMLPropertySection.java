@@ -30,5 +30,4 @@ public class UMLPropertySection extends DefaultPropertySection implements IPrope
 		selected = /*super.*/transformSelectionToDomain(selected);
 		return selected;
 	}
-
 }

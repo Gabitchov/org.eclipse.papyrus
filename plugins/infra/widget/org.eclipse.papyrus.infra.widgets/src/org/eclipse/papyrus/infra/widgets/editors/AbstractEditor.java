@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2014 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,8 +8,9 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *  Christian W. Damus (CEA) - bug 402525
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -40,10 +41,10 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
  * or more controls. The label may be null.
  * The controls are specified by the implementations
  * of this abstract class.
- * 
+ *
  * @author Camille Letavernier
  */
-//FIXME: The composite widget hides access to the encapsulated widget(s). 
+//FIXME: The composite widget hides access to the encapsulated widget(s).
 //Thus, it is not possible to add custom listeners on the editors
 //We should forward the listeners to the encapsulated (this.addListener(int, Listener) -> getMainWidget().addListener(int, Listener))
 //Problem: some widgets have more than one "main widget" (e.g. EnumRadio).
@@ -74,6 +75,8 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	 */
 	protected String toolTipText;
 
+	protected DataBindingContext dbc;
+
 	/**
 	 * The factory for creating all the editors with a common style
 	 */
@@ -85,9 +88,9 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor. Constructs an editor without a label
-	 * 
+	 *
 	 * @param parent
 	 *        The composite in which this editor should be created
 	 */
@@ -96,9 +99,9 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor. Constructs an editor without a label
-	 * 
+	 *
 	 * @param parent
 	 *        The composite in which this editor should be created
 	 * @param style
@@ -109,9 +112,9 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor. Constructs an editor with a label
-	 * 
+	 *
 	 * @param parent
 	 *        The composite in which this editor should be created
 	 * @param label
@@ -123,9 +126,9 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor. Constructs an editor with a label
-	 * 
+	 *
 	 * @param parent
 	 *        The composite in which this editor should be created
 	 * @param style
@@ -146,7 +149,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 
 	/**
 	 * Creates the label widget with the given text
-	 * 
+	 *
 	 * @param text
 	 *        The text to be displayed on the label
 	 */
@@ -172,7 +175,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	/**
 	 * This method should be called by subclasses to get the default layoutData
 	 * for a control in this editor.
-	 * 
+	 *
 	 * @return The default layoutData for the main control
 	 */
 	protected GridData getDefaultLayoutData() {
@@ -183,7 +186,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	/**
 	 * Changes the text label for this editor. This method is available
 	 * only when the editor has been constructed with a label.
-	 * 
+	 *
 	 * @param label
 	 *        The new text for this editor's label
 	 */
@@ -200,7 +203,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 
 	/**
 	 * Show or delete the Label Widget.
-	 * 
+	 *
 	 * @param displayLabel
 	 */
 	public void setDisplayLabel(boolean displayLabel) {
@@ -217,7 +220,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	/**
 	 * Adds a commit listener to this editor. A Commit event is
 	 * fired when a modification occures on this editor.
-	 * 
+	 *
 	 * @param listener
 	 *        The commit listener to add to this editor
 	 */
@@ -227,7 +230,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 
 	/**
 	 * Removes a commit listener from this editor.
-	 * 
+	 *
 	 * @param listener
 	 *        The commit listener to remove from this editor
 	 */
@@ -241,22 +244,29 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	protected void commit() {
 		for(ICommitListener listener : commitListeners) {
 			listener.commit(this);
+
 		}
+
+
 	}
 
 	/**
 	 * Gets the BindingContext associated to the editors
-	 * 
+	 *
 	 * @return
 	 */
 	protected DataBindingContext getBindingContext() {
-		return new DataBindingContext();
+		if(dbc == null) {
+			dbc = new DataBindingContext();
+		}
+		return dbc;
 	}
+
 
 	/**
 	 * Sets the converters to convert data from Model to Target (Widget),
 	 * and from Widget to Model
-	 * 
+	 *
 	 * @param targetToModel
 	 * @param modelToTarget
 	 */
@@ -277,14 +287,14 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	/**
 	 * Marks this editor as being read-only. The value of a read-only
 	 * editor cannot be changed by the editor itself.
-	 * 
+	 *
 	 * @param readOnly
 	 */
 	public abstract void setReadOnly(boolean readOnly);
 
 	/**
 	 * Tests whether this editor is read-only or not
-	 * 
+	 *
 	 * @return
 	 *         True if the editor is read-only
 	 */
@@ -293,7 +303,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	/**
 	 * Indicates that this editor should notify its commit listeners
 	 * when the given control looses the Focus
-	 * 
+	 *
 	 * @param control
 	 *        The control on which a FocusListener should be added,
 	 *        to notify the CommitListeners
@@ -301,10 +311,13 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	protected void setCommitOnFocusLost(Control control) {
 		control.addFocusListener(new FocusListener() {
 
+			@Override
 			public void focusGained(FocusEvent e) {
 				// Nothing
+
 			}
 
+			@Override
 			public void focusLost(FocusEvent e) {
 				commit();
 			}
@@ -319,11 +332,19 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 		if(binding != null) {
 			binding.updateModelToTarget();
 		}
+
+	}
+
+	public void refreshModel() {
+		if(binding != null) {
+			binding.updateTargetToModel();
+		}
+
 	}
 
 	/**
 	 * Sets the given toolTip to the label
-	 * 
+	 *
 	 * @param text
 	 *        The new label's tooltip
 	 */
@@ -336,7 +357,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 
 	/**
 	 * Excludes or includes the given control from the layout
-	 * 
+	 *
 	 * @param control
 	 *        The control to exclude or include
 	 * @param exclude
@@ -361,40 +382,45 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 		}
 	}
 
-	@Override
-	public abstract void setToolTipText(String text);
 
+	@Override
 	public void widgetDisposed(DisposeEvent e) {
 		dispose();
 	}
 
+	public void changeColorField() {
+
+	}
+
+
 	/**
 	 * Obtains the most appropriate operation executor for the object being edited.
-	 * 
-	 * @param context the object being edited
+	 *
+	 * @param context
+	 *        the object being edited
 	 * @return the executor to use to run operations (never {@code null})
 	 */
 	public IAtomicOperationExecutor getOperationExecutor(Object context) {
 		IAtomicOperationExecutor result;
 		if(context instanceof IAdaptable) {
 			result = (IAtomicOperationExecutor)((IAdaptable)context).getAdapter(IAtomicOperationExecutor.class);
-		} else if (context != null) {
+		} else if(context != null) {
 			result = (IAtomicOperationExecutor)Platform.getAdapterManager().getAdapter(context, IAtomicOperationExecutor.class);
 		} else {
 			// We can't adapt null, of course, so we will have to settle for the default executor
 			result = null;
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = IAtomicOperationExecutor.DEFAULT;
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * Queries the model element that I edit.
-	 * 
+	 *
 	 * @return the contextual model element
 	 */
 	protected abstract Object getContextElement();

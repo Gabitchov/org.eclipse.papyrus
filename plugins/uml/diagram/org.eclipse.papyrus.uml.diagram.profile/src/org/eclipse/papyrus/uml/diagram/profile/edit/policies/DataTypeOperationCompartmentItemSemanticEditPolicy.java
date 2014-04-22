@@ -34,7 +34,6 @@ public class DataTypeOperationCompartmentItemSemanticEditPolicy extends UMLBaseI
 		super(UMLElementTypes.DataType_2010);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -43,29 +42,9 @@ public class DataTypeOperationCompartmentItemSemanticEditPolicy extends UMLBaseI
 		if(requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
-		IElementType baseElementType = requestElementType;
-		boolean isExtendedType = false;
-		if(requestElementType instanceof IExtendedHintedElementType) {
-			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if(baseElementType != null) {
-				isExtendedType = true;
-			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
-				isExtendedType = true;
-			}
-		}
-
-		if(UMLElementTypes.Operation_3019 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
+		if(UMLElementTypes.Operation_3019 == requestElementType) {
 			return getGEFWrapper(new DataTypeOperationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
 		return super.getCreateCommand(req);
 	}
-
-
-
 }
