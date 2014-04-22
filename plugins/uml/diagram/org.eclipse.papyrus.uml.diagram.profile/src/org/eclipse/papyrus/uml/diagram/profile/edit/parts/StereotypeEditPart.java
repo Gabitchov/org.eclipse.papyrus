@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ClassifierEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
@@ -122,7 +123,6 @@ public class StereotypeEditPart extends ClassifierEditPart {
 		return lep;
 	}
 
-
 	/**
 	 *Papyrus codeGen
 	 *@generated
@@ -136,9 +136,7 @@ public class StereotypeEditPart extends ClassifierEditPart {
 				refreshVisuals();
 			}
 		}
-
 	}
-
 
 	/**
 	 * @generated
@@ -163,22 +161,18 @@ public class StereotypeEditPart extends ClassifierEditPart {
 			((StereotypeNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		if(childEditPart instanceof StereotypeAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((StereotypeAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		if(childEditPart instanceof StereotypeOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((StereotypeOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -235,20 +229,13 @@ public class StereotypeEditPart extends ClassifierEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "Stereotype";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 100);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -259,12 +246,7 @@ public class StereotypeEditPart extends ClassifierEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodeFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape);
-		contentPane = setupContentPane(shape);
-		return figure;
+		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 	}
 
 	/**
@@ -301,14 +283,11 @@ public class StereotypeEditPart extends ClassifierEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof NodeFigure) {
-			((NodeFigure)primaryShape).setLineWidth(width);
-		}
+		super.setLineWidth(width);
 	}
 
 	/**
@@ -327,8 +306,6 @@ public class StereotypeEditPart extends ClassifierEditPart {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(StereotypeNameEditPart.VISUAL_ID));
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -345,8 +322,4 @@ public class StereotypeEditPart extends ClassifierEditPart {
 		}
 		return super.getTargetEditPart(request);
 	}
-
-
-
-
 }

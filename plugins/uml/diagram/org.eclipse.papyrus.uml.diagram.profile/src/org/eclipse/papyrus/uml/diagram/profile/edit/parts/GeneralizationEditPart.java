@@ -112,5 +112,4 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	public GeneralizationFigure getPrimaryShape() {
 		return (GeneralizationFigure)getFigure();
 	}
-
 }

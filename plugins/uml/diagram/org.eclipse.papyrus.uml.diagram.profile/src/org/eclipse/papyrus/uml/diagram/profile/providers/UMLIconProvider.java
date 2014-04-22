@@ -27,5 +27,4 @@ public class UMLIconProvider extends DefaultElementTypeIconProvider implements I
 	public UMLIconProvider() {
 		super(UMLElementTypes.TYPED_INSTANCE);
 	}
-
 }

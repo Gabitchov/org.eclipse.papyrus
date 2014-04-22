@@ -70,7 +70,15 @@ public enum Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ENUMERATION(4, "Enumeration", "Enumeration");
+	ENUMERATION(4, "Enumeration", "Enumeration"), /**
+	 * The '<em><b>Double</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DOUBLE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	DOUBLE(5, "Double", "Double");
 
 	/**
 	 * The '<em><b>String</b></em>' literal value.
@@ -148,6 +156,21 @@ public enum Type implements Enumerator {
 	public static final int ENUMERATION_VALUE = 4;
 
 	/**
+	 * The '<em><b>Double</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Double</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DOUBLE
+	 * @model name="Double"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DOUBLE_VALUE = 5;
+
+	/**
 	 * An array of all the '<em><b>Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -160,6 +183,7 @@ public enum Type implements Enumerator {
 			INTEGER,
 			REFERENCE,
 			ENUMERATION,
+			DOUBLE,
 		};
 
 	/**
@@ -215,6 +239,7 @@ public enum Type implements Enumerator {
 			case INTEGER_VALUE: return INTEGER;
 			case REFERENCE_VALUE: return REFERENCE;
 			case ENUMERATION_VALUE: return ENUMERATION;
+			case DOUBLE_VALUE: return DOUBLE;
 		}
 		return null;
 	}

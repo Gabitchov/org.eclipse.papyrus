@@ -30,6 +30,7 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.ISelectionService;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -53,13 +54,16 @@ public abstract class ChangeShapeHandler extends AbstractHandler {
 	 * @return null or the selected editPart
 	 */
 	protected GraphicalEditPart getSelectedGraphicalEditpart() {
-		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
-		ISelection selection = selectionService.getSelection();
-		if(selection instanceof IStructuredSelection) {
-			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
-			if(selectedobject instanceof GraphicalEditPart) {
-				return (GraphicalEditPart)selectedobject;
-			}
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if (activeWorkbenchWindow!=null){
+			ISelectionService selectionService = activeWorkbenchWindow.getSelectionService();
+			ISelection selection = selectionService.getSelection();
+			if(selection instanceof IStructuredSelection) {
+				Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
+				if(selectedobject instanceof GraphicalEditPart) {
+					return (GraphicalEditPart)selectedobject;
+				}
+			}			
 		}
 		return null;
 	}
@@ -82,7 +86,7 @@ public abstract class ChangeShapeHandler extends AbstractHandler {
 							AbstractTransactionalCommand command = getChangeShapeCommand(editPart);
 							Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 							Command deleteCommand = editPart.getCommand(deleteViewRequest);
-							org.eclipse.emf.common.command.CompoundCommand compoundCommand = new org.eclipse.emf.common.command.CompoundCommand("change Shape");
+							org.eclipse.emf.common.command.CompoundCommand compoundCommand = new org.eclipse.emf.common.command.CompoundCommand("change Shape"); //$NON-NLS-1$
 							compoundCommand.append(new GMFtoEMFCommandWrapper(command));
 							compoundCommand.append(new GEFtoEMFCommandWrapper(deleteCommand));
 							editPart.getEditingDomain().getCommandStack().execute(compoundCommand);

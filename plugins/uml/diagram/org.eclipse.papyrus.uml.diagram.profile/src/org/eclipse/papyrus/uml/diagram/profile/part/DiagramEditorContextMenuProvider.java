@@ -32,7 +32,6 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 	 */
 	private IWorkbenchPart part;
 
-
 	/**
 	 * @generated
 	 */
@@ -40,7 +39,6 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 		super(part, viewer);
 		this.part = part;
 	}
-
 
 	/**
 	 * @generated

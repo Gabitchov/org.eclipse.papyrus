@@ -36,6 +36,7 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.uml.commands.Activator;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -95,19 +96,23 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 		Object selection = null;
 
 		// Get current selection
-		selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if (activeWorkbenchWindow!=null){
+			selection = activeWorkbenchWindow.getSelectionService().getSelection();
 
-		// Get first element if the selection is an IStructuredSelection
-		if(selection instanceof IStructuredSelection) {
-			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-			selection = structuredSelection.getFirstElement();
+			// Get first element if the selection is an IStructuredSelection
+			if(selection instanceof IStructuredSelection) {
+				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+				selection = structuredSelection.getFirstElement();
+			}
+
+			// Treat non-null selected object (try to adapt and return EObject)
+			if(selection != null) {
+
+				eObject=EMFHelper.getEObject(selection);
+			}			
 		}
 
-		// Treat non-null selected object (try to adapt and return EObject)
-		if(selection != null) {
-
-			eObject=EMFHelper.getEObject(selection);
-		}
 		return eObject;
 	}
 
@@ -134,7 +139,10 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<ISelection>() {
 
 			public void run() {
-				setResult(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection());
+				IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+				if (activeWorkbenchWindow!=null){
+					setResult(activeWorkbenchWindow.getSelectionService().getSelection());
+				}
 			}
 		});
 

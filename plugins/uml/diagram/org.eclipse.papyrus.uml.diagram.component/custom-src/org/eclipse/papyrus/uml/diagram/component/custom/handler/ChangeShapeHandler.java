@@ -33,6 +33,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.component.custom.command.DeferredSetViewCommand;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.ISelectionService;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -62,13 +63,16 @@ public abstract class ChangeShapeHandler extends AbstractHandler {
 	 * @return null or the selected editPart
 	 */
 	protected GraphicalEditPart getSelectedGraphicalEditpart() {
-		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
-		ISelection selection = selectionService.getSelection();
-		if(selection instanceof IStructuredSelection) {
-			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
-			if(selectedobject instanceof GraphicalEditPart) {
-				return (GraphicalEditPart)selectedobject;
-			}
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if (activeWorkbenchWindow!=null){
+			ISelectionService selectionService = activeWorkbenchWindow.getSelectionService();
+			ISelection selection = selectionService.getSelection();
+			if(selection instanceof IStructuredSelection) {
+				Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
+				if(selectedobject instanceof GraphicalEditPart) {
+					return (GraphicalEditPart)selectedobject;
+				}
+			}			
 		}
 		return null;
 	}

@@ -84,8 +84,6 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		super(UMLElementTypes.DataType_2010);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -122,11 +120,6 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case DataTypePropertyEditPart.VISUAL_ID:
-
-
-
-
-
 						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -144,11 +137,6 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case DataTypeOperationEditPart.VISUAL_ID:
-
-
-
-
-
 						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -164,8 +152,6 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			}
 		}
 	}
-
-
 
 	/**
 	 * @generated
@@ -372,5 +358,4 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

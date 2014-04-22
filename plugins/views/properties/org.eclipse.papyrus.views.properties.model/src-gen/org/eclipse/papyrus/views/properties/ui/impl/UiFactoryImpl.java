@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.views.properties.ui.*;
 import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
 import org.eclipse.papyrus.views.properties.ui.Element;
 import org.eclipse.papyrus.views.properties.ui.Layout;
@@ -37,7 +38,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	 */
 	public static UiFactory init() {
 		try {
-			UiFactory theUiFactory = (UiFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/properties/ui/0.9"); 
+			UiFactory theUiFactory = (UiFactory)EPackage.Registry.INSTANCE.getEFactory(UiPackage.eNS_URI);
 			if (theUiFactory != null) {
 				return theUiFactory;
 			}

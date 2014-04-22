@@ -38,8 +38,6 @@ public class ShortCutDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.Diagram_2016);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -61,6 +59,4 @@ public class ShortCutDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 }

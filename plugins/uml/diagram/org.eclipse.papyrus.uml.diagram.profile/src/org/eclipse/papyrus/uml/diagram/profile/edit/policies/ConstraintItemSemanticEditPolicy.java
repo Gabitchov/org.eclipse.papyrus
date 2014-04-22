@@ -62,8 +62,6 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		super(UMLElementTypes.Constraint_1014);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -85,8 +83,6 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 
 	/**
 	 * @generated
@@ -240,5 +236,4 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

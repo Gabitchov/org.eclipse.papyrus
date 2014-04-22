@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.views.properties.ui.*;
 import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
 import org.eclipse.papyrus.views.properties.ui.Element;
 import org.eclipse.papyrus.views.properties.ui.Layout;

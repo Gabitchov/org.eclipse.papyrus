@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -83,7 +84,7 @@ public class StringCombo extends ReferenceCombo {
 		if(value instanceof String) {
 			combo.setText((String)value);
 		} else {
-			combo.setText("");
+			combo.setText(""); //$NON-NLS-1$
 		}
 	}
 

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -23,7 +24,7 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * A Read only widget to display Strings as a CLabel.
  * May also be used to display an Object with an ILabelProvider
- * 
+ *
  * @author Camille Letavernier
  */
 public class StringLabel extends AbstractValueEditor implements IChangeListener {
@@ -36,7 +37,7 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param parent
 	 *        The Composite widget in which this editor is created
 	 * @param style
@@ -60,7 +61,7 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	/**
 	 * Sets the label provider for this editor. Useful when the value is not a
 	 * String
-	 * 
+	 *
 	 * @param labelProvider
 	 *        The Label provider used to display the current value
 	 */
@@ -139,6 +140,7 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 		super.setLabelToolTipText(text);
 	}
 
+	@Override
 	public void handleChange(final ChangeEvent event) {
 		updateLabel();
 	}
@@ -155,4 +157,5 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	public void refreshValue() {
 		updateLabel();
 	}
+
 }

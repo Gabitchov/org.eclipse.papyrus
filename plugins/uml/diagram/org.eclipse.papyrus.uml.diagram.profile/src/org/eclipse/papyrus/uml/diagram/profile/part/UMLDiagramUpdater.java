@@ -27,6 +27,12 @@ import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassAttributeCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassAttributeCompartmentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassEditPartCN;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassOperationCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassOperationCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassOperationEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassPropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentAnnotatedElementEditPart;
@@ -156,6 +162,14 @@ public class UMLDiagramUpdater {
 			return getDataTypeOperations_1068SemanticChildren(view);
 		case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
 			return getDataTypeOperations_1070SemanticChildren(view);
+		case ClassAttributeCompartmentEditPart.VISUAL_ID:
+			return getClassAttributes_7017SemanticChildren(view);
+		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
+			return getClassAttributes_7011SemanticChildren(view);
+		case ClassOperationCompartmentEditPart.VISUAL_ID:
+			return getClassOperations_7018SemanticChildren(view);
+		case ClassOperationCompartmentEditPartCN.VISUAL_ID:
+			return getClassOperations_7012SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
@@ -177,6 +191,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == AssociationNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ClassEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -304,6 +322,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == ClassEditPartCN.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 		}
 		for(Iterator<?> it = modelElement.getOwnedStereotypes().iterator(); it.hasNext();) {
 			Stereotype childElement = (Stereotype)it.next();
@@ -365,6 +387,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == DataTypeEditPartCN.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ClassEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -436,6 +462,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == ClassEditPartCN.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 		}
 		for(Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment)it.next();
@@ -501,6 +531,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == MetaclassEditPartCN.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ClassEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -664,6 +698,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == ClassEditPartCN.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 		}
 		return result;
 	}
@@ -717,6 +755,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == DataTypeEditPartCN.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ClassEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -868,6 +910,101 @@ public class UMLDiagramUpdater {
 		return result;
 	}
 
+	/**
+	 * @generated
+	 */
+	public static List<UMLNodeDescriptor> getClassAttributes_7017SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		Class modelElement = (Class)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
+			Property childElement = (Property)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ClassPropertyEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLNodeDescriptor> getClassAttributes_7011SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		Class modelElement = (Class)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
+			Property childElement = (Property)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ClassPropertyEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLNodeDescriptor> getClassOperations_7018SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		Class modelElement = (Class)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
+			Operation childElement = (Operation)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ClassOperationEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLNodeDescriptor> getClassOperations_7012SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		Class modelElement = (Class)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
+			Operation childElement = (Operation)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ClassOperationEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
 
 	/**
 	 * @generated
@@ -882,6 +1019,8 @@ public class UMLDiagramUpdater {
 			return getAssociation_2015ContainedLinks(view);
 		case StereotypeEditPart.VISUAL_ID:
 			return getStereotype_1026ContainedLinks(view);
+		case ClassEditPart.VISUAL_ID:
+			return getClass_2008ContainedLinks(view);
 		case MetaclassEditPart.VISUAL_ID:
 			return getClass_1031ContainedLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -916,6 +1055,8 @@ public class UMLDiagramUpdater {
 			return getOperation_3020ContainedLinks(view);
 		case StereotypeEditPartCN.VISUAL_ID:
 			return getStereotype_1023ContainedLinks(view);
+		case ClassEditPartCN.VISUAL_ID:
+			return getClass_3010ContainedLinks(view);
 		case MetaclassEditPartCN.VISUAL_ID:
 			return getClass_3028ContainedLinks(view);
 		case CommentEditPartCN.VISUAL_ID:
@@ -965,6 +1106,8 @@ public class UMLDiagramUpdater {
 			return getAssociation_2015IncomingLinks(view);
 		case StereotypeEditPart.VISUAL_ID:
 			return getStereotype_1026IncomingLinks(view);
+		case ClassEditPart.VISUAL_ID:
+			return getClass_2008IncomingLinks(view);
 		case MetaclassEditPart.VISUAL_ID:
 			return getClass_1031IncomingLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -999,6 +1142,8 @@ public class UMLDiagramUpdater {
 			return getOperation_3020IncomingLinks(view);
 		case StereotypeEditPartCN.VISUAL_ID:
 			return getStereotype_1023IncomingLinks(view);
+		case ClassEditPartCN.VISUAL_ID:
+			return getClass_3010IncomingLinks(view);
 		case MetaclassEditPartCN.VISUAL_ID:
 			return getClass_3028IncomingLinks(view);
 		case CommentEditPartCN.VISUAL_ID:
@@ -1048,6 +1193,8 @@ public class UMLDiagramUpdater {
 			return getAssociation_2015OutgoingLinks(view);
 		case StereotypeEditPart.VISUAL_ID:
 			return getStereotype_1026OutgoingLinks(view);
+		case ClassEditPart.VISUAL_ID:
+			return getClass_2008OutgoingLinks(view);
 		case MetaclassEditPart.VISUAL_ID:
 			return getClass_1031OutgoingLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -1082,6 +1229,8 @@ public class UMLDiagramUpdater {
 			return getOperation_3020OutgoingLinks(view);
 		case StereotypeEditPartCN.VISUAL_ID:
 			return getStereotype_1023OutgoingLinks(view);
+		case ClassEditPartCN.VISUAL_ID:
+			return getClass_3010OutgoingLinks(view);
 		case MetaclassEditPartCN.VISUAL_ID:
 			return getClass_3028OutgoingLinks(view);
 		case CommentEditPartCN.VISUAL_ID:
@@ -1161,6 +1310,18 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getStereotype_1026ContainedLinks(View view) {
 		Stereotype modelElement = (Stereotype)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ElementImport_1064(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_PackageImport_1065(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getClass_2008ContainedLinks(View view) {
+		Class modelElement = (Class)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_Generalization_4002(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_1064(modelElement));
@@ -1355,6 +1516,18 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getStereotype_1023ContainedLinks(View view) {
 		Stereotype modelElement = (Stereotype)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ElementImport_1064(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_PackageImport_1065(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getClass_3010ContainedLinks(View view) {
+		Class modelElement = (Class)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_Generalization_4002(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_1064(modelElement));
@@ -1605,6 +1778,26 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getClass_2008IncomingLinks(View view) {
+		Class modelElement = (Class)view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_Extension_1013(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4019(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4018(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_1064(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_1022(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_8500(modelElement, crossReferencer));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getClass_1031IncomingLinks(View view) {
 		Class modelElement = (Class)view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
@@ -1824,6 +2017,26 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getStereotype_1023IncomingLinks(View view) {
 		Stereotype modelElement = (Stereotype)view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_Extension_1013(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4019(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4018(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_1064(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_1022(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_8500(modelElement, crossReferencer));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getClass_3010IncomingLinks(View view) {
+		Class modelElement = (Class)view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Extension_1013(modelElement, crossReferencer));
@@ -2157,6 +2370,22 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getClass_2008OutgoingLinks(View view) {
+		Class modelElement = (Class)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4019(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ElementImport_1064(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_PackageImport_1065(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getClass_1031OutgoingLinks(View view) {
 		Class modelElement = (Class)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -2346,6 +2575,22 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getStereotype_1023OutgoingLinks(View view) {
 		Stereotype modelElement = (Stereotype)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4019(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ElementImport_1064(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_PackageImport_1065(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getClass_3010OutgoingLinks(View view) {
+		Class modelElement = (Class)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Association_4001(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Association_4019(modelElement));
@@ -2583,7 +2828,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			Class dst = link.getMetaclass();
-			List sources = link.getOwnedEnds();
+			List<?> sources = link.getOwnedEnds();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof Property) {
 				continue;
@@ -2608,13 +2853,13 @@ public class UMLDiagramUpdater {
 			if(AssociationEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List targets = link.getEndTypes();
+			List<?> targets = link.getEndTypes();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Type) {
 				continue;
 			}
 			Type dst = (Type)theTarget;
-			List sources = link.getEndTypes();
+			List<?> sources = link.getEndTypes();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof Type) {
 				continue;
@@ -2660,13 +2905,13 @@ public class UMLDiagramUpdater {
 			if(AssociationBranchEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List targets = link.getEndTypes();
+			List<?> targets = link.getEndTypes();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Type) {
 				continue;
 			}
 			Type dst = (Type)theTarget;
-			List sources = link.getEndTypes();
+			List<?> sources = link.getEndTypes();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof Type) {
 				continue;
@@ -2711,13 +2956,13 @@ public class UMLDiagramUpdater {
 			if(DependencyEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List targets = link.getSuppliers();
+			List<?> targets = link.getSuppliers();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof NamedElement) {
 				continue;
 			}
 			NamedElement dst = (NamedElement)theTarget;
-			List sources = link.getClients();
+			List<?> sources = link.getClients();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof NamedElement) {
 				continue;
@@ -2742,13 +2987,13 @@ public class UMLDiagramUpdater {
 			if(DependencyBranchEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List targets = link.getSuppliers();
+			List<?> targets = link.getSuppliers();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof NamedElement) {
 				continue;
 			}
 			NamedElement dst = (NamedElement)theTarget;
-			List sources = link.getClients();
+			List<?> sources = link.getClients();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof NamedElement) {
 				continue;
@@ -2815,7 +3060,7 @@ public class UMLDiagramUpdater {
 			if(ExtensionEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List sources = link.getOwnedEnds();
+			List<?> sources = link.getOwnedEnds();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof Property) {
 				continue;
@@ -2840,7 +3085,7 @@ public class UMLDiagramUpdater {
 			if(AssociationEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List sources = link.getEndTypes();
+			List<?> sources = link.getEndTypes();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof Type) {
 				continue;
@@ -2885,7 +3130,7 @@ public class UMLDiagramUpdater {
 			if(AssociationBranchEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List sources = link.getEndTypes();
+			List<?> sources = link.getEndTypes();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof Type) {
 				continue;
@@ -2915,7 +3160,6 @@ public class UMLDiagramUpdater {
 			}
 			Classifier container = (Classifier)link.eContainer();
 			result.add(new UMLLinkDescriptor(container, target, link, UMLElementTypes.Generalization_4002, GeneralizationEditPart.VISUAL_ID));
-
 		}
 		return result;
 	}
@@ -2934,7 +3178,7 @@ public class UMLDiagramUpdater {
 			if(DependencyEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List sources = link.getClients();
+			List<?> sources = link.getClients();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof NamedElement) {
 				continue;
@@ -2959,7 +3203,7 @@ public class UMLDiagramUpdater {
 			if(DependencyBranchEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List sources = link.getClients();
+			List<?> sources = link.getClients();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof NamedElement) {
 				continue;
@@ -3078,13 +3322,13 @@ public class UMLDiagramUpdater {
 			if(AssociationEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List targets = link.getEndTypes();
+			List<?> targets = link.getEndTypes();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Type) {
 				continue;
 			}
 			Type dst = (Type)theTarget;
-			List sources = link.getEndTypes();
+			List<?> sources = link.getEndTypes();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof Type) {
 				continue;
@@ -3160,13 +3404,13 @@ public class UMLDiagramUpdater {
 			if(AssociationBranchEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List targets = link.getEndTypes();
+			List<?> targets = link.getEndTypes();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Type) {
 				continue;
 			}
 			Type dst = (Type)theTarget;
-			List sources = link.getEndTypes();
+			List<?> sources = link.getEndTypes();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof Type) {
 				continue;
@@ -3206,13 +3450,13 @@ public class UMLDiagramUpdater {
 			if(DependencyEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List targets = link.getSuppliers();
+			List<?> targets = link.getSuppliers();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof NamedElement) {
 				continue;
 			}
 			NamedElement dst = (NamedElement)theTarget;
-			List sources = link.getClients();
+			List<?> sources = link.getClients();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof NamedElement) {
 				continue;
@@ -3252,13 +3496,13 @@ public class UMLDiagramUpdater {
 			if(DependencyBranchEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List targets = link.getSuppliers();
+			List<?> targets = link.getSuppliers();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof NamedElement) {
 				continue;
 			}
 			NamedElement dst = (NamedElement)theTarget;
-			List sources = link.getClients();
+			List<?> sources = link.getClients();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
 			if(false == theSource instanceof NamedElement) {
 				continue;
@@ -3389,7 +3633,6 @@ public class UMLDiagramUpdater {
 		/**
 		 * @generated
 		 */
-
 		public List<UMLNodeDescriptor> getSemanticChildren(View view) {
 			return UMLDiagramUpdater.getSemanticChildren(view);
 		}
@@ -3397,7 +3640,6 @@ public class UMLDiagramUpdater {
 		/**
 		 * @generated
 		 */
-
 		public List<UMLLinkDescriptor> getContainedLinks(View view) {
 			return UMLDiagramUpdater.getContainedLinks(view);
 		}
@@ -3405,7 +3647,6 @@ public class UMLDiagramUpdater {
 		/**
 		 * @generated
 		 */
-
 		public List<UMLLinkDescriptor> getIncomingLinks(View view) {
 			return UMLDiagramUpdater.getIncomingLinks(view);
 		}
@@ -3413,10 +3654,8 @@ public class UMLDiagramUpdater {
 		/**
 		 * @generated
 		 */
-
 		public List<UMLLinkDescriptor> getOutgoingLinks(View view) {
 			return UMLDiagramUpdater.getOutgoingLinks(view);
 		}
 	};
-
 }
