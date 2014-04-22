@@ -291,6 +291,7 @@
 		<module>../plugins/views/org.eclipse.papyrus.views.search</module>
 		<module>../plugins/views/validation/org.eclipse.papyrus.views.validation</module>
 		<module>../plugins/xwt/org.eclipse.papyrus.xwt</module>
+		<module>../plugins/doc/org.eclipse.papyrus.views.properties.doc</module>
 		<module>main</module>
 	</modules>
 	<properties>
