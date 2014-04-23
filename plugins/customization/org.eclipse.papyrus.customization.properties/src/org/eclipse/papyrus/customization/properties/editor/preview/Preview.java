@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,12 +27,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
-import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -40,6 +37,9 @@ import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.customization.properties.editor.UIEditor;
 import org.eclipse.papyrus.customization.properties.messages.Messages;
 import org.eclipse.papyrus.customization.properties.model.xwt.resource.XWTResource;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.properties.contexts.Section;
 import org.eclipse.papyrus.views.properties.contexts.Tab;
 import org.eclipse.papyrus.views.properties.contexts.View;
@@ -78,9 +78,9 @@ import org.eclipse.ui.part.ViewPart;
  * - The Enum and References fields are empty
  * - Some buttons may be marked as disabled, but will be available at runtime (Or vice-versa)
  * - The dynamic sections are always displayed
- * 
+ *
  * The preview can be disabled for performance issues
- * 
+ *
  * @author Camille Letavernier
  */
 public class Preview extends ViewPart implements ISelectionChangedListener, IPartListener {
@@ -118,7 +118,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 	/**
 	 * Constructor.
 	 * Constructs a new Preview in an editor (Embedded preview)
-	 * 
+	 *
 	 * @param editor
 	 */
 	public Preview(UIEditor editor) {
@@ -127,7 +127,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 
 	/**
 	 * Creates the preview control in the given composite.
-	 * 
+	 *
 	 * @param container
 	 *        The SWT Composite in which the preview should be displayed
 	 */
@@ -211,7 +211,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 
 	/**
 	 * Sets the current Editor
-	 * 
+	 *
 	 * @param editor
 	 */
 	public void setEditor(UIEditor editor) {
@@ -230,7 +230,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 	/**
 	 * Saves the section's XWT Resource in a temporary file, which
 	 * can then be interpreted by XWT. Returns the URL to this file.
-	 * 
+	 *
 	 * @param section
 	 *        The section for which we want to persist the XWT Resource
 	 * @return
@@ -257,15 +257,19 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 			}
 
 			OutputStream os = new FileOutputStream(xwtFile);
-			Map<Object, Object> options = new HashMap<Object, Object>();
-			//The outputstream cannot be formatted. If format is true, this is
-			//the real file (and not the preview file) that will be formatted
-			options.put(XWTResource.OPTION_FORMAT, false);
-			if(section.getWidget() == null || section.getWidget().eResource() == null) {
-				return null;
+			try {
+				Map<Object, Object> options = new HashMap<Object, Object>();
+				//The outputstream cannot be formatted. If format is true, this is
+				//the real file (and not the preview file) that will be formatted
+				options.put(XWTResource.OPTION_FORMAT, false);
+				if(section.getWidget() == null || section.getWidget().eResource() == null) {
+					return null;
+				}
+				section.getWidget().eResource().save(os, options);
+				return xwtFile.toURI().toURL();
+			} finally {
+				os.close();
 			}
-			section.getWidget().eResource().save(os, options);
-			return xwtFile.toURI().toURL();
 		} catch (IOException ex) {
 			Activator.log.error(ex);
 		}
@@ -275,7 +279,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 
 	/**
 	 * Sets the view to display in the preview
-	 * 
+	 *
 	 * @param view
 	 *        The view to display
 	 */
@@ -351,6 +355,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 
 			contents.addListener(SWT.Selection, new Listener() {
 
+				@Override
 				public void handleEvent(Event event) {
 					selectedTab = contents.getSelection().getText();
 				}
@@ -360,7 +365,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 
 		for(Section section : currentView.getSections()) {
 			Composite tabControl = tabs.get(section.getTab());
-			if (tabControl == null){
+			if(tabControl == null) {
 				Activator.log.warn("The section doesn't have a tab"); //Bug in section deletion: it is still referenced by the views
 				continue;
 			}
@@ -388,6 +393,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 
 		Collections.sort(tabs, new Comparator<Tab>() {
 
+			@Override
 			public int compare(Tab tab1, Tab tab2) {
 				Tab afterTab1 = tab1.getAfterTab();
 				Tab afterTab2 = tab2.getAfterTab();
@@ -429,38 +435,36 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 
 	/**
 	 * The preview listens on
-	 * 
+	 *
 	 * @param event
 	 *        The SelectionChangedEvent
 	 */
+	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
 		IStructuredSelection selection = (IStructuredSelection)event.getSelection();
 		if(selection.size() == 1) {
 			EObjectTreeElement child = null;
-			EObjectTreeElement element = (EObjectTreeElement)selection.getFirstElement();
+			EObjectTreeElement treeElement = (EObjectTreeElement)selection.getFirstElement();
 
 			do {
-
-				if(element instanceof IAdaptable) {
-					EObject adapter = (EObject)((IAdaptable)element).getAdapter(EObject.class);
-					if(adapter instanceof View) {
-						setView((View)adapter);
-						return;
-					}
+				EObject semantic = EMFHelper.getEObject(treeElement);
+				if(semantic instanceof View) {
+					setView((View)semantic);
+					return;
 				}
 
-				child = element;
-				EStructuralFeatureTreeElement elementFeature = element.getParent();
-				if( elementFeature.getParent()!=null){
-					element=elementFeature.getParent();
+				child = treeElement;
+				EStructuralFeatureTreeElement elementFeature = treeElement.getParent();
+				if(elementFeature != null && elementFeature.getParent() != null) {
+					treeElement = elementFeature.getParent();
 				}
-			} while(child != element && element != null);
+			} while(child != treeElement && treeElement != null);
 		}
 	}
 
 	/**
 	 * Activate or deactivate the preview
-	 * 
+	 *
 	 * @param enabled
 	 *        If true, the preview will be activated. Otherwise, it will
 	 *        be disabled
@@ -474,24 +478,29 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 		parent.setFocus();
 	}
 
+	@Override
 	public void partActivated(IWorkbenchPart part) {
 		if(part instanceof UIEditor) {
 			setEditor((UIEditor)part);
 		}
 	}
 
+	@Override
 	public void partBroughtToTop(IWorkbenchPart part) {
 		//Nothing
 	}
 
+	@Override
 	public void partClosed(IWorkbenchPart part) {
 		//Nothing
 	}
 
+	@Override
 	public void partDeactivated(IWorkbenchPart part) {
 		//Nothing
 	}
 
+	@Override
 	public void partOpened(IWorkbenchPart part) {
 		//Nothing
 	}
