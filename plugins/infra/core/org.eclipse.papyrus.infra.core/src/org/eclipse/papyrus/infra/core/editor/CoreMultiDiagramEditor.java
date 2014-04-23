@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014 CEA LIST and others.
+ * Copyright (c) 2008, 2014 LIFL, CEA LIST, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
  *  Christian W. Damus (CEA) - bug 410346
+ *  Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
  *
  *****************************************************************************/
 
@@ -586,9 +587,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		}
 
 		try {
-			// Start the ModelSet first, and load if from the specified File
+			// Start the ModelSet first, and load if from the specified File.
+			// Also start me so that I may be retrieved from the registry by other services
 			List<Class<?>> servicesToStart = new ArrayList<Class<?>>(1);
 			servicesToStart.add(ModelSet.class);
+			servicesToStart.add(IMultiDiagramEditor.class);
 
 			servicesRegistry.startServicesByClassKeys(servicesToStart);
 

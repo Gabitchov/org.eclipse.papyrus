@@ -12,23 +12,11 @@
    CEA - Initial API and implementation
    Christian W. Damus (CEA) - bug 323802
    Christian W. Damus (CEA) - bug 408491
+   Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
    
 -->
 <plugin>
    <extension-point id="dependencyUpdateParticipant" name="Dependency Update Participants" schema="schema/dependencyUpdateParticipant.exsd"/>
-   <extension
-         point="org.eclipse.papyrus.infra.core.service">
-      <service
-            classname="org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService"
-            description="Service used to initialize association between ResourceSet and ServiceRegistry"
-            id="org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService"
-            priority="1"
-            startKind="startup">
-         <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
-         </dependsOn>
-      </service>
-   </extension>
    <extension
          point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
       <labelProvider

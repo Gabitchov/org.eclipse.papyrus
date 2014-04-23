@@ -15,7 +15,6 @@ package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
@@ -37,9 +36,7 @@ public class IsDiagramContainer extends AbstractEditorContainerQuery implements 
 			while(roots.hasNext()) {
 				EObject root = roots.next();
 				if(root instanceof Diagram) {
-					if(EcoreUtil.equals(DiagramUtils.getOwner((Diagram)root), source)) {
-						return true;
-					}
+					return DiagramUtils.getOwner((Diagram)root) == source;
 				}
 			}
 		}

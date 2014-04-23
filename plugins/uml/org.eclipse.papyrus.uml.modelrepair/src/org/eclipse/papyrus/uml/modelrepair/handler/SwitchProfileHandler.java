@@ -33,7 +33,9 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.modelrepair.Activator;
+import org.eclipse.papyrus.uml.modelrepair.internal.validation.ProfileSwitchValidator;
 import org.eclipse.papyrus.uml.modelrepair.ui.SwitchProfileDialog;
+import org.eclipse.papyrus.uml.modelrepair.validation.ProfileSwitchContext;
 import org.eclipse.papyrus.uml.tools.util.ProfileHelper;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -99,25 +101,26 @@ public class SwitchProfileHandler extends AbstractHandler {
 
 		final Collection<Profile> allAppliedProfiles = ProfileHelper.getAllAppliedProfiles(modelSet);
 
+		ProfileSwitchValidator validator = new ProfileSwitchValidator();
+		if(validator.validate(new ProfileSwitchContext(activeShell, modelSet, editingDomain, profiledPackage, allAppliedProfiles))) {
+			//Go back to the UI thread and open a dialog
+			activeShell.getDisplay().asyncExec(new Runnable() {
 
-		//Go back to the UI thread and open a dialog
-		activeShell.getDisplay().asyncExec(new Runnable() {
+				public void run() {
+					if(allAppliedProfiles.isEmpty()) {
+						MessageDialog.openInformation(activeShell, "Switch Profiles", "The selected model has no profiles applied.");
+						return;
+					}
 
-			public void run() {
-				if(allAppliedProfiles.isEmpty()) {
-					MessageDialog.openInformation(activeShell, "Switch Profiles", "The selected model has no profiles applied.");
-					return;
+					try {
+						SwitchProfileDialog dialog = new SwitchProfileDialog(activeShell, modelSet, editingDomain);
+						dialog.open();
+					} catch (ServiceException e) {
+						StatusManager.getManager().handle(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to open profile switching dialog.", e), StatusManager.SHOW);
+					}
 				}
-
-				try {
-					SwitchProfileDialog dialog = new SwitchProfileDialog(activeShell, modelSet, editingDomain);
-					dialog.open();
-				} catch (ServiceException e) {
-					StatusManager.getManager().handle(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to open profile switching dialog.", e), StatusManager.SHOW);
-				}
-			}
-		});
-
+			});
+		}
 	}
 
 

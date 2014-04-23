@@ -18,13 +18,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
@@ -42,8 +41,9 @@ public class GetContainedDiagrams extends AbstractEditorContainerQuery implement
 		while(roots.hasNext()) {
 			EObject root = roots.next();
 			if(root instanceof Diagram) {
-				if (EcoreUtil.equals(DiagramUtils.getOwner((Diagram) root), source)) {
-					result.add((Diagram)root);
+				Diagram diagram = (Diagram)root;
+				if (DiagramUtils.getOwner(diagram) == source) {
+					result.add(diagram);
 				}
 			}
 		}

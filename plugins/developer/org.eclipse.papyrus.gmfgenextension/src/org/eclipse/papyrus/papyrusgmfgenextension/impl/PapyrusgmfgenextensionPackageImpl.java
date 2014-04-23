@@ -23,6 +23,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
 import org.eclipse.papyrus.papyrusgmfgenextension.CompartmentTitleVisibilityPreference;
 import org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference;
 import org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy;
+import org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton;
 import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService;
 import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
@@ -204,6 +205,13 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	private EClass generateUsingElementTypeCreationCommandEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass customDiagramUpdaterSingletonEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -829,6 +837,24 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCustomDiagramUpdaterSingleton() {
+		return customDiagramUpdaterSingletonEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCustomDiagramUpdaterSingleton_SingletonPath() {
+		return (EAttribute)customDiagramUpdaterSingletonEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -942,6 +968,9 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		createEReference(externalMetamodelTypeEClass, EXTERNAL_METAMODEL_TYPE__ELEMENT_TYPE_REF);
 
 		generateUsingElementTypeCreationCommandEClass = createEClass(GENERATE_USING_ELEMENT_TYPE_CREATION_COMMAND);
+
+		customDiagramUpdaterSingletonEClass = createEClass(CUSTOM_DIAGRAM_UPDATER_SINGLETON);
+		createEAttribute(customDiagramUpdaterSingletonEClass, CUSTOM_DIAGRAM_UPDATER_SINGLETON__SINGLETON_PATH);
 	}
 
 	/**
@@ -1000,6 +1029,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		externalElementTypesLibraryEClass.getESuperTypes().add(this.getCommentedElement());
 		externalMetamodelTypeEClass.getESuperTypes().add(theGMFGenPackage.getMetamodelType());
 		generateUsingElementTypeCreationCommandEClass.getESuperTypes().add(this.getCommentedElement());
+		customDiagramUpdaterSingletonEClass.getESuperTypes().add(this.getCommentedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extendedGenViewEClass, ExtendedGenView.class, "ExtendedGenView", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1091,6 +1121,9 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		initEReference(getExternalMetamodelType_ElementTypeRef(), theDomaincontextcodegenPackage.getElementType(), null, "elementTypeRef", null, 0, 1, ExternalMetamodelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(generateUsingElementTypeCreationCommandEClass, GenerateUsingElementTypeCreationCommand.class, "GenerateUsingElementTypeCreationCommand", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(customDiagramUpdaterSingletonEClass, CustomDiagramUpdaterSingleton.class, "CustomDiagramUpdaterSingleton", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCustomDiagramUpdaterSingleton_SingletonPath(), ecorePackage.getEString(), "singletonPath", null, 1, 1, CustomDiagramUpdaterSingleton.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -1,5 +1,14 @@
-/**
- * 
+/*****************************************************************************
+ * Copyright (c) 2012, 2014 LIFL, CEA, and others.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 431953 (fix start-up of selective services to require only their dependencies)
  */
 package org.eclipse.papyrus.infra.emf.utils;
 
@@ -11,6 +20,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.papyrus.infra.core.editor.ModelSetServiceFactory;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -76,17 +86,13 @@ public class ServiceUtilsForResourceTest {
 		resource.getContents().add(obj1);
 		resource.getContents().add(pack2);
 		
-		servicesRegistry.add(ModelSet.class, 1, modelSet);
+		servicesRegistry.add(ModelSet.class, 10, modelSet);
 		
-		ServiceUtilsForResourceInitializerService initService = new ServiceUtilsForResourceInitializerService();
-		servicesRegistry.add(ServiceUtilsForResourceInitializerService.class, 1, initService);
-		
-		servicesRegistry.startRegistry();
+		servicesRegistry.startServicesByClassKeys(ModelSet.class);
 		
 		// Check registry
-		assertNotNull("service ModelSEt", servicesRegistry.getService(ModelSet.class) );
-		assertNotNull("service initializer", servicesRegistry.getService(ServiceUtilsForResourceInitializerService.class) );
-		assertNotNull("ModelSet service correctly initialized", ServiceUtils.getInstance().getModelSet(servicesRegistry) );
+		assertNotNull("service ModelSet", servicesRegistry.getService(ModelSet.class) );
+		assertNotNull("ModelSet service not correctly initialized", ServiceUtils.getInstance().getModelSet(servicesRegistry) );
 		
 		// Do tests
 		ServicesRegistry r2 = ServiceUtilsForResource.getInstance().getServiceRegistry(obj1.eResource());

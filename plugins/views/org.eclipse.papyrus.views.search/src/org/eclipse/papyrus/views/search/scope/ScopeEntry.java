@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST and others.
- *
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +10,7 @@
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - Fix leaking of all UML models in search results
  *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility
+ *  Christian W. Damus (CEA) - bug 431953 (fix start-up of selective services to require only their dependencies)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.scope;
@@ -27,7 +27,6 @@ import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
@@ -144,8 +143,7 @@ public class ScopeEntry {
 
 					modelSet = ModelUtils.openResource(getResourceURI());
 					getServicesRegistry().add(ModelSet.class, 10, modelSet);
-					getServicesRegistry().add(ServiceUtilsForResourceInitializerService.class, 10, new ServiceUtilsForResourceInitializerService());
-					getServicesRegistry().startServicesByClassKeys(ModelSet.class, ServiceUtilsForResourceInitializerService.class);
+					getServicesRegistry().startServicesByClassKeys(ModelSet.class);
 				} catch (ModelMultiException modelMultiException) {
 					Activator.log.error(Messages.ScopeEntry_1 + this.getResourceURI(), modelMultiException);
 				} catch (ServiceMultiException e1) {

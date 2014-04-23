@@ -30,6 +30,7 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.wizards.CreateNattableFromCatalogWizard;
@@ -39,11 +40,10 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * Handler to display the wizard to display the catalog of existing Nattable configurations.
+ * Handler to display the wizard to display the catalog of existing Nattable
+ * configurations.
  */
 public class CreateNatTableFromCatalogHandler extends AbstractHandler {
-
-
 
 	/**
 	 * We open the dialog, request the user for the desired configuration
@@ -68,17 +68,17 @@ public class CreateNatTableFromCatalogHandler extends AbstractHandler {
 			return null;
 		}
 
-		if(dialog.open() == Window.OK){
+		if(dialog.open() == Window.OK) {
 			CompoundCommand compoundCommand = new CompoundCommand("Create tables from Catalog"); //$NON-NLS-1$
-			
+
 			for(TableConfiguration tableConfiguration : wizard.getSelectedConfig().keySet()) {
 				CreateNatTableEditorHandler handler = new CreateNatTableEditorHandler();
 				handler.setType(tableConfiguration.getType());
 
-				//See how many tables were required for this type
+				// See how many tables were required for this type
 				Integer tablesQuantity = wizard.getSelectedConfig().get(tableConfiguration);
 
-				//Get the chosen name for the tables under this configuration
+				// Get the chosen name for the tables under this configuration
 				final String tableConfigName = wizard.getTableNames().get(tableConfiguration);
 				for(int i = 0; i < tablesQuantity; i++) {
 					try {
@@ -104,7 +104,7 @@ public class CreateNatTableFromCatalogHandler extends AbstractHandler {
 	 * @param evaluationContext
 	 */
 	public void setEnabled(Object evaluationContext) {
-		setBaseEnabled(getSelection().size()==1);
+		setBaseEnabled(getSelection().size() == 1);
 	}
 
 	/**
@@ -117,20 +117,14 @@ public class CreateNatTableFromCatalogHandler extends AbstractHandler {
 		if(ww != null) {
 			final ISelection selection = ww.getSelectionService().getSelection();
 			if(selection instanceof IStructuredSelection) {
-
 				final IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-
 				final Iterator<?> it = structuredSelection.iterator();
 				while(it.hasNext()) {
 					final Object object = it.next();
-					if(object instanceof IAdaptable) {
-						final EObject currentEObject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
-
-						if(currentEObject != null) {
-							selectedElements.add(currentEObject);
-						}
+					final EObject currentEObject = EMFHelper.getEObject(object);
+					if(currentEObject != null) {
+						selectedElements.add(currentEObject);
 					}
-
 				}
 			}
 		}

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="org.eclipse.papyrus.uml.modelrepair.profileSwitchPreconditions" name="Profile Switch Preconditions" schema="schema/profileSwitchPreconditions.exsd"/>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
@@ -109,6 +110,19 @@
       <replaceParticipant
             class="org.eclipse.papyrus.uml.modelrepair.internal.participants.StereotypeApplicationRepairParticipant">
       </replaceParticipant>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.model">
+      <modelSetSnippet
+            classname="org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.StereotypeApplicationRepairSnippet"
+            description="Initiates repair of zombie stereotype applications on load of a UML resource.">
+      </modelSetSnippet>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.modelrepair.profileSwitchPreconditions">
+      <precondition
+            class="org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.StereotypeApplicationPrecondition">
+      </precondition>
    </extension>
 
 </plugin>

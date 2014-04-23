@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 Cedric Dumoulin.
+ * Copyright (c) 2012, 2014 Cedric Dumoulin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,12 +9,12 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
 
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.core.editor.ModelSetServiceFactory;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.BadStateException;
 import org.eclipse.papyrus.infra.core.services.IService;
@@ -34,61 +34,38 @@ import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
  * @see ServiceUtilsForResource
  * 
  * @author cedric dumoulin
- * 
+ *
+ * @deprecated Since 1.0, the {@link ModelSetServiceFactory} class associates the model-set with its service registry
+ *             and an injected {@link ModelSet} has an external service lifecycle adapter provided for it.
  */
+@Deprecated
 public class ServiceUtilsForResourceInitializerService implements IService {
 
 	ServicesRegistry servicesRegistry;
 	
 	/**
-	 * Create a {@link ServiceRegistryAdapterFactory} and associate it to the ResourceSet.
-	 * 
+	 * Associate the service registry with the resource set if the resource set wasn't created by the registry.
 	 */
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 		
 		this.servicesRegistry = servicesRegistry;
 		ModelSet modelSet = ServiceUtils.getInstance().getModelSet(servicesRegistry);
 		
-		// Check if the Adapter Factory is already attached.
-		if( lookupServiceRegistryAdapterFactory(modelSet) != null ) {
-			return;
-		}
-		
-		// Attach the adapter
-		ServiceRegistryAdapterFactory factory = new ServiceRegistryAdapterFactory(servicesRegistry);
-		modelSet.getAdapterFactories().add(factory);
-		
+		ModelSetServiceFactory.setServiceRegistry(modelSet, servicesRegistry);
 	}
 
-	/**
-	 * Return the AdapterFactory, or null if none is found.
-	 * @param resourceSet
-	 * @return
-	 */
-	private ServiceRegistryAdapterFactory lookupServiceRegistryAdapterFactory(ResourceSet resourceSet) {
-		ServiceRegistryAdapterFactory factory = (ServiceRegistryAdapterFactory)EcoreUtil.getAdapterFactory(resourceSet.getAdapterFactories(), ServiceRegistryAdapterFactory.TYPE_ID);
-
-		return factory;
-	}
-
-	/**
-	 * 
-	 */
 	public void startService() throws ServiceException {
 		// Do nothing
-		
 	}
 
 	/**
-	 * Detach the Adapter from the resourceSet
+	 * Ensure that the service registry is dissociated from the resource set.
 	 */
 	public void disposeService() throws ServiceException {
-		
 		try {
 			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(servicesRegistry);
-			ServiceRegistryAdapterFactory factory = lookupServiceRegistryAdapterFactory(modelSet);
-
-			modelSet.getAdapterFactories().remove(factory);
+			
+			ModelSetServiceFactory.setServiceRegistry(modelSet, null);
 		} catch (BadStateException e) {
 			// ModelSet is already disposed. Do nothing
 		}

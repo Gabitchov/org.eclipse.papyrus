@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,13 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.core.editor.ModelSetServiceFactory;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -37,13 +39,11 @@ public class ServiceUtilsForResourceSet extends AbstractServiceUtils<ResourceSet
 			throw new ServiceNotFoundException("Can't find the ResourceSet needed retrieve the ServiceRegistry.");
 		}
 
-		// An AdapterFactory referencing the ServiceRegistry is attache to the REsourceSet.
-		// Try to get it.
-		ServiceRegistryAdapterFactory factory = (ServiceRegistryAdapterFactory)EcoreUtil.getAdapterFactory(from.getAdapterFactories(), ServiceRegistryAdapterFactory.TYPE_ID);
-		if(factory == null) {
-			throw new ServiceNotFoundException("Can't find the ServiceRegistry. No Adapter is attached to the ResourceSet. Check if the proper service is ");
+		ServicesRegistry result = ModelSetServiceFactory.getServiceRegistry(from);
+		if(result == null) {
+			throw new ServiceNotFoundException("The resource set was not initialized as a service.");
 		}
-		return factory.getServicesRegistry();
+		return result;
 	}
 
 }
