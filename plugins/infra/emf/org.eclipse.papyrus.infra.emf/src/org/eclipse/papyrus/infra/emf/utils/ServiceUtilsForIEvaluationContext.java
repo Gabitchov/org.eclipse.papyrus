@@ -96,7 +96,7 @@ public class ServiceUtilsForIEvaluationContext extends AbstractServiceUtils<IEva
 
 
 		// nothing found
-		throw new ServiceNotFoundException("The ServiceRegistry cannot be resolved");
+		throw new ServiceNotFoundException("The ServiceRegistry cannot be resolved"); //$NON-NLS-1$
 	}
 
 	public static ServiceUtilsForIEvaluationContext getInstance() {

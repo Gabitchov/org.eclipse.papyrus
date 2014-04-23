@@ -36,12 +36,12 @@ public class ServiceUtilsForResourceSet extends AbstractServiceUtils<ResourceSet
 	@Override
 	public ServicesRegistry getServiceRegistry(ResourceSet from) throws ServiceException {
 		if(from == null) {
-			throw new ServiceNotFoundException("Can't find the ResourceSet needed retrieve the ServiceRegistry.");
+			throw new ServiceNotFoundException("Can't find the ResourceSet needed retrieve the ServiceRegistry."); //$NON-NLS-1$
 		}
 
 		ServicesRegistry result = ModelSetServiceFactory.getServiceRegistry(from);
 		if(result == null) {
-			throw new ServiceNotFoundException("The resource set was not initialized as a service.");
+			throw new ServiceNotFoundException("The resource set was not initialized as a service."); //$NON-NLS-1$
 		}
 		return result;
 	}

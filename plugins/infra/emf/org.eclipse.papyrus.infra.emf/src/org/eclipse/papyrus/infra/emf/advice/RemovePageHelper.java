@@ -35,7 +35,7 @@ public class RemovePageHelper {
 		try {
 			final IPageManager pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(elementToDestroy);
 			if(pageManager.allPages().contains(elementToDestroy)) {
-				return new AbstractTransactionalCommand(editingDomain, "Delete page", null) {
+				return new AbstractTransactionalCommand(editingDomain, "Delete page", null) { //$NON-NLS-1$
 
 					@Override
 					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {

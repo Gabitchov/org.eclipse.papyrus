@@ -62,7 +62,7 @@ public class ServiceUtilsForResource extends AbstractServiceUtils<Resource> {
 	@Override
 	public ServicesRegistry getServiceRegistry(Resource from) throws ServiceException {
 		if(from == null) {
-			throw new ServiceNotFoundException("Can't find the ResourceSet needed retrieve the ServiceRegistry.");
+			throw new ServiceNotFoundException("Can't find the ResourceSet needed retrieve the ServiceRegistry."); //$NON-NLS-1$
 		}
 		return ServiceUtilsForResourceSet.getInstance().getServiceRegistry(from.getResourceSet());
 	}

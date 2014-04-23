@@ -207,7 +207,7 @@ public abstract class TextReferencesHelper {
 		} catch (Exception ex) {
 			//Log the error? If it happens once, it will happen many times (after each refresh). The UNKNOWN keyword may be enough.
 			//This error happens when the reference is broken (e.g. an element has been deleted). This is a "normal" behavior
-			Activator.log.debug("An error occurred while loading the following URI: " + uriToReplace + ". The reference cannot be replaced");
+			Activator.log.debug("An error occurred while loading the following URI: " + uriToReplace + ". The reference cannot be replaced"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		return UNKNOWN_ELEMENT;

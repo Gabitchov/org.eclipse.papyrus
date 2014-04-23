@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.dialogs;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -122,6 +123,7 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 		this.containerFeature = containerFeature;
 		this.containerEClass = containerEClass;
 		this.labelProvider = new UMLLabelProvider();
+		this.notWantedMetaclasses = new LinkedList<Object>();
 	}
 
 	/**
