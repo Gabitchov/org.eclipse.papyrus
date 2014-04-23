@@ -21,7 +21,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.EditPart;
@@ -35,9 +34,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Bounds;
-import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLViewProvider;
 
@@ -47,35 +44,6 @@ import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLViewProvider;
  */
 public class AssociationClassViewCreateCommand extends AbstractTransactionalCommand {
 
-	/**
-	 * iadapter to send eobjet.
-	 */
-	private class SemanticAdapter implements IAdaptable {
-
-		/** The element. */
-		private EObject element;
-
-		/**
-		 * Instantiates a new semantic adapter.
-		 * 
-		 * @param element
-		 *        the element
-		 */
-		public SemanticAdapter(EObject element) {
-			this.element = element;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public Object getAdapter(Class adapter) {
-			if(adapter.equals(EObject.class)) {
-				return element;
-			}
-			return null;
-		}
-
-	}
 
 	/** The node. */
 	private static View node;
@@ -85,12 +53,6 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 
 	/** The create connection view and element request. */
 	private CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest;
-
-	/** The element. */
-	private EObject element;
-
-	/** The eobject. */
-	private EObject eobject;
 
 	/** The location. */
 	private Point location;
@@ -143,16 +105,15 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 		CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest)createConnectionViewAndElementRequest).getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
 		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest)requestAdapter.getAdapter(CreateRelationshipRequest.class);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		this.node = viewProvider.createDependency_2011(createElementRequest.getNewElement(), this.containerView, -1, true, preferenceHint);
+		node = viewProvider.createDependency_2011(createElementRequest.getNewElement(), this.containerView, -1, true, preferenceHint);
 		// this.node = factory.createView(new
 		// SemanticAdapter(createElementRequest.getNewElement()),
 		// this.containerView, ((IHintedType)
 		// UMLElementTypes.AssociationClass_2013).getSemanticHint(), -1,
 		// true, preferenceHint);
 		// put to the good position
-		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
-		((Bounds)((Node)this.node).getLayoutConstraint()).setX(location.x);
-		((Bounds)((Node)this.node).getLayoutConstraint()).setY(location.y);
+		((Bounds)((Node)node).getLayoutConstraint()).setX(location.x);
+		((Bounds)((Node)node).getLayoutConstraint()).setY(location.y);
 		return CommandResult.newOKCommandResult(node);
 	}
 
@@ -160,7 +121,7 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 	 * 
 	 * {@inheritDoc}
 	 */
-	public List getAffectedFiles() {
+	public List<?> getAffectedFiles() {
 		if(viewer != null) {
 			EditPart editpart = viewer.getRootEditPart().getContents();
 			if(editpart instanceof IGraphicalEditPart) {

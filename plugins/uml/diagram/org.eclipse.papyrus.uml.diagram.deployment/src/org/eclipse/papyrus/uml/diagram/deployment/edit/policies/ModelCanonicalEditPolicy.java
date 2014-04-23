@@ -1,5 +1,13 @@
-/*
+/**
+ * Copyright (c) 2014 CEA LIST.
  * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.edit.policies;
 
@@ -94,7 +102,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Set getFeaturesToSynchronize() {
+	protected Set<EStructuralFeature> getFeaturesToSynchronize() {
 		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getPackage_PackagedElement());
@@ -106,8 +114,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	@SuppressWarnings("rawtypes")
-	protected List getSemanticChildrenList() {
+	protected List<EObject> getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getPackage_1000SemanticChildren(viewObject);
@@ -229,8 +236,14 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	private Collection<IAdaptable> refreshConnections() {
 		Domain2Notation domain2NotationMap = new Domain2Notation();
 		Collection<UMLLinkDescriptor> linkDescriptors = collectAllLinks(getDiagram(), domain2NotationMap);
-		Collection existingLinks = new LinkedList(getDiagram().getEdges());
-		for(Iterator linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
+		List<View> edges = new ArrayList<View>();
+		for(Object edge : getDiagram().getEdges()) {
+			if(edge instanceof View) {
+				edges.add((View)edge);
+			}
+		}
+		Collection<View> existingLinks = new LinkedList<View>(edges);
+		for(Iterator<View> linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			Edge nextDiagramLink = (Edge)linksIterator.next();
 			int diagramLinkVisualID = UMLVisualIDRegistry.getVisualID(nextDiagramLink);
 			if(diagramLinkVisualID == -1 || diagramLinkVisualID == LinkDescriptorEditPart.VISUAL_ID) {
@@ -497,10 +510,10 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			break;
 		}
 		}
-		for(Iterator children = view.getChildren().iterator(); children.hasNext();) {
+		for(Iterator<?> children = view.getChildren().iterator(); children.hasNext();) {
 			result.addAll(collectAllLinks((View)children.next(), domain2NotationMap));
 		}
-		for(Iterator edges = view.getSourceEdges().iterator(); edges.hasNext();) {
+		for(Iterator<?> edges = view.getSourceEdges().iterator(); edges.hasNext();) {
 			result.addAll(collectAllLinks((View)edges.next(), domain2NotationMap));
 		}
 		return result;

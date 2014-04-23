@@ -1,15 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST) Amine.Elkouhen@cea.fr
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.deployment.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -26,9 +25,7 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.policies.GeneralizationIt
 /**
  * @generated
  */
-public class GeneralizationEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -58,7 +55,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof GeneralizationAppliedStereotypeEditPart) {
 			((GeneralizationAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
 		}
 		return false;
 	}
@@ -94,7 +90,9 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	}
 
 	/**
-	 * Creates figure for this edit part. Body of this method does not depend on settings in generation model
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
@@ -109,5 +107,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public GeneralizationFigure getPrimaryShape() {
 		return (GeneralizationFigure)getFigure();
 	}
-
 }

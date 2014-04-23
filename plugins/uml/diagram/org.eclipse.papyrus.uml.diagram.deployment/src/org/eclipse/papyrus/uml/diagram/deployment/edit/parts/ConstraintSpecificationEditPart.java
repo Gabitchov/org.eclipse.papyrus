@@ -1,15 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
+/**
+ * Copyright (c) 2014 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST) Amine.Elkouhen@cea.fr
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.deployment.edit.parts;
 
 import java.util.Collections;
@@ -64,7 +63,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditP
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry;
@@ -112,14 +110,12 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -196,7 +192,7 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 	/**
 	 * @generated
 	 */
-	public void setLabel(ConstraintFigure figure) {
+	public void setLabel(IFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -207,7 +203,7 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 	/**
 	 * @generated
 	 */
-	protected List getModelChildren() {
+	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -216,6 +212,13 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 	 */
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setParser(IParser parser) {
+		this.parser = parser;
 	}
 
 	/**
@@ -290,7 +293,7 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
+						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
 
 							public void run() {
 								setResult(parser.isValidEditString(new EObjectAdapter(element), (String)value));
@@ -301,7 +304,6 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -356,8 +358,8 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 	 * @generated
 	 */
 	protected void performDirectEdit() {
-		BusyIndicator.showWhile(Display.getDefault(), new Runnable() {
-			
+		BusyIndicator.showWhile(Display.getDefault(), new java.lang.Runnable() {
+
 			public void run() {
 				getManager().show();
 			}
@@ -388,9 +390,7 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -401,6 +401,8 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
 			updateExtendedEditorConfiguration();
 			if(configuration == null || configuration.getLanguage() == null) {
+				// Create default edit manager
+				setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
@@ -421,7 +423,6 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -429,7 +430,6 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -437,39 +437,11 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
-			// initialize the direct edit manager
-			try {
-				getEditingDomain().runExclusive(new Runnable() {
-
-					public void run() {
-						if(isActive() && isEditable()) {
-							if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-								Character initialChar = (Character)theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-								performDirectEdit(initialChar.charValue());
-							} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-								DirectEditRequest editRequest = (DirectEditRequest)theRequest;
-								performDirectEdit(editRequest.getLocation());
-							} else {
-								performDirectEdit();
-							}
-						}
-					}
-				});
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			initializeDirectEditManager(theRequest);
 			break;
 		default:
 			break;
 		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setParser(IParser parser) {
-		this.parser = parser;
 	}
 
 	/**
@@ -495,7 +467,7 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -625,8 +597,7 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -637,7 +608,6 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -667,7 +637,6 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -683,12 +652,11 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if(languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
+		if(languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 		} else if(IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
@@ -697,9 +665,7 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *        the direct edit request that starts the direct edit system
+	 * @param theRequest the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -772,7 +738,6 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -802,7 +767,6 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -811,7 +775,6 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -819,7 +782,5 @@ public class ConstraintSpecificationEditPart extends PapyrusCompartmentEditPart 
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

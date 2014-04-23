@@ -64,6 +64,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * The Class MultiDependencyHelper to manage adding branches or transformation of binary of n-ary
  * links
  */
+@SuppressWarnings("restriction")
 public class MultiDependencyHelper extends ElementHelper {
 
 	/**
@@ -90,7 +91,14 @@ public class MultiDependencyHelper extends ElementHelper {
 			NamedElement currentEnd = iteratorProp.next();
 
 			// look for if an editpart exist for this element
-			Collection<EditPart> editPartSet = viewer.getEditPartRegistry().values();
+			Collection<?> values = viewer.getEditPartRegistry().values();
+			Collection<EditPart> editPartSet = new ArrayList<EditPart>();
+			for(Object object : values) {
+				if(object instanceof EditPart) {
+					editPartSet.add((EditPart)object);
+				}
+			}
+
 			Iterator<EditPart> editPartIterator = editPartSet.iterator();
 
 			while(editPartIterator.hasNext() && sourceEditPart == null) {
@@ -146,8 +154,8 @@ public class MultiDependencyHelper extends ElementHelper {
 	public Command dropMutliDependency(Dependency dependency, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
 		CompoundCommand command = new CompoundCommand();
 		// 0. Obtain list of property to display
-		ArrayList<NamedElement> endToDisplaySource = new ArrayList(dependency.getClients());
-		ArrayList<NamedElement> endToDisplayTarget = new ArrayList(dependency.getSuppliers());
+		ArrayList<NamedElement> endToDisplaySource = new ArrayList<NamedElement>(dependency.getClients());
+		ArrayList<NamedElement> endToDisplayTarget = new ArrayList<NamedElement>(dependency.getSuppliers());
 		// 1. creation of the diamond of the Dependency
 		DependencyDiamonViewCreateCommand nodeCreation = new DependencyDiamonViewCreateCommand(getEditingDomain(), containerView, viewer, diagramPreferencesHint, location, new SemanticAdapter(dependency, null));
 		command.add(new ICommandProxy(nodeCreation));
