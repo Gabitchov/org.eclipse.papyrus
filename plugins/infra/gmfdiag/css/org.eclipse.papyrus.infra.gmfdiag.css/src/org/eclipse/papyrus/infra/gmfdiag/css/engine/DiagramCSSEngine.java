@@ -107,6 +107,7 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 		return (EObject)element; //GMFElement
 	}
 
+	@Override
 	public void handleChange(ChangeEvent event) {
 		resetCache();
 		DiagramHelper.setNeedsRefresh();
@@ -121,6 +122,11 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 
 		EObject notationElement = getNativeWidget(node);
 		View canonicalNotationElement = CSSDOMSemanticElementHelper.findPrimaryView(notationElement);
+
+		//Orphaned view
+		if(canonicalNotationElement.getDiagram() == null) {
+			return null;
+		}
 
 		//A View and a Compartment associated to the same Semantic Element
 		//must have the same XML Element. They share the same children.

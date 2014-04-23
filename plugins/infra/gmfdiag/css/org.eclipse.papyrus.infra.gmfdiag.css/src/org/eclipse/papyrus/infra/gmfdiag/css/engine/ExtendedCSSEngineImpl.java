@@ -28,6 +28,7 @@ import org.eclipse.e4.ui.css.core.dom.parsers.CSSParser;
 import org.eclipse.e4.ui.css.core.dom.parsers.CSSParserFactory;
 import org.eclipse.e4.ui.css.core.dom.parsers.ICSSParserFactory;
 import org.eclipse.e4.ui.css.core.dom.properties.converters.ICSSValueConverter;
+import org.eclipse.e4.ui.css.core.impl.dom.CSSStyleDeclarationImpl;
 import org.eclipse.e4.ui.css.core.impl.engine.AbstractCSSEngine;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSConditionFactoryImpl;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSSelectorFactoryImpl;
@@ -133,6 +134,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public CSSValue retrievePropertyValue(Object node, String property) {
 		if(node == null || property == null) {
 			return null;
@@ -149,6 +151,9 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 
 	private CSSStyleDeclaration getStyleDeclaration(Object node, String pseudo) {
 		Element element = getElement(node);
+		if(element == null) {
+			return new CSSStyleDeclarationImpl(null);
+		}
 		if(!declarationsCache.containsKey(element)) {
 			declarationsCache.put(element, getViewCSS().getComputedStyle(element, pseudo));
 		}
@@ -180,6 +185,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void resetCache() {
 		declarationsCache.clear();
 		availableClasses.clear();
@@ -257,6 +263,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	 * changed. Resets this engine and forwards the event to children
 	 * stylesheets
 	 */
+	@Override
 	public void styleSheetChanged(ExtendedCSSEngine owner) {
 		reset();
 	}
@@ -273,6 +280,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void addStyleSheetChangeListener(StyleSheetChangeListener listener) {
 		styleSheetListeners.add(listener);
 	}
@@ -280,6 +288,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void removeStyleSheetChangedListener(StyleSheetChangeListener listener) {
 		styleSheetListeners.remove(listener);
 	}
@@ -287,6 +296,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public ExtendedStyleSheetList getAllStylesheets() {
 		if(styleSheetsList == null) {
 			parseStyleSheets();
@@ -348,6 +358,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	 *
 	 * Source: GMFElementAdapter
 	 */
+	@Override
 	public void notifyChange(Element elementAdapter) {
 		resetCache(); //TODO: We should only refresh a subset of the cache
 
@@ -356,6 +367,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		DiagramHelper.setNeedsRefresh();
 		Display.getDefault().asyncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				DiagramHelper.refreshDiagrams(); //TODO: Contextual refresh
 			}
@@ -370,6 +382,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	 *
 	 * Source: GMFElementAdapter
 	 */
+	@Override
 	public void handleDispose(Object nativeWidget) {
 		super.handleWidgetDisposed(nativeWidget);
 	}
@@ -381,6 +394,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	 *
 	 * @see #resetCache()
 	 */
+	@Override
 	public void reapply() {
 		resetCache();
 	}

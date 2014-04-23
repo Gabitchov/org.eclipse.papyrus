@@ -36,7 +36,9 @@ public class IsDiagramContainer extends AbstractEditorContainerQuery implements 
 			while(roots.hasNext()) {
 				EObject root = roots.next();
 				if(root instanceof Diagram) {
-					return DiagramUtils.getOwner((Diagram)root) == source;
+					if (DiagramUtils.getOwner((Diagram)root) == source){
+						return true;
+					}	
 				}
 			}
 		}

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -60,9 +60,10 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 	}
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void activate() {
 		// retrieve the view and the element managed by the edit part
 		View view = (View)getHost().getModel();
@@ -102,7 +103,7 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 
 	/**
 	 * set the qualified name to display
-	 * 
+	 *
 	 * @param nodeNamedElementFigure
 	 *        the associated figure to the editpart
 	 */
@@ -112,7 +113,7 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 
 	/**
 	 * refresh the editpart with a depth for the qualified name
-	 * 
+	 *
 	 * @param nodeNamedElementFigure
 	 *        the associated figure to the editpart
 	 */
@@ -121,9 +122,10 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 	}
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = (View)getHost().getModel();
@@ -142,7 +144,7 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the associated named element to the editpart. it can return null
 	 *         if this not a named element
 	 */
@@ -159,7 +161,7 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 
 	/**
 	 * Gets the diagram event broker from the editing domain.
-	 * 
+	 *
 	 * @return the diagram event broker
 	 */
 	protected DiagramEventBroker getDiagramEventBroker() {
@@ -171,10 +173,15 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 	}
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void notifyChanged(Notification notification) {
+		if(getNamedElement() == null) {
+			return;
+		}
+
 		if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(notification.getFeatureID(NamedElement.class)) || notification.getNotifier() instanceof EAnnotation) {
 			refreshQualifiedNameDisplay();
 		} else if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(notification.getFeature())) {
@@ -184,8 +191,9 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 		} else if(notification.getFeature() instanceof EReference) {
 			EReference ref = (EReference)notification.getFeature();
 			if(ref.isContainment()) {
-				if(parentListeners.contains(notification.getNotifier()))
+				if(parentListeners.contains(notification.getNotifier())) {
 					removeParentListeners();
+				}
 				addParentListeners();
 				refreshQualifiedNameDisplay();
 			}
