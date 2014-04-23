@@ -23,7 +23,6 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.dialogs.Dialog;
@@ -232,7 +231,7 @@ public class CSSThemeEditionDialog extends Dialog {
 
 				// Create a style sheet reference and add it to list
 				StyleSheetReference reference = styleSheetsFactory.createStyleSheetReference();
-				reference.setPath(URI.createFileURI(((IFile)object).getLocation().toOSString()).toString());
+				reference.setPath(((IFile)object).getFullPath().toString());
 
 				selectedStyleSheetsList.add(reference);
 			}

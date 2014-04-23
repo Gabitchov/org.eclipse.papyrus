@@ -255,7 +255,7 @@ public class WorkspaceThemesHelper {
 
 			//Style sheets to add in theme
 			StyleSheetReference styleSheetsReference = styleSheetsFactory.createStyleSheetReference();
-			styleSheetsReference.setPath(URI.createFileURI(cssFile.getLocation().toOSString()).toString());
+			styleSheetsReference.setPath(cssFile.getFullPath().toString());
 			newTheme.getStylesheets().add(styleSheetsReference);
 		}
 		return newTheme;

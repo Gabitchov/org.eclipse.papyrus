@@ -239,7 +239,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 	protected Control createContents(Composite parent) {
 
 		// Create principal layout
-		mainContainer = new Composite(parent, SWT.BORDER);
+		mainContainer = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		layout.marginHeight = 0;
@@ -871,7 +871,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 
 			themesCombo.setInput(getFieldThemes());
 			themesCombo.setSelection(((Theme)createdObject).getId());
-			refreshPreferencePage();
+
 		}
 	}
 
@@ -879,14 +879,14 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 	 * Delete selected theme.
 	 */
 	private void deleteThemeAction() {
-		boolean confirm = MessageDialog.openConfirm(getShell(), "Delete CSS theme", "WARNING! Deletion will be difinitively.\nDo you really want to delete this theme ?");
+		boolean confirm = MessageDialog.openConfirm(getShell(), "Delete CSS theme", "WARNING! Deletion will be difinitive.\nDo you really want to delete this theme ?");
 		if(confirm) {
 			ThemeManager themeManager = ThemeManager.instance;
 			themeManager.delete(currentTheme);
 			String[][] fieldThemes = getFieldThemes();
 			themesCombo.setInput(fieldThemes);
 			currentTheme = themeManager.getTheme(fieldThemes[0][1]);
-			refreshPreferencePage();
+			themesCombo.setSelection(currentTheme.getId());
 		}
 
 	}
@@ -981,11 +981,8 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 				ThemeManager themeManager = ThemeManager.instance;
 
 				currentTheme = themeManager.getTheme(String.valueOf(newValue));
-				themesCombo.setInput(getFieldThemes());
-				themesCombo.setSelection(String.valueOf(newValue));
-
-
 				refreshPreferencePage();
+
 			}
 		}
 	}
@@ -1080,6 +1077,14 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 		ThemeManager.instance.clearDeletedThemes();
 
 		return super.performCancel();
+	}
+
+	@Override
+	protected void performDefaults() {
+		super.performDefaults();
+
+		currentTheme = ThemeManager.instance.getTheme(getPreferenceStore().getDefaultString(ThemePreferences.CURRENT_THEME));
+		refreshPreferencePage();
 	}
 
 

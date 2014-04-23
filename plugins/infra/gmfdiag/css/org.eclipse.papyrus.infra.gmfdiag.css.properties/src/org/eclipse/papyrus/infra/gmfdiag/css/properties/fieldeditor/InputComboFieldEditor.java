@@ -268,10 +268,12 @@ public class InputComboFieldEditor extends FieldEditor implements IDynamicFieldE
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.properties.fieldeditor.IDynamicFieldEditor#setSelection(java.lang.String)
 	 *
-	 * @param value
+	 * @param newValue
 	 */
-	public void setSelection(String value) {
-		updateComboForValue(value);
+	public void setSelection(String newValue) {
+		String oldValue = this.value;
+		updateComboForValue(newValue);
+		fireValueChanged(VALUE, oldValue, newValue);
 
 	}
 }

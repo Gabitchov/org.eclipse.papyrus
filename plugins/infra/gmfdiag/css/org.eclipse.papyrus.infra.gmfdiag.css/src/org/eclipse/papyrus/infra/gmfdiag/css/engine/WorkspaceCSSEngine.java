@@ -15,12 +15,14 @@ package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.e4.ui.css.core.dom.IElementProvider;
 import org.eclipse.e4.ui.css.core.engine.CSSElementContext;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.theme.ThemeManager;
+import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.w3c.dom.Element;
 
 /**
@@ -51,12 +53,19 @@ public class WorkspaceCSSEngine extends ExtendedCSSEngineImpl {
 		for(StyleSheet styleSheet : ThemeManager.instance.getWorkspaceStyleSheets()) {
 
 			if(styleSheet instanceof StyleSheetReference) {
-				try {
-					URL styleSheetURL = new URL(((StyleSheetReference)styleSheet).getPath());
-					styleSheetURLs.add(styleSheetURL);
-				} catch (MalformedURLException e) {
-					Activator.log.error(e);
+				IFile iFile = FileUtil.getIFile(((StyleSheetReference)styleSheet).getPath());
+				if(iFile != null) {
+					styleSheets.add(styleSheet);
+				} else {
+					try {
+
+						URL styleSheetURL = new URL(((StyleSheetReference)styleSheet).getPath());
+						styleSheetURLs.add(styleSheetURL);
+					} catch (MalformedURLException e) {
+						Activator.log.error(e);
+					}
 				}
+
 			} else {
 				styleSheets.add(styleSheet);
 			}
