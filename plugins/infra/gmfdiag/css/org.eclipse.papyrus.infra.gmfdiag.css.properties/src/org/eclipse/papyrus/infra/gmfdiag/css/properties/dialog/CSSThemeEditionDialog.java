@@ -11,9 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.dialog;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,6 +29,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -33,8 +37,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.PapyrusImageUtils;
 import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
+import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
@@ -42,14 +49,21 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
+import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
@@ -60,6 +74,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
@@ -72,6 +88,21 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  *
  */
 public class CSSThemeEditionDialog extends Dialog {
+
+	/** Title for icon selection dialog. */
+	private static final String ICON_SELECTION_DIALOG_TITLE = "Icon selection";
+
+	/** Label for workspace menu. */
+	private static final String WORKSPACE_MENU_LABEL = "Workspace";
+
+	/** Label for file system menu. */
+	private static final String FILESYSTEM_MENU_LABEL = "File System";
+
+	/** Id of workspace menu. */
+	private static final int WORKSPACE_MENU_ID = 23;
+
+	/** Id of of file system menu */
+	private static final int FILESYSTEM_MENU_ID = 22;
 
 	/** Id of edit button. */
 	private static final int EDIT_BUTTON_ID = 19;
@@ -97,6 +128,7 @@ public class CSSThemeEditionDialog extends Dialog {
 	/** Title for add action dialog. */
 	private static final String ADD_DIALOG_TITLE = "Style sheets selection";
 
+	/** Icon for edit action button. */
 	private static final Image EDIT_ICON = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.infra.widgets", "icons/Edit_12x12.gif").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/** Icon for delete action button. */
@@ -129,6 +161,12 @@ public class CSSThemeEditionDialog extends Dialog {
 	/** Title of dialog. */
 	private static final String DIALOG_TITLE = "CSS Theme Edition";
 
+	/** List of valid extensions for an icon. */
+	private List<String> filterExtensions = Arrays.asList(new String[]{ "*.*", "*.gif", "*.png" });
+
+	/** List of name associated to valid extensions. */
+	private List<String> filterNames = Arrays.asList(new String[]{ "All", "GIF Icon", "PNG Icon" });
+
 	/** Field for theme label. */
 	private Text themeLabelField = null;
 
@@ -152,6 +190,9 @@ public class CSSThemeEditionDialog extends Dialog {
 
 	/** Label provider for different composites. */
 	private LabelProvider labelProvider = null;
+
+	/** Menu for browse button. */
+	private Menu browseMenu = null;
 
 
 	/**
@@ -374,22 +415,184 @@ public class CSSThemeEditionDialog extends Dialog {
 
 			}
 		});
-		createButton(parent, BROWSE_BUTTON_ID, BROWSE_BUTTON_LABEL, false);
+		Button browseButton = createButton(parent, BROWSE_BUTTON_ID, BROWSE_BUTTON_LABEL, false);
+		browseMenu = new Menu(browseButton);
+
+		createMenuItem(browseMenu, FILESYSTEM_MENU_LABEL, FILESYSTEM_MENU_ID);
+		createMenuItem(browseMenu, WORKSPACE_MENU_LABEL, WORKSPACE_MENU_ID);
 	}
 
 	/**
-	 * Open file dialog to choose icon.
+	 * Create menu item.
+	 * 
+	 * @param parentMenu
+	 *        Menu where it will be added
+	 * @param label
+	 *        Label of menu item
+	 * @param menuId
 	 */
-	private void browseIconAction() {
-		FileDialog fileDialog = new FileDialog(getParentShell());
-		fileDialog.setFileName(iconPathfield.getText());
-		String resultDialog = fileDialog.open();
+	private void createMenuItem(Menu parentMenu, String label, int menuId) {
 
-		if(resultDialog != null) {
-			iconPathfield.setText(resultDialog);
-		}
+		MenuItem menuItem = new MenuItem(browseMenu, SWT.NONE);
+		menuItem.setText(label);
+		menuItem.setData(new Integer(menuId));
+		menuItem.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				menuSelected(((Integer)e.widget.getData()).intValue());
+			}
+		});
+
 
 	}
+
+	/**
+	 * Action to run when a menu is slected.
+	 * 
+	 * @param menuId
+	 *        ID of selected menu
+	 */
+	private void menuSelected(int menuId) {
+		switch(menuId) {
+		case WORKSPACE_MENU_ID:
+			browseWorkspace();
+			break;
+		case FILESYSTEM_MENU_ID:
+			browseFileSytem();
+			break;
+		default:
+			// Nothing to do 
+			break;
+		}
+	}
+
+	/**
+	 * Browse file in file system.
+	 */
+	private void browseFileSytem() {
+		File file = getFile(iconPathfield.getText());
+
+		FileDialog dialog = new FileDialog(getShell());
+		dialog.setText(ICON_SELECTION_DIALOG_TITLE);
+
+		dialog.setFileName(file.getAbsolutePath());
+		dialog.setFilterExtensions(filterExtensions.toArray(new String[filterExtensions.size()]));
+		dialog.setFilterNames(filterNames.toArray(new String[filterNames.size()]));
+		String result = dialog.open();
+		if(result == null) { //Cancel
+			return;
+		}
+		setResult(result);
+	}
+
+	/**
+	 * Browse file in workspace.
+	 */
+	private void browseWorkspace() {
+		LabelProviderService labelProviderService = new LabelProviderServiceImpl();
+		try {
+			labelProviderService.startService();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+		}
+
+		ILabelProvider labelProvider = labelProviderService.getLabelProvider();
+
+		IFile currentFile = getIFile(iconPathfield.getText());
+
+		TreeSelectorDialog dialog = new TreeSelectorDialog(getShell());
+		dialog.setTitle(ICON_SELECTION_DIALOG_TITLE);
+
+
+		WorkspaceContentProvider contentProvider = new WorkspaceContentProvider();
+
+
+		if(!(filterExtensions.isEmpty() || filterNames.isEmpty())) {
+			//The filters have been defined 
+			contentProvider.setExtensionFilters(new LinkedHashMap<String, String>()); //Reset the default filters
+
+			//Use our own filters
+			for(int i = 0; i < Math.min(filterNames.size(), filterExtensions.size()); i++) {
+				contentProvider.addExtensionFilter(filterExtensions.get(i), filterNames.get(i));
+			}
+		}
+
+		dialog.setContentProvider(contentProvider);
+		dialog.setLabelProvider(labelProvider);
+
+
+		if(currentFile != null && currentFile.exists()) {
+			dialog.setInitialSelections(new IFile[]{ currentFile });
+		}
+
+		int code = dialog.open();
+		if(code == Window.OK) {
+			Object[] result = dialog.getResult();
+			if(result.length > 0) {
+				Object file = result[0];
+				if(file instanceof IFile) {
+					setResult((IFile)file);
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * Sets the result.
+	 *
+	 * @param file
+	 *        the new result
+	 */
+	protected void setResult(IFile file) {
+		iconPathfield.setText(file.getFullPath().toString());
+	}
+
+	/**
+	 * Sets the result.
+	 *
+	 * @param file
+	 *        the new result
+	 */
+	protected void setResult(File file) {
+		iconPathfield.setText(file.getAbsolutePath());
+
+	}
+
+	/**
+	 * Sets the result.
+	 *
+	 * @param path
+	 *        the new result
+	 */
+	protected void setResult(String path) {
+		iconPathfield.setText(path);
+
+	}
+
+	/**
+	 * Gets the file.
+	 *
+	 * @param path
+	 *        the path
+	 * @return the i file
+	 */
+	protected IFile getIFile(String path) {
+		return FileUtil.getIFile(path);
+	}
+
+	/**
+	 * Gets the file.
+	 *
+	 * @param path
+	 *        the path
+	 * @return the file
+	 */
+	protected File getFile(String path) {
+		return FileUtil.getFile(path);
+	}
+
 
 	/**
 	 * Create theme style sheets part.
@@ -815,7 +1018,7 @@ public class CSSThemeEditionDialog extends Dialog {
 			deleteAction();
 			break;
 		case BROWSE_BUTTON_ID:
-			browseIconAction();
+			browseMenu.setVisible(true);
 			break;
 		case UP_BUTTON_ID:
 			upAction();

@@ -12,24 +12,32 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.preferences;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
@@ -44,10 +52,15 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
 import org.eclipse.papyrus.infra.gmfdiag.css.theme.ThemeManager;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
+import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -62,6 +75,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IWorkbench;
@@ -75,6 +90,21 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  */
 public class ThemePreferencesPage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
+	/** Title for icon selection dialog. */
+	private static final String ICON_SELECTION_DIALOG_TITLE = "Icon selection";
+
+	/** Label for workspace menu. */
+	private static final String WORKSPACE_MENU_LABEL = "Workspace";
+
+	/** Label for file system menu. */
+	private static final String FILE_SYSTEM_MENU_LABEL = "File System";
+
+	/** Id of workspace menu item. */
+	private static final int WORKSPACE_MENU_ID = 12;
+
+	/** Id of file system menu item. */
+	private static final int FILESYSTEM_MENU_ID = 25;
+
 	/** Label of theme field editor. */
 	private static final String CURRENT_THEME_FIELD_LABEL = "Current theme:";
 
@@ -85,7 +115,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 	private static final int DELETE_THEME_BUTTON_ID = 46;
 
 	/** Id of new button. */
-	private static final int NEW_BUTTON_ID = 45;
+	private static final int NEW_THEME_BUTTON_ID = 45;
 
 	/** Id of edit button. */
 	private static final int EDIT_BUTTON_ID = 19;
@@ -134,6 +164,12 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 	/** Text for theme name label. */
 	private static final String THEME_NAME_LABEL = "Label";
 
+	/** List of valid extensions for an icon. */
+	private List<String> filterExtensions = Arrays.asList(new String[]{ "*.*", "*.gif", "*.png" });
+
+	/** List of name associated to valid extensions. */
+	private List<String> filterNames = Arrays.asList(new String[]{ "All", "GIF Icon", "PNG Icon" });
+
 	/** Flag to define if refresh must be done. */
 	public boolean needsRefresh = false;
 
@@ -163,6 +199,9 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 
 	/** Editor factory for theme. */
 	private EcorePropertyEditorFactory editorFactory = new ThemePropertyEditorFactory(StylesheetsPackage.Literals.WORKSPACE_THEMES__THEMES);
+
+	/** Menu of icon browse button. */
+	private Menu browseMenu = null;
 
 
 	/**
@@ -200,7 +239,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 	protected Control createContents(Composite parent) {
 
 		// Create principal layout
-		mainContainer = new Composite(parent, SWT.NULL);
+		mainContainer = new Composite(parent, SWT.BORDER);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		layout.marginHeight = 0;
@@ -238,10 +277,12 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 		layout.marginLeft = 0;
 		layout.marginRight = 0;
 		buttonsPanel.setLayout(layout);
+		buttonsPanel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
 
 		// Add buttons to delete and add theme
-		createButton(buttonsPanel, NEW_BUTTON_ID, ADD_ICON, null);
+		createButton(buttonsPanel, NEW_THEME_BUTTON_ID, ADD_ICON, null);
 		createButton(buttonsPanel, DELETE_THEME_BUTTON_ID, DELETE_ICON, null);
+
 	}
 
 	/**
@@ -311,23 +352,183 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 
 			}
 		});
-		createButton(parent, BROWSE_BUTTON_ID, null, BROWSE_BUTTON_LABEL);
+
+		// Create browse button and its menu
+		Button browseButton = createButton(parent, BROWSE_BUTTON_ID, null, BROWSE_BUTTON_LABEL);
+		browseMenu = new Menu(browseButton);
+		createMenuItem(browseMenu, FILE_SYSTEM_MENU_LABEL, FILESYSTEM_MENU_ID);
+		createMenuItem(browseMenu, WORKSPACE_MENU_LABEL, WORKSPACE_MENU_ID);
+	}
+
+	/**
+	 * Create menu item.
+	 * 
+	 * @param parentMenu
+	 *        Menu where it will be added
+	 * @param label
+	 *        Label of menu item
+	 * @param menuId
+	 */
+	private void createMenuItem(Menu parentMenu, String label, int menuId) {
+
+		MenuItem menuItem = new MenuItem(parentMenu, SWT.NONE);
+		menuItem.setText(label);
+		menuItem.setData(new Integer(menuId));
+		menuItem.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				menuSelected(((Integer)e.widget.getData()).intValue());
+			}
+		});
+
+
+	}
+
+	/**
+	 * Action to run when a menu is slected.
+	 * 
+	 * @param menuId
+	 *        ID of selected menu
+	 */
+	private void menuSelected(int menuId) {
+		switch(menuId) {
+		case WORKSPACE_MENU_ID:
+			browseWorkspace();
+			break;
+		case FILESYSTEM_MENU_ID:
+			browseFileSytem();
+			break;
+		default:
+			// Nothing to do 
+			break;
+		}
+	}
+
+	/**
+	 * Browse file in file system.
+	 */
+	private void browseFileSytem() {
+		File file = getFile(iconPathfield.getText());
+
+		FileDialog dialog = new FileDialog(getShell());
+		dialog.setText(ICON_SELECTION_DIALOG_TITLE);
+
+		dialog.setFileName(file.getAbsolutePath());
+		dialog.setFilterExtensions(filterExtensions.toArray(new String[filterExtensions.size()]));
+		dialog.setFilterNames(filterNames.toArray(new String[filterNames.size()]));
+		String result = dialog.open();
+		if(result == null) { //Cancel
+			return;
+		}
+		setResult(result);
+	}
+
+	/**
+	 * Browse file in workspace.
+	 */
+	private void browseWorkspace() {
+		LabelProviderService labelProviderService = new LabelProviderServiceImpl();
+		try {
+			labelProviderService.startService();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+		}
+
+		ILabelProvider labelProvider = labelProviderService.getLabelProvider();
+
+		IFile currentFile = getIFile(iconPathfield.getText());
+
+		TreeSelectorDialog dialog = new TreeSelectorDialog(getShell());
+		dialog.setTitle(ICON_SELECTION_DIALOG_TITLE);
+
+
+		WorkspaceContentProvider contentProvider = new WorkspaceContentProvider();
+
+
+		if(!(filterExtensions.isEmpty() || filterNames.isEmpty())) {
+			//The filters have been defined 
+			contentProvider.setExtensionFilters(new LinkedHashMap<String, String>()); //Reset the default filters
+
+			//Use our own filters
+			for(int i = 0; i < Math.min(filterNames.size(), filterExtensions.size()); i++) {
+				contentProvider.addExtensionFilter(filterExtensions.get(i), filterNames.get(i));
+			}
+		}
+
+		dialog.setContentProvider(contentProvider);
+		dialog.setLabelProvider(labelProvider);
+
+
+		if(currentFile != null && currentFile.exists()) {
+			dialog.setInitialSelections(new IFile[]{ currentFile });
+		}
+
+		int code = dialog.open();
+		if(code == Window.OK) {
+			Object[] result = dialog.getResult();
+			if(result.length > 0) {
+				Object file = result[0];
+				if(file instanceof IFile) {
+					setResult((IFile)file);
+				}
+			}
+		}
 	}
 
 
+	/**
+	 * Sets the result.
+	 *
+	 * @param file
+	 *        the new result
+	 */
+	protected void setResult(IFile file) {
+		iconPathfield.setText(file.getFullPath().toString());
+	}
 
 	/**
-	 * Open file dialog to choose icon.
+	 * Sets the result.
+	 *
+	 * @param file
+	 *        the new result
 	 */
-	private void browseIconAction() {
-		FileDialog fileDialog = new FileDialog(getShell());
-		fileDialog.setFileName(iconPathfield.getText());
-		String resultDialog = fileDialog.open();
+	protected void setResult(File file) {
+		iconPathfield.setText(file.getAbsolutePath());
 
-		if(resultDialog != null) {
-			iconPathfield.setText(resultDialog);
-		}
+	}
 
+	/**
+	 * Sets the result.
+	 *
+	 * @param path
+	 *        the new result
+	 */
+	protected void setResult(String path) {
+		iconPathfield.setText(path);
+
+	}
+
+	/**
+	 * Gets the file.
+	 *
+	 * @param path
+	 *        the path
+	 * @return the i file
+	 */
+	protected IFile getIFile(String path) {
+		return FileUtil.getIFile(path);
+	}
+
+	/**
+	 * Gets the file.
+	 *
+	 * @param path
+	 *        the path
+	 * @return the file
+	 */
+	protected File getFile(String path) {
+		return FileUtil.getFile(path);
 	}
 
 	/**
@@ -430,7 +631,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 			button.setImage(icon);
 		}
 		buttonsMap.put(new Integer(id), button);
-		//setButtonLayoutData(button);
+		setButtonLayoutData(button);
 		return button;
 	}
 
@@ -448,7 +649,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 			deleteAction();
 			break;
 		case BROWSE_BUTTON_ID:
-			browseIconAction();
+			browseMenu.setVisible(true);
 			break;
 		case UP_BUTTON_ID:
 			upAction();
@@ -459,7 +660,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 		case EDIT_BUTTON_ID:
 			editAction();
 			break;
-		case NEW_BUTTON_ID:
+		case NEW_THEME_BUTTON_ID:
 			addThemeAction();
 			break;
 		case DELETE_THEME_BUTTON_ID:
@@ -661,7 +862,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 	private void addThemeAction() {
 
 		ThemeManager themeManager = ThemeManager.instance;
-		Object createdObject = editorFactory.createObject(buttonsMap.get(NEW_BUTTON_ID), themeManager.getWorkspaceThemesPreferences());
+		Object createdObject = editorFactory.createObject(buttonsMap.get(NEW_THEME_BUTTON_ID), themeManager.getWorkspaceThemesPreferences());
 
 		if(createdObject instanceof Theme) {
 
@@ -678,12 +879,15 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 	 * Delete selected theme.
 	 */
 	private void deleteThemeAction() {
-		ThemeManager themeManager = ThemeManager.instance;
-		themeManager.delete(currentTheme);
-		String[][] fieldThemes = getFieldThemes();
-		themesCombo.setInput(fieldThemes);
-		currentTheme = themeManager.getTheme(fieldThemes[0][1]);
-		refreshPreferencePage();
+		boolean confirm = MessageDialog.openConfirm(getShell(), "Delete CSS theme", "WARNING! Deletion will be difinitively.\nDo you really want to delete this theme ?");
+		if(confirm) {
+			ThemeManager themeManager = ThemeManager.instance;
+			themeManager.delete(currentTheme);
+			String[][] fieldThemes = getFieldThemes();
+			themesCombo.setInput(fieldThemes);
+			currentTheme = themeManager.getTheme(fieldThemes[0][1]);
+			refreshPreferencePage();
+		}
 
 	}
 
@@ -744,8 +948,10 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 		case UP_BUTTON_ID:
 		case DOWN_BUTTON_ID:
 		case EDIT_BUTTON_ID:
+		case DELETE_THEME_BUTTON_ID:
+		case NEW_THEME_BUTTON_ID:
 			layoutData = new GridData(SWT.FILL, SWT.FILL, false, false);
-			button.setLayoutData(data);
+			button.setLayoutData(layoutData);
 			break;
 		default:
 			layoutData = super.setButtonLayoutData(button);

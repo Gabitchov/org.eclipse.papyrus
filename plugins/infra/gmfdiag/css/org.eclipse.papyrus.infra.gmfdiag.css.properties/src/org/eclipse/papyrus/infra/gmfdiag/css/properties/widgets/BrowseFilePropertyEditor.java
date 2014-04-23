@@ -53,6 +53,24 @@ public class BrowseFilePropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
+	 * Set label to browse button.
+	 * 
+	 * @param buttonLabel
+	 *        Label to set
+	 */
+	public void setButtonLabel(String buttonLabel) {
+		browseFileEditor.setButtonLabel(buttonLabel);
+	}
+
+
+	/**
+	 * @return Label of browse button
+	 */
+	public String getButtonLabel() {
+		return browseFileEditor.getButtonLabel();
+	}
+
+	/**
 	 * Creates the browse file editor.
 	 *
 	 * @param parent
