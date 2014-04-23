@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.editor;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.contexts.DataContextPackage;
 import org.eclipse.papyrus.views.properties.contexts.View;
@@ -24,7 +24,7 @@ import org.eclipse.ui.internal.misc.StringMatcher;
  * A Filter for the UIEditor. The Filter can match Views and DataContextElements
  * An object is matched if it directly matches the filter, or if one of its parents
  * match it, or if one of his children (at any level) match it.
- * 
+ *
  * @author Camille Letavernier
  */
 public class ViewFilter extends ViewerFilter {
@@ -33,7 +33,7 @@ public class ViewFilter extends ViewerFilter {
 
 	/**
 	 * Sets the pattern for this filter
-	 * 
+	 *
 	 * @param pattern
 	 */
 	public void setPattern(String pattern) {
@@ -46,21 +46,20 @@ public class ViewFilter extends ViewerFilter {
 			return true;
 		}
 
-		if(element instanceof IAdaptable) {
-			EObject eObject = (EObject)((IAdaptable)element).getAdapter(EObject.class);
-			if(eObject != null) {
-				if(eObject instanceof View) {
-					String viewName = ((View)eObject).getName();
-					if(viewName == null) {
-						return true;
-					}
-					return matcher.match(viewName);
-				} else if(eObject instanceof DataContextPackage) {
-					//FIXME : The filter doesn't work correctly for displaying a DataContextElement in a Package
-					return select((DataContextPackage)eObject);
-				} else if(eObject instanceof DataContextElement) {
-					return select((DataContextElement)eObject);
+		EObject semantic = EMFHelper.getEObject(element);
+
+		if(semantic != null) {
+			if(semantic instanceof View) {
+				String viewName = ((View)semantic).getName();
+				if(viewName == null) {
+					return true;
 				}
+				return matcher.match(viewName);
+			} else if(semantic instanceof DataContextPackage) {
+				//FIXME : The filter doesn't work correctly for displaying a DataContextElement in a Package
+				return select((DataContextPackage)semantic);
+			} else if(semantic instanceof DataContextElement) {
+				return select((DataContextElement)semantic);
 			}
 		}
 
@@ -70,7 +69,7 @@ public class ViewFilter extends ViewerFilter {
 	/**
 	 * An element is displayed if its name matches the filter, or if one of its
 	 * children's or parent's name match it
-	 * 
+	 *
 	 * @param dataContextPackage
 	 * @return
 	 */

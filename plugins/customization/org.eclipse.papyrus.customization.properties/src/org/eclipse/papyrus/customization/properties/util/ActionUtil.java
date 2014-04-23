@@ -16,7 +16,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -46,12 +45,8 @@ public class ActionUtil {
 	public static Collection<Object> getAdaptedSelection(Collection<? extends Object> selection) {
 		Collection<Object> newSelection = new LinkedList<Object>();
 		for(Object o : selection) {
-			if(o instanceof IAdaptable) {
-				EObject eObject = (EObject)((IAdaptable)o).getAdapter(EObject.class);
-				newSelection.add(eObject);
-			} else {
-				newSelection.add(o);
-			}
+			EObject semantic = EMFHelper.getEObject(o);
+			newSelection.add(semantic == null ? o : semantic);
 		}
 		return newSelection;
 	}
@@ -78,11 +73,7 @@ public class ActionUtil {
 			while(it.hasNext()) {
 				Object object = it.next();
 				EObject eObject = EMFHelper.getEObject(object);
-				if(eObject != null) {
-					newSelection.add(eObject);
-				} else {
-					newSelection.add(object);
-				}
+				newSelection.add(eObject == null ? object : eObject);
 			}
 
 			StructuredSelection selection = new StructuredSelection(newSelection);
