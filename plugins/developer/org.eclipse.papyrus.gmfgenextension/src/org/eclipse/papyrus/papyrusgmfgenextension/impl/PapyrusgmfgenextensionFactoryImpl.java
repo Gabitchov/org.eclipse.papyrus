@@ -100,6 +100,7 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 			case PapyrusgmfgenextensionPackage.EXTERNAL_ELEMENT_TYPES_LIBRARY: return createExternalElementTypesLibrary();
 			case PapyrusgmfgenextensionPackage.EXTERNAL_METAMODEL_TYPE: return createExternalMetamodelType();
 			case PapyrusgmfgenextensionPackage.GENERATE_USING_ELEMENT_TYPE_CREATION_COMMAND: return createGenerateUsingElementTypeCreationCommand();
+			case PapyrusgmfgenextensionPackage.CUSTOM_DIAGRAM_UPDATER_SINGLETON: return createCustomDiagramUpdaterSingleton();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -343,6 +344,16 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public GenerateUsingElementTypeCreationCommand createGenerateUsingElementTypeCreationCommand() {
 		GenerateUsingElementTypeCreationCommandImpl generateUsingElementTypeCreationCommand = new GenerateUsingElementTypeCreationCommandImpl();
 		return generateUsingElementTypeCreationCommand;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CustomDiagramUpdaterSingleton createCustomDiagramUpdaterSingleton() {
+		CustomDiagramUpdaterSingletonImpl customDiagramUpdaterSingleton = new CustomDiagramUpdaterSingletonImpl();
+		return customDiagramUpdaterSingleton;
 	}
 
 	/**

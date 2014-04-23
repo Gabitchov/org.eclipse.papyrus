@@ -243,6 +243,15 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	GenerateUsingElementTypeCreationCommand createGenerateUsingElementTypeCreationCommand();
 
 	/**
+	 * Returns a new object of class '<em>Custom Diagram Updater Singleton</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Custom Diagram Updater Singleton</em>'.
+	 * @generated
+	 */
+	CustomDiagramUpdaterSingleton createCustomDiagramUpdaterSingleton();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
