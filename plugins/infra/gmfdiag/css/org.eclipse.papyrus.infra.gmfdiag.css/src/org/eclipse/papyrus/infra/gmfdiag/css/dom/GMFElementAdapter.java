@@ -194,6 +194,12 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 */
 	public GMFElementAdapter(View view, ExtendedCSSEngine engine) {
 		super(view, engine);
+
+		//Bug 431694: Don't instantiate an ElementAdapter for an Orphaned view
+		if(view == null || view.getDiagram() == null) {
+			throw new IllegalArgumentException("Cannot handle orphaned view : " + view);
+		}
+
 		notationElement = view;
 		listenNotationElement();
 	}
@@ -257,6 +263,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * Returns the first parent Notation Element representing a different semantic object
 	 * than self.
 	 */
+	@Override
 	public Node getParentNode() {
 		if(parentNode == null) {
 			View gmfElement = notationElement;
@@ -289,6 +296,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public NodeList getChildNodes() {
 		return this;
 	}
@@ -296,6 +304,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getNamespaceURI() {
 		if(namespaceURI == null) {
 			namespaceURI = EMFHelper.getQualifiedName(getSemanticElement().eClass().getEPackage(), ".");
@@ -306,6 +315,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getCSSId() {
 		return getCSSID(notationElement);
 	}
@@ -313,6 +323,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getCSSClass() {
 		return getCSSClass(notationElement);
 	}
@@ -320,6 +331,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getCSSStyle() {
 		return getCSSStyle(notationElement);
 	}
@@ -460,6 +472,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Node item(int index) {
 		return getChildren()[index];
 	}
@@ -467,6 +480,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public int getLength() {
 		return getChildren().length;
 	}
@@ -503,20 +517,20 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 		/*
 		 * <--------------------
-		 *
+		 * 
 		 * //Allows both notations Class > Property and Class > Compartment > Property
-		 *
+		 * 
 		 * //FIXME: The Tree is computed through "getParentNode". "getChildren" is barely used. Moreover,
 		 * //there is a mapping between Notation element and DOM element, which makes it impossible to associate the same
 		 * //notation element to different DOM elements.
-		 *
+		 * 
 		 * // for(EObject child : notationElement.eContents()) {
 		 * // if(child instanceof BasicCompartment) {
 		 * // //Add the Compartment's children to this' children
 		 * // childList.addAll(Arrays.asList(computeChildren((View)child, engine)));
 		 * // }
 		 * // }
-		 *
+		 * 
 		 * -------------------->
 		 */
 
@@ -560,6 +574,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * Source: cssStyleListener
 	 */
 	//Change incoming from one of the cssCustomStyles (class, id, local style or diagram stylesheets)
+	@Override
 	public void handleChange(ChangeEvent event) {
 		if(notationElement instanceof CSSDiagram) {
 			//TODO: Use a finer grained event (We should reset only when the
@@ -678,9 +693,10 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.notation.StatefulView#addStates(java.util.Set)
 	 */
+	@Override
 	public void addStates(Set<String> states) {
 		for(String state : states) {
 			this.pseudoInstances.add(new StringIgnoreCase(state));
@@ -690,9 +706,10 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.notation.StatefulView#removeStates(java.util.Set)
 	 */
+	@Override
 	public void removeStates(Set<String> states) {
 		for(String state : states) {
 			this.pseudoInstances.remove(new StringIgnoreCase(state));
@@ -700,6 +717,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		getEngine().notifyChange(this);
 	}
 
+	@Override
 	public Set<String> getStates() {
 		Set<String> result = new HashSet<String>();
 		for(StringIgnoreCase element : pseudoInstances) {
