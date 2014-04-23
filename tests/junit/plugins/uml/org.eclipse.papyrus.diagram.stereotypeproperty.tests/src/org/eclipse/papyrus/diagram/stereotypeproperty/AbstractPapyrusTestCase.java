@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,8 +14,6 @@
 package org.eclipse.papyrus.diagram.stereotypeproperty;
 
 import java.io.ByteArrayInputStream;
-
-import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -33,6 +31,7 @@ import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
@@ -50,7 +49,7 @@ import org.junit.Before;
  * The Class AbstractPapyrusTestCase.
  */
 @SuppressWarnings("deprecation")
-public abstract class AbstractPapyrusTestCase extends TestCase {
+public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 
 
 	/** The Constant CREATION. */
@@ -119,14 +118,11 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 
 	/**
 	 * @see junit.framework.TestCase#setUp()
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Before
-	@Override
 	protected void setUp() throws Exception {
-
-		super.setUp();
 		projectCreation();
 
 		//		while( !(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()instanceof IMultiDiagramEditor)){}
@@ -136,7 +132,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 
 	/**
 	 * Gets the root view.
-	 * 
+	 *
 	 * @return the root view
 	 */
 	protected View getRootView() {
@@ -145,7 +141,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 
 	/**
 	 * Gets the root semantic model.
-	 * 
+	 *
 	 * @return the root semantic model
 	 */
 	protected Element getRootSemanticModel() {
@@ -154,11 +150,10 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 
 	/**
 	 * @see junit.framework.TestCase#tearDown()
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@After
-	@Override
 	protected void tearDown() throws Exception {
 		papyrusEditor.doSave(new NullProgressMonitor());
 		//diResourceSet.save( new NullProgressMonitor());
@@ -172,13 +167,11 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 		});
 
 		project.delete(true, new NullProgressMonitor());
-
-		super.tearDown();
 	}
 
 	/**
 	 * Gets the diagram edit part.
-	 * 
+	 *
 	 * @return the diagram edit part
 	 */
 	protected DiagramEditPart getDiagramEditPart() {
