@@ -571,16 +571,14 @@
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.deployment.Model_2010"
                name="%metatype.name.Model_2010"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               edithelperadvice="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
             <param name="semanticHint" value="2010"/>
          </specializationType>
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.deployment.Package_2009"
                name="%metatype.name.Package_2009"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               edithelperadvice="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
             <param name="semanticHint" value="2009"/>
          </specializationType>
@@ -657,8 +655,7 @@
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.deployment.Model_49"
                name="%metatype.name.Model_49"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               edithelperadvice="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
             <param name="semanticHint" value="49"/>
          </specializationType>
@@ -673,8 +670,7 @@
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.deployment.Device_16"
                name="%metatype.name.Device_16"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               edithelperadvice="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.papyrus.uml.diagram.deployment.Device_2003"/>
             <param name="semanticHint" value="16"/>
          </specializationType>
@@ -683,8 +679,7 @@
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.deployment.Device_44"
                name="%metatype.name.Device_44"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               edithelperadvice="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.papyrus.uml.diagram.deployment.Device_2003"/>
             <param name="semanticHint" value="44"/>
          </specializationType>

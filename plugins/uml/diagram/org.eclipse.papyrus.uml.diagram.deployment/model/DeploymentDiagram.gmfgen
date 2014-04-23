@@ -10,7 +10,7 @@
       <domainDiagramElement href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
       <childNodes visualID="49" editPartClassName="ModelEditPartCN" itemSemanticEditPolicyClassName="ModelItemSemanticEditPolicyCN" canonicalEditPolicyClassName="ModelCanonicalEditPolicyCN" compartments="/0/@diagram/@compartments.6" graphicalNodeEditPolicyClassName="ModelGraphicalNodeEditPolicyCN" createCommandClassName="ModelCreateCommandCN" containers="/0/@diagram/@compartments.0 /0/@diagram/@compartments.6 /0/@diagram/@compartments.1">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Model_49" displayName="Model" editHelperAdviceClassName=""/>
+        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Model_49" displayName="Model" />
         <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure">
           <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="150" height="150"/>
         </viewmap>
@@ -72,7 +72,7 @@
       </childNodes>
       <childNodes visualID="16" editPartClassName="DeviceEditPartCN" itemSemanticEditPolicyClassName="DeviceItemSemanticEditPolicyCN" canonicalEditPolicyClassName="DeviceCanonicalEditPolicyCN" graphicalNodeEditPolicyClassName="DeviceGraphicalNodeEditPolicyCN" createCommandClassName="DeviceCreateCommandCN" containers="/0/@diagram/@compartments.4 /0/@diagram/@compartments.10 /0/@diagram/@compartments.2 /0/@diagram/@compartments.8">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Device_16" displayName="Device" metamodelType="/0/@diagram/@topLevelNodes.6/@elementType" editHelperAdviceClassName=""/>
+        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Device_16" displayName="Device" metamodelType="/0/@diagram/@topLevelNodes.6/@elementType" />
         <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.deployment.custom.figure.nodes.DeviceFigure">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true" fixedBackground="true"/>
           <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="150" height="100"/>
@@ -107,7 +107,7 @@
       </childNodes>
       <childNodes visualID="44" editPartClassName="NestedDeviceEditPartCN" itemSemanticEditPolicyClassName="NestedDeviceItemSemanticEditPolicyCN" canonicalEditPolicyClassName="NestedDeviceCanonicalEditPolicyCN" compartments="/0/@diagram/@compartments.8" graphicalNodeEditPolicyClassName="NestedDeviceGraphicalNodeEditPolicyCN" createCommandClassName="NestedDeviceCreateCommandCN" containers="/0/@diagram/@compartments.1 /0/@diagram/@compartments.7 /0/@diagram/@compartments.0 /0/@diagram/@compartments.6">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Device_44" displayName="Device" metamodelType="/0/@diagram/@topLevelNodes.6/@elementType" editHelperAdviceClassName=""/>
+        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Device_44" displayName="Device" metamodelType="/0/@diagram/@topLevelNodes.6/@elementType" />
         <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.deployment.custom.figure.nodes.DeviceFigure">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true" fixedBackground="true"/>
           <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="150" height="100"/>
@@ -478,7 +478,7 @@
       </topLevelNodes>
       <topLevelNodes visualID="2010" compartments="/0/@diagram/@compartments.0">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Model_2010" displayName="Model" editHelperAdviceClassName=""/>
+        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Model_2010" displayName="Model" />
         <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure">
           <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="150" height="150"/>
         </viewmap>
@@ -509,7 +509,7 @@
       </topLevelNodes>
       <topLevelNodes visualID="2009" editPartClassName="PackageEditPart" itemSemanticEditPolicyClassName="PackageItemSemanticEditPolicy" canonicalEditPolicyClassName="PackageCanonicalEditPolicy" compartments="/0/@diagram/@compartments.1" graphicalNodeEditPolicyClassName="PackageGraphicalNodeEditPolicy" createCommandClassName="PackageCreateCommand">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType xsi:type="gmfgen:SpecializationType" editHelperAdviceClassName=""/>
+        <elementType xsi:type="gmfgen:SpecializationType" />
         <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure">
           <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="150" height="150"/>
         </viewmap>
