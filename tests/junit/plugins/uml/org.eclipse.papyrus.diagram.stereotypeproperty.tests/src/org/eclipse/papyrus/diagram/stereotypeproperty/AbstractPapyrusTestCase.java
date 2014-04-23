@@ -122,7 +122,7 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	 * @throws Exception
 	 */
 	@Before
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		projectCreation();
 
 		//		while( !(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()instanceof IMultiDiagramEditor)){}
@@ -154,7 +154,7 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	 * @throws Exception
 	 */
 	@After
-	protected void tearDown() throws Exception {
+	public void tearDown() throws Exception {
 		papyrusEditor.doSave(new NullProgressMonitor());
 		//diResourceSet.save( new NullProgressMonitor());
 		//diagramEditor.close(true);

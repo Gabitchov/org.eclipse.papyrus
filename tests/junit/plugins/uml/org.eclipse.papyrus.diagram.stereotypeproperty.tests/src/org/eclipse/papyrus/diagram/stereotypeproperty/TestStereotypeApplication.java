@@ -188,7 +188,7 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 
 	@Before
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		RegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("TestProfile");
 		final Model root = ((Model)getDiagramEditPart().resolveSemanticElement());
