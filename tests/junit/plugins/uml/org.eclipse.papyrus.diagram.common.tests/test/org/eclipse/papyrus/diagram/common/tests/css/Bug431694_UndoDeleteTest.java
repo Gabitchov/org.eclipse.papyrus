@@ -28,6 +28,8 @@ import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSHelper;
+import org.eclipse.papyrus.infra.gmfdiag.css.theme.Theme;
+import org.eclipse.papyrus.infra.gmfdiag.css.theme.ThemeManager;
 import org.eclipse.papyrus.junit.utils.DiagramUtils;
 import org.eclipse.papyrus.junit.utils.classification.FailingTest;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
@@ -43,6 +45,10 @@ import org.osgi.framework.Bundle;
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=431694
  */
 public class Bug431694_UndoDeleteTest extends AbstractEditorTest {
+
+	private static final String PACKAGE1 = "Package1";
+
+	private static final String CLASS_NAMED_STYLE_FONT = "ClassNamedStyleFont";
 
 	private static final String DIAGRAM_MAIN_NAME = "Main";
 
@@ -75,7 +81,7 @@ public class Bug431694_UndoDeleteTest extends AbstractEditorTest {
 
 		// check css is working 
 		Assert.assertTrue("CSS is not supported on the given model", CSSHelper.isCSSSupported(getModelSet()));
-		Shape package1View = DiagramUtils.findShape(mainDiagram, "Package1");
+		Shape package1View = DiagramUtils.findShape(mainDiagram, PACKAGE1);
 		if(package1View == null) {
 			return;
 		}
@@ -91,17 +97,69 @@ public class Bug431694_UndoDeleteTest extends AbstractEditorTest {
 		Assert.assertNotEquals("This should not be an unexecutable command", command, UnexecutableCommand.INSTANCE);
 		assertTrue("command should be executable", command.canExecute());
 		execute(command);
-		
+		Assert.assertNull("There should be no shape for this element: "+PACKAGE1, DiagramUtils.findShape(mainDiagram, PACKAGE1));
+				
 		// undo
 		undo();
 
 		// check css on P1
-		Shape newPackage1View = DiagramUtils.findShape(mainDiagram, "Package1");
-		if(newPackage1View == null) {
-			return;
-		}
+		Shape newPackage1View = DiagramUtils.findShape(mainDiagram, PACKAGE1);
+		Assert.assertNotNull("There should be a shape for this element: "+PACKAGE1, newPackage1View);
 		checkPackage1CSS(newPackage1View);
 		
+	}
+	
+	/**
+	 * Test with a {@link Package} with a css style already applied
+	 */
+	@Test
+	@FailingTest("Bug 431694")
+	public void testDeleteOnClassNamedStyleFont() throws Exception {
+		// check css on the class ClassNamedStyleFont
+		Assert.assertNotNull("RootModel is null", getRootUMLModel());
+		
+		Diagram mainDiagram = DiagramUtils.getNotationDiagram(getModelSet(), DIAGRAM_MAIN_NAME);
+		getPageManager().openPage(mainDiagram);
+		Assert.assertEquals("current opened diagram is not the expected one", mainDiagram.getName(), DIAGRAM_MAIN_NAME);
+
+		// check css is working 
+		Assert.assertTrue("CSS is not supported on the given model", CSSHelper.isCSSSupported(getModelSet()));
+		Shape ClassNamedStyleFontView = DiagramUtils.findShape(mainDiagram, CLASS_NAMED_STYLE_FONT);
+		if(ClassNamedStyleFontView == null) {
+			return;
+		}
+		checkClassNamedStyleFontCSS(ClassNamedStyleFontView);
+		
+		// delete ClassNamedStyleFont
+		// get edit part for this view and send a delete request
+		IGraphicalEditPart ClassNamedStyleFontEditPart = DiagramUtils.findEditPartforView(editor, ClassNamedStyleFontView, IGraphicalEditPart.class);
+		Assert.assertNotNull("Impossible to find the edit part", ClassNamedStyleFontEditPart);
+		Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
+		Command command = ClassNamedStyleFontEditPart.getCommand(deleteViewRequest);
+		assertNotNull("Impossible to create a delete command", command);
+		Assert.assertNotEquals("This should not be an unexecutable command", command, UnexecutableCommand.INSTANCE);
+		assertTrue("command should be executable", command.canExecute());
+		execute(command);
+		Assert.assertNull("There should be no shape for this element: "+CLASS_NAMED_STYLE_FONT, DiagramUtils.findShape(mainDiagram, CLASS_NAMED_STYLE_FONT));
+		
+		// undo
+		undo();
+
+		// check css on the new view for ClassNamedStyleFont
+		Shape newClassNamedStyleFontView = DiagramUtils.findShape(mainDiagram, CLASS_NAMED_STYLE_FONT);
+		Assert.assertNotNull("There should be a shape for this element: "+CLASS_NAMED_STYLE_FONT, newClassNamedStyleFontView);
+		checkClassNamedStyleFontCSS(newClassNamedStyleFontView);
+		
+	}
+
+	private void checkClassNamedStyleFontCSS(Shape classNamedStyleFontView) {
+		// default style: papyrus theme 
+		Assert.assertEquals("Invalid Fill color (Default): "+DiagramUtils.integerToRGBString(classNamedStyleFontView.getFillColor()), DiagramUtils.rgb(195, 215, 221), classNamedStyleFontView.getFillColor()); // Papyrus Theme = 
+		Assert.assertEquals("Gradient should be default (vertical)", classNamedStyleFontView.getGradient().getGradientStyle(), GradientStyle.VERTICAL);	// Papyrus Theme = 
+		Assert.assertEquals("Invalid Gradient Color (Default)", DiagramUtils.rgb(255, 255, 255), classNamedStyleFontView.getGradient().getGradientColor1()); // Papyrus Theme = 
+		
+		// named style: font color is white
+		Assert.assertEquals("Invalid Font Color", DiagramUtils.rgb(255, 255, 255), classNamedStyleFontView.getFontColor()); // White font by the named style
 	}
 
 	protected void checkPackage1CSS(Shape packageShape) {

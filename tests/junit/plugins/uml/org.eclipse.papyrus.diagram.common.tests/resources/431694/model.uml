@@ -3,19 +3,9 @@
   <packageImport xmi:type="uml:PackageImport" xmi:id="_0qL4MccAEeOWXJw_sGK0hw">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
-  <packagedElement xmi:type="uml:Class" xmi:id="_AWuX0McBEeOWXJw_sGK0hw" name="Class1">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_bXtCsMnyEeOxpNYR0tFG_g" name="Attribute1"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_cGkT0MnyEeOxpNYR0tFG_g" name="Attribute2"/>
-    <ownedConnector xmi:type="uml:Connector" xmi:id="_coVkIMnyEeOxpNYR0tFG_g" name="Connector1">
-      <end xmi:type="uml:ConnectorEnd" xmi:id="_cofVIMnyEeOxpNYR0tFG_g" role="_bXtCsMnyEeOxpNYR0tFG_g">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cofVIcnyEeOxpNYR0tFG_g" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cofVIsnyEeOxpNYR0tFG_g" value="1"/>
-      </end>
-      <end xmi:type="uml:ConnectorEnd" xmi:id="_cofVI8nyEeOxpNYR0tFG_g" role="_cGkT0MnyEeOxpNYR0tFG_g">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cofVJMnyEeOxpNYR0tFG_g" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cofVJcnyEeOxpNYR0tFG_g" value="1"/>
-      </end>
-    </ownedConnector>
-  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_AWuX0McBEeOWXJw_sGK0hw" name="Class1"/>
   <packagedElement xmi:type="uml:Package" xmi:id="_VZ1IwMcCEeOWXJw_sGK0hw" name="Package1"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iUGlUMq8EeO8w-_dLZ4fFQ" name="ClassNamedStyleFont"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_qyhTYMrNEeO8w-_dLZ4fFQ" name="Class2"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_gfiLMMrOEeO8w-_dLZ4fFQ" name="Class3"/>
 </uml:Model>
