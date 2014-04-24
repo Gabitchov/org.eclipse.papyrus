@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,13 +14,14 @@ package org.eclipse.papyrus.infra.core.utils;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -32,7 +33,7 @@ import com.google.common.base.Optional;
 /**
  * Tests for the {@link AdapterUtils} class.
  */
-public class AdapterUtilsTest {
+public class AdapterUtilsTest extends AbstractPapyrusTest {
 
 	@Test
 	public void testAdaptInstanceOptionalPresent() {

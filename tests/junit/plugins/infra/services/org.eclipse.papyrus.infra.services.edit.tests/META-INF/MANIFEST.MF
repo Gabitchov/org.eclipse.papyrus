@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui.ide;bundle-version="3.8.0",
- org.junit;bundle-version="4.10.0"
+ org.junit;bundle-version="4.10.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Fragment-Host: org.eclipse.papyrus.infra.services.edit;bundle-version=
  "0.10.0"

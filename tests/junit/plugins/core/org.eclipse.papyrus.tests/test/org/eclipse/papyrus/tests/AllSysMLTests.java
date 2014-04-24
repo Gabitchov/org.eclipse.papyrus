@@ -27,7 +27,6 @@ public class AllSysMLTests {
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.sysml.diagram.blockdefinition", "org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.suites.AllTests"));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.diagram.requirement.test.AllTests.class));
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.sysml.diagram.parametric", "org.eclipse.papyrus.sysml.diagram.parametric.tests.suites.AllTests"));
-		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.sysml.modelexplorer", "org.eclipse.papyrus.sysml.modelexplorer.tests.suites.AllTests"));
 	}
 
 

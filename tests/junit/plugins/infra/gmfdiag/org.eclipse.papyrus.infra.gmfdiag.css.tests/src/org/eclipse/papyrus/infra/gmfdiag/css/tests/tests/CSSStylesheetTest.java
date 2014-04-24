@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.preferences.ThemePreferences;
 import org.eclipse.papyrus.infra.gmfdiag.css.tests.Activator;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.uml2.uml.NamedElement;
 import org.junit.After;
 import org.junit.Assert;
@@ -38,7 +39,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-public class CSSStylesheetTest {
+public class CSSStylesheetTest extends AbstractPapyrusTest {
 
 	private CSSDiagram diagram;
 

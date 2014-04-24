@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -52,17 +52,11 @@ import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.ModelExplorerUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.PartService;
 import org.eclipse.uml2.uml.Model;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -71,7 +65,7 @@ import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 
-public class TableCreationTest2 {
+public class TableCreationTest2 extends AbstractPapyrusTest {
 
 	private static final String MODEL_PATH = "/resources/model2"; //$NON-NLS-1$
 
@@ -168,7 +162,7 @@ public class TableCreationTest2 {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 *         the page list used for this model
 	 */

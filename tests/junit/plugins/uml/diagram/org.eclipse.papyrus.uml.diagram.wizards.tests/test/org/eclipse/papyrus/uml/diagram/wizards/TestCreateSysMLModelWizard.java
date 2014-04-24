@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013, 2014 LIFL, CEA LIST, and others.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,9 +9,11 @@
  * Contributors:
  *  LIFL - Initial API and implementation
  *  CEA LIST - Update tests and re-integrate into automation suite
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards;
+
+import static org.junit.Assert.assertEquals;
 
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
 import org.eclipse.papyrus.sysml.diagram.ui.NewSysMLModelWizard;
@@ -25,9 +27,7 @@ public class TestCreateSysMLModelWizard extends TestNewModelWizardBase {
 
 	@Override
 	protected IWorkbenchWizard createWizard() {
-		return new NewSysMLModelWizard() {
-
-		};
+		return new NewSysMLModelWizard();
 	}
 
 	@Test

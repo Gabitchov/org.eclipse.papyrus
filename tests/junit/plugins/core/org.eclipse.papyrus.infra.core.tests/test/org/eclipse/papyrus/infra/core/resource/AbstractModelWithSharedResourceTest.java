@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.eclipse.papyrus.infra.core.resource;
 
@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource.ModelKind;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,11 +28,11 @@ import org.junit.Test;
 
 /**
  * Run as "JUnit Plugin-Test"
- * 
+ *
  * @author cedric dumoulin
  *
  */
-public class AbstractModelWithSharedResourceTest {
+public class AbstractModelWithSharedResourceTest extends AbstractPapyrusTest {
 
 	/**
 	 * @throws java.lang.Exception
@@ -53,56 +54,58 @@ public class AbstractModelWithSharedResourceTest {
 	 */
 	@Test
 	public void testCreateModel() {
-		
+
 		String model1Key = "ecore";
 		String model2Key = "genmodel";
 
 		// Create models with different key, but use same extension (default from FakeModelWithSharedResource)
 		FakeModelWithSharedResource<EPackage> model1 = new FakeModelWithSharedResource<EPackage>(ModelKind.master, model1Key, EPackage.class);
 		FakeModelWithSharedResource<EClass> model2 = new FakeModelWithSharedResource<EClass>(model2Key, EClass.class);
-		
+
 		ModelSet modelSet = new ModelSet();
 		modelSet.registerModel(model1);
 		modelSet.registerModel(model2);
-		
+
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.infra.core");
-		
+
 		IFile model1File = p.getFile("tmp/model1." + model1Key);
 
 		// Call creates
 		modelSet.createsModels(model1File);
-		
+
 		// Do check
-		assertNotNull( "resource created", model1.getResouce() );
-		assertNotNull( "resource created", model2.getResouce() );
+		assertNotNull("resource created", model1.getResouce());
+		assertNotNull("resource created", model2.getResouce());
 		assertEquals("Resource is shared", model1.getResouce(), model2.getResouce());
 
-		
+
 	}
 
 	/**
 	 * Create and save models.
-	 * @throws IOException 
-	 * @throws CoreException 
+	 * 
+	 * @throws IOException
+	 * @throws CoreException
 	 */
 	private void createAndSave(String model1Key, String model2Key) throws IOException, CoreException {
 
 		FakeModelWithSharedResource<EPackage> model1 = new FakeModelWithSharedResource<EPackage>(ModelKind.master, model1Key, EPackage.class);
 		FakeModelWithSharedResource<EClass> model2 = new FakeModelWithSharedResource<EClass>(model2Key, EClass.class);
-		
+
 		ModelSet modelSet = new ModelSet();
 		modelSet.registerModel(model1);
 		modelSet.registerModel(model2);
-		
+
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.infra.core");
-		if(!p.exists())
-			  p.create(new NullProgressMonitor());
+		if(!p.exists()) {
+			p.create(new NullProgressMonitor());
+		}
 		p.open(new NullProgressMonitor());
-		
+
 		IFile model1File = p.getFile("tmp/model1." + model1Key);
-		
+
 		// Call creates and save
-		
+
 		modelSet.createsModels(model1File);
 		model1.getResouce().setModified(true);
 		modelSet.save(new NullProgressMonitor());
@@ -111,43 +114,45 @@ public class AbstractModelWithSharedResourceTest {
 
 	/**
 	 * Test method for {@link org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource#loadModel(org.eclipse.core.runtime.IPath)}.
-	 * @throws CoreException 
-	 * @throws IOException 
-	 * @throws ModelMultiException 
+	 * 
+	 * @throws CoreException
+	 * @throws IOException
+	 * @throws ModelMultiException
 	 */
 	@Test
 	public void testLoadModelIPath() throws IOException, CoreException, ModelMultiException {
-		
-		
+
+
 		String model1Key = "ecore";
 		String model2Key = "genmodel";
-		
+
 		createAndSave(model1Key, model2Key);
 
 		FakeModelWithSharedResource<EPackage> model1 = new FakeModelWithSharedResource<EPackage>(ModelKind.master, model1Key, EPackage.class);
 		FakeModelWithSharedResource<EClass> model2 = new FakeModelWithSharedResource<EClass>(model2Key, EClass.class);
-		
+
 		ModelSet modelSet = new ModelSet();
 		modelSet.registerModel(model1);
 		modelSet.registerModel(model2);
-		
+
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.infra.core");
-		
+
 		IFile model1File = p.getFile("tmp/model1." + model1Key);
 
 		// Call creates
 		modelSet.loadModels(model1File);
-		
+
 		// Do check
-		assertNotNull( "resource loaded", model1.getResouce() );
-		assertNotNull( "resource loaded", model2.getResouce() );
+		assertNotNull("resource loaded", model1.getResouce());
+		assertNotNull("resource loaded", model2.getResouce());
 		assertEquals("Resource is shared", model1.getResouce(), model2.getResouce());
 	}
 
 	/**
 	 * Test method for {@link org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource#saveModel()}.
-	 * @throws IOException 
-	 * @throws CoreException 
+	 * 
+	 * @throws IOException
+	 * @throws CoreException
 	 */
 	@Test
 	public void testSaveModel() throws IOException, CoreException {
@@ -156,27 +161,28 @@ public class AbstractModelWithSharedResourceTest {
 
 		FakeModelWithSharedResource<EPackage> model1 = new FakeModelWithSharedResource<EPackage>(ModelKind.master, model1Key, EPackage.class);
 		FakeModelWithSharedResource<EClass> model2 = new FakeModelWithSharedResource<EClass>(model2Key, EClass.class);
-		
+
 		ModelSet modelSet = new ModelSet();
 		modelSet.registerModel(model1);
 		modelSet.registerModel(model2);
-		
+
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.infra.core");
-		if(!p.exists())
-			  p.create(new NullProgressMonitor());
+		if(!p.exists()) {
+			p.create(new NullProgressMonitor());
+		}
 		p.open(new NullProgressMonitor());
-		
+
 		IFile model1File = p.getFile("tmp/model1." + model1Key);
-		
+
 		// Call creates and save
-		
+
 		modelSet.createsModels(model1File);
 		model1.getResouce().setModified(true);
 		modelSet.save(new NullProgressMonitor());
-		
+
 		// Do check
-		assertNotNull( "resource created", model1.getResouce() );
-		assertNotNull( "resource created", model2.getResouce() );
+		assertNotNull("resource created", model1.getResouce());
+		assertNotNull("resource created", model2.getResouce());
 		assertEquals("Resource is shared", model1.getResouce(), model2.getResouce());
 		// Check weither it is save
 		assertFalse("Resource is saved", model1.getResouce().isModified());
@@ -195,27 +201,27 @@ public class AbstractModelWithSharedResourceTest {
 
 		FakeModelWithSharedResource<EPackage> model1 = new FakeModelWithSharedResource<EPackage>(ModelKind.master, model1Key, EPackage.class);
 		FakeModelWithSharedResource<EClass> model2 = new FakeModelWithSharedResource<EClass>(model2Key, EClass.class);
-		
+
 		ModelSet modelSet = new ModelSet();
 		modelSet.registerModel(model1);
 		modelSet.registerModel(model2);
-		
+
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.infra.core");
-		
+
 		IFile model1File = p.getFile("tmp/model1." + model1Key);
 
-		// Call creates 
+		// Call creates
 		modelSet.createsModels(model1File);
 		// Add elements in both model
 		EPackage p1 = EcoreFactory.eINSTANCE.createEPackage();
 		model1.addModelRoot(p1);
-		
+
 		EClass c1 = EcoreFactory.eINSTANCE.createEClass();
 		model2.addModelRoot(c1);
-		
+
 		// Do check
-		assertEquals( "root found", p1, model1.getModelRoot() );
-		assertEquals( "root found", c1, model2.getModelRoot() );
+		assertEquals("root found", p1, model1.getModelRoot());
+		assertEquals("root found", c1, model2.getModelRoot());
 	}
 
 	/**
@@ -228,16 +234,16 @@ public class AbstractModelWithSharedResourceTest {
 
 		FakeModelWithSharedResource<EPackage> model1 = new FakeModelWithSharedResource<EPackage>(ModelKind.master, model1Key, EPackage.class);
 		FakeModelWithSharedResource<EClass> model2 = new FakeModelWithSharedResource<EClass>(model2Key, EClass.class);
-		
+
 		ModelSet modelSet = new ModelSet();
 		modelSet.registerModel(model1);
 		modelSet.registerModel(model2);
-		
+
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.infra.core");
-		
+
 		IFile model1File = p.getFile("tmp/model1." + model1Key);
 
-		// Call creates 
+		// Call creates
 		modelSet.createsModels(model1File);
 		// Add elements in both model
 		EPackage p1 = EcoreFactory.eINSTANCE.createEPackage();
@@ -246,25 +252,25 @@ public class AbstractModelWithSharedResourceTest {
 		model1.addModelRoot(p2);
 		EPackage p3 = EcoreFactory.eINSTANCE.createEPackage();
 		model1.addModelRoot(p3);
-		
+
 		EClass c1 = EcoreFactory.eINSTANCE.createEClass();
 		model2.addModelRoot(c1);
 		EClass c2 = EcoreFactory.eINSTANCE.createEClass();
 		model2.addModelRoot(c2);
 		EClass c3 = EcoreFactory.eINSTANCE.createEClass();
 		model2.addModelRoot(c3);
-		
+
 		// Do check
 		List<EPackage> lp = model1.getModelRoots();
 		List<EClass> lc = model2.getModelRoots();
-		
-		assertNotNull("list exist", lp );
+
+		assertNotNull("list exist", lp);
 		assertEquals("list size", 3, lp.size());
 		assertTrue("element found", lp.contains(p1));
 		assertTrue("element found", lp.contains(p2));
 		assertTrue("element found", lp.contains(p3));
-		
-		assertNotNull("list exist", lc );
+
+		assertNotNull("list exist", lc);
 		assertEquals("list size", 3, lc.size());
 		assertTrue("element found", lc.contains(c1));
 		assertTrue("element found", lc.contains(c2));
@@ -281,27 +287,27 @@ public class AbstractModelWithSharedResourceTest {
 
 		FakeModelWithSharedResource<EPackage> model1 = new FakeModelWithSharedResource<EPackage>(ModelKind.master, model1Key, EPackage.class);
 		FakeModelWithSharedResource<EClass> model2 = new FakeModelWithSharedResource<EClass>(model2Key, EClass.class);
-		
+
 		ModelSet modelSet = new ModelSet();
 		modelSet.registerModel(model1);
 		modelSet.registerModel(model2);
-		
+
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.infra.core");
-		
+
 		IFile model1File = p.getFile("tmp/model1." + model1Key);
 
-		// Call creates 
+		// Call creates
 		modelSet.createsModels(model1File);
 		// Add elements in both model
 		EPackage p1 = EcoreFactory.eINSTANCE.createEPackage();
 		model1.addModelRoot(p1);
-		
+
 		EClass c1 = EcoreFactory.eINSTANCE.createEClass();
 		model2.addModelRoot(c1);
-		
+
 		// Do check
-		assertTrue("model contain element", model1.getResouce().getContents().contains(p1) );
-		assertTrue("model contain element", model2.getResouce().getContents().contains(c1) );
+		assertTrue("model contain element", model1.getResouce().getContents().contains(p1));
+		assertTrue("model contain element", model2.getResouce().getContents().contains(c1));
 	}
 
 }

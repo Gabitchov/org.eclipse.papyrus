@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014 CEA and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -46,6 +46,7 @@ import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.resource.RollbackStatus;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Model;
@@ -64,11 +65,11 @@ import com.google.common.collect.Iterables;
 /**
  * Test suite for the {@link PapyrusROTransactionalEditingDomain} class.
  */
-public class PapyrusROTransactionalEditingDomainTest {
+public class PapyrusROTransactionalEditingDomainTest extends AbstractPapyrusTest {
 
 	@Rule
 	public final ProjectFixture project = new ProjectFixture();
-	
+
 	private PapyrusROTransactionalEditingDomain fixture;
 
 	private Model model;
@@ -180,7 +181,7 @@ public class PapyrusROTransactionalEditingDomainTest {
 		// Make our model read-only on the filesystem
 		project.setReadOnly(model.eResource());
 		TransactionalCommandStack stack = (TransactionalCommandStack)fixture.getCommandStack();
-		
+
 		RecordingCommand cmd = new RecordingCommand(fixture) {
 
 			@Override
@@ -208,7 +209,7 @@ public class PapyrusROTransactionalEditingDomainTest {
 		assertThat(doIt, notNullValue());
 		assertThat(doIt.getSubjects().size(), is(1));
 		assertThat(doIt.getSubjects().get(0).getName(), is("A"));
-		
+
 		// Now, try again with only the discretionary read-only-ness enforced
 		stack.execute(cmd, TransactionHelper.readOnlyAxisOption(ReadOnlyAxis.DISCRETION));
 

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
@@ -20,20 +20,20 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
  * Test if the {@link SashWindowsContainer} send the events of a page lifecycle.
- * Test if the page lifecycle events are correctly thrown by the {@link SashWindowsContainer} when 
+ * Test if the page lifecycle events are correctly thrown by the {@link SashWindowsContainer} when
  * page are added/removed, ...
- * 
+ *
  * @author cedric dumoulin
  *
  */
-public class PageLifeCycleEventsThrownFromContainerTest {
+public class PageLifeCycleEventsThrownFromContainerTest /* extends AbstractPapyrusTest */{
 
 	protected Display display;
 
@@ -51,28 +51,16 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 	}
 
 	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-		//		if(display != null) {
-		//			display.dispose();
-		//			display = null;
-		//		}
-	}
-
-
-	/**
-	 * 
+	 *
 	 * @return
 	 */
 	private Display getDisplay() {
 		return display;
-
 	}
+
 	/**
 	 * Create a {@link SashWindowsContainer} to test. Initialize it with provided {@link ISashWindowsContentProvider}.
-	 * 
+	 *
 	 * @param contentProvider
 	 * @return
 	 */
@@ -95,7 +83,7 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 
 	/**
 	 * Create a contentProvider.
-	 * 
+	 *
 	 * @return
 	 */
 	protected SimpleSashWindowsContentProvider createContentProvider() {
@@ -114,6 +102,7 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 
 	/**
 	 * Lookup a page by its raw model.
+	 *
 	 * @param container
 	 * @param rawModel
 	 * @return
@@ -127,21 +116,31 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#addListener(org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#addListener(org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener)}
+	 * .
 	 */
+	@Ignore("TODO")
 	@Test
 	public void testAddActiveEditorChangedListener() {
+		//TODO
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#removeListener(org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#removeListener(org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener)}
+	 * .
 	 */
+	@Ignore("TODO")
 	@Test
 	public void testRemoveActiveEditorChangedListener() {
+		//TODO
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#firePageOpenedEvent(org.eclipse.papyrus.infra.core.sasheditor.internal.PagePart)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#firePageOpenedEvent(org.eclipse.papyrus.infra.core.sasheditor.internal.PagePart)}
+	 * .
 	 */
 	@Test
 	public void testFirePageOpenedEvent() {
@@ -161,18 +160,20 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 
 
 		// Add an editor
-		contentProvider.addPage( new MessagePartModel("newPage") );
+		contentProvider.addPage(new MessagePartModel("newPage"));
 		container.refreshTabs();
 
 		// check events (there is more than the 2 expected)
-		assertTrue("event fired", 2<=listener.getEventCount());
-		int i=0;
+		assertTrue("event fired", 2 <= listener.getEventCount());
+		int i = 0;
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ABOUTTOBEOPENED, listener.getTraces().get(i++));
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_OPENED, listener.getTraces().get(i++));
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#firePageClosedEvent(org.eclipse.papyrus.infra.core.sasheditor.internal.PagePart)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#firePageClosedEvent(org.eclipse.papyrus.infra.core.sasheditor.internal.PagePart)}
+	 * .
 	 */
 	@Test
 	public void testFirePageClosedEvent() {
@@ -190,7 +191,7 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 
 		// Add an editor
 		IPageModel model = new MessagePartModel("newPage");
-		contentProvider.addPage( model );
+		contentProvider.addPage(model);
 		container.refreshTabs();
 		listener.resetChangeCount();
 		listener.resetTraces();
@@ -203,7 +204,7 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 		container.refreshTabs();
 
 		// check events (there is more than the 2 expected)
-		assertTrue("event fired", 2<=listener.getEventCount());
+		assertTrue("event fired", 2 <= listener.getEventCount());
 
 		assertTrue("close event fired", listener.getEvents().contains(page1));
 		assertTrue("close event fired", listener.getTraces().contains(FakePageLifeCycleEventsListener.PAGE_CLOSED));
@@ -212,7 +213,9 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#firePageAboutToBeOpenedEvent(org.eclipse.papyrus.infra.core.sasheditor.internal.PagePart)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#firePageAboutToBeOpenedEvent(org.eclipse.papyrus.infra.core.sasheditor.internal.PagePart)}
+	 * .
 	 */
 	@Test
 	public void testFirePageAboutToBeOpenedEvent() {
@@ -231,17 +234,19 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 
 
 		// Add an editor
-		contentProvider.addPage( new MessagePartModel("newPage") );
+		contentProvider.addPage(new MessagePartModel("newPage"));
 		container.refreshTabs();
 
 		// check events (there is more than the 2 expected)
-		assertTrue("event fired", 2<=listener.getEventCount());
-		int i=0;
+		assertTrue("event fired", 2 <= listener.getEventCount());
+		int i = 0;
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ABOUTTOBEOPENED, listener.getTraces().get(i++));
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#firePageAboutToBeClosedEvent(org.eclipse.papyrus.infra.core.sasheditor.internal.PagePart)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#firePageAboutToBeClosedEvent(org.eclipse.papyrus.infra.core.sasheditor.internal.PagePart)}
+	 * .
 	 */
 	@Test
 	public void testFirePageAboutToBeClosedEvent() {
@@ -249,7 +254,9 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#firePageActivatedEvent(org.eclipse.papyrus.infra.core.sasheditor.internal.PagePart)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#firePageActivatedEvent(org.eclipse.papyrus.infra.core.sasheditor.internal.PagePart)}
+	 * .
 	 */
 	@Test
 	public void testFirePageActivatedEvent() {
@@ -283,7 +290,7 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 
 		// check events (1 expected)
 		assertEquals("event fired", 1, listener.getEventCount());
-		int i=0;
+		int i = 0;
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ACTIVATED, listener.getTraces().get(i++));
 
 		// ****************
@@ -297,19 +304,19 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 		// Do refresh. This fire events
 		container.refreshTabs();
 		// check events (there is none, as active page does not change)
-//		assertEquals("event fired", 3, listener.getEventCount());
-//		i=0;
-//		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ACTIVATED, listener.getTraces().get(i++));
+		//		assertEquals("event fired", 3, listener.getEventCount());
+		//		i=0;
+		//		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ACTIVATED, listener.getTraces().get(i++));
 
 		// Create a new page
 		IPageModel pageModel3 = new MessagePartModel("newPage3");
 		contentProvider.addPage(pageModel3);
 		// Do refresh. This fire events
 		container.refreshTabs();
-		
+
 		// check events (there is more than the 2 expected)
 		assertEquals("event fired", 3, listener.getEventCount());
-		i=0;
+		i = 0;
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ABOUTTOBEOPENED, listener.getTraces().get(i++));
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_OPENED, listener.getTraces().get(i++));
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ACTIVATED, listener.getTraces().get(i++));
@@ -317,7 +324,9 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#firePageDeactivatedEvent(org.eclipse.papyrus.infra.core.sasheditor.internal.PagePart)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider#firePageDeactivatedEvent(org.eclipse.papyrus.infra.core.sasheditor.internal.PagePart)}
+	 * .
 	 */
 	@Test
 	public void testFirePageDeactivatedEvent() {

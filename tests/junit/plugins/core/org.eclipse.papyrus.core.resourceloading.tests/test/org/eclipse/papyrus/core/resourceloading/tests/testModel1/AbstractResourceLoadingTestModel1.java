@@ -14,10 +14,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.resourceloading.tests.testModel1;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.LinkedList;
 import java.util.List;
-
-import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -35,9 +38,12 @@ import org.eclipse.papyrus.core.resourceloading.tests.testModel2.ITestConstants;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSetServiceFactory;
 import org.eclipse.papyrus.infra.services.resourceloading.preferences.StrategyChooser;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 
 /**
@@ -49,7 +55,7 @@ import org.junit.Before;
  * @author eperico
  *
  */
-public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
+public abstract class AbstractResourceLoadingTestModel1 extends AbstractPapyrusTest {
 
 	private static final String INITIAL_PATH = "resources/TestModel1/";
 
@@ -66,9 +72,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	 * {@inheritDoc}
 	 */
 	@Before
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	public void setUp() throws Exception {
 		StrategyChooser.setCurrentStrategy(getStrategy());
 		// first we need to create the test project from the plugin to the workspace test platform
 		IProject project = copyTestModelToThePlatform();
@@ -142,6 +146,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	 * - get an object (Class1) from the first controlled resource (Package0)
 	 * - get an object (Class2) from the second controlled resource (Package1)
 	 */
+	@Test
 	public void testGetObjectOfControlledResource() {
 		// test getting EObject of the specified URI
 		// level 0
@@ -189,6 +194,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	 * - get a diagram (Diagram0) from the first controlled resource (Package0)
 	 * - get a diagram (Diagram1) from the second controlled resource (Package1)
 	 */
+	@Test
 	public void testGetDiagramOfControlledResource() {
 		// get notation reference from di resource
 		// level 0
@@ -233,6 +239,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	/**
 	 * Gets a needed profile resource from the local project
 	 */
+	@Test
 	public void testGetObjectOfProfileResource() {
 		URI uriPlatformProfile = URI.createPlatformResourceURI(RESOURCE_URI + "MyProfile.uml", false).appendFragment("_XkGiwB07Ed-QQ4mYkrb7Gg");
 		System.err.println(uriPlatformProfile);
@@ -247,6 +254,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	/**
 	 * Gets a needed profile resource from a pathmap
 	 */
+	@Test
 	public void testGetObjectOfPathmapResource() {
 		URI uriPathmapProfile = URI.createURI("pathmap://UML_PROFILES/Ecore.profile.uml#_0");
 		EObject pathmapProfile = modelSet.getEObject(uriPathmapProfile, true);
@@ -260,6 +268,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	 * - Control Package2 from Package1 resource
 	 * - try to get the property type from model1 resource to check the reference update
 	 */
+	@Test
 	public void testGetDanglingReferenceFromAControlledResource() {
 		URI uriProperty0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml", false).appendFragment("_RHuPYIQsEd-SDs-So_GGkw");
 		EObject property0 = modelSet.getEObject(uriProperty0, true);
@@ -291,8 +300,8 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	protected void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		// Unload models
 		List<Resource> resources = new LinkedList<Resource>(modelSet.getResources());
 		for(Resource r : resources) {
@@ -302,7 +311,6 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 				e.printStackTrace();
 			}
 		}
-		super.tearDown();
 	}
 
 	/**

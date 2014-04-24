@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014 CEA and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -45,6 +45,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.emf.readonly.PapyrusROTransactionalEditingDomain;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -60,11 +61,11 @@ import com.google.common.base.Objects;
 /**
  * Test suite for the {@link NestingNotifyingWorkspaceCommandStack} class.
  */
-public class NestingNotifyingWorkspaceCommandStackTest {
+public class NestingNotifyingWorkspaceCommandStackTest extends AbstractPapyrusTest {
 
 	@Rule
 	public final TestName testName = new TestName();
-	
+
 	// No API signatures but the most basic are required for nesting
 	private CommandStack fixture;
 
@@ -298,7 +299,7 @@ public class NestingNotifyingWorkspaceCommandStackTest {
 		Resource testModel = rset.getResource(URI.createURI(testModelURL.toExternalForm(), true), true);
 		testPackage = (EPackage)testModel.getContents().get(0);
 		foo = (EClass)testPackage.getEClassifier("Foo"); //$NON-NLS-1$
-		
+
 		// tweak the URI so that we don't think this is a plug-in deployed resource that is unmodifiable (which triggers transaction rollback)
 		testModel.setURI(URI.createPlatformResourceURI(String.format("%s/%s", testName.getMethodName(), testModel.getURI().lastSegment()), true));
 	}

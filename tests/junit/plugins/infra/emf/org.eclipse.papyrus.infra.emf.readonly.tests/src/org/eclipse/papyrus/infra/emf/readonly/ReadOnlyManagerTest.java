@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014 CEA and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.emf.readonly.tests.PapyrusModelSetFixture;
 import org.eclipse.papyrus.junit.utils.rules.JavaResource;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -30,7 +31,7 @@ import org.junit.Test;
  * Test suite for the {@link ReadOnlyManager} class.
  */
 @JavaResource("Bug323802.uml")
-public class ReadOnlyManagerTest {
+public class ReadOnlyManagerTest extends AbstractPapyrusTest {
 
 	@Rule
 	public final PapyrusModelSetFixture domain = new PapyrusModelSetFixture();
@@ -74,7 +75,7 @@ public class ReadOnlyManagerTest {
 		URI sashModelURI = URI.createPlatformPluginURI("org.eclipse.papyrus.foo/models/bogus.di", true);
 		assertThat(fixture.anyReadOnly(ReadOnlyAxis.anyAxis(), new URI[]{ sashModelURI }).or(false), is(true));
 	}
-	
+
 	//
 	// Test framework
 	//

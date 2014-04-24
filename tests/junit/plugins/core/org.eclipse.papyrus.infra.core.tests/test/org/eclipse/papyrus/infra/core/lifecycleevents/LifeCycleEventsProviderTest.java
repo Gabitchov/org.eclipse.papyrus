@@ -1,18 +1,21 @@
 /**
- * 
+ *
  */
 package org.eclipse.papyrus.infra.core.lifecycleevents;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.junit.Before;
+import org.junit.Test;
 
 
 /**
  * @author cedric dumoulin
- * 
+ *
  */
-public class LifeCycleEventsProviderTest extends TestCase {
+public class LifeCycleEventsProviderTest extends AbstractPapyrusTest {
 
 	/**
 	 * Object under test.
@@ -21,13 +24,11 @@ public class LifeCycleEventsProviderTest extends TestCase {
 
 	/**
 	 * @see junit.framework.TestCase#setUp()
-	 * 
+	 *
 	 * @throws Exception
 	 */
-	@Override
 	@Before
-	protected void setUp() throws Exception {
-		super.setUp();
+	public void setUp() throws Exception {
 		eventProvider = new LifeCycleEventsProvider();
 	}
 
@@ -36,6 +37,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#addDoSaveListener(org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener)}
 	 * .
 	 */
+	@Test
 	public void testAddSaveListener() {
 
 		ISaveEventListener listener = new FakeSaveEventListener();
@@ -53,6 +55,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#removeDoSaveListener(org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener)}
 	 * .
 	 */
+	@Test
 	public void testRemoveSaveListener() {
 		ISaveEventListener listener = new FakeSaveEventListener();
 
@@ -69,6 +72,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#addAboutToDoSaveListener(org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener)}
 	 * .
 	 */
+	@Test
 	public void testAddAboutToSaveListener() {
 		ISaveEventListener listener = new FakeSaveEventListener();
 
@@ -84,6 +88,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#removeAboutToDoSaveListener(org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener)}
 	 * .
 	 */
+	@Test
 	public void testRemoveAboutToSaveListener() {
 		ISaveEventListener listener = new FakeSaveEventListener();
 
@@ -100,6 +105,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#addPostDoSaveListener(org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener)}
 	 * .
 	 */
+	@Test
 	public void testAddPostSaveListener() {
 		ISaveEventListener listener = new FakeSaveEventListener();
 
@@ -115,6 +121,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#removePostDoSaveListener(org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener)}
 	 * .
 	 */
+	@Test
 	public void testRemovePostSaveListener() {
 		ISaveEventListener listener = new FakeSaveEventListener();
 
@@ -131,6 +138,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#fireAboutToDoSaveEvent(org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent)}
 	 * .
 	 */
+	@Test
 	public void testFireAboutToSaveEvent() {
 		FakeSaveEventListener listener = new FakeSaveEventListener();
 
@@ -146,6 +154,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#fireAboutToDoSaveAsEvent(org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent)}
 	 * .
 	 */
+	@Test
 	public void testFireAboutToSaveAsEvent() {
 		FakeSaveEventListener listener = new FakeSaveEventListener();
 
@@ -161,6 +170,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#fireDoSaveEvent(org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent)}
 	 * .
 	 */
+	@Test
 	public void testFireSaveEvent() {
 		FakeSaveEventListener listener = new FakeSaveEventListener();
 
@@ -176,6 +186,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#fireDoSaveAsEvent(org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent)}
 	 * .
 	 */
+	@Test
 	public void testFireSaveAsEvent() {
 		FakeSaveEventListener listener = new FakeSaveEventListener();
 
@@ -191,6 +202,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#firePostDoSaveEvent(org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent)}
 	 * .
 	 */
+	@Test
 	public void testFirePostSaveEvent() {
 		FakeSaveEventListener listener = new FakeSaveEventListener();
 
@@ -206,6 +218,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#firePostDoSaveAsEvent(org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent)}
 	 * .
 	 */
+	@Test
 	public void testFirePostSaveAsEvent() {
 		FakeSaveEventListener listener = new FakeSaveEventListener();
 
@@ -221,6 +234,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#fireAllDoSaveEvent(org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent)}
 	 * .
 	 */
+	@Test
 	public void testFireAllSaveEvent() {
 		FakeSaveEventListener preListener = new FakeSaveEventListener();
 		FakeSaveEventListener listener = new FakeSaveEventListener();
@@ -243,6 +257,7 @@ public class LifeCycleEventsProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider#fireAllDoSaveAsEvent(org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent)}
 	 * .
 	 */
+	@Test
 	public void testFireAllSaveAsEvent() {
 		FakeSaveEventListener preListener = new FakeSaveEventListener();
 		FakeSaveEventListener listener = new FakeSaveEventListener();

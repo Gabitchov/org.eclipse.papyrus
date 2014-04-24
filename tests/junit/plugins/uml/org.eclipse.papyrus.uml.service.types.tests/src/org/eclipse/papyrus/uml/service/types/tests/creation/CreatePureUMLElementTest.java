@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.tests.creation;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -36,6 +38,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Class;
@@ -50,12 +53,12 @@ import org.junit.Test;
  * Goal of this class is to test the uml implementation, ex. SubsetAddComand
  * </P>
  */
-public class CreatePureUMLElementTest {
+public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 
 	private static IProject createProject;
 
 	private static IFile copyPapyrusModel;
-	
+
 	private static Model rootModel;
 
 	private static Activity testActivity;
@@ -88,17 +91,17 @@ public class CreatePureUMLElementTest {
 		} catch (IOException e) {
 			fail(e.getMessage());
 		}
-		
+
 		// open model as UML resource
 		ResourceSet set = new ResourceSetImpl();
 		domain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(set);
-		resource = set.createResource(URI.createPlatformResourceURI(createProject.getName()+'/'+copyPapyrusModel.getName(), true));
+		resource = set.createResource(URI.createPlatformResourceURI(createProject.getName() + '/' + copyPapyrusModel.getName(), true));
 		try {
 			resource.load(Collections.emptyMap());
 		} catch (IOException e) {
 			fail(e.getMessage());
 		}
-		
+
 		rootModel = (Model)resource.getContents().get(0);
 		assertNotNull("Model should not be null", rootModel);
 		try {
@@ -124,26 +127,26 @@ public class CreatePureUMLElementTest {
 		int initialNumberOfNodes = 0;
 		Command command = getCreateChildCommand(testActivity, UMLElementTypes.CENTRAL_BUFFER_NODE, true);
 		Assert.assertEquals("Wrong number of nodes before creation", initialNumberOfNodes, testActivity.getNodes().size());
-		
+
 		domain.getCommandStack().execute(command);
-		Assert.assertEquals("Wrong number of owned nodes after creation", initialNumberOfNodes+1, testActivity.getOwnedNodes().size());
-		Assert.assertEquals("Wrong number of nodes after creation", initialNumberOfNodes+1, testActivity.getNodes().size());
-		
+		Assert.assertEquals("Wrong number of owned nodes after creation", initialNumberOfNodes + 1, testActivity.getOwnedNodes().size());
+		Assert.assertEquals("Wrong number of nodes after creation", initialNumberOfNodes + 1, testActivity.getNodes().size());
+
 		domain.getCommandStack().undo();
 		Assert.assertEquals("Wrong number of owned nodes after undo", initialNumberOfNodes, testActivity.getOwnedNodes().size());
 		Assert.assertEquals("Wrong number of nodes after undo", initialNumberOfNodes, testActivity.getNodes().size());
-		
+
 		domain.getCommandStack().redo();
-		Assert.assertEquals("Wrong number of owned nodes after redo", initialNumberOfNodes+1, testActivity.getOwnedNodes().size());
-		Assert.assertEquals("Wrong number of nodes after redo", initialNumberOfNodes+1, testActivity.getNodes().size());
+		Assert.assertEquals("Wrong number of owned nodes after redo", initialNumberOfNodes + 1, testActivity.getOwnedNodes().size());
+		Assert.assertEquals("Wrong number of nodes after redo", initialNumberOfNodes + 1, testActivity.getNodes().size());
 
 		domain.getCommandStack().undo();
 		Assert.assertEquals("Wrong number of nodes after 2nd undo", initialNumberOfNodes, testActivity.getNodes().size());
 	}
-	
+
 	/**
 	 * Creates the element in the given owner element, undo and redo the action
-	 * 
+	 *
 	 * @param owner
 	 *        owner of the new element
 	 * @param hintedType
@@ -162,7 +165,7 @@ public class CreatePureUMLElementTest {
 			if(!canCreate) {
 				fail("Creation command is executable but it was expected as not executable");
 			} else {
-				// command is executable, and it was expected to => run the creation 
+				// command is executable, and it was expected to => run the creation
 				Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(command);
 				return emfCommand;
 			}

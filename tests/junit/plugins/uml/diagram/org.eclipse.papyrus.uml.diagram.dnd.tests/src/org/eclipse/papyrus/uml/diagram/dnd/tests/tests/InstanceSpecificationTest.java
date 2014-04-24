@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,8 +19,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import junit.framework.Assert;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -41,6 +39,7 @@ import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DropStrategy;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.TreeToFlatContentProvider;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.diagram.dnd.strategy.instancespecification.ui.ClassifierPropertiesContentProvider;
 import org.eclipse.papyrus.uml.diagram.dnd.tests.Activator;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
@@ -54,6 +53,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -61,11 +61,11 @@ import org.junit.Test;
 /**
  * A Class to test the drop of a Classifier (or a list of Classifiers)
  * on an InstanceSpecification
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
-public class InstanceSpecificationTest {
+public class InstanceSpecificationTest extends AbstractPapyrusTest {
 
 	private static Diagram diagram;
 

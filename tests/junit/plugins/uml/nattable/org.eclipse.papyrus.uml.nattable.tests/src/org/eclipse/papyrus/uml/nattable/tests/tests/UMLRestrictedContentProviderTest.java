@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.nattable.tests.Activator;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
@@ -42,7 +43,7 @@ import org.junit.Test;
  * <li>the returned values according to isRestricted</li>
  * <li>the returned values according to the stereotype applied on the elements referenced by the table</li>
  * </ul>
- * 
+ *
  * The tested model :
  * <ul>
  * <li>Model
@@ -59,11 +60,11 @@ import org.junit.Test;
  * </ul>
  * </li>
  * </ul>
- * 
+ *
  * @author vl222926
- * 
+ *
  */
-public class UMLRestrictedContentProviderTest {
+public class UMLRestrictedContentProviderTest extends AbstractPapyrusTest {
 
 	/** the root of the model */
 	private Model modelRoot;

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,46 +13,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.portandflows.tests;
 
-import junit.framework.Test;
 import junit.framework.TestSuite;
-import junit.textui.TestRunner;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * <!-- begin-user-doc --> A test suite for the '<em><b>portandflows</b></em>' package. <!--
  * end-user-doc -->
- * 
+ *
  * @generated
  */
+@RunWith(Suite.class)
+@SuiteClasses({ FlowPortTest.class, FlowPropertyTest.class })
 public class PortandflowsTests extends TestSuite {
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(suite());
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public static Test suite() {
-		TestSuite suite = new PortandflowsTests("portandflows Tests");
-		suite.addTestSuite(FlowPortTest.class);
-		suite.addTestSuite(FlowPropertyTest.class);
-		return suite;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public PortandflowsTests(String name) {
-		super(name);
-	}
-
-} // PortandflowsTests
+	// PortandflowsTests
+}

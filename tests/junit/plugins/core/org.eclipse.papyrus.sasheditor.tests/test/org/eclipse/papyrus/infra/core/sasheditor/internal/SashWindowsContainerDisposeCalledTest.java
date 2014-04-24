@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 Cedric Dumoulin.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,23 +33,16 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.junit.After;
-import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * Tests to check memory leak and dispose() calls.
- * 
+ *
  * @author Cedric Dumoulin
- * 
+ *
  */
-public class SashWindowsContainerDisposeCalledTest {
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
+public class SashWindowsContainerDisposeCalledTest /* extends AbstractPapyrusTest */{
 
 	/**
 	 * @throws java.lang.Exception
@@ -70,14 +63,14 @@ public class SashWindowsContainerDisposeCalledTest {
 	/**
 	 * Test the call of dispose() on nestedEditor when the editor is
 	 * closed independently
-	 * 
+	 *
 	 * * @throws PartInitException
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
 	public void testDisposeCallOnNestedEditorRemoval() throws Exception {
-		// Create 
+		// Create
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 
 		// Create pages and add them to the default folder
@@ -99,13 +92,13 @@ public class SashWindowsContainerDisposeCalledTest {
 		assertEquals("nested editor is of right type", TestTextEditor.class, activeNestedEditor.getClass());
 
 		//		// Close the editor by removing its model
-		//		contentProvider.removePage(models.get(0));	
+		//		contentProvider.removePage(models.get(0));
 		//		// Refresh the container: this should close the editor
 		//		container.refreshTabs();
 		//		assertNull( "No more active editor", container.getActiveEditor() );
 		//		// Check if dispose() is called
 		//		ITraceRecords traces = ((TextEditorPartModel)models.get(0)).getTraceRecords();
-		//		assertTrue("dispose is called", traces.contains(null, "dispose"));		
+		//		assertTrue("dispose is called", traces.contains(null, "dispose"));
 
 		// Close each container and check dispose call
 		for(IPageModel model : models) {
@@ -131,22 +124,24 @@ public class SashWindowsContainerDisposeCalledTest {
 
 	/**
 	 * Test if dispose can be called twice without errors.
-	 * 
+	 *
 	 * * @throws PartInitException
 	 */
+	@Ignore("TODO")
 	@Test
 	public void testCallingDisposeTwice() throws PartInitException {
+		//TODO
 	}
 
 	/**
 	 * Test the call of dispose() on nestedEditor when the main editor is
 	 * closed. Normally, each nested editor should be disposed.
-	 * 
+	 *
 	 * * @throws PartInitException
 	 */
 	@Test
 	public void testDisposeCallOnMainEditorClose() throws PartInitException {
-		// Create 
+		// Create
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 
 		// Create pages and add them to the default folder

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,9 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.portandflows.tests;
 
-import junit.framework.TestCase;
-import junit.textui.TestRunner;
+import static org.junit.Assert.fail;
 
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
@@ -31,6 +31,9 @@ import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Flow Port</b></em>'. <!--
@@ -47,19 +50,10 @@ import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
  * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#getIcon() <em>Get Icon</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class FlowPortTest extends TestCase {
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(FlowPortTest.class);
-	}
+public class FlowPortTest extends AbstractPapyrusTest {
 
 	protected FlowPort fixture = null;
 
@@ -84,20 +78,9 @@ public class FlowPortTest extends TestCase {
 	protected Model model = null;
 
 	/**
-	 * Constructs a new Flow Port test case with the given name.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public FlowPortTest(String name) {
-		super(name);
-	}
-
-	/**
 	 * Returns the fixture for this Flow Port test case. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected FlowPort getFixture() {
@@ -107,7 +90,7 @@ public class FlowPortTest extends TestCase {
 	/**
 	 * Sets the fixture for this Flow Port test case.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void setFixture(FlowPort fixture) {
@@ -116,12 +99,12 @@ public class FlowPortTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated NOT
 	 */
-	@Override
-	protected void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		setFixture(PortandflowsFactory.eINSTANCE.createFlowPort());
 
 		// Prepare test
@@ -160,12 +143,12 @@ public class FlowPortTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	@Override
-	protected void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -173,10 +156,11 @@ public class FlowPortTest extends TestCase {
 	 * Tests the '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isAtomic() <em>Is Atomic</em>}' feature getter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort#isAtomic()
 	 * @generated NOT
 	 */
+	@Test
 	public void testIsAtomic() {
 		// FlowPort without type is Atomic
 		if(!fp0.isAtomic()) {
@@ -197,10 +181,11 @@ public class FlowPortTest extends TestCase {
 	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#getIcon()
 	 * <em>Get Icon</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort#getIcon()
 	 * @generated NOT
 	 */
+	@Test
 	public void testGetIcon() {
 
 		// Retrieve Stereotype

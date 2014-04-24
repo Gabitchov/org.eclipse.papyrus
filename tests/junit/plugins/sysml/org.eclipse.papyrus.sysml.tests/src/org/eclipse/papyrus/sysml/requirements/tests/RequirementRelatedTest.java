@@ -13,9 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.requirements.tests;
 
-import junit.framework.TestCase;
-import junit.textui.TestRunner;
+import static org.junit.Assert.fail;
 
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementRelated;
 import org.eclipse.papyrus.sysml.requirements.RequirementsFactory;
@@ -28,6 +28,9 @@ import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.profile.standard.StandardPackage;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Requirement Related</b></em>'.
@@ -44,16 +47,7 @@ import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
  *
  * @generated
  */
-public class RequirementRelatedTest extends TestCase {
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(RequirementRelatedTest.class);
-	}
+public class RequirementRelatedTest extends AbstractPapyrusTest {
 
 	protected RequirementRelated fixture = null;
 
@@ -106,17 +100,6 @@ public class RequirementRelatedTest extends TestCase {
 	// ////////////////////////////////////////////////////////////////////
 
 	/**
-	 * Constructs a new Requirement Related test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	public RequirementRelatedTest(String name) {
-		super(name);
-	}
-
-	/**
 	 * Returns the fixture for this Requirement Related test case.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -144,8 +127,8 @@ public class RequirementRelatedTest extends TestCase {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated NOT
 	 */
-	@Override
-	protected void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		setFixture(RequirementsFactory.eINSTANCE.createRequirementRelated());
 
 		// Prepare test
@@ -304,8 +287,8 @@ public class RequirementRelatedTest extends TestCase {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	@Override
-	protected void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -316,6 +299,7 @@ public class RequirementRelatedTest extends TestCase {
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated#getRefines()
 	 * @generated NOT
 	 */
+	@Test
 	public void testGetRefines() {
 
 		// Isolated RequirementRelated
@@ -339,6 +323,7 @@ public class RequirementRelatedTest extends TestCase {
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated#getSatisfies()
 	 * @generated NOT
 	 */
+	@Test
 	public void testGetSatisfies() {
 
 		// Isolated RequirementRelated
@@ -362,6 +347,7 @@ public class RequirementRelatedTest extends TestCase {
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated#getTracedFrom()
 	 * @generated NOT
 	 */
+	@Test
 	public void testGetTracedFrom() {
 
 		// Isolated RequirementRelated
@@ -391,6 +377,7 @@ public class RequirementRelatedTest extends TestCase {
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated#getVerifies()
 	 * @generated NOT
 	 */
+	@Test
 	public void testGetVerifies() {
 
 		// Isolated RequirementRelated

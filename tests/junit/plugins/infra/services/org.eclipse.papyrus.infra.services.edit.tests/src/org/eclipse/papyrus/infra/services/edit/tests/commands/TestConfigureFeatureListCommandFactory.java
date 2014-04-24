@@ -1,7 +1,6 @@
 package org.eclipse.papyrus.infra.services.edit.tests.commands;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +18,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureListCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.internal.ElementEditService;

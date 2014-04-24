@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -40,6 +40,7 @@ import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.
 import org.eclipse.papyrus.emf.facet.util.core.internal.exported.FileUtils;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPage;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
@@ -63,7 +64,7 @@ import org.junit.Before;
 import org.osgi.framework.Bundle;
 
 //TODO a part of this plugin should be moved in an upper test plugin
-public abstract class AbstractHandlerTest {
+public abstract class AbstractHandlerTest extends AbstractPapyrusTest {
 
 	/** the di extension */
 	protected static final String EXTENSION_DI = ".di"; //$NON-NLS-1$
@@ -104,9 +105,9 @@ public abstract class AbstractHandlerTest {
 	protected final Bundle bundle;
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param bundle
 	 *        the bundle used to load the model
 	 */
@@ -115,9 +116,9 @@ public abstract class AbstractHandlerTest {
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param commandId
 	 *        the id of the command to test
 	 */
@@ -128,7 +129,7 @@ public abstract class AbstractHandlerTest {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param file
 	 *        the file to open
 	 * @return the opened editor
@@ -161,8 +162,9 @@ public abstract class AbstractHandlerTest {
 	 */
 	protected void testIsModelExplorerActivePart() {
 		RunnableWithResult<IWorkbenchPart> activePartRunnable;
-		Display.getDefault().syncExec(activePartRunnable = new RunnableWithResult.Impl<IWorkbenchPart>(){
-			public void run(){
+		Display.getDefault().syncExec(activePartRunnable = new RunnableWithResult.Impl<IWorkbenchPart>() {
+
+			public void run() {
 				IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				IWorkbenchPart activePart = activePage.getActivePart();
 				setResult(activePart);
@@ -175,7 +177,7 @@ public abstract class AbstractHandlerTest {
 	/**
 	 * This method selects an element in the modelexplorer and test that the new
 	 * selection is the wanted selection using assertion
-	 * 
+	 *
 	 * @param elementToSelect
 	 *        the element to select
 	 */
@@ -199,7 +201,7 @@ public abstract class AbstractHandlerTest {
 	/**
 	 * This method selects an element in the modelexplorer and test that the new
 	 * selection is the wanted selection using assertion
-	 * 
+	 *
 	 * @param elementToSelect
 	 *        the element to select
 	 */
@@ -222,7 +224,7 @@ public abstract class AbstractHandlerTest {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the current handler for the command
 	 */
 	protected IHandler getActiveHandler() {
@@ -256,9 +258,9 @@ public abstract class AbstractHandlerTest {
 		// we open the editor
 		editor = (CoreMultiDiagramEditor)openEditor(file);
 
-		RunnableWithResult runnable;
+		RunnableWithResult<?> runnable;
 
-		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl() {
+		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<Object>() {
 
 			public void run() {
 				IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
@@ -297,13 +299,13 @@ public abstract class AbstractHandlerTest {
 				Object[] visibleElement = commonViewer.getVisibleExpandedElements();
 				modelRoot = EMFHelper.getEObject(visibleElement[0]);
 
-				List<Customization> appliedCustomizations=org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations();
-				Customization SimpleUML=null;
-				Iterator<?>iter=appliedCustomizations.iterator();
+				List<Customization> appliedCustomizations = org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations();
+				Customization SimpleUML = null;
+				Iterator<?> iter = appliedCustomizations.iterator();
 				while(iter.hasNext()) {
 					Customization custo = (Customization)iter.next();
-					if( custo.getName().equals("SimpleUML")){
-						SimpleUML=custo;
+					if(custo.getName().equals("SimpleUML")) {
+						SimpleUML = custo;
 					}
 				}
 				Assert.assertNotNull("Custom SimpleUML not found", SimpleUML); //$NON-NLS-1$
@@ -320,7 +322,7 @@ public abstract class AbstractHandlerTest {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the root of the model
 	 */
 	public EObject getRootOfTheModel() {
@@ -328,7 +330,7 @@ public abstract class AbstractHandlerTest {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the model explorer view
 	 */
 	public ModelExplorerView getModelExplorerView() {
@@ -336,7 +338,7 @@ public abstract class AbstractHandlerTest {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the common viewer
 	 */
 	public CommonViewer getCommonViewer() {

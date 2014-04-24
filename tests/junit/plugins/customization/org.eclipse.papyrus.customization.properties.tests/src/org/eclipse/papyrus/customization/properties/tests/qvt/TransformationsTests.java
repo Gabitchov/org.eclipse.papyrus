@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,13 +24,17 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.papyrus.customization.properties.generation.generators.EcoreGenerator;
 import org.eclipse.papyrus.customization.properties.generation.generators.IGenerator;
 import org.eclipse.papyrus.customization.properties.generation.generators.ProfileGenerator;
+import org.eclipse.papyrus.customization.properties.model.xwt.resource.XWTResource;
 import org.eclipse.papyrus.customization.properties.tests.Activator;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.root.PropertiesRoot;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
@@ -46,10 +50,10 @@ import org.junit.Test;
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=383748
 /**
  * Test the QVT transformations associated to the properties view generation/customization
- * 
+ *
  * @author Camille Letavernier
  */
-public class TransformationsTests {
+public class TransformationsTests extends AbstractPapyrusTest {
 
 	private static URI xwtModelUri;
 
@@ -66,26 +70,26 @@ public class TransformationsTests {
 		targetProject.delete(true, new NullProgressMonitor());
 	}
 
-	//	@Test
-	//	public void handleXWTFileFromResource() {
-	//		//From an XWT Resource
-	//		Resource xwtResource = new XWTResource(xwtModelUri);
-	//		try {
-	//			xwtResource.load(null);
-	//		} catch (IOException ex) {
-	//			Activator.log.error(ex);
-	//			Assert.fail("Cannot load the XWT Resource");
-	//		}
-	//		checkContents(xwtResource);
-	//	}
+	@Test
+	public void handleXWTFileFromResource() {
+		//From an XWT Resource
+		Resource xwtResource = new XWTResource(xwtModelUri);
+		try {
+			xwtResource.load(null);
+		} catch (IOException ex) {
+			Activator.log.error(ex);
+			Assert.fail("Cannot load the XWT Resource");
+		}
+		checkContents(xwtResource);
+	}
 
-	//	@Test
-	//	public void handleXWTFileFromResourceSet() {
-	//		//From a generic ResourceSet
-	//		ResourceSet resourceSet = new ResourceSetImpl();
-	//		Resource xwtResource = resourceSet.getResource(xwtModelUri, true);
-	//		checkContents(xwtResource);
-	//	}
+	@Test
+	public void handleXWTFileFromResourceSet() {
+		//From a generic ResourceSet
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource xwtResource = resourceSet.getResource(xwtModelUri, true);
+		checkContents(xwtResource);
+	}
 
 	//Briefly check the resource contents
 	private void checkContents(Resource xwtResource) {
@@ -168,7 +172,7 @@ public class TransformationsTests {
 	public void generateProfileContext() {
 		final URI profileURI = URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/resources/profile/model3.profile.uml", true);
 
-		//FIXME: The ProfileGenerator is currently not built to be used programmatically; we need to override it to test it. 
+		//FIXME: The ProfileGenerator is currently not built to be used programmatically; we need to override it to test it.
 
 		IGenerator generator = new ProfileGenerator() {
 
@@ -216,7 +220,7 @@ public class TransformationsTests {
 		Assert.assertEquals(1, context.getDependencies().size());
 		Assert.assertEquals("UML", context.getDependencies().get(0).getName());
 		Assert.assertEquals(1, context.getDataContexts().size()); //Only one DataContextRoot
-		Assert.assertEquals(12, context.getViews().size()); //12 view for 6 elements 
+		Assert.assertEquals(12, context.getViews().size()); //12 view for 6 elements
 		//		Assert.assertEquals(6, generatedContexts.get(0).getDataContexts().get(0).getElements().size());
 		Assert.assertEquals(6, context.getDataContexts().get(0).getElements().size()); //6 DataContextElements
 
@@ -228,38 +232,38 @@ public class TransformationsTests {
 		//		Assert.assertEquals(12, numberOfSections);
 	}
 
-	//FIXME: This test is disabled, because we haven't generated the views yet. 
+	//FIXME: This test is disabled, because we haven't generated the views yet.
 	//We need to run the full wizard ; not only the IGenerator (Which only generates the Context model)
 	//The wizard isn't built to be used programmatically
 	//
 	//		private int checkGeneratedContents(Context context) {
 	//			int numberOfSections = 0;
-	//	
+	//
 	//			ResourceSet loadingResourceSet = new ResourceSetImpl();
 	//			for(Tab tab : context.getTabs()) {
 	//				for(Section section : tab.getSections()) {
 	//					//There is a CompositeWidget
 	//					Assert.assertNotNull(section.getWidget());
-	//	
+	//
 	//					Resource widgetResource = section.getWidget().eResource();
 	//					URI widgetURI = widgetResource.getURI();
-	//	
+	//
 	//					//The CompositeWidget is located in its own *.xwt resource
 	//					Assert.assertTrue(widgetURI.lastSegment().endsWith(".xwt"));
-	//	
+	//
 	//					//The Resource is serialized to the XWT Format (Not XMI)
 	//					Assert.assertTrue(widgetResource instanceof XWTResource);
-	//	
+	//
 	//					//The XWT Resource can be unserialized
 	//					Resource xwtResource = loadingResourceSet.getResource(widgetURI, true);
 	//					Assert.assertTrue(xwtResource instanceof XWTResource);
 	//					Assert.assertEquals(1, xwtResource.getContents().size());
 	//					Assert.assertTrue(xwtResource.getContents().get(0) instanceof CompositeWidget);
-	//	
+	//
 	//					numberOfSections++;
 	//				}
 	//			}
-	//	
+	//
 	//			return numberOfSections;
 	//		}
 }

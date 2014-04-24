@@ -1,7 +1,7 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL 
+ * Copyright (c) 2009 CEA LIST & LIFL
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,9 +14,9 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider;
 
-import java.io.File;
+import static org.junit.Assert.assertNotNull;
 
-import junit.framework.TestCase;
+import java.io.File;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -25,14 +25,16 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 
 /**
  * @author cedric dumoulin
  */
-public class DiSashModelMngrTest extends TestCase {
+public class DiSashModelMngrTest extends AbstractPapyrusTest {
 
 	/**
 	 * A fake factory for testing.
@@ -40,33 +42,23 @@ public class DiSashModelMngrTest extends TestCase {
 	protected IPageModelFactory fakeModelFactory;
 
 	/**
-	 * @param name
-	 */
-	public DiSashModelMngrTest(String name) {
-		super(name);
-	}
-
-	/**
 	 * @see junit.framework.TestCase#setUp()
-	 * 
+	 *
 	 * @throws java.lang.Exception
 	 */
 	@Before
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	public void setUp() throws Exception {
 		fakeModelFactory = new FakeModelFactory();
 	}
 
 	/**
 	 * @see junit.framework.TestCase#tearDown()
-	 * 
+	 *
 	 * @throws java.lang.Exception
 	 */
 	@After
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
+	public void tearDown() throws Exception {
+		//Nothing
 	}
 
 	protected Resource createDiSashModelResource() {
@@ -88,6 +80,7 @@ public class DiSashModelMngrTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory)}
 	 * .
 	 */
+	@Test
 	public void testDiSashModelMngrIPageModelFactory() {
 
 		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
@@ -96,7 +89,7 @@ public class DiSashModelMngrTest extends TestCase {
 		assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
 		assertNotNull("model created", modelMngr.getDiSashWindowsMngr());
 		assertNotNull("default folder is set", modelMngr.getDiSashWindowsMngr().getSashModel().getCurrentSelection());
-		// 
+		//
 	}
 
 	/**
@@ -104,6 +97,7 @@ public class DiSashModelMngrTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory, org.eclipse.emf.ecore.resource.Resource)}
 	 * .
 	 */
+	@Test
 	public void testDiSashModelMngrIPageModelFactoryResource() {
 		Resource resource = createDiSashModelResource();
 
@@ -126,6 +120,7 @@ public class DiSashModelMngrTest extends TestCase {
 	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory, org.eclipse.papyrus.sashwindows.di.DiSashModel)}
 	 * .
 	 */
+	@Test
 	public void testDiSashModelMngrIPageModelFactoryDiSashModel() {
 		SashWindowsMngr diSashModel = DiUtils.createDefaultSashWindowsMngr();
 
@@ -141,6 +136,7 @@ public class DiSashModelMngrTest extends TestCase {
 	/**
 	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr#getIPageMngr()}.
 	 */
+	@Test
 	public void testGetIPageMngr() {
 		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
 
@@ -150,6 +146,7 @@ public class DiSashModelMngrTest extends TestCase {
 	/**
 	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr#getISashWindowsContentProvider()}.
 	 */
+	@Test
 	public void testGetISashWindowsContentProvider() {
 		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
 
@@ -158,7 +155,7 @@ public class DiSashModelMngrTest extends TestCase {
 
 	/**
 	 * Lookup for the SashModel object in the resource
-	 * 
+	 *
 	 * @param diResource
 	 * @return
 	 */

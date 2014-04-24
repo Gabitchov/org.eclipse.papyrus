@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2013 Atos Origin, CEA, and others.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,16 +9,19 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
- *  Christian W. Damus (CEA) - Work around regression in URI parsing in EMF 2.9 
+ *  Christian W. Damus (CEA) - Work around regression in URI parsing in EMF 2.9
  *
  *****************************************************************************/
 package org.eclipse.papyrus.core.resourceloading.tests.testModel2;
 
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -38,20 +41,23 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSetServiceFactory;
 import org.eclipse.papyrus.infra.services.resourceloading.preferences.StrategyChooser;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 
 /**
  * Abstract class to test all the strategies with TestModel2
  * - Check that a model resource is loaded when a model contains reference to it.
  * - Check that a notation resource is loaded when a diagram contains reference to it.
- * 
+ *
  * @author eperico
- * 
+ *
  */
-public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
+public abstract class AbstractResourceLoadingTestModel2 extends AbstractPapyrusTest {
 
 	public static final String INITIAL_PATH = "resources/TestModel2/";
 
@@ -69,9 +75,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 	 * {@inheritDoc}
 	 */
 	@Before
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	public void setUp() throws Exception {
 		StrategyChooser.setCurrentStrategy(getStrategy());
 		// first we need to create the test project from the plugin to the workspace test platform
 		IProject project = copyTestModelToThePlatform();
@@ -84,7 +88,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 
 	/**
 	 * Copy test model from the test plugin to the platform where the tests are executed
-	 * 
+	 *
 	 * @return the project in the runtime platform
 	 * @throws Exception
 	 */
@@ -105,7 +109,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 					createFolder(project, INITIAL_PATH);
 					URL url = FileLocator.find(Platform.getBundle(ITestConstants.FRAGMENT_ID), new Path(INITIAL_PATH + res + s), null);
 					URL newFile = FileLocator.resolve(url);
-					
+
 					// encode the URI for spaces in the path
 					file.createLink(new URL(newFile.toString().replaceAll(" ", "%20")).toURI(), IResource.REPLACE, monitor);
 				}
@@ -117,17 +121,17 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 
 	/**
 	 * Gets the current resource loading strategy.
-	 * 
+	 *
 	 * @return the strategy
 	 */
 	public abstract int getStrategy();
 
 	/**
 	 * Gets the resource to load, the one it is opened with the papyrus editor
-	 * 
+	 *
 	 * @param project
 	 *        the project in which the resources should be
-	 * 
+	 *
 	 * @return the resource to load
 	 */
 	public abstract IFile getResourceToLoad(IProject project);
@@ -135,6 +139,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 	/**
 	 * Gets an object (Class0) from a reference (type of property) to the high level resource (model1)
 	 */
+	@Test
 	public void testGetReferenceInControlledRessource() {
 		URI uriProperty0 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.uml", false).appendFragment("_57LlkIRSEd-ZSb15jhF0Qw");
 		EObject property0 = modelSet.getEObject(uriProperty0, true);
@@ -200,6 +205,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 	/**
 	 * Gets a figure (figure of Class0) contains in the high level resource (model1) from a diagram in controlled resource (Package0)
 	 */
+	@Test
 	public void testGetFigureInControlledRessource() {
 		URI uriFigurePackage0 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.notation", false).appendFragment("_-ig9EIRSEd-ZSb15jhF0Qw");
 		EObject figurePackage0 = modelSet.getEObject(uriFigurePackage0, true);
@@ -267,8 +273,8 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	protected void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		// Unload models
 		List<Resource> resources = new ArrayList<Resource>(modelSet.getResources());
 		for(Resource r : resources) {
@@ -278,12 +284,11 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 				e.printStackTrace();
 			}
 		}
-		super.tearDown();
 	}
 
 	/**
 	 * Creates the folder name in the specified project
-	 * 
+	 *
 	 * @param project
 	 * @param name
 	 * @throws CoreException

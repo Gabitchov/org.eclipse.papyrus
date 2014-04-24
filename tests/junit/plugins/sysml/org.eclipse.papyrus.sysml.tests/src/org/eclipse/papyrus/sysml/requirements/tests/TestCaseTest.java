@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,9 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.requirements.tests;
 
-import junit.framework.TestCase;
-import junit.textui.TestRunner;
+import static org.junit.Assert.fail;
 
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsFactory;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
@@ -26,6 +26,9 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Test Case</b></em>'. <!--
@@ -36,19 +39,10 @@ import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
  * <li>{@link org.eclipse.papyrus.sysml.requirements.TestCase#getVerifies() <em>Verifies</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class TestCaseTest extends TestCase {
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(TestCaseTest.class);
-	}
+public class TestCaseTest extends AbstractPapyrusTest {
 
 	protected org.eclipse.papyrus.sysml.requirements.TestCase fixture = null;
 
@@ -68,20 +62,9 @@ public class TestCaseTest extends TestCase {
 	// ////////////////////////////////////////////////////////////////////
 
 	/**
-	 * Constructs a new Test Case test case with the given name.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public TestCaseTest(String name) {
-		super(name);
-	}
-
-	/**
 	 * Returns the fixture for this Test Case test case. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected org.eclipse.papyrus.sysml.requirements.TestCase getFixture() {
@@ -91,7 +74,7 @@ public class TestCaseTest extends TestCase {
 	/**
 	 * Sets the fixture for this Test Case test case.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void setFixture(org.eclipse.papyrus.sysml.requirements.TestCase fixture) {
@@ -100,12 +83,12 @@ public class TestCaseTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated NOT
 	 */
-	@Override
-	protected void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		setFixture(RequirementsFactory.eINSTANCE.createTestCase());
 
 		// Prepare test
@@ -163,22 +146,23 @@ public class TestCaseTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	@Override
-	protected void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		setFixture(null);
 	}
 
 	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.requirements.TestCase#getVerifies()
 	 * <em>Verifies</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.sysml.requirements.TestCase#getVerifies()
 	 * @generated NOT
 	 */
+	@Test
 	public void testGetVerifies() {
 
 		// testCase0 -> []

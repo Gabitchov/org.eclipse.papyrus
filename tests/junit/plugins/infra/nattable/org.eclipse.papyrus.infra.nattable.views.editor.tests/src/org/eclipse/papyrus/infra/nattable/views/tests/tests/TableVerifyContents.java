@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,7 +15,6 @@ package org.eclipse.papyrus.infra.nattable.views.tests.tests;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -26,8 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
@@ -43,36 +40,27 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.views.tests.Activator;
-import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.ModelExplorerUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.PartService;
-import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.uml2.uml.Model;
 import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 
-public class TableVerifyContents {
+public class TableVerifyContents extends AbstractPapyrusTest {
 
 	private static final String MODEL_PATH = "/resources/model2"; //$NON-NLS-1$
 
@@ -171,7 +159,7 @@ public class TableVerifyContents {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 *         the page list used for this model
 	 */

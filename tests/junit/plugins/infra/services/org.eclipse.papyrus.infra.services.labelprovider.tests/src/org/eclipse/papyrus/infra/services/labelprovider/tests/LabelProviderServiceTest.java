@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,6 +16,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.junit.After;
@@ -26,14 +27,14 @@ import org.junit.Test;
 
 /**
  * Basic tests on LabelProviderService contributions
- * 
+ *
  * - Test contexts (scope)
  * - Test priorities
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
-public class LabelProviderServiceTest {
+public class LabelProviderServiceTest extends AbstractPapyrusTest {
 
 	public static final String TEST_EMF_CONTEXT = "org.eclipse.papyrus.infra.services.labelprovider.tests.EMFContext";
 

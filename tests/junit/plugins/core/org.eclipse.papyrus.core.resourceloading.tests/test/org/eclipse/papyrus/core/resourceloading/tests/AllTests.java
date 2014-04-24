@@ -32,5 +32,5 @@ Strategy2TestModel2WithModel1.class,
 Strategy2TestModel2WithPackage0.class
 })
 public class AllTests {
-
+	//Test suite
 }

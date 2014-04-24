@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013, 2014 LIFL, CEA LIST, and others.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,9 +9,11 @@
  * Contributors:
  *  LIFL - Initial API and implementation
  *  CEA LIST - Update tests and re-integrate into automation suite
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards;
+
+import static org.junit.Assert.assertEquals;
 
 import org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
@@ -83,8 +85,8 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 		};
 
 		// ensure that the dialog would create a profile
-		settings.saveDefaultDiagramCategory(new String[] {"profile"});
-		
+		settings.saveDefaultDiagramCategory(new String[]{ "profile" });
+
 		initWizardDialog(wizard);
 		NewModelFilePage page = getPage(wizard, NewModelFilePage.class);
 		assertEquals(expectedExtension, page.getFileExtension());

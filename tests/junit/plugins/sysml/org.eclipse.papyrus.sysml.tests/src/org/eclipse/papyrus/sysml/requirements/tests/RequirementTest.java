@@ -13,9 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.requirements.tests;
 
-import junit.framework.TestCase;
-import junit.textui.TestRunner;
+import static org.junit.Assert.fail;
 
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsFactory;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
@@ -29,6 +29,9 @@ import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.profile.standard.StandardPackage;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Requirement</b></em>'. <!--
@@ -48,16 +51,7 @@ import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
  *
  * @generated
  */
-public class RequirementTest extends TestCase {
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(RequirementTest.class);
-	}
+public class RequirementTest extends AbstractPapyrusTest {
 
 	/**
 	 * The fixture for this Requirement test case. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -147,17 +141,6 @@ public class RequirementTest extends TestCase {
 	protected Model model = null;
 
 	/**
-	 * Constructs a new Requirement test case with the given name.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @generated
-	 */
-	public RequirementTest(String name) {
-		super(name);
-	}
-
-	/**
 	 * Returns the fixture for this Requirement test case. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 *
@@ -183,8 +166,8 @@ public class RequirementTest extends TestCase {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated NOT
 	 */
-	@Override
-	protected void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		setFixture(RequirementsFactory.eINSTANCE.createRequirement());
 
 		// Prepare test
@@ -391,8 +374,8 @@ public class RequirementTest extends TestCase {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	@Override
-	protected void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -403,6 +386,7 @@ public class RequirementTest extends TestCase {
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getDerived()
 	 * @generated NOT
 	 */
+	@Test
 	public void testGetDerived() {
 
 		// Isolated requirement : default_req.getDerived() = []
@@ -432,6 +416,7 @@ public class RequirementTest extends TestCase {
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getDerivedFrom()
 	 * @generated NOT
 	 */
+	@Test
 	public void testGetDerivedFrom() {
 
 		// Isolated requirement : default_req.getDerivedFrom() = []
@@ -460,6 +445,7 @@ public class RequirementTest extends TestCase {
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getMaster()
 	 * @generated NOT
 	 */
+	@Test
 	public void testGetMaster() {
 
 		// Isolated requirement : default_req.getMaster() = null
@@ -480,6 +466,7 @@ public class RequirementTest extends TestCase {
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getRefinedBy()
 	 * @generated NOT
 	 */
+	@Test
 	public void testGetRefinedBy() {
 
 		// Isolated requirement : default_req.getRefinedBy() = []
@@ -503,6 +490,7 @@ public class RequirementTest extends TestCase {
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getSatisfiedBy()
 	 * @generated NOT
 	 */
+	@Test
 	public void testGetSatisfiedBy() {
 
 		// Isolated requirement : default_req.getSatisfiedBy() = []
@@ -526,6 +514,7 @@ public class RequirementTest extends TestCase {
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getTracedTo()
 	 * @generated NOT
 	 */
+	@Test
 	public void testGetTracedTo() {
 
 		// Isolated requirement : default_req.getTracedTo = []
@@ -572,6 +561,7 @@ public class RequirementTest extends TestCase {
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getVerifiedBy()
 	 * @generated NOT
 	 */
+	@Test
 	public void testGetVerifiedBy() {
 
 		// Isolated requirement : default_req.getVerifiedBy() = []

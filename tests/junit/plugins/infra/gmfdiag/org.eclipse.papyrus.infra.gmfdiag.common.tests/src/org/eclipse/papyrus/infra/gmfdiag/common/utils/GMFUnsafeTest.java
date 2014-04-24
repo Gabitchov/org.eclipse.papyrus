@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014 CEA and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -35,7 +35,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Property;
@@ -49,7 +49,7 @@ import org.junit.rules.TestName;
 /**
  * Test suite for the {@link GMFUnsafe} class.
  */
-public class GMFUnsafeTest {
+public class GMFUnsafeTest extends AbstractPapyrusTest {
 
 	@Rule
 	public final TestName testName = new TestName();

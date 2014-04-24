@@ -1,11 +1,14 @@
 package org.eclipse.papyrus.uml.diagram.wizards;
 
+import static org.junit.Assert.assertEquals;
+
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
 import org.eclipse.papyrus.sysml.diagram.ui.NewSysMLProjectWizard;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.junit.Test;
+
 
 
 public class TestNewSysMLProjectWizard extends TestNewModelWizardBase {

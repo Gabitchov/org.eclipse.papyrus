@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014 CEA and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,7 @@ import static org.junit.Assert.assertThat;
 import org.eclipse.papyrus.infra.emf.readonly.tests.PapyrusROEditingDomainFixture;
 import org.eclipse.papyrus.junit.utils.rules.JavaResource;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.uml2.uml.Type;
 import org.junit.After;
 import org.junit.Before;
@@ -31,7 +32,7 @@ import com.google.common.collect.Iterators;
  * This is the ReadOnlyTesterTest type. Enjoy.
  */
 @JavaResource("Bug323802.uml")
-public class ReadOnlyTesterTest {
+public class ReadOnlyTesterTest extends AbstractPapyrusTest {
 
 	@Rule
 	public final PapyrusROEditingDomainFixture domain = new PapyrusROEditingDomainFixture();

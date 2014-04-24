@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -29,13 +29,14 @@ import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.provider.CSSClassContentProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.tests.Activator;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 
-public class CSSClassProviderTest {
+public class CSSClassProviderTest extends AbstractPapyrusTest {
 
 	private CSSDiagram diagram;
 

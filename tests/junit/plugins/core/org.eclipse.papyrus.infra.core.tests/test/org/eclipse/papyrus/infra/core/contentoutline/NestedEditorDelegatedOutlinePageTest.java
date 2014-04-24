@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,10 +12,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.contentoutline;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.lang.reflect.Field;
 
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.ui.part.PageSite;
 import org.junit.Test;
 
@@ -23,7 +25,7 @@ import org.junit.Test;
 /**
  * Test the {@link NestedEditorDelegatedOutlinePage} class
  */
-public class NestedEditorDelegatedOutlinePageTest {
+public class NestedEditorDelegatedOutlinePageTest extends AbstractPapyrusTest {
 
 	@Test
 	public void testExistingMethod() {
@@ -37,7 +39,7 @@ public class NestedEditorDelegatedOutlinePageTest {
 		} catch (NoSuchFieldException e) {
 			fail(e.getLocalizedMessage());
 		}
-		
+
 		assertNotNull("Impossible to find parent site field", parentSiteField);
 	}
 

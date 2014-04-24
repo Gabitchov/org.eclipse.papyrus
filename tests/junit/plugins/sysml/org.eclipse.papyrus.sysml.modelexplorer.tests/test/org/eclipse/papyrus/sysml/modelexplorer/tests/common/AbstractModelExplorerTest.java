@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,8 +8,8 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- * 
- * 
+ *
+ *
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.common;
@@ -19,8 +19,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
-import org.junit.Assert;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -40,6 +38,7 @@ import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customizatio
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.sysml.modelexplorer.Activator;
 import org.eclipse.papyrus.sysml.modelexplorer.tests.utils.EditorUtils;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
@@ -59,6 +58,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 
 
@@ -66,7 +66,7 @@ import org.junit.BeforeClass;
 /**
  * Abstract class for Copy/paste
  */
-public abstract class AbstractModelExplorerTest {
+public abstract class AbstractModelExplorerTest extends AbstractPapyrusTest {
 
 	/** boolean to indicate if the test is initialized or not */
 	private static boolean isInitialized;
@@ -75,7 +75,7 @@ public abstract class AbstractModelExplorerTest {
 	public static IEditorPart editor = null;
 
 	/** id of the papyrus editor */
-	public static String editorID = "org.eclipse.papyrus.infra.core.papyrusEditor"; 
+	public static String editorID = "org.eclipse.papyrus.infra.core.papyrusEditor";
 
 	/** view part: the model explorer */
 	protected static IViewPart modelExplorerPart;
@@ -111,7 +111,7 @@ public abstract class AbstractModelExplorerTest {
 
 	/**
 	 * Initialization of the test
-	 * 
+	 *
 	 * @throws Exception
 	 *         thrown when initialization has problem
 	 */
@@ -164,7 +164,7 @@ public abstract class AbstractModelExplorerTest {
 
 	/**
 	 * Prepare the diagram before testing
-	 * 
+	 *
 	 * @throws Exception
 	 *         exception thrown in case of problem
 	 */
@@ -208,13 +208,13 @@ public abstract class AbstractModelExplorerTest {
 		Assert.assertNotNull("Impossible to find IBD_B1", iBD_B1_Diagram); //$NON-NLS-1$
 		bDD_Main_Diagram = getDiagram("BDD_Main");
 		Assert.assertNotNull("Impossible to find BDD_Main", bDD_Main_Diagram); //$NON-NLS-1$
-		List<Customization> appliedCustomizations=org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations();
-		Customization SimpleUML=null;
-		Iterator<?>iter=appliedCustomizations.iterator();
+		List<Customization> appliedCustomizations = org.eclipse.papyrus.views.modelexplorer.Activator.getDefault().getCustomizationManager().getManagedCustomizations();
+		Customization SimpleUML = null;
+		Iterator<?> iter = appliedCustomizations.iterator();
 		while(iter.hasNext()) {
 			Customization custo = (Customization)iter.next();
-			if( custo.getName().equals("SimpleUML")){
-				SimpleUML=custo;
+			if(custo.getName().equals("SimpleUML")) {
+				SimpleUML = custo;
 			}
 		}
 		Assert.assertNotNull("Custom SimpleUML not found", SimpleUML); //$NON-NLS-1$
@@ -224,12 +224,12 @@ public abstract class AbstractModelExplorerTest {
 
 		Assert.assertEquals("bad order of applied Custom", "SimpleUML", appliedCustomizations.get(0).getName()); //$NON-NLS-1$
 
-	/** end of generated selectable objects */
+		/** end of generated selectable objects */
 	}
 
 	/**
 	 * Close editor
-	 * 
+	 *
 	 * @throws Exception
 	 *         exception thrown in case of problem
 	 */
@@ -251,7 +251,7 @@ public abstract class AbstractModelExplorerTest {
 
 	/**
 	 * Selects and reveal the specified element
-	 * 
+	 *
 	 * @param object
 	 *        the object to select
 	 * @throws Exception
@@ -272,7 +272,7 @@ public abstract class AbstractModelExplorerTest {
 
 	/**
 	 * Selects and reveal the specified list of elements
-	 * 
+	 *
 	 * @param newElements
 	 *        the list of objects to select
 	 * @throws Exception
@@ -299,7 +299,7 @@ public abstract class AbstractModelExplorerTest {
 
 	/**
 	 * Returns the current editing domain
-	 * 
+	 *
 	 * @return
 	 *         the current editing domain
 	 */
@@ -309,7 +309,7 @@ public abstract class AbstractModelExplorerTest {
 
 	/**
 	 * Returns <code>true</code> if the current Active editor is dirty.
-	 * 
+	 *
 	 * @return <code>true</code> if the current Active editor is dirty
 	 * @throws Exception
 	 *         exception thrown in case of problem (NPE, etc.)
@@ -328,7 +328,7 @@ public abstract class AbstractModelExplorerTest {
 
 	/**
 	 * Selects and reveal the specified element
-	 * 
+	 *
 	 * @param object
 	 *        the object to select
 	 * @throws Exception
@@ -349,7 +349,7 @@ public abstract class AbstractModelExplorerTest {
 
 	/**
 	 * Selects and reveal the specified list of diagrams
-	 * 
+	 *
 	 * @param newElements
 	 *        the list of diagrams to select
 	 * @throws Exception
@@ -378,7 +378,7 @@ public abstract class AbstractModelExplorerTest {
 
 	/**
 	 * Expands the given CommonViewer to reveal the given elements
-	 * 
+	 *
 	 * @param elementList
 	 *        The elements to reveal
 	 * @param commonViewer
@@ -421,11 +421,11 @@ public abstract class AbstractModelExplorerTest {
 				 * in the good order. This is a lot faster than going through the whole tree
 				 * using getChildren of the ContentProvider since our Viewer uses a Hashtable
 				 * to keep track of the revealed elements.
-				 * 
+				 *
 				 * However we need to use a dedicated MatchingItem to do the matching,
 				 * and a specific comparer in our viewer so than the equals of MatchingItem is
 				 * used in priority.
-				 * 
+				 *
 				 * Please refer to MatchingItem for more infos.
 				 */
 				EObject previousParent = null;
@@ -444,7 +444,7 @@ public abstract class AbstractModelExplorerTest {
 
 	/**
 	 * Returns the diagram with the given name
-	 * 
+	 *
 	 * @param name
 	 *        the name of the diagram to find
 	 * @return the diagram with the given name.
@@ -466,7 +466,7 @@ public abstract class AbstractModelExplorerTest {
 
 	/**
 	 * Retrieves the Model Element Item for the given EObject
-	 * 
+	 *
 	 * @param objectToFind
 	 *        object represented by the searched item
 	 * @return the {@link ModelElementItem} that corresponds to the diagram
@@ -486,7 +486,7 @@ public abstract class AbstractModelExplorerTest {
 
 	/**
 	 * Retrieves the Model Element Item for the given Diagram
-	 * 
+	 *
 	 * @param diagramToFind
 	 *        diagram represented by the searched item
 	 * @return the {@link ModelElementItem} that corresponds to the diagram

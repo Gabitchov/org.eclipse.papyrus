@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,6 +33,7 @@ import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.junit.After;
@@ -44,11 +45,11 @@ import org.osgi.framework.Bundle;
 /**
  * If some tests of this class doesn't work, the problem comes probably from the plugin.xml of the plugin oep.infra.nattable.model.editor.
  * We replace the initial contributions to org.eclipse.ui.editor by our with our Custom Editor which override the save options
- * 
+ *
  * @author vl222926
- * 
+ *
  */
-public class EditorsTests {
+public class EditorsTests extends AbstractPapyrusTest {
 
 	private IProject project;
 
@@ -59,7 +60,7 @@ public class EditorsTests {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param projectName
 	 *        the name of the project
 	 * @param modelName
@@ -74,6 +75,7 @@ public class EditorsTests {
 		final IFile diModelFile = PapyrusProjectUtils.copyIFile(getSourcePath() + modelName, bundle, project, modelName);
 		RunnableWithResult<?> runnableWithResult = new RunnableWithResult.Impl<Object>() {
 
+			@Override
 			public void run() {
 				setStatus(Status.OK_STATUS);
 				try {

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvid
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.tools.tests.Activator;
 import org.junit.After;
 import org.junit.Before;
@@ -35,7 +36,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 //TODO : Test TreeToFlatContentProvider (Number of elements displayed, isValid...)
-public class ContentProviderTest {
+public class ContentProviderTest extends AbstractPapyrusTest {
 
 	private EObject testModel;
 

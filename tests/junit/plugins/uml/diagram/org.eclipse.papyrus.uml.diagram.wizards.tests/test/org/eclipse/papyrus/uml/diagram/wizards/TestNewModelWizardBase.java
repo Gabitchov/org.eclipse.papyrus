@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013, 2014 LIFL, CEA LIST, and others.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,16 +9,19 @@
  * Contributors:
  *  LIFL - Initial API and implementation
  *  CEA LIST - Update tests and re-integrate into automation suite
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Arrays;
-
-import junit.framework.TestCase;
 
 import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.dialogs.IDialogSettings;
@@ -29,6 +32,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectStorageProviderPage;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -41,32 +45,24 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Iterables;
 
 
-public abstract class TestNewModelWizardBase extends TestCase {
+public abstract class TestNewModelWizardBase extends AbstractPapyrusTest {
 
 	protected static final IStructuredSelection EMPTY_SELECTION = StructuredSelection.EMPTY;
 
 	protected SettingsHelper settings;
-	
+
 	protected abstract IWorkbenchWizard createWizard();
 
 	private String settingsBackup;
-	
-	@Override
+
 	@Before
 	public void setUp() throws Exception {
-		super.setUp();
-		
 		initSettingsHelper();
 	}
-	
-	@Override
+
 	@After
 	public void tearDown() throws Exception {
-		try {
-			restoreDialogSettings();
-		} finally {
-			super.tearDown();
-		}
+		restoreDialogSettings();
 	}
 
 	protected IStructuredSelection getSelection() {
@@ -108,10 +104,10 @@ public abstract class TestNewModelWizardBase extends TestCase {
 		assertNotNull("Did not find page of type " + pageType.getSimpleName(), result);
 		return result;
 	}
-	
+
 	protected void testOrderOfPages(IWorkbenchWizard wizard, Class<?>[] expectedPages) {
 		Class<?> optionalInitialPage = SelectStorageProviderPage.class;
-		 
+
 		IWizardPage next = wizard.getPages()[0];
 		for(int i = 0; i < expectedPages.length; i++) {
 			String isNullMessageFormat = "page %s expected, but actual is: null";
@@ -124,7 +120,7 @@ public abstract class TestNewModelWizardBase extends TestCase {
 			} else {
 				testPageInstanceOf(next, expectedPages[i], i);
 			}
-			
+
 			next = next.getNextPage();
 		}
 		String noMorePagesExpectedMessageFormat = "page %s is not expected";
@@ -154,7 +150,7 @@ public abstract class TestNewModelWizardBase extends TestCase {
 		}
 		this.settingsBackup = backupWriter.toString();
 	}
-	
+
 	private void restoreDialogSettings() {
 		if(settingsBackup != null) {
 			IDialogSettings workbenchSettings = Activator.getDefault().getDialogSettings();

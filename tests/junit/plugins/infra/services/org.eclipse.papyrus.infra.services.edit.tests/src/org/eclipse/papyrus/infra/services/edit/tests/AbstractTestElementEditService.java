@@ -18,6 +18,7 @@ import org.eclipse.papyrus.infra.services.edit.Activator;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider;
 import org.eclipse.papyrus.infra.services.edit.tests.edit.helper.EPackageEditHelper;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorPart;
@@ -32,7 +33,7 @@ import org.junit.BeforeClass;
 /**
  * Abstract Papyrus initialization class (required to get Service activation).
  */
-public abstract class AbstractTestElementEditService {
+public abstract class AbstractTestElementEditService extends AbstractPapyrusTest {
 
 	protected static final String PAPYRUS_CONTEXT_ID = "org.eclipse.papyrus.infra.services.edit.TypeContext"; //$NON-NLS-1$
 

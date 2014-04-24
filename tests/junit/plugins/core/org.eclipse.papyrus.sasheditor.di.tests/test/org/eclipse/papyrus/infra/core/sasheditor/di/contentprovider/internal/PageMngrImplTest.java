@@ -14,10 +14,15 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import junit.framework.TestCase;
 
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel;
@@ -29,15 +34,16 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.impl.TabFolderImpl;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.swt.SWT;
-import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 
 /**
  * @author dumoulin
  */
-public class PageMngrImplTest extends TestCase {
+public class PageMngrImplTest extends AbstractPapyrusTest {
 
 	/**
 	 * The {@link PageMngrImpl} under test.
@@ -49,24 +55,13 @@ public class PageMngrImplTest extends TestCase {
 	 */
 	protected DiContentProvider contentProvider;
 
-
-	/**
-	 * @param name
-	 */
-	public PageMngrImplTest(String name) {
-		super(name);
-	}
-
 	/**
 	 * @see junit.framework.TestCase#setUp()
 	 *
 	 * @throws java.lang.Exception
 	 */
-	@Override
 	@Before
-	protected void setUp() throws Exception {
-		super.setUp();
-
+	public void setUp() throws Exception {
 		SashWindowsMngr diSashModel = DiUtils.createDefaultSashWindowsMngr();
 
 		//Fix bug to match refactoring in Bug 429239. The current implementation computes allPages() dynamically,
@@ -80,17 +75,6 @@ public class PageMngrImplTest extends TestCase {
 		IPageModelFactory pageModelFactory = new FakePageModelFactory();
 		contentProvider = new DiContentProvider(diSashModel.getSashModel(), pageModelFactory, eventProvider);
 
-	}
-
-	/**
-	 * @see junit.framework.TestCase#tearDown()
-	 *
-	 * @throws java.lang.Exception
-	 */
-	@After
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
 	}
 
 	/**
@@ -143,6 +127,7 @@ public class PageMngrImplTest extends TestCase {
 	 * Test method for
 	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#addPage(org.eclipse.emf.ecore.EObject)}.
 	 */
+	@Test
 	public void testAddPage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -174,6 +159,7 @@ public class PageMngrImplTest extends TestCase {
 	/**
 	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#allPages()}.
 	 */
+	@Test
 	public void testAllPages() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -204,6 +190,7 @@ public class PageMngrImplTest extends TestCase {
 	 * Test method for
 	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#closePage(org.eclipse.emf.ecore.EObject)}.
 	 */
+	@Test
 	public void testClosePage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -248,6 +235,7 @@ public class PageMngrImplTest extends TestCase {
 	/**
 	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#closeAllOpenedPages())}.
 	 */
+	@Test
 	public void testCloseAllOpenedPages() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -294,6 +282,7 @@ public class PageMngrImplTest extends TestCase {
 	/**
 	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#closeAllOpenedPages())}.
 	 */
+	@Test
 	public void testCloseOtherOpenedPages() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -345,6 +334,7 @@ public class PageMngrImplTest extends TestCase {
 	 * Test method for
 	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#openPage(org.eclipse.emf.ecore.EObject)}.
 	 */
+	@Test
 	public void testOpenPage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -382,6 +372,7 @@ public class PageMngrImplTest extends TestCase {
 	 * Test method for
 	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#removePage(org.eclipse.emf.ecore.EObject)}.
 	 */
+	@Test
 	public void testRemovePage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -433,6 +424,7 @@ public class PageMngrImplTest extends TestCase {
 	 * The new folder should automatically be removed.
 	 *
 	 */
+	@Test
 	public void testCloseLastPageOfTabFolder() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.tools.providers.UMLStereotypePropertyContentProvider;
 import org.eclipse.papyrus.uml.tools.tests.Activator;
 import org.eclipse.uml2.uml.Profile;
@@ -40,11 +41,11 @@ import org.junit.Test;
  * <li>tests the returned children according to the boolean baseProperty</li>
  * <li>verifies that the returned children don't contains the inherited properties</li>
  * </ul>
- * 
+ *
  * @author vl222926
- * 
+ *
  */
-public class UMLStereotypePropertyContentProviderTest {
+public class UMLStereotypePropertyContentProviderTest extends AbstractPapyrusTest {
 
 	/** the root profile of the tested model */
 	private Profile rootProfile;
@@ -359,7 +360,7 @@ public class UMLStereotypePropertyContentProviderTest {
 
 
 	/**
-	 * 
+	 *
 	 */
 	@After
 	public void enfOfTests() {

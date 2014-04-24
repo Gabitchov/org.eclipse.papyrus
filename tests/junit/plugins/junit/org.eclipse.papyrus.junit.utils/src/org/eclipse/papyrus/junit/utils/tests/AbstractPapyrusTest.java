@@ -24,5 +24,5 @@ import org.junit.runner.RunWith;
  */
 @RunWith(ClassificationRunner.class)
 public abstract class AbstractPapyrusTest {
-
+	//Abstract test class for using the Classification Runner
 }

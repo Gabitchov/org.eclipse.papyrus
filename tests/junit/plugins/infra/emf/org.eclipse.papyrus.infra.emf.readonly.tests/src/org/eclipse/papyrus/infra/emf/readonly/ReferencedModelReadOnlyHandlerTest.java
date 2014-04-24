@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014 CEA and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -47,6 +47,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeManager;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
@@ -66,7 +67,7 @@ import com.google.common.collect.ImmutableList;
 /**
  * Test suite for the {@link ReferencedModelReadOnlyHandler} class.
  */
-public class ReferencedModelReadOnlyHandlerTest {
+public class ReferencedModelReadOnlyHandlerTest extends AbstractPapyrusTest {
 
 	@Rule
 	public final TestName testName = new TestName();
@@ -141,7 +142,7 @@ public class ReferencedModelReadOnlyHandlerTest {
 		assertNotReadOnly(ssn);
 		assertLocalViewsNotReadOnly(ssn.getType());
 	}
-	
+
 	/**
 	 * Test that a referenced resource is not considered read-only if it does not exist, because in that case it couldn't
 	 * possibly be subject to conflicting edits in some other editor.
@@ -149,9 +150,9 @@ public class ReferencedModelReadOnlyHandlerTest {
 	@Test
 	public void testNonExistentResourceIsUnhandled() {
 		Property ssn = person.getAttribute("ssn", null);
-		
+
 		Resource referenced = ssn.getType().eResource();
-		
+
 		// Don't use the URIConverter delete API for this
 		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(referenced.getURI().toPlatformString(true)));
 		assertThat(file.exists(), is(true));
@@ -161,10 +162,10 @@ public class ReferencedModelReadOnlyHandlerTest {
 			e.printStackTrace();
 			fail("Failed to delete referenced resource's underlying file: " + e.getLocalizedMessage());
 		}
-		
+
 		assertNotReadOnly(ssn.getType());
 	}
-	
+
 	/**
 	 * Test that we do not get confused by clients that pass object URIs (including fragments) into the read-only handler API,
 	 * resulting in thinking that an object in a writable resource is read-only because its file-extension-trimmed URI doesn't
@@ -177,7 +178,7 @@ public class ReferencedModelReadOnlyHandlerTest {
 		assertThat(fixture.anyReadOnly(discretionAxes(), new URI[]{ uri }).or(false), is(false));
 		assertThat(fixture.canMakeWritable(discretionAxes(), new URI[]{ uri }).or(true), is(false));
 	}
-	
+
 	//
 	// Test framework
 	//

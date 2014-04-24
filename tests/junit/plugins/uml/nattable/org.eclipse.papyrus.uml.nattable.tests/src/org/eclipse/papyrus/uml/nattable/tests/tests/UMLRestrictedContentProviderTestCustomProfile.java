@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -29,12 +28,12 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.nattable.tests.Activator;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -43,7 +42,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class UMLRestrictedContentProviderTestCustomProfile {
+public class UMLRestrictedContentProviderTestCustomProfile extends AbstractPapyrusTest {
 
 	/** the root of the model */
 	private Model modelRoot;
@@ -154,7 +153,7 @@ public class UMLRestrictedContentProviderTestCustomProfile {
 	public void testWithRestriction() {
 		NattableModelManager modelManager = new NattableModelManager(table);
 		IRestrictedContentProvider columnContentProvider = modelManager.getColumnAxisManager().createPossibleAxisContentProvider(true);
-	columnContentProvider.setIgnoreInheritedElements(true);
+		columnContentProvider.setIgnoreInheritedElements(true);
 		Object[] elements = columnContentProvider.getElements();
 		Assert.assertEquals(2, elements.length);
 		List<?> roots = Arrays.asList(elements);
@@ -174,7 +173,7 @@ public class UMLRestrictedContentProviderTestCustomProfile {
 
 		//test the children for umlPackage
 		List<?> children = Arrays.asList(columnContentProvider.getChildren(umlPackage));
-		Assert.assertEquals(13, children.size());//1 of them is not displayed in the dialog, because it doesn't have valid feature 
+		Assert.assertEquals(13, children.size());//1 of them is not displayed in the dialog, because it doesn't have valid feature
 		Assert.assertTrue(children.contains(UMLPackage.eINSTANCE.getBehavioredClassifier()));
 		Assert.assertTrue(children.contains(UMLPackage.eINSTANCE.getClass_()));
 		Assert.assertTrue(children.contains(UMLPackage.eINSTANCE.getClassifier()));
@@ -217,7 +216,7 @@ public class UMLRestrictedContentProviderTestCustomProfile {
 	public void testWithoutRestriction() {
 		NattableModelManager modelManager = new NattableModelManager(table);
 		IRestrictedContentProvider columnContentProvider = modelManager.getColumnAxisManager().createPossibleAxisContentProvider(false);
-	columnContentProvider.setIgnoreInheritedElements(true);
+		columnContentProvider.setIgnoreInheritedElements(true);
 		Object[] elements = columnContentProvider.getElements();
 		Assert.assertEquals(2, elements.length);
 		List<?> roots = Arrays.asList(elements);
@@ -298,7 +297,7 @@ public class UMLRestrictedContentProviderTestCustomProfile {
 	public void testWithRestrictionWithInheritedProperties() {
 		NattableModelManager modelManager = new NattableModelManager(table);
 		IRestrictedContentProvider columnContentProvider = modelManager.getColumnAxisManager().createPossibleAxisContentProvider(true);
-	columnContentProvider.setIgnoreInheritedElements(false);
+		columnContentProvider.setIgnoreInheritedElements(false);
 		Object[] elements = columnContentProvider.getElements();
 		Assert.assertEquals(2, elements.length);
 		List<?> roots = Arrays.asList(elements);
@@ -318,7 +317,7 @@ public class UMLRestrictedContentProviderTestCustomProfile {
 
 		//test the children for umlPackage
 		List<?> children = Arrays.asList(columnContentProvider.getChildren(umlPackage));
-		Assert.assertEquals(13, children.size());//1 of them is not displayed in the dialog, because it doesn't have valid feature 
+		Assert.assertEquals(13, children.size());//1 of them is not displayed in the dialog, because it doesn't have valid feature
 		Assert.assertTrue(children.contains(UMLPackage.eINSTANCE.getBehavioredClassifier()));
 		Assert.assertTrue(children.contains(UMLPackage.eINSTANCE.getClass_()));
 		Assert.assertTrue(children.contains(UMLPackage.eINSTANCE.getClassifier()));
@@ -366,7 +365,7 @@ public class UMLRestrictedContentProviderTestCustomProfile {
 	public void testWithoutRestrictionWithInheritedProperties() {
 		NattableModelManager modelManager = new NattableModelManager(table);
 		IRestrictedContentProvider columnContentProvider = modelManager.getColumnAxisManager().createPossibleAxisContentProvider(false);
-	columnContentProvider.setIgnoreInheritedElements(false);
+		columnContentProvider.setIgnoreInheritedElements(false);
 		Object[] elements = columnContentProvider.getElements();
 		Assert.assertEquals(2, elements.length);
 		List<?> roots = Arrays.asList(elements);
@@ -386,7 +385,7 @@ public class UMLRestrictedContentProviderTestCustomProfile {
 
 		//test the children for umlPackage
 		List<?> children = Arrays.asList(columnContentProvider.getChildren(umlPackage));
-		Assert.assertTrue(children.size() >= 242);//approximatly 242 metaclasses in UML 
+		Assert.assertTrue(children.size() >= 242);//approximatly 242 metaclasses in UML
 
 		//test that we have the inherited properties
 		children = Arrays.asList(columnContentProvider.getChildren(UMLPackage.eINSTANCE.getClassifier()));

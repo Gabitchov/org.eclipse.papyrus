@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,26 +16,15 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.CommandParameter;
-import org.eclipse.emf.edit.command.CreateChildCommand;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -49,6 +38,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
@@ -57,16 +47,14 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * Test creation of UML elements (Creation / Undo / redo)
  */
-public class CreateElementTest {
+public class CreateElementTest extends AbstractPapyrusTest {
 
 	private static IProject createProject;
 
@@ -154,8 +142,8 @@ public class CreateElementTest {
 		testClass = (Class)rootModel.getOwnedMember("TestClass");
 		testActivityWithNode = (Activity)rootModel.getOwnedMember("TestActivityWithNode");
 	}
-	
-	
+
+
 
 	@Test
 	public void testCreateClassInModel() throws Exception {
@@ -168,28 +156,28 @@ public class CreateElementTest {
 		runCreationTest(testClass, UMLElementTypes.MODEL, false);
 	}
 
-	@Test 
+	@Test
 	public void testCreateCentralBufferNodeInActivity() throws Exception {
 		int initialNumberOfNodes = 0;
 		Assert.assertTrue("Editor should not be dirty before test", !openPapyrusEditor.isDirty());
 		Command command = getCreateChildCommand(testActivity, UMLElementTypes.CENTRAL_BUFFER_NODE, true);
 		Assert.assertEquals("Wrong number of nodes before creation", initialNumberOfNodes, testActivity.getNodes().size());
-		
+
 		transactionalEditingDomain.getCommandStack().execute(command);
-		Assert.assertEquals("Wrong number of nodes after creation", initialNumberOfNodes+1, testActivity.getNodes().size());
-		Assert.assertEquals("Wrong number of owned nodes after creation", initialNumberOfNodes+1, testActivity.getOwnedNodes().size());
-		
+		Assert.assertEquals("Wrong number of nodes after creation", initialNumberOfNodes + 1, testActivity.getNodes().size());
+		Assert.assertEquals("Wrong number of owned nodes after creation", initialNumberOfNodes + 1, testActivity.getOwnedNodes().size());
+
 		transactionalEditingDomain.getCommandStack().undo();
 		Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
 		Assert.assertEquals("Wrong number of owned nodes after undo", initialNumberOfNodes, testActivity.getOwnedNodes().size());
 		Assert.assertEquals("Wrong number of nodes after undo", initialNumberOfNodes, testActivity.getNodes().size());
-		
+
 		transactionalEditingDomain.getCommandStack().redo();
-		Assert.assertEquals("Wrong number of nodes after redo", initialNumberOfNodes+1, testActivity.getNodes().size());
-		
+		Assert.assertEquals("Wrong number of nodes after redo", initialNumberOfNodes + 1, testActivity.getNodes().size());
+
 		transactionalEditingDomain.getCommandStack().undo();
 		Assert.assertEquals("Wrong number of nodes after 2nd undo", initialNumberOfNodes, testActivity.getNodes().size());
-		
+
 		// assert editor is not dirty
 		Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
 	}
@@ -200,22 +188,22 @@ public class CreateElementTest {
 		Assert.assertTrue("Editor should not be dirty before test", !openPapyrusEditor.isDirty());
 		Command command = getCreateChildCommand(testActivityWithNode, UMLElementTypes.CENTRAL_BUFFER_NODE, true);
 		Assert.assertEquals("Wrong number of nodes before creation", initialNumberOfNodes, testActivityWithNode.getNodes().size());
-		
+
 		transactionalEditingDomain.getCommandStack().execute(command);
-		Assert.assertEquals("Wrong number of nodes after creation", initialNumberOfNodes+1, testActivityWithNode.getNodes().size());
-		Assert.assertEquals("Wrong number of owned nodes after creation", initialNumberOfNodes+1, testActivityWithNode.getOwnedNodes().size());
-		
+		Assert.assertEquals("Wrong number of nodes after creation", initialNumberOfNodes + 1, testActivityWithNode.getNodes().size());
+		Assert.assertEquals("Wrong number of owned nodes after creation", initialNumberOfNodes + 1, testActivityWithNode.getOwnedNodes().size());
+
 		transactionalEditingDomain.getCommandStack().undo();
 		Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
 		Assert.assertEquals("Wrong number of owned nodes after undo", initialNumberOfNodes, testActivityWithNode.getOwnedNodes().size());
 		Assert.assertEquals("Wrong number of nodes after undo", initialNumberOfNodes, testActivityWithNode.getNodes().size());
-		
+
 		transactionalEditingDomain.getCommandStack().redo();
-		Assert.assertEquals("Wrong number of nodes after redo", initialNumberOfNodes+1, testActivityWithNode.getNodes().size());
-		
+		Assert.assertEquals("Wrong number of nodes after redo", initialNumberOfNodes + 1, testActivityWithNode.getNodes().size());
+
 		transactionalEditingDomain.getCommandStack().undo();
 		Assert.assertEquals("Wrong number of nodes after 2nd undo", initialNumberOfNodes, testActivityWithNode.getNodes().size());
-		
+
 		// assert editor is not dirty
 		Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
 	}
@@ -239,7 +227,7 @@ public class CreateElementTest {
 
 	/**
 	 * Creates the element in the given owner element, undo and redo the action
-	 * 
+	 *
 	 * @param owner
 	 *        owner of the new element
 	 * @param hintedType
@@ -258,7 +246,7 @@ public class CreateElementTest {
 			if(!canCreate) {
 				fail("Creation command is executable but it was expected as not executable");
 			} else {
-				// command is executable, and it was expected to => run the creation 
+				// command is executable, and it was expected to => run the creation
 				Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(command);
 				return emfCommand;
 			}

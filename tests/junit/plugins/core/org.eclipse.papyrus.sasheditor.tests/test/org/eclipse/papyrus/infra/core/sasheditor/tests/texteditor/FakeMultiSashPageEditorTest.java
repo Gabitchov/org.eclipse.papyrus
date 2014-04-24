@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 Cedric Dumoulin.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,25 +32,16 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
  * Tests for testing the {@link FakeMultiSashPageEditor} test editor.
- * 
+ *
  * @author Cedric dumoulin
- * 
+ *
  */
-public class FakeMultiSashPageEditorTest {
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
+public class FakeMultiSashPageEditorTest /* extends AbstractPapyrusTest */{
 
 	/**
 	 * @throws java.lang.Exception
@@ -70,7 +61,7 @@ public class FakeMultiSashPageEditorTest {
 
 	/**
 	 * Test openEditor with a provided provider.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
@@ -101,7 +92,7 @@ public class FakeMultiSashPageEditorTest {
 
 	/**
 	 * Test openEditor with a provided provider.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
@@ -123,7 +114,7 @@ public class FakeMultiSashPageEditorTest {
 
 	/**
 	 * Test openEditor with a provided provider.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
@@ -147,7 +138,7 @@ public class FakeMultiSashPageEditorTest {
 
 	/**
 	 * Test openEditor with a provided provider.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
@@ -169,7 +160,7 @@ public class FakeMultiSashPageEditorTest {
 
 	/**
 	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.tests.texteditor.FakeMultiSashPageEditor#getActiveEditor()}.
-	 * 
+	 *
 	 * @throws PartInitException
 	 */
 	@Test
@@ -183,7 +174,7 @@ public class FakeMultiSashPageEditorTest {
 
 	/**
 	 * Check if we can start several {@link FakeMultiSashPageEditor} in the same time
-	 * 
+	 *
 	 * @throws PartInitException
 	 */
 	@Test
@@ -206,7 +197,7 @@ public class FakeMultiSashPageEditorTest {
 
 	/**
 	 * Check if we can start several {@link FakeMultiSashPageEditor} in the same time
-	 * 
+	 *
 	 * @throws PartInitException
 	 */
 	@Test
@@ -234,11 +225,11 @@ public class FakeMultiSashPageEditorTest {
 	 * editors are closed by calling editor.dispose().
 	 * This test succeed, but exception are outputted because the dispose() on editor doesn't
 	 * fried the editors from workbench.
-	 * 
+	 *
 	 * @throws PartInitException
 	 */
 	@Test
-	@Ignore
+	//@Ignore
 	public void testStartMultipleFakeEditorsOneByOneAndDispose() throws PartInitException {
 
 

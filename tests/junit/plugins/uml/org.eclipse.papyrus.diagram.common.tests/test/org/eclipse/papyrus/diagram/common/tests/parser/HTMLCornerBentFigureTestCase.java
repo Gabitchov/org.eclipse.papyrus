@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,17 +14,20 @@ package org.eclipse.papyrus.diagram.common.tests.parser;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
+import org.eclipse.papyrus.junit.utils.classification.ClassificationRunner;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.HTMLCornerBentFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 
 /**
  * Test Case for the class {@link HTMLCornerBentFigure}
  */
+@RunWith(ClassificationRunner.class)
 public class HTMLCornerBentFigureTestCase extends HTMLCornerBentFigure {
 
 	public final String TEST_CASE_1 = "not a html text";
@@ -180,7 +183,7 @@ public class HTMLCornerBentFigureTestCase extends HTMLCornerBentFigure {
 
 	/**
 	 * Generates the result string from a Block Flow
-	 * 
+	 *
 	 * @param expectedResult
 	 *        the block flow to display
 	 * @return the result string from a Block Flow
@@ -238,7 +241,7 @@ public class HTMLCornerBentFigureTestCase extends HTMLCornerBentFigure {
 
 	/**
 	 * Generates the result string from a Block Flow
-	 * 
+	 *
 	 * @param expectedResult
 	 *        the block flow to display
 	 * @return the result string from a Block Flow

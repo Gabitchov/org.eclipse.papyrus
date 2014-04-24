@@ -6,12 +6,13 @@ Export-Package: org.eclipse.papyrus.sysml.allocations.tests,
  org.eclipse.papyrus.sysml.tests,
  org.eclipse.papyrus.sysml.utils
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.sysml;bundle-version="1.0.0";visibility:=reexport,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.uml2.uml;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.papyrus.sysml;bundle-version="1.0.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.uml2.uml,
+ org.eclipse.emf.ecore.xmi,
  org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0",
- org.junit;bundle-version="4.10.0"
+ org.junit;bundle-version="4.10.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

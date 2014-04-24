@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.sysml.diagram.parametric.Activator;
 import org.eclipse.papyrus.sysml.diagram.parametric.tests.utils.Constants;
 import org.eclipse.papyrus.sysml.diagram.parametric.tests.utils.EditorUtils;
@@ -38,7 +39,7 @@ import org.junit.BeforeClass;
 /**
  * Abstract Papyrus initialization class (required to get Service activation).
  */
-public abstract class AbstractTest4B {
+public abstract class AbstractTest4B extends AbstractPapyrusTest {
 
 	public static boolean isInitialized = false;
 
@@ -84,20 +85,20 @@ public abstract class AbstractTest4B {
 		});
 
 		setActiveDiagramViewByName(Constants.PARAMETRIC_OWNED_BY_BLOCK_DIAGRAM_NAME);
-		
+
 		Assert.assertNotNull("Failed to open the editor", editor);
 	}
 
 	public static boolean setActiveDiagramViewByName(String diagramName) throws Exception {
-		if (diagramName == null) {
+		if(diagramName == null) {
 			return false;
 		}
 		ServicesRegistry serviceRegistry = (ServicesRegistry)EditorUtils.getEditor().getAdapter(ServicesRegistry.class);
 		IPageManager iPageManager = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 		List<Object> allPages = iPageManager.allPages();
-		for (Object object : allPages) {
-			if (object instanceof Diagram) {
-				if (diagramName.equals(((Diagram) object).getName())) {
+		for(Object object : allPages) {
+			if(object instanceof Diagram) {
+				if(diagramName.equals(((Diagram)object).getName())) {
 					iPageManager.selectPage(object);
 					return true;
 				}

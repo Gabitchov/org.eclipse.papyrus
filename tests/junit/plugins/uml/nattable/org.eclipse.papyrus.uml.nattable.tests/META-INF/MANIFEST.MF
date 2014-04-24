@@ -8,7 +8,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.nattable;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0"
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.uml.nattable.tests,
  org.eclipse.papyrus.uml.nattable.tests.tests
 Bundle-Vendor: %Bundle-Vendor

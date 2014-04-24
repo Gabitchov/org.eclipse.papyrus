@@ -12,12 +12,14 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,11 +27,11 @@ import org.junit.Test;
 /**
  * Test for {@link ModelSet}. <br>
  * Run as "JUnit Plugin-Test"
- * 
+ *
  * @author cedric dumoulin
- * 
+ *
  */
-public class ModelSetTest {
+public class ModelSetTest extends AbstractPapyrusTest {
 
 	/**
 	 * Name of the plugin that is created.
@@ -37,7 +39,7 @@ public class ModelSetTest {
 	final protected String PLUGIN_PROJECT_NAME = "org.eclipse.papyrus.infra.core";
 
 	/**
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Before
@@ -45,7 +47,7 @@ public class ModelSetTest {
 	}
 
 	/**
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@After
@@ -123,7 +125,7 @@ public class ModelSetTest {
 
 	/**
 	 * Test method for {@link org.eclipse.papyrus.infra.core.resource.ModelSet#loadModels(IFile)} .
-	 * 
+	 *
 	 * @throws ModelMultiException
 	 */
 	@Test
@@ -176,8 +178,9 @@ public class ModelSetTest {
 		mngr.registerModel(model2);
 
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.infra.core");
-		if(!p.exists())
+		if(!p.exists()) {
 			p.create(new NullProgressMonitor());
+		}
 		p.open(new NullProgressMonitor());
 
 		IFile model1File = p.getFile("tmp/model1." + model1Key);
@@ -196,15 +199,16 @@ public class ModelSetTest {
 
 	/**
 	 * Create some Resources for other test. This method should be called explicitly.
-	 * 
+	 *
 	 * @throws CoreException
 	 * @throws IOException
 	 */
 	protected void createResources(String... filenames) throws CoreException, IOException {
 
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject(PLUGIN_PROJECT_NAME);
-		if(!p.exists())
+		if(!p.exists()) {
 			p.create(new NullProgressMonitor());
+		}
 		p.open(new NullProgressMonitor());
 
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -223,7 +227,7 @@ public class ModelSetTest {
 
 	/**
 	 * Create a resource.
-	 * 
+	 *
 	 * @param p
 	 * @param resourceSet
 	 * @param filename
@@ -256,8 +260,9 @@ public class ModelSetTest {
 		mngr.registerModel(model2);
 
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.infra.core");
-		if(!p.exists())
+		if(!p.exists()) {
 			p.create(new NullProgressMonitor());
+		}
 		p.open(new NullProgressMonitor());
 
 		IFile model1File = p.getFile("tmp/model1." + model1Key);
@@ -364,7 +369,7 @@ public class ModelSetTest {
 
 	/**
 	 * Test that snippets are called after a call to loadModels()
-	 * 
+	 *
 	 * @throws ModelMultiException
 	 */
 	@Test
@@ -400,7 +405,7 @@ public class ModelSetTest {
 
 	/**
 	 * Test {@link #createResources(String...)}. This is a test methods :-)
-	 * 
+	 *
 	 * @throws ModelMultiException
 	 */
 	@Test
@@ -427,7 +432,7 @@ public class ModelSetTest {
 
 	/**
 	 * Test {@link ModelSet#importModels(ModelIdentifiers, IFile)} called after {@link ModelSet#createsModels(IFile)} .
-	 * 
+	 *
 	 * @throws ModelException
 	 */
 	@Test
@@ -452,7 +457,7 @@ public class ModelSetTest {
 		mngr.registerModel(model3);
 
 
-		// Get an handle on one of the files 
+		// Get an handle on one of the files
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject(PLUGIN_PROJECT_NAME);
 		IFile createdFile = p.getFile("tmp/model2." + model1Key);
 
@@ -468,7 +473,7 @@ public class ModelSetTest {
 		model1.getResource().getContents().add(EcoreFactory.eINSTANCE.createEPackage());
 		assertEquals("model1 has changed", 1, model1.getResource().getContents().size());
 
-		// Try to import 
+		// Try to import
 		IFile importFile = p.getFile("tmp/model1." + model1Key);
 		mngr.importModels(new ModelIdentifiers(model1Key, model2Key), importFile);
 

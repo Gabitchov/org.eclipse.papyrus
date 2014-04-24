@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009-2013 Cedric Dumoulin.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -47,25 +47,25 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
  * Run as normal test.
- * 
+ *
  * @author cedric dumoulin
- * 
+ *
  */
-public class SashWindowsContainerTest {
+public class SashWindowsContainerTest /* extends AbstractPapyrusTest */{
 
 
 	protected Display display;
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param name
 	 */
 	public SashWindowsContainerTest() {
@@ -74,7 +74,7 @@ public class SashWindowsContainerTest {
 	/**
 	 * @see junit.framework.TestCase#setUp()
 	 * @throws java.lang.Exception
-	 * 
+	 *
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -82,22 +82,11 @@ public class SashWindowsContainerTest {
 		if(display == null) {
 			display = new Display();
 		}
-
-	}
-
-	/**
-	 * @see junit.framework.TestCase#tearDown()
-	 * @throws java.lang.Exception
-	 * 
-	 */
-	@After
-	public void tearDown() throws Exception {
-		//display.dispose();
 	}
 
 	/**
 	 * Create a {@link SashWindowsContainer} to test. Initialize it with provided {@link ISashWindowsContentProvider}.
-	 * 
+	 *
 	 * @param contentProvider
 	 * @return
 	 */
@@ -118,7 +107,7 @@ public class SashWindowsContainerTest {
 
 	/**
 	 * Create a contentProvider.
-	 * 
+	 *
 	 * @return
 	 */
 	protected ISashWindowsContentProvider createContentProvider() {
@@ -141,7 +130,7 @@ public class SashWindowsContainerTest {
 	 */
 	@Test
 	public void testGetActiveEditor() {
-		// Create 
+		// Create
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 
 		// Create pages and add them to the default folder
@@ -166,7 +155,8 @@ public class SashWindowsContainerTest {
 	 * Test the method on a model with several folders and page.
 	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer#getActiveEditor()}.
 	 * Use new implementation to populate contentProvider
-	 * @throws PagesModelException 
+	 *
+	 * @throws PagesModelException
 	 */
 	@Test
 	public void testGetActiveEditor2() throws PagesModelException {
@@ -174,13 +164,13 @@ public class SashWindowsContainerTest {
 		// Create populated content provider
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 		SimpleSashWindowContentProviderUtils helper = new SimpleSashWindowContentProviderUtils(contentProvider);
-		
+
 		// define how to populate contentProvider
-		IModelExp expr = vSash( folder( "f1", page("p11"), page("p12")), folder( "f2", page("p21")));
+		IModelExp expr = vSash(folder("f1", page("p11"), page("p12")), folder("f2", page("p21")));
 		// Try to create the model
 		helper.createModel(expr);
 
-		
+
 		// Get the active editor
 		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
 		IPage page = container.getActiveSashWindowsPage();
@@ -193,7 +183,7 @@ public class SashWindowsContainerTest {
 	 */
 	@Test
 	public void testGetVisiblePages() {
-		// Create 
+		// Create
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 
 		// Create pages and add them to the default folder
@@ -234,16 +224,17 @@ public class SashWindowsContainerTest {
 	 * Test the method on a model with several folders and page.
 	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer#getActiveEditor()}.
 	 * Use new implementation to populate contentProvider
-	 * @throws PagesModelException 
+	 *
+	 * @throws PagesModelException
 	 */
 	@Test
 	public void testGetVisiblePages2() throws PagesModelException {
 		// Create populated content provider
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 		SimpleSashWindowContentProviderUtils helper = new SimpleSashWindowContentProviderUtils(contentProvider);
-		
+
 		// define how to populate contentProvider
-		IModelExp expr = vSash( folder( "f1", page("p11"), page("p12")), folder( "f2", page("p21"), page("p22")));
+		IModelExp expr = vSash(folder("f1", page("p11"), page("p12")), folder("f2", page("p21"), page("p22")));
 		// Try to create the model
 		helper.createModel(expr);
 		// Get the references
@@ -256,14 +247,14 @@ public class SashWindowsContainerTest {
 		List<IPage> pages = container.getVisiblePages();
 		// Build a list of raw models
 		List<Object> visibleModels = new ArrayList<Object>();
-		for( IPage page : pages) {
+		for(IPage page : pages) {
 			visibleModels.add(page.getRawModel());
 		}
-		
+
 		assertEquals("2 pages visible", 2, pages.size());
 		assertTrue("contains active page from folder 1", visibleModels.contains(models.get("p11")));
 		assertTrue("contains active page from folder 2", visibleModels.contains(models.get("p22")));
-		
+
 		// Check orders
 		assertEquals(models.get("p11"), pages.get(0).getRawModel());
 		assertEquals(models.get("p22"), pages.get(1).getRawModel());
@@ -273,16 +264,17 @@ public class SashWindowsContainerTest {
 	 * Test the method on a model with only one folder.
 	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer#getActiveEditor()}.
 	 * Use new implementation to populate contentProvider
-	 * @throws PagesModelException 
+	 *
+	 * @throws PagesModelException
 	 */
 	@Test
 	public void testGetVisiblePagesOneFoler() throws PagesModelException {
 		// Create populated content provider
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 		SimpleSashWindowContentProviderUtils helper = new SimpleSashWindowContentProviderUtils(contentProvider);
-		
+
 		// define how to populate contentProvider
-		IModelExp expr = folder( "f1", page("p11"), page("p12"), page("p13"));
+		IModelExp expr = folder("f1", page("p11"), page("p12"), page("p13"));
 		// Try to create the model
 		helper.createModel(expr);
 		// Get the references
@@ -295,13 +287,13 @@ public class SashWindowsContainerTest {
 		List<IPage> pages = container.getVisiblePages();
 		// Build a list of raw models
 		List<Object> visibleModels = new ArrayList<Object>();
-		for( IPage page : pages) {
+		for(IPage page : pages) {
 			visibleModels.add(page.getRawModel());
 		}
-		
+
 		assertEquals("1 pages visible", 1, pages.size());
 		assertTrue("contains active page from folder 1", visibleModels.contains(models.get("p11")));
-		
+
 		// Check orders
 		assertEquals(models.get("p11"), pages.get(0).getRawModel());
 	}
@@ -312,7 +304,7 @@ public class SashWindowsContainerTest {
 	 */
 	@Test
 	public void testGetActiveEditorNoPage() {
-		// Create 
+		// Create
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 
 
@@ -326,16 +318,17 @@ public class SashWindowsContainerTest {
 	 * Test the method on a model with several folders and page.
 	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer#selectPage(IPage)}.
 	 * Use new implementation to populate contentProvider
-	 * @throws PagesModelException 
+	 *
+	 * @throws PagesModelException
 	 */
 	@Test
 	public void testSelectPage() throws PagesModelException {
 		// Create populated content provider
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 		SimpleSashWindowContentProviderUtils helper = new SimpleSashWindowContentProviderUtils(contentProvider);
-		
+
 		// define how to populate contentProvider
-		IModelExp expr = vSash( folder( "f1", page("p11"), page("p12"), page("p13"), page("p14")), folder( "f2", page("p21"), page("p22")));
+		IModelExp expr = vSash(folder("f1", page("p11"), page("p12"), page("p13"), page("p14")), folder("f2", page("p21"), page("p22")));
 		// Try to create the model
 		helper.createModel(expr);
 		// Get the references
@@ -344,25 +337,25 @@ public class SashWindowsContainerTest {
 
 		// Create the container
 		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
-		
+
 		// Check if we have an active page
 		assertNotNull("active page set", container.getActiveSashWindowsPage());
-		
-		// Try to set active page
-		IPage p12 = container.lookupModelPage(models.get("p12")); 
-		container.selectPage(p12);		
-		assertEquals("page selected", p12, container.getActiveSashWindowsPage() );
 
 		// Try to set active page
-		IPage p22 = container.lookupModelPage(models.get("p22")); 
-		container.selectPage(p22);		
-		assertEquals("page selected", p22, container.getActiveSashWindowsPage() );
+		IPage p12 = container.lookupModelPage(models.get("p12"));
+		container.selectPage(p12);
+		assertEquals("page selected", p12, container.getActiveSashWindowsPage());
 
 		// Try to set active page
-		IPage p11 = container.lookupModelPage(models.get("p11")); 
-		container.selectPage(p11);		
-		assertEquals("page selected", p11, container.getActiveSashWindowsPage() );
-}
+		IPage p22 = container.lookupModelPage(models.get("p22"));
+		container.selectPage(p22);
+		assertEquals("page selected", p22, container.getActiveSashWindowsPage());
+
+		// Try to set active page
+		IPage p11 = container.lookupModelPage(models.get("p11"));
+		container.selectPage(p11);
+		assertEquals("page selected", p11, container.getActiveSashWindowsPage());
+	}
 
 
 	/**
@@ -386,7 +379,7 @@ public class SashWindowsContainerTest {
 	public void testRefreshTabs2() {
 
 		// Test 2 folders, one tab each. Then supress one tabs.
-		// 1 folder with one tab should remain. 
+		// 1 folder with one tab should remain.
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 
 		// Create pages and add them to the default folder
@@ -413,7 +406,7 @@ public class SashWindowsContainerTest {
 	 */
 	@Test
 	public void testVisit() {
-		// Create 
+		// Create
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 
 		// Create pages and add them to the default folder
@@ -461,7 +454,7 @@ public class SashWindowsContainerTest {
 	 */
 	@Test
 	public void testlookupModelPage() {
-		// Create 
+		// Create
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 
 		// Create pages and add them to the default folder
@@ -489,7 +482,7 @@ public class SashWindowsContainerTest {
 	 */
 	@Test
 	public void testSetFolderTabMenuManager_MenuManager() {
-		// Create 
+		// Create
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 
 		// Create pages and add them to the default folder
@@ -536,11 +529,12 @@ public class SashWindowsContainerTest {
 
 	}
 
+	@Ignore("TODO")
 	@Test
 	public void testSelectPagePageId() {
-		
+		//TODO
 	}
-	
+
 	protected TabFolderPart lookupTabFolderPart(SashWindowsContainer container, Object rawModel) {
 
 		LookupFolderPartByRawModelVisitor visitor = new LookupFolderPartByRawModelVisitor(rawModel);
@@ -550,65 +544,65 @@ public class SashWindowsContainerTest {
 
 	/**
 	 * Test If the FolderList is properly populated.
-	 * 
-	 * 	 * @throws PagesModelException 
+	 *
+	 * * @throws PagesModelException
 	 */
 	@Test
 	public void testFolderList() throws PagesModelException {
 		// Create populated content provider
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 		SimpleSashWindowContentProviderUtils helper = new SimpleSashWindowContentProviderUtils(contentProvider);
-		
+
 		// define how to populate contentProvider
-		IModelExp expr = vSash( folder( "f1", page("p11"), page("p12")), folder( "f2", page("p21"), page("p22")));
+		IModelExp expr = vSash(folder("f1", page("p11"), page("p12")), folder("f2", page("p21"), page("p22")));
 		// Try to create the model
 		helper.createModel(expr);
 		// Get the references
 		Map<String, Object> models = helper.queryModel(expr);
-	
+
 		// Create the container
 		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
 
 		// Check the folder list
 		IObservableList<IFolder> list = container.getIFolderList();
 		// Listener on the list
-		FakeObservableListener<IFolder> listener =  new FakeObservableListener<IFolder>();
+		FakeObservableListener<IFolder> listener = new FakeObservableListener<IFolder>();
 		list.addListener(listener);
-		
-		// Check list before 
-		assertNotNull("List exist", list );
-		assertEquals("list size", 2, list.size() );
-		
+
+		// Check list before
+		assertNotNull("List exist", list);
+		assertEquals("list size", 2, list.size());
+
 		// create a folder
 		ITabFolderModel folder = (ITabFolderModel)models.get("f2");
-		assertNotNull( "folder found", folder);
+		assertNotNull("folder found", folder);
 		contentProvider.createFolder(folder, 0, folder, SWT.UP);
 		// Refresh tabs, so that tabfolder is created.
 		container.refreshTabs();
 
 		// Check if the list contains the new folder
-		assertEquals("list size", 3, list.size() );
+		assertEquals("list size", 3, list.size());
 		// check event fired
-		assertNotNull( "event sent", listener.getLastAddEvents() );
-//		assertEquals( "event sent", folder, listener.getLastAddEvents().getRawModel() );
-		
+		assertNotNull("event sent", listener.getLastAddEvents());
+		//		assertEquals( "event sent", folder, listener.getLastAddEvents().getRawModel() );
+
 	}
-	
+
 	/**
 	 * Test If the FolderList is properly populated.
-	 * 
-	 * 	 * @throws PagesModelException 
+	 *
+	 * * @throws PagesModelException
 	 */
 	@Test
 	public void testFolderList2() throws PagesModelException {
-		
+
 		SimpleSashWindowContainerTestFacade containerFacade = new SimpleSashWindowContainerTestFacade();
-		
+
 		// define how to populate contentProvider
-		IModelExp expr = vSash( folder( "f1", page("p11"), page("p12")), folder( "f2", page("p21"), page("p22")));
+		IModelExp expr = vSash(folder("f1", page("p11"), page("p12")), folder("f2", page("p21"), page("p22")));
 		// Try to create the model
 		containerFacade.createModel(expr);
-	
+
 		// Create the container
 		SashWindowsContainer container = containerFacade.getSashContainer();
 
@@ -618,38 +612,32 @@ public class SashWindowsContainerTest {
 		// Check the folder list
 		IObservableList<IFolder> list = container.getIFolderList();
 		// Listener on the list
-		FakeObservableListener<IFolder> listener =  new FakeObservableListener<IFolder>();
+		FakeObservableListener<IFolder> listener = new FakeObservableListener<IFolder>();
 		list.addListener(listener);
-		
-		// Check list before 
-		assertNotNull("List exist", list );
-		assertEquals("list size", 2, list.size() );
-		
+
+		// Check list before
+		assertNotNull("List exist", list);
+		assertEquals("list size", 2, list.size());
+
 		// create a folder
 		containerFacade.createFolder("f2", 0, "f2", SWT.UP);
 		// Refresh tabs, so that tabfolder is created.
 		container.refreshTabs();
 
 		// build expr corresponding to new configuration
-		IModelExp newExpr = vSash( 
-				folder( "f1", page("p11"), page("p12")), 
-				vSash(
-				  folder( "f3", page("p21")),
-				  folder( "f2", page("p22"))
-				)
-				);
+		IModelExp newExpr = vSash(folder("f1", page("p11"), page("p12")), vSash(folder("f3", page("p21")), folder("f2", page("p22"))));
 		// Reset facade names to correspond to new configuration.
 		containerFacade.resetNamesContext(newExpr);
 		ITabFolderModel folder = containerFacade.getITabFolderModel("f3");
-		
+
 		// Check if the list contains the new folder
-		assertEquals("list size", 3, list.size() );
-		
-		
+		assertEquals("list size", 3, list.size());
+
+
 		// check event fired
-		assertNotNull( "event sent", listener.getLastAddEvents() );
-		assertEquals( "event sent", folder, listener.getLastAddEvents().getRawModel() );
-		
+		assertNotNull("event sent", listener.getLastAddEvents());
+		assertEquals("event sent", folder, listener.getLastAddEvents().getRawModel());
+
 	}
 
 }

@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -21,6 +21,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 import org.eclipse.papyrus.uml.diagram.common.helper.CreateOrShowExistingElementHelper;
 import org.eclipse.swt.widgets.Display;
@@ -35,7 +36,7 @@ import org.junit.BeforeClass;
 /**
  * Abstract Papyrus initialization class (required to get Service activation).
  */
-public abstract class AbstractTest {
+public abstract class AbstractTest extends AbstractPapyrusTest {
 
 	public static boolean isInitialized = false;
 

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,7 +20,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -43,6 +42,7 @@ import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.ModelExplorerUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.junit.utils.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.Activator;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
@@ -58,7 +58,7 @@ import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 
-public class TableCreationInSysMLModelTest {
+public class TableCreationInSysMLModelTest extends AbstractPapyrusTest {
 
 	private static Class class_;
 
@@ -271,8 +271,8 @@ public class TableCreationInSysMLModelTest {
 		Assert.assertTrue(creationCommand.canExecute());
 
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(creationCommand));
-		final NamedElement createdElement = (NamedElement)request.getNewElement(); 
-		NamedElement requirement = TableCreationInSysMLModelTest.requirement1.getMember(createdElement.getName()); //$NON-NLS-1$
+		final NamedElement createdElement = (NamedElement)request.getNewElement();
+		NamedElement requirement = TableCreationInSysMLModelTest.requirement1.getMember(createdElement.getName());
 		Assert.assertNotNull(requirement);
 		nestedRequirement3 = (Class)requirement;
 
@@ -295,7 +295,7 @@ public class TableCreationInSysMLModelTest {
 		Assert.assertTrue(destroyCommand.canExecute());
 
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(destroyCommand));
-		requirement = TableCreationInSysMLModelTest.requirement1.getMember(createdElement.getName()); //$NON-NLS-1$
+		requirement = TableCreationInSysMLModelTest.requirement1.getMember(createdElement.getName());
 		Assert.assertNull(requirement);
 		nestedRequirement3 = (Class)requirement;
 
