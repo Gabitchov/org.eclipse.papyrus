@@ -17,5 +17,5 @@ Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.editor.test
  s.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model.editor.t
  ests
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 
