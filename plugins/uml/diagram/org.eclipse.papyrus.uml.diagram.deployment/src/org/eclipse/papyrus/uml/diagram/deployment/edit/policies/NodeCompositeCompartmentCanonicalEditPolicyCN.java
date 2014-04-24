@@ -1,5 +1,13 @@
-/*
+/**
+ * Copyright (c) 2014 CEA LIST.
  * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.edit.policies;
 
@@ -59,7 +67,7 @@ public class NodeCompositeCompartmentCanonicalEditPolicyCN extends CanonicalEdit
 	/**
 	 * @generated
 	 */
-	protected Set getFeaturesToSynchronize() {
+	protected Set<EStructuralFeature> getFeaturesToSynchronize() {
 		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getNode_NestedNode());
@@ -71,8 +79,7 @@ public class NodeCompositeCompartmentCanonicalEditPolicyCN extends CanonicalEdit
 	/**
 	 * @generated
 	 */
-	@SuppressWarnings("rawtypes")
-	protected List getSemanticChildrenList() {
+	protected List<EObject> getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getNodeCompositeCompartment_32SemanticChildren(viewObject);

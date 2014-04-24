@@ -45,7 +45,6 @@ import org.eclipse.papyrus.infra.core.services.ServiceDescriptor;
 import org.eclipse.papyrus.infra.core.services.ServiceDescriptor.ServiceTypeKind;
 import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeManager;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 import org.eclipse.uml2.common.util.CacheAdapter;
@@ -213,7 +212,6 @@ public class ReferencedModelReadOnlyHandlerTest {
 	protected void createServiceRegistry() throws Exception {
 		services = new ServicesRegistry();
 		services.add(ModelSet.class, 10, new ModelSet());
-		services.add(ServiceUtilsForResourceInitializerService.class, 10, new ServiceUtilsForResourceInitializerService());
 
 		ServiceDescriptor desc = new ServiceDescriptor(TransactionalEditingDomain.class, EditingDomainServiceFactory.class.getName(), ServiceStartKind.STARTUP, 10, Collections.singletonList(ModelSet.class.getName()));
 		desc.setServiceTypeKind(ServiceTypeKind.serviceFactory);

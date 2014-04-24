@@ -1,5 +1,13 @@
-/*
+/**
+ * Copyright (c) 2014 CEA LIST.
  * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.edit.policies;
 
@@ -61,7 +69,7 @@ public class NodeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy 
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
+		EAnnotation annotation = view.getEAnnotation("Shortcut");//$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyShortcutsCommand(cmd, view);
@@ -209,8 +217,8 @@ public class NodeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy 
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain model
-	 * element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -236,8 +244,8 @@ public class NodeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy 
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the domain model
-	 * element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

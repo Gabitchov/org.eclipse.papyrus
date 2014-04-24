@@ -53,7 +53,7 @@ public class ServiceUtilsForSelection extends AbstractServiceUtils<ISelection> {
 			}
 		}
 
-		throw new ServiceException("Cannot retrieve the ServiceRegistry");
+		throw new ServiceException("Cannot retrieve the ServiceRegistry"); //$NON-NLS-1$
 	}
 
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 431953 (fix start-up of selective services to require only their dependencies)
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.controlmode.tests;
 
@@ -41,7 +43,6 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeManager;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
@@ -192,10 +193,8 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 				}
 			});
 
-			services.startRegistry();
 			services.add(ModelSet.class, 10, new CDOAwareModelSet(PapyrusRepositoryManager.INSTANCE));
-			services.add(ServiceUtilsForResourceInitializerService.class, 10, new ServiceUtilsForResourceInitializerService());
-			services.startServicesByClassKeys(ModelSet.class, ServiceUtilsForResourceInitializerService.class);
+			services.startRegistry();
 
 			result = services.getService(ModelSet.class);
 		} catch (ServiceException e) {

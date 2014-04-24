@@ -1395,6 +1395,44 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CustomDiagramUpdaterSingletonImpl <em>Custom Diagram Updater Singleton</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.CustomDiagramUpdaterSingletonImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getCustomDiagramUpdaterSingleton()
+	 * @generated
+	 */
+	int CUSTOM_DIAGRAM_UPDATER_SINGLETON = 24;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_DIAGRAM_UPDATER_SINGLETON__COMMENT = COMMENTED_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Singleton Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_DIAGRAM_UPDATER_SINGLETON__SINGLETON_PATH = COMMENTED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Custom Diagram Updater Singleton</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_DIAGRAM_UPDATER_SINGLETON_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2097,6 +2135,27 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EClass getGenerateUsingElementTypeCreationCommand();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton <em>Custom Diagram Updater Singleton</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Custom Diagram Updater Singleton</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton
+	 * @generated
+	 */
+	EClass getCustomDiagramUpdaterSingleton();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton#getSingletonPath <em>Singleton Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Singleton Path</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton#getSingletonPath()
+	 * @see #getCustomDiagramUpdaterSingleton()
+	 * @generated
+	 */
+	EAttribute getCustomDiagramUpdaterSingleton_SingletonPath();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2694,6 +2753,24 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass GENERATE_USING_ELEMENT_TYPE_CREATION_COMMAND = eINSTANCE.getGenerateUsingElementTypeCreationCommand();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CustomDiagramUpdaterSingletonImpl <em>Custom Diagram Updater Singleton</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.CustomDiagramUpdaterSingletonImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getCustomDiagramUpdaterSingleton()
+		 * @generated
+		 */
+		EClass CUSTOM_DIAGRAM_UPDATER_SINGLETON = eINSTANCE.getCustomDiagramUpdaterSingleton();
+
+		/**
+		 * The meta object literal for the '<em><b>Singleton Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CUSTOM_DIAGRAM_UPDATER_SINGLETON__SINGLETON_PATH = eINSTANCE.getCustomDiagramUpdaterSingleton_SingletonPath();
 
 	}
 

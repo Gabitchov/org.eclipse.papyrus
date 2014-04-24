@@ -17,7 +17,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.services.markerlistener;bundle-version="1.0.0",
  org.eclipse.papyrus.cdo.validation.problems;bundle-version="1.0.0",
  org.eclipse.papyrus.cdo.validation.problems.edit;bundle-version="1.0.0",
- org.eclipse.emf.cdo.server.ocl;bundle-version="4.2.0"
+ org.eclipse.emf.cdo.server.ocl;bundle-version="4.2.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.cdo.internal.ui.editors.tests;x-internal:=true,
  org.eclipse.papyrus.cdo.internal.ui.markers.tests;x-internal:=true,
  org.eclipse.papyrus.cdo.ui.tests

@@ -17,7 +17,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
@@ -39,8 +38,9 @@ public class GetContainedTables extends AbstractEditorContainerQuery implements 
 		while(roots.hasNext()) {
 			EObject root = roots.next();
 			if (root instanceof Table) {
-				if (EcoreUtil.equals(((Table) root).getOwner(), source)) {
-					result.add((Table) root);
+				Table table = (Table) root;
+				if (table.getOwner() == source) {
+					result.add(table);
 				}
 			}
 		}

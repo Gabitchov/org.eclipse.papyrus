@@ -37,7 +37,7 @@ public class ServiceUtilsForEObject extends AbstractServiceUtils<EObject> {
 	@Override
 	public ServicesRegistry getServiceRegistry(EObject from) throws ServiceException {
 		if(from == null) {
-			throw new ServiceException("The selected EObject must not be null");
+			throw new ServiceException("The selected EObject must not be null"); //$NON-NLS-1$
 		}
 
 		return ServiceUtilsForResource.getInstance().getServiceRegistry(from.eResource());

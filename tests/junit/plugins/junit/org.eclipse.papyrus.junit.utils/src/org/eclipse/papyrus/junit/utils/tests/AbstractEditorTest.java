@@ -13,7 +13,10 @@ package org.eclipse.papyrus.junit.utils.tests;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
@@ -184,4 +187,17 @@ public abstract class AbstractEditorTest extends AbstractPapyrusTest {
 	 * @return
 	 */
 	protected abstract String getSourcePath();
+
+	protected void flushDisplayEvents() {
+		for(;;) {
+			try {
+				if(!Display.getCurrent().readAndDispatch()) {
+					break;
+				}
+			} catch (Exception e) {
+				Bundle testBundle = getBundle();
+				Platform.getLog(testBundle).log(new Status(IStatus.ERROR, testBundle.getSymbolicName(), "Uncaught exception in display runnable.", e));
+			}
+		}
+	}
 }

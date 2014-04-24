@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 422257
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.markers.tests;
 
@@ -16,9 +18,6 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
-import java.lang.ref.Reference;
-import java.lang.ref.ReferenceQueue;
-import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.List;
 
@@ -35,8 +34,11 @@ import org.eclipse.papyrus.infra.services.markerlistener.MarkersMonitorService;
 import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateDelMarkersFromModelCommand;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
+import org.eclipse.papyrus.junit.utils.rules.MemoryLeakRule;
 import org.eclipse.ui.PartInitException;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import com.google.common.collect.Iterables;
@@ -47,17 +49,16 @@ import com.google.common.collect.Lists;
  */
 public class ModelValidationMarkersTest extends AbstractPapyrusCDOUITest {
 
+	@Rule
+	public final MemoryLeakRule memory = new MemoryLeakRule();
+
 	public ModelValidationMarkersTest() {
 		super();
 	}
 
 	@Test
 	public void testCreateMarkers() {
-		openEditor();
-
 		validateModel();
-
-		flushDisplayEvents();
 
 		// get some marker
 		IPapyrusMarker marker = null;
@@ -72,11 +73,7 @@ public class ModelValidationMarkersTest extends AbstractPapyrusCDOUITest {
 
 	@Test
 	public void testDeleteMarkers() {
-		openEditor();
-
 		validateModel();
-
-		flushDisplayEvents();
 
 		// get the markers
 		List<IPapyrusMarker> markers = null;
@@ -107,12 +104,7 @@ public class ModelValidationMarkersTest extends AbstractPapyrusCDOUITest {
 
 	@Test
 	public void testMemoryLeaksInValidation() throws InterruptedException {
-
-		openEditor();
-
 		validateModel();
-
-		flushDisplayEvents();
 
 		// get some marker
 		IPapyrusMarker marker = null;
@@ -124,26 +116,8 @@ public class ModelValidationMarkersTest extends AbstractPapyrusCDOUITest {
 			fail("Could not get problem markers.");
 		}
 
-		ReferenceQueue<Object> queue = new ReferenceQueue<Object>();
-		List<Reference<Object>> references = Lists.newArrayList();
-		references.add(new WeakReference<Object>(marker, queue));
-		references.add(new WeakReference<Object>(getEProblem(marker), queue));
-
-		marker = null;
-
-		// closing the editor should clean up all services, markers, etc.
-		closeEditor();
-
-		// try to force GC
-		for(int i = 0; i < 10; i++) {
-			System.gc();
-		}
-
-		// assert that the marker and its underlying EProblem are unreachable
-		for(int i = 0; i < 2; i++) {
-			Reference<?> ref = queue.remove(1000);
-			assertThat(references.remove(ref), is(true));
-		}
+		memory.add(marker);
+		memory.add(getEProblem(marker));
 	}
 
 	//
@@ -153,6 +127,13 @@ public class ModelValidationMarkersTest extends AbstractPapyrusCDOUITest {
 	@Before
 	public void ensureValidationView() throws PartInitException {
 		getWorkbenchPage().showView("org.eclipse.papyrus.views.validation.ModelValidationView");
+		openEditor();
+	}
+
+	@Override
+	@After
+	public void closeEditor() {
+		super.closeEditor();
 	}
 
 	void execute(IUndoableOperation operation) {
@@ -166,6 +147,7 @@ public class ModelValidationMarkersTest extends AbstractPapyrusCDOUITest {
 
 	void validateModel() {
 		execute(new ValidateModelCommand(getUMLModel(), new EcoreDiagnostician()));
+		flushDisplayEvents();
 	}
 
 	void deleteMarkers() {

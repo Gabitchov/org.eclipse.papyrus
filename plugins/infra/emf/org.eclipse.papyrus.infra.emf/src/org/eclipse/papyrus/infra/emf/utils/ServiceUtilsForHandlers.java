@@ -89,7 +89,7 @@ public class ServiceUtilsForHandlers extends AbstractServiceUtils<ExecutionEvent
 			}
 		}
 
-		throw new ServiceNotFoundException("The ServiceRegistry cannot be resolved");
+		throw new ServiceNotFoundException("The ServiceRegistry cannot be resolved"); //$NON-NLS-1$
 	}
 
 	public static ServiceUtilsForHandlers getInstance() {

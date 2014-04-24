@@ -92,14 +92,14 @@
    </extension>
 
    <extension point="org.eclipse.ui.contexts" id="ui-context">
-      <?gmfgen generated="true"?>
-      <context
-         description="%context.description"
-         id="org.eclipse.papyrus.uml.diagram.deployment.ui.diagramContext"
-         name="%context.name"
-         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
-      </context>
-   </extension>
+				      <?gmfgen generated="true"?>
+				      <context
+				         description="%context.description"
+				         id="org.eclipse.papyrus.uml.diagram.deployment.ui.diagramContext"
+				         name="%context.name"
+				         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+				      </context>
+				   </extension>
    
    <extension point="org.eclipse.ui.commands" id="update-cmd">
       <?gmfgen generated="true"?>
@@ -150,403 +150,286 @@
    </extension>
 
 <extension
-		id="Papyrus Deployment Diagram (Incubation).palettedefinition"
-		name="Papyrus Deployment Diagram (Incubation) Predefined Entries"
-		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
-		
-		<?gmfgen generated="true"?>	
-		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
-			<Priority name="Lowest"/>
-      		<contribution
-            	factoryClass="org.eclipse.papyrus.uml.diagram.deployment.part.UMLPaletteFactory">
-     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+			id="Papyrus Deployment Diagram (Incubation).palettedefinition"
+			name="Papyrus Deployment Diagram (Incubation) Predefined Entries"
+			point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+			
+			<?gmfgen generated="true"?>	
+			<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+				<Priority name="Lowest"/>
+				   		<contribution
+				   		    	factoryClass="org.eclipse.papyrus.uml.diagram.deployment.part.UMLPaletteFactory">
+				   		<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
-					<entry
-       defineOnly="true"
-       description="Create a model"
-       id="createModelCreationTool"
-       kind="tool"
-       label="Model"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create a Package"
-       id="deployment.tool.package"
-       kind="tool"
-       label="Package"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Node"
-       id="deployment.tool.node"
-       kind="tool"
-       label="Node"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Device"
-       id="deployment.tool.device"
-       kind="tool"
-       label="Device"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new ExecutionEnvironment"
-       id="deployment.tool.executionEnvironment"
-       kind="tool"
-       label="Execution Environment"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Artifact"
-       id="deployment.tool.artifact"
-       kind="tool"
-       label="Artifact"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Comment"
-       id="deployment.tool.comment"
-       kind="tool"
-       label="Comment"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Constraint"
-       id="deployment.tool.constraint"
-       kind="tool"
-       label="Constraint"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Link (Comment / Constraint)"
-       id="deployment.tool.link"
-       kind="tool"
-       label="Link"
-       large_icon="icons/obj16/Link.gif"
-       path=""
-       small_icon="icons/obj16/Link.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Dependency"
-       id="deployment.tool.dependency"
-       kind="tool"
-       label="Dependency"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create a dependency branch"
-       id="deployment.tool.dependencybranch"
-       kind="tool"
-       label="DependencyBranch"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Generalization"
-       id="deployment.tool.generalization"
-       kind="tool"
-       label="Generalization"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Deployment"
-       id="deployment.tool.deployment"
-       kind="tool"
-       label="Deployment"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Manifestation"
-       id="deployment.tool.manifestation"
-       kind="tool"
-       label="Manifestation"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif">
- 	</entry>
-
-			</contribution>
-		</paletteProvider>	
-			
-	</extension>
+				
+				<entry
+				      defineOnly="true"
+				      description="Create a model"
+				      id="createModelCreationTool"
+				      kind="tool"
+				      label="Model"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create a Package"
+				      id="deployment.tool.package"
+				      kind="tool"
+				      label="Package"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Node"
+				      id="deployment.tool.node"
+				      kind="tool"
+				      label="Node"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Device"
+				      id="deployment.tool.device"
+				      kind="tool"
+				      label="Device"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new ExecutionEnvironment"
+				      id="deployment.tool.executionEnvironment"
+				      kind="tool"
+				      label="Execution Environment"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Artifact"
+				      id="deployment.tool.artifact"
+				      kind="tool"
+				      label="Artifact"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Comment"
+				      id="deployment.tool.comment"
+				      kind="tool"
+				      label="Comment"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Constraint"
+				      id="deployment.tool.constraint"
+				      kind="tool"
+				      label="Constraint"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Link (Comment / Constraint)"
+				      id="deployment.tool.link"
+				      kind="tool"
+				      label="Link"
+				      large_icon="icons/obj16/Link.gif"
+				      path=""
+				      small_icon="icons/obj16/Link.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Dependency"
+				      id="deployment.tool.dependency"
+				      kind="tool"
+				      label="Dependency"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create a dependency branch"
+				      id="deployment.tool.dependencybranch"
+				      kind="tool"
+				      label="DependencyBranch"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Generalization"
+				      id="deployment.tool.generalization"
+				      kind="tool"
+				      label="Generalization"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Deployment"
+				      id="deployment.tool.deployment"
+				      kind="tool"
+				      label="Deployment"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Manifestation"
+				      id="deployment.tool.manifestation"
+				      kind="tool"
+				      label="Manifestation"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif">
+					</entry>
+				
+				</contribution>
+			</paletteProvider>	
+				
+		</extension>
 
 <extension
-		id="Papyrus Deployment Diagram (Incubation).standard"
-		name="Papyrus Deployment Diagram (Incubation) Standard Palette"
-		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
-		
-		<?gmfgen generated="true"?>	
-		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
-			<Priority name="Low"/>
-      		<contribution
-            	factoryClass="org.eclipse.papyrus.uml.diagram.deployment.part.UMLPaletteFactory">
-     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
-				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
-				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
-					<entry
-       description="Nodes"
-       id="deployment.group.nodes"
-       kind="drawer"
-       label="Nodes"
-       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
-       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-       <expand
-              force="true">
-       </expand>
- 	</entry>
- 	 
- 	 	<predefinedEntry
-          id="createModelCreationTool"
-          path="/deployment.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="deployment.tool.package"
-          path="/deployment.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="deployment.tool.node"
-          path="/deployment.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="deployment.tool.device"
-          path="/deployment.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="deployment.tool.executionEnvironment"
-          path="/deployment.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="deployment.tool.artifact"
-          path="/deployment.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="deployment.tool.comment"
-          path="/deployment.group.nodes">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="deployment.tool.constraint"
-          path="/deployment.group.nodes">
-    </predefinedEntry>
-
-	<entry
-       description="Links"
-       id="deployment.group.links"
-       kind="drawer"
-       label="Links"
-       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
-       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-       <expand
-              force="true">
-       </expand>
- 	</entry>
- 	 
- 	 	<predefinedEntry
-          id="deployment.tool.link"
-          path="/deployment.group.links">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="deployment.tool.dependency"
-          path="/deployment.group.links">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="deployment.tool.dependencybranch"
-          path="/deployment.group.links">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="deployment.tool.generalization"
-          path="/deployment.group.links">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="deployment.tool.deployment"
-          path="/deployment.group.links">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="deployment.tool.manifestation"
-          path="/deployment.group.links">
-    </predefinedEntry>
-
-
-			</contribution>
-			<editor id="org.eclipse.papyrus.uml.diagram.deployment"/>
-		</paletteProvider>	
-			
-	</extension>
-
-<extension point="org.eclipse.ui.preferencePages">
-
-
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.ExecutionEnvironmentPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.ExecutionEnvironmentPreferencePage"
-            name="ExecutionEnvironment Node" />
+	id="Papyrus Deployment Diagram (Incubation).standard"
+	name="Papyrus Deployment Diagram (Incubation) Standard Palette"
+	point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
 	
+	<?gmfgen generated="true"?>	
+	<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+		<Priority name="Low"/>
+		   		<contribution
+		   		    	factoryClass="org.eclipse.papyrus.uml.diagram.deployment.part.UMLPaletteFactory">
+		   		<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+		<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+		<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
 		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.ModelPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.ModelPreferencePage"
-            name="Model Node" />
-	
+		<entry
+		      description="Nodes"
+		      id="deployment.group.nodes"
+		      kind="drawer"
+		      label="Nodes"
+		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+		      path="/"
+		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+		      <expand
+		             force="true">
+		      </expand>
+			</entry>
+		<predefinedEntry
+		        id="createModelCreationTool"
+		        path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.package"
+		        path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.node"
+		        path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.device"
+		        path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.executionEnvironment"
+		        path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.artifact"
+		        path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.comment"
+		        path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.constraint"
+		        path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<entry
+		      description="Links"
+		      id="deployment.group.links"
+		      kind="drawer"
+		      label="Links"
+		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+		      path="/"
+		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+		      <expand
+		             force="true">
+		      </expand>
+			</entry>
+		<predefinedEntry
+		        id="deployment.tool.link"
+		        path="/deployment.group.links">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.dependency"
+		        path="/deployment.group.links">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.dependencybranch"
+		        path="/deployment.group.links">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.generalization"
+		        path="/deployment.group.links">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.deployment"
+		        path="/deployment.group.links">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.manifestation"
+		        path="/deployment.group.links">
+		  </predefinedEntry>
+		</contribution>
+		<editor id="org.eclipse.papyrus.uml.diagram.deployment"/>
+	</paletteProvider>	
 		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DevicePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.DevicePreferencePage"
-            name="Device Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.CommentPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.CommentPreferencePage"
-            name="Comment Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.ConstraintPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.ConstraintPreferencePage"
-            name="Constraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DependencyNodePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.DependencyNodePreferencePage"
-            name="DependencyNode Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.ArtifactPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.ArtifactPreferencePage"
-            name="Artifact Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.NodePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.NodePreferencePage"
-            name="Node Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.PackagePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.PackagePreferencePage"
-            name="Package Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DefaultNamedElementPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.DefaultNamedElementPreferencePage"
-            name="DefaultNamedElement Node" />
-	
-
-
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.ConstraintConstrainedElementPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.ConstraintConstrainedElementPreferencePage"
-            name="ConstraintConstrainedElement Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.CommentAnnotatedElementPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.CommentAnnotatedElementPreferencePage"
-            name="CommentAnnotatedElement Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DependencyBranchLinkPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.DependencyBranchLinkPreferencePage"
-            name="DependencyBranchLink Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.GeneralizationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.GeneralizationPreferencePage"
-            name="Generalization Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.ManifestationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.ManifestationPreferencePage"
-            name="Manifestation Link" />
-		
-		
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DependencyLinkPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.DependencyLinkPreferencePage"
-            name="DependencyLink Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DeploymentPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.DeploymentPreferencePage"
-            name="Deployment Link" />
-		
-
 </extension>
+
+<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+<page
+      id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
+      name="PapyrusUMLDeploymentDiagram Diagram"
+      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
+      class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DiagramGeneralPreferencePage">
+</page>
+<page
+      id="org.eclipse.papyrus.uml.diagram.deployment.preferences.DiagramPrintingPreferencePage"
+      name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
+      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
+      class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DiagramPrintingPreferencePage">
+</page>
+<page
+      id="org.eclipse.papyrus.uml.diagram.deployment.preferences.DiagramRulersAndGridPreferencePage"
+      name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
+      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
+      class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DiagramRulersAndGridPreferencePage">
+</page>
+   </extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
       <ParserProvider class="org.eclipse.papyrus.uml.diagram.deployment.providers.UMLParserProvider">
@@ -554,32 +437,6 @@
       </ParserProvider>
    </extension>
 
-<extension point="org.eclipse.ui.preferencePages" id="prefpages">
-      <?gmfgen generated="true"?>
-      <page
-            id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-            name="PapyrusUMLDeploymentDiagram Diagram"
-            category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
-            class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DiagramGeneralPreferencePage">
-      </page>
-      
-
-
-      <page
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.DiagramPrintingPreferencePage"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
-            category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-            class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DiagramPrintingPreferencePage">
-      </page>
-
-      <page
-            id="org.eclipse.papyrus.uml.diagram.deployment.preferences.DiagramRulersAndGridPreferencePage"
-            name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
-            category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLDeploymentDiagram"
-            class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DiagramRulersAndGridPreferencePage">
-      </page>
-
-   </extension>
 
 <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
       <?gmfgen generated="true"?>
@@ -642,11 +499,11 @@
          </propertySection>
       </propertySections>
    </extension>
-
-<extension point="org.eclipse.core.runtime.preferences">
-		<?gmfgen generated="true"?>
-		<initializer class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DiagramPreferenceInitializer"/>
-	</extension>
+
+<extension point="org.eclipse.core.runtime.preferences" id="prefs">
+      <?gmfgen generated="true"?>
+      <initializer class="org.eclipse.papyrus.uml.diagram.deployment.preferences.DiagramPreferenceInitializer"/>
+   </extension>
 
 <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
@@ -660,7 +517,7 @@
 
 <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
       <?gmfgen generated="true"?>
-      <editpartProvider class="org.eclipse.papyrus.uml.diagram.deployment.custom.providers.CustomUMLEditPartProvider">
+      <editpartProvider class="org.eclipse.papyrus.uml.diagram.deployment.providers.UMLEditPartProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
             <method name="getType()" value="PapyrusUMLDeploymentDiagram"/>
@@ -681,37 +538,6 @@
       </editpartProvider>
    </extension>
    
-<extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
-      <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="org.eclipse.papyrus.uml.diagram.deployment.providers.UMLModelingAssistantProvider">
-         <Priority name="Lowest"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentDiagramEditPart" id="Package_1000"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyNodeEditPart" id="Dependency_2011"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelEditPart" id="Model_2010"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackageEditPart" id="Package_2009"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPart" id="Constraint_2005"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPart" id="Comment_2001"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ExecutionEnvironmentEditPart" id="ExecutionEnvironment_2002"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceEditPart" id="Device_2003"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactEditPart" id="Artifact_2006"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart" id="Node_2008"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DefaultNamedElementEditPart" id="NamedElement_2012"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelEditPartCN" id="Model_49"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackageEditPartCN" id="Package_36"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceEditPartCN" id="Device_16"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedDeviceEditPartCN" id="Device_44"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ExecutionEnvironmentEditPartCN" id="ExecutionEnvironment_21"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedExecutionEnvironmentEditPartCN" id="ExecutionEnvironment_46"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPartCN" id="Node_23"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedNodeEditPartCN" id="Node_42"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactEditPartCN" id="Artifact_25"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactEditPartACN" id="Artifact_28"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedArtifactNodeEditPartCN" id="Artifact_40"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPartCN" id="Comment_54"/>
-         <object class="org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPartCN" id="Constraint_56"/>
-         <context elements="Package_1000,Dependency_2011,Model_2010,Package_2009,Constraint_2005,Comment_2001,ExecutionEnvironment_2002,Device_2003,Artifact_2006,Node_2008,NamedElement_2012,Model_49,Package_36,Device_16,Device_44,ExecutionEnvironment_21,ExecutionEnvironment_46,Node_23,Node_42,Artifact_25,Artifact_28,Artifact_40,Comment_54,Constraint_56"/>
-      </modelingAssistantProvider>
-   </extension>
 
 <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
@@ -1051,32 +877,31 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.deployment.Dependency_4004"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.deployment.Dependency_4010"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
-         <advice ref="org.eclipse.papyrus.infra.emf.readOnlyAdvice"/>
       </binding>
    </extension>
 
 
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
-      <?gmfgen generated="true"?>
-      <MarkerNavigationProvider class="org.eclipse.papyrus.uml.diagram.deployment.providers.UMLMarkerNavigationProvider">
-         <MarkerType name="org.eclipse.papyrus.uml.diagram.deployment.diagnostic"/>
-         <Priority name="Lowest"/>
-      </MarkerNavigationProvider>
-   </extension>
+				      <?gmfgen generated="true"?>
+				      <MarkerNavigationProvider class="org.eclipse.papyrus.uml.diagram.deployment.providers.UMLMarkerNavigationProvider">
+				         <MarkerType name="org.eclipse.papyrus.uml.diagram.deployment.diagnostic"/>
+				         <Priority name="Lowest"/>
+				      </MarkerNavigationProvider>
+				   </extension>
 
 <extension id="diagnostic" name="Papyrus Deployment Diagram (Incubation) problems" point="org.eclipse.core.resources.markers">
-      <?gmfgen generated="true"?>
-      <super type="org.eclipse.core.resources.problemmarker"/>
-      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
-      <persistent value="true"/>
-   </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
-      <?gmfgen generated="true"?>
-      <decoratorProvider class="org.eclipse.papyrus.uml.diagram.deployment.providers.UMLValidationDecoratorProvider">
-         <Priority name="Lowest"/>
-         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
-         <context decoratorTargets="PRIMARY_VIEW"/>
-      </decoratorProvider>
-   </extension>
+				      <?gmfgen generated="true"?>
+				      <super type="org.eclipse.core.resources.problemmarker"/>
+				      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+				      <persistent value="true"/>
+				   </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+				      <?gmfgen generated="true"?>
+				      <decoratorProvider class="org.eclipse.papyrus.uml.diagram.deployment.providers.UMLValidationDecoratorProvider">
+				         <Priority name="Lowest"/>
+				         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+				         <context decoratorTargets="PRIMARY_VIEW"/>
+				      </decoratorProvider>
+				   </extension>
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>

@@ -275,12 +275,6 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	 * @return the command
 	 */
 	protected Command dropConstraint(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
-		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
-		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
-		//		if(!(graphicalParentObject instanceof Package) && !(graphicalParentObject instanceof Class) && !(graphicalParentObject instanceof Interaction) && !(graphicalParentObject instanceof StateMachine) && !(graphicalParentObject instanceof Collaboration) && !(graphicalParentObject instanceof FunctionBehavior) && !(graphicalParentObject instanceof ProtocolStateMachine) && !(graphicalParentObject instanceof ExecutionEnvironment) && !(graphicalParentObject instanceof Device)) {
-		//			return UnexecutableCommand.INSTANCE;
-		//		}
-
 		if(nodeVISUALID == ConstraintEditPart.VISUAL_ID) {
 			return getDropConstraintCommand((Constraint)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Constraint_2005, (IHintedType)UMLElementTypes.ConstraintConstrainedElement_4009);
 		} else if(nodeVISUALID == ConstraintEditPartCN.VISUAL_ID) {
@@ -302,11 +296,7 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	 * @return the command
 	 */
 	protected Command dropComment(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
-		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
-		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
-		//		if(!(graphicalParentObject instanceof Package) && !(graphicalParentObject instanceof Class) && !(graphicalParentObject instanceof Property) && !(graphicalParentObject instanceof Interaction) && !(graphicalParentObject instanceof StateMachine) && !(graphicalParentObject instanceof Collaboration) && !(graphicalParentObject instanceof FunctionBehavior) && !(graphicalParentObject instanceof ProtocolStateMachine) && !(graphicalParentObject instanceof ExecutionEnvironment) && !(graphicalParentObject instanceof Device)) {
-		//			return UnexecutableCommand.INSTANCE;
-		//		}
+
 		if(nodeVISUALID == CommentEditPart.VISUAL_ID) {
 			return getDropCommentCommand((Comment)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Comment_2001, (IHintedType)UMLElementTypes.CommentAnnotatedElement_4008);
 		} else if(nodeVISUALID == CommentEditPartCN.VISUAL_ID) {
@@ -316,8 +306,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	}
 
 	private Command dropDependencyNode(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID) {
-		Collection sources = DeploymentLinkMappingHelper.getInstance().getSource(semanticElement);
-		Collection targets = DeploymentLinkMappingHelper.getInstance().getTarget(semanticElement);
+		Collection<?> sources = DeploymentLinkMappingHelper.getInstance().getSource(semanticElement);
+		Collection<?> targets = DeploymentLinkMappingHelper.getInstance().getTarget(semanticElement);
 		if(sources.size() == 1 && targets.size() == 1) {
 			Element source = (Element)sources.toArray()[0];
 			Element target = (Element)targets.toArray()[0];

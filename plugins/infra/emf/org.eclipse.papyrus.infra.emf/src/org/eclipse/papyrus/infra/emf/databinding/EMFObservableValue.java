@@ -89,7 +89,7 @@ public class EMFObservableValue extends EObjectObservableValue {
 	protected Command getSetCommand(Object value) {
 		Object oldValue = getValue();
 
-		CompoundCommand cc = new CompoundCommand("Edit value");
+		CompoundCommand cc = new CompoundCommand("Edit value"); //$NON-NLS-1$
 
 		if (oldValue instanceof EObject && eStructuralFeature instanceof EReference && ((EReference)eStructuralFeature).isContainment()) {
 			cc.append(DeleteCommand.create(domain, (EObject)oldValue));

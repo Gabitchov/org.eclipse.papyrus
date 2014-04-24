@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension">
-  <gmfgen:GenEditorGenerator packageNamePrefix="org.eclipse.papyrus.uml.diagram.deployment" modelID="PapyrusUMLDeploymentDiagram" diagramFileExtension="PapyrusUMLDeployment_diagram" domainFileExtension="umlDeployment" dynamicTemplates="true" templateDirectory="/org.eclipse.papyrus.def/dynamic-templates3.5/codegen" pluginDirectory="/org.eclipse.papyrus.uml.diagram.deployment/src">
+  <gmfgen:GenEditorGenerator packageNamePrefix="org.eclipse.papyrus.uml.diagram.deployment" modelID="PapyrusUMLDeploymentDiagram" diagramFileExtension="PapyrusUMLDeployment_diagram" domainFileExtension="umlDeployment" dynamicTemplates="true" templateDirectory="/org.eclipse.papyrus.def/xtend/" copyrightText="Copyright (c) 2014 CEA LIST.&#xD;&#xA;&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA; CEA LIST - Initial API and implementation" pluginDirectory="/org.eclipse.papyrus.uml.diagram.deployment/src">
     <diagram visualID="1000" editPartClassName="DeploymentDiagramEditPart" itemSemanticEditPolicyClassName="DeploymentDiagramItemSemanticEditPolicy" canonicalEditPolicyClassName="ModelCanonicalEditPolicy" iconProviderPriority="Low" creationWizardIconPath="icons/obj16/DeploymentDiagram.gif" validationProviderPriority="Low" validationEnabled="true" validationDecorators="true" liveValidationUIFeedback="true">
       <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType xsi:type="gmfgen:MetamodelType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Package_1000" displayName="DeploymentDiagram" editHelperClassName="ModelEditHelper"/>
@@ -10,7 +10,7 @@
       <domainDiagramElement href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
       <childNodes visualID="49" editPartClassName="ModelEditPartCN" itemSemanticEditPolicyClassName="ModelItemSemanticEditPolicyCN" canonicalEditPolicyClassName="ModelCanonicalEditPolicyCN" compartments="/0/@diagram/@compartments.6" graphicalNodeEditPolicyClassName="ModelGraphicalNodeEditPolicyCN" createCommandClassName="ModelCreateCommandCN" containers="/0/@diagram/@compartments.0 /0/@diagram/@compartments.6 /0/@diagram/@compartments.1">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Model_49" displayName="Model" editHelperAdviceClassName=""/>
+        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Model_49" displayName="Model" />
         <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure">
           <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="150" height="150"/>
         </viewmap>
@@ -72,7 +72,7 @@
       </childNodes>
       <childNodes visualID="16" editPartClassName="DeviceEditPartCN" itemSemanticEditPolicyClassName="DeviceItemSemanticEditPolicyCN" canonicalEditPolicyClassName="DeviceCanonicalEditPolicyCN" graphicalNodeEditPolicyClassName="DeviceGraphicalNodeEditPolicyCN" createCommandClassName="DeviceCreateCommandCN" containers="/0/@diagram/@compartments.4 /0/@diagram/@compartments.10 /0/@diagram/@compartments.2 /0/@diagram/@compartments.8">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Device_16" displayName="Device" metamodelType="/0/@diagram/@topLevelNodes.6/@elementType" editHelperAdviceClassName=""/>
+        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Device_16" displayName="Device" metamodelType="/0/@diagram/@topLevelNodes.6/@elementType" />
         <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.deployment.custom.figure.nodes.DeviceFigure">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true" fixedBackground="true"/>
           <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="150" height="100"/>
@@ -107,7 +107,7 @@
       </childNodes>
       <childNodes visualID="44" editPartClassName="NestedDeviceEditPartCN" itemSemanticEditPolicyClassName="NestedDeviceItemSemanticEditPolicyCN" canonicalEditPolicyClassName="NestedDeviceCanonicalEditPolicyCN" compartments="/0/@diagram/@compartments.8" graphicalNodeEditPolicyClassName="NestedDeviceGraphicalNodeEditPolicyCN" createCommandClassName="NestedDeviceCreateCommandCN" containers="/0/@diagram/@compartments.1 /0/@diagram/@compartments.7 /0/@diagram/@compartments.0 /0/@diagram/@compartments.6">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Device_44" displayName="Device" metamodelType="/0/@diagram/@topLevelNodes.6/@elementType" editHelperAdviceClassName=""/>
+        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Device_44" displayName="Device" metamodelType="/0/@diagram/@topLevelNodes.6/@elementType" />
         <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.deployment.custom.figure.nodes.DeviceFigure">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true" fixedBackground="true"/>
           <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="150" height="100"/>
@@ -417,7 +417,7 @@
           </modelFacet>
         </labels>
       </childNodes>
-      <childNodes visualID="56" editPartClassName="ConstraintEditPartCN" itemSemanticEditPolicyClassName="ConstraintItemSemanticEditPolicyCN" canonicalEditPolicyClassName="ConstraintCanonicalEditPolicyCN" primaryDragEditPolicyQualifiedClassName="" graphicalNodeEditPolicyClassName="ConstraintGraphicalNodeEditPolicyCN" createCommandClassName="ConstraintCreateCommandCN" containers="/0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7">
+      <childNodes visualID="56" editPartClassName="ConstraintEditPartCN" itemSemanticEditPolicyClassName="ConstraintItemSemanticEditPolicyCN" canonicalEditPolicyClassName="ConstraintCanonicalEditPolicyCN" graphicalNodeEditPolicyClassName="ConstraintGraphicalNodeEditPolicyCN" createCommandClassName="ConstraintCreateCommandCN" containers="/0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="ConstraintEditHelper"/>
         <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure"/>
@@ -458,10 +458,8 @@
       <topLevelNodes visualID="2011" editPartClassName="DependencyNodeEditPart" itemSemanticEditPolicyClassName="DependencyNodeItemSemanticEditPolicy" canonicalEditPolicyClassName="DependencyNodeCanonicalEditPolicy" graphicalNodeEditPolicyClassName="DependencyNodeGraphicalNodeEditPolicy" createCommandClassName="DependencyNodeCreateCommand">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType xsi:type="gmfgen:MetamodelType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Dependency_2011" displayName="DependencyNode" editHelperClassName="DependencyEditHelper"/>
-        <viewmap xsi:type="gmfgen:InnerClassViewmap" className="DependencyNodeDescriptor" classBody="/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class DependencyNodeDescriptor extends org.eclipse.draw2d.Ellipse {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public DependencyNodeDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xD;&#xA;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xD;&#xA;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(10)&#xD;&#xA;, getMapMode().DPtoLP(10)&#xD;&#xA;));&#xD;&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(10)&#xD;&#xA;, getMapMode().DPtoLP(10)&#xD;&#xA;));&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected boolean useLocalCoordinates() {&#xD;&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xD;&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true" fixedBackground="true"/>
+        <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.DependencyNodeFigure">
           <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="10" height="10"/>
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.deployment.custom.edit.policies.CustomGraphicalNodeEditPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
@@ -480,7 +478,7 @@
       </topLevelNodes>
       <topLevelNodes visualID="2010" compartments="/0/@diagram/@compartments.0">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Model_2010" displayName="Model" editHelperAdviceClassName=""/>
+        <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.Model_2010" displayName="Model" />
         <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure">
           <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="150" height="150"/>
         </viewmap>
@@ -511,7 +509,7 @@
       </topLevelNodes>
       <topLevelNodes visualID="2009" editPartClassName="PackageEditPart" itemSemanticEditPolicyClassName="PackageItemSemanticEditPolicy" canonicalEditPolicyClassName="PackageCanonicalEditPolicy" compartments="/0/@diagram/@compartments.1" graphicalNodeEditPolicyClassName="PackageGraphicalNodeEditPolicy" createCommandClassName="PackageCreateCommand">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType xsi:type="gmfgen:SpecializationType" editHelperAdviceClassName=""/>
+        <elementType xsi:type="gmfgen:SpecializationType" />
         <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure">
           <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="150" height="150"/>
         </viewmap>
@@ -776,12 +774,12 @@
       <links visualID="4005" editPartClassName="LinkDescriptorEditPart" itemSemanticEditPolicyClassName="LinkDescriptorItemSemanticEditPolicy" createCommandClassName="LinkDescriptorCreateCommand" reorientCommandClassName="LinkDescriptorReorientCommand">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType xsi:type="gmfgen:NotationType"/>
-        <viewmap xsi:type="gmfgen:InnerClassViewmap" className="LinkDescriptor" classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class LinkDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public LinkDescriptor() {&#xD;&#xA;&#x9;&#x9;this.setLineWidth(1);&#xD;&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;"/>
+        <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
       </links>
       <links visualID="4008" editPartClassName="CommentAnnotatedElementEditPart" itemSemanticEditPolicyClassName="CommentAnnotatedElementItemSemanticEditPolicy" createCommandClassName="CommentAnnotatedElementCreateCommand" reorientCommandClassName="CommentAnnotatedElementReorientCommand">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.CommentAnnotatedElement_4006" displayName="CommentAnnotatedElement"/>
-        <viewmap xsi:type="gmfgen:InnerClassViewmap" className="LinkDescriptor" classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class LinkDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public LinkDescriptor() {&#xD;&#xA;&#x9;&#x9;this.setLineWidth(1);&#xD;&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;"/>
+        <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
         <modelFacet xsi:type="gmfgen:FeatureLinkModelFacet">
           <metaFeature href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/annotatedElement"/>
         </modelFacet>
@@ -789,7 +787,7 @@
       <links visualID="4009" editPartClassName="ConstraintConstrainedElementEditPart" itemSemanticEditPolicyClassName="ConstraintConstrainedElementItemSemanticEditPolicy" createCommandClassName="ConstraintConstrainedElementCreateCommand" reorientCommandClassName="ConstraintConstrainedElementReorientCommand">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType xsi:type="gmfgen:SpecializationType" uniqueIdentifier="org.eclipse.papyrus.uml.diagram.deployment.ConstraintConstrainedElement_4007" displayName="ConstraintConstrainedElement"/>
-        <viewmap xsi:type="gmfgen:InnerClassViewmap" className="LinkDescriptor" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class LinkDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public LinkDescriptor() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+        <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
         <modelFacet xsi:type="gmfgen:FeatureLinkModelFacet">
           <metaFeature href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/constrainedElement"/>
         </modelFacet>
@@ -1052,7 +1050,7 @@
         <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.eclipse.uml2.uml.diagram.rulersAndGrid" name="Rulers And Grid" kind="RulersAndGrid"/>
       </preferencePages>
     </diagram>
-    <plugin iD="org.eclipse.papyrus.uml.diagram.deployment" name="Papyrus Deployment Diagram (Incubation)" provider="Eclipse Modeling Project" version="0.10.0.qualifier">
+    <plugin iD="org.eclipse.papyrus.uml.diagram.deployment" name="Papyrus Deployment Diagram (Incubation)" provider="Eclipse Modeling Project">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>
@@ -1075,7 +1073,7 @@
         <expressions body="self.name.concat('.file') "/>
       </providers>
       <providers xsi:type="gmfgen:GenJavaExpressionProvider" injectExpressionBody="true">
-        <expressions body="return org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());"/>
+        <expressions body="return org.eclipse.papyrus.uml.tools.utils.NamedElementUtil.getDefaultNameWithIncrementFromBase(it.eClass().getName(), it.getOwner().eContents());"/>
         <expressions body="// Constraint specification init&#xD;&#xA;org.eclipse.uml2.uml.LiteralString value = org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createLiteralString();&#xD;&#xA;value.setValue(&quot;&quot;);&#xD;&#xA;return value;"/>
         <expressions body="// Comment body init&#xD;&#xA;return &quot;&quot;;"/>
         <expressions xsi:type="gmfgen:GenConstraint" body="// Creation constraint for TopLevelNodes&#xD;&#xA;&#x9;if(! (getElementToEdit() instanceof org.eclipse.uml2.uml.Package)) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;return true;"/>
@@ -1095,10 +1093,8 @@
     <extensionNodes xsi:type="papyrusgmfgenextension:ExtendedGenView" comment="Manages stereotype shown with External Label" genView="/0/@diagram/@links.5/@labels.0 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.4/@labels.1 /0/@diagram/@links.6/@labels.1" name="EP_Stereotypes_EXT_NODE" superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart"/>
     <extensionNodes xsi:type="papyrusgmfgenextension:ExtendedGenView" comment="Add super class to a Comment edit parts" genView="/0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.4" name="EP_Comment_NODE" superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCommentEditPart"/>
     <extensionNodes xsi:type="papyrusgmfgenextension:ExtendedGenView" comment="Add super class to a Constraint edit parts" genView="/0/@diagram/@childNodes.12 /0/@diagram/@topLevelNodes.3" name="EP_Constraint_NODE" superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractConstraintEditPart"/>
-    <extensionNodes xsi:type="papyrusgmfgenextension:ExtendedGenView" comment="Elements that inherits Deployment Node" genView="/0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.4" name="Deployment Node inheritance" superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.DeploymentNodeEditPart"/>
-    <extensionNodes xsi:type="papyrusgmfgenextension:ExtendedGenView" comment="Elements that inherits Composite" genView="/0/@diagram/@topLevelNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9" name="Composite inheritance" superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.CompositeEditPart"/>
     <extensionNodes xsi:type="papyrusgmfgenextension:ExtendedGenView" comment="Label in charge to display applied stereotypes on links" genView="/0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.6 /0/@diagram/@links.5 /0/@diagram/@links.7" name="ExtendedUMLLinks" superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"/>
-    <extensionNodes xsi:type="papyrusgmfgenextension:ExtendedGenView" comment="adding to manange otherNamedElement" genView="/0/@diagram /0/@diagram/@childNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@childNodes.0 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.9" name="OtherNamedElementEditPart" superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart"/>
+    <extensionNodes xsi:type="papyrusgmfgenextension:ExtendedGenView" comment="adding to manange NamedElement" genView="/0/@diagram /0/@diagram/@childNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@childNodes.0 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.6 /0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.2 /0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.4" name="NamedElementEditPart" superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes xsi:type="papyrusgmfgenextension:GenNodeConstraint" comment="Creation constraint for TopLevelNode in virtual canvas" genNode="/0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.8" genConstraint="/0/@expressionProviders/@providers.1/@expressions.3"/>
     <extensionNodes xsi:type="papyrusgmfgenextension:AdditionalEditPartCandies" comment="Indicate specific BaseEditHelper in place of generated EditHelper" baseEditHelperPackage="org.eclipse.papyrus.uml.diagram.common.helper"/>
     <extensionNodes xsi:type="papyrusgmfgenextension:EditPartUsingDeleteService" comment="The delete service is used on every TopNode Childnode and Link" name="Every TopNode ChildNode Link" genView="/0/@diagram/@topLevelNodes.0 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.1 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.7 /0/@diagram/@links.1 /0/@diagram/@links.2"/>

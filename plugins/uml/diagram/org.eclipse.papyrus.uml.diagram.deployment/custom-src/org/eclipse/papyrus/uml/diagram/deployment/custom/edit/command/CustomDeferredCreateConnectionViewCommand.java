@@ -57,7 +57,7 @@ public class CustomDeferredCreateConnectionViewCommand extends CommonDeferredCre
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		CommandResult commandResult = null;
 		if(command != null && command instanceof AssociationClassViewCreateCommand) {
-			Map epRegistry = viewer.getEditPartRegistry();
+			Map<?, ?> epRegistry = viewer.getEditPartRegistry();
 			IGraphicalEditPart sourceEP = (IGraphicalEditPart)epRegistry.get(sourceViewAdapter.getAdapter(View.class));
 			IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry.get(((AssociationClassViewCreateCommand)command).getNode());
 

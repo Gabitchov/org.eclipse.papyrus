@@ -68,7 +68,7 @@ public class DependencyManagementHelper {
 	 */
 	public static Collection<Replacement> updateDependencies(URI uriToReplace, URI targetURI, Collection<Resource> fromResources, EditingDomain editingDomain) {
 		if(fromResources == null || fromResources.isEmpty()) {
-			throw new IllegalArgumentException("There is no resource to modify");
+			throw new IllegalArgumentException("There is no resource to modify"); //$NON-NLS-1$
 		}
 
 		Collection<Replacement> replacements = new LinkedList<Replacement>();
@@ -110,19 +110,19 @@ public class DependencyManagementHelper {
 	 */
 	public static Collection<Replacement> updateDependencies(URI uriToReplace, URI targetURI, Resource fromResource, EditingDomain editingDomain) {
 		if(uriToReplace == null) {
-			throw new IllegalArgumentException("There is no URI to replace");
+			throw new IllegalArgumentException("There is no URI to replace"); //$NON-NLS-1$
 		}
 
 		if(targetURI == null) {
-			throw new IllegalArgumentException("There is no target URI");
+			throw new IllegalArgumentException("There is no target URI"); //$NON-NLS-1$
 		}
 
 		if(uriToReplace.equals(targetURI)) {
-			throw new IllegalArgumentException("The source and target URIs are identical");
+			throw new IllegalArgumentException("The source and target URIs are identical"); //$NON-NLS-1$
 		}
 
 		if(fromResource == null) {
-			throw new IllegalArgumentException("The edited resource must not be null");
+			throw new IllegalArgumentException("The edited resource must not be null"); //$NON-NLS-1$
 		}
 
 		Iterator<EObject> allContentsIterator = fromResource.getAllContents();

@@ -1,5 +1,13 @@
-/*
+/**
+ * Copyright (c) 2014 CEA LIST.
  * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.part;
 
@@ -106,7 +114,6 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 		diagramModelFilePage.setTitle(Messages.UMLCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage.setDescription(Messages.UMLCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
-
 		domainModelFilePage = new UMLCreationWizardPage("DomainModelFile", getSelection(), "umlDeployment") { //$NON-NLS-1$ //$NON-NLS-2$
 
 			public void setVisible(boolean visible) {

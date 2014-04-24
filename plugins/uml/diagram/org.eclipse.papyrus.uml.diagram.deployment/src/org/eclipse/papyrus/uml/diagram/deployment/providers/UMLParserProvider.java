@@ -1,5 +1,13 @@
-/*
+/**
+ * Copyright (c) 2014 CEA LIST.
  * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.providers;
 
@@ -113,21 +121,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private CommentParser commentBody_1Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getCommentBody_1Parser() {
-		if(commentBody_1Parser == null) {
-			commentBody_1Parser = new CommentParser();
-		}
-		return commentBody_1Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser constraintName_2Parser;
 
 	/**
@@ -155,6 +148,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			constraintSpecification_3Parser = new ConstraintParser();
 		}
 		return constraintSpecification_3Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private CommentParser commentBody_1Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCommentBody_1Parser() {
+		if(commentBody_1Parser == null) {
+			commentBody_1Parser = new CommentParser();
+		}
+		return commentBody_1Parser;
 	}
 
 	/**
@@ -279,40 +287,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser nodeName_24Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getNodeName_24Parser() {
-		if(nodeName_24Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			nodeName_24Parser = parser;
-		}
-		return nodeName_24Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser nodeName_43Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getNodeName_43Parser() {
-		if(nodeName_43Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			nodeName_43Parser = parser;
-		}
-		return nodeName_43Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser deviceName_20Parser;
 
 	/**
@@ -376,6 +350,40 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			executionEnvironmentName_47Parser = parser;
 		}
 		return executionEnvironmentName_47Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser nodeName_24Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getNodeName_24Parser() {
+		if(nodeName_24Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			nodeName_24Parser = parser;
+		}
+		return nodeName_24Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser nodeName_43Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getNodeName_43Parser() {
+		if(nodeName_43Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			nodeName_43Parser = parser;
+		}
+		return nodeName_43Parser;
 	}
 
 	/**
@@ -662,7 +670,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 	/**
 	 * Utility method that consults ParserService
-	 * 
 	 * @generated
 	 */
 	public static IParser getParser(IElementType type, EObject object, String parserHint) {
@@ -720,12 +727,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		/**
 		 * @generated
 		 */
-		public Object getAdapter(Class adapter) {
+		public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 			if(IElementType.class.equals(adapter)) {
 				return elementType;
 			}
 			return super.getAdapter(adapter);
 		}
 	}
-
 }

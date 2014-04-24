@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 Cedric Dumoulin.
+ * Copyright (c) 2012, 2014 Cedric Dumoulin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,12 +9,14 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 431953 (fix start-up of selective services to require only their dependencies)
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.utils;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.core.editor.ModelSetServiceFactory;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -22,16 +24,15 @@ import org.eclipse.papyrus.infra.core.utils.AbstractServiceUtils;
 
 /**
  * Get the {@link ServicesRegistry} from a {@link EObject} or a {@link Resource}.
- * This class allow to retrieve the {@link ServicesRegistry} associated to the {@link ResourceSet} owning the {@link Resource} owning the EObject.
- * 
- * <br>
- * To work properly, the EObject should be associated to a {@link Resource}, itself
- * registered in a {@link ResourceSet}.
- * Also, the ServicesRegistry should be associated to the ResourceSet with the help of the {@link ServiceRegistryAdapterFactory}. <br>
- * Normally, this is automatically done thanks to the {@link ServiceUtilsForResourceInitializerService} service. <br>
- * If you access this class from a service, you can ensure that the previous service is started by letting your service
- * depends on the <b>org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService</b>.
- * 
+ * This class allow to retrieve the {@code ServicesRegistry} associated to the {@link ResourceSet} owning the {@code Resource}
+ * containing the {@code EObject}.
+ * <p>
+ * To work properly, the EObject should be associated to a {@link Resource}, itself registered in a {@link ResourceSet}.
+ * Also, the {@code ServicesRegistry} should be associated to the {@code ResourceSet}.
+ * Normally, this is automatically done thanks to the {@link ModelSetServiceFactory} service.
+ * If you access this class from a service, you can ensure that the latter service is started by letting your service
+ * depend on the <tt>org.eclipse.papyrus.infra.core.editor.ModelSetServiceFactory</tt>.
+ * </p>
  * 
  * @author cedric dumoulin
  * 
@@ -61,7 +62,7 @@ public class ServiceUtilsForResource extends AbstractServiceUtils<Resource> {
 	@Override
 	public ServicesRegistry getServiceRegistry(Resource from) throws ServiceException {
 		if(from == null) {
-			throw new ServiceNotFoundException("Can't find the ResourceSet needed retrieve the ServiceRegistry.");
+			throw new ServiceNotFoundException("Can't find the ResourceSet needed retrieve the ServiceRegistry."); //$NON-NLS-1$
 		}
 		return ServiceUtilsForResourceSet.getInstance().getServiceRegistry(from.getResourceSet());
 	}

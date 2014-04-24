@@ -25,6 +25,8 @@ import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.uml2.uml.NamedElement;
 import org.junit.Assert;
 
@@ -67,7 +69,7 @@ public class DiagramUtils {
 			}
 		}
 
-		Assert.fail("Cannot find the view associated to " + elementName);
+		// Assert.fail("Cannot find the view associated to " + elementName);
 		return null;
 	}
 
@@ -81,6 +83,19 @@ public class DiagramUtils {
 	 */
 	public static int rgb(int red, int green, int blue) {
 		return red | green << 8 | blue << 16;
+	}
+
+	public static RGB integerToRGB(int value) {
+		int blue = value & 255;
+		int green = (value >> 8) & 255;
+		int red = (value >> 16) & 255;
+		return new RGB(red, green, blue);
+	}
+	
+	public static String integerToRGBString(int value) {
+		RGB rgb = integerToRGB(value);
+		return rgb.toString();
+
 	}
 
 	public static Diagram getNotationDiagram(ModelSet modelSet, String string) {

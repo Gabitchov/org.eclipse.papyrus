@@ -50,8 +50,10 @@ public class InteractionOperandAppliedStereotypeLabelDisplayEditPolicy extends A
 		// nothing
 		// if (stereotypesToDisplay != "" || imageToDisplay != null) {
 		if(figure instanceof IPapyrusNodeUMLElementFigure) {
-			((IPapyrusNodeUMLElementFigure)figure).setStereotypeDisplay(tag + (stereotypesOnlyToDisplay().equals("") ? stereotypesToDisplay : stereotypesToDisplay), imageToDisplay);
-			refreshAppliedStereotypesProperties(((IPapyrusNodeNamedElementFigure) figure));
+			((IPapyrusNodeUMLElementFigure)figure).setStereotypeDisplay(tag + ("".equals(stereotypesOnlyToDisplay()) ? stereotypesToDisplay : stereotypesToDisplay), imageToDisplay);
+			if (figure instanceof IPapyrusNodeNamedElementFigure){
+				refreshAppliedStereotypesProperties((IPapyrusNodeNamedElementFigure) figure);
+			}
 		}
 	}
 }

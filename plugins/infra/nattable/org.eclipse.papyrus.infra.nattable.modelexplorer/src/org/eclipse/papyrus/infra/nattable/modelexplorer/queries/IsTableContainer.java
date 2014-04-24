@@ -15,7 +15,6 @@ package org.eclipse.papyrus.infra.nattable.modelexplorer.queries;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
@@ -39,7 +38,7 @@ public class IsTableContainer extends AbstractEditorContainerQuery implements IJ
 		while(roots.hasNext()) {
 			EObject root = roots.next();
 			if(root instanceof Table) {
-				if(EcoreUtil.equals(((Table)root).getOwner(), source)) {
+				if(((Table)root).getOwner() == source) {
 					return true;
 				}
 			}

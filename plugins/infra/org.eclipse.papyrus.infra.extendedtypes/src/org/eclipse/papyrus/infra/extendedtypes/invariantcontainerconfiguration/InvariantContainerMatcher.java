@@ -90,9 +90,7 @@ public class InvariantContainerMatcher implements IInvariantElementMatcher<Invar
 			IElementType parentType = ElementTypeRegistry.getInstance().getElementType(container);
 			if(parentType != null) {
 				// check if necessary all super types of the direct parent
-				List<String> parentIds = new ArrayList<String>();
-				parentIds.add(parentType.getId());
-				if(forbiddenParents.contains(parentIds)) {
+				if(forbiddenParents.contains(parentType.getId())) {
 					return false;
 				} else {
 					// check also super types ids, if not strict permission
@@ -119,9 +117,7 @@ public class InvariantContainerMatcher implements IInvariantElementMatcher<Invar
 			IElementType parentType = ElementTypeRegistry.getInstance().getElementType(container);
 			if(parentType != null) {
 				// check if necessary all super types of the direct parent
-				List<String> parentIds = new ArrayList<String>();
-				parentIds.add(parentType.getId());
-				if(allowedParents.contains(parentIds)) {
+				if(allowedParents.contains(parentType.getId())) {
 					matches = true;
 				} else {
 					// check also super types ids, if not strict permission

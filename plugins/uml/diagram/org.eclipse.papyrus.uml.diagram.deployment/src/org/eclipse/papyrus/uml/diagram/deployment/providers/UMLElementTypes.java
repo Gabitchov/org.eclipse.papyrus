@@ -1,5 +1,13 @@
-/*
+/**
+ * Copyright (c) 2014 CEA LIST.
  * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.providers;
 
@@ -100,12 +108,12 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Comment_2001 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.Comment_2001"); //$NON-NLS-1$
+	public static final IElementType Constraint_2005 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.Constraint_2005"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_2005 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.Constraint_2005"); //$NON-NLS-1$
+	public static final IElementType Comment_2001 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.Comment_2001"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -145,16 +153,6 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Node_23 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.Node_23"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Node_42 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.Node_42"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType Device_16 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.Device_16"); //$NON-NLS-1$
 
 	/**
@@ -171,6 +169,16 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType ExecutionEnvironment_46 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.ExecutionEnvironment_46"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Node_23 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.Node_23"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Node_42 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.Node_42"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -270,71 +278,40 @@ public class UMLElementTypes {
 	 * 
 	 * @generated
 	 */
-	public static ENamedElement getElement(IAdaptable hint) {
+	public static synchronized ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if(elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
-
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
-
 			elements.put(Dependency_2011, UMLPackage.eINSTANCE.getDependency());
-
 			elements.put(Model_2010, UMLPackage.eINSTANCE.getModel());
-
 			elements.put(Package_2009, UMLPackage.eINSTANCE.getPackage());
-
 			elements.put(Constraint_2005, UMLPackage.eINSTANCE.getConstraint());
-
 			elements.put(Comment_2001, UMLPackage.eINSTANCE.getComment());
-
 			elements.put(ExecutionEnvironment_2002, UMLPackage.eINSTANCE.getExecutionEnvironment());
-
 			elements.put(Device_2003, UMLPackage.eINSTANCE.getDevice());
-
 			elements.put(Artifact_2006, UMLPackage.eINSTANCE.getArtifact());
-
 			elements.put(Node_2008, UMLPackage.eINSTANCE.getNode());
-
 			elements.put(NamedElement_2012, UMLPackage.eINSTANCE.getNamedElement());
-
 			elements.put(Model_49, UMLPackage.eINSTANCE.getModel());
-
 			elements.put(Package_36, UMLPackage.eINSTANCE.getPackage());
-
 			elements.put(Device_16, UMLPackage.eINSTANCE.getDevice());
-
 			elements.put(Device_44, UMLPackage.eINSTANCE.getDevice());
-
 			elements.put(ExecutionEnvironment_21, UMLPackage.eINSTANCE.getExecutionEnvironment());
-
 			elements.put(ExecutionEnvironment_46, UMLPackage.eINSTANCE.getExecutionEnvironment());
-
 			elements.put(Node_23, UMLPackage.eINSTANCE.getNode());
-
 			elements.put(Node_42, UMLPackage.eINSTANCE.getNode());
-
 			elements.put(Artifact_25, UMLPackage.eINSTANCE.getArtifact());
-
 			elements.put(Artifact_28, UMLPackage.eINSTANCE.getArtifact());
-
 			elements.put(Artifact_40, UMLPackage.eINSTANCE.getArtifact());
-
 			elements.put(Comment_54, UMLPackage.eINSTANCE.getComment());
-
 			elements.put(Constraint_56, UMLPackage.eINSTANCE.getConstraint());
-
 			elements.put(CommentAnnotatedElement_4008, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-
 			elements.put(ConstraintConstrainedElement_4009, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-
 			elements.put(Deployment_4001, UMLPackage.eINSTANCE.getDeployment());
-
 			elements.put(Manifestation_4002, UMLPackage.eINSTANCE.getManifestation());
-
 			elements.put(Generalization_4003, UMLPackage.eINSTANCE.getGeneralization());
-
 			elements.put(Dependency_4004, UMLPackage.eINSTANCE.getDependency());
-
 			elements.put(Dependency_4010, UMLPackage.eINSTANCE.getDependency());
 		}
 		return (ENamedElement)elements.get(type);
@@ -350,7 +327,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static boolean isKnownElementType(IElementType elementType) {
+	public static synchronized boolean isKnownElementType(IElementType elementType) {
 		if(KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Package_1000);
@@ -470,7 +447,7 @@ public class UMLElementTypes {
 		/**
 		 * @generated
 		 */
-
+		@Override
 		public boolean isKnownElementType(IElementType elementType) {
 			return org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes.isKnownElementType(elementType);
 		}
@@ -478,7 +455,7 @@ public class UMLElementTypes {
 		/**
 		 * @generated
 		 */
-
+		@Override
 		public IElementType getElementTypeForVisualId(int visualID) {
 			return org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes.getElementType(visualID);
 		}
@@ -486,10 +463,9 @@ public class UMLElementTypes {
 		/**
 		 * @generated
 		 */
-
+		@Override
 		public ENamedElement getDefiningNamedElement(IAdaptable elementTypeAdapter) {
 			return org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes.getElement(elementTypeAdapter);
 		}
 	};
-
 }

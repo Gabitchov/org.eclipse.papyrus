@@ -1,5 +1,13 @@
-/*
+/**
+ * Copyright (c) 2014 CEA LIST.
  * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.part;
 
@@ -246,162 +254,162 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createNodesGroup_title;
+	public static String NodesGroup_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createNodesGroup_desc;
+	public static String NodesGroup_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLinksGroup_title;
+	public static String LinksGroup_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLinksGroup_desc;
+	public static String LinksGroup_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createModelCreationTool_title;
+	public static String ModelCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createModelCreationTool_desc;
+	public static String ModelCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createPackageCreationTool_title;
+	public static String PackageCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createPackageCreationTool_desc;
+	public static String PackageCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createNodeCreationTool_title;
+	public static String NodeCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createNodeCreationTool_desc;
+	public static String NodeCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createDeviceCreationTool_title;
+	public static String DeviceCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createDeviceCreationTool_desc;
+	public static String DeviceCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createExecutionEnvironmentCreationTool_title;
+	public static String ExecutionEnvironmentCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createExecutionEnvironmentCreationTool_desc;
+	public static String ExecutionEnvironmentCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createArtifactCreationTool_title;
+	public static String ArtifactCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createArtifactCreationTool_desc;
+	public static String ArtifactCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createCommentCreationTool_title;
+	public static String CommentCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createCommentCreationTool_desc;
+	public static String CommentCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraintCreationTool_title;
+	public static String ConstraintCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraintCreationTool_desc;
+	public static String ConstraintCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLinkCreationTool_title;
+	public static String LinkCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLinkCreationTool_desc;
+	public static String LinkCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createDependencyCreationTool_title;
+	public static String DependencyCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createDependencyCreationTool_desc;
+	public static String DependencyCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createDependencyBranchCreationTool_title;
+	public static String DependencyBranchCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createDependencyBranchCreationTool_desc;
+	public static String DependencyBranchCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createGeneralizationCreationTool_title;
+	public static String GeneralizationCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createGeneralizationCreationTool_desc;
+	public static String GeneralizationCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createDeploymentCreationTool_title;
+	public static String DeploymentCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createDeploymentCreationTool_desc;
+	public static String DeploymentCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createManifestationCreationTool_title;
+	public static String ManifestationCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createManifestationCreationTool_desc;
+	public static String ManifestationCreationTool_desc;
 
 	/**
 	 * @generated
@@ -487,6 +495,5 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String UMLModelingAssistantProviderMessage;
-
-	// TODO: put accessor fields manually
+	//TODO: put accessor fields manually	
 }

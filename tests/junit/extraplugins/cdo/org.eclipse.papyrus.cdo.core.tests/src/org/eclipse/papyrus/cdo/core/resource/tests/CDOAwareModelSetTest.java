@@ -10,6 +10,7 @@
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 429242
  *   Christian W. Damus (CEA) - bug 429826
+ *   Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.resource.tests;
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.net4j.util.lifecycle.LifecycleException;
 import org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSet;
 import org.eclipse.papyrus.cdo.core.resource.CDOAwareTransactionalEditingDomain;
@@ -173,7 +175,7 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 
 		try {
 			// start the ModelSet and its dependencies
-			services.startServicesByClassKeys(ModelSet.class);
+			services.startServicesByClassKeys(ModelSet.class, TransactionalEditingDomain.class);
 		} catch (ServiceMultiException e) {
 			for(ServiceNotFoundException next : Iterables.filter(e.getExceptions(), ServiceNotFoundException.class)) {
 				assertThat(next.getLocalizedMessage(), not(containsString("ModelSet")));
@@ -181,6 +183,9 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 		}
 
 		fixture = services.getService(ModelSet.class);
+
+		// pre-emptively get the editing domain to avoid lock contention later
+		services.getService(TransactionalEditingDomain.class);
 
 		assumeThat(fixture, instanceOf(CDOAwareModelSet.class));
 
