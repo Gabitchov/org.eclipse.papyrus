@@ -54,6 +54,14 @@ import com.google.common.collect.Lists;
  */
 public class MemoryLeakRule extends TestWatcher {
 
+	private static final int DEQUEUE_REF_ITERATIONS = 3;
+
+	private static final int DEQUEUE_REF_TIMEOUT = 1000; // Millis
+
+	private static final int GC_ITERATIONS = 10;
+
+	private static final int CLEAR_SOFT_REFS_ITERATIONS = 3;
+
 	private static final Map<Class<?>, Boolean> WARMED_UP_SUITES = new WeakHashMap<Class<?>, Boolean>();
 
 	private static boolean warmingUp;
@@ -122,8 +130,10 @@ public class MemoryLeakRule extends TestWatcher {
 		while(!tracker.isEmpty()) {
 			Reference<?> ref = dequeueTracker();
 
-			if((ref == null) && isSoftReferenceSensitive) {
-				// Maybe there are soft references retaining our objects? Desperation move
+			for(int i = 0; ((ref == null) && isSoftReferenceSensitive) && (i < CLEAR_SOFT_REFS_ITERATIONS); i++) {
+				// Maybe there are soft references retaining our objects? Desperation move.
+				// On some platforms, our simulated OOME doesn't actually purge all soft
+				// references (contrary to Java spec!), so we have to repeat
 				forceClearSoftReferenceCaches();
 
 				// Try once more
@@ -157,11 +167,11 @@ public class MemoryLeakRule extends TestWatcher {
 		Reference<?> result = null;
 
 		try {
-			for(int i = 0; (result == null) && (i < 3); i++) {
+			for(int i = 0; (result == null) && (i < DEQUEUE_REF_ITERATIONS); i++) {
 				// Try to force GC
 				collectGarbage();
 
-				result = queue.remove(1000);
+				result = queue.remove(DEQUEUE_REF_TIMEOUT);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -198,7 +208,7 @@ public class MemoryLeakRule extends TestWatcher {
 		Long usedMem = rt.totalMemory() - rt.freeMemory();
 		Long prevUsedMem = usedMem;
 
-		for(int i = 0; (prevUsedMem <= usedMem) && (i < 10); i++) {
+		for(int i = 0; (prevUsedMem <= usedMem) && (i < GC_ITERATIONS); i++) {
 			rt.gc();
 			Thread.yield();
 
@@ -216,8 +226,8 @@ public class MemoryLeakRule extends TestWatcher {
 		// This is a really gross HACK and runs the risk that some other thread(s) also may see OOMEs!
 		try {
 			List<Object[]> hog = Lists.newLinkedList();
-			for(int size = getLargeMemorySize(); size > 0; size = getLargeMemorySize()) {
-				hog.add(new Object[size]);
+			for(;;) {
+				hog.add(new Object[getLargeMemorySize()]);
 			}
 		} catch (OutOfMemoryError e) {
 			// Good!  The JVM guarantees that all soft references are cleared before throwing OOME,
@@ -231,7 +241,8 @@ public class MemoryLeakRule extends TestWatcher {
 	}
 
 	private static int getLargeMemorySize() {
-		return Math.min(Math.abs((int)Runtime.getRuntime().freeMemory()), Integer.MAX_VALUE);
+		// These 64 megs are multiplied by the size of a pointer!
+		return 64 * 1024 * 1024;
 	}
 
 	private boolean isWarmedUp() {
