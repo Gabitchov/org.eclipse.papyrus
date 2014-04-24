@@ -6,8 +6,8 @@
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
-	<uml:CommentBodyEditor input="{Binding}"
-		property="UML:Comment:body"></uml:CommentBodyEditor>
+	<uml:CommentBodyRichTextEditor input="{Binding}"
+		property="UML:Comment:body"></uml:CommentBodyRichTextEditor>
 	<ppe:MultiReference input="{Binding}"
 		property="UML:Comment:annotatedElement"></ppe:MultiReference>
 </Composite>

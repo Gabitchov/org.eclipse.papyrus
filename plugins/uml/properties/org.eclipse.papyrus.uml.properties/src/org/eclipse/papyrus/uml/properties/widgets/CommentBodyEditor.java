@@ -27,7 +27,7 @@ import org.eclipse.papyrus.views.properties.creation.CreationContext;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
-import org.eclipse.papyrus.views.properties.widgets.RichTextWithReferences;
+import org.eclipse.papyrus.views.properties.widgets.StringMultilineWithReferences;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author Camille Letavernier
  * 
  */
-public class CommentBodyEditor extends RichTextWithReferences {
+public class CommentBodyEditor extends StringMultilineWithReferences {
 
 	public CommentBodyEditor(Composite parent, int style) {
 		super(parent, style);
@@ -55,7 +55,7 @@ public class CommentBodyEditor extends RichTextWithReferences {
 			EObject editedElement = emfElement.getSource();
 			resourceSet = (emfElement.getDomain() == null) ? null : emfElement.getDomain().getResourceSet();
 			baseResource = editedElement.eResource();
-
+			
 			if(baseResource == null) {
 				// Editing an object that is not yet added to the model? Try to locate the creation context
 				CreationContext creationContext = EcorePropertyEditorFactory.getCreationContext(editedElement, false);
@@ -63,7 +63,7 @@ public class CommentBodyEditor extends RichTextWithReferences {
 					baseResource = ((EObject)creationContext.getCreationContextElement()).eResource();
 				}
 			}
-
+			
 			if(resourceSet != null) {
 				SemanticUMLContentProvider semanticProvider = new SemanticUMLContentProvider(editedElement, UMLPackage.eINSTANCE.getComment_Body(), resourceSet);
 				semanticProvider.setWantedMetaclasses(Collections.singletonList(UMLPackage.eINSTANCE.getNamedElement()));
