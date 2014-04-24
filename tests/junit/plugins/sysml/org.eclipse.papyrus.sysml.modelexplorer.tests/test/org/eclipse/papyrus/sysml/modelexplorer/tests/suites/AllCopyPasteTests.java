@@ -37,5 +37,5 @@ CopyPasteSimplePartTest.class,
 
 })
 public class AllCopyPasteTests {
-
+	//Test suite
 }

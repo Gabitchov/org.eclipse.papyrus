@@ -19,4 +19,5 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ AllCanonicalTests.class })
 public class AllTests {
+	//Test suite
 }

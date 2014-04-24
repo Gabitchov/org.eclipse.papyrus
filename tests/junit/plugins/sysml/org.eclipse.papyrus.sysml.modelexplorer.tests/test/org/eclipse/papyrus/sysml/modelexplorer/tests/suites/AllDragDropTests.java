@@ -27,4 +27,5 @@ import org.junit.runners.Suite.SuiteClasses;
 IBDDragDropTest.class,
 })
 public class AllDragDropTests {
+	//Test suite
 }
