@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 433320
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.handlers;
@@ -29,6 +30,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -125,10 +127,13 @@ public abstract class GraphicalCommandHandler extends AbstractHandler {
 	protected boolean computeEnabled() {
 		boolean result = false;
 
-		Command command = getCommand();
-		if(command != null) {
-			result = getCommand().canExecute();
-			command.dispose();
+		TransactionalEditingDomain domain = getEditingDomain();
+		if((domain != null) && !TransactionHelper.isDisposed(domain)) {
+			Command command = getCommand();
+			if(command != null) {
+				result = getCommand().canExecute();
+				command.dispose();
+			}
 		}
 
 		return result;

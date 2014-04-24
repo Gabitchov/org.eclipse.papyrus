@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 429826
  *  Christian W. Damus (CEA) - bug 408491
+ *  Christian W. Damus (CEA) - bug 433320
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
@@ -44,6 +45,19 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 
 	public static final String TRANSACTION_OPTION_INTERACTIVE = "papyrus.interactive"; //$NON-NLS-1$
 
+	/**
+	 * Queries whether an editing {@code domain} has been disposed.
+	 * 
+	 * @param domain
+	 *        an editing domain
+	 * 
+	 * @return whether the {@code domain} is {@code null} (which presumably implies disposed) or has been disposed
+	 */
+	public static boolean isDisposed(TransactionalEditingDomain domain) {
+		// A disposed editing domain (and only a disposed editing domain) has no command stack
+		return (domain == null) || (domain.getCommandStack() == null);
+	}
+	
 	/**
 	 * Merges the read-only {@code axis} option into an existing map of {@code options}.
 	 * 
