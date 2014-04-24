@@ -74,6 +74,7 @@ public class EditorMemoryLeakTest extends AbstractEditorIntegrationTest {
 	 */
 	@Test
 	@SoftReferenceSensitive
+	@Conditional(key = "isSupportedPlatform")
 	public void testModelExplorerContentDoesNotLeak() {
 		memory.add(getRootUMLModel());
 	}
