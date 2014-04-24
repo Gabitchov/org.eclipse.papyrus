@@ -12,84 +12,158 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.deployment.custom.figure.nodes;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.LineBorder;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.CompartmentFigure;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.Rectangular3DBorder;
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
+import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
+import org.eclipse.gmf.runtime.notation.GradientStyle;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class NodeFigure.
  */
-public class NodeFigure extends CompartmentFigure {
+public class NodeFigure extends NodeNamedElementFigure {
 
-	/** The Internal Structure Compartment. */
-	private final static String COMPOSITE_COMPARTMENT = "compositeCompartment";
+	public final int SPACE_FOR_PERSPECTIVE = 15;
 
-	/** The effectborder. */
-	private final LineBorder effectborder;
+	private RectangleFigure shapeCompartment;
 
-	/* to present the class as an active class */
-	/** The active. Default value is false */
-	private boolean active = false;
 
-	/** The List of Compartment. */
-	private final static List<String> COMPARTMENT = new ArrayList<String>() {
-
-		private static final long serialVersionUID = 1L;
-		{
-			add(COMPOSITE_COMPARTMENT);
-		}
-	};
+	/** this is a label used to display a specific icon for this element **/
+	protected Label iconNode = null;
 
 	/**
-	 * Instantiates a new node figure.
+	 * Creates a new NodeFigure.
 	 */
 	public NodeFigure() {
-		this("node");
+		super();
+		createContent();
+	}
+
+	public NodeFigure(String taggedLabelValue) {
+		super(taggedLabelValue);
+		createContent();
+
+	}
+
+	protected void createContent() {
+		setLayoutManager(new NodeLayoutManager(this));
+		setOpaque(false);
+
+		shapeCompartment = new RectangleFigure();
+		shapeCompartment.setBorder(null);
+		add(shapeCompartment);
+
+		setBorder(null);
+		getCompositeCompartmentFigure().setFill(false);
+	}
+
+
+
+	/**
+	 * this method is used to display a symbol image for an element Node as
+	 * triangle for the model
+	 * 
+	 * @param image
+	 */
+	public void setTagIcon(Image image) {
+		iconNode = new Label();
+		iconNode.setIcon(image);
+		add(iconNode);
+
 	}
 
 	/**
-	 * Instantiates a new node figure.
+	 * get the gmf container figure of the Node
 	 * 
-	 * @param tagvalue
-	 *        the tagvalue
+	 * @return the gmf container
 	 */
-	public NodeFigure(String tagvalue) {
-		super(COMPARTMENT, tagvalue);
-		effectborder = new Rectangular3DBorder(19, getForegroundColor());
-		setBorder(getBorderedFigure(), effectborder);
+	public ShapeCompartmentFigure getGMFCompositeContainer() {
+		if(shapeCompartment.getChildren().size() > 0) {
+			return (ShapeCompartmentFigure)shapeCompartment.getChildren().get(0);
+		}
+		return null;
 	}
 
-	/**
-	 * Gets the composite compartment figure.
-	 * 
-	 * @return the composite compartment figure
-	 */
-	public IFigure getCompositeCompartmentFigure() {
-		return getCompartment(COMPOSITE_COMPARTMENT);
+	public RectangleFigure getCompositeCompartmentFigure() {
+		return shapeCompartment;
 	}
 
-	/**
-	 * Checks if is active.
-	 * 
-	 * @return true, if is active
-	 */
+
+
 	// @unused
-	public boolean isActive() {
-		return active;
+	public Color getGradientColor() {
+		return getForegroundColor();
+	}
+
+	@Override
+	public void setShadow(boolean shadow) {
+		// FIXME : set the outline border of the figure ?
+	}
+
+	@Override
+	public void setLineWidth(int w) {
+
+		getCompositeCompartmentFigure().setLineWidth(w);
+		super.setLineWidth(w);
+	}
+
+	@Override
+	protected void paintBorder(Graphics graphics) {
+		super.paintBorder(graphics);
 	}
 
 	/**
-	 * Set the active
 	 * 
-	 * @param active
+	 * {@inheritDoc}
 	 */
-	public void setActive(boolean active) {
-		this.active = active;
+	@Override
+	protected void paintBackground(Graphics graphics, Rectangle rectangle) {
+		if(isUsingGradient()) {
+			applyTransparency(graphics);
+			graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
+			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
+			graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
+			graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
+			graphics.fillGradient(getCompositeCompartmentFigure().getBounds(), isVertical);
+		} else {
+			graphics.setBackgroundColor(getBackgroundColor());
+			graphics.setForegroundColor(getBorderColor());
+			graphics.fillRectangle(getCompositeCompartmentFigure().getBounds());
+		}
+		graphics.setForegroundColor(getBorderColor());
+		graphics.setLineWidth(getLineWidth());
 	}
 
+
+	@Override
+	public void paint(Graphics graphics) {
+		super.paint(graphics);
+
+		Rectangle bounds = this.getBounds();
+		graphics.pushState();
+		graphics.setForegroundColor(getForegroundColor());
+		// do not forget to set line width to 1, if not the color will
+		// change because of the anti-aliasing
+		graphics.setLineWidth(1);
+		graphics.drawRectangle(bounds.x, bounds.y + SPACE_FOR_PERSPECTIVE, bounds.width - SPACE_FOR_PERSPECTIVE - 1, bounds.height - SPACE_FOR_PERSPECTIVE - 1);
+
+		graphics.drawLine(new Point(bounds.x, bounds.y + SPACE_FOR_PERSPECTIVE), new Point(bounds.x + SPACE_FOR_PERSPECTIVE, bounds.y));
+		graphics.drawLine(new Point(bounds.x + bounds.width - SPACE_FOR_PERSPECTIVE - 1, bounds.y + SPACE_FOR_PERSPECTIVE), new Point(bounds.x - 1 + bounds.width, bounds.y));
+		graphics.drawLine(new Point(bounds.x + bounds.width - SPACE_FOR_PERSPECTIVE - 1, bounds.y + bounds.height), new Point(bounds.x + bounds.width - 1, bounds.y + bounds.height - SPACE_FOR_PERSPECTIVE));
+
+		graphics.drawLine(new Point(bounds.x + SPACE_FOR_PERSPECTIVE, bounds.y), new Point(bounds.x + bounds.width, bounds.y));
+		graphics.drawLine(new Point(bounds.x + bounds.width - 1, bounds.y), new Point(bounds.x + bounds.width - 1, bounds.y + bounds.height - SPACE_FOR_PERSPECTIVE));
+
+		graphics.setBackgroundColor(getBackgroundColor());
+		graphics.setForegroundColor(getBackgroundColor());
+
+		graphics.popState();
+	}
 }

@@ -12,7 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.deployment.custom.figure.nodes;
 
-import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.RectangleFigure;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -35,7 +35,7 @@ public class ExecutionEnvironmentFigure extends NodeFigure {
 	 */
 
 	@Override
-	public IFigure getCompositeCompartmentFigure() {
+	public RectangleFigure getCompositeCompartmentFigure() {
 		return super.getCompositeCompartmentFigure();
 	}
 
