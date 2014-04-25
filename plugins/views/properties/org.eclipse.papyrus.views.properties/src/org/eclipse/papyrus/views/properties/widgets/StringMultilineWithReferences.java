@@ -44,7 +44,9 @@ public class StringMultilineWithReferences extends AbstractPropertyEditor {
 
 	protected TextReferencesHelper textReferencesHelper;
 
-	protected StringEditorWithReferences editor;
+	//	protected StringEditorWithReferences editor;
+
+	protected RichTextEditorWithReferences editor;
 
 	public void setTextReferencesHelper(TextReferencesHelper helper) {
 		this.textReferencesHelper = helper;
@@ -67,7 +69,7 @@ public class StringMultilineWithReferences extends AbstractPropertyEditor {
 
 	public StringMultilineWithReferences(Composite parent, int style) {
 		super();
-		setEditor(editor = new StringEditorWithReferences(parent, style));
+		setEditor(editor = new RichTextEditorWithReferences(parent, style));
 	}
 
 	protected void installDropListener() {
