@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider,
  org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands,
+ org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal,
  org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils,
  org.eclipse.papyrus.infra.core.sashwindows.di,
  org.eclipse.papyrus.infra.core.sashwindows.di.exception,
@@ -26,4 +27,4 @@ Bundle-Activator: org.eclipse.papyrus.infra.core.sasheditor.di.content
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor.di;sing
  leton:=true
-
+Eclipse-ExtensibleAPI: true
