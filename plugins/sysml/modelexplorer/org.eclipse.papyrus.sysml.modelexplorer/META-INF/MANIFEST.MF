@@ -37,4 +37,5 @@ Bundle-Activator: org.eclipse.papyrus.sysml.modelexplorer.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.modelexplorer;singleton
  :=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.papyrus.sysml.modelexplorer
 
