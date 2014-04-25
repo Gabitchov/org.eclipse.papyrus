@@ -23,6 +23,7 @@ import org.eclipse.ui.navigator.ICommonLabelProvider;
  * @generated
  */
 public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
+
 	/**
 	 * @generated
 	 */
@@ -38,8 +39,8 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	public Image getImage(Object element) {
-		if (element instanceof UMLDomainNavigatorItem) {
-			return myAdapterFactoryLabelProvider.getImage(((UMLDomainNavigatorItem) element).getEObject());
+		if(element instanceof UMLDomainNavigatorItem) {
+			return myAdapterFactoryLabelProvider.getImage(((UMLDomainNavigatorItem)element).getEObject());
 		}
 		return null;
 	}
@@ -48,8 +49,8 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	public String getText(Object element) {
-		if (element instanceof UMLDomainNavigatorItem) {
-			return myAdapterFactoryLabelProvider.getText(((UMLDomainNavigatorItem) element).getEObject());
+		if(element instanceof UMLDomainNavigatorItem) {
+			return myAdapterFactoryLabelProvider.getText(((UMLDomainNavigatorItem)element).getEObject());
 		}
 		return null;
 	}

@@ -28,9 +28,8 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFi
 /**
  * @generated
  */
-public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart
-{
+public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+
 	/**
 	 * @generated
 	 */
@@ -58,15 +57,11 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeInterfaceRealizationEditPart) {
-			((AppliedStereotypeInterfaceRealizationEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
+		if(childEditPart instanceof AppliedStereotypeInterfaceRealizationEditPart) {
+			((AppliedStereotypeInterfaceRealizationEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
-		if (childEditPart instanceof InterfaceRealizationNameEditPart) {
-			((InterfaceRealizationNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getNameLabel());
-			return true;
+		if(childEditPart instanceof InterfaceRealizationNameEditPart) {
+			((InterfaceRealizationNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		return false;
 	}
@@ -75,7 +70,7 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -85,10 +80,10 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeInterfaceRealizationEditPart) {
+		if(childEditPart instanceof AppliedStereotypeInterfaceRealizationEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof InterfaceRealizationNameEditPart) {
+		if(childEditPart instanceof InterfaceRealizationNameEditPart) {
 			return true;
 		}
 		return false;
@@ -98,7 +93,7 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -120,6 +115,6 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	public InterfaceRealizationFigure getPrimaryShape() {
-		return (InterfaceRealizationFigure) getFigure();
+		return (InterfaceRealizationFigure)getFigure();
 	}
 }

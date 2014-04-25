@@ -41,16 +41,18 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class InformationItemEditPart extends ClassifierEditPart
-{
+public class InformationItemEditPart extends ClassifierEditPart {
+
 	/**
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 2099;
+
 	/**
 	 * @generated
 	 */
 	protected IFigure contentPane;
+
 	/**
 	 * @generated
 	 */
@@ -83,9 +85,10 @@ public class InformationItemEditPart extends ClassifierEditPart
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
+
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -103,8 +106,9 @@ public class InformationItemEditPart extends ClassifierEditPart
 	}
 
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 *
+	 * @generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
@@ -119,18 +123,19 @@ public class InformationItemEditPart extends ClassifierEditPart
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.clazz.custom.figure.InformationItemFigure
+	 * 
 	 * @generated
 	 */
 	public InformationItemFigure getPrimaryShape() {
-		return (InformationItemFigure) primaryShape;
+		return (InformationItemFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof InformationItemNameEditPart) {
-			((InformationItemNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof InformationItemNameEditPart) {
+			((InformationItemNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		return false;
@@ -140,7 +145,7 @@ public class InformationItemEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof InformationItemNameEditPart) {
+		if(childEditPart instanceof InformationItemNameEditPart) {
 			return true;
 		}
 		return false;
@@ -150,7 +155,7 @@ public class InformationItemEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -160,7 +165,7 @@ public class InformationItemEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -196,11 +201,13 @@ public class InformationItemEditPart extends ClassifierEditPart
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -212,7 +219,7 @@ public class InformationItemEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -222,7 +229,7 @@ public class InformationItemEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -238,8 +245,8 @@ public class InformationItemEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof NodeFigure) {
-			((NodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof NodeFigure) {
+			((NodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

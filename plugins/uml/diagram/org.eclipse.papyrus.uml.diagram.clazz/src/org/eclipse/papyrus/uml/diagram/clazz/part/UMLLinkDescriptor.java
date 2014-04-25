@@ -19,6 +19,7 @@ import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
  * @generated
  */
 public class UMLLinkDescriptor extends UpdaterLinkDescriptor {
+
 	/**
 	 * @generated
 	 */

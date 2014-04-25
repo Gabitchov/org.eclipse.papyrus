@@ -22,6 +22,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
  * @generated
  */
 public class PrimitiveTypeOperationCompartmentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy {
+
 	/**
 	 * @generated
 	 */
@@ -34,10 +35,10 @@ public class PrimitiveTypeOperationCompartmentItemSemanticEditPolicyCN extends U
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		IElementType requestElementType = req.getElementType();
-		if (requestElementType == null) {
+		if(requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
-		if (UMLElementTypes.Operation_3042 == requestElementType) {
+		if(UMLElementTypes.Operation_3042 == requestElementType) {
 			return getGEFWrapper(new OperationForPrimitiveTypeCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);

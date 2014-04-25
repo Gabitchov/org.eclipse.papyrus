@@ -27,14 +27,17 @@ import org.eclipse.uml2.uml.Package;
  * @generated
  */
 public class GeneralizationSetReorientCommand extends EditElementCommand {
+
 	/**
 	 * @generated
 	 */
 	private final int reorientDirection;
+
 	/**
 	 * @generated
 	 */
 	private final EObject oldEnd;
+
 	/**
 	 * @generated
 	 */
@@ -54,13 +57,13 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof GeneralizationSet) {
+		if(false == getElementToEdit() instanceof GeneralizationSet) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -70,19 +73,17 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Generalization && newEnd instanceof Generalization)) {
+		if(!(oldEnd instanceof Generalization && newEnd instanceof Generalization)) {
 			return false;
 		}
-		if (getLink().getGeneralizations()
-				.size() != 1) {
+		if(getLink().getGeneralizations().size() != 1) {
 			return false;
 		}
-		Generalization target = (Generalization) getLink().getGeneralizations()
-				.get(0);
-		if (!(getLink().eContainer() instanceof Package)) {
+		Generalization target = (Generalization)getLink().getGeneralizations().get(0);
+		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package) getLink().eContainer();
+		Package container = (Package)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistGeneralizationSet_4020(container, getLink(), getNewSource(), target);
 	}
 
@@ -90,35 +91,31 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Generalization && newEnd instanceof Generalization)) {
+		if(!(oldEnd instanceof Generalization && newEnd instanceof Generalization)) {
 			return false;
 		}
-		if (getLink().getGeneralizations()
-				.size() != 1) {
+		if(getLink().getGeneralizations().size() != 1) {
 			return false;
 		}
-		Generalization source = (Generalization) getLink().getGeneralizations()
-				.get(0);
-		if (!(getLink().eContainer() instanceof Package)) {
+		Generalization source = (Generalization)getLink().getGeneralizations().get(0);
+		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package) getLink().eContainer();
+		Package container = (Package)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistGeneralizationSet_4020(container, getLink(), source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(
-			IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
-		if (!canExecute()) {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -128,10 +125,8 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getLink().getGeneralizations()
-				.remove(getOldSource());
-		getLink().getGeneralizations()
-				.add(getNewSource());
+		getLink().getGeneralizations().remove(getOldSource());
+		getLink().getGeneralizations().add(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -139,10 +134,8 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getLink().getGeneralizations()
-				.remove(getOldTarget());
-		getLink().getGeneralizations()
-				.add(getNewTarget());
+		getLink().getGeneralizations().remove(getOldTarget());
+		getLink().getGeneralizations().add(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -150,34 +143,34 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected GeneralizationSet getLink() {
-		return (GeneralizationSet) getElementToEdit();
+		return (GeneralizationSet)getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Generalization getOldSource() {
-		return (Generalization) oldEnd;
+		return (Generalization)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Generalization getNewSource() {
-		return (Generalization) newEnd;
+		return (Generalization)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Generalization getOldTarget() {
-		return (Generalization) oldEnd;
+		return (Generalization)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Generalization getNewTarget() {
-		return (Generalization) newEnd;
+		return (Generalization)newEnd;
 	}
 }

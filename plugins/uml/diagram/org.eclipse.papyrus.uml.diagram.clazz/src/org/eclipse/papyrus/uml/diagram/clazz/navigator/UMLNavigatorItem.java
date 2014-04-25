@@ -21,17 +21,19 @@ import org.eclipse.gmf.runtime.notation.View;
  * @generated
  */
 public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
+
 	/**
 	 * @generated
 	 */
 	static {
 		@SuppressWarnings("rawtypes")
-		final Class[] supportedTypes = new Class[] { View.class, EObject.class };
+		final Class[] supportedTypes = new Class[]{ View.class, EObject.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
+
 			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem && (adapterType == View.class || adapterType == EObject.class)) {
-					return ((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem) adaptableObject).getView();
+				if(adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem && (adapterType == View.class || adapterType == EObject.class)) {
+					return ((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem)adaptableObject).getView();
 				}
 				return null;
 			}
@@ -42,10 +44,12 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 			}
 		}, org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem.class);
 	}
+
 	/**
 	 * @generated
 	 */
 	private View myView;
+
 	/**
 	 * @generated
 	 */
@@ -78,8 +82,8 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if (obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem) {
-			return EcoreUtil.getURI(getView()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem) obj).getView()));
+		if(obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem) {
+			return EcoreUtil.getURI(getView()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem)obj).getView()));
 		}
 		return super.equals(obj);
 	}

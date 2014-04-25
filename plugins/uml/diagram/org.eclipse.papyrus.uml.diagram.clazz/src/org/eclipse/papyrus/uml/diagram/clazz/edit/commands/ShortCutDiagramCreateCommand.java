@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.notation.View;
  * @generated
  */
 public class ShortCutDiagramCreateCommand extends EditElementCommand {
+
 	/**
 	 * @generated
 	 */
@@ -39,12 +40,13 @@ public class ShortCutDiagramCreateCommand extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
 		return container;
 	}
@@ -70,7 +72,7 @@ public class ShortCutDiagramCreateCommand extends EditElementCommand {
 		Diagram newElement = NotationFactory.eINSTANCE.createDiagram();
 		resource.getContents().add(newElement);
 		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
@@ -78,12 +80,12 @@ public class ShortCutDiagramCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected void doConfigure(Diagram newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

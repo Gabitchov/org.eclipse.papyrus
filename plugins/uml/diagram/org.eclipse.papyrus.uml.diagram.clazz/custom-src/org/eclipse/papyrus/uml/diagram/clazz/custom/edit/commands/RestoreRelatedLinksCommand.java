@@ -39,6 +39,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomUMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLLinkDescriptor;
@@ -117,9 +118,9 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 		Collection<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		if (!domain2NotationMap.containsKey(view.getElement())) {
 			// We must prevent duplicate descriptors
-			List<?> outgoingDescriptors = UMLDiagramUpdater.getOutgoingLinks(view);
+			List<?> outgoingDescriptors = CustomUMLDiagramUpdater.INSTANCE.getOutgoingLinks(view);
 			cleanAdd(result, view, outgoingDescriptors);
-			List<?> incomingDescriptors = UMLDiagramUpdater.getIncomingLinks(view);
+			List<?> incomingDescriptors = CustomUMLDiagramUpdater.INSTANCE.getIncomingLinks(view);
 			cleanAdd(result, view, incomingDescriptors);
 		}
 		if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -273,7 +274,7 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 			return;
 		}
 		// register the view if its type allows incoming or outgoing links
-		if (!UMLDiagramUpdater.getOutgoingLinks(view).isEmpty() || !UMLDiagramUpdater.getIncomingLinks(view).isEmpty()) {
+		if (!CustomUMLDiagramUpdater.INSTANCE.getOutgoingLinks(view).isEmpty() || !CustomUMLDiagramUpdater.INSTANCE.getIncomingLinks(view).isEmpty()) {
 			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) {
 				domain2NotationMap.put(view.getElement(), view);
 			}

@@ -23,6 +23,7 @@ import org.eclipse.ui.IWorkbenchPage;
  * @generated
  */
 public class UMLDiagramActionBarContributor extends DiagramActionBarContributor {
+
 	/**
 	 * @generated
 	 */
@@ -48,7 +49,7 @@ public class UMLDiagramActionBarContributor extends DiagramActionBarContributor 
 		fileMenu.remove("pageSetupAction"); //$NON-NLS-1$
 		IMenuManager editMenu = bars.getMenuManager().findMenuUsingPath(IWorkbenchActionConstants.M_EDIT);
 		assert editMenu != null;
-		if (editMenu.find("validationGroup") == null) { //$NON-NLS-1$
+		if(editMenu.find("validationGroup") == null) { //$NON-NLS-1$
 			editMenu.add(new GroupMarker("validationGroup")); //$NON-NLS-1$
 		}
 		IAction validateAction = new ValidateAction(page);

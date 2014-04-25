@@ -27,18 +27,22 @@ import org.eclipse.uml2.uml.Element;
  * @generated
  */
 public class ConstraintConstrainedElementReorientCommand extends EditElementCommand {
+
 	/**
 	 * @generated
 	 */
 	private final int reorientDirection;
+
 	/**
 	 * @generated
 	 */
 	private final EObject referenceOwner;
+
 	/**
 	 * @generated
 	 */
 	private final EObject oldEnd;
+
 	/**
 	 * @generated
 	 */
@@ -59,13 +63,13 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof Constraint) {
+		if(false == referenceOwner instanceof Constraint) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -75,7 +79,7 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Element && newEnd instanceof Constraint)) {
+		if(!(oldEnd instanceof Element && newEnd instanceof Constraint)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraintConstrainedElement_4014(getNewSource(), getOldTarget());
@@ -85,7 +89,7 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
+		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraintConstrainedElement_4014(getOldSource(), getNewTarget());
@@ -94,16 +98,14 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(
-			IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
-		if (!canExecute()) {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -113,10 +115,8 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getConstrainedElements()
-				.remove(getOldTarget());
-		getNewSource().getConstrainedElements()
-				.add(getOldTarget());
+		getOldSource().getConstrainedElements().remove(getOldTarget());
+		getNewSource().getConstrainedElements().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -124,10 +124,8 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().getConstrainedElements()
-				.remove(getOldTarget());
-		getOldSource().getConstrainedElements()
-				.add(getNewTarget());
+		getOldSource().getConstrainedElements().remove(getOldTarget());
+		getOldSource().getConstrainedElements().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -135,27 +133,27 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	 * @generated
 	 */
 	protected Constraint getOldSource() {
-		return (Constraint) referenceOwner;
+		return (Constraint)referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Constraint getNewSource() {
-		return (Constraint) newEnd;
+		return (Constraint)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getOldTarget() {
-		return (Element) oldEnd;
+		return (Element)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getNewTarget() {
-		return (Element) newEnd;
+		return (Element)newEnd;
 	}
 }

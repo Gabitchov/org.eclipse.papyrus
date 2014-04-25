@@ -25,6 +25,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
  * @generated
  */
 public class NestedClassForClassItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+
 	/**
 	 * @generated
 	 */
@@ -38,10 +39,10 @@ public class NestedClassForClassItemSemanticEditPolicy extends UMLBaseItemSemant
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		EObject selectedEObject = req.getElementToDestroy();
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
-		if (provider != null) {
+		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-			if (deleteCommand != null) {
+			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}

@@ -56,16 +56,18 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class DataTypeEditPart extends ClassifierEditPart
-{
+public class DataTypeEditPart extends ClassifierEditPart {
+
 	/**
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 2010;
+
 	/**
 	 * @generated
 	 */
 	protected IFigure contentPane;
+
 	/**
 	 * @generated
 	 */
@@ -106,14 +108,15 @@ public class DataTypeEditPart extends ClassifierEditPart
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
+
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 					return new BorderItemResizableEditPolicy();
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -131,8 +134,9 @@ public class DataTypeEditPart extends ClassifierEditPart
 	}
 
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 *
+	 * @generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
@@ -147,36 +151,37 @@ public class DataTypeEditPart extends ClassifierEditPart
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.DataTypeFigure
+	 * 
 	 * @generated
 	 */
 	public DataTypeFigure getPrimaryShape() {
-		return (DataTypeFigure) primaryShape;
+		return (DataTypeFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof DataTypeNameEditPart) {
-			((DataTypeNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof DataTypeNameEditPart) {
+			((DataTypeNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if (childEditPart instanceof DataTypeAttributeCompartmentEditPart) {
+		if(childEditPart instanceof DataTypeAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((DataTypeAttributeCompartmentEditPart) childEditPart).getFigure());
+			pane.add(((DataTypeAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof DataTypeOperationCompartmentEditPart) {
+		if(childEditPart instanceof DataTypeOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((DataTypeOperationCompartmentEditPart) childEditPart).getFigure());
+			pane.add(((DataTypeOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		//Papyrus Gencode :precise the locator for a template signature
-		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 		return false;
@@ -186,21 +191,21 @@ public class DataTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof DataTypeNameEditPart) {
+		if(childEditPart instanceof DataTypeNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof DataTypeAttributeCompartmentEditPart) {
+		if(childEditPart instanceof DataTypeAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			pane.remove(((DataTypeAttributeCompartmentEditPart) childEditPart).getFigure());
+			pane.remove(((DataTypeAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof DataTypeOperationCompartmentEditPart) {
+		if(childEditPart instanceof DataTypeOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			pane.remove(((DataTypeOperationCompartmentEditPart) childEditPart).getFigure());
+			pane.remove(((DataTypeOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -210,7 +215,7 @@ public class DataTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -220,7 +225,7 @@ public class DataTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -230,13 +235,13 @@ public class DataTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof DataTypeAttributeCompartmentEditPart) {
+		if(editPart instanceof DataTypeAttributeCompartmentEditPart) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
 		}
-		if (editPart instanceof DataTypeOperationCompartmentEditPart) {
+		if(editPart instanceof DataTypeOperationCompartmentEditPart) {
 			return getPrimaryShape().getOperationCompartmentFigure();
 		}
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -265,11 +270,13 @@ public class DataTypeEditPart extends ClassifierEditPart
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -281,7 +288,7 @@ public class DataTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -291,7 +298,7 @@ public class DataTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -307,8 +314,8 @@ public class DataTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof NodeFigure) {
-			((NodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof NodeFigure) {
+			((NodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -323,13 +330,13 @@ public class DataTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
-		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (type == UMLElementTypes.Property_3018) {
+		if(request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
+			if(type == UMLElementTypes.Property_3018) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(DataTypeAttributeCompartmentEditPart.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Operation_3019) {
+			if(type == UMLElementTypes.Operation_3019) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(DataTypeOperationCompartmentEditPart.VISUAL_ID));
 			}
 		}

@@ -51,16 +51,18 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class PrimitiveTypeEditPart extends ClassifierEditPart
-{
+public class PrimitiveTypeEditPart extends ClassifierEditPart {
+
 	/**
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 2009;
+
 	/**
 	 * @generated
 	 */
 	protected IFigure contentPane;
+
 	/**
 	 * @generated
 	 */
@@ -99,9 +101,10 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
+
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -119,8 +122,9 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart
 	}
 
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 *
+	 * @generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
@@ -135,30 +139,31 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.PrimitiveTypeFigure
+	 * 
 	 * @generated
 	 */
 	public PrimitiveTypeFigure getPrimaryShape() {
-		return (PrimitiveTypeFigure) primaryShape;
+		return (PrimitiveTypeFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof PrimitiveTypeNameEditPart) {
-			((PrimitiveTypeNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof PrimitiveTypeNameEditPart) {
+			((PrimitiveTypeNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if (childEditPart instanceof PrimitiveTypeAttributeCompartmentEditPart) {
+		if(childEditPart instanceof PrimitiveTypeAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((PrimitiveTypeAttributeCompartmentEditPart) childEditPart).getFigure());
+			pane.add(((PrimitiveTypeAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof PrimitiveTypeOperationCompartmentEditPart) {
+		if(childEditPart instanceof PrimitiveTypeOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((PrimitiveTypeOperationCompartmentEditPart) childEditPart).getFigure());
+			pane.add(((PrimitiveTypeOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -168,17 +173,17 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof PrimitiveTypeNameEditPart) {
+		if(childEditPart instanceof PrimitiveTypeNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof PrimitiveTypeAttributeCompartmentEditPart) {
+		if(childEditPart instanceof PrimitiveTypeAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			pane.remove(((PrimitiveTypeAttributeCompartmentEditPart) childEditPart).getFigure());
+			pane.remove(((PrimitiveTypeAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof PrimitiveTypeOperationCompartmentEditPart) {
+		if(childEditPart instanceof PrimitiveTypeOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			pane.remove(((PrimitiveTypeOperationCompartmentEditPart) childEditPart).getFigure());
+			pane.remove(((PrimitiveTypeOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -188,7 +193,7 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -198,7 +203,7 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -208,10 +213,10 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof PrimitiveTypeAttributeCompartmentEditPart) {
+		if(editPart instanceof PrimitiveTypeAttributeCompartmentEditPart) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
 		}
-		if (editPart instanceof PrimitiveTypeOperationCompartmentEditPart) {
+		if(editPart instanceof PrimitiveTypeOperationCompartmentEditPart) {
 			return getPrimaryShape().getOperationCompartmentFigure();
 		}
 		return getContentPane();
@@ -240,11 +245,13 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -256,7 +263,7 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -266,7 +273,7 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -282,8 +289,8 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof NodeFigure) {
-			((NodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof NodeFigure) {
+			((NodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -298,13 +305,13 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
-		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (type == UMLElementTypes.Property_3041) {
+		if(request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
+			if(type == UMLElementTypes.Property_3041) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Operation_3042) {
+			if(type == UMLElementTypes.Operation_3042) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID));
 			}
 		}

@@ -26,10 +26,12 @@ import org.eclipse.uml2.uml.TimeObservation;
  * @generated
  */
 public class ConnectorTimeObservationCreateCommand extends EditElementCommand {
+
 	/**
 	 * @generated
 	 */
 	protected final EObject source;
+
 	/**
 	 * @generated
 	 */
@@ -48,16 +50,16 @@ public class ConnectorTimeObservationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (source == null && target == null) {
+		if(source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof TimeObservation) {
+		if(source != null && false == source instanceof TimeObservation) {
 			return false;
 		}
-		if (target != null && false == target instanceof NamedElement) {
+		if(target != null && false == target instanceof NamedElement) {
 			return false;
 		}
-		if (getSource() == null) {
+		if(getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
@@ -68,13 +70,11 @@ public class ConnectorTimeObservationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		if (getSource() != null && getTarget() != null) {
-			getSource().setEvent(
-					getTarget()
-					);
+		if(getSource() != null && getTarget() != null) {
+			getSource().setEvent(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 	}
@@ -90,13 +90,13 @@ public class ConnectorTimeObservationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected TimeObservation getSource() {
-		return (TimeObservation) source;
+		return (TimeObservation)source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getTarget() {
-		return (NamedElement) target;
+		return (NamedElement)target;
 	}
 }

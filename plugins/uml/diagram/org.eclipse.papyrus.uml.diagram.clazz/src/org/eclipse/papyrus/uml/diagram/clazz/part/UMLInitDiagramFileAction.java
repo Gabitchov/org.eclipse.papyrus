@@ -34,10 +34,12 @@ import org.eclipse.ui.IWorkbenchPart;
  * @generated
  */
 public class UMLInitDiagramFileAction implements IObjectActionDelegate {
+
 	/**
 	 * @generated
 	 */
 	private IWorkbenchPart targetPart;
+
 	/**
 	 * @generated
 	 */
@@ -56,11 +58,10 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 	public void selectionChanged(IAction action, ISelection selection) {
 		domainModelURI = null;
 		action.setEnabled(false);
-		if (selection instanceof IStructuredSelection == false || selection.isEmpty()) {
+		if(selection instanceof IStructuredSelection == false || selection.isEmpty()) {
 			return;
 		}
-		IFile file =
-				(IFile) ((IStructuredSelection) selection).getFirstElement();
+		IFile file = (IFile)((IStructuredSelection)selection).getFirstElement();
 		domainModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 		action.setEnabled(true);
 	}
@@ -76,27 +77,21 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 	 * @generated
 	 */
 	public void run(IAction action) {
-		TransactionalEditingDomain editingDomain =
-				GMFEditingDomainFactory.INSTANCE.createEditingDomain();
+		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		ResourceSet resourceSet = editingDomain.getResourceSet();
 		EObject diagramRoot = null;
 		try {
 			Resource resource = resourceSet.getResource(domainModelURI, true);
-			diagramRoot = (EObject) resource.getContents().get(0);
+			diagramRoot = (EObject)resource.getContents().get(0);
 		} catch (WrappedException ex) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
 		}
-		if (diagramRoot == null) {
-			MessageDialog.openError(getShell(),
-					Messages.InitDiagramFile_ResourceErrorDialogTitle,
-					Messages.InitDiagramFile_ResourceErrorDialogMessage);
+		if(diagramRoot == null) {
+			MessageDialog.openError(getShell(), Messages.InitDiagramFile_ResourceErrorDialogTitle, Messages.InitDiagramFile_ResourceErrorDialogMessage);
 			return;
 		}
 		Wizard wizard = new UMLNewDiagramFileWizard(domainModelURI, diagramRoot, editingDomain);
-		wizard.setWindowTitle(NLS.bind(
-				Messages.InitDiagramFile_WizardTitle,
-				ModelEditPart.MODEL_ID));
+		wizard.setWindowTitle(NLS.bind(Messages.InitDiagramFile_WizardTitle, ModelEditPart.MODEL_ID));
 		UMLDiagramEditorUtil.runWizard(getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
 	}
 }

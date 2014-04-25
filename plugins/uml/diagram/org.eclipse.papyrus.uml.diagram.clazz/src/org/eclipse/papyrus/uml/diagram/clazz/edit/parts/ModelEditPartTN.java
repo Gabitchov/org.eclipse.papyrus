@@ -51,16 +51,18 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class ModelEditPartTN extends NamedElementEditPart
-{
+public class ModelEditPartTN extends NamedElementEditPart {
+
 	/**
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 2005;
+
 	/**
 	 * @generated
 	 */
 	protected IFigure contentPane;
+
 	/**
 	 * @generated
 	 */
@@ -100,15 +102,16 @@ public class ModelEditPartTN extends NamedElementEditPart
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
+
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 				case TemplateSignatureEditPart.VISUAL_ID:
 					return new BorderItemResizableEditPolicy();
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -126,8 +129,9 @@ public class ModelEditPartTN extends NamedElementEditPart
 	}
 
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 *
+	 * @generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
@@ -142,36 +146,37 @@ public class ModelEditPartTN extends NamedElementEditPart
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure
+	 * 
 	 * @generated
 	 */
 	public PackageFigure getPrimaryShape() {
-		return (PackageFigure) primaryShape;
+		return (PackageFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ModelNameEditPartTN) {
-			((ModelNameEditPartTN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof ModelNameEditPartTN) {
+			((ModelNameEditPartTN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if (childEditPart instanceof ModelPackageableElementCompartmentEditPartTN) {
+		if(childEditPart instanceof ModelPackageableElementCompartmentEditPartTN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ModelPackageableElementCompartmentEditPartTN) childEditPart).getFigure());
+			pane.add(((ModelPackageableElementCompartmentEditPartTN)childEditPart).getFigure());
 			return true;
 		}
 		//Papyrus Gencode :precise the locator for a template signature
-		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 		//Papyrus Gencode :precise the locator for a template signature
-		if (childEditPart instanceof TemplateSignatureEditPart) {
+		if(childEditPart instanceof TemplateSignatureEditPart) {
 			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((TemplateSignatureEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((TemplateSignatureEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 		return false;
@@ -181,20 +186,20 @@ public class ModelEditPartTN extends NamedElementEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ModelNameEditPartTN) {
+		if(childEditPart instanceof ModelNameEditPartTN) {
 			return true;
 		}
-		if (childEditPart instanceof ModelPackageableElementCompartmentEditPartTN) {
+		if(childEditPart instanceof ModelPackageableElementCompartmentEditPartTN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
-			pane.remove(((ModelPackageableElementCompartmentEditPartTN) childEditPart).getFigure());
+			pane.remove(((ModelPackageableElementCompartmentEditPartTN)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof TemplateSignatureEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((TemplateSignatureEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof TemplateSignatureEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((TemplateSignatureEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -204,7 +209,7 @@ public class ModelEditPartTN extends NamedElementEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -214,7 +219,7 @@ public class ModelEditPartTN extends NamedElementEditPart
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -224,10 +229,10 @@ public class ModelEditPartTN extends NamedElementEditPart
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof ModelPackageableElementCompartmentEditPartTN) {
+		if(editPart instanceof ModelPackageableElementCompartmentEditPartTN) {
 			return getPrimaryShape().getPackageableElementFigure();
 		}
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -256,11 +261,13 @@ public class ModelEditPartTN extends NamedElementEditPart
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -272,7 +279,7 @@ public class ModelEditPartTN extends NamedElementEditPart
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -282,7 +289,7 @@ public class ModelEditPartTN extends NamedElementEditPart
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -298,8 +305,8 @@ public class ModelEditPartTN extends NamedElementEditPart
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof NodeFigure) {
-			((NodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof NodeFigure) {
+			((NodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

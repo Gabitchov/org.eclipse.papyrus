@@ -33,10 +33,12 @@ import org.eclipse.uml2.uml.UMLFactory;
  * @generated
  */
 public class InterfaceRealizationCreateCommand extends EditElementCommand {
+
 	/**
 	 * @generated
 	 */
 	protected final EObject source;
+
 	/**
 	 * @generated
 	 */
@@ -55,16 +57,16 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (source == null && target == null) {
+		if(source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof BehavioredClassifier) {
+		if(source != null && false == source instanceof BehavioredClassifier) {
 			return false;
 		}
-		if (target != null && false == target instanceof Interface) {
+		if(target != null && false == target instanceof Interface) {
 			return false;
 		}
-		if (getSource() == null) {
+		if(getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
@@ -75,18 +77,15 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		InterfaceRealization newElement = UMLFactory.eINSTANCE.createInterfaceRealization();
-		getSource().getInterfaceRealizations()
-				.add(newElement);
-		newElement.setContract(
-				getTarget()
-				);
+		getSource().getInterfaceRealizations().add(newElement);
+		newElement.setContract(getTarget());
 		ElementInitializers.getInstance().init_InterfaceRealization_4003(newElement);
 		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
@@ -94,14 +93,14 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected void doConfigure(InterfaceRealization newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
 		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -117,13 +116,13 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected BehavioredClassifier getSource() {
-		return (BehavioredClassifier) source;
+		return (BehavioredClassifier)source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Interface getTarget() {
-		return (Interface) target;
+		return (Interface)target;
 	}
 }

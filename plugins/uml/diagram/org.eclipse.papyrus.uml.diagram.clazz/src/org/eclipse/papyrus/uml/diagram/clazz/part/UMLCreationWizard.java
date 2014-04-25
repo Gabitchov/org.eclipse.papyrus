@@ -28,28 +28,33 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 /**
  * @generated
  */
-public class UMLCreationWizard
-		extends Wizard implements INewWizard {
+public class UMLCreationWizard extends Wizard implements INewWizard {
+
 	/**
 	 * @generated
 	 */
 	private IWorkbench workbench;
+
 	/**
 	 * @generated
 	 */
 	protected IStructuredSelection selection;
+
 	/**
 	 * @generated
 	 */
 	protected UMLCreationWizardPage diagramModelFilePage;
+
 	/**
 	 * @generated
 	 */
 	protected UMLCreationWizardPage domainModelFilePage;
+
 	/**
 	 * @generated
 	 */
 	protected Resource diagram;
+
 	/**
 	 * @generated
 	 */
@@ -110,12 +115,12 @@ public class UMLCreationWizard
 		diagramModelFilePage.setDescription(Messages.UMLCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
 		domainModelFilePage = new UMLCreationWizardPage("DomainModelFile", getSelection(), "PapyrusUMLClass") { //$NON-NLS-1$ //$NON-NLS-2$
+
 			public void setVisible(boolean visible) {
-				if (visible) {
+				if(visible) {
 					String fileName = diagramModelFilePage.getFileName();
 					fileName = fileName.substring(0, fileName.length() - ".PapyrusUMLClass_diagram".length()); //$NON-NLS-1$
-					setFileName(UMLDiagramEditorUtil.getUniqueFileName(
-							getContainerFullPath(), fileName, "PapyrusUMLClass")); //$NON-NLS-1$
+					setFileName(UMLDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), fileName, "PapyrusUMLClass")); //$NON-NLS-1$
 				}
 				super.setVisible(visible);
 			}
@@ -129,32 +134,26 @@ public class UMLCreationWizard
 	 * @generated
 	 */
 	public boolean performFinish() {
-		IRunnableWithProgress op =
-				new WorkspaceModifyOperation(null) {
-					protected void execute(IProgressMonitor monitor)
-							throws CoreException, InterruptedException {
-						diagram = UMLDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(),
-								domainModelFilePage.getURI(),
-								monitor);
-						if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
-							try {
-								UMLDiagramEditorUtil.openDiagram(diagram);
-							} catch (PartInitException e) {
-								ErrorDialog.openError(getContainer().getShell(),
-										Messages.UMLCreationWizardOpenEditorError, null, e.getStatus());
-							}
-						}
+		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
+
+			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
+				diagram = UMLDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(), domainModelFilePage.getURI(), monitor);
+				if(isOpenNewlyCreatedDiagramEditor() && diagram != null) {
+					try {
+						UMLDiagramEditorUtil.openDiagram(diagram);
+					} catch (PartInitException e) {
+						ErrorDialog.openError(getContainer().getShell(), Messages.UMLCreationWizardOpenEditorError, null, e.getStatus());
 					}
-				};
+				}
+			}
+		};
 		try {
 			getContainer().run(false, true, op);
 		} catch (InterruptedException e) {
 			return false;
 		} catch (InvocationTargetException e) {
-			if (e.getTargetException() instanceof CoreException) {
-				ErrorDialog.openError(getContainer().getShell(),
-						Messages.UMLCreationWizardCreationError, null,
-						((CoreException) e.getTargetException()).getStatus());
+			if(e.getTargetException() instanceof CoreException) {
+				ErrorDialog.openError(getContainer().getShell(), Messages.UMLCreationWizardCreationError, null, ((CoreException)e.getTargetException()).getStatus());
 			} else {
 				UMLDiagramEditorPlugin.getInstance().logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}

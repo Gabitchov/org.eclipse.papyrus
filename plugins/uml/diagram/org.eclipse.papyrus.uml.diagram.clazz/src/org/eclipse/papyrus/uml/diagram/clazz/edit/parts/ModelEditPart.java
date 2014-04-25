@@ -23,12 +23,13 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPo
 /**
  * @generated
  */
-public class ModelEditPart extends PapyrusDiagramEditPart
-{
+public class ModelEditPart extends PapyrusDiagramEditPart {
+
 	/**
 	 * @generated
 	 */
 	public final static String MODEL_ID = "PapyrusUMLClassDiagram"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */

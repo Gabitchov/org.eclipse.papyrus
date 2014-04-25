@@ -34,6 +34,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class TemplateSignatureCreateCommand extends EditElementCommand {
+
 	/**
 	 * @generated
 	 */
@@ -49,12 +50,13 @@ public class TemplateSignatureCreateCommand extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
 		return container;
 	}
@@ -63,9 +65,8 @@ public class TemplateSignatureCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		TemplateableElement container = (TemplateableElement) getElementToEdit();
-		if (container.getOwnedTemplateSignature()
-				!= null) {
+		TemplateableElement container = (TemplateableElement)getElementToEdit();
+		if(container.getOwnedTemplateSignature() != null) {
 			return false;
 		}
 		EObject target = getElementToEdit();
@@ -80,21 +81,19 @@ public class TemplateSignatureCreateCommand extends EditElementCommand {
 		TemplateSignature newElement = UMLFactory.eINSTANCE.createTemplateSignature();
 		EObject target = getElementToEdit();
 		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
-		if (data.isPermitted()) {
-			if (data.isPathDefined()) {
-				if (!data.execute(target, newElement))
+		if(data.isPermitted()) {
+			if(data.isPathDefined()) {
+				if(!data.execute(target, newElement))
 					return CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
 			} else {
-				TemplateableElement qualifiedTarget = (TemplateableElement) target;
-				qualifiedTarget.setOwnedTemplateSignature(
-						newElement
-						);
+				TemplateableElement qualifiedTarget = (TemplateableElement)target;
+				qualifiedTarget.setOwnedTemplateSignature(newElement);
 			}
 		} else {
 			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
 		}
 		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
@@ -102,12 +101,12 @@ public class TemplateSignatureCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected void doConfigure(TemplateSignature newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

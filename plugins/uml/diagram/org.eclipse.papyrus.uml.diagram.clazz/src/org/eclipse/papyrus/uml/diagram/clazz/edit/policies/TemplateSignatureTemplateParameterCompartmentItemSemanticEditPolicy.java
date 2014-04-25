@@ -24,6 +24,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
  * @generated
  */
 public class TemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+
 	/**
 	 * @generated
 	 */
@@ -36,16 +37,16 @@ public class TemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		IElementType requestElementType = req.getElementType();
-		if (requestElementType == null) {
+		if(requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
-		if (UMLElementTypes.ClassifierTemplateParameter_3031 == requestElementType) {
+		if(UMLElementTypes.ClassifierTemplateParameter_3031 == requestElementType) {
 			return getGEFWrapper(new ClassifierTemplateParameterCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.OperationTemplateParameter_3035 == requestElementType) {
+		if(UMLElementTypes.OperationTemplateParameter_3035 == requestElementType) {
 			return getGEFWrapper(new OperationTemplateParameterCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.TemplateParameter_3016 == requestElementType) {
+		if(UMLElementTypes.TemplateParameter_3016 == requestElementType) {
 			return getGEFWrapper(new TemplateParameterCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);

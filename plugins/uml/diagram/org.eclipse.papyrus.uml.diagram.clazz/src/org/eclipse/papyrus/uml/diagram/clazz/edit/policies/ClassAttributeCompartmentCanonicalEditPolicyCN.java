@@ -31,8 +31,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomUMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForClassEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -41,14 +41,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class ClassAttributeCompartmentCanonicalEditPolicyCN extends CanonicalEditPolicy {
+
 	/**
 	 * @generated
 	 */
 	protected void refreshOnActivate() {
 		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
 		List<?> c = getHost().getChildren();
-		for (int i = 0; i < c.size(); i++) {
-			((EditPart) c.get(i)).activate();
+		for(int i = 0; i < c.size(); i++) {
+			((EditPart)c.get(i)).activate();
 		}
 		super.refreshOnActivate();
 	}
@@ -64,10 +65,10 @@ public class ClassAttributeCompartmentCanonicalEditPolicyCN extends CanonicalEdi
 	 * @generated
 	 */
 	protected List<EObject> getSemanticChildrenList() {
-		View viewObject = (View) getHost().getModel();
+		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getClassAttributes_7011SemanticChildren(viewObject);
-		for (UMLNodeDescriptor d : childDescriptors) {
+		List<UMLNodeDescriptor> childDescriptors = CustomUMLDiagramUpdater.INSTANCE.getClassAttributes_7011SemanticChildren(viewObject);
+		for(UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
 		return result;
@@ -91,17 +92,16 @@ public class ClassAttributeCompartmentCanonicalEditPolicyCN extends CanonicalEdi
 	 * @generated
 	 */
 	protected void refreshSemantic() {
-		if (resolveSemanticElement() == null) {
+		if(resolveSemanticElement() == null) {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors =
-				UMLDiagramUpdater.getClassAttributes_7011SemanticChildren((View) getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors = CustomUMLDiagramUpdater.INSTANCE.getClassAttributes_7011SemanticChildren((View)getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
-		for (View v : getViewChildren()) {
-			if (isMyDiagramElement(v)) {
+		for(View v : getViewChildren()) {
+			if(isMyDiagramElement(v)) {
 				knownViewChildren.add(v);
 			}
 		}
@@ -110,14 +110,14 @@ public class ClassAttributeCompartmentCanonicalEditPolicyCN extends CanonicalEdi
 		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
 		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
 		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
-		for (Iterator<UMLNodeDescriptor> descriptorsIterator = childDescriptors.iterator(); descriptorsIterator.hasNext();) {
+		for(Iterator<UMLNodeDescriptor> descriptorsIterator = childDescriptors.iterator(); descriptorsIterator.hasNext();) {
 			UMLNodeDescriptor next = descriptorsIterator.next();
 			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
 			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
-			for (View childView : getViewChildren()) {
+			for(View childView : getViewChildren()) {
 				EObject semanticElement = childView.getElement();
-				if (next.getModelElement().equals(semanticElement)) {
-					if (hint.equals(childView.getType())) {
+				if(next.getModelElement().equals(semanticElement)) {
+					if(hint.equals(childView.getType())) {
 						perfectMatch.add(childView);
 						// actually, can stop iteration over view children here, but
 						// may want to use not the first view but last one as a 'real' match (the way original CEP does
@@ -125,7 +125,7 @@ public class ClassAttributeCompartmentCanonicalEditPolicyCN extends CanonicalEdi
 					}
 				}
 			}
-			if (perfectMatch.size() > 0) {
+			if(perfectMatch.size() > 0) {
 				descriptorsIterator.remove(); // precise match found no need to create anything for the NodeDescriptor
 				// use only one view (first or last?), keep rest as orphaned for further consideration
 				knownViewChildren.remove(perfectMatch.getFirst());
@@ -136,7 +136,7 @@ public class ClassAttributeCompartmentCanonicalEditPolicyCN extends CanonicalEdi
 		orphaned.addAll(knownViewChildren);
 		//
 		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(childDescriptors.size());
-		for (UMLNodeDescriptor next : childDescriptors) {
+		for(UMLNodeDescriptor next : childDescriptors) {
 			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
 			IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
 			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint());
@@ -146,17 +146,17 @@ public class ClassAttributeCompartmentCanonicalEditPolicyCN extends CanonicalEdi
 		//
 		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
 		Command cmd = getCreateViewCommand(request);
-		if (cmd != null && cmd.canExecute()) {
+		if(cmd != null && cmd.canExecute()) {
 			SetViewMutabilityCommand.makeMutable(new EObjectAdapter(host().getNotationView())).execute();
 			executeCommand(cmd);
 			@SuppressWarnings("unchecked")
-			List<IAdaptable> nl = (List<IAdaptable>) request.getNewObject();
+			List<IAdaptable> nl = (List<IAdaptable>)request.getNewObject();
 			createdViews.addAll(nl);
 		}
-		if (changed || createdViews.size() > 0) {
+		if(changed || createdViews.size() > 0) {
 			postProcessRefreshSemantic(createdViews);
 		}
-		if (createdViews.size() > 1) {
+		if(createdViews.size() > 1) {
 			// perform a layout of the container
 			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
 			executeCommand(new ICommandProxy(layoutCmd));

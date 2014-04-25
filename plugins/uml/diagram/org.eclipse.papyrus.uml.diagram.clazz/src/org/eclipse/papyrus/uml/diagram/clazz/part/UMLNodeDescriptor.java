@@ -18,6 +18,7 @@ import org.eclipse.gmf.tooling.runtime.update.UpdaterNodeDescriptor;
  * @generated
  */
 public class UMLNodeDescriptor extends UpdaterNodeDescriptor {
+
 	/**
 	 * @generated
 	 */

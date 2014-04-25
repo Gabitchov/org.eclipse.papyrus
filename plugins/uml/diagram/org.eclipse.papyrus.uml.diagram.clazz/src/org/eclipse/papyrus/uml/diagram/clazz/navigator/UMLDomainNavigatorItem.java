@@ -23,22 +23,24 @@ import org.eclipse.ui.views.properties.IPropertySourceProvider;
  * @generated
  */
 public class UMLDomainNavigatorItem extends PlatformObject {
+
 	/**
 	 * @generated
 	 */
 	static {
 		@SuppressWarnings("rawtypes")
-		final Class[] supportedTypes = new Class[] { EObject.class, IPropertySource.class };
+		final Class[] supportedTypes = new Class[]{ EObject.class, IPropertySource.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
+
 			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) {
-					org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) adaptableObject;
+				if(adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) {
+					org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem)adaptableObject;
 					EObject eObject = domainNavigatorItem.getEObject();
-					if (adapterType == EObject.class) {
+					if(adapterType == EObject.class) {
 						return eObject;
 					}
-					if (adapterType == IPropertySource.class) {
+					if(adapterType == IPropertySource.class) {
 						return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
 					}
 				}
@@ -51,14 +53,17 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 			}
 		}, org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem.class);
 	}
+
 	/**
 	 * @generated
 	 */
 	private Object myParent;
+
 	/**
 	 * @generated
 	 */
 	private EObject myEObject;
+
 	/**
 	 * @generated
 	 */
@@ -98,8 +103,8 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if (obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) {
-			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) obj).getEObject()));
+		if(obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) {
+			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem)obj).getEObject()));
 		}
 		return super.equals(obj);
 	}

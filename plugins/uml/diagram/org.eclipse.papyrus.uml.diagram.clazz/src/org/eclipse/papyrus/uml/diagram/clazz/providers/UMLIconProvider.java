@@ -18,6 +18,7 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultElementTypeIconProvider;
  * @generated
  */
 public class UMLIconProvider extends DefaultElementTypeIconProvider implements IIconProvider {
+
 	/**
 	 * @generated
 	 */

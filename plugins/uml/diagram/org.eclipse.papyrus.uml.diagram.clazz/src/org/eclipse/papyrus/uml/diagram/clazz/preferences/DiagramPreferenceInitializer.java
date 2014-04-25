@@ -19,6 +19,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
  * @generated
  */
 public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer {
+
 	/**
 	 * @generated
 	 */

@@ -39,16 +39,18 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class CommentEditPart extends AbstractCommentEditPart
-{
+public class CommentEditPart extends AbstractCommentEditPart {
+
 	/**
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 2012;
+
 	/**
 	 * @generated
 	 */
 	protected IFigure contentPane;
+
 	/**
 	 * @generated
 	 */
@@ -79,9 +81,10 @@ public class CommentEditPart extends AbstractCommentEditPart
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
+
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -99,8 +102,9 @@ public class CommentEditPart extends AbstractCommentEditPart
 	}
 
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 *
+	 * @generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
@@ -115,18 +119,19 @@ public class CommentEditPart extends AbstractCommentEditPart
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.HTMLCornerBentFigure
+	 * 
 	 * @generated
 	 */
 	public HTMLCornerBentFigure getPrimaryShape() {
-		return (HTMLCornerBentFigure) primaryShape;
+		return (HTMLCornerBentFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof CommentBodyEditPart) {
-			((CommentBodyEditPart) childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
+		if(childEditPart instanceof CommentBodyEditPart) {
+			((CommentBodyEditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
 			return true;
 		}
 		return false;
@@ -136,7 +141,7 @@ public class CommentEditPart extends AbstractCommentEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof CommentBodyEditPart) {
+		if(childEditPart instanceof CommentBodyEditPart) {
 			return true;
 		}
 		return false;
@@ -146,7 +151,7 @@ public class CommentEditPart extends AbstractCommentEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -156,7 +161,7 @@ public class CommentEditPart extends AbstractCommentEditPart
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -192,11 +197,13 @@ public class CommentEditPart extends AbstractCommentEditPart
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -208,7 +215,7 @@ public class CommentEditPart extends AbstractCommentEditPart
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -218,7 +225,7 @@ public class CommentEditPart extends AbstractCommentEditPart
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -234,8 +241,8 @@ public class CommentEditPart extends AbstractCommentEditPart
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof NodeFigure) {
-			((NodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof NodeFigure) {
+			((NodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

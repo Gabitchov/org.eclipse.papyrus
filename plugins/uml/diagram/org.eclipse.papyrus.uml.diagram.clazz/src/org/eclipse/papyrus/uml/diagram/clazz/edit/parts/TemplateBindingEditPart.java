@@ -27,9 +27,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 /**
  * @generated
  */
-public class TemplateBindingEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart
-{
+public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+
 	/**
 	 * @generated
 	 */
@@ -56,15 +55,11 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof BindingSubstitutionEditPart) {
-			((BindingSubstitutionEditPart) childEditPart).setLabel(
-					getPrimaryShape().getBindingSubstitutionFigure());
-			return true;
+		if(childEditPart instanceof BindingSubstitutionEditPart) {
+			((BindingSubstitutionEditPart)childEditPart).setLabel(getPrimaryShape().getBindingSubstitutionFigure());
 		}
-		if (childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
-			((AppliedStereotypeTemplateBindingEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
+		if(childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
+			((AppliedStereotypeTemplateBindingEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -73,7 +68,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -83,10 +78,10 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof BindingSubstitutionEditPart) {
+		if(childEditPart instanceof BindingSubstitutionEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
+		if(childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
 			return true;
 		}
 		return false;
@@ -96,7 +91,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -118,6 +113,6 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	public TemplateBindingFigure getPrimaryShape() {
-		return (TemplateBindingFigure) getFigure();
+		return (TemplateBindingFigure)getFigure();
 	}
 }

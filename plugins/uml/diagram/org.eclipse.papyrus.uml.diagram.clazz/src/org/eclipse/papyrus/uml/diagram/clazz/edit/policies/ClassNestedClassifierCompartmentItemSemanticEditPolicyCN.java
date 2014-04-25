@@ -27,6 +27,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
  * @generated
  */
 public class ClassNestedClassifierCompartmentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy {
+
 	/**
 	 * @generated
 	 */
@@ -39,25 +40,25 @@ public class ClassNestedClassifierCompartmentItemSemanticEditPolicyCN extends UM
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		IElementType requestElementType = req.getElementType();
-		if (requestElementType == null) {
+		if(requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
-		if (UMLElementTypes.Class_3014 == requestElementType) {
+		if(UMLElementTypes.Class_3014 == requestElementType) {
 			return getGEFWrapper(new NestedClassForClassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.Interface_3036 == requestElementType) {
+		if(UMLElementTypes.Interface_3036 == requestElementType) {
 			return getGEFWrapper(new NestedInterfaceForClassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.Enumeration_3052 == requestElementType) {
+		if(UMLElementTypes.Enumeration_3052 == requestElementType) {
 			return getGEFWrapper(new NestedEnumerationForClassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.PrimitiveType_3047 == requestElementType) {
+		if(UMLElementTypes.PrimitiveType_3047 == requestElementType) {
 			return getGEFWrapper(new NestedPrimitiveTypeForClassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.DataType_3044 == requestElementType) {
+		if(UMLElementTypes.DataType_3044 == requestElementType) {
 			return getGEFWrapper(new NestedDataTypeForClassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.Signal_3050 == requestElementType) {
+		if(UMLElementTypes.Signal_3050 == requestElementType) {
 			return getGEFWrapper(new NestedSignalForClassCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);

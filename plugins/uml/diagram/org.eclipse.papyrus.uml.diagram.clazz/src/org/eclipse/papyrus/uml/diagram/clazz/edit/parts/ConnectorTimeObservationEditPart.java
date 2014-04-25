@@ -22,9 +22,8 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure
 /**
  * @generated
  */
-public class ConnectorTimeObservationEditPart extends ConnectionEditPart
-		implements ITreeBranchEditPart
-{
+public class ConnectorTimeObservationEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+
 	/**
 	 * @generated
 	 */
@@ -61,6 +60,6 @@ public class ConnectorTimeObservationEditPart extends ConnectionEditPart
 	 * @generated
 	 */
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure) getFigure();
+		return (SimpleDashedEdgeFigure)getFigure();
 	}
 }

@@ -26,10 +26,12 @@ import org.eclipse.uml2.uml.Namespace;
  * @generated
  */
 public class ContextLinkCreateCommand extends EditElementCommand {
+
 	/**
 	 * @generated
 	 */
 	protected final EObject source;
+
 	/**
 	 * @generated
 	 */
@@ -48,16 +50,16 @@ public class ContextLinkCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (source == null && target == null) {
+		if(source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Constraint) {
+		if(source != null && false == source instanceof Constraint) {
 			return false;
 		}
-		if (target != null && false == target instanceof Namespace) {
+		if(target != null && false == target instanceof Namespace) {
 			return false;
 		}
-		if (getSource() == null) {
+		if(getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
@@ -68,13 +70,11 @@ public class ContextLinkCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		if (getSource() != null && getTarget() != null) {
-			getSource().setContext(
-					getTarget()
-					);
+		if(getSource() != null && getTarget() != null) {
+			getSource().setContext(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 	}
@@ -90,13 +90,13 @@ public class ContextLinkCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Constraint getSource() {
-		return (Constraint) source;
+		return (Constraint)source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Namespace getTarget() {
-		return (Namespace) target;
+		return (Namespace)target;
 	}
 }

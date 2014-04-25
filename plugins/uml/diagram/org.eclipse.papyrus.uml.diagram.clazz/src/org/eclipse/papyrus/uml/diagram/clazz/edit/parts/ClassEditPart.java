@@ -59,16 +59,18 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class ClassEditPart extends ClassifierEditPart
-{
+public class ClassEditPart extends ClassifierEditPart {
+
 	/**
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 2008;
+
 	/**
 	 * @generated
 	 */
 	protected IFigure contentPane;
+
 	/**
 	 * @generated
 	 */
@@ -110,15 +112,16 @@ public class ClassEditPart extends ClassifierEditPart
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
+
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 				case ContainmentCircleEditPart.VISUAL_ID:
 					return new BorderItemResizableEditPolicy();
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -136,15 +139,16 @@ public class ClassEditPart extends ClassifierEditPart
 	}
 
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 *
+	 * @generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 		//set the figure active when the feature of the of a class is true
-		if (resolveSemanticElement() != null) {
-			if (resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute) && ((EAttribute) (event.getFeature())).getName().equals("isActive")) {
-				((ClassifierFigure) getPrimaryShape()).setActive(event.getNewBooleanValue());
+		if(resolveSemanticElement() != null) {
+			if(resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute) && ((EAttribute)(event.getFeature())).getName().equals("isActive")) {
+				((ClassifierFigure)getPrimaryShape()).setActive(event.getNewBooleanValue());
 				refreshVisuals();
 			}
 		}
@@ -159,48 +163,49 @@ public class ClassEditPart extends ClassifierEditPart
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure
+	 * 
 	 * @generated
 	 */
 	public ClassifierFigure getPrimaryShape() {
-		return (ClassifierFigure) primaryShape;
+		return (ClassifierFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ClassNameEditPart) {
-			((ClassNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof ClassNameEditPart) {
+			((ClassNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if (childEditPart instanceof ClassAttributeCompartmentEditPart) {
+		if(childEditPart instanceof ClassAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ClassAttributeCompartmentEditPart) childEditPart).getFigure());
+			pane.add(((ClassAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ClassOperationCompartmentEditPart) {
+		if(childEditPart instanceof ClassOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ClassOperationCompartmentEditPart) childEditPart).getFigure());
+			pane.add(((ClassOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ClassNestedClassifierCompartmentEditPart) {
+		if(childEditPart instanceof ClassNestedClassifierCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ClassNestedClassifierCompartmentEditPart) childEditPart).getFigure());
+			pane.add(((ClassNestedClassifierCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		//Papyrus Gencode :precise the locator for a template signature
-		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 		//Papyrus Gencode :Affixed Containment locator
-		if (childEditPart instanceof ContainmentCircleEditPart) {
+		if(childEditPart instanceof ContainmentCircleEditPart) {
 			IBorderItemLocator locator = new ContainmentPositionLocator(getMainFigure(), PositionConstants.NORTH);
-			getBorderedFigure().getBorderItemContainer().add(((ContainmentCircleEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ContainmentCircleEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 		return false;
@@ -210,30 +215,30 @@ public class ClassEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ClassNameEditPart) {
+		if(childEditPart instanceof ClassNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof ClassAttributeCompartmentEditPart) {
+		if(childEditPart instanceof ClassAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			pane.remove(((ClassAttributeCompartmentEditPart) childEditPart).getFigure());
+			pane.remove(((ClassAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ClassOperationCompartmentEditPart) {
+		if(childEditPart instanceof ClassOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			pane.remove(((ClassOperationCompartmentEditPart) childEditPart).getFigure());
+			pane.remove(((ClassOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ClassNestedClassifierCompartmentEditPart) {
+		if(childEditPart instanceof ClassNestedClassifierCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
-			pane.remove(((ClassNestedClassifierCompartmentEditPart) childEditPart).getFigure());
+			pane.remove(((ClassNestedClassifierCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ContainmentCircleEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ContainmentCircleEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof ContainmentCircleEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ContainmentCircleEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -243,7 +248,7 @@ public class ClassEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -253,7 +258,7 @@ public class ClassEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -263,16 +268,16 @@ public class ClassEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof ClassAttributeCompartmentEditPart) {
+		if(editPart instanceof ClassAttributeCompartmentEditPart) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
 		}
-		if (editPart instanceof ClassOperationCompartmentEditPart) {
+		if(editPart instanceof ClassOperationCompartmentEditPart) {
 			return getPrimaryShape().getOperationCompartmentFigure();
 		}
-		if (editPart instanceof ClassNestedClassifierCompartmentEditPart) {
+		if(editPart instanceof ClassNestedClassifierCompartmentEditPart) {
 			return getPrimaryShape().getNestedClassifierFigure();
 		}
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -301,11 +306,13 @@ public class ClassEditPart extends ClassifierEditPart
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -317,7 +324,7 @@ public class ClassEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -327,7 +334,7 @@ public class ClassEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -343,8 +350,8 @@ public class ClassEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof NodeFigure) {
-			((NodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof NodeFigure) {
+			((NodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -359,34 +366,34 @@ public class ClassEditPart extends ClassifierEditPart
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
-		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (type == UMLElementTypes.Property_3012) {
+		if(request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
+			if(type == UMLElementTypes.Property_3012) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassAttributeCompartmentEditPart.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Reception_3011) {
+			if(type == UMLElementTypes.Reception_3011) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassOperationCompartmentEditPart.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Operation_3013) {
+			if(type == UMLElementTypes.Operation_3013) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassOperationCompartmentEditPart.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Class_3014) {
+			if(type == UMLElementTypes.Class_3014) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Interface_3036) {
+			if(type == UMLElementTypes.Interface_3036) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Enumeration_3052) {
+			if(type == UMLElementTypes.Enumeration_3052) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.PrimitiveType_3047) {
+			if(type == UMLElementTypes.PrimitiveType_3047) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.DataType_3044) {
+			if(type == UMLElementTypes.DataType_3044) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Signal_3050) {
+			if(type == UMLElementTypes.Signal_3050) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
 		}

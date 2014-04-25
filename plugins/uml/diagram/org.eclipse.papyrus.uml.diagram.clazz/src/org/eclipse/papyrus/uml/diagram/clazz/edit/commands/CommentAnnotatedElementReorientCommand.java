@@ -27,18 +27,22 @@ import org.eclipse.uml2.uml.Element;
  * @generated
  */
 public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
+
 	/**
 	 * @generated
 	 */
 	private final int reorientDirection;
+
 	/**
 	 * @generated
 	 */
 	private final EObject referenceOwner;
+
 	/**
 	 * @generated
 	 */
 	private final EObject oldEnd;
+
 	/**
 	 * @generated
 	 */
@@ -59,13 +63,13 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof Comment) {
+		if(false == referenceOwner instanceof Comment) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -75,7 +79,7 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Element && newEnd instanceof Comment)) {
+		if(!(oldEnd instanceof Element && newEnd instanceof Comment)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistCommentAnnotatedElement_4013(getNewSource(), getOldTarget());
@@ -85,7 +89,7 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
+		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistCommentAnnotatedElement_4013(getOldSource(), getNewTarget());
@@ -94,16 +98,14 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(
-			IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
-		if (!canExecute()) {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -113,10 +115,8 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getAnnotatedElements()
-				.remove(getOldTarget());
-		getNewSource().getAnnotatedElements()
-				.add(getOldTarget());
+		getOldSource().getAnnotatedElements().remove(getOldTarget());
+		getNewSource().getAnnotatedElements().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -124,10 +124,8 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().getAnnotatedElements()
-				.remove(getOldTarget());
-		getOldSource().getAnnotatedElements()
-				.add(getNewTarget());
+		getOldSource().getAnnotatedElements().remove(getOldTarget());
+		getOldSource().getAnnotatedElements().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -135,27 +133,27 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Comment getOldSource() {
-		return (Comment) referenceOwner;
+		return (Comment)referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Comment getNewSource() {
-		return (Comment) newEnd;
+		return (Comment)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getOldTarget() {
-		return (Element) oldEnd;
+		return (Element)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getNewTarget() {
-		return (Element) newEnd;
+		return (Element)newEnd;
 	}
 }

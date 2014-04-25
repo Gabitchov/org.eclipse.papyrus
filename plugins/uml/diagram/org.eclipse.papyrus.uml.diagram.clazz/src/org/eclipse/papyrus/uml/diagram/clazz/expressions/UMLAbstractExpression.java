@@ -29,6 +29,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
  * @generated
  */
 public abstract class UMLAbstractExpression {
+
 	/**
 	 * @generated
 	 */
@@ -40,7 +41,7 @@ public abstract class UMLAbstractExpression {
 	protected void setStatus(int severity, String message, Throwable throwable) {
 		String pluginID = UMLDiagramEditorPlugin.ID;
 		this.status = new Status(severity, pluginID, -1, (message != null) ? message : "", throwable); //$NON-NLS-1$
-		if (!this.status.isOK()) {
+		if(!this.status.isOK()) {
 			UMLDiagramEditorPlugin.getInstance().logError("Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
@@ -102,7 +103,7 @@ public abstract class UMLAbstractExpression {
 	 */
 	@SuppressWarnings("rawtypes")
 	public Object evaluate(Object context, Map env) {
-		if (context().isInstance(context)) {
+		if(context().isInstance(context)) {
 			try {
 				return doEvaluate(context, env);
 			} catch (Exception e) {
@@ -113,45 +114,47 @@ public abstract class UMLAbstractExpression {
 	}
 
 	/**
-	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral meta-object when literal instance is expected
+	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral
+	 * meta-object when literal instance is expected
+	 * 
 	 * @generated
 	 */
 	public static Object performCast(Object value, EDataType targetType) {
-		if (targetType instanceof EEnum) {
-			if (value instanceof EEnumLiteral) {
-				EEnumLiteral literal = (EEnumLiteral) value;
+		if(targetType instanceof EEnum) {
+			if(value instanceof EEnumLiteral) {
+				EEnumLiteral literal = (EEnumLiteral)value;
 				return (literal.getInstance() != null) ? literal.getInstance() : literal;
 			}
 		}
-		if (false == value instanceof Number || targetType == null || targetType.getInstanceClass() == null) {
+		if(false == value instanceof Number || targetType == null || targetType.getInstanceClass() == null) {
 			return value;
 		}
 		Class<?> targetClass = targetType.getInstanceClass();
-		Number num = (Number) value;
+		Number num = (Number)value;
 		Class<?> valClass = value.getClass();
 		Class<?> targetWrapperClass = targetClass;
-		if (targetClass.isPrimitive()) {
+		if(targetClass.isPrimitive()) {
 			targetWrapperClass = EcoreUtil.wrapperClassFor(targetClass);
 		}
-		if (valClass.equals(targetWrapperClass)) {
+		if(valClass.equals(targetWrapperClass)) {
 			return value;
 		}
-		if (Number.class.isAssignableFrom(targetWrapperClass)) {
-			if (targetWrapperClass.equals(Byte.class))
+		if(Number.class.isAssignableFrom(targetWrapperClass)) {
+			if(targetWrapperClass.equals(Byte.class))
 				return new Byte(num.byteValue());
-			if (targetWrapperClass.equals(Integer.class))
+			if(targetWrapperClass.equals(Integer.class))
 				return new Integer(num.intValue());
-			if (targetWrapperClass.equals(Short.class))
+			if(targetWrapperClass.equals(Short.class))
 				return new Short(num.shortValue());
-			if (targetWrapperClass.equals(Long.class))
+			if(targetWrapperClass.equals(Long.class))
 				return new Long(num.longValue());
-			if (targetWrapperClass.equals(BigInteger.class))
+			if(targetWrapperClass.equals(BigInteger.class))
 				return BigInteger.valueOf(num.longValue());
-			if (targetWrapperClass.equals(Float.class))
+			if(targetWrapperClass.equals(Float.class))
 				return new Float(num.floatValue());
-			if (targetWrapperClass.equals(Double.class))
+			if(targetWrapperClass.equals(Double.class))
 				return new Double(num.doubleValue());
-			if (targetWrapperClass.equals(BigDecimal.class))
+			if(targetWrapperClass.equals(BigDecimal.class))
 				return new BigDecimal(num.doubleValue());
 		}
 		return value;

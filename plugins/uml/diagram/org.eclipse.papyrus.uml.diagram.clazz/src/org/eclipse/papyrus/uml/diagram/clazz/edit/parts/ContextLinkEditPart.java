@@ -27,9 +27,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 /**
  * @generated
  */
-public class ContextLinkEditPart extends ConnectionEditPart
-		implements ITreeBranchEditPart
-{
+public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+
 	/**
 	 * @generated
 	 */
@@ -56,10 +55,8 @@ public class ContextLinkEditPart extends ConnectionEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
-			((ContextLinkAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
+		if(childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
+			((ContextLinkAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -68,7 +65,7 @@ public class ContextLinkEditPart extends ConnectionEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -78,7 +75,7 @@ public class ContextLinkEditPart extends ConnectionEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
+		if(childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -88,7 +85,7 @@ public class ContextLinkEditPart extends ConnectionEditPart
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -110,6 +107,6 @@ public class ContextLinkEditPart extends ConnectionEditPart
 	 * @generated
 	 */
 	public CustomContextLinkFigure getPrimaryShape() {
-		return (CustomContextLinkFigure) getFigure();
+		return (CustomContextLinkFigure)getFigure();
 	}
 }

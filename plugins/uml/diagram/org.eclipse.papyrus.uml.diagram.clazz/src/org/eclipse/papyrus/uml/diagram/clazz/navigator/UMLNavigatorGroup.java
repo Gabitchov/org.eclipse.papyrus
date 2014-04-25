@@ -18,14 +18,17 @@ import java.util.LinkedList;
  * @generated
  */
 public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
+
 	/**
 	 * @generated
 	 */
 	private String myGroupName;
+
 	/**
 	 * @generated
 	 */
 	private String myIcon;
+
 	/**
 	 * @generated
 	 */
@@ -86,9 +89,9 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if (obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup) {
-			org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup anotherGroup = (org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup) obj;
-			if (getGroupName().equals(anotherGroup.getGroupName())) {
+		if(obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup) {
+			org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup anotherGroup = (org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup)obj;
+			if(getGroupName().equals(anotherGroup.getGroupName())) {
 				return getParent().equals(anotherGroup.getParent());
 			}
 		}

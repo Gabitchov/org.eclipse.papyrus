@@ -26,14 +26,17 @@ import org.eclipse.uml2.uml.PackageMerge;
  * @generated
  */
 public class PackageMergeReorientCommand extends EditElementCommand {
+
 	/**
 	 * @generated
 	 */
 	private final int reorientDirection;
+
 	/**
 	 * @generated
 	 */
 	private final EObject oldEnd;
+
 	/**
 	 * @generated
 	 */
@@ -53,13 +56,13 @@ public class PackageMergeReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof PackageMerge) {
+		if(false == getElementToEdit() instanceof PackageMerge) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -69,14 +72,14 @@ public class PackageMergeReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Package && newEnd instanceof Package)) {
+		if(!(oldEnd instanceof Package && newEnd instanceof Package)) {
 			return false;
 		}
 		Package target = getLink().getMergedPackage();
-		if (!(getLink().eContainer() instanceof Package)) {
+		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package) getLink().eContainer();
+		Package container = (Package)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistPackageMerge_4011(container, getLink(), getNewSource(), target);
 	}
 
@@ -84,30 +87,28 @@ public class PackageMergeReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Package && newEnd instanceof Package)) {
+		if(!(oldEnd instanceof Package && newEnd instanceof Package)) {
 			return false;
 		}
 		Package source = getLink().getReceivingPackage();
-		if (!(getLink().eContainer() instanceof Package)) {
+		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package) getLink().eContainer();
+		Package container = (Package)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistPackageMerge_4011(container, getLink(), source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(
-			IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
-		if (!canExecute()) {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -117,9 +118,7 @@ public class PackageMergeReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getLink().setReceivingPackage(
-				getNewSource()
-				);
+		getLink().setReceivingPackage(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -127,9 +126,7 @@ public class PackageMergeReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getLink().setMergedPackage(
-				getNewTarget()
-				);
+		getLink().setMergedPackage(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -137,34 +134,34 @@ public class PackageMergeReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected PackageMerge getLink() {
-		return (PackageMerge) getElementToEdit();
+		return (PackageMerge)getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Package getOldSource() {
-		return (Package) oldEnd;
+		return (Package)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Package getNewSource() {
-		return (Package) newEnd;
+		return (Package)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Package getOldTarget() {
-		return (Package) oldEnd;
+		return (Package)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Package getNewTarget() {
-		return (Package) newEnd;
+		return (Package)newEnd;
 	}
 }
